@@ -10,8 +10,6 @@
 
 @implementation TODReader
 
-#pragma mark -
-
 - (id)init {
 	return [self initWithString:nil];
 }
@@ -31,9 +29,6 @@
 	[super dealloc];
 }
 
-
-#pragma mark -
-#pragma mark Public
 
 - (NSString *)string {
 	return [[string copy] autorelease];
