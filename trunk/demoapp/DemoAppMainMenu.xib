@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="368"/>
+			<integer value="367"/>
 			<integer value="136"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
@@ -756,8 +756,8 @@
 			<object class="NSWindowTemplate" id="513744381">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{196, -112}, {514, 622}}</string>
-				<int key="NSWTFlags">603979776</int>
+				<string key="NSWindowRect">{{540, 187}, {514, 622}}</string>
+				<int key="NSWTFlags">611844096</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -815,7 +815,7 @@
 										<object class="NSTextView" id="442414261">
 											<reference key="NSNextResponder" ref="975924737"/>
 											<int key="NSvFlags">2322</int>
-											<string key="NSFrameSize">{457, 40}</string>
+											<string key="NSFrameSize">{457, 84}</string>
 											<reference key="NSSuperview" ref="975924737"/>
 											<object class="NSTextContainer" key="NSTextContainer" id="25792801">
 												<object class="NSLayoutManager" key="NSLayoutManager">
@@ -1070,7 +1070,7 @@
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
-											<string key="NSMaxSize">{863, 1e+07}</string>
+											<string key="NSMaxSize">{931, 1e+07}</string>
 											<string key="NSMinize">{83, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
@@ -1191,7 +1191,7 @@
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
-											<string key="NSMaxSize">{863, 1e+07}</string>
+											<string key="NSMaxSize">{931, 1e+07}</string>
 											<string key="NSMinize">{83, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
@@ -1307,7 +1307,7 @@ c2UiIGJ1dHRvbiB0byBzZWUgdGhlIHRleHQgdG9rZW5pemVkLg</string>
 					<string key="NSFrameSize">{514, 622}</string>
 					<reference key="NSSuperview"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
 				<string key="NSMinSize">{480, 292}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
@@ -2839,7 +2839,7 @@ c2UiIGJ1dHRvbiB0byBzZWUgdGhlIHRleHQgdG9rZW5pemVkLg</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{0, 736}, {435, 20}}</string>
+					<string>{{0, 776}, {435, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
@@ -2867,9 +2867,9 @@ c2UiIGJ1dHRvbiB0byBzZWUgdGhlIHRleHQgdG9rZW5pemVkLg</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{508, 87}, {514, 622}}</string>
+					<string>{{500, 275}, {514, 622}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{508, 87}, {514, 622}}</string>
+					<string>{{500, 275}, {514, 622}}</string>
 					<reference ref="9"/>
 					<string>{{11, 316}, {480, 370}}</string>
 					<reference ref="9"/>
@@ -2895,7 +2895,7 @@ c2UiIGJ1dHRvbiB0byBzZWUgdGhlIHRleHQgdG9rZW5pemVkLg</string>
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{12, 553}, {206, 183}}</string>
+					<string>{{12, 593}, {206, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{23, 794}, {245, 183}}</string>
