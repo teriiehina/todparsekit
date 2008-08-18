@@ -6,11 +6,11 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODNumberState.h"
-#import "TODReader.h"
-#import "TODToken.h"
-#import "TODTokenizer.h"
-#import "TODSymbolState.h"
+#import <TODParseKit/TODNumberState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODToken.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODSymbolState.h>
 
 @interface TODNumberState ()
 - (CGFloat)absorbDigitsFromReader:(TODReader *)r isFraction:(BOOL)fraction;

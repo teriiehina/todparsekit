@@ -6,9 +6,9 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODWhitespaceState.h"
-#import "TODReader.h"
-#import "TODTokenizer.h"
+#import <TODParseKit/TODWhitespaceState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODTokenizer.h>
 
 @implementation TODWhitespaceState
 

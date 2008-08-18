@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODLiteral.h"
-#import "TODToken.h"
+#import <TODParseKit/TODLiteral.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODLiteral ()
 @property (nonatomic, retain) TODToken *literal;

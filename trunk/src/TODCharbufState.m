@@ -6,8 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODCharbufState.h"
-
+#import <TODParseKit/TODCharbufState.h>
 
 @implementation TODCharbufState
 

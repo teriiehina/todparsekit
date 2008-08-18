@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODSequence.h"
+#import <TODParseKit/TODSequence.h>
 
 @interface TODTrack : TODSequence {
 

@@ -6,8 +6,8 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODParser.h"
-#import "TODAssembly.h"
+#import <TODParseKit/TODParser.h>
+#import <TODParseKit/TODAssembly.h>
 
 @implementation NSString (TODParseKitAdditions)
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODWord.h"
+#import <TODParseKit/TODWord.h>
 
 @interface TODNonReservedWord : TODWord {
 

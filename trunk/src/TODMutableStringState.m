@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODMutableStringState.h"
+#import <TODParseKit/TODMutableStringState.h>
 
 @implementation TODMutableStringState
 

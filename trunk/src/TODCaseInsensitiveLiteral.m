@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODCaseInsensitiveLiteral.h"
-#import "TODToken.h"
+#import <TODParseKit/TODCaseInsensitiveLiteral.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODCaseInsensitiveLiteral
 

@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODEmpty.h"
+#import <TODParseKit/TODEmpty.h>
 
 @interface TODParser ()
 + (NSSet *)deepCopy:(NSSet *)inSet;

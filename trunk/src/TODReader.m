@@ -6,8 +6,7 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODReader.h"
-
+#import <TODParseKit/TODReader.h>
 
 @implementation TODReader
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODParser.h"
+#import <TODParseKit/TODParser.h>
 
 // Abstract Class
 @interface TODCollectionParser : TODParser {

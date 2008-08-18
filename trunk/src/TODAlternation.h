@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODCollectionParser.h"
+#import <TODParseKit/TODCollectionParser.h>
 
 @interface TODAlternation : TODCollectionParser {
 

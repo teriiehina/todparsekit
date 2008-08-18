@@ -6,10 +6,10 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODWordState.h"
-#import "TODReader.h"
-#import "TODTokenizer.h"
-#import "TODToken.h"
+#import <TODParseKit/TODWordState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODWordState () 
 - (BOOL)isWordChar:(NSInteger)c;

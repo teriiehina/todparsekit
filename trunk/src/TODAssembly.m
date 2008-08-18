@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODAssembly.h"
+#import <TODParseKit/TODAssembly.h>
 
 @interface TODAssembly ()
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;

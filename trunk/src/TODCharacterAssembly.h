@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODAssembly.h"
+#import <TODParseKit/TODAssembly.h>
 
 @interface TODCharacterAssembly : TODAssembly {
 

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODNum.h"
-#import "TODToken.h"
+#import <TODParseKit/TODNum.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODNum
 

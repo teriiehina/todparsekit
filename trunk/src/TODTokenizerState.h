@@ -12,7 +12,6 @@
 @class TODTokenizer;
 @class TODReader;
 
-
 @interface TODTokenizerState : NSObject {
 
 }

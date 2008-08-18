@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTerminal.h"
-#import "TODAssembly.h"
-#import "TODToken.h"
+#import <TODParseKit/TODTerminal.h>
+#import <TODParseKit/TODAssembly.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODTerminal ()
 - (TODAssembly *)matchOneAssembly:(TODAssembly *)inAssembly;

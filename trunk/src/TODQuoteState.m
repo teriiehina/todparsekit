@@ -6,9 +6,9 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODQuoteState.h"
-#import "TODReader.h"
-#import "TODToken.h"
+#import <TODParseKit/TODQuoteState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODQuoteState
 

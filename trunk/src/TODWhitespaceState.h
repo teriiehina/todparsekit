@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODSignificantWhitespaceState.h"
+#import <TODParseKit/TODSignificantWhitespaceState.h>
 
 @interface TODWhitespaceState : TODSignificantWhitespaceState {
 

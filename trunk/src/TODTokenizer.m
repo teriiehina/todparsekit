@@ -6,8 +6,8 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTokenizer.h"
-#import "TODParseKit.h"
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODParseKit.h>
 
 @interface TODTokenizer ()
 @property (nonatomic, readwrite, retain) TODNumberState *numberState;

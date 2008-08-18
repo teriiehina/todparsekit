@@ -6,12 +6,12 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSlashState.h"
-#import "TODReader.h"
-#import "TODTokenizer.h"
-#import "TODToken.h"
-#import "TODSlashSlashState.h"
-#import "TODSlashStarState.h"
+#import <TODParseKit/TODSlashState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODToken.h>
+#import <TODParseKit/TODSlashSlashState.h>
+#import <TODParseKit/TODSlashStarState.h>
 
 @interface TODSlashState ()
 @property (nonatomic, retain) TODSlashSlashState *slashSlashState;

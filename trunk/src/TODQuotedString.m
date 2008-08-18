@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODQuotedString.h"
-#import "TODToken.h"
+#import <TODParseKit/TODQuotedString.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODQuotedString
 

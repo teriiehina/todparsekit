@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODReservedWord.h"
-#import "TODToken.h"
+#import <TODParseKit/TODReservedWord.h>
+#import <TODParseKit/TODToken.h>
 
 static NSArray *sTODReservedWords = nil;
 

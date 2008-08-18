@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODWordState.h"
+#import <TODParseKit/TODWordState.h>
 
 @interface TODWordOrReservedState : TODWordState {
 	NSMutableSet *reservedWords;

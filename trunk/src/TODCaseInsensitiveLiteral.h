@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODLiteral.h"
+#import <TODParseKit/TODLiteral.h>
 
 @interface TODCaseInsensitiveLiteral : TODLiteral {
 

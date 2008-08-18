@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODRepetition.h"
-#import "TODAssembly.h"
+#import <TODParseKit/TODRepetition.h>
+#import <TODParseKit/TODAssembly.h>
 
 @interface TODParser ()
 + (NSSet *)deepCopy:(NSSet *)inSet;

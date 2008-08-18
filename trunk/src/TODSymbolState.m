@@ -6,11 +6,11 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSymbolState.h"
-#import "TODToken.h"
-#import "TODSymbolNode.h"
-#import "TODSymbolRootNode.h"
-#import "TODReader.h"
+#import <TODParseKit/TODSymbolState.h>
+#import <TODParseKit/TODToken.h>
+#import <TODParseKit/TODSymbolNode.h>
+#import <TODParseKit/TODSymbolRootNode.h>
+#import <TODParseKit/TODReader.h>
 
 @interface TODSymbolState ()
 @property (nonatomic, retain) TODSymbolRootNode *rootNode;

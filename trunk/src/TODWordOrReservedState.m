@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODWordOrReservedState.h"
+#import <TODParseKit/TODWordOrReservedState.h>
 
 @interface TODWordOrReservedState ()
 @property (nonatomic, retain) NSMutableSet *reservedWords;

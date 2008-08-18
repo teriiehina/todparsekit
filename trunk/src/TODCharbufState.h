@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODTokenizerState.h"
+#import <TODParseKit/TODTokenizerState.h>
 
 // Abstract Class
 @interface TODCharbufState : TODTokenizerState {

@@ -6,8 +6,7 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTokenizerState.h"
-
+#import <TODParseKit/TODTokenizerState.h>
 
 @implementation TODTokenizerState
 

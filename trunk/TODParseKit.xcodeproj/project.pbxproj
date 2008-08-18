@@ -12,9 +12,9 @@
 		D3175A3B0E2C11E700C1633E /* TODSequenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3A0E2C11E700C1633E /* TODSequenceTest.m */; };
 		D3175A440E2C121000C1633E /* TODSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A420E2C121000C1633E /* TODSignificantWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3175A450E2C121000C1633E /* TODSignificantWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A430E2C121000C1633E /* TODSignificantWhitespaceState.m */; };
-		D3175A460E2C121A00C1633E /* TODCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3C0E2C11F900C1633E /* TODCharbufState.h */; };
+		D3175A460E2C121A00C1633E /* TODCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3C0E2C11F900C1633E /* TODCharbufState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D3175A470E2C121A00C1633E /* TODCharbufState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3D0E2C11F900C1633E /* TODCharbufState.m */; };
-		D3175A480E2C121A00C1633E /* TODMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3E0E2C11F900C1633E /* TODMutableStringState.h */; settings = {ATTRIBUTES = (); }; };
+		D3175A480E2C121A00C1633E /* TODMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3E0E2C11F900C1633E /* TODMutableStringState.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		D3175A490E2C121A00C1633E /* TODMutableStringState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3F0E2C11F900C1633E /* TODMutableStringState.m */; };
 		D3175A4C0E2C125500C1633E /* TODCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A4A0E2C125500C1633E /* TODCollectionParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3175A4D0E2C125500C1633E /* TODCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A4B0E2C125500C1633E /* TODCollectionParser.m */; };

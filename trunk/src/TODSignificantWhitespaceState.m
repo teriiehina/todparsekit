@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSignificantWhitespaceState.h"
-#import "TODReader.h"
-#import "TODTokenizer.h"
-#import "TODToken.h"
+#import <TODParseKit/TODSignificantWhitespaceState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODSignificantWhitespaceState () 
 @property (nonatomic, retain) NSMutableArray *whitespaceChars;
