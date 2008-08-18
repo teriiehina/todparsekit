@@ -6,7 +6,7 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODToken.h"
+#import <TODParseKit/TODToken.h>
 
 @interface TODTokenEOF : TODToken {}
 @end

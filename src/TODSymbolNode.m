@@ -6,7 +6,7 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSymbolNode.h"
+#import <TODParseKit/TODSymbolNode.h>
 
 @interface TODSymbolNode ()
 @property (nonatomic, readwrite, retain) NSString *ancestry;

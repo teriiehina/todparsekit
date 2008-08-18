@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODLowercaseWord.h"
-#import "TODToken.h"
+#import <TODParseKit/TODLowercaseWord.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODLowercaseWord
 

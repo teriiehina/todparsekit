@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODChar.h"
+#import <TODParseKit/TODChar.h>
 
 @implementation TODChar
 

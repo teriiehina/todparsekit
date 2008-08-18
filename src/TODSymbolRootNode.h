@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODSymbolNode.h"
+#import <TODParseKit/TODSymbolNode.h>
 
 @class TODReader;
 

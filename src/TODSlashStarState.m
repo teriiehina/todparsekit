@@ -6,10 +6,10 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSlashStarState.h"
-#import "TODReader.h"
-#import "TODTokenizer.h"
-#import "TODToken.h"
+#import <TODParseKit/TODSlashStarState.h>
+#import <TODParseKit/TODReader.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODToken.h>
 
 @implementation TODSlashStarState
 

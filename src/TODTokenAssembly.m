@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTokenAssembly.h"
-#import "TODTokenizer.h"
-#import "TODToken.h"
+#import <TODParseKit/TODTokenAssembly.h>
+#import <TODParseKit/TODTokenizer.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODTokenAssembly ()
 - (void)tokenize;

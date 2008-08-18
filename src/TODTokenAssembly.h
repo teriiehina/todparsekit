@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODAssembly.h"
+#import <TODParseKit/TODAssembly.h>
 
 @class TODTokenizer;
 

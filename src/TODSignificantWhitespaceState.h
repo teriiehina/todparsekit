@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODMutableStringState.h"
+#import <TODParseKit/TODMutableStringState.h>
 
 @interface TODSignificantWhitespaceState : TODMutableStringState {
 	NSInteger c;

@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODLetter.h"
+#import <TODParseKit/TODLetter.h>
 
 @implementation TODLetter
 

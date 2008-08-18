@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODDigit.h"
+#import <TODParseKit/TODDigit.h>
 
 @implementation TODDigit
 

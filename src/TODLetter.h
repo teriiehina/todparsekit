@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTerminal.h"
+#import <TODParseKit/TODTerminal.h>
 
 @interface TODLetter : TODTerminal {
 

@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODWord.h"
-#import "TODToken.h"
-#import "TODAssembly.h"
+#import <TODParseKit/TODWord.h>
+#import <TODParseKit/TODToken.h>
+#import <TODParseKit/TODAssembly.h>
 
 @implementation TODWord
 

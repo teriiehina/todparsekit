@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODCharacterAssembly.h"
+#import <TODParseKit/TODCharacterAssembly.h>
 
 @interface TODAssembly ()
 @property (nonatomic, readwrite, copy) NSString *defaultDelimiter;

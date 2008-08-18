@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODNonReservedWord.h"
-#import "TODReservedWord.h"
-#import "TODToken.h"
+#import <TODParseKit/TODNonReservedWord.h>
+#import <TODParseKit/TODReservedWord.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODReservedWord ()
 + (NSArray *)reservedWords;

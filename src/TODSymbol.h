@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TODTerminal.h"
+#import <TODParseKit/TODTerminal.h>
 
 @class TODToken;
 

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSymbol.h"
-#import "TODToken.h"
+#import <TODParseKit/TODSymbol.h>
+#import <TODParseKit/TODToken.h>
 
 @interface TODSymbol ()
 @property (nonatomic, retain) TODToken *symbol;

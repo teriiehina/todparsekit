@@ -6,8 +6,8 @@
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSymbolRootNode.h"
-#import "TODReader.h"
+#import <TODParseKit/TODSymbolRootNode.h>
+#import <TODParseKit/TODReader.h>
 
 @interface TODSymbolRootNode ()
 - (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TODSymbolNode *)p;

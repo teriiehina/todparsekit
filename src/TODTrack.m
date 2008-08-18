@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODTrack.h"
-#import "TODAssembly.h"
+#import <TODParseKit/TODTrack.h>
+#import <TODParseKit/TODAssembly.h>
 
 @interface TODParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
