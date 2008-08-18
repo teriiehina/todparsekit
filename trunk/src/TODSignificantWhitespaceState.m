@@ -39,6 +39,8 @@
 
 - (void)dealloc {
 	self.whitespaceChars = nil;
+	self.yesFlag = nil;
+	self.noFlag = nil;
 	[super dealloc];
 }
 
