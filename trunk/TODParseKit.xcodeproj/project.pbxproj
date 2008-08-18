@@ -1,0 +1,1583 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		D317596F0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D317596E0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.m */; };
+		D3175A3B0E2C11E700C1633E /* TODSequenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3A0E2C11E700C1633E /* TODSequenceTest.m */; };
+		D3175A440E2C121000C1633E /* TODSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A420E2C121000C1633E /* TODSignificantWhitespaceState.h */; };
+		D3175A450E2C121000C1633E /* TODSignificantWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A430E2C121000C1633E /* TODSignificantWhitespaceState.m */; };
+		D3175A460E2C121A00C1633E /* TODCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3C0E2C11F900C1633E /* TODCharbufState.h */; };
+		D3175A470E2C121A00C1633E /* TODCharbufState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3D0E2C11F900C1633E /* TODCharbufState.m */; };
+		D3175A480E2C121A00C1633E /* TODMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A3E0E2C11F900C1633E /* TODMutableStringState.h */; };
+		D3175A490E2C121A00C1633E /* TODMutableStringState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A3F0E2C11F900C1633E /* TODMutableStringState.m */; };
+		D3175A4C0E2C125500C1633E /* TODCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3175A4A0E2C125500C1633E /* TODCollectionParser.h */; };
+		D3175A4D0E2C125500C1633E /* TODCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3175A4B0E2C125500C1633E /* TODCollectionParser.m */; };
+		D318EAE70E2FD5DE009F47DF /* TODJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D318EAE60E2FD5DE009F47DF /* TODJsonParserTest.m */; };
+		D334921B0E29369900406085 /* TODSymbolStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D334921A0E29369900406085 /* TODSymbolStateTest.m */; };
+		D33494720E29670B00406085 /* TODParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TODParseKit.framework */; };
+		D341850C0E520D640081B0DC /* TODParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TODParseKit.framework */; };
+		D34A1F440E54F71D00A4A0BF /* TODWordOrReservedState.h in Headers */ = {isa = PBXBuildFile; fileRef = D34A1F420E54F71D00A4A0BF /* TODWordOrReservedState.h */; };
+		D34A1F450E54F71D00A4A0BF /* TODWordOrReservedState.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A1F430E54F71D00A4A0BF /* TODWordOrReservedState.m */; };
+		D34A200B0E55FD8500A4A0BF /* TODCharacterAssemblyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A200A0E55FD8500A4A0BF /* TODCharacterAssemblyTest.m */; };
+		D34A20530E55FFD400A4A0BF /* TODDigitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A20520E55FFD400A4A0BF /* TODDigitTest.m */; };
+		D34A205C0E5601BF00A4A0BF /* TODCharTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A205B0E5601BF00A4A0BF /* TODCharTest.m */; };
+		D34A205F0E5601C900A4A0BF /* TODSpecificCharTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A205E0E5601C900A4A0BF /* TODSpecificCharTest.m */; };
+		D34A20620E5601D300A4A0BF /* TODLetterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A20610E5601D300A4A0BF /* TODLetterTest.m */; };
+		D34A21370E560C1000A4A0BF /* TODJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21360E560C1000A4A0BF /* TODJsonParser.m */; };
+		D34A21B10E5616AB00A4A0BF /* TODJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21360E560C1000A4A0BF /* TODJsonParser.m */; };
+		D34A21EB0E56201500A4A0BF /* TODRegularParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21E80E56201500A4A0BF /* TODRegularParser.m */; };
+		D34A21EC0E56201500A4A0BF /* TODRegularParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21EA0E56201500A4A0BF /* TODRegularParserTest.m */; };
+		D34A228A0E56488500A4A0BF /* TODRegularParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21E80E56201500A4A0BF /* TODRegularParser.m */; };
+		D35421260DFB2A7900429B4F /* TODWhitespaceStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D35421250DFB2A7900429B4F /* TODWhitespaceStateTest.m */; };
+		D35421FF0DFB355F00429B4F /* TODWordStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D35421FE0DFB355F00429B4F /* TODWordStateTest.m */; };
+		D36E934D0E57668900496BD3 /* TODXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E934C0E57668900496BD3 /* TODXmlNameState.m */; };
+		D36E93570E57685E00496BD3 /* TODXmlName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E93560E57685E00496BD3 /* TODXmlName.m */; };
+		D36E935E0E57694F00496BD3 /* TODXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E935D0E57694F00496BD3 /* TODXmlToken.m */; };
+		D36E93E60E57749700496BD3 /* TODXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E935D0E57694F00496BD3 /* TODXmlToken.m */; };
+		D36E93E70E57749700496BD3 /* TODXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E934C0E57668900496BD3 /* TODXmlNameState.m */; };
+		D36E93E80E57749700496BD3 /* TODXmlName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E93560E57685E00496BD3 /* TODXmlName.m */; };
+		D36E94840E5780CF00496BD3 /* TODXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E94830E5780CF00496BD3 /* TODXmlNmtoken.m */; };
+		D36E949F0E57821E00496BD3 /* TODXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E949E0E57821E00496BD3 /* TODXmlNmtokenState.m */; };
+		D36E94FD0E5786D000496BD3 /* TODNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E94FC0E5786D000496BD3 /* TODNCName.m */; };
+		D36E95050E57885700496BD3 /* TODNCNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95040E57885700496BD3 /* TODNCNameState.m */; };
+		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
+		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
+		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
+		D36E98220E58A3A800496BD3 /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
+		D36E98BA0E58BED500496BD3 /* TODXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98B90E58BED500496BD3 /* TODXmlNameTest.m */; };
+		D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */; };
+		D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */; };
+		D36E98E20E58C12800496BD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98DF0E58C12800496BD3 /* main.m */; };
+		D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */; };
+		D36E98E80E58C14000496BD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98E50E58C14000496BD3 /* main.m */; };
+		D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */; };
+		D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
+		D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99A60E58CF6C00496BD3 /* TODFastJsonParserTest.m */; };
+		D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
+		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
+		D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82B0A411F67005DD154 /* TODNumberState.h */; };
+		D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82C0A411F67005DD154 /* TODNumberState.m */; };
+		D3C7D8500A411F67005DD154 /* TODParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82D0A411F67005DD154 /* TODParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3C7D8510A411F67005DD154 /* TODParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82E0A411F67005DD154 /* TODParser.h */; };
+		D3C7D8520A411F67005DD154 /* TODParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82F0A411F67005DD154 /* TODParser.m */; };
+		D3C7D8550A411F67005DD154 /* TODQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8320A411F67005DD154 /* TODQuoteState.h */; };
+		D3C7D8560A411F67005DD154 /* TODQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8330A411F67005DD154 /* TODQuoteState.m */; };
+		D3C7D8570A411F67005DD154 /* TODSlashSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8340A411F67005DD154 /* TODSlashSlashState.h */; };
+		D3C7D8580A411F67005DD154 /* TODSlashSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8350A411F67005DD154 /* TODSlashSlashState.m */; };
+		D3C7D8590A411F67005DD154 /* TODSlashStarState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8360A411F67005DD154 /* TODSlashStarState.h */; };
+		D3C7D85A0A411F67005DD154 /* TODSlashStarState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8370A411F67005DD154 /* TODSlashStarState.m */; };
+		D3C7D85B0A411F67005DD154 /* TODSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8380A411F67005DD154 /* TODSlashState.h */; };
+		D3C7D85C0A411F67005DD154 /* TODSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8390A411F67005DD154 /* TODSlashState.m */; };
+		D3C7D85D0A411F67005DD154 /* TODSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D83A0A411F67005DD154 /* TODSymbolNode.h */; };
+		D3C7D85E0A411F67005DD154 /* TODSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D83B0A411F67005DD154 /* TODSymbolNode.m */; };
+		D3C7D85F0A411F67005DD154 /* TODSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D83C0A411F67005DD154 /* TODSymbolRootNode.h */; };
+		D3C7D8600A411F67005DD154 /* TODSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D83D0A411F67005DD154 /* TODSymbolRootNode.m */; };
+		D3C7D8610A411F67005DD154 /* TODSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D83E0A411F67005DD154 /* TODSymbolState.h */; };
+		D3C7D8620A411F67005DD154 /* TODSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D83F0A411F67005DD154 /* TODSymbolState.m */; };
+		D3C7D8630A411F67005DD154 /* TODToken.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8400A411F67005DD154 /* TODToken.h */; };
+		D3C7D8640A411F67005DD154 /* TODToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8410A411F67005DD154 /* TODToken.m */; };
+		D3C7D8650A411F67005DD154 /* TODTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8420A411F67005DD154 /* TODTokenizer.h */; };
+		D3C7D8660A411F67005DD154 /* TODTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8430A411F67005DD154 /* TODTokenizer.m */; };
+		D3C7D8670A411F67005DD154 /* TODTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D8440A411F67005DD154 /* TODTokenizerState.h */; };
+		D3C7D8680A411F67005DD154 /* TODTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D8450A411F67005DD154 /* TODTokenizerState.m */; };
+		D3C7D86D0A411F67005DD154 /* TODWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D84A0A411F67005DD154 /* TODWhitespaceState.h */; };
+		D3C7D86E0A411F67005DD154 /* TODWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D84B0A411F67005DD154 /* TODWhitespaceState.m */; };
+		D3C7D86F0A411F67005DD154 /* TODWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D84C0A411F67005DD154 /* TODWordState.h */; };
+		D3C7D8700A411F67005DD154 /* TODWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D84D0A411F67005DD154 /* TODWordState.m */; };
+		D3C7D98B0A4126D6005DD154 /* TODNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D9860A4126D6005DD154 /* TODNumberStateTest.m */; };
+		D3C7D98D0A4126D6005DD154 /* TODQuoteStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D98A0A4126D6005DD154 /* TODQuoteStateTest.m */; };
+		D3C7D9DA0A412874005DD154 /* TODParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TODParseKit.framework */; };
+		D3C9ECD20E27F1DE00A44142 /* TODTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C9ECD10E27F1DE00A44142 /* TODTokenizerTest.m */; };
+		D3CAB7240E286D7F0026CE33 /* TODReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D3CAB7220E286D7F0026CE33 /* TODReader.h */; };
+		D3CAB7250E286D7F0026CE33 /* TODReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CAB7230E286D7F0026CE33 /* TODReader.m */; };
+		D3CAB7290E286DBE0026CE33 /* TODReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CAB7280E286DBE0026CE33 /* TODReaderTest.m */; };
+		D3CAB7530E28888C0026CE33 /* TODSlashStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3CAB7520E28888C0026CE33 /* TODSlashStateTest.m */; };
+		D3D63E2C0E29EEF5009BF5CD /* TODAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63E2A0E29EEF5009BF5CD /* TODAssembly.h */; };
+		D3D63E2D0E29EEF5009BF5CD /* TODAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63E2B0E29EEF5009BF5CD /* TODAssembly.m */; };
+		D3D63E520E29F77B009BF5CD /* TODTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63E500E29F77B009BF5CD /* TODTerminal.h */; };
+		D3D63E530E29F77B009BF5CD /* TODTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63E510E29F77B009BF5CD /* TODTerminal.m */; };
+		D3D63E570E29F7A1009BF5CD /* TODRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63E550E29F7A1009BF5CD /* TODRepetition.h */; };
+		D3D63E580E29F7A1009BF5CD /* TODRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63E560E29F7A1009BF5CD /* TODRepetition.m */; };
+		D3D63E5B0E29F7AE009BF5CD /* TODSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63E590E29F7AE009BF5CD /* TODSequence.h */; };
+		D3D63E5C0E29F7AE009BF5CD /* TODSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63E5A0E29F7AE009BF5CD /* TODSequence.m */; };
+		D3D63E9C0E29F955009BF5CD /* TODEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63E9A0E29F955009BF5CD /* TODEmpty.h */; };
+		D3D63E9D0E29F955009BF5CD /* TODEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63E9B0E29F955009BF5CD /* TODEmpty.m */; };
+		D3D63EA30E2A7A43009BF5CD /* TODTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63EA10E2A7A43009BF5CD /* TODTokenAssembly.h */; };
+		D3D63EA40E2A7A43009BF5CD /* TODTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63EA20E2A7A43009BF5CD /* TODTokenAssembly.m */; };
+		D3D63EA70E2A7A53009BF5CD /* TODCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63EA50E2A7A53009BF5CD /* TODCharacterAssembly.h */; };
+		D3D63EA80E2A7A53009BF5CD /* TODCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63EA60E2A7A53009BF5CD /* TODCharacterAssembly.m */; };
+		D3D63ED20E2A7D39009BF5CD /* TODWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63ED00E2A7D39009BF5CD /* TODWord.h */; };
+		D3D63ED30E2A7D39009BF5CD /* TODWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63ED10E2A7D39009BF5CD /* TODWord.m */; };
+		D3D63F5A0E2A8578009BF5CD /* TODTokenAssemblyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63F590E2A8578009BF5CD /* TODTokenAssemblyTest.m */; };
+		D3D63F5E0E2A8616009BF5CD /* TODAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D63F5C0E2A8616009BF5CD /* TODAlternation.h */; };
+		D3D63F5F0E2A8616009BF5CD /* TODAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63F5D0E2A8616009BF5CD /* TODAlternation.m */; };
+		D3D63F960E2A88C8009BF5CD /* TODTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D63F950E2A88C8009BF5CD /* TODTestScaffold.m */; };
+		D3D641670E2AB062009BF5CD /* TODNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D641650E2AB062009BF5CD /* TODNum.h */; };
+		D3D641680E2AB062009BF5CD /* TODNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D641660E2AB062009BF5CD /* TODNum.m */; };
+		D3D6420C0E2AC20C009BF5CD /* TODQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D6420A0E2AC20C009BF5CD /* TODQuotedString.h */; };
+		D3D6420D0E2AC20C009BF5CD /* TODQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6420B0E2AC20C009BF5CD /* TODQuotedString.m */; };
+		D3D642120E2AC25C009BF5CD /* TODSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D642100E2AC25C009BF5CD /* TODSymbol.h */; };
+		D3D642130E2AC25C009BF5CD /* TODSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D642110E2AC25C009BF5CD /* TODSymbol.m */; };
+		D3D642170E2AC299009BF5CD /* TODLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D642150E2AC299009BF5CD /* TODLiteral.h */; };
+		D3D642180E2AC299009BF5CD /* TODLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D642160E2AC299009BF5CD /* TODLiteral.m */; };
+		D3D6421F0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D6421D0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.h */; };
+		D3D642200E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6421E0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.m */; };
+		D3D642950E2AC8DA009BF5CD /* TODRepetitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D642940E2AC8DA009BF5CD /* TODRepetitionTest.m */; };
+		D3D643BA0E2B0354009BF5CD /* TODLiteralTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D643B90E2B0354009BF5CD /* TODLiteralTest.m */; };
+		D3D6446D0E2B0C41009BF5CD /* TODAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6446C0E2B0C41009BF5CD /* TODAlternationTest.m */; };
+		D3D644980E2B11BA009BF5CD /* TODParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D644970E2B11BA009BF5CD /* TODParserTest.m */; };
+		D3D645CF0E2B297B009BF5CD /* TODSymbolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D645CE0E2B297B009BF5CD /* TODSymbolTest.m */; };
+		D3D647940E2C5816009BF5CD /* TODRobotCommandTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D647930E2C5816009BF5CD /* TODRobotCommandTest.m */; };
+		D3E7840E0E53BA49008C7D61 /* TODUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E7840C0E53BA49008C7D61 /* TODUppercaseWord.h */; };
+		D3E7840F0E53BA49008C7D61 /* TODUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7840D0E53BA49008C7D61 /* TODUppercaseWord.m */; };
+		D3E784160E53BAEB008C7D61 /* TODLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E784140E53BAEB008C7D61 /* TODLowercaseWord.h */; };
+		D3E784170E53BAEB008C7D61 /* TODLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E784150E53BAEB008C7D61 /* TODLowercaseWord.m */; };
+		D3E7841E0E53BB38008C7D61 /* TODUppercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7841D0E53BB38008C7D61 /* TODUppercaseWordTest.m */; };
+		D3E7842C0E53BCFC008C7D61 /* TODLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7842B0E53BCFC008C7D61 /* TODLowercaseWordTest.m */; };
+		D3E784350E53BE4B008C7D61 /* TODReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E784330E53BE4B008C7D61 /* TODReservedWord.h */; };
+		D3E784360E53BE4B008C7D61 /* TODReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E784340E53BE4B008C7D61 /* TODReservedWord.m */; };
+		D3E784390E53BF40008C7D61 /* TODNonReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E784370E53BF40008C7D61 /* TODNonReservedWord.h */; };
+		D3E7843A0E53BF40008C7D61 /* TODNonReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E784380E53BF40008C7D61 /* TODNonReservedWord.m */; };
+		D3E784430E53BFD9008C7D61 /* TODReservedWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E784420E53BFD9008C7D61 /* TODReservedWordTest.m */; };
+		D3E7844F0E53C34A008C7D61 /* TODTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E7844D0E53C34A008C7D61 /* TODTrack.h */; };
+		D3E784500E53C34A008C7D61 /* TODTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7844E0E53C34A008C7D61 /* TODTrack.m */; };
+		D3E7845E0E53C85A008C7D61 /* TODTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E7845D0E53C85A008C7D61 /* TODTrackTest.m */; };
+		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
+		D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
+		D3E785F40E550F79008C7D61 /* TODChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E785F20E550F79008C7D61 /* TODChar.h */; };
+		D3E785F50E550F79008C7D61 /* TODChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E785F30E550F79008C7D61 /* TODChar.m */; };
+		D3E785F80E550F96008C7D61 /* TODDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E785F60E550F96008C7D61 /* TODDigit.h */; };
+		D3E785F90E550F96008C7D61 /* TODDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E785F70E550F96008C7D61 /* TODDigit.m */; };
+		D3E785FC0E550FAD008C7D61 /* TODLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E785FA0E550FAD008C7D61 /* TODLetter.h */; };
+		D3E785FD0E550FAD008C7D61 /* TODLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E785FB0E550FAD008C7D61 /* TODLetter.m */; };
+		D3E786000E550FBF008C7D61 /* TODSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D3E785FE0E550FBF008C7D61 /* TODSpecificChar.h */; };
+		D3E786010E550FBF008C7D61 /* TODSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E785FF0E550FBF008C7D61 /* TODSpecificChar.m */; };
+		D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		D3E788930E567DFD008C7D61 /* SRGSParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E788920E567DFD008C7D61 /* SRGSParserTest.m */; };
+		D3E788960E567E0A008C7D61 /* SRGSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E788950E567E0A008C7D61 /* SRGSParser.m */; };
+		D3E78A190E574C99008C7D61 /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
+		D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A180E574C99008C7D61 /* EBNFParserTest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D334949F0E296AA900406085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TODParseKit;
+		};
+		D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TODParseKit;
+		};
+		D3C7D87F0A411FDB005DD154 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TODParseKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* TODParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODParseKit_Prefix.pch; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* TODParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TODParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		D317596D0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSignificantWhitespaceStateTest.h; path = test/TODSignificantWhitespaceStateTest.h; sourceTree = "<group>"; };
+		D317596E0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSignificantWhitespaceStateTest.m; path = test/TODSignificantWhitespaceStateTest.m; sourceTree = "<group>"; };
+		D3175A390E2C11E700C1633E /* TODSequenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSequenceTest.h; path = test/TODSequenceTest.h; sourceTree = "<group>"; };
+		D3175A3A0E2C11E700C1633E /* TODSequenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSequenceTest.m; path = test/TODSequenceTest.m; sourceTree = "<group>"; };
+		D3175A3C0E2C11F900C1633E /* TODCharbufState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCharbufState.h; path = src/TODCharbufState.h; sourceTree = "<group>"; };
+		D3175A3D0E2C11F900C1633E /* TODCharbufState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCharbufState.m; path = src/TODCharbufState.m; sourceTree = "<group>"; };
+		D3175A3E0E2C11F900C1633E /* TODMutableStringState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODMutableStringState.h; path = src/TODMutableStringState.h; sourceTree = "<group>"; };
+		D3175A3F0E2C11F900C1633E /* TODMutableStringState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODMutableStringState.m; path = src/TODMutableStringState.m; sourceTree = "<group>"; };
+		D3175A420E2C121000C1633E /* TODSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSignificantWhitespaceState.h; path = src/TODSignificantWhitespaceState.h; sourceTree = "<group>"; };
+		D3175A430E2C121000C1633E /* TODSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSignificantWhitespaceState.m; path = src/TODSignificantWhitespaceState.m; sourceTree = "<group>"; };
+		D3175A4A0E2C125500C1633E /* TODCollectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCollectionParser.h; path = src/TODCollectionParser.h; sourceTree = "<group>"; };
+		D3175A4B0E2C125500C1633E /* TODCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCollectionParser.m; path = src/TODCollectionParser.m; sourceTree = "<group>"; };
+		D318EAE50E2FD5DE009F47DF /* TODJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODJsonParserTest.h; path = test/TODJsonParserTest.h; sourceTree = "<group>"; };
+		D318EAE60E2FD5DE009F47DF /* TODJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODJsonParserTest.m; path = test/TODJsonParserTest.m; sourceTree = "<group>"; };
+		D33492190E29369900406085 /* TODSymbolStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSymbolStateTest.h; path = test/TODSymbolStateTest.h; sourceTree = "<group>"; };
+		D334921A0E29369900406085 /* TODSymbolStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSymbolStateTest.m; path = test/TODSymbolStateTest.m; sourceTree = "<group>"; };
+		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D34A1F420E54F71D00A4A0BF /* TODWordOrReservedState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWordOrReservedState.h; path = src/TODWordOrReservedState.h; sourceTree = "<group>"; };
+		D34A1F430E54F71D00A4A0BF /* TODWordOrReservedState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODWordOrReservedState.m; path = src/TODWordOrReservedState.m; sourceTree = "<group>"; };
+		D34A20090E55FD8500A4A0BF /* TODCharacterAssemblyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCharacterAssemblyTest.h; path = test/TODCharacterAssemblyTest.h; sourceTree = "<group>"; };
+		D34A200A0E55FD8500A4A0BF /* TODCharacterAssemblyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCharacterAssemblyTest.m; path = test/TODCharacterAssemblyTest.m; sourceTree = "<group>"; };
+		D34A20510E55FFD400A4A0BF /* TODDigitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODDigitTest.h; path = test/TODDigitTest.h; sourceTree = "<group>"; };
+		D34A20520E55FFD400A4A0BF /* TODDigitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODDigitTest.m; path = test/TODDigitTest.m; sourceTree = "<group>"; };
+		D34A205A0E5601BF00A4A0BF /* TODCharTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCharTest.h; path = test/TODCharTest.h; sourceTree = "<group>"; };
+		D34A205B0E5601BF00A4A0BF /* TODCharTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCharTest.m; path = test/TODCharTest.m; sourceTree = "<group>"; };
+		D34A205D0E5601C900A4A0BF /* TODSpecificCharTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSpecificCharTest.h; path = test/TODSpecificCharTest.h; sourceTree = "<group>"; };
+		D34A205E0E5601C900A4A0BF /* TODSpecificCharTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSpecificCharTest.m; path = test/TODSpecificCharTest.m; sourceTree = "<group>"; };
+		D34A20600E5601D300A4A0BF /* TODLetterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLetterTest.h; path = test/TODLetterTest.h; sourceTree = "<group>"; };
+		D34A20610E5601D300A4A0BF /* TODLetterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLetterTest.m; path = test/TODLetterTest.m; sourceTree = "<group>"; };
+		D34A21350E560C1000A4A0BF /* TODJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODJsonParser.h; path = test/TODJsonParser.h; sourceTree = "<group>"; };
+		D34A21360E560C1000A4A0BF /* TODJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODJsonParser.m; path = test/TODJsonParser.m; sourceTree = "<group>"; };
+		D34A21E70E56201500A4A0BF /* TODRegularParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRegularParser.h; path = test/TODRegularParser.h; sourceTree = "<group>"; };
+		D34A21E80E56201500A4A0BF /* TODRegularParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRegularParser.m; path = test/TODRegularParser.m; sourceTree = "<group>"; };
+		D34A21E90E56201500A4A0BF /* TODRegularParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRegularParserTest.h; path = test/TODRegularParserTest.h; sourceTree = "<group>"; };
+		D34A21EA0E56201500A4A0BF /* TODRegularParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRegularParserTest.m; path = test/TODRegularParserTest.m; sourceTree = "<group>"; };
+		D35421240DFB2A7900429B4F /* TODWhitespaceStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWhitespaceStateTest.h; path = test/TODWhitespaceStateTest.h; sourceTree = "<group>"; };
+		D35421250DFB2A7900429B4F /* TODWhitespaceStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODWhitespaceStateTest.m; path = test/TODWhitespaceStateTest.m; sourceTree = "<group>"; };
+		D35421FD0DFB355F00429B4F /* TODWordStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWordStateTest.h; path = test/TODWordStateTest.h; sourceTree = "<group>"; };
+		D35421FE0DFB355F00429B4F /* TODWordStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODWordStateTest.m; path = test/TODWordStateTest.m; sourceTree = "<group>"; };
+		D36E934B0E57668900496BD3 /* TODXmlNameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlNameState.h; path = test/TODXmlNameState.h; sourceTree = "<group>"; };
+		D36E934C0E57668900496BD3 /* TODXmlNameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlNameState.m; path = test/TODXmlNameState.m; sourceTree = "<group>"; };
+		D36E93550E57685E00496BD3 /* TODXmlName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlName.h; path = test/TODXmlName.h; sourceTree = "<group>"; };
+		D36E93560E57685E00496BD3 /* TODXmlName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlName.m; path = test/TODXmlName.m; sourceTree = "<group>"; };
+		D36E935C0E57694F00496BD3 /* TODXmlToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlToken.h; path = test/TODXmlToken.h; sourceTree = "<group>"; };
+		D36E935D0E57694F00496BD3 /* TODXmlToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlToken.m; path = test/TODXmlToken.m; sourceTree = "<group>"; };
+		D36E94820E5780CF00496BD3 /* TODXmlNmtoken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlNmtoken.h; path = test/TODXmlNmtoken.h; sourceTree = "<group>"; };
+		D36E94830E5780CF00496BD3 /* TODXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlNmtoken.m; path = test/TODXmlNmtoken.m; sourceTree = "<group>"; };
+		D36E949D0E57821E00496BD3 /* TODXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlNmtokenState.h; path = test/TODXmlNmtokenState.h; sourceTree = "<group>"; };
+		D36E949E0E57821E00496BD3 /* TODXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlNmtokenState.m; path = test/TODXmlNmtokenState.m; sourceTree = "<group>"; };
+		D36E94FB0E5786D000496BD3 /* TODNCName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODNCName.h; path = test/TODNCName.h; sourceTree = "<group>"; };
+		D36E94FC0E5786D000496BD3 /* TODNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODNCName.m; path = test/TODNCName.m; sourceTree = "<group>"; };
+		D36E95030E57885700496BD3 /* TODNCNameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODNCNameState.h; path = test/TODNCNameState.h; sourceTree = "<group>"; };
+		D36E95040E57885700496BD3 /* TODNCNameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODNCNameState.m; path = test/TODNCNameState.m; sourceTree = "<group>"; };
+		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
+		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
+		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
+		D36E95D70E57B08400496BD3 /* XPathParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParserTest.m; path = test/XPathParserTest.m; sourceTree = "<group>"; };
+		D36E97AE0E589DAE00496BD3 /* XPathAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathAssembler.h; path = test/XPathAssembler.h; sourceTree = "<group>"; };
+		D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathAssembler.m; path = test/XPathAssembler.m; sourceTree = "<group>"; };
+		D36E98200E58A3A800496BD3 /* XPathContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathContext.h; path = test/XPathContext.h; sourceTree = "<group>"; };
+		D36E98210E58A3A800496BD3 /* XPathContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathContext.m; path = test/XPathContext.m; sourceTree = "<group>"; };
+		D36E98B80E58BED500496BD3 /* TODXmlNameTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlNameTest.h; path = test/TODXmlNameTest.h; sourceTree = "<group>"; };
+		D36E98B90E58BED500496BD3 /* TODXmlNameTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlNameTest.m; path = test/TODXmlNameTest.m; sourceTree = "<group>"; };
+		D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugAppDelegate.h; sourceTree = "<group>"; };
+		D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugAppDelegate.m; sourceTree = "<group>"; };
+		D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugAppMainMenu.xib; sourceTree = "<group>"; };
+		D36E98DF0E58C12800496BD3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoAppDelegate.h; path = demoapp/DemoAppDelegate.h; sourceTree = "<group>"; };
+		D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoAppDelegate.m; path = demoapp/DemoAppDelegate.m; sourceTree = "<group>"; };
+		D36E98E50E58C14000496BD3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = demoapp/main.m; sourceTree = "<group>"; };
+		D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoAppMainMenu.xib; path = demoapp/DemoAppMainMenu.xib; sourceTree = "<group>"; };
+		D36E99650E58C94700496BD3 /* TODFastJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODFastJsonParser.h; path = test/TODFastJsonParser.h; sourceTree = "<group>"; };
+		D36E99660E58C94700496BD3 /* TODFastJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODFastJsonParser.m; path = test/TODFastJsonParser.m; sourceTree = "<group>"; };
+		D36E99A50E58CF6C00496BD3 /* TODFastJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODFastJsonParserTest.h; path = test/TODFastJsonParserTest.h; sourceTree = "<group>"; };
+		D36E99A60E58CF6C00496BD3 /* TODFastJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODFastJsonParserTest.m; path = test/TODFastJsonParserTest.m; sourceTree = "<group>"; };
+		D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
+		D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
+		D3C7D82B0A411F67005DD154 /* TODNumberState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberState.h; path = src/TODNumberState.h; sourceTree = "<group>"; };
+		D3C7D82C0A411F67005DD154 /* TODNumberState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberState.m; path = src/TODNumberState.m; sourceTree = "<group>"; };
+		D3C7D82D0A411F67005DD154 /* TODParseKit.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODParseKit.h; path = src/TODParseKit.h; sourceTree = "<group>"; };
+		D3C7D82E0A411F67005DD154 /* TODParser.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODParser.h; path = src/TODParser.h; sourceTree = "<group>"; };
+		D3C7D82F0A411F67005DD154 /* TODParser.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODParser.m; path = src/TODParser.m; sourceTree = "<group>"; };
+		D3C7D8320A411F67005DD154 /* TODQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODQuoteState.h; path = src/TODQuoteState.h; sourceTree = "<group>"; };
+		D3C7D8330A411F67005DD154 /* TODQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODQuoteState.m; path = src/TODQuoteState.m; sourceTree = "<group>"; };
+		D3C7D8340A411F67005DD154 /* TODSlashSlashState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSlashSlashState.h; path = src/TODSlashSlashState.h; sourceTree = "<group>"; };
+		D3C7D8350A411F67005DD154 /* TODSlashSlashState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSlashSlashState.m; path = src/TODSlashSlashState.m; sourceTree = "<group>"; };
+		D3C7D8360A411F67005DD154 /* TODSlashStarState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSlashStarState.h; path = src/TODSlashStarState.h; sourceTree = "<group>"; };
+		D3C7D8370A411F67005DD154 /* TODSlashStarState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSlashStarState.m; path = src/TODSlashStarState.m; sourceTree = "<group>"; };
+		D3C7D8380A411F67005DD154 /* TODSlashState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSlashState.h; path = src/TODSlashState.h; sourceTree = "<group>"; };
+		D3C7D8390A411F67005DD154 /* TODSlashState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSlashState.m; path = src/TODSlashState.m; sourceTree = "<group>"; };
+		D3C7D83A0A411F67005DD154 /* TODSymbolNode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSymbolNode.h; path = src/TODSymbolNode.h; sourceTree = "<group>"; };
+		D3C7D83B0A411F67005DD154 /* TODSymbolNode.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSymbolNode.m; path = src/TODSymbolNode.m; sourceTree = "<group>"; };
+		D3C7D83C0A411F67005DD154 /* TODSymbolRootNode.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSymbolRootNode.h; path = src/TODSymbolRootNode.h; sourceTree = "<group>"; };
+		D3C7D83D0A411F67005DD154 /* TODSymbolRootNode.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSymbolRootNode.m; path = src/TODSymbolRootNode.m; sourceTree = "<group>"; };
+		D3C7D83E0A411F67005DD154 /* TODSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODSymbolState.h; path = src/TODSymbolState.h; sourceTree = "<group>"; };
+		D3C7D83F0A411F67005DD154 /* TODSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODSymbolState.m; path = src/TODSymbolState.m; sourceTree = "<group>"; };
+		D3C7D8400A411F67005DD154 /* TODToken.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODToken.h; path = src/TODToken.h; sourceTree = "<group>"; };
+		D3C7D8410A411F67005DD154 /* TODToken.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODToken.m; path = src/TODToken.m; sourceTree = "<group>"; };
+		D3C7D8420A411F67005DD154 /* TODTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODTokenizer.h; path = src/TODTokenizer.h; sourceTree = "<group>"; };
+		D3C7D8430A411F67005DD154 /* TODTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODTokenizer.m; path = src/TODTokenizer.m; sourceTree = "<group>"; };
+		D3C7D8440A411F67005DD154 /* TODTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODTokenizerState.h; path = src/TODTokenizerState.h; sourceTree = "<group>"; };
+		D3C7D8450A411F67005DD154 /* TODTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODTokenizerState.m; path = src/TODTokenizerState.m; sourceTree = "<group>"; };
+		D3C7D84A0A411F67005DD154 /* TODWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODWhitespaceState.h; path = src/TODWhitespaceState.h; sourceTree = "<group>"; };
+		D3C7D84B0A411F67005DD154 /* TODWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODWhitespaceState.m; path = src/TODWhitespaceState.m; sourceTree = "<group>"; };
+		D3C7D84C0A411F67005DD154 /* TODWordState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODWordState.h; path = src/TODWordState.h; sourceTree = "<group>"; };
+		D3C7D84D0A411F67005DD154 /* TODWordState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODWordState.m; path = src/TODWordState.m; sourceTree = "<group>"; };
+		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3C7D9850A4126D6005DD154 /* TODNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberStateTest.h; path = test/TODNumberStateTest.h; sourceTree = "<group>"; };
+		D3C7D9860A4126D6005DD154 /* TODNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberStateTest.m; path = test/TODNumberStateTest.m; sourceTree = "<group>"; };
+		D3C7D9890A4126D6005DD154 /* TODQuoteStateTest.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODQuoteStateTest.h; path = test/TODQuoteStateTest.h; sourceTree = "<group>"; };
+		D3C7D98A0A4126D6005DD154 /* TODQuoteStateTest.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODQuoteStateTest.m; path = test/TODQuoteStateTest.m; sourceTree = "<group>"; };
+		D3C9ECD00E27F1DE00A44142 /* TODTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTokenizerTest.h; path = test/TODTokenizerTest.h; sourceTree = "<group>"; };
+		D3C9ECD10E27F1DE00A44142 /* TODTokenizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTokenizerTest.m; path = test/TODTokenizerTest.m; sourceTree = "<group>"; };
+		D3CAB7220E286D7F0026CE33 /* TODReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODReader.h; path = src/TODReader.h; sourceTree = "<group>"; };
+		D3CAB7230E286D7F0026CE33 /* TODReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODReader.m; path = src/TODReader.m; sourceTree = "<group>"; };
+		D3CAB7270E286DBE0026CE33 /* TODReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODReaderTest.h; path = test/TODReaderTest.h; sourceTree = "<group>"; };
+		D3CAB7280E286DBE0026CE33 /* TODReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODReaderTest.m; path = test/TODReaderTest.m; sourceTree = "<group>"; };
+		D3CAB7510E28888C0026CE33 /* TODSlashStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSlashStateTest.h; path = test/TODSlashStateTest.h; sourceTree = "<group>"; };
+		D3CAB7520E28888C0026CE33 /* TODSlashStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSlashStateTest.m; path = test/TODSlashStateTest.m; sourceTree = "<group>"; };
+		D3D63E2A0E29EEF5009BF5CD /* TODAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODAssembly.h; path = src/TODAssembly.h; sourceTree = "<group>"; };
+		D3D63E2B0E29EEF5009BF5CD /* TODAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODAssembly.m; path = src/TODAssembly.m; sourceTree = "<group>"; };
+		D3D63E500E29F77B009BF5CD /* TODTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTerminal.h; path = src/TODTerminal.h; sourceTree = "<group>"; };
+		D3D63E510E29F77B009BF5CD /* TODTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTerminal.m; path = src/TODTerminal.m; sourceTree = "<group>"; };
+		D3D63E550E29F7A1009BF5CD /* TODRepetition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRepetition.h; path = src/TODRepetition.h; sourceTree = "<group>"; };
+		D3D63E560E29F7A1009BF5CD /* TODRepetition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRepetition.m; path = src/TODRepetition.m; sourceTree = "<group>"; };
+		D3D63E590E29F7AE009BF5CD /* TODSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSequence.h; path = src/TODSequence.h; sourceTree = "<group>"; };
+		D3D63E5A0E29F7AE009BF5CD /* TODSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSequence.m; path = src/TODSequence.m; sourceTree = "<group>"; };
+		D3D63E9A0E29F955009BF5CD /* TODEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODEmpty.h; path = src/TODEmpty.h; sourceTree = "<group>"; };
+		D3D63E9B0E29F955009BF5CD /* TODEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODEmpty.m; path = src/TODEmpty.m; sourceTree = "<group>"; };
+		D3D63EA10E2A7A43009BF5CD /* TODTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTokenAssembly.h; path = src/TODTokenAssembly.h; sourceTree = "<group>"; };
+		D3D63EA20E2A7A43009BF5CD /* TODTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTokenAssembly.m; path = src/TODTokenAssembly.m; sourceTree = "<group>"; };
+		D3D63EA50E2A7A53009BF5CD /* TODCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCharacterAssembly.h; path = src/TODCharacterAssembly.h; sourceTree = "<group>"; };
+		D3D63EA60E2A7A53009BF5CD /* TODCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCharacterAssembly.m; path = src/TODCharacterAssembly.m; sourceTree = "<group>"; };
+		D3D63ED00E2A7D39009BF5CD /* TODWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWord.h; path = src/TODWord.h; sourceTree = "<group>"; };
+		D3D63ED10E2A7D39009BF5CD /* TODWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODWord.m; path = src/TODWord.m; sourceTree = "<group>"; };
+		D3D63F580E2A8577009BF5CD /* TODTokenAssemblyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTokenAssemblyTest.h; path = test/TODTokenAssemblyTest.h; sourceTree = "<group>"; };
+		D3D63F590E2A8578009BF5CD /* TODTokenAssemblyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTokenAssemblyTest.m; path = test/TODTokenAssemblyTest.m; sourceTree = "<group>"; };
+		D3D63F5C0E2A8616009BF5CD /* TODAlternation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODAlternation.h; path = src/TODAlternation.h; sourceTree = "<group>"; };
+		D3D63F5D0E2A8616009BF5CD /* TODAlternation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODAlternation.m; path = src/TODAlternation.m; sourceTree = "<group>"; };
+		D3D63F940E2A88C8009BF5CD /* TODTestScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTestScaffold.h; path = test/TODTestScaffold.h; sourceTree = "<group>"; };
+		D3D63F950E2A88C8009BF5CD /* TODTestScaffold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTestScaffold.m; path = test/TODTestScaffold.m; sourceTree = "<group>"; };
+		D3D641650E2AB062009BF5CD /* TODNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODNum.h; path = src/TODNum.h; sourceTree = "<group>"; };
+		D3D641660E2AB062009BF5CD /* TODNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODNum.m; path = src/TODNum.m; sourceTree = "<group>"; };
+		D3D6420A0E2AC20C009BF5CD /* TODQuotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODQuotedString.h; path = src/TODQuotedString.h; sourceTree = "<group>"; };
+		D3D6420B0E2AC20C009BF5CD /* TODQuotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODQuotedString.m; path = src/TODQuotedString.m; sourceTree = "<group>"; };
+		D3D642100E2AC25C009BF5CD /* TODSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSymbol.h; path = src/TODSymbol.h; sourceTree = "<group>"; };
+		D3D642110E2AC25C009BF5CD /* TODSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSymbol.m; path = src/TODSymbol.m; sourceTree = "<group>"; };
+		D3D642150E2AC299009BF5CD /* TODLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLiteral.h; path = src/TODLiteral.h; sourceTree = "<group>"; };
+		D3D642160E2AC299009BF5CD /* TODLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLiteral.m; path = src/TODLiteral.m; sourceTree = "<group>"; };
+		D3D6421D0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODCaseInsensitiveLiteral.h; path = src/TODCaseInsensitiveLiteral.h; sourceTree = "<group>"; };
+		D3D6421E0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODCaseInsensitiveLiteral.m; path = src/TODCaseInsensitiveLiteral.m; sourceTree = "<group>"; };
+		D3D642930E2AC8DA009BF5CD /* TODRepetitionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRepetitionTest.h; path = test/TODRepetitionTest.h; sourceTree = "<group>"; };
+		D3D642940E2AC8DA009BF5CD /* TODRepetitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRepetitionTest.m; path = test/TODRepetitionTest.m; sourceTree = "<group>"; };
+		D3D643B80E2B0354009BF5CD /* TODLiteralTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLiteralTest.h; path = test/TODLiteralTest.h; sourceTree = "<group>"; };
+		D3D643B90E2B0354009BF5CD /* TODLiteralTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLiteralTest.m; path = test/TODLiteralTest.m; sourceTree = "<group>"; };
+		D3D6446B0E2B0C41009BF5CD /* TODAlternationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODAlternationTest.h; path = test/TODAlternationTest.h; sourceTree = "<group>"; };
+		D3D6446C0E2B0C41009BF5CD /* TODAlternationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODAlternationTest.m; path = test/TODAlternationTest.m; sourceTree = "<group>"; };
+		D3D644960E2B11BA009BF5CD /* TODParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODParserTest.h; path = test/TODParserTest.h; sourceTree = "<group>"; };
+		D3D644970E2B11BA009BF5CD /* TODParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODParserTest.m; path = test/TODParserTest.m; sourceTree = "<group>"; };
+		D3D645CD0E2B297B009BF5CD /* TODSymbolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSymbolTest.h; path = test/TODSymbolTest.h; sourceTree = "<group>"; };
+		D3D645CE0E2B297B009BF5CD /* TODSymbolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSymbolTest.m; path = test/TODSymbolTest.m; sourceTree = "<group>"; };
+		D3D647920E2C5816009BF5CD /* TODRobotCommandTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRobotCommandTest.h; path = test/TODRobotCommandTest.h; sourceTree = "<group>"; };
+		D3D647930E2C5816009BF5CD /* TODRobotCommandTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRobotCommandTest.m; path = test/TODRobotCommandTest.m; sourceTree = "<group>"; };
+		D3E7840C0E53BA49008C7D61 /* TODUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODUppercaseWord.h; path = src/TODUppercaseWord.h; sourceTree = "<group>"; };
+		D3E7840D0E53BA49008C7D61 /* TODUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODUppercaseWord.m; path = src/TODUppercaseWord.m; sourceTree = "<group>"; };
+		D3E784140E53BAEB008C7D61 /* TODLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLowercaseWord.h; path = src/TODLowercaseWord.h; sourceTree = "<group>"; };
+		D3E784150E53BAEB008C7D61 /* TODLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLowercaseWord.m; path = src/TODLowercaseWord.m; sourceTree = "<group>"; };
+		D3E7841C0E53BB38008C7D61 /* TODUppercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODUppercaseWordTest.h; path = test/TODUppercaseWordTest.h; sourceTree = "<group>"; };
+		D3E7841D0E53BB38008C7D61 /* TODUppercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODUppercaseWordTest.m; path = test/TODUppercaseWordTest.m; sourceTree = "<group>"; };
+		D3E7842A0E53BCFC008C7D61 /* TODLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLowercaseWordTest.h; path = src/TODLowercaseWordTest.h; sourceTree = "<group>"; };
+		D3E7842B0E53BCFC008C7D61 /* TODLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLowercaseWordTest.m; path = src/TODLowercaseWordTest.m; sourceTree = "<group>"; };
+		D3E784330E53BE4B008C7D61 /* TODReservedWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODReservedWord.h; path = src/TODReservedWord.h; sourceTree = "<group>"; };
+		D3E784340E53BE4B008C7D61 /* TODReservedWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODReservedWord.m; path = src/TODReservedWord.m; sourceTree = "<group>"; };
+		D3E784370E53BF40008C7D61 /* TODNonReservedWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODNonReservedWord.h; path = src/TODNonReservedWord.h; sourceTree = "<group>"; };
+		D3E784380E53BF40008C7D61 /* TODNonReservedWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODNonReservedWord.m; path = src/TODNonReservedWord.m; sourceTree = "<group>"; };
+		D3E784410E53BFD9008C7D61 /* TODReservedWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODReservedWordTest.h; path = test/TODReservedWordTest.h; sourceTree = "<group>"; };
+		D3E784420E53BFD9008C7D61 /* TODReservedWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODReservedWordTest.m; path = test/TODReservedWordTest.m; sourceTree = "<group>"; };
+		D3E7844D0E53C34A008C7D61 /* TODTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTrack.h; path = src/TODTrack.h; sourceTree = "<group>"; };
+		D3E7844E0E53C34A008C7D61 /* TODTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTrack.m; path = src/TODTrack.m; sourceTree = "<group>"; };
+		D3E7845C0E53C85A008C7D61 /* TODTrackTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODTrackTest.h; path = test/TODTrackTest.h; sourceTree = "<group>"; };
+		D3E7845D0E53C85A008C7D61 /* TODTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODTrackTest.m; path = test/TODTrackTest.m; sourceTree = "<group>"; };
+		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
+		D3E785F20E550F79008C7D61 /* TODChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODChar.h; path = src/TODChar.h; sourceTree = "<group>"; };
+		D3E785F30E550F79008C7D61 /* TODChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODChar.m; path = src/TODChar.m; sourceTree = "<group>"; };
+		D3E785F60E550F96008C7D61 /* TODDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODDigit.h; path = src/TODDigit.h; sourceTree = "<group>"; };
+		D3E785F70E550F96008C7D61 /* TODDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODDigit.m; path = src/TODDigit.m; sourceTree = "<group>"; };
+		D3E785FA0E550FAD008C7D61 /* TODLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODLetter.h; path = src/TODLetter.h; sourceTree = "<group>"; };
+		D3E785FB0E550FAD008C7D61 /* TODLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODLetter.m; path = src/TODLetter.m; sourceTree = "<group>"; };
+		D3E785FE0E550FBF008C7D61 /* TODSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODSpecificChar.h; path = src/TODSpecificChar.h; sourceTree = "<group>"; };
+		D3E785FF0E550FBF008C7D61 /* TODSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODSpecificChar.m; path = src/TODSpecificChar.m; sourceTree = "<group>"; };
+		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
+		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
+		D3E788940E567E0A008C7D61 /* SRGSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParser.h; path = test/SRGSParser.h; sourceTree = "<group>"; };
+		D3E788950E567E0A008C7D61 /* SRGSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParser.m; path = test/SRGSParser.m; sourceTree = "<group>"; };
+		D3E78A150E574C99008C7D61 /* EBNFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBNFParser.h; path = test/EBNFParser.h; sourceTree = "<group>"; };
+		D3E78A160E574C99008C7D61 /* EBNFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParser.m; path = test/EBNFParser.m; sourceTree = "<group>"; };
+		D3E78A170E574C99008C7D61 /* EBNFParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBNFParserTest.h; path = test/EBNFParserTest.h; sourceTree = "<group>"; };
+		D3E78A180E574C99008C7D61 /* EBNFParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParserTest.m; path = test/EBNFParserTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940E0E2963FD00406085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D33494720E29670B00406085 /* TODParseKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185020E520D3F0081B0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D341850C0E520D640081B0DC /* TODParseKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8770A411FBF005DD154 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3C7D9DA0A412874005DD154 /* TODParseKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* TODParseKit.framework */,
+				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
+				D33494100E2963FD00406085 /* DemoApp.app */,
+				D34185040E520D3F0081B0DC /* DebugApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* TODParseKit */ = {
+			isa = PBXGroup;
+			children = (
+				D36E98CB0E58C08F00496BD3 /* DebugApp */,
+				D334941B0E29641300406085 /* DemoApp */,
+				D3C7D8220A411F31005DD154 /* Tests */,
+				08FB77AEFE84172EC02AAC07 /* Framework */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = TODParseKit;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7D82D0A411F67005DD154 /* TODParseKit.h */,
+				D3C7D8710A411F6B005DD154 /* io */,
+				D3C7D8720A411F81005DD154 /* parse */,
+				D3C7D8740A411F8E005DD154 /* tokens */,
+				D3E785F10E550F63008C7D61 /* chars */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF5E0370ADEE00C91783 /* TODParseKit_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		D318EAE30E2FD5B6009F47DF /* json */ = {
+			isa = PBXGroup;
+			children = (
+				D3E784BC0E53DA28008C7D61 /* apple-boss.json */,
+				D3B473840E48C9CF008AFBDD /* yahoo.json */,
+				D34A21350E560C1000A4A0BF /* TODJsonParser.h */,
+				D34A21360E560C1000A4A0BF /* TODJsonParser.m */,
+				D318EAE50E2FD5DE009F47DF /* TODJsonParserTest.h */,
+				D318EAE60E2FD5DE009F47DF /* TODJsonParserTest.m */,
+				D36E99650E58C94700496BD3 /* TODFastJsonParser.h */,
+				D36E99660E58C94700496BD3 /* TODFastJsonParser.m */,
+				D36E99A50E58CF6C00496BD3 /* TODFastJsonParserTest.h */,
+				D36E99A60E58CF6C00496BD3 /* TODFastJsonParserTest.m */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
+		D334941B0E29641300406085 /* DemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */,
+				D36E98E50E58C14000496BD3 /* main.m */,
+				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
+				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
+				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
+			);
+			name = DemoApp;
+			sourceTree = "<group>";
+		};
+		D341846A0E5209A60081B0DC /* tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7D8400A411F67005DD154 /* TODToken.h */,
+				D3C7D8410A411F67005DD154 /* TODToken.m */,
+				D3C7D8420A411F67005DD154 /* TODTokenizer.h */,
+				D3C7D8430A411F67005DD154 /* TODTokenizer.m */,
+				D3C7D8440A411F67005DD154 /* TODTokenizerState.h */,
+				D3C7D8450A411F67005DD154 /* TODTokenizerState.m */,
+			);
+			name = tokenizer;
+			sourceTree = "<group>";
+		};
+		D34A1F400E54F6E800A4A0BF /* token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D3E7840C0E53BA49008C7D61 /* TODUppercaseWord.h */,
+				D3E7840D0E53BA49008C7D61 /* TODUppercaseWord.m */,
+				D3E784140E53BAEB008C7D61 /* TODLowercaseWord.h */,
+				D3E784150E53BAEB008C7D61 /* TODLowercaseWord.m */,
+				D3E784330E53BE4B008C7D61 /* TODReservedWord.h */,
+				D3E784340E53BE4B008C7D61 /* TODReservedWord.m */,
+				D3E784370E53BF40008C7D61 /* TODNonReservedWord.h */,
+				D3E784380E53BF40008C7D61 /* TODNonReservedWord.m */,
+			);
+			name = "token terminals";
+			sourceTree = "<group>";
+		};
+		D34A1F410E54F6F800A4A0BF /* states */ = {
+			isa = PBXGroup;
+			children = (
+				D34A1F420E54F71D00A4A0BF /* TODWordOrReservedState.h */,
+				D34A1F430E54F71D00A4A0BF /* TODWordOrReservedState.m */,
+			);
+			name = states;
+			sourceTree = "<group>";
+		};
+		D34A20080E55FD5F00A4A0BF /* chars */ = {
+			isa = PBXGroup;
+			children = (
+				D34A20090E55FD8500A4A0BF /* TODCharacterAssemblyTest.h */,
+				D34A200A0E55FD8500A4A0BF /* TODCharacterAssemblyTest.m */,
+				D34A20510E55FFD400A4A0BF /* TODDigitTest.h */,
+				D34A20520E55FFD400A4A0BF /* TODDigitTest.m */,
+				D34A205A0E5601BF00A4A0BF /* TODCharTest.h */,
+				D34A205B0E5601BF00A4A0BF /* TODCharTest.m */,
+				D34A205D0E5601C900A4A0BF /* TODSpecificCharTest.h */,
+				D34A205E0E5601C900A4A0BF /* TODSpecificCharTest.m */,
+				D34A20600E5601D300A4A0BF /* TODLetterTest.h */,
+				D34A20610E5601D300A4A0BF /* TODLetterTest.m */,
+			);
+			name = chars;
+			sourceTree = "<group>";
+		};
+		D3541F870DFB105900429B4F /* states */ = {
+			isa = PBXGroup;
+			children = (
+				D3175A3C0E2C11F900C1633E /* TODCharbufState.h */,
+				D3175A3D0E2C11F900C1633E /* TODCharbufState.m */,
+				D3175A3E0E2C11F900C1633E /* TODMutableStringState.h */,
+				D3175A3F0E2C11F900C1633E /* TODMutableStringState.m */,
+				D3C7D82B0A411F67005DD154 /* TODNumberState.h */,
+				D3C7D82C0A411F67005DD154 /* TODNumberState.m */,
+				D3175A420E2C121000C1633E /* TODSignificantWhitespaceState.h */,
+				D3175A430E2C121000C1633E /* TODSignificantWhitespaceState.m */,
+				D3C7D84A0A411F67005DD154 /* TODWhitespaceState.h */,
+				D3C7D84B0A411F67005DD154 /* TODWhitespaceState.m */,
+				D3C7D8320A411F67005DD154 /* TODQuoteState.h */,
+				D3C7D8330A411F67005DD154 /* TODQuoteState.m */,
+				D3C7D84C0A411F67005DD154 /* TODWordState.h */,
+				D3C7D84D0A411F67005DD154 /* TODWordState.m */,
+				D3C7D8380A411F67005DD154 /* TODSlashState.h */,
+				D3C7D8390A411F67005DD154 /* TODSlashState.m */,
+				D3C7D8340A411F67005DD154 /* TODSlashSlashState.h */,
+				D3C7D8350A411F67005DD154 /* TODSlashSlashState.m */,
+				D3C7D8360A411F67005DD154 /* TODSlashStarState.h */,
+				D3C7D8370A411F67005DD154 /* TODSlashStarState.m */,
+				D3C7D83E0A411F67005DD154 /* TODSymbolState.h */,
+				D3C7D83F0A411F67005DD154 /* TODSymbolState.m */,
+				D3541F890DFB108300429B4F /* symbol */,
+			);
+			name = states;
+			sourceTree = "<group>";
+		};
+		D3541F890DFB108300429B4F /* symbol */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7D83A0A411F67005DD154 /* TODSymbolNode.h */,
+				D3C7D83B0A411F67005DD154 /* TODSymbolNode.m */,
+				D3C7D83C0A411F67005DD154 /* TODSymbolRootNode.h */,
+				D3C7D83D0A411F67005DD154 /* TODSymbolRootNode.m */,
+			);
+			name = symbol;
+			sourceTree = "<group>";
+		};
+		D35420EC0DFB275400429B4F /* tokenizer states */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7D9850A4126D6005DD154 /* TODNumberStateTest.h */,
+				D3C7D9860A4126D6005DD154 /* TODNumberStateTest.m */,
+				D3C7D9890A4126D6005DD154 /* TODQuoteStateTest.h */,
+				D3C7D98A0A4126D6005DD154 /* TODQuoteStateTest.m */,
+				D317596D0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.h */,
+				D317596E0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.m */,
+				D35421240DFB2A7900429B4F /* TODWhitespaceStateTest.h */,
+				D35421250DFB2A7900429B4F /* TODWhitespaceStateTest.m */,
+				D35421FD0DFB355F00429B4F /* TODWordStateTest.h */,
+				D35421FE0DFB355F00429B4F /* TODWordStateTest.m */,
+				D3CAB7510E28888C0026CE33 /* TODSlashStateTest.h */,
+				D3CAB7520E28888C0026CE33 /* TODSlashStateTest.m */,
+				D33492190E29369900406085 /* TODSymbolStateTest.h */,
+				D334921A0E29369900406085 /* TODSymbolStateTest.m */,
+			);
+			name = "tokenizer states";
+			sourceTree = "<group>";
+		};
+		D36E94F40E57865500496BD3 /* xpath */ = {
+			isa = PBXGroup;
+			children = (
+				D36E94FB0E5786D000496BD3 /* TODNCName.h */,
+				D36E94FC0E5786D000496BD3 /* TODNCName.m */,
+				D36E95030E57885700496BD3 /* TODNCNameState.h */,
+				D36E95040E57885700496BD3 /* TODNCNameState.m */,
+				D36E95440E578ECC00496BD3 /* XPathParser.h */,
+				D36E95450E578ECC00496BD3 /* XPathParser.m */,
+				D36E97AE0E589DAE00496BD3 /* XPathAssembler.h */,
+				D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */,
+				D36E98200E58A3A800496BD3 /* XPathContext.h */,
+				D36E98210E58A3A800496BD3 /* XPathContext.m */,
+				D36E95D60E57B08400496BD3 /* XPathParserTest.h */,
+				D36E95D70E57B08400496BD3 /* XPathParserTest.m */,
+			);
+			name = xpath;
+			sourceTree = "<group>";
+		};
+		D36E98CB0E58C08F00496BD3 /* DebugApp */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */,
+				D36E98DF0E58C12800496BD3 /* main.m */,
+				D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */,
+				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
+				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
+			);
+			name = DebugApp;
+			path = debugapp;
+			sourceTree = "<group>";
+		};
+		D3C7D8220A411F31005DD154 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */,
+				D3D63F940E2A88C8009BF5CD /* TODTestScaffold.h */,
+				D3D63F950E2A88C8009BF5CD /* TODTestScaffold.m */,
+				D3D63F570E2A8548009BF5CD /* parse */,
+				D3D63F560E2A8538009BF5CD /* tokens */,
+				D34A20080E55FD5F00A4A0BF /* chars */,
+				D3E786030E5510AE008C7D61 /* regex */,
+				D3E788890E567B6D008C7D61 /* ebnf */,
+				D318EAE30E2FD5B6009F47DF /* json */,
+				D3D647CE0E2C7569009BF5CD /* xml */,
+				D36E94F40E57865500496BD3 /* xpath */,
+				D3E788900E567DDA008C7D61 /* srgs */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		D3C7D8710A411F6B005DD154 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				D3CAB7220E286D7F0026CE33 /* TODReader.h */,
+				D3CAB7230E286D7F0026CE33 /* TODReader.m */,
+			);
+			name = io;
+			sourceTree = "<group>";
+		};
+		D3C7D8720A411F81005DD154 /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				D3D63E2A0E29EEF5009BF5CD /* TODAssembly.h */,
+				D3D63E2B0E29EEF5009BF5CD /* TODAssembly.m */,
+				D3D63EA90E2A7A5C009BF5CD /* parsers */,
+			);
+			name = parse;
+			sourceTree = "<group>";
+		};
+		D3C7D8740A411F8E005DD154 /* tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D3D63EA10E2A7A43009BF5CD /* TODTokenAssembly.h */,
+				D3D63EA20E2A7A43009BF5CD /* TODTokenAssembly.m */,
+				D341846A0E5209A60081B0DC /* tokenizer */,
+				D3541F870DFB105900429B4F /* states */,
+				D3D642270E2AC426009BF5CD /* token terminals */,
+				D3E7842E0E53BE23008C7D61 /* ext */,
+			);
+			name = tokens;
+			sourceTree = "<group>";
+		};
+		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
+			isa = PBXGroup;
+			children = (
+				D3C7D82E0A411F67005DD154 /* TODParser.h */,
+				D3C7D82F0A411F67005DD154 /* TODParser.m */,
+				D3175A4A0E2C125500C1633E /* TODCollectionParser.h */,
+				D3175A4B0E2C125500C1633E /* TODCollectionParser.m */,
+				D3D63E550E29F7A1009BF5CD /* TODRepetition.h */,
+				D3D63E560E29F7A1009BF5CD /* TODRepetition.m */,
+				D3D63E590E29F7AE009BF5CD /* TODSequence.h */,
+				D3D63E5A0E29F7AE009BF5CD /* TODSequence.m */,
+				D3D63F5C0E2A8616009BF5CD /* TODAlternation.h */,
+				D3D63F5D0E2A8616009BF5CD /* TODAlternation.m */,
+				D3D63E9A0E29F955009BF5CD /* TODEmpty.h */,
+				D3D63E9B0E29F955009BF5CD /* TODEmpty.m */,
+				D3D63E500E29F77B009BF5CD /* TODTerminal.h */,
+				D3D63E510E29F77B009BF5CD /* TODTerminal.m */,
+				D3E7844D0E53C34A008C7D61 /* TODTrack.h */,
+				D3E7844E0E53C34A008C7D61 /* TODTrack.m */,
+			);
+			name = parsers;
+			sourceTree = "<group>";
+		};
+		D3D63F560E2A8538009BF5CD /* tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D3CAB7270E286DBE0026CE33 /* TODReaderTest.h */,
+				D3CAB7280E286DBE0026CE33 /* TODReaderTest.m */,
+				D3C9ECD00E27F1DE00A44142 /* TODTokenizerTest.h */,
+				D3C9ECD10E27F1DE00A44142 /* TODTokenizerTest.m */,
+				D35420EC0DFB275400429B4F /* tokenizer states */,
+			);
+			name = tokens;
+			sourceTree = "<group>";
+		};
+		D3D63F570E2A8548009BF5CD /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				D3175A390E2C11E700C1633E /* TODSequenceTest.h */,
+				D3175A3A0E2C11E700C1633E /* TODSequenceTest.m */,
+				D3D644960E2B11BA009BF5CD /* TODParserTest.h */,
+				D3D644970E2B11BA009BF5CD /* TODParserTest.m */,
+				D3D63F580E2A8577009BF5CD /* TODTokenAssemblyTest.h */,
+				D3D63F590E2A8578009BF5CD /* TODTokenAssemblyTest.m */,
+				D3D642930E2AC8DA009BF5CD /* TODRepetitionTest.h */,
+				D3D642940E2AC8DA009BF5CD /* TODRepetitionTest.m */,
+				D3D643B80E2B0354009BF5CD /* TODLiteralTest.h */,
+				D3D643B90E2B0354009BF5CD /* TODLiteralTest.m */,
+				D3D6446B0E2B0C41009BF5CD /* TODAlternationTest.h */,
+				D3D6446C0E2B0C41009BF5CD /* TODAlternationTest.m */,
+				D3D645CD0E2B297B009BF5CD /* TODSymbolTest.h */,
+				D3D645CE0E2B297B009BF5CD /* TODSymbolTest.m */,
+				D3D647920E2C5816009BF5CD /* TODRobotCommandTest.h */,
+				D3D647930E2C5816009BF5CD /* TODRobotCommandTest.m */,
+				D3E7841C0E53BB38008C7D61 /* TODUppercaseWordTest.h */,
+				D3E7841D0E53BB38008C7D61 /* TODUppercaseWordTest.m */,
+				D3E7842A0E53BCFC008C7D61 /* TODLowercaseWordTest.h */,
+				D3E7842B0E53BCFC008C7D61 /* TODLowercaseWordTest.m */,
+				D3E784410E53BFD9008C7D61 /* TODReservedWordTest.h */,
+				D3E784420E53BFD9008C7D61 /* TODReservedWordTest.m */,
+				D3E7845C0E53C85A008C7D61 /* TODTrackTest.h */,
+				D3E7845D0E53C85A008C7D61 /* TODTrackTest.m */,
+			);
+			name = parse;
+			sourceTree = "<group>";
+		};
+		D3D642270E2AC426009BF5CD /* token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D3D63ED00E2A7D39009BF5CD /* TODWord.h */,
+				D3D63ED10E2A7D39009BF5CD /* TODWord.m */,
+				D3D642150E2AC299009BF5CD /* TODLiteral.h */,
+				D3D642160E2AC299009BF5CD /* TODLiteral.m */,
+				D3D6421D0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.h */,
+				D3D6421E0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.m */,
+				D3D641650E2AB062009BF5CD /* TODNum.h */,
+				D3D641660E2AB062009BF5CD /* TODNum.m */,
+				D3D6420A0E2AC20C009BF5CD /* TODQuotedString.h */,
+				D3D6420B0E2AC20C009BF5CD /* TODQuotedString.m */,
+				D3D642100E2AC25C009BF5CD /* TODSymbol.h */,
+				D3D642110E2AC25C009BF5CD /* TODSymbol.m */,
+			);
+			name = "token terminals";
+			sourceTree = "<group>";
+		};
+		D3D647CE0E2C7569009BF5CD /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				D36E935C0E57694F00496BD3 /* TODXmlToken.h */,
+				D36E935D0E57694F00496BD3 /* TODXmlToken.m */,
+				D36E93550E57685E00496BD3 /* TODXmlName.h */,
+				D36E93560E57685E00496BD3 /* TODXmlName.m */,
+				D36E94820E5780CF00496BD3 /* TODXmlNmtoken.h */,
+				D36E94830E5780CF00496BD3 /* TODXmlNmtoken.m */,
+				D36E934B0E57668900496BD3 /* TODXmlNameState.h */,
+				D36E934C0E57668900496BD3 /* TODXmlNameState.m */,
+				D36E949D0E57821E00496BD3 /* TODXmlNmtokenState.h */,
+				D36E949E0E57821E00496BD3 /* TODXmlNmtokenState.m */,
+				D36E98B80E58BED500496BD3 /* TODXmlNameTest.h */,
+				D36E98B90E58BED500496BD3 /* TODXmlNameTest.m */,
+			);
+			name = xml;
+			sourceTree = "<group>";
+		};
+		D3E7842E0E53BE23008C7D61 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				D34A1F410E54F6F800A4A0BF /* states */,
+				D34A1F400E54F6E800A4A0BF /* token terminals */,
+			);
+			name = ext;
+			sourceTree = "<group>";
+		};
+		D3E785F10E550F63008C7D61 /* chars */ = {
+			isa = PBXGroup;
+			children = (
+				D3D63EA50E2A7A53009BF5CD /* TODCharacterAssembly.h */,
+				D3D63EA60E2A7A53009BF5CD /* TODCharacterAssembly.m */,
+				D3E7861F0E55363F008C7D61 /* char terminals */,
+			);
+			name = chars;
+			sourceTree = "<group>";
+		};
+		D3E786030E5510AE008C7D61 /* regex */ = {
+			isa = PBXGroup;
+			children = (
+				D34A21E70E56201500A4A0BF /* TODRegularParser.h */,
+				D34A21E80E56201500A4A0BF /* TODRegularParser.m */,
+				D34A21E90E56201500A4A0BF /* TODRegularParserTest.h */,
+				D34A21EA0E56201500A4A0BF /* TODRegularParserTest.m */,
+			);
+			name = regex;
+			sourceTree = "<group>";
+		};
+		D3E7861F0E55363F008C7D61 /* char terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D3E785F20E550F79008C7D61 /* TODChar.h */,
+				D3E785F30E550F79008C7D61 /* TODChar.m */,
+				D3E785F60E550F96008C7D61 /* TODDigit.h */,
+				D3E785F70E550F96008C7D61 /* TODDigit.m */,
+				D3E785FA0E550FAD008C7D61 /* TODLetter.h */,
+				D3E785FB0E550FAD008C7D61 /* TODLetter.m */,
+				D3E785FE0E550FBF008C7D61 /* TODSpecificChar.h */,
+				D3E785FF0E550FBF008C7D61 /* TODSpecificChar.m */,
+			);
+			name = "char terminals";
+			sourceTree = "<group>";
+		};
+		D3E788890E567B6D008C7D61 /* ebnf */ = {
+			isa = PBXGroup;
+			children = (
+				D3E78A150E574C99008C7D61 /* EBNFParser.h */,
+				D3E78A160E574C99008C7D61 /* EBNFParser.m */,
+				D3E78A170E574C99008C7D61 /* EBNFParserTest.h */,
+				D3E78A180E574C99008C7D61 /* EBNFParserTest.m */,
+			);
+			name = ebnf;
+			sourceTree = "<group>";
+		};
+		D3E788900E567DDA008C7D61 /* srgs */ = {
+			isa = PBXGroup;
+			children = (
+				D3E788940E567E0A008C7D61 /* SRGSParser.h */,
+				D3E788950E567E0A008C7D61 /* SRGSParser.m */,
+				D3E788910E567DFD008C7D61 /* SRGSParserTest.h */,
+				D3E788920E567DFD008C7D61 /* SRGSParserTest.m */,
+			);
+			name = srgs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */,
+				D3C7D8500A411F67005DD154 /* TODParseKit.h in Headers */,
+				D3C7D8510A411F67005DD154 /* TODParser.h in Headers */,
+				D3C7D8550A411F67005DD154 /* TODQuoteState.h in Headers */,
+				D3C7D8570A411F67005DD154 /* TODSlashSlashState.h in Headers */,
+				D3C7D8590A411F67005DD154 /* TODSlashStarState.h in Headers */,
+				D3C7D85B0A411F67005DD154 /* TODSlashState.h in Headers */,
+				D3C7D85D0A411F67005DD154 /* TODSymbolNode.h in Headers */,
+				D3C7D85F0A411F67005DD154 /* TODSymbolRootNode.h in Headers */,
+				D3C7D8610A411F67005DD154 /* TODSymbolState.h in Headers */,
+				D3C7D8630A411F67005DD154 /* TODToken.h in Headers */,
+				D3C7D8650A411F67005DD154 /* TODTokenizer.h in Headers */,
+				D3C7D8670A411F67005DD154 /* TODTokenizerState.h in Headers */,
+				D3C7D86D0A411F67005DD154 /* TODWhitespaceState.h in Headers */,
+				D3C7D86F0A411F67005DD154 /* TODWordState.h in Headers */,
+				D3CAB7240E286D7F0026CE33 /* TODReader.h in Headers */,
+				D3D63E2C0E29EEF5009BF5CD /* TODAssembly.h in Headers */,
+				D3D63E520E29F77B009BF5CD /* TODTerminal.h in Headers */,
+				D3D63E570E29F7A1009BF5CD /* TODRepetition.h in Headers */,
+				D3D63E5B0E29F7AE009BF5CD /* TODSequence.h in Headers */,
+				D3D63E9C0E29F955009BF5CD /* TODEmpty.h in Headers */,
+				D3D63EA30E2A7A43009BF5CD /* TODTokenAssembly.h in Headers */,
+				D3D63EA70E2A7A53009BF5CD /* TODCharacterAssembly.h in Headers */,
+				D3D63ED20E2A7D39009BF5CD /* TODWord.h in Headers */,
+				D3D63F5E0E2A8616009BF5CD /* TODAlternation.h in Headers */,
+				D3D641670E2AB062009BF5CD /* TODNum.h in Headers */,
+				D3D6420C0E2AC20C009BF5CD /* TODQuotedString.h in Headers */,
+				D3D642120E2AC25C009BF5CD /* TODSymbol.h in Headers */,
+				D3D642170E2AC299009BF5CD /* TODLiteral.h in Headers */,
+				D3D6421F0E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.h in Headers */,
+				D3175A440E2C121000C1633E /* TODSignificantWhitespaceState.h in Headers */,
+				D3175A460E2C121A00C1633E /* TODCharbufState.h in Headers */,
+				D3175A480E2C121A00C1633E /* TODMutableStringState.h in Headers */,
+				D3175A4C0E2C125500C1633E /* TODCollectionParser.h in Headers */,
+				D3E7840E0E53BA49008C7D61 /* TODUppercaseWord.h in Headers */,
+				D3E784160E53BAEB008C7D61 /* TODLowercaseWord.h in Headers */,
+				D3E784350E53BE4B008C7D61 /* TODReservedWord.h in Headers */,
+				D3E784390E53BF40008C7D61 /* TODNonReservedWord.h in Headers */,
+				D3E7844F0E53C34A008C7D61 /* TODTrack.h in Headers */,
+				D34A1F440E54F71D00A4A0BF /* TODWordOrReservedState.h in Headers */,
+				D3E785F40E550F79008C7D61 /* TODChar.h in Headers */,
+				D3E785F80E550F96008C7D61 /* TODDigit.h in Headers */,
+				D3E785FC0E550FAD008C7D61 /* TODLetter.h in Headers */,
+				D3E786000E550FBF008C7D61 /* TODSpecificChar.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* TODParseKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TODParseKit" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TODParseKit;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = TODParseKit;
+			productReference = 8DC2EF5B0486A6940098B216 /* TODParseKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D334940F0E2963FD00406085 /* DemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D33494150E2963FE00406085 /* Build configuration list for PBXNativeTarget "DemoApp" */;
+			buildPhases = (
+				D334940C0E2963FD00406085 /* Resources */,
+				D334940D0E2963FD00406085 /* Sources */,
+				D334940E0E2963FD00406085 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D33494A00E296AA900406085 /* PBXTargetDependency */,
+			);
+			name = DemoApp;
+			productName = DemoApp;
+			productReference = D33494100E2963FD00406085 /* DemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D34185030E520D3F0081B0DC /* DebugApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D34185090E520D410081B0DC /* Build configuration list for PBXNativeTarget "DebugApp" */;
+			buildPhases = (
+				D34185000E520D3F0081B0DC /* Resources */,
+				D34185010E520D3F0081B0DC /* Sources */,
+				D34185020E520D3F0081B0DC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D34185100E520D6F0081B0DC /* PBXTargetDependency */,
+			);
+			name = DebugApp;
+			productName = TestApp;
+			productReference = D34185040E520D3F0081B0DC /* DebugApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D3C7D8790A411FBF005DD154 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				D3C7D8750A411FBF005DD154 /* Resources */,
+				D3C7D8760A411FBF005DD154 /* Sources */,
+				D3C7D8770A411FBF005DD154 /* Frameworks */,
+				D3C7D8780A411FBF005DD154 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3C7D8800A411FDB005DD154 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = D3C7D87A0A411FBF005DD154 /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TODParseKit" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* TODParseKit */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* TODParseKit */,
+				D3C7D8790A411FBF005DD154 /* Tests */,
+				D334940F0E2963FD00406085 /* DemoApp */,
+				D34185030E520D3F0081B0DC /* DebugApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940C0E2963FD00406085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185000E520D3F0081B0DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */,
+				D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8750A411FBF005DD154 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */,
+				D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3C7D8780A411FBF005DD154 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */,
+				D3C7D8520A411F67005DD154 /* TODParser.m in Sources */,
+				D3C7D8560A411F67005DD154 /* TODQuoteState.m in Sources */,
+				D3C7D8580A411F67005DD154 /* TODSlashSlashState.m in Sources */,
+				D3C7D85A0A411F67005DD154 /* TODSlashStarState.m in Sources */,
+				D3C7D85C0A411F67005DD154 /* TODSlashState.m in Sources */,
+				D3C7D85E0A411F67005DD154 /* TODSymbolNode.m in Sources */,
+				D3C7D8600A411F67005DD154 /* TODSymbolRootNode.m in Sources */,
+				D3C7D8620A411F67005DD154 /* TODSymbolState.m in Sources */,
+				D3C7D8640A411F67005DD154 /* TODToken.m in Sources */,
+				D3C7D8660A411F67005DD154 /* TODTokenizer.m in Sources */,
+				D3C7D8680A411F67005DD154 /* TODTokenizerState.m in Sources */,
+				D3C7D86E0A411F67005DD154 /* TODWhitespaceState.m in Sources */,
+				D3C7D8700A411F67005DD154 /* TODWordState.m in Sources */,
+				D3CAB7250E286D7F0026CE33 /* TODReader.m in Sources */,
+				D3D63E2D0E29EEF5009BF5CD /* TODAssembly.m in Sources */,
+				D3D63E530E29F77B009BF5CD /* TODTerminal.m in Sources */,
+				D3D63E580E29F7A1009BF5CD /* TODRepetition.m in Sources */,
+				D3D63E5C0E29F7AE009BF5CD /* TODSequence.m in Sources */,
+				D3D63E9D0E29F955009BF5CD /* TODEmpty.m in Sources */,
+				D3D63EA40E2A7A43009BF5CD /* TODTokenAssembly.m in Sources */,
+				D3D63EA80E2A7A53009BF5CD /* TODCharacterAssembly.m in Sources */,
+				D3D63ED30E2A7D39009BF5CD /* TODWord.m in Sources */,
+				D3D63F5F0E2A8616009BF5CD /* TODAlternation.m in Sources */,
+				D3D641680E2AB062009BF5CD /* TODNum.m in Sources */,
+				D3D6420D0E2AC20C009BF5CD /* TODQuotedString.m in Sources */,
+				D3D642130E2AC25C009BF5CD /* TODSymbol.m in Sources */,
+				D3D642180E2AC299009BF5CD /* TODLiteral.m in Sources */,
+				D3D642200E2AC36B009BF5CD /* TODCaseInsensitiveLiteral.m in Sources */,
+				D3175A450E2C121000C1633E /* TODSignificantWhitespaceState.m in Sources */,
+				D3175A470E2C121A00C1633E /* TODCharbufState.m in Sources */,
+				D3175A490E2C121A00C1633E /* TODMutableStringState.m in Sources */,
+				D3175A4D0E2C125500C1633E /* TODCollectionParser.m in Sources */,
+				D3E7840F0E53BA49008C7D61 /* TODUppercaseWord.m in Sources */,
+				D3E784170E53BAEB008C7D61 /* TODLowercaseWord.m in Sources */,
+				D3E784360E53BE4B008C7D61 /* TODReservedWord.m in Sources */,
+				D3E7843A0E53BF40008C7D61 /* TODNonReservedWord.m in Sources */,
+				D3E784500E53C34A008C7D61 /* TODTrack.m in Sources */,
+				D34A1F450E54F71D00A4A0BF /* TODWordOrReservedState.m in Sources */,
+				D3E785F50E550F79008C7D61 /* TODChar.m in Sources */,
+				D3E785F90E550F96008C7D61 /* TODDigit.m in Sources */,
+				D3E785FD0E550FAD008C7D61 /* TODLetter.m in Sources */,
+				D3E786010E550FBF008C7D61 /* TODSpecificChar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940D0E2963FD00406085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */,
+				D36E98E80E58C14000496BD3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185010E520D3F0081B0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */,
+				D34A21B10E5616AB00A4A0BF /* TODJsonParser.m in Sources */,
+				D34A228A0E56488500A4A0BF /* TODRegularParser.m in Sources */,
+				D36E93E60E57749700496BD3 /* TODXmlToken.m in Sources */,
+				D36E93E70E57749700496BD3 /* TODXmlNameState.m in Sources */,
+				D36E93E80E57749700496BD3 /* TODXmlName.m in Sources */,
+				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
+				D36E98E20E58C12800496BD3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8760A411FBF005DD154 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3C7D98B0A4126D6005DD154 /* TODNumberStateTest.m in Sources */,
+				D3C7D98D0A4126D6005DD154 /* TODQuoteStateTest.m in Sources */,
+				D35421260DFB2A7900429B4F /* TODWhitespaceStateTest.m in Sources */,
+				D35421FF0DFB355F00429B4F /* TODWordStateTest.m in Sources */,
+				D3C9ECD20E27F1DE00A44142 /* TODTokenizerTest.m in Sources */,
+				D3CAB7290E286DBE0026CE33 /* TODReaderTest.m in Sources */,
+				D3CAB7530E28888C0026CE33 /* TODSlashStateTest.m in Sources */,
+				D334921B0E29369900406085 /* TODSymbolStateTest.m in Sources */,
+				D3D63F5A0E2A8578009BF5CD /* TODTokenAssemblyTest.m in Sources */,
+				D3D63F960E2A88C8009BF5CD /* TODTestScaffold.m in Sources */,
+				D3D642950E2AC8DA009BF5CD /* TODRepetitionTest.m in Sources */,
+				D3D643BA0E2B0354009BF5CD /* TODLiteralTest.m in Sources */,
+				D3D6446D0E2B0C41009BF5CD /* TODAlternationTest.m in Sources */,
+				D3D644980E2B11BA009BF5CD /* TODParserTest.m in Sources */,
+				D3D645CF0E2B297B009BF5CD /* TODSymbolTest.m in Sources */,
+				D317596F0E2C0FA300C1633E /* TODSignificantWhitespaceStateTest.m in Sources */,
+				D3175A3B0E2C11E700C1633E /* TODSequenceTest.m in Sources */,
+				D3D647940E2C5816009BF5CD /* TODRobotCommandTest.m in Sources */,
+				D318EAE70E2FD5DE009F47DF /* TODJsonParserTest.m in Sources */,
+				D3E7841E0E53BB38008C7D61 /* TODUppercaseWordTest.m in Sources */,
+				D3E7842C0E53BCFC008C7D61 /* TODLowercaseWordTest.m in Sources */,
+				D3E784430E53BFD9008C7D61 /* TODReservedWordTest.m in Sources */,
+				D3E7845E0E53C85A008C7D61 /* TODTrackTest.m in Sources */,
+				D34A200B0E55FD8500A4A0BF /* TODCharacterAssemblyTest.m in Sources */,
+				D34A20530E55FFD400A4A0BF /* TODDigitTest.m in Sources */,
+				D34A205C0E5601BF00A4A0BF /* TODCharTest.m in Sources */,
+				D34A205F0E5601C900A4A0BF /* TODSpecificCharTest.m in Sources */,
+				D34A20620E5601D300A4A0BF /* TODLetterTest.m in Sources */,
+				D34A21370E560C1000A4A0BF /* TODJsonParser.m in Sources */,
+				D34A21EB0E56201500A4A0BF /* TODRegularParser.m in Sources */,
+				D34A21EC0E56201500A4A0BF /* TODRegularParserTest.m in Sources */,
+				D3E788930E567DFD008C7D61 /* SRGSParserTest.m in Sources */,
+				D3E788960E567E0A008C7D61 /* SRGSParser.m in Sources */,
+				D3E78A190E574C99008C7D61 /* EBNFParser.m in Sources */,
+				D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */,
+				D36E934D0E57668900496BD3 /* TODXmlNameState.m in Sources */,
+				D36E93570E57685E00496BD3 /* TODXmlName.m in Sources */,
+				D36E935E0E57694F00496BD3 /* TODXmlToken.m in Sources */,
+				D36E94840E5780CF00496BD3 /* TODXmlNmtoken.m in Sources */,
+				D36E949F0E57821E00496BD3 /* TODXmlNmtokenState.m in Sources */,
+				D36E94FD0E5786D000496BD3 /* TODNCName.m in Sources */,
+				D36E95050E57885700496BD3 /* TODNCNameState.m in Sources */,
+				D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */,
+				D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */,
+				D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */,
+				D36E98220E58A3A800496BD3 /* XPathContext.m in Sources */,
+				D36E98BA0E58BED500496BD3 /* TODXmlNameTest.m in Sources */,
+				D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */,
+				D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D33494A00E296AA900406085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TODParseKit */;
+			targetProxy = D334949F0E296AA900406085 /* PBXContainerItemProxy */;
+		};
+		D34185100E520D6F0081B0DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TODParseKit */;
+			targetProxy = D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */;
+		};
+		D3C7D8800A411FDB005DD154 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TODParseKit */;
+			targetProxy = D3C7D87F0A411FDB005DD154 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TODParseKit_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = TODParseKit;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TODParseKit_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = TODParseKit;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		D33494130E2963FE00406085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DemoApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		D33494140E2963FE00406085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DemoApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		D34185070E520D410081B0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DebugApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		D34185080E520D410081B0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DebugApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		D3C7D87D0A411FC0005DD154 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_2)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/build/Debug\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/../../../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/frameworks\"";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/src";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = /Users/itod/dev/cocoa/TODParseKit/src/;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		D3C7D87E0A411FC0005DD154 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../../../Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/frameworks\"";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TODParseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TODParseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D33494150E2963FE00406085 /* Build configuration list for PBXNativeTarget "DemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D33494130E2963FE00406085 /* Debug */,
+				D33494140E2963FE00406085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D34185090E520D410081B0DC /* Build configuration list for PBXNativeTarget "DebugApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D34185070E520D410081B0DC /* Debug */,
+				D34185080E520D410081B0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3C7D87D0A411FC0005DD154 /* Debug */,
+				D3C7D87E0A411FC0005DD154 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
