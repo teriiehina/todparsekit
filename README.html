@@ -1,0 +1,169 @@
+<html>
+<head>
+	<title>TODParseKit README</title>
+	<style>
+		.code {border:1px solid silver; background:#eee; padding:5px 10px; margin:5px;}
+	</style>
+</head>
+<body>
+<h1>TODParseKit</h1>
+
+<h2>About</h2>
+<p>TODParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C port of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. Some changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, the changes are relatively few (Java and ObjC are more similar than they are different), and the book is the best documentation available for this framework.</p>
+
+
+<h2>Xcode Project</h2>
+<p>The Xcode project containing this framework consists of 4 targets:</p>
+
+<ol>
+<li><b>Framework</b> : the TODParseKit Framework.</li>
+<li><b>Tests</b> : a UnitTest Bundle containing many unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world usages of the framework.</li>
+<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TODTokenizer class.</li>
+<li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle. dunno why).</li>
+</ol>
+
+<h2>TODParseKit Framework</h2>
+
+<p>Classes in the TODParseKit Framework offer 2 basic services of general use to Cocoa developers:</p>
+
+<ol>
+<li><b>Tokenization</b> via a tokenizer class</li>
+<li><b>Parsing</b> via a hi-level parser-building toolkit</li>
+</ol>
+
+<hr/>
+<h3>Tokenization</h3>
+
+<p>The API for tokenization is provided by the <tt>TODTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TODTokenizer</tt> class is much simpler, yet more configurable, flexible, and powerful.</p>
+
+<p>Example usage:</p>
+
+<div class="code">
+<pre>
+NSString *s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
+              @"and &lt;= 3.5 'ticks' later /* wince */, it's blast-off!";
+TODTokenizer *t = [TODTokenizer tokenizerWithString:s];
+
+TODToken *eof = [TODToken EOFToken];
+TODToken *tok = nil;
+
+while ((tok = [t nextToken]) != eof) {
+    NSLog(@" (%@)", tok.stringValue);
+}
+</pre>
+</div>
+
+<p>outputs:</p>
+<div class="code">
+<pre> ("It's 123 blast-off!")
+ (,)
+ (she)
+ (said)
+ (,)
+ (and)
+ (&lt;=)
+ (3.5)
+ ('ticks')
+ (later)
+ (,)
+ (it's)
+ (blast-off)
+ (!)
+</pre>
+</div>
+
+<p>Each token produced is an object of class <tt>TODToken</tt>. <tt>TODToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
+
+
+<p>As you can see from the output, <tt>TODTokenzier</tt> is configured by default to handle several common parsing tasks:</p>
+<ul>
+<li>C- and C++-style comments</li>
+<li>single- and double-quoted string tokens</li>
+<li>common multiple character symbols (<tt>&lt;=</tt>)</li>
+<li>apostrophes, dashes and other symbol chars that should not signal the start of a new Symbol token, but rather be included in the current Word or Num token (<tt>it's</tt>, <tt>blast-off</tt>, <tt>3.5</tt>)</li>	
+</ul>
+
+
+<p>All of those features are configurable. TODTokenizer may be configured to:</p>
+
+<ul>
+
+<li>recognize more (or fewer) multi-char symbols. ex: <div class="code"><pre>[t.symbolState add:@"!="];</pre></div>
+<p><small>allows <tt>!=</tt> to be recognized as a single <tt>Symbol</tt> token rather than two adjacent <tt>Symbol</tt> tokens</small></p>
+</li>
+
+<li>add new internal symbol chars to be included in the current <tt>Word</tt> token OR recognize internal symbols like apostrophe and dash to actually signal a new <tt>Symbol</tt> token rather than being part of the current Word token. ex: 
+	<div class="code"><pre>[t.wordState setWordChar:'_'];</pre></div>
+<p><small>allows Word tokens to contain internal underscores</small></p>	
+</li>
+	
+	
+<li>change which chars singnal the start of a token of any given type. ex: <div class="code"><pre>[t setCharacterState:t.wordState from:'_' to:'_'];</pre></div>
+<p><small>allows Word tokens to start with underscore</small></p>
+</li>
+
+<li>turn off recognition of "slash-slash" (//) comments.ex: 
+<div class="code"><pre>[t setCharacterState:t.symbolState from:'/' to:'/'];</pre></div>
+<p><small>slash chars now produce a Symbol token rather than causing the tokenizer to strip text until the next newline char or begin striping for a multiline comment if appropriate (<tt>/*</tt>)</small></p>
+</li>
+</ul>
+
+<hr/>
+<h3>Parsing</h3>
+
+<p>TODParseKit also includes a collection of token parser subclasses (of the abstract <tt>TODParser</tt> class) including collection parsers such as <tt>TODAlternation</tt>, <tt>TODSequence</tt>, and <tt>TODRepetition</tt> as well as terminal parsers including <tt>TODWord</tt>, <tt>TODNum</tt>, <tt>TODSymbol</tt>, <tt>TODQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>TODChar</tt>, <tt>TODDigit</tt>, and <tt>TODSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
+
+<p>The parser classes represent a <b>Composite</b> pattern. Programs can build a composite parser, in <b>Objective-C</b> (rather than a separate language like with lex&amp;yacc), from a collection of terminal parsers composed into alternations, sequences, and repetitions to represent an infinite number of languages.</p>
+
+<p>Parsers built from TODParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
+
+<p>Here is an example of how one might build a parser for a simple voice-search command language (note: TODParseKit does not include any kind of speech recognition technology). The language consists of:</p>
+
+<div class="code">
+<pre>search google for? &lt;search-term&gt;</pre>
+</div>
+
+<div class="code">
+<pre>
+...
+
+	[self parseString:@"search google 'iphone'"];
+...
+	
+- (void)parseString:(NSString *)s {
+	TODSequence *parser = [TODSequence sequence];
+
+	[parser add:[[TODLiteral literalWithString:@"search"] discard]];
+	[parser add:[[TODLiteral literalWithString:@"google"] discard]];
+
+	TODAlternation *optionalFor = [TODAlternation alternation];
+	[optionalFor add:[TODEmpty empty]];
+	[optionalFor add:[TODLiteral literalWithString:@"for"]];
+
+	[parser add:[optionalFor discard]];
+
+	TODParser *searchTerm = [TODQuotedString quotedString];
+	[searchTerm setAssembler:self selector:@selector(workOnSearchTermAssembly:)];
+	[parser add:searchTerm];
+
+	TODAssembly *result = [parser bestMatchFor:[TODTokenAssembly assmeblyWithString:s]];
+	
+	NSLog(@" %@", result);
+
+	// output:
+	//  ['iphone']search/google/'iphone'^
+}
+
+...
+
+- (void)workOnSearchTermAssembly:(TODAssembly *)a {
+	TODToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
+	[self doGoogleSearchForTerm:t.stringValue];
+}
+
+</pre>
+</div>
+
+
+</body>
+</html>
