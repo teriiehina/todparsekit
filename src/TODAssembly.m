@@ -10,7 +10,7 @@
 
 @interface TODAssembly ()
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
-@property NSInteger index;
+@property (nonatomic) NSInteger index;
 @property (nonatomic, copy) NSString *string;
 @property (nonatomic, readwrite, copy) NSString *defaultDelimiter;
 @end
