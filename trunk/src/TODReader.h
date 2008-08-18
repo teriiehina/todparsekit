@@ -12,9 +12,9 @@
 	NSString *string;
 	NSInteger cursor;
 }
-@property (nonatomic, copy) NSString *string;
-
 - (id)initWithString:(NSString *)s;
 - (NSInteger)read;
 - (void)unread;
+
+@property (nonatomic, copy) NSString *string;
 @end
