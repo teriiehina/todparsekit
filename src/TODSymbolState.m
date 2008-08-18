@@ -34,12 +34,11 @@
 
 
 - (TODToken *)nextTokenFromReader:(TODReader *)r startingWith:(NSInteger)cin tokenizer:(TODTokenizer *)t {
-
 	NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
 	
 	return [[[TODToken alloc] initWithTokenType:TODTT_SYMBOL 
-												 stringValue:symbol
-												 floatValue:0.0f] autorelease];
+									stringValue:symbol
+									 floatValue:0.0f] autorelease];
 }
 
 
