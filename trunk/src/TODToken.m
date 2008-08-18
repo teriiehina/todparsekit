@@ -59,7 +59,7 @@
 - (id)initWithStringValue:(NSString *)s {
 	return [self initWithTokenType:TODTT_WORD
 					   stringValue:s
-						floatValue:[s doubleValue]];
+						floatValue:[s floatValue]];
 }
 
 
