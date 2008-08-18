@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <SenTestingKit/SenTestingKit.h>
-#import <OCMock/OCMock.h>
+
 #import <TODParseKit/TODParseKit.h>
 
 @interface TODTestScaffold : SenTestSuite {

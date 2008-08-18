@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <OCMock/OCMock.h>
+
 #import <TODParseKit/TODParseKit.h>
 
 @interface TODSignificantWhitespaceStateTest : SenTestCase {
