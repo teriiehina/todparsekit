@@ -42,8 +42,8 @@
 
 
 - (char *)mallocCharbuf:(NSInteger)size {
-	char *result;
-	if ((result = (char *)malloc(sizeof(size))) == NULL) {
+	char *result = NULL;
+	if ((result = (char *)malloc(size)) == NULL) {
 		[NSException raise:@"Out of memory" format:nil];
 	}
 	return result;
