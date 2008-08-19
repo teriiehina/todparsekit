@@ -94,37 +94,37 @@
 	}
 }
 
-
+#if 0
 // charbuf impl 
-//- (TODToken *)nextTokenFromReader:(TODReader *)r startingWith:(NSInteger)cin tokenizer:(TODTokenizer *)t {
-//	//	'a' to: 'z'
-//	//	'A' to: 'Z'
-//	//	0xc0 to:0xff
-//	
-//	//[self reset];
-//
-//	NSInteger i = 0;
-//	NSInteger c = cin;
-//	do {
-//		[self checkBufLength:i];
-//		charbuf[i++] = c;
-//		c = [r read];
-//	} while ([self isWordChar:c]);
-//	
-//	if (c != -1) {
-//		[r unread];
-//	}
-//	
-//	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSISOLatin1StringEncoding] autorelease];
-////	NSString *stringValue = [NSString stringWithCString:charbuf length:i];
-//	//NSString *stringValue = [[[NSString alloc] initWithCStringNoCopy:charbuf length:i freeWhenDone:YES] autorelease];
-//	
-//	return [[[TODToken alloc] initWithTokenType:TODTT_WORD 
-//										   stringValue:stringValue
-//										   floatValue:0.0f] autorelease];
-//}
+- (TODToken *)nextTokenFromReader:(TODReader *)r startingWith:(NSInteger)cin tokenizer:(TODTokenizer *)t {
+	//	'a' to: 'z'
+	//	'A' to: 'Z'
+	//	0xc0 to:0xff
+	
+	[self reset];
+
+	NSInteger i = 0;
+	NSInteger c = cin;
+	do {
+		[self checkBufLength:i];
+		charbuf[i++] = c;
+		c = [r read];
+	} while ([self isWordChar:c]);
+	
+	if (c != -1) {
+		[r unread];
+	}
+	
+	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
+	
+	return [[[TODToken alloc] initWithTokenType:TODTT_WORD 
+									stringValue:stringValue
+									 floatValue:0.0f] autorelease];
+}
+#endif
 
 
+#if 1
 - (TODToken *)nextTokenFromReader:(TODReader *)r startingWith:(NSInteger)cin tokenizer:(TODTokenizer *)t {
 	[self reset];
 	
@@ -142,6 +142,7 @@
 									stringValue:[[stringbuf copy] autorelease] 
 									 floatValue:0.0f] autorelease];
 }
+#endif
 
 
 @synthesize wordChars;

@@ -8,6 +8,8 @@
 
 #import <TODParseKit/TODCharbufState.h>
 
+// NOTE: this class is not currently in use or included in the build Framework. Using TODMutableStringState instead
+
 @implementation TODCharbufState
 
 - (void)dealloc {
@@ -17,7 +19,7 @@
 
 
 - (void)reset {
-	if (charbuf) {
+	if (charbuf && ![[NSGarbageCollector defaultCollector] isEnabled]) {
 		free(charbuf);
 	}
 	len = 16;
@@ -29,11 +31,13 @@
 	if (i >= len) {
 		char *nb = [self mallocCharbuf:len*2];
 		
-		NSInteger j;
-		for (j = 0; j < len; j++) {
+		NSInteger j = 0;
+		for ( ; j < len; j++) {
 			nb[j] = charbuf[j];
 		}
-		free(charbuf);
+		if (![[NSGarbageCollector defaultCollector] isEnabled]) {
+			free(charbuf);
+		}
 		charbuf = nb;
 		
 		len = len * 2;
@@ -43,7 +47,7 @@
 
 - (char *)mallocCharbuf:(NSInteger)size {
 	char *result = NULL;
-	if ((result = (char *)malloc(size)) == NULL) {
+	if ((result = (char *)NSAllocateCollectable(size, 0)) == NULL) {
 		[NSException raise:@"Out of memory" format:nil];
 	}
 	return result;
