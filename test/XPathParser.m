@@ -146,19 +146,6 @@
 - (TODCollectionParser *)relativeLocationPath {
 	//NSLog(@"%s", _cmd);
 	if (!relativeLocationPath) {
-//		self.relativeLocationPath = [TODAlternation alternation];
-//		[relativeLocationPath add:self.step];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:self.relativeLocationPath];
-//		[s add:[TODSymbol symbolWithString:@"/"]];
-//		[s add:self.step];
-//		[relativeLocationPath add:s];
-//		
-//		[relativeLocationPath add:self.abbreviatedRelativeLocationPath];
-		
-
-		//[3] RelativeLocationPath ::= Step SlashStep*	| AbbreviatedRelativeLocationPath
 		self.relativeLocationPath = [TODAlternation alternation];
 		relativeLocationPath.name = @"relativeLocationPath";
 
@@ -171,7 +158,7 @@
 		[s add:[TODRepetition repetitionWithSubparser:slashStep]];
 
 		[relativeLocationPath add:s];
-
+		// TODO this is causing and infinite loop!
 //		[relativeLocationPath add:self.abbreviatedRelativeLocationPath];
 	}
 	return relativeLocationPath;
@@ -438,14 +425,6 @@
 - (TODCollectionParser *)unionExpr {
 	//NSLog(@"%s", _cmd);
 	if (!unionExpr) {
-//		self.unionExpr = [TODAlternation alternation];
-//		[unionExpr add:self.pathExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:unionExpr];
-//		[s add:[TODSymbol symbolWithString:@"|"]];
-//		[s add:self.pathExpr];
-		
 		self.unionExpr = [TODSequence sequence];
 		unionExpr.name = @"unionExpr";
 
@@ -498,15 +477,6 @@
 - (TODCollectionParser *)filterExpr {
 	//NSLog(@"%s", _cmd);
 	if (!filterExpr) {
-//		self.filterExpr = [TODAlternation alternation];
-//		[filterExpr add:self.primaryExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:filterExpr];
-//		[s add:self.predicate];
-//		
-//		[filterExpr add:s];
-		
 		self.filterExpr = [TODSequence sequence];
 		filterExpr.name = @"filterExpr";
 		[filterExpr add:self.primaryExpr];
@@ -529,15 +499,6 @@
 - (TODCollectionParser *)orExpr {
 	//NSLog(@"%s", _cmd);
 	if (!orExpr) {
-//		self.orExpr = [TODAlternation alternation];
-//		[orExpr add:self.andExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:orExpr];
-//		[s add:[TODLiteral literalWithString:@"or"]];
-//		[s add:self.andExpr];
-//		[orExpr add:s];
-		
 		self.orExpr = [TODSequence sequence];
 		orExpr.name = @"orExpr";
 		
@@ -565,15 +526,6 @@
 - (TODCollectionParser *)andExpr {
 	//NSLog(@"%s", _cmd);
 	if (!andExpr) {
-//		self.andExpr = [TODAlternation alternation];
-//		[andExpr add:self.equalityExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:andExpr];
-//		[s add:[TODLiteral literalWithString:@"and"]];
-//		[s add:self.equalityExpr];
-//		[andExpr add:s];
-		
 		self.andExpr = [TODSequence sequence];
 		andExpr.name = @"andExpr";
 		[andExpr add:self.equalityExpr];
@@ -589,7 +541,7 @@
 
 
 #pragma mark -
-#pragma mark Left Recursion?????????????????
+#pragma mark Left Recursion
 
 // [23] EqualityExpr ::= RelationalExpr	
 //			| EqualityExpr '=' RelationalExpr
@@ -600,21 +552,6 @@
 - (TODCollectionParser *)equalityExpr {
 	//NSLog(@"%s", _cmd);
 	if (!equalityExpr) {
-//		self.equalityExpr = [TODAlternation alternation];
-//		[equalityExpr add:self.relationalExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:equalityExpr];
-//		[s add:[TODSymbol symbolWithString:@"="]];
-//		[s add:self.relationalExpr];
-//		[equalityExpr add:s];
-//	
-//		s = [TODSequence sequence];
-//		[s add:equalityExpr];
-//		[s add:[TODSymbol symbolWithString:@"!="]];
-//		[s add:self.relationalExpr];
-//		[equalityExpr add:s];
-		
 		self.equalityExpr = [TODSequence sequence];
 		equalityExpr.name = @"equalityExpr";
 		[equalityExpr add:self.relationalExpr];
@@ -642,7 +579,7 @@
 
 
 #pragma mark -
-#pragma mark Left Recursion?????????????????
+#pragma mark Left Recursion
 
 // [24] RelationalExpr ::= AdditiveExpr
 //						| RelationalExpr '<' AdditiveExpr	
@@ -682,40 +619,13 @@
 		[a1 add:a];
 		
 		[relationalExpr add:a1];
-		
-//		self.relationalExpr = [TODAlternation alternation];
-//		[relationalExpr add:self.additiveExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:relationalExpr];
-//		[s add:[TODSymbol symbolWithString:@"<"]];
-//		[s add:self.additiveExpr];
-//		[relationalExpr add:s];
-//		
-//		s = [TODSequence sequence];
-//		[s add:relationalExpr];
-//		[s add:[TODSymbol symbolWithString:@">"]];
-//		[s add:self.additiveExpr];
-//		[relationalExpr add:s];
-//
-//		s = [TODSequence sequence];
-//		[s add:relationalExpr];
-//		[s add:[TODSymbol symbolWithString:@"<="]];
-//		[s add:self.additiveExpr];
-//		[relationalExpr add:s];
-//
-//		s = [TODSequence sequence];
-//		[s add:relationalExpr];
-//		[s add:[TODSymbol symbolWithString:@">="]];
-//		[s add:self.additiveExpr];
-//		[relationalExpr add:s];
 	}
 	return relationalExpr;
 }
 
 
 #pragma mark -
-#pragma mark Left Recursion?????????????????
+#pragma mark Left Recursion
 
 // [25] AdditiveExpr ::= MultiplicativeExpr	
 //						| AdditiveExpr '+' MultiplicativeExpr	
@@ -746,28 +656,13 @@
 		[a1 add:a];
 		
 		[additiveExpr add:a1];
-		
-		//		self.additiveExpr = [TODAlternation alternation];
-//		[additiveExpr add:self.multiplicativeExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:additiveExpr];
-//		[s add:[TODSymbol symbolWithString:@"+"]];
-//		[s add:self.multiplicativeExpr];
-//		[additiveExpr add:s];
-//		
-//		s = [TODSequence sequence];
-//		[s add:additiveExpr];
-//		[s add:[TODSymbol symbolWithString:@"+"]];
-//		[s add:self.multiplicativeExpr];
-//		[additiveExpr add:s];
 	}
 	return additiveExpr;
 }
 
 
 #pragma mark -
-#pragma mark Left Recursion?????????????????
+#pragma mark Left Recursion
 
 // [26] MultiplicativeExpr ::= UnaryExpr	
 //							| MultiplicativeExpr MultiplyOperator UnaryExpr	
@@ -804,34 +699,13 @@
 		[a1 add:a];
 		
 		[multiplicativeExpr add:a1];
-		
-//		self.multiplicativeExpr = [TODAlternation alternation];
-//		[additiveExpr add:self.unaryExpr];
-//		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:multiplicativeExpr];
-//		[s add:self.multiplyOperator];
-//		[s add:self.unaryExpr];
-//		[multiplicativeExpr add:s];
-//		
-//		s = [TODSequence sequence];
-//		[s add:multiplicativeExpr];
-//		[s add:[TODLiteral literalWithString:@"div"]];
-//		[s add:self.unaryExpr];
-//		[multiplicativeExpr add:s];
-//		
-//		s = [TODSequence sequence];
-//		[s add:multiplicativeExpr];
-//		[s add:[TODLiteral literalWithString:@"mod"]];
-//		[s add:self.unaryExpr];
-//		[multiplicativeExpr add:s];
 	}
 	return multiplicativeExpr;
 }
 
 
 #pragma mark -
-#pragma mark Left Recursion?????????????????
+#pragma mark Left Recursion
 
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
 
