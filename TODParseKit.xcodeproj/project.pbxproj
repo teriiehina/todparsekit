@@ -58,6 +58,8 @@
 		D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
 		D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99A60E58CF6C00496BD3 /* TODFastJsonParserTest.m */; };
 		D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
+		D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E9F760E5A77E000496BD3 /* XMLPullParser.m */; };
+		D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82B0A411F67005DD154 /* TODNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82C0A411F67005DD154 /* TODNumberState.m */; };
@@ -275,6 +277,9 @@
 		D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
 		D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		D36E9F750E5A77E000496BD3 /* XMLPullParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPullParser.h; path = test/XMLPullParser.h; sourceTree = "<group>"; };
+		D36E9F760E5A77E000496BD3 /* XMLPullParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLPullParser.m; path = test/XMLPullParser.m; sourceTree = "<group>"; };
+		D36E9F860E5A795400496BD3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3C7D82B0A411F67005DD154 /* TODNumberState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberState.h; path = src/TODNumberState.h; sourceTree = "<group>"; };
 		D3C7D82C0A411F67005DD154 /* TODNumberState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberState.m; path = src/TODNumberState.m; sourceTree = "<group>"; };
@@ -429,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3C7D9DA0A412874005DD154 /* TODParseKit.framework in Frameworks */,
+				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,6 +500,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D36E9F860E5A795400496BD3 /* libxml2.dylib */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -833,6 +840,8 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D36E9F750E5A77E000496BD3 /* XMLPullParser.h */,
+				D36E9F760E5A77E000496BD3 /* XMLPullParser.m */,
 				D36E935C0E57694F00496BD3 /* TODXmlToken.h */,
 				D36E935D0E57694F00496BD3 /* TODXmlToken.m */,
 				D36E93550E57685E00496BD3 /* TODXmlName.h */,
@@ -1247,6 +1256,7 @@
 				D36E98BA0E58BED500496BD3 /* TODXmlNameTest.m in Sources */,
 				D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */,
 				D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */,
+				D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,10 +1479,11 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/src";
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_SEARCH_PATHS = /Users/itod/dev/cocoa/TODParseKit/src/;
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
@@ -1506,8 +1517,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
 				INFOPLIST_FILE = "Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
