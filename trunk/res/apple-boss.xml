@@ -2,7 +2,7 @@
 <ysearchresponse xmlns="http://www.inktomi.com/" responsecode="200">
   <nextpage><![CDATA[/ysearch/web/v1/apple?appid=LcU4qWbV34HAOHTXXZbYfB1_AgYH5_AhlzYZ6Qvm4hdEDw6B1MicVEIYPtQLOTnb&format=xml&start=10]]></nextpage>
  <resultset_web count="10" start="0" totalhits="51116935" deephits="1520000000">
-  <!--    <result>
+	<result>
       <abstract><![CDATA[Macintosh hardware, software, and Internet tools. Offering Quicktime info, developer resources, and other items related to <b>Apple</b> computers.]]></abstract>
       <clickurl><![CDATA[http://us.lrd.yahoo.com/_ylc=X3oDMTU4bTRyZ3VqBF9TAzIwMjMxNTI3MDIEYXBwaWQDTGNVNHFXYlYzNEhBT0hUWFhaYllmQjFfQWdZSDVfQWhsellaNlF2bTRoZEVEdzZCMU1pY1ZFSVlQdFFMT1RuYgRwb3MDMARzZXJ2aWNlA1lTZWFyY2hXZWIEc2xrA3RpdGxlBHNyY3B2aWQDbG02S2YwTGFSV3c1U19MakV0cUZKd0VDWXMucUJVaXFYSFVBQkxLTA--/SIG=10qut2vvd/**http%3A//www.apple.com/]]></clickurl>
       <date>2008/08/17</date>
@@ -91,6 +91,6 @@
       <size>13318</size>
       <title><![CDATA[Prometric: <b>Apple</b> Certification]]></title>
       <url>http://www.prometric.com/apple/default.htm</url>
-    </result> -->
+    </result>
   </resultset_web>
 </ysearchresponse><!-- ws05.search.scd.yahoo.com compressed/chunked Mon Aug 18 22:39:01 PDT 2008 -->

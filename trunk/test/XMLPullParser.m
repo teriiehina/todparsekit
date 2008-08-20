@@ -29,6 +29,57 @@
 
 @implementation XMLPullParser
 
+// don't know what this handles. can't get it to fire
+static void readerErr(XMLPullParser *self, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator) {
+	NSString *str = [NSString stringWithUTF8String:msg];
+	int line = xmlTextReaderLocatorLineNumber(locator);
+	NSLog(@"some kinda error! %s, severity: %i, line: %i", msg, severity, line);
+	
+	switch (severity) {
+		case XMLPullParserSeverityValidityWarning:
+			[self.errorHandler validityWarning:str lineNumber:line];
+			break;
+		case XMLPullParserSeverityValidityError:
+			[self.errorHandler validityError:str lineNumber:line];
+			break;
+		case XMLPullParserSeverityWarning:
+			[self.errorHandler warning:str lineNumber:line];
+			break;
+		case XMLPullParserSeverityError:
+			[self.errorHandler error:str lineNumber:line];
+			break;
+	}
+	
+}
+
+
+// handles well-formedness errors in instance document
+// and handles validity errors in instance doc
+static void structErr(XMLPullParser *self, xmlErrorPtr error) {	
+	const char *msg = error->message;
+	int line = error->line;
+	int level = error->level;
+	
+	NSLog(@"Instance doc well-formedness or validity error, level: %i", level);
+	NSLog(@"message: = %s", msg);
+	NSLog(@"line: = %i", line);
+	
+	NSString *str = [NSString stringWithUTF8String:msg];
+	
+	switch (level) {
+		case XML_ERR_WARNING:
+			[self.errorHandler warning:str lineNumber:line];
+			break;
+		case XML_ERR_ERROR:
+			[self.errorHandler error:str lineNumber:line];
+			break;
+		case XML_ERR_FATAL:
+			[self.errorHandler fatalError:str lineNumber:line];
+			break;
+	}
+}
+
+
 + (id)parserWithContentsOfFile:(NSString *)path {
 	return [[[XMLPullParser alloc] initWithContentsOfFile:path] autorelease];
 }
@@ -43,6 +94,12 @@
 	self = [super init];
 	if (self != nil) {
 		self.path = newPath;
+
+		_reader = xmlNewTextReaderFilename(path.UTF8String);
+		xmlTextReaderSetParserProp(_reader, XML_PARSE_RECOVER, 1);
+		xmlTextReaderSetParserProp(_reader, XML_PARSE_XINCLUDE, 1);
+		xmlTextReaderSetErrorHandler(_reader, (xmlTextReaderErrorFunc)readerErr, (void *)self);
+		xmlTextReaderSetStructuredErrorHandler(_reader, (xmlStructuredErrorFunc)structErr, (void *)self);
 	}
 	return self;
 }
@@ -270,84 +327,12 @@
 }
 
 
-
-
-// don't know what this handles. can't get it to fire
-static void readerErr(XMLPullParser *self, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator) {
-	NSString *str = [NSString stringWithUTF8String:msg];
-	int line = xmlTextReaderLocatorLineNumber(locator);
-	NSLog(@"some kinda error! %s, severity: %i, line: %i", msg, severity, line);
-	
-	switch (severity) {
-		case XMLPullParserSeverityValidityWarning:
-			[self.errorHandler validityWarning:str lineNumber:line];
-			break;
-		case XMLPullParserSeverityValidityError:
-			[self.errorHandler validityError:str lineNumber:line];
-			break;
-		case XMLPullParserSeverityWarning:
-			[self.errorHandler warning:str lineNumber:line];
-			break;
-		case XMLPullParserSeverityError:
-			[self.errorHandler error:str lineNumber:line];
-			break;
-	}
-	
-}
-
-
-// handles well-formedness errors in instance document
-// and handles validity errors in instance doc
-static void structErr(XMLPullParser *self, xmlErrorPtr error) {	
-	const char *msg = error->message;
-	int line = error->line;
-	int level = error->level;
-
-	NSLog(@"Instance doc well-formedness or validity error, level: %i", level);
-	NSLog(@"message: = %s", msg);
-	NSLog(@"line: = %i", line);
-
-	NSString *str = [NSString stringWithUTF8String:msg];
-	
-	switch (level) {
-		case XML_ERR_WARNING:
-			[self.errorHandler warning:str lineNumber:line];
-			break;
-		case XML_ERR_ERROR:
-			[self.errorHandler error:str lineNumber:line];
-			break;
-		case XML_ERR_FATAL:
-			[self.errorHandler fatalError:str lineNumber:line];
-			break;
-	}
-}
-
-
-inline static void **createMethodArgsFromVarArgs(va_list va_args) {
-	void **monoArgs = NULL;
-	
-	int numArgs = 1;
-	
-	if(numArgs > 0) {
-		monoArgs = malloc(numArgs * sizeof(void *));
-		int i;
-		for(i = 0; i < numArgs; i++) {
-			void *arg = va_arg(va_args, void *);
-			monoArgs[i] = arg;
-		}
-	}
-	
-	return(monoArgs);	
-}
-
-
 // handles warnings encountered while parsing RNG schema
 static void rngWarn(XMLPullParser *self, const char *msg, ...) {
     va_list ap;
 	va_start(ap, msg);
 	
-	void **args = createMethodArgsFromVarArgs(ap);
-	NSMutableString *str = [NSMutableString stringWithFormat:[NSString stringWithUTF8String:msg], *args];
+	NSMutableString *str = [NSMutableString stringWithFormat:[NSString stringWithUTF8String:msg], ap];
 	NSLog(@"RELAX NG warn: %s", msg);
     va_end(ap);
 	
@@ -358,8 +343,6 @@ static void rngWarn(XMLPullParser *self, const char *msg, ...) {
 	
 	str = [NSString stringWithFormat:@"Warning while parsing RELAX NG schema: %s",msg];
 	[self.errorHandler validityWarning:str lineNumber:-1];
-	
-	if(args != NULL) free(args);
 }
 
 
@@ -368,8 +351,7 @@ static void rngErr(XMLPullParser *self, const char *msg, ...) {
     va_list ap;
 	va_start(ap, msg);
 	
-	void **args = createMethodArgsFromVarArgs(ap);
-	NSMutableString *str = [NSMutableString stringWithFormat:[NSString stringWithUTF8String:msg], *args];
+	NSMutableString *str = [NSMutableString stringWithFormat:[NSString stringWithUTF8String:msg], ap];
 	NSLog(@"RELAX NG err %@",str);
     va_end(ap);
 	
@@ -381,7 +363,6 @@ static void rngErr(XMLPullParser *self, const char *msg, ...) {
 	str = [NSString stringWithFormat:@"Error while parsing RELAX NG schema: <br/><pre>%@</pre>",str];
 	[self.errorHandler validityError:str lineNumber:-1];
 	
-	if(args != NULL) free(args);
 }
 
 
