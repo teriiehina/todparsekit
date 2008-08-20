@@ -8,9 +8,13 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <TODParseKit/TODParseKit.h>
+#import "SRGSParser.h"
 
 @interface SRGSParserTest : SenTestCase {
-
+	NSString *s;
+	SRGSParser *p;
+	TODAssembly *a;
+	TODAssembly *result;
 }
 
 @end

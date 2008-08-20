@@ -23,233 +23,627 @@
 @implementation SRGSParser
 
 - (id)init {
-	self = [super initWithSubparser:self.statementParser];
+	self = [super init];
 	if (self != nil) {
-		//[self add:self.statementParser];
+		[self add:self.grammar];
 	}
 	return self;
 }
 
 
 - (void)dealloc {
-	self.statementParser = nil;
-	self.exprOrAssignmentParser = nil;
-	self.assignmentParser = nil;
-	self.declarationParser = nil;
-	self.variableParser = nil;
-	self.expressionParser = nil;
-	self.termParser = nil;
-	self.orTermParser = nil;
-	self.factorParser = nil;
-	self.nextFactorParser = nil;
-	self.phraseParser = nil;
-	self.phraseStarParser = nil;
-	self.phraseQuestionParser = nil;
-	self.atomicValueParser = nil;
+	self.selfIdentHeader = nil;
+	self.ruleName = nil;
+	self.tagFormat = nil;
+	self.lexiconURI = nil;
+	self.weight = nil;
+	self.repeat = nil;
+	self.probability = nil;
+	self.externalRuleRef = nil;
+	self.token = nil;
+	self.languageAttachment = nil;
+	self.tag = nil;
+	self.grammar = nil;
+	self.declaration = nil;
+	self.baseDecl = nil;
+	self.languageDecl = nil;
+	self.modeDecl = nil;
+	self.rootRuleDecl = nil;
+	self.tagFormatDecl = nil;
+	self.lexiconDecl = nil;
+	self.metaDecl = nil;
+	self.tagDecl = nil;
+	self.ruleDefinition = nil;
+	self.scope = nil;
+	self.ruleExpansion = nil;
+	self.ruleAlternative = nil;
+	self.sequenceElement = nil;
+	self.subexpansion = nil;
+	self.ruleRef = nil;
+	self.localRuleRef = nil;
+	self.specialRuleRef = nil;
+	self.repeatOperator = nil;
+	
+	self.baseURI = nil;
+	self.languageCode = nil;
+	self.ABNF_URI = nil;
+	self.ABNF_URI_with_Media_Type = nil;
 	[super dealloc];
 }
 
 
 - (id)parse:(NSString *)s {
-	TODAssembly *a = [TODTokenAssembly assemblyWithString:s];
+	TODAssembly *a = [self assemblyWithString:s];
 	a = [self completeMatchFor:a];
 	return [a pop];
 }
 
 
-// statement		= exprOrAssignment ';'
-// exprOrAssignment	= expression | assigment
-// assigment		= declaration '=' expression
-// declaration		= '$' Word
-// variable			= '$' Word
-// expression		= term orTerm*
-// term				= factor nextFactor*
-// orTerm			= '|' term
-// factor			= phrase | phraseStar | phraseQuestion
-// nextFactor		= factor
-// phrase			= atomicValue | '(' expression ')'
-// phraseStar		= phrase '*'
-// phraseQuestion	= phrase '?'
-// atomicValue		= Word | Num | QuotedString | variable
-
-- (TODCollectionParser *)statementParser {
-	if (!statementParser) {
-		self.statementParser = [TODSequence sequence];
-		[statementParser add:self.exprOrAssignmentParser];
-		[statementParser add:[[TODSymbol symbolWithString:@";"] discard]];
-	}
-	return statementParser;
+- (TODAssembly *)assemblyWithString:(NSString *)s {
+	TODTokenAssembly *a = [TODTokenAssembly assemblyWithString:s];
+	TODTokenizer *t = a.tokenizer;
+	
+	//	TODNCNameState *NCNameState = [[[TODNCNameState alloc] init] autorelease];
+	
+	[t setCharacterState:t.symbolState from: '-' to: '-'];
+	[t setCharacterState:t.symbolState from: '.' to: '.'];
+	//[t.wordState setWordChars:YES from:'-' to:'-'];
+	return a;	
 }
 
 
-// exprOrAssignmentParser		= expression | assignment
-- (TODCollectionParser *)exprOrAssignmentParser {
-	if (!exprOrAssignmentParser) {
-		self.exprOrAssignmentParser = [TODAlternation alternation];
-		[exprOrAssignmentParser add:self.expressionParser];
-		[exprOrAssignmentParser add:self.assignmentParser];
+
+
+//selfIdentHeader ::= '#ABNF' #x20 VersionNumber (#x20 CharEncoding)? ';'
+//VersionNumber    ::= '1.0'
+//CharEncoding     ::= Nmtoken
+- (TODCollectionParser *)selfIdentHeader {
+	if (!selfIdentHeader) {
+		self.selfIdentHeader = [TODSequence sequence];
+		selfIdentHeader.name = @"selfIdentHeader";
+		
+		[selfIdentHeader add:[TODSymbol symbolWithString:@"#"]];
+		[selfIdentHeader add:[TODLiteral literalWithString:@"ABNF"]];
+		[selfIdentHeader add:[TODNum num]];  // VersionNumber
+		
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:[TODWord word]]; // CharEncoding
+		
+		[selfIdentHeader add:a];
+		[selfIdentHeader add:[TODSymbol symbolWithString:@";"]];
 	}
-	return exprOrAssignmentParser;
+	return selfIdentHeader;
 }
 
 
-// declaration		= variable '=' expression
-- (TODCollectionParser *)assignmentParser {
-	if (!assignmentParser) {
-		self.assignmentParser = [TODSequence sequence];
-		[assignmentParser add:self.declarationParser];
-		[assignmentParser add:[[TODSymbol symbolWithString:@"="] discard]];
-		[assignmentParser add:self.expressionParser];
-		[assignmentParser setAssembler:self selector:@selector(workOnAssignmentAssembly:)];
+//RuleName         ::= '$' ConstrainedName 
+//ConstrainedName  ::= Name - (Char* ('.' | ':' | '-') Char*)
+- (TODCollectionParser *)ruleName {
+	if (!ruleName) {
+		self.ruleName = [TODSequence sequence];
+		[ruleName add:[TODSymbol symbolWithString:@"$"]];
+		[ruleName add:[TODWord word]]; // TODO: ConstrainedName
 	}
-	return assignmentParser;
+	return ruleName;
+}
+
+//TagFormat ::= ABNF_URI
+- (TODCollectionParser *)tagFormat {
+	if (!tagFormat) {
+		self.tagFormat = self.ABNF_URI;
+	}
+	return tagFormat;
 }
 
 
-// declaration			= '$' Word
-- (TODCollectionParser *)declarationParser {
-	if (!declarationParser) {
-		self.declarationParser = [TODSequence sequence];
-		[declarationParser add:[[TODSymbol symbolWithString:@"$"] discard]];
-		[declarationParser add:[TODWord word]];
+//LexiconURI ::= ABNF_URI | ABNF_URI_with_Media_Type
+- (TODCollectionParser *)lexiconURI {
+	if (!lexiconURI) {
+		self.lexiconURI = [TODAlternation alternation];
+		[lexiconURI add:self.ABNF_URI];
+		[lexiconURI add:self.ABNF_URI_with_Media_Type];
 	}
-	return declarationParser;
+	return lexiconURI;
 }
 
 
-// variable			= '$' Word
-- (TODCollectionParser *)variableParser {
-	if (!variableParser) {
-		self.variableParser = [TODSequence sequence];
-		[variableParser add:[[TODSymbol symbolWithString:@"$"] discard]];
-		[variableParser add:[TODWord word]];
+//Weight ::= '/' Number '/'
+- (TODCollectionParser *)weight {
+	if (!weight) {
+		self.weight = [TODSequence sequence];
+		[weight add:[TODSymbol symbolWithString:@"/"]];
+		[weight add:[TODNum num]];
+		[weight add:[TODSymbol symbolWithString:@"/"]];
 	}
-	return variableParser;
+	return weight;
 }
 
 
-// expression		= term orTerm*
-- (TODCollectionParser *)expressionParser {
-	if (!expressionParser) {
-		self.expressionParser = [TODSequence sequence];
-		[expressionParser add:self.termParser];
-		[expressionParser add:[TODRepetition repetitionWithSubparser:self.orTermParser]];
-	}
-	return expressionParser;
-}
-
-
-// term				= factor nextFactor*
-- (TODCollectionParser *)termParser {
-	if (!termParser) {
-		self.termParser = [TODSequence sequence];
-		[termParser add:self.factorParser];
-		[termParser add:[TODRepetition repetitionWithSubparser:self.nextFactorParser]];
-	}
-	return termParser;
-}
-
-
-// orTerm			= '|' term
-- (TODCollectionParser *)orTermParser {
-	if (!orTermParser) {
-		self.orTermParser = [TODSequence sequence];
-		[orTermParser add:[[TODSymbol symbolWithString:@"|"] discard]];
-		[orTermParser add:self.termParser];
-		[orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
-	}
-	return orTermParser;
-}
-
-
-// factor			= phrase | phraseStar | phraseQuestion
-- (TODCollectionParser *)factorParser {
-	if (!factorParser) {
-		self.factorParser = [TODAlternation alternation];
-		[factorParser add:self.phraseParser];
-		[factorParser add:self.phraseStarParser];
-		[factorParser add:self.phraseQuestionParser];
-	}
-	return factorParser;
-}
-
-
-// nextFactor		= factor
-- (TODCollectionParser *)nextFactorParser {
-	if (!nextFactorParser) {
-		self.nextFactorParser = [TODAlternation alternation];
-		[nextFactorParser add:self.phraseParser];
-		[nextFactorParser add:self.phraseStarParser];
-		[nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
-	}
-	return nextFactorParser;
-}
-
-
-// phrase			= atomicValue | '(' expression ')'
-- (TODCollectionParser *)phraseParser {
-	if (!phraseParser) {
+//Repeat ::= [0-9]+ ('-' [0-9]*)?
+- (TODCollectionParser *)repeat {
+	if (!repeat) {
+		self.repeat = [TODSequence sequence];
+		[repeat add:[TODNum num]];
+		
 		TODSequence *s = [TODSequence sequence];
-		[s add:[[TODSymbol symbolWithString:@"("] discard]];
-		[s add:self.expressionParser];
-		[s add:[[TODSymbol symbolWithString:@")"] discard]];
+		[s add:[TODSymbol symbolWithString:@"-"]];
+		[s add:[TODNum num]];
 		
-		self.phraseParser = [TODAlternation alternation];
-		[phraseParser add:self.atomicValueParser];
-		[phraseParser add:s];
-	}
-	return phraseParser;
-}
-
-
-// phraseStar		= phrase '*'
-- (TODCollectionParser *)phraseStarParser {
-	if (!phraseStarParser) {
-		self.phraseStarParser = [TODSequence sequence];
-		[phraseStarParser add:self.phraseParser];
-		[phraseStarParser add:[[TODSymbol symbolWithString:@"*"] discard]];
-		[phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
-	}
-	return phraseStarParser;
-}
-
-
-// phraseQuestion		= phrase '?'
-- (TODCollectionParser *)phraseQuestionParser {
-	if (!phraseQuestionParser) {
-		self.phraseQuestionParser = [TODSequence sequence];
-		[phraseQuestionParser add:self.phraseParser];
-		[phraseQuestionParser add:[[TODSymbol symbolWithString:@"?"] discard]];
-		[phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
-	}
-	return phraseQuestionParser;
-}
-
-
-// atomicValue		= Word | Num | QuotedString | Variable
-- (TODCollectionParser *)atomicValueParser {
-	if (!atomicValueParser) {
-		self.atomicValueParser = [TODAlternation alternation];
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:s];
 		
-		TODParser *p = [TODWord word];
-		[p setAssembler:self selector:@selector(workOnWordAssembly:)];
-		[atomicValueParser add:p];
-
-		p = [TODNum num];
-		[p setAssembler:self selector:@selector(workOnNumAssembly:)];
-		[atomicValueParser add:p];
-
-		p = [TODQuotedString quotedString];
-		[p setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
-		[atomicValueParser add:p];
-
-		p = self.variableParser;
-		[p setAssembler:self selector:@selector(workOnVariableAssembly:)];
-		[atomicValueParser add:p];
+		[repeat add:a];
 	}
-	return atomicValueParser;
+	return repeat;
 }
 
+
+//Probability      ::= '/' Number '/'
+- (TODCollectionParser *)probability {
+	if (!probability) {
+		self.probability = [TODSequence sequence];
+		[probability add:[TODSymbol symbolWithString:@"/"]];
+		[probability add:[TODNum num]];
+		[probability add:[TODSymbol symbolWithString:@"/"]];
+	}
+	return probability;
+}
+
+
+
+//ExternalRuleRef  ::= '$' ABNF_URI | '$' ABNF_URI_with_Media_Type
+- (TODCollectionParser *)externalRuleRef {
+	if (!externalRuleRef) {
+		self.externalRuleRef = [TODAlternation alternation];
+		
+		TODSequence *s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"$"]];
+		[s add:self.ABNF_URI];
+		[externalRuleRef add:s];
+
+		s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"$"]];
+		[s add:self.ABNF_URI_with_Media_Type];
+		[externalRuleRef add:s];
+	}
+	return externalRuleRef;
+}
+
+
+//Token  ::= Nmtoken | DoubleQuotedCharacters
+- (TODCollectionParser *)token {
+	if (!token) {
+		self.token = [TODAlternation alternation];
+		[token add:[TODWord word]];
+		[token add:[TODQuotedString quotedString]];
+	}
+	return token;
+}
+
+
+//LanguageAttachment ::= '!' LanguageCode
+- (TODCollectionParser *)languageAttachment {
+	if (!languageAttachment) {
+		self.languageAttachment = [TODSequence sequence];
+		[languageAttachment add:[TODSymbol symbolWithString:@"!"]];
+		[languageAttachment add:self.languageCode];
+	}
+	return languageAttachment;
+}
+
+
+//Tag ::= '{' [^}]* '}' | '{!{' (Char* - (Char* '}!}' Char*)) '}!}'
+- (TODCollectionParser *)tag {
+	if (!tag) {
+		self.tag = [TODAlternation alternation];
+
+		
+		TODSequence *s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"{"]];
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODWord word]];
+		[a add:[TODNum num]];
+		[a add:[TODSymbol symbol]];
+		[a add:[TODQuotedString quotedString]];
+		[s add:[TODRepetition repetitionWithSubparser:a]];
+		[s add:[TODSymbol symbolWithString:@"}"]];
+		[tag add:s];
+		
+		s = [TODSequence sequence];
+		[s add:[TODLiteral literalWithString:@"{!{"]];
+		a = [TODAlternation alternation];
+		[a add:[TODWord word]];
+		[a add:[TODNum num]];
+		[a add:[TODSymbol symbol]];
+		[a add:[TODQuotedString quotedString]];
+		[s add:[TODRepetition repetitionWithSubparser:a]];
+		[s add:[TODLiteral literalWithString:@"}!}"]];
+		[tag add:s];
+	}
+	return tag;
+}
+
+
+#pragma mark -
+#pragma mark Grammar
+
+// grammar ::= selfIdentHeader declaration* ruleDefinition*
+- (TODCollectionParser *)grammar {
+	if (!grammar) {
+		self.grammar = [TODSequence sequence];
+		[grammar add:self.selfIdentHeader];
+		[grammar add:[TODRepetition repetitionWithSubparser:self.declaration]];
+		[grammar add:[TODRepetition repetitionWithSubparser:self.ruleDefinition]];
+	}
+	return grammar;
+}
+
+// declaration ::= baseDecl | languageDecl | modeDecl | rootRuleDecl | tagFormatDecl | lexiconDecl | metaDecl | tagDecl
+- (TODCollectionParser *)declaration {
+	if (!declaration) {
+		self.declaration = [TODAlternation alternation];
+		[declaration add:self.baseDecl];
+		[declaration add:self.languageDecl];
+		[declaration add:self.modeDecl];
+		[declaration add:self.rootRuleDecl];
+		[declaration add:self.tagFormatDecl];
+		[declaration add:self.lexiconDecl];
+		[declaration add:self.tagDecl];
+	}
+	return declaration;
+}
+
+// baseDecl ::= 'base' BaseURI ';'
+- (TODCollectionParser *)baseDecl {
+	if (!baseDecl) {
+		self.baseDecl = [TODSequence sequence];
+		[baseDecl add:[TODLiteral literalWithString:@"base"]];
+		[baseDecl add:self.baseURI];
+		[baseDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return baseDecl;
+}
+
+// languageDecl    ::= 'language' LanguageCode ';'
+- (TODCollectionParser *)languageDecl {
+	if (!languageDecl) {
+		self.languageDecl = [TODSequence sequence];
+		[languageDecl add:[TODLiteral literalWithString:@"language"]];
+		[languageDecl add:self.languageCode];
+		[languageDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return languageDecl;
+}
+
+
+
+// modeDecl        ::= 'mode' 'voice' ';' | 'mode' 'dtmf' ';'
+- (TODCollectionParser *)modeDecl {
+	if (!modeDecl) {
+		self.modeDecl = [TODAlternation alternation];
+		
+		TODSequence *s = [TODSequence sequence];
+		[s add:[TODLiteral literalWithString:@"mode"]];
+		[s add:[TODLiteral literalWithString:@"voice"]];
+		[s add:[TODSymbol symbolWithString:@";"]];
+		[modeDecl add:s];
+		
+		s = [TODSequence sequence];
+		[s add:[TODLiteral literalWithString:@"mode"]];
+		[s add:[TODLiteral literalWithString:@"dtmf"]];
+		[s add:[TODSymbol symbolWithString:@";"]];
+		[modeDecl add:s];
+	}
+	return modeDecl;
+}
+
+
+// rootRuleDecl    ::= 'root' RuleName ';'
+- (TODCollectionParser *)rootRuleDecl {
+	if (!rootRuleDecl) {
+		self.rootRuleDecl = [TODSequence sequence];
+		[rootRuleDecl add:[TODLiteral literalWithString:@"root"]];
+		[rootRuleDecl add:self.ruleName];
+		[rootRuleDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return rootRuleDecl;
+}
+
+
+// tagFormatDecl   ::=     'tag-format' TagFormat ';'
+- (TODCollectionParser *)tagFormatDecl {
+	if (!tagFormatDecl) {
+		self.tagFormatDecl = [TODSequence sequence];
+		[tagFormatDecl add:[TODLiteral literalWithString:@"tag-format"]];
+		[tagFormatDecl add:self.tagFormat];
+		[tagFormatDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return tagFormatDecl;
+}
+
+
+
+// lexiconDecl     ::= 'lexicon' LexiconURI ';'
+- (TODCollectionParser *)lexiconDecl {
+	if (!lexiconDecl) {
+		self.lexiconDecl = [TODSequence sequence];
+		[lexiconDecl add:[TODLiteral literalWithString:@"lexicon"]];
+		[lexiconDecl add:self.lexiconURI];
+		[lexiconDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return lexiconDecl;
+}
+
+
+// metaDecl        ::=
+//    'http-equiv' QuotedCharacters 'is' QuotedCharacters ';'
+//    | 'meta' QuotedCharacters 'is' QuotedCharacters ';'
+- (TODCollectionParser *)metaDecl {
+	if (!metaDecl) {
+		self.metaDecl = [TODAlternation alternation];
+		
+		TODSequence *s = [TODSequence sequence];
+		[s add:[TODLiteral literalWithString:@"http-equiv"]];
+		[s add:[TODQuotedString quotedString]];
+		[s add:[TODLiteral literalWithString:@"is"]];
+		[s add:[TODQuotedString quotedString]];
+		[s add:[TODSymbol symbolWithString:@";"]];
+		[metaDecl add:s];
+		
+		s = [TODSequence sequence];
+		[s add:[TODLiteral literalWithString:@"meta"]];
+		[s add:[TODQuotedString quotedString]];
+		[s add:[TODLiteral literalWithString:@"is"]];
+		[s add:[TODQuotedString quotedString]];
+		[s add:[TODSymbol symbolWithString:@";"]];
+		[metaDecl add:s];
+	}
+	return metaDecl;
+}
+
+
+
+// tagDecl  ::=  Tag ';'
+- (TODCollectionParser *)tagDecl {
+	if (!tagDecl) {
+		self.tagDecl = [TODSequence sequence];
+		[tagDecl add:self.tag];
+		[tagDecl add:[TODSymbol symbolWithString:@";"]];
+	}
+	return tagDecl;
+}
+
+
+// ruleDefinition  ::= scope? RuleName '=' ruleExpansion ';'
+- (TODCollectionParser *)ruleDefinition {
+	if (!ruleDefinition) {
+		self.ruleDefinition = [TODSequence sequence];
+		
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.scope];
+		
+		[ruleDefinition add:a];
+		[ruleDefinition add:self.ruleName];
+		[ruleDefinition add:[TODSymbol symbolWithString:@"="]];
+		[ruleDefinition add:self.ruleExpansion];
+		[ruleDefinition add:[TODSymbol symbolWithString:@";"]];
+	}
+	return ruleDefinition;
+}
+
+// scope ::=  'private' | 'public'
+- (TODCollectionParser *)scope {
+	if (!scope) {
+		self.scope = [TODAlternation alternation];
+		[scope add:[TODLiteral literalWithString:@"private"]];
+		[scope add:[TODLiteral literalWithString:@"public"]];
+	}
+	return scope;
+}
+
+
+// ruleExpansion   ::= ruleAlternative ( '|' ruleAlternative )*
+- (TODCollectionParser *)ruleExpansion {
+	if (!ruleExpansion) {
+		self.ruleExpansion = [TODSequence sequence];
+		[ruleExpansion add:self.ruleAlternative];
+		
+		TODSequence *pipeRuleAlternative = [TODSequence sequence];
+		[pipeRuleAlternative add:[TODSymbol symbolWithString:@"|"]];
+		[pipeRuleAlternative add:self.ruleAlternative];
+		[ruleExpansion add:[TODRepetition repetitionWithSubparser:pipeRuleAlternative]];
+	}
+	return ruleExpansion;
+}
+
+
+// ruleAlternative ::= Weight? sequenceElement+
+- (TODCollectionParser *)ruleAlternative {
+	if (!ruleAlternative) {
+		self.ruleAlternative = [TODSequence sequence];
+		
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.weight];
+		
+		[ruleAlternative add:a];
+		[ruleAlternative add:self.sequenceElement];
+		[ruleAlternative add:[TODRepetition repetitionWithSubparser:self.sequenceElement]];
+	}
+	return ruleAlternative;
+}
+
+// sequenceElement ::= subexpansion | subexpansion repeatOperator
+
+// me: changing to: 
+// sequenceElement ::= subexpansion repeatOperator?
+- (TODCollectionParser *)sequenceElement {
+	if (!sequenceElement) {
+//		self.sequenceElement = [TODAlternation alternation];
+//		[sequenceElement add:self.subexpansion];
+//		
+//		TODSequence *s = [TODSequence sequence];
+//		[s add:self.subexpansion];
+//		[s add:self.repeatOperator];
+//		
+//		[sequenceElement add:s];
+
+		self.sequenceElement = [TODSequence sequence];
+		[sequenceElement add:self.subexpansion];
+		
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.repeatOperator];
+		
+		[sequenceElement add:a];
+	}
+	return sequenceElement;
+}
+
+// subexpansion    ::=
+//     Token LanguageAttachment?
+//     | ruleRef 
+//     | Tag
+//     | '(' ')'
+//     | '(' ruleExpansion ')' LanguageAttachment?
+//     | '[' ruleExpansion ']' LanguageAttachment?
+- (TODCollectionParser *)subexpansion {
+	if (!subexpansion) {
+		self.subexpansion = [TODAlternation alternation];
+		
+		TODSequence *s = [TODSequence sequence];
+		[s add:self.token];
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.languageAttachment];
+		[s add:a];
+		[subexpansion add:s];
+		
+		[subexpansion add:self.ruleRef];
+		[subexpansion add:self.tag];
+		
+		s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"("]];
+		[s add:[TODSymbol symbolWithString:@")"]];
+		[subexpansion add:s];
+		
+		s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"("]];
+		[s add:self.ruleExpansion];		
+		[s add:[TODSymbol symbolWithString:@")"]];
+		a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.languageAttachment];
+		[s add:a];
+		[subexpansion add:s];
+		
+		s = [TODSequence sequence];
+		[s add:[TODSymbol symbolWithString:@"["]];
+		[s add:self.ruleExpansion];		
+		[s add:[TODSymbol symbolWithString:@"]"]];
+		a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.languageAttachment];
+		[s add:a];
+		[subexpansion add:s];
+	}
+	return subexpansion;
+}
+
+
+// ruleRef  ::= localRuleRef | ExternalRuleRef | specialRuleRef
+- (TODCollectionParser *)ruleRef {
+	if (!ruleRef) {
+		self.ruleRef = [TODAlternation alternation];
+		[ruleRef add:self.localRuleRef];
+		[ruleRef add:self.externalRuleRef];
+		[ruleRef add:self.specialRuleRef];
+	}
+	return ruleRef;
+}
+
+// localRuleRef    ::= RuleName
+- (TODCollectionParser *)localRuleRef {
+	if (!localRuleRef) {
+		self.localRuleRef = self.ruleName;
+	}
+	return localRuleRef;
+}
+
+
+// specialRuleRef  ::= '$NULL' | '$VOID' | '$GARBAGE'
+- (TODCollectionParser *)specialRuleRef {
+	if (!specialRuleRef) {
+		self.specialRuleRef = [TODAlternation alternation];
+		[specialRuleRef add:[TODLiteral literalWithString:@"$NULL"]];
+		[specialRuleRef add:[TODLiteral literalWithString:@"$VOID"]];
+		[specialRuleRef add:[TODLiteral literalWithString:@"$GARBAGE"]];
+	}
+	return specialRuleRef;
+}
+
+
+// repeatOperator  ::='<' Repeat Probability? '>'
+- (TODCollectionParser *)repeatOperator {
+	if (!repeatOperator) {
+		self.repeatOperator = [TODSequence sequence];
+		[repeatOperator add:[TODSymbol symbolWithString:@"<"]];
+		[repeatOperator add:self.repeat];
+		
+		TODAlternation *a = [TODAlternation alternation];
+		[a add:[TODEmpty empty]];
+		[a add:self.probability];
+		[repeatOperator add:a];
+		
+		[repeatOperator add:[TODSymbol symbolWithString:@">"]];
+	}
+	return repeatOperator;
+}
+
+
+//BaseURI ::= ABNF_URI
+- (TODCollectionParser *)baseURI {
+	if (!baseURI) {
+		self.baseURI = [TODWord word];
+	}
+	return baseURI;
+}
+
+
+//LanguageCode ::= Nmtoken
+- (TODCollectionParser *)languageCode {
+	if (!languageCode) {
+		self.languageCode = [TODSequence sequence];
+		[languageCode add:[TODWord word]];
+//		[languageCode add:[TODSymbol symbolWithString:@"-"]];
+//		[languageCode add:[TODWord word]];
+	}
+	return languageCode;
+}
+
+
+- (TODCollectionParser *)ABNF_URI {
+	if (!ABNF_URI) {
+		self.ABNF_URI = [TODWord word];
+	}
+	return ABNF_URI;
+}
+
+
+- (TODCollectionParser *)ABNF_URI_with_Media_Type {
+	if (!ABNF_URI_with_Media_Type) {
+		self.ABNF_URI_with_Media_Type = [TODWord word];
+	}
+	return ABNF_URI_with_Media_Type;
+}
+
+
+
+#pragma mark -
+#pragma mark Assembler Methods
 
 - (void)workOnWordAssembly:(TODAssembly *)a {
 //	NSLog(@"%s", _cmd);
@@ -356,19 +750,40 @@
 	[a push:val];
 }
 
+@synthesize selfIdentHeader;
+@synthesize ruleName;
+@synthesize tagFormat;
+@synthesize lexiconURI;
+@synthesize weight;
+@synthesize repeat;
+@synthesize probability;
+@synthesize externalRuleRef;
+@synthesize token;
+@synthesize languageAttachment;
+@synthesize tag;
+@synthesize grammar;
+@synthesize declaration;
+@synthesize baseDecl;
+@synthesize languageDecl;
+@synthesize modeDecl;
+@synthesize rootRuleDecl;
+@synthesize tagFormatDecl;
+@synthesize lexiconDecl;
+@synthesize metaDecl;
+@synthesize tagDecl;
+@synthesize ruleDefinition;
+@synthesize scope;
+@synthesize ruleExpansion;
+@synthesize ruleAlternative;
+@synthesize sequenceElement;
+@synthesize subexpansion;
+@synthesize ruleRef;
+@synthesize localRuleRef;
+@synthesize specialRuleRef;
+@synthesize repeatOperator;
 
-@synthesize statementParser;
-@synthesize exprOrAssignmentParser;
-@synthesize assignmentParser;
-@synthesize declarationParser;
-@synthesize variableParser;
-@synthesize expressionParser;
-@synthesize termParser;
-@synthesize orTermParser;
-@synthesize factorParser;
-@synthesize nextFactorParser;
-@synthesize phraseParser;
-@synthesize phraseStarParser;
-@synthesize phraseQuestionParser;
-@synthesize atomicValueParser;
+@synthesize baseURI;
+@synthesize languageCode;
+@synthesize ABNF_URI;
+@synthesize ABNF_URI_with_Media_Type;
 @end
