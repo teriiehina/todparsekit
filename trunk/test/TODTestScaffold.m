@@ -87,6 +87,7 @@
 						   @"EBNFParserTest",
 						   @"TODXmlNameTest",
 						   @"XPathParserTest",
+						   @"XMLPullParserTest",
 						   nil];
 	
 	[suite addSuitesForClassNames:classNames];

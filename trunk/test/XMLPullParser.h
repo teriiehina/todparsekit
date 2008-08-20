@@ -239,11 +239,7 @@ typedef enum {
 // Skips over the current element and moves the position of the current instance to the next node in the stream.
 - (void)skip;
 
-
 @property (nonatomic, copy) NSString *relaxNGSchemaPath;
-
 @property (nonatomic, readonly) BOOL isValid;
-
 @property (nonatomic, retain) id errorHandler;
-
 @end

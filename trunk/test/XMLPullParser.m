@@ -43,8 +43,6 @@
 	self = [super init];
 	if (self != nil) {
 		self.path = newPath;
-		_schema = NULL;
-		_reader = NULL;
 	}
 	return self;
 }

@@ -60,6 +60,10 @@
 		D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
 		D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E9F760E5A77E000496BD3 /* XMLPullParser.m */; };
 		D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
+		D36E9FB30E5A938E00496BD3 /* XMLPullParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */; };
+		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
+		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
+		D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */ = {isa = PBXBuildFile; fileRef = D36EA0E20E5BE61D00496BD3 /* example-1.srgs */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82B0A411F67005DD154 /* TODNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82C0A411F67005DD154 /* TODNumberState.m */; };
@@ -280,6 +284,11 @@
 		D36E9F750E5A77E000496BD3 /* XMLPullParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPullParser.h; path = test/XMLPullParser.h; sourceTree = "<group>"; };
 		D36E9F760E5A77E000496BD3 /* XMLPullParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLPullParser.m; path = test/XMLPullParser.m; sourceTree = "<group>"; };
 		D36E9F860E5A795400496BD3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
+		D36E9FB10E5A938E00496BD3 /* XMLPullParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPullParserTest.h; path = test/XMLPullParserTest.h; sourceTree = "<group>"; };
+		D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLPullParserTest.m; path = test/XMLPullParserTest.m; sourceTree = "<group>"; };
+		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
+		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
+		D36EA0E20E5BE61D00496BD3 /* example-1.srgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "example-1.srgs"; path = "res/example-1.srgs"; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3C7D82B0A411F67005DD154 /* TODNumberState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberState.h; path = src/TODNumberState.h; sourceTree = "<group>"; };
 		D3C7D82C0A411F67005DD154 /* TODNumberState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberState.m; path = src/TODNumberState.m; sourceTree = "<group>"; };
@@ -840,8 +849,11 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
 				D36E9F750E5A77E000496BD3 /* XMLPullParser.h */,
 				D36E9F760E5A77E000496BD3 /* XMLPullParser.m */,
+				D36E9FB10E5A938E00496BD3 /* XMLPullParserTest.h */,
+				D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */,
 				D36E935C0E57694F00496BD3 /* TODXmlToken.h */,
 				D36E935D0E57694F00496BD3 /* TODXmlToken.m */,
 				D36E93550E57685E00496BD3 /* TODXmlName.h */,
@@ -921,6 +933,8 @@
 				D3E788950E567E0A008C7D61 /* SRGSParser.m */,
 				D3E788910E567DFD008C7D61 /* SRGSParserTest.h */,
 				D3E788920E567DFD008C7D61 /* SRGSParserTest.m */,
+				D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */,
+				D36EA0E20E5BE61D00496BD3 /* example-1.srgs */,
 			);
 			name = srgs;
 			sourceTree = "<group>";
@@ -1108,6 +1122,9 @@
 			files = (
 				D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */,
 				D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */,
+				D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */,
+				D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */,
+				D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1257,6 +1274,7 @@
 				D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */,
 				D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */,
 				D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */,
+				D36E9FB30E5A938E00496BD3 /* XMLPullParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
