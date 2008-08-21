@@ -70,7 +70,6 @@
 		self.tokenType = t;
 		self.stringValue = s;
 		self.floatValue = n;
-		self.value = nil;
 		
 		self.number = (t == TODTT_NUMBER);
 		self.quotedString = (t == TODTT_QUOTED);

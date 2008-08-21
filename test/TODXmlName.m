@@ -7,7 +7,7 @@
 //
 
 #import "TODXmlName.h"
-#import "TODXmlToken.h"
+#import "TODToken.h"
 
 @implementation TODXmlName
 
@@ -17,8 +17,17 @@
 
 
 - (BOOL)qualifies:(id)obj {
-	TODXmlToken *tok = (TODXmlToken *)obj;
-	return tok.isName;
+	TODToken *tok = (TODToken *)obj;
+	if (!tok.isWord) {
+		return NO;
+	}
+	
+	//NSString *s = tok.stringValue;
+	if (YES) {
+		
+	}
+	
+	return YES;
 }
 
 @end

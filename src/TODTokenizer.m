@@ -10,6 +10,8 @@
 #import <TODParseKit/TODParseKit.h>
 
 @interface TODTokenizer ()
+@property (nonatomic, retain) TODReader *reader;
+
 @property (nonatomic, readwrite, retain) TODNumberState *numberState;
 @property (nonatomic, readwrite, retain) TODQuoteState *quoteState;
 @property (nonatomic, readwrite, retain) TODSlashState *slashState;
