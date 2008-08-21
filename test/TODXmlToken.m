@@ -138,7 +138,7 @@
 	if (self.isNone) {
 		typeString = @"None";
 	} else if (self.isStartTag) {
-		typeString = @"StartTag";
+		typeString = @"Start Tag";
 	} else if (self.isAttribute) {
 		typeString = @"Attribute";
 	} else if (self.isText) {

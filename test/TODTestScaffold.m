@@ -88,6 +88,7 @@
 						   @"TODXmlNameTest",
 						   @"XPathParserTest",
 						   @"XMLPullParserTest",
+						   @"TODXmlTokenizerTest",
 						   nil];
 	
 	[suite addSuitesForClassNames:classNames];

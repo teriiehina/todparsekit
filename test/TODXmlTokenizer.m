@@ -46,10 +46,10 @@
 	
 	TODXmlToken *tok = nil;
 	
-	if (-1 == ret) {
+	if (ret <= 0) {
 		tok = [TODXmlToken EOFToken];
 	} else {
-		tok = [TODXmlToken tokenWithTokenType:ret stringValue:reader.name floatValue:0.0f];
+		tok = [TODXmlToken tokenWithTokenType:reader.nodeType stringValue:reader.name];
 	}
 	
 	return tok;

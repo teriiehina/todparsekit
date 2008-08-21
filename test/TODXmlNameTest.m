@@ -11,7 +11,7 @@
 #import "TODXmlNmtokenState.h"
 #import "TODXmlToken.h"
 
-//@implementation TODXmlNameTest
+@implementation TODXmlNameTest
 //
 //- (void)test {
 //	NSString *s = @"_foob?ar _foobar 2baz";
