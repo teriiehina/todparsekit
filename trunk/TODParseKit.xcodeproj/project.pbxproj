@@ -80,6 +80,8 @@
 		D36EA1EF0E5D3EC900496BD3 /* TODXmlEndEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1EE0E5D3EC900496BD3 /* TODXmlEndEntity.m */; };
 		D36EA1F20E5D3ED700496BD3 /* TODXmlDecl.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1F10E5D3ED700496BD3 /* TODXmlDecl.m */; };
 		D36EA25F0E5D49B700496BD3 /* TODXmlTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA25E0E5D49B700496BD3 /* TODXmlTerminal.m */; };
+		D36EA3070E5D520500496BD3 /* TODXmlTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA3060E5D520500496BD3 /* TODXmlTokenAssembly.m */; };
+		D36EA35D0E5D591900496BD3 /* TODXmlTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA35C0E5D591900496BD3 /* TODXmlTokenizerTest.m */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82B0A411F67005DD154 /* TODNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82C0A411F67005DD154 /* TODNumberState.m */; };
@@ -343,6 +345,10 @@
 		D36EA1F10E5D3ED700496BD3 /* TODXmlDecl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlDecl.m; path = test/TODXmlDecl.m; sourceTree = "<group>"; };
 		D36EA25D0E5D49B700496BD3 /* TODXmlTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlTerminal.h; path = test/TODXmlTerminal.h; sourceTree = "<group>"; };
 		D36EA25E0E5D49B700496BD3 /* TODXmlTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlTerminal.m; path = test/TODXmlTerminal.m; sourceTree = "<group>"; };
+		D36EA3050E5D520500496BD3 /* TODXmlTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlTokenAssembly.h; path = test/TODXmlTokenAssembly.h; sourceTree = "<group>"; };
+		D36EA3060E5D520500496BD3 /* TODXmlTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlTokenAssembly.m; path = test/TODXmlTokenAssembly.m; sourceTree = "<group>"; };
+		D36EA35B0E5D591900496BD3 /* TODXmlTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlTokenizerTest.h; path = test/TODXmlTokenizerTest.h; sourceTree = "<group>"; };
+		D36EA35C0E5D591900496BD3 /* TODXmlTokenizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlTokenizerTest.m; path = test/TODXmlTokenizerTest.m; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3C7D82B0A411F67005DD154 /* TODNumberState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberState.h; path = src/TODNumberState.h; sourceTree = "<group>"; };
 		D3C7D82C0A411F67005DD154 /* TODNumberState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberState.m; path = src/TODNumberState.m; sourceTree = "<group>"; };
@@ -957,6 +963,10 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D36EA35B0E5D591900496BD3 /* TODXmlTokenizerTest.h */,
+				D36EA35C0E5D591900496BD3 /* TODXmlTokenizerTest.m */,
+				D36EA3050E5D520500496BD3 /* TODXmlTokenAssembly.h */,
+				D36EA3060E5D520500496BD3 /* TODXmlTokenAssembly.m */,
 				D36EA1440E5CF38100496BD3 /* tokenizer */,
 				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
 				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
@@ -1399,6 +1409,8 @@
 				D36EA1EF0E5D3EC900496BD3 /* TODXmlEndEntity.m in Sources */,
 				D36EA1F20E5D3ED700496BD3 /* TODXmlDecl.m in Sources */,
 				D36EA25F0E5D49B700496BD3 /* TODXmlTerminal.m in Sources */,
+				D36EA3070E5D520500496BD3 /* TODXmlTokenAssembly.m in Sources */,
+				D36EA35D0E5D591900496BD3 /* TODXmlTokenizerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

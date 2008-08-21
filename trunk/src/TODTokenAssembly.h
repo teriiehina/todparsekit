@@ -6,7 +6,6 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <TODParseKit/TODAssembly.h>
 
 @class TODTokenizer;
