@@ -7,7 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import <TODParseKit/TODParseKit.h>
+//#import <TODParseKit/TODParseKit.h>
 
 @interface TODXmlNameTest : SenTestCase {
 

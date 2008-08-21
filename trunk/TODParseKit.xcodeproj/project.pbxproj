@@ -37,9 +37,6 @@
 		D36E934D0E57668900496BD3 /* TODXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E934C0E57668900496BD3 /* TODXmlNameState.m */; };
 		D36E93570E57685E00496BD3 /* TODXmlName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E93560E57685E00496BD3 /* TODXmlName.m */; };
 		D36E935E0E57694F00496BD3 /* TODXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E935D0E57694F00496BD3 /* TODXmlToken.m */; };
-		D36E93E60E57749700496BD3 /* TODXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E935D0E57694F00496BD3 /* TODXmlToken.m */; };
-		D36E93E70E57749700496BD3 /* TODXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E934C0E57668900496BD3 /* TODXmlNameState.m */; };
-		D36E93E80E57749700496BD3 /* TODXmlName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E93560E57685E00496BD3 /* TODXmlName.m */; };
 		D36E94840E5780CF00496BD3 /* TODXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E94830E5780CF00496BD3 /* TODXmlNmtoken.m */; };
 		D36E949F0E57821E00496BD3 /* TODXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E949E0E57821E00496BD3 /* TODXmlNmtokenState.m */; };
 		D36E94FD0E5786D000496BD3 /* TODNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E94FC0E5786D000496BD3 /* TODNCName.m */; };
@@ -64,6 +61,25 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */ = {isa = PBXBuildFile; fileRef = D36EA0E20E5BE61D00496BD3 /* example-1.srgs */; };
+		D36EA1560E5D20F000496BD3 /* TODXmlTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1550E5D20F000496BD3 /* TODXmlTokenizer.m */; };
+		D36EA1590E5D210F00496BD3 /* TODXmlStartTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1580E5D210F00496BD3 /* TODXmlStartTag.m */; };
+		D36EA1C30E5D3DAD00496BD3 /* TODXmlEndTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1C20E5D3DAD00496BD3 /* TODXmlEndTag.m */; };
+		D36EA1C60E5D3DC400496BD3 /* TODXmlEntityRef.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1C50E5D3DC400496BD3 /* TODXmlEntityRef.m */; };
+		D36EA1C90E5D3DCF00496BD3 /* TODXmlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1C80E5D3DCF00496BD3 /* TODXmlEntity.m */; };
+		D36EA1CC0E5D3DDC00496BD3 /* TODXmlCdata.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1CB0E5D3DDC00496BD3 /* TODXmlCdata.m */; };
+		D36EA1CF0E5D3DE500496BD3 /* TODXmlText.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1CE0E5D3DE500496BD3 /* TODXmlText.m */; };
+		D36EA1D20E5D3DF700496BD3 /* TODXmlAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1D10E5D3DF700496BD3 /* TODXmlAttribute.m */; };
+		D36EA1D50E5D3E2600496BD3 /* TODXmlProcessingInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1D40E5D3E2600496BD3 /* TODXmlProcessingInstruction.m */; };
+		D36EA1DA0E5D3E7F00496BD3 /* TODXmlComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1D90E5D3E7F00496BD3 /* TODXmlComment.m */; };
+		D36EA1DD0E5D3E8B00496BD3 /* TODXmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1DC0E5D3E8B00496BD3 /* TODXmlDocument.m */; };
+		D36EA1E00E5D3E9500496BD3 /* TODXmlDoctype.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1DF0E5D3E9500496BD3 /* TODXmlDoctype.m */; };
+		D36EA1E30E5D3E9F00496BD3 /* TODXmlFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1E20E5D3E9F00496BD3 /* TODXmlFragment.m */; };
+		D36EA1E60E5D3EA900496BD3 /* TODXmlNotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1E50E5D3EA900496BD3 /* TODXmlNotation.m */; };
+		D36EA1E90E5D3EB500496BD3 /* TODXmlWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1E80E5D3EB500496BD3 /* TODXmlWhitespace.m */; };
+		D36EA1EC0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1EB0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.m */; };
+		D36EA1EF0E5D3EC900496BD3 /* TODXmlEndEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1EE0E5D3EC900496BD3 /* TODXmlEndEntity.m */; };
+		D36EA1F20E5D3ED700496BD3 /* TODXmlDecl.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA1F10E5D3ED700496BD3 /* TODXmlDecl.m */; };
+		D36EA25F0E5D49B700496BD3 /* TODXmlTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D36EA25E0E5D49B700496BD3 /* TODXmlTerminal.m */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3C7D84E0A411F67005DD154 /* TODNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C7D82B0A411F67005DD154 /* TODNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C7D84F0A411F67005DD154 /* TODNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C7D82C0A411F67005DD154 /* TODNumberState.m */; };
@@ -289,6 +305,44 @@
 		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
 		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
 		D36EA0E20E5BE61D00496BD3 /* example-1.srgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "example-1.srgs"; path = "res/example-1.srgs"; sourceTree = "<group>"; };
+		D36EA1540E5D20F000496BD3 /* TODXmlTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlTokenizer.h; path = test/TODXmlTokenizer.h; sourceTree = "<group>"; };
+		D36EA1550E5D20F000496BD3 /* TODXmlTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlTokenizer.m; path = test/TODXmlTokenizer.m; sourceTree = "<group>"; };
+		D36EA1570E5D210F00496BD3 /* TODXmlStartTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlStartTag.h; path = test/TODXmlStartTag.h; sourceTree = "<group>"; };
+		D36EA1580E5D210F00496BD3 /* TODXmlStartTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlStartTag.m; path = test/TODXmlStartTag.m; sourceTree = "<group>"; };
+		D36EA1C10E5D3DAD00496BD3 /* TODXmlEndTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlEndTag.h; path = test/TODXmlEndTag.h; sourceTree = "<group>"; };
+		D36EA1C20E5D3DAD00496BD3 /* TODXmlEndTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlEndTag.m; path = test/TODXmlEndTag.m; sourceTree = "<group>"; };
+		D36EA1C40E5D3DC400496BD3 /* TODXmlEntityRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlEntityRef.h; path = test/TODXmlEntityRef.h; sourceTree = "<group>"; };
+		D36EA1C50E5D3DC400496BD3 /* TODXmlEntityRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlEntityRef.m; path = test/TODXmlEntityRef.m; sourceTree = "<group>"; };
+		D36EA1C70E5D3DCF00496BD3 /* TODXmlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlEntity.h; path = test/TODXmlEntity.h; sourceTree = "<group>"; };
+		D36EA1C80E5D3DCF00496BD3 /* TODXmlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlEntity.m; path = test/TODXmlEntity.m; sourceTree = "<group>"; };
+		D36EA1CA0E5D3DDC00496BD3 /* TODXmlCdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlCdata.h; path = test/TODXmlCdata.h; sourceTree = "<group>"; };
+		D36EA1CB0E5D3DDC00496BD3 /* TODXmlCdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlCdata.m; path = test/TODXmlCdata.m; sourceTree = "<group>"; };
+		D36EA1CD0E5D3DE500496BD3 /* TODXmlText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlText.h; path = test/TODXmlText.h; sourceTree = "<group>"; };
+		D36EA1CE0E5D3DE500496BD3 /* TODXmlText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlText.m; path = test/TODXmlText.m; sourceTree = "<group>"; };
+		D36EA1D00E5D3DF700496BD3 /* TODXmlAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlAttribute.h; path = test/TODXmlAttribute.h; sourceTree = "<group>"; };
+		D36EA1D10E5D3DF700496BD3 /* TODXmlAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlAttribute.m; path = test/TODXmlAttribute.m; sourceTree = "<group>"; };
+		D36EA1D30E5D3E2600496BD3 /* TODXmlProcessingInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlProcessingInstruction.h; path = test/TODXmlProcessingInstruction.h; sourceTree = "<group>"; };
+		D36EA1D40E5D3E2600496BD3 /* TODXmlProcessingInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlProcessingInstruction.m; path = test/TODXmlProcessingInstruction.m; sourceTree = "<group>"; };
+		D36EA1D80E5D3E7F00496BD3 /* TODXmlComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlComment.h; path = test/TODXmlComment.h; sourceTree = "<group>"; };
+		D36EA1D90E5D3E7F00496BD3 /* TODXmlComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlComment.m; path = test/TODXmlComment.m; sourceTree = "<group>"; };
+		D36EA1DB0E5D3E8B00496BD3 /* TODXmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlDocument.h; path = test/TODXmlDocument.h; sourceTree = "<group>"; };
+		D36EA1DC0E5D3E8B00496BD3 /* TODXmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlDocument.m; path = test/TODXmlDocument.m; sourceTree = "<group>"; };
+		D36EA1DE0E5D3E9500496BD3 /* TODXmlDoctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlDoctype.h; path = test/TODXmlDoctype.h; sourceTree = "<group>"; };
+		D36EA1DF0E5D3E9500496BD3 /* TODXmlDoctype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlDoctype.m; path = test/TODXmlDoctype.m; sourceTree = "<group>"; };
+		D36EA1E10E5D3E9F00496BD3 /* TODXmlFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlFragment.h; path = test/TODXmlFragment.h; sourceTree = "<group>"; };
+		D36EA1E20E5D3E9F00496BD3 /* TODXmlFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlFragment.m; path = test/TODXmlFragment.m; sourceTree = "<group>"; };
+		D36EA1E40E5D3EA900496BD3 /* TODXmlNotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlNotation.h; path = test/TODXmlNotation.h; sourceTree = "<group>"; };
+		D36EA1E50E5D3EA900496BD3 /* TODXmlNotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlNotation.m; path = test/TODXmlNotation.m; sourceTree = "<group>"; };
+		D36EA1E70E5D3EB500496BD3 /* TODXmlWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlWhitespace.h; path = test/TODXmlWhitespace.h; sourceTree = "<group>"; };
+		D36EA1E80E5D3EB500496BD3 /* TODXmlWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlWhitespace.m; path = test/TODXmlWhitespace.m; sourceTree = "<group>"; };
+		D36EA1EA0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlSignificantWhitespace.h; path = test/TODXmlSignificantWhitespace.h; sourceTree = "<group>"; };
+		D36EA1EB0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlSignificantWhitespace.m; path = test/TODXmlSignificantWhitespace.m; sourceTree = "<group>"; };
+		D36EA1ED0E5D3EC900496BD3 /* TODXmlEndEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlEndEntity.h; path = test/TODXmlEndEntity.h; sourceTree = "<group>"; };
+		D36EA1EE0E5D3EC900496BD3 /* TODXmlEndEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlEndEntity.m; path = test/TODXmlEndEntity.m; sourceTree = "<group>"; };
+		D36EA1F00E5D3ED700496BD3 /* TODXmlDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlDecl.h; path = test/TODXmlDecl.h; sourceTree = "<group>"; };
+		D36EA1F10E5D3ED700496BD3 /* TODXmlDecl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlDecl.m; path = test/TODXmlDecl.m; sourceTree = "<group>"; };
+		D36EA25D0E5D49B700496BD3 /* TODXmlTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODXmlTerminal.h; path = test/TODXmlTerminal.h; sourceTree = "<group>"; };
+		D36EA25E0E5D49B700496BD3 /* TODXmlTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODXmlTerminal.m; path = test/TODXmlTerminal.m; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3C7D82B0A411F67005DD154 /* TODNumberState.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = TODNumberState.h; path = src/TODNumberState.h; sourceTree = "<group>"; };
 		D3C7D82C0A411F67005DD154 /* TODNumberState.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = TODNumberState.m; path = src/TODNumberState.m; sourceTree = "<group>"; };
@@ -710,6 +764,60 @@
 			path = debugapp;
 			sourceTree = "<group>";
 		};
+		D36EA1400E5CF19F00496BD3 /* xml token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D36EA25D0E5D49B700496BD3 /* TODXmlTerminal.h */,
+				D36EA25E0E5D49B700496BD3 /* TODXmlTerminal.m */,
+				D36EA1570E5D210F00496BD3 /* TODXmlStartTag.h */,
+				D36EA1580E5D210F00496BD3 /* TODXmlStartTag.m */,
+				D36EA1D00E5D3DF700496BD3 /* TODXmlAttribute.h */,
+				D36EA1D10E5D3DF700496BD3 /* TODXmlAttribute.m */,
+				D36EA1CD0E5D3DE500496BD3 /* TODXmlText.h */,
+				D36EA1CE0E5D3DE500496BD3 /* TODXmlText.m */,
+				D36EA1CA0E5D3DDC00496BD3 /* TODXmlCdata.h */,
+				D36EA1CB0E5D3DDC00496BD3 /* TODXmlCdata.m */,
+				D36EA1C40E5D3DC400496BD3 /* TODXmlEntityRef.h */,
+				D36EA1C50E5D3DC400496BD3 /* TODXmlEntityRef.m */,
+				D36EA1C70E5D3DCF00496BD3 /* TODXmlEntity.h */,
+				D36EA1C80E5D3DCF00496BD3 /* TODXmlEntity.m */,
+				D36EA1D30E5D3E2600496BD3 /* TODXmlProcessingInstruction.h */,
+				D36EA1D40E5D3E2600496BD3 /* TODXmlProcessingInstruction.m */,
+				D36EA1D80E5D3E7F00496BD3 /* TODXmlComment.h */,
+				D36EA1D90E5D3E7F00496BD3 /* TODXmlComment.m */,
+				D36EA1DB0E5D3E8B00496BD3 /* TODXmlDocument.h */,
+				D36EA1DC0E5D3E8B00496BD3 /* TODXmlDocument.m */,
+				D36EA1DE0E5D3E9500496BD3 /* TODXmlDoctype.h */,
+				D36EA1DF0E5D3E9500496BD3 /* TODXmlDoctype.m */,
+				D36EA1E10E5D3E9F00496BD3 /* TODXmlFragment.h */,
+				D36EA1E20E5D3E9F00496BD3 /* TODXmlFragment.m */,
+				D36EA1E40E5D3EA900496BD3 /* TODXmlNotation.h */,
+				D36EA1E50E5D3EA900496BD3 /* TODXmlNotation.m */,
+				D36EA1E70E5D3EB500496BD3 /* TODXmlWhitespace.h */,
+				D36EA1E80E5D3EB500496BD3 /* TODXmlWhitespace.m */,
+				D36EA1EA0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.h */,
+				D36EA1EB0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.m */,
+				D36EA1C10E5D3DAD00496BD3 /* TODXmlEndTag.h */,
+				D36EA1C20E5D3DAD00496BD3 /* TODXmlEndTag.m */,
+				D36EA1ED0E5D3EC900496BD3 /* TODXmlEndEntity.h */,
+				D36EA1EE0E5D3EC900496BD3 /* TODXmlEndEntity.m */,
+				D36EA1F00E5D3ED700496BD3 /* TODXmlDecl.h */,
+				D36EA1F10E5D3ED700496BD3 /* TODXmlDecl.m */,
+			);
+			name = "xml token terminals";
+			sourceTree = "<group>";
+		};
+		D36EA1440E5CF38100496BD3 /* tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				D36E935C0E57694F00496BD3 /* TODXmlToken.h */,
+				D36E935D0E57694F00496BD3 /* TODXmlToken.m */,
+				D36EA1540E5D20F000496BD3 /* TODXmlTokenizer.h */,
+				D36EA1550E5D20F000496BD3 /* TODXmlTokenizer.m */,
+			);
+			name = tokenizer;
+			sourceTree = "<group>";
+		};
 		D3C7D8220A411F31005DD154 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -849,13 +957,13 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D36EA1440E5CF38100496BD3 /* tokenizer */,
+				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
 				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
 				D36E9F750E5A77E000496BD3 /* XMLPullParser.h */,
 				D36E9F760E5A77E000496BD3 /* XMLPullParser.m */,
 				D36E9FB10E5A938E00496BD3 /* XMLPullParserTest.h */,
 				D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */,
-				D36E935C0E57694F00496BD3 /* TODXmlToken.h */,
-				D36E935D0E57694F00496BD3 /* TODXmlToken.m */,
 				D36E93550E57685E00496BD3 /* TODXmlName.h */,
 				D36E93560E57685E00496BD3 /* TODXmlName.m */,
 				D36E94820E5780CF00496BD3 /* TODXmlNmtoken.h */,
@@ -1212,9 +1320,6 @@
 				D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */,
 				D34A21B10E5616AB00A4A0BF /* TODJsonParser.m in Sources */,
 				D34A228A0E56488500A4A0BF /* TODRegularParser.m in Sources */,
-				D36E93E60E57749700496BD3 /* TODXmlToken.m in Sources */,
-				D36E93E70E57749700496BD3 /* TODXmlNameState.m in Sources */,
-				D36E93E80E57749700496BD3 /* TODXmlName.m in Sources */,
 				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 			);
@@ -1275,6 +1380,25 @@
 				D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */,
 				D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */,
 				D36E9FB30E5A938E00496BD3 /* XMLPullParserTest.m in Sources */,
+				D36EA1560E5D20F000496BD3 /* TODXmlTokenizer.m in Sources */,
+				D36EA1590E5D210F00496BD3 /* TODXmlStartTag.m in Sources */,
+				D36EA1C30E5D3DAD00496BD3 /* TODXmlEndTag.m in Sources */,
+				D36EA1C60E5D3DC400496BD3 /* TODXmlEntityRef.m in Sources */,
+				D36EA1C90E5D3DCF00496BD3 /* TODXmlEntity.m in Sources */,
+				D36EA1CC0E5D3DDC00496BD3 /* TODXmlCdata.m in Sources */,
+				D36EA1CF0E5D3DE500496BD3 /* TODXmlText.m in Sources */,
+				D36EA1D20E5D3DF700496BD3 /* TODXmlAttribute.m in Sources */,
+				D36EA1D50E5D3E2600496BD3 /* TODXmlProcessingInstruction.m in Sources */,
+				D36EA1DA0E5D3E7F00496BD3 /* TODXmlComment.m in Sources */,
+				D36EA1DD0E5D3E8B00496BD3 /* TODXmlDocument.m in Sources */,
+				D36EA1E00E5D3E9500496BD3 /* TODXmlDoctype.m in Sources */,
+				D36EA1E30E5D3E9F00496BD3 /* TODXmlFragment.m in Sources */,
+				D36EA1E60E5D3EA900496BD3 /* TODXmlNotation.m in Sources */,
+				D36EA1E90E5D3EB500496BD3 /* TODXmlWhitespace.m in Sources */,
+				D36EA1EC0E5D3EBF00496BD3 /* TODXmlSignificantWhitespace.m in Sources */,
+				D36EA1EF0E5D3EC900496BD3 /* TODXmlEndEntity.m in Sources */,
+				D36EA1F20E5D3ED700496BD3 /* TODXmlDecl.m in Sources */,
+				D36EA25F0E5D49B700496BD3 /* TODXmlTerminal.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1491,7 +1615,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = YES;
+				GCC_ENABLE_OBJC_GC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;

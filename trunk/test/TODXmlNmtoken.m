@@ -16,9 +16,9 @@
 }
 
 
-- (BOOL)qualifies:(id)obj {
-	TODXmlToken *tok = (TODXmlToken *)obj;
-	return tok.isNmtoken;
-}
+//- (BOOL)qualifies:(id)obj {
+//	TODXmlToken *tok = (TODXmlToken *)obj;
+//	return tok.isNmtoken;
+//}
 
 @end

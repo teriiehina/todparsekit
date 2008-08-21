@@ -77,9 +77,10 @@
 	if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
 		return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
 	} else {
-		return [[[TODXmlToken alloc] initWithTokenType:TODTT_NAME 
-										   stringValue:[[stringbuf copy] autorelease] 
-											floatValue:0.0f] autorelease];
+//		return [[[TODXmlToken alloc] initWithTokenType:TODTT_NAME 
+//										   stringValue:[[stringbuf copy] autorelease] 
+//											floatValue:0.0f] autorelease];
+		return nil;
 	}
 }
 

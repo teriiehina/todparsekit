@@ -40,7 +40,6 @@
 - (void)setCharacterState:(TODTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 @property (nonatomic, copy) NSString *string;
-@property (nonatomic, retain) TODReader *reader;
 
 @property (nonatomic, readonly, retain) TODNumberState *numberState;
 @property (nonatomic, readonly, retain) TODQuoteState *quoteState;
