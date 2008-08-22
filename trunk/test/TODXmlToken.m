@@ -177,7 +177,7 @@
 
 
 - (NSString *)description {
-	return stringValue;
+	return [self debugDescription];
 }
 
 @synthesize none;

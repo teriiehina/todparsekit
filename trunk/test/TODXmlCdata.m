@@ -22,7 +22,7 @@
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super init];
+	self = [super initWithString:s];
 	if (self != nil) {
 		self.tok = [TODXmlToken tokenWithTokenType:TODTT_XML_CDATA stringValue:s];
 	}
