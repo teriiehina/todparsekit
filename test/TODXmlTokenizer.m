@@ -42,10 +42,15 @@
 
 
 - (TODXmlToken *)nextToken {
-	NSInteger ret = [reader read];
-	
 	TODXmlToken *tok = nil;
+	NSInteger ret = -1;
+	NSInteger nodeType = -1;
 	
+	do {
+		ret = [reader read];		
+		nodeType = reader.nodeType;
+	} while (nodeType == TODTT_XML_SIGNIFICANT_WHITESPACE || nodeType == TODTT_XML_WHITESPACE);
+
 	if (ret <= 0) {
 		tok = [TODXmlToken EOFToken];
 	} else {

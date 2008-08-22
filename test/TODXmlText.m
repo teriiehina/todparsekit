@@ -22,9 +22,11 @@
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super init];
+	NSLog(@"%s", _cmd);
+	self = [super initWithString:s];
 	if (self != nil) {
 		self.tok = [TODXmlToken tokenWithTokenType:TODTT_XML_TEXT stringValue:s];
+		NSLog(@"tok : %@", tok);
 	}
 	return self;
 }
@@ -37,6 +39,7 @@
 
 - (BOOL)qualifies:(id)obj {
 	TODXmlToken *other = (TODXmlToken *)obj;
+	NSLog(@"%s obj: %@ isText: %d", _cmd, obj, other.isText);
 	
 	if (string.length) {
 		return [tok isEqual:other];

@@ -31,6 +31,18 @@
 }
 
 
++ (SenTestSuite *)soloTestSuite {
+	SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"Solo Test Suite"];
+	
+	NSArray *classNames = [NSArray arrayWithObjects:
+						   @"TODXmlTokenizerTest",
+						   nil];
+	
+	[suite addSuitesForClassNames:classNames];
+	return suite;
+}
+
+
 + (SenTestSuite *)tokensTestSuite {
 	SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"Tokens Test Suite"];
 	
@@ -103,9 +115,10 @@
 	suite = [super defaultTestSuite];
 #else
 	suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
-	[suite addTest:[self charsTestSuite]];
-	[suite addTest:[self tokensTestSuite]];
-	[suite addTest:[self parseTestSuite]];
+//	[suite addTest:[self charsTestSuite]];
+//	[suite addTest:[self tokensTestSuite]];
+//	[suite addTest:[self parseTestSuite]];
+	[suite addTest:[self soloTestSuite]];
 #endif
 	
 	return suite;
