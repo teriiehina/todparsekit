@@ -7,11 +7,11 @@
 //
 
 #import "TODXmlTokenizer.h"
-#import "XMLPullParser.h"
+#import "XMLReader.h"
 #import "TODXmlToken.h"
 
 @interface TODXmlTokenizer ()
-@property (nonatomic, retain) XMLPullParser *reader;
+@property (nonatomic, retain) XMLReader *reader;
 @end
 
 @implementation TODXmlTokenizer
@@ -29,7 +29,7 @@
 - (id)initWithContentsOfFile:(NSString *)path {
 	self = [super init];
 	if (self != nil) {
-		self.reader = [[[XMLPullParser alloc] initWithContentsOfFile:path] autorelease];
+		self.reader = [[[XMLReader alloc] initWithContentsOfFile:path] autorelease];
 	}
 	return self;
 }

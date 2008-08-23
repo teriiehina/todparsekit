@@ -99,7 +99,7 @@
 						   @"EBNFParserTest",
 						   @"TODXmlNameTest",
 						   @"XPathParserTest",
-						   @"XMLPullParserTest",
+						   @"XMLReaderTest",
 						   @"TODXmlTokenizerTest",
 						   nil];
 	
