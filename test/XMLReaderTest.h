@@ -1,5 +1,5 @@
 //
-//  XMLPullParserTest.h
+//  XMLReaderTest.h
 //  TODParseKit
 //
 //  Created by Todd Ditchendorf on 8/18/08.
@@ -7,9 +7,9 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "XMLPullParser.h"
+#import "XMLReader.h"
 
-@interface XMLPullParserTest : SenTestCase {
+@interface XMLReaderTest : SenTestCase {
 
 }
 

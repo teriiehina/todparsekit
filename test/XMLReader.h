@@ -1,6 +1,6 @@
 //
-//  XMLPullParser.h
-//  XMLPullParser
+//  XMLReader.h
+//  XMLReader
 //
 //  Created by Todd Ditchendorf on 6/5/06.
 //  Copyright 2006 Todd Ditchendorf. All rights reserved.
@@ -11,18 +11,18 @@
 #import <libxml/xmlreader.h>
 
 /**
- * XMLPullParserMode:
+ * XMLReaderMode:
  *
  * Internal state values for the reader.
  */
 typedef enum {
-    XMLPullParserReadStateInitial = 0,
-    XMLPullParserReadStateInteractive = 1,
-    XMLPullParserReadStateError = 2,
-    XMLPullParserReadStateEOF = 3,
-    XMLPullParserReadStateClosed = 4,
-    XMLPullParserReadStateReading = 5
-} XMLPullParserReadState;
+    XMLReaderReadStateInitial = 0,
+    XMLReaderReadStateInteractive = 1,
+    XMLReaderReadStateError = 2,
+    XMLReaderReadStateEOF = 3,
+    XMLReaderReadStateClosed = 4,
+    XMLReaderReadStateReading = 5
+} XMLReaderReadState;
 
 /**
  * xmlParserProperties:
@@ -46,40 +46,40 @@ typedef enum {
  * is used.
  */
 typedef enum {
-    XMLPullParserSeverityValidityWarning = 1,
-    XMLPullParserSeverityValidityError = 2,
-    XMLPullParserSeverityWarning = 3,
-    XMLPullParserSeverityError = 4
-} XMLPullParserSeverity;
+    XMLReaderSeverityValidityWarning = 1,
+    XMLReaderSeverityValidityError = 2,
+    XMLReaderSeverityWarning = 3,
+    XMLReaderSeverityError = 4
+} XMLReaderSeverity;
 
 /**
- * XMLPullParserNodeType:
+ * XMLReaderNodeType:
  *
  * Predefined constants for the different types of nodes.
  */
 typedef enum {
-    XMLPullParserNodeTypeNone = 0,
-    XMLPullParserNodeTypeElement = 1,
-    XMLPullParserNodeTypeAttribute = 2,
-    XMLPullParserNodeTypeText = 3,
-    XMLPullParserNodeTypeCDATA = 4,
-    XMLPullParserNodeTypeEntityReference = 5,
-    XMLPullParserNodeTypeEntity = 6,
-    XMLPullParserNodeTypeProcessingInstruction = 7,
-    XMLPullParserNodeTypeComment = 8,
-    XMLPullParserNodeTypeDocument = 9,
-    XMLPullParserNodeTypeDocumentType = 10,
-    XMLPullParserNodeTypeDocumentFragment = 11,
-    XMLPullParserNodeTypeNotation = 12,
-    XMLPullParserNodeTypeWhitespace = 13,
-    XMLPullParserNodeTypeSignificantWhitespace = 14,
-    XMLPullParserNodeTypeEndElement = 15,
-    XMLPullParserNodeTypeEndEntity = 16,
-    XMLPullParserNodeTypeXmlDeclaration = 17
-} XMLPullParserNodeType;
+    XMLReaderNodeTypeNone = 0,
+    XMLReaderNodeTypeElement = 1,
+    XMLReaderNodeTypeAttribute = 2,
+    XMLReaderNodeTypeText = 3,
+    XMLReaderNodeTypeCDATA = 4,
+    XMLReaderNodeTypeEntityReference = 5,
+    XMLReaderNodeTypeEntity = 6,
+    XMLReaderNodeTypeProcessingInstruction = 7,
+    XMLReaderNodeTypeComment = 8,
+    XMLReaderNodeTypeDocument = 9,
+    XMLReaderNodeTypeDocumentType = 10,
+    XMLReaderNodeTypeDocumentFragment = 11,
+    XMLReaderNodeTypeNotation = 12,
+    XMLReaderNodeTypeWhitespace = 13,
+    XMLReaderNodeTypeSignificantWhitespace = 14,
+    XMLReaderNodeTypeEndElement = 15,
+    XMLReaderNodeTypeEndEntity = 16,
+    XMLReaderNodeTypeXmlDeclaration = 17
+} XMLReaderNodeType;
 
 
-@interface NSObject (XMLPullParserErrorHandler)
+@interface NSObject (XMLReaderErrorHandler)
 - (void)validityWarning:(NSString *)msg lineNumber:(NSInteger)n;
 - (void)validityError:(NSString *)msg lineNumber:(NSInteger)n;
 - (void)warning:(NSString *)msg lineNumber:(NSInteger)n;
@@ -87,7 +87,7 @@ typedef enum {
 - (void)fatalError:(NSString *)msg lineNumber:(NSInteger)n;
 @end
 
-@interface XMLPullParser : NSObject {
+@interface XMLReader : NSObject {
 	xmlTextReaderPtr _reader;
 	xmlRelaxNGPtr _schema;
 	NSString *path;
@@ -117,7 +117,7 @@ typedef enum {
 @property (nonatomic, readonly) NSInteger depth;
 //- (NSInteger)depth;
 
-// Gets a value indicating whether the XMLPullParser.ReadState is ReadState.EndOfFile, signifying the reader is positioned at the end of the stream.
+// Gets a value indicating whether the XMLReader.ReadState is ReadState.EndOfFile, signifying the reader is positioned at the end of the stream.
 @property (nonatomic, readonly) BOOL isEOF;
 //- (BOOL)isEOF;
 
@@ -153,8 +153,8 @@ typedef enum {
 //- (XmlNameTable)NameTable;
 
 // Gets the type of the current node.
-@property (nonatomic, readonly) XMLPullParserNodeType nodeType;
-//- (XMLPullParserNodeType)nodeType;
+@property (nonatomic, readonly) XMLReaderNodeType nodeType;
+//- (XMLReaderNodeType)nodeType;
 
 // Gets the namespace prefix associated with the current node.
 @property (nonatomic, readonly, copy) NSString *prefix;
@@ -165,8 +165,8 @@ typedef enum {
 //- (char)quoteChar;
 
 // Gets the read state of the reader.
-@property (nonatomic, readonly) XMLPullParserReadState readState;
-//- (XMLPullParserReadState)readState;
+@property (nonatomic, readonly) XMLReaderReadState readState;
+//- (XMLReaderReadState)readState;
 
 // Gets the text value of the current node.
 @property (nonatomic, readonly, copy) NSString *value;
@@ -179,7 +179,7 @@ typedef enum {
 // Gets the current xml:space scope.
 //- (XMLSpace)XMLSpace;
 
-// Changes the XMLPullParser.ReadState to XMLPullParserReadState.Closed.
+// Changes the XMLReader.ReadState to XMLReaderReadState.Closed.
 - (void)close;
 
 // Returns the value of the attribute with the specified index relative to the containing element.

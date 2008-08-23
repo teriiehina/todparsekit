@@ -1,5 +1,5 @@
 
-#import "XMLPullParser.h"
+#import "XMLReader.h"
 //#import <libxml2/libxml/relaxng.h>
 #import <libxml/relaxng.h>
 
@@ -22,30 +22,30 @@
 @end
 
 
-@interface XMLPullParser ()
+@interface XMLReader ()
 @property (nonatomic, copy) NSString *path;
 @end
 
 
-@implementation XMLPullParser
+@implementation XMLReader
 
 // don't know what this handles. can't get it to fire
-static void readerErr(XMLPullParser *self, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator) {
+static void readerErr(XMLReader *self, const char *msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator) {
 	NSString *str = [NSString stringWithUTF8String:msg];
 	int line = xmlTextReaderLocatorLineNumber(locator);
 	NSLog(@"some kinda error! %s, severity: %i, line: %i", msg, severity, line);
 	
 	switch (severity) {
-		case XMLPullParserSeverityValidityWarning:
+		case XMLReaderSeverityValidityWarning:
 			[self.errorHandler validityWarning:str lineNumber:line];
 			break;
-		case XMLPullParserSeverityValidityError:
+		case XMLReaderSeverityValidityError:
 			[self.errorHandler validityError:str lineNumber:line];
 			break;
-		case XMLPullParserSeverityWarning:
+		case XMLReaderSeverityWarning:
 			[self.errorHandler warning:str lineNumber:line];
 			break;
-		case XMLPullParserSeverityError:
+		case XMLReaderSeverityError:
 			[self.errorHandler error:str lineNumber:line];
 			break;
 	}
@@ -55,7 +55,7 @@ static void readerErr(XMLPullParser *self, const char *msg, xmlParserSeverities 
 
 // handles well-formedness errors in instance document
 // and handles validity errors in instance doc
-static void structErr(XMLPullParser *self, xmlErrorPtr error) {	
+static void structErr(XMLReader *self, xmlErrorPtr error) {	
 	const char *msg = error->message;
 	int line = error->line;
 	int level = error->level;
@@ -81,7 +81,7 @@ static void structErr(XMLPullParser *self, xmlErrorPtr error) {
 
 
 + (id)parserWithContentsOfFile:(NSString *)path {
-	return [[[XMLPullParser alloc] initWithContentsOfFile:path] autorelease];
+	return [[[XMLReader alloc] initWithContentsOfFile:path] autorelease];
 }
 
 /*
@@ -143,7 +143,7 @@ static void structErr(XMLPullParser *self, xmlErrorPtr error) {
 
 	
 - (BOOL)isEOF {
-	return XMLPullParserReadStateEOF == [self readState];
+	return XMLReaderReadStateEOF == [self readState];
 }
 
 	
@@ -197,7 +197,7 @@ static void structErr(XMLPullParser *self, xmlErrorPtr error) {
 #pragma mark -
 #pragma mark Methods
 
-- (XMLPullParserNodeType)nodeType {
+- (XMLReaderNodeType)nodeType {
 	return xmlTextReaderNodeType(_reader);
 }
 
@@ -212,7 +212,7 @@ static void structErr(XMLPullParser *self, xmlErrorPtr error) {
 }
 
 	
-- (XMLPullParserReadState)readState {
+- (XMLReaderReadState)readState {
 	return xmlTextReaderReadState(_reader);
 }
 
@@ -328,7 +328,7 @@ static void structErr(XMLPullParser *self, xmlErrorPtr error) {
 
 
 // handles warnings encountered while parsing RNG schema
-static void rngWarn(XMLPullParser *self, const char *msg, ...) {
+static void rngWarn(XMLReader *self, const char *msg, ...) {
     va_list ap;
 	va_start(ap, msg);
 	
@@ -347,7 +347,7 @@ static void rngWarn(XMLPullParser *self, const char *msg, ...) {
 
 
 // handles errors encountered while parsing RNG schema
-static void rngErr(XMLPullParser *self, const char *msg, ...) {
+static void rngErr(XMLReader *self, const char *msg, ...) {
     va_list ap;
 	va_start(ap, msg);
 	

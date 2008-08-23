@@ -32,6 +32,8 @@
 		D34A21EB0E56201500A4A0BF /* TODRegularParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21E80E56201500A4A0BF /* TODRegularParser.m */; };
 		D34A21EC0E56201500A4A0BF /* TODRegularParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21EA0E56201500A4A0BF /* TODRegularParserTest.m */; };
 		D34A228A0E56488500A4A0BF /* TODRegularParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34A21E80E56201500A4A0BF /* TODRegularParser.m */; };
+		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
+		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35421260DFB2A7900429B4F /* TODWhitespaceStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D35421250DFB2A7900429B4F /* TODWhitespaceStateTest.m */; };
 		D35421FF0DFB355F00429B4F /* TODWordStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D35421FE0DFB355F00429B4F /* TODWordStateTest.m */; };
 		D36E934D0E57668900496BD3 /* TODXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E934C0E57668900496BD3 /* TODXmlNameState.m */; };
@@ -55,9 +57,7 @@
 		D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
 		D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99A60E58CF6C00496BD3 /* TODFastJsonParserTest.m */; };
 		D36E9A4A0E58DD6800496BD3 /* TODFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E99660E58C94700496BD3 /* TODFastJsonParser.m */; };
-		D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E9F760E5A77E000496BD3 /* XMLPullParser.m */; };
 		D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
-		D36E9FB30E5A938E00496BD3 /* XMLPullParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */; };
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */ = {isa = PBXBuildFile; fileRef = D36EA0E20E5BE61D00496BD3 /* example-1.srgs */; };
@@ -257,6 +257,10 @@
 		D34A21E80E56201500A4A0BF /* TODRegularParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRegularParser.m; path = test/TODRegularParser.m; sourceTree = "<group>"; };
 		D34A21E90E56201500A4A0BF /* TODRegularParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODRegularParserTest.h; path = test/TODRegularParserTest.h; sourceTree = "<group>"; };
 		D34A21EA0E56201500A4A0BF /* TODRegularParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODRegularParserTest.m; path = test/TODRegularParserTest.m; sourceTree = "<group>"; };
+		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
+		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
+		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
+		D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReaderTest.m; path = test/XMLReaderTest.m; sourceTree = "<group>"; };
 		D35421240DFB2A7900429B4F /* TODWhitespaceStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWhitespaceStateTest.h; path = test/TODWhitespaceStateTest.h; sourceTree = "<group>"; };
 		D35421250DFB2A7900429B4F /* TODWhitespaceStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TODWhitespaceStateTest.m; path = test/TODWhitespaceStateTest.m; sourceTree = "<group>"; };
 		D35421FD0DFB355F00429B4F /* TODWordStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TODWordStateTest.h; path = test/TODWordStateTest.h; sourceTree = "<group>"; };
@@ -300,11 +304,7 @@
 		D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = SOURCE_ROOT; };
 		D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
 		D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
-		D36E9F750E5A77E000496BD3 /* XMLPullParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPullParser.h; path = test/XMLPullParser.h; sourceTree = "<group>"; };
-		D36E9F760E5A77E000496BD3 /* XMLPullParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLPullParser.m; path = test/XMLPullParser.m; sourceTree = "<group>"; };
 		D36E9F860E5A795400496BD3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
-		D36E9FB10E5A938E00496BD3 /* XMLPullParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLPullParserTest.h; path = test/XMLPullParserTest.h; sourceTree = "<group>"; };
-		D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLPullParserTest.m; path = test/XMLPullParserTest.m; sourceTree = "<group>"; };
 		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
 		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
 		D36EA0E20E5BE61D00496BD3 /* example-1.srgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "example-1.srgs"; path = "res/example-1.srgs"; sourceTree = "<group>"; };
@@ -973,10 +973,10 @@
 				D36EA3060E5D520500496BD3 /* TODXmlTokenAssembly.m */,
 				D36EA1440E5CF38100496BD3 /* tokenizer */,
 				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
-				D36E9F750E5A77E000496BD3 /* XMLPullParser.h */,
-				D36E9F760E5A77E000496BD3 /* XMLPullParser.m */,
-				D36E9FB10E5A938E00496BD3 /* XMLPullParserTest.h */,
-				D36E9FB20E5A938E00496BD3 /* XMLPullParserTest.m */,
+				D3521F520E5FA1B0009681F9 /* XMLReader.h */,
+				D3521F530E5FA1B0009681F9 /* XMLReader.m */,
+				D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */,
+				D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */,
 				D36E93550E57685E00496BD3 /* TODXmlName.h */,
 				D36E93560E57685E00496BD3 /* TODXmlName.m */,
 				D36E94820E5780CF00496BD3 /* TODXmlNmtoken.h */,
@@ -1392,8 +1392,6 @@
 				D36E98BA0E58BED500496BD3 /* TODXmlNameTest.m in Sources */,
 				D36E99670E58C94700496BD3 /* TODFastJsonParser.m in Sources */,
 				D36E99A70E58CF6C00496BD3 /* TODFastJsonParserTest.m in Sources */,
-				D36E9F770E5A77E000496BD3 /* XMLPullParser.m in Sources */,
-				D36E9FB30E5A938E00496BD3 /* XMLPullParserTest.m in Sources */,
 				D36EA1560E5D20F000496BD3 /* TODXmlTokenizer.m in Sources */,
 				D36EA1590E5D210F00496BD3 /* TODXmlStartTag.m in Sources */,
 				D36EA1C30E5D3DAD00496BD3 /* TODXmlEndTag.m in Sources */,
@@ -1415,6 +1413,8 @@
 				D36EA25F0E5D49B700496BD3 /* TODXmlTerminal.m in Sources */,
 				D36EA3070E5D520500496BD3 /* TODXmlTokenAssembly.m in Sources */,
 				D36EA35D0E5D591900496BD3 /* TODXmlTokenizerTest.m in Sources */,
+				D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */,
+				D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

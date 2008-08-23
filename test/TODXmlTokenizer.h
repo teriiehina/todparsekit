@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @class TODXmlToken;
-@class XMLPullParser;
+@class XMLReader;
 
 @interface TODXmlTokenizer : NSObject {
-	XMLPullParser *reader;
+	XMLReader *reader;
 }
 + (id)tokenizerWithContentsOfFile:(NSString *)path;
 
