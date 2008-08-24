@@ -69,7 +69,6 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE6050E60E6F400A0803E /* TDNCNasvnm in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6040E60E6F400A0803E /* TDNCNasvnm */; };
 		D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; };
 		D31FE60A0E60E72500A0803E /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; };
 		D31FE60B0E60E72500A0803E /* TDReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6090E60E72500A0803E /* TDReader.m */; };
@@ -158,6 +157,7 @@
 		D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
 		D31FE6D30E60E9E300A0803E /* TDSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */; };
 		D31FE6D40E60E9E300A0803E /* TDSignificantWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */; };
+		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
@@ -336,7 +336,6 @@
 		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
 		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
 		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
-		D31FE6040E60E6F400A0803E /* TDNCNasvnm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = TDNCNasvnm; path = test/TDNCNasvnm; sourceTree = "<group>"; };
 		D31FE6060E60E71900A0803E /* TDParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParseKit.h; path = src/TDParseKit.h; sourceTree = "<group>"; };
 		D31FE6080E60E72500A0803E /* TDReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReader.h; path = src/TDReader.h; sourceTree = "<group>"; };
 		D31FE6090E60E72500A0803E /* TDReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReader.m; path = src/TDReader.m; sourceTree = "<group>"; };
@@ -425,6 +424,7 @@
 		D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDParseKit_Prefix.pch; sourceTree = "<group>"; };
 		D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
 		D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
+		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
@@ -737,7 +737,7 @@
 			isa = PBXGroup;
 			children = (
 				D31FE5EF0E60E6B500A0803E /* TDNCName.h */,
-				D31FE6040E60E6F400A0803E /* TDNCNasvnm */,
+				D31FE6DF0E60EE2500A0803E /* TDNCName.m */,
 				D31FE5F00E60E6B500A0803E /* TDNCNameState.h */,
 				D31FE5F10E60E6B500A0803E /* TDNCNameState.m */,
 				D36E95440E578ECC00496BD3 /* XPathParser.h */,
@@ -1406,7 +1406,7 @@
 				D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */,
 				D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */,
 				D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */,
-				D31FE6050E60E6F400A0803E /* TDNCNasvnm in Sources */,
+				D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
