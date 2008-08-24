@@ -69,93 +69,92 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; };
-		D31FE60A0E60E72500A0803E /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; };
+		D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE60A0E60E72500A0803E /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE60B0E60E72500A0803E /* TDReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6090E60E72500A0803E /* TDReader.m */; };
-		D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE60C0E60E73300A0803E /* TDAssembly.h */; };
+		D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE60C0E60E73300A0803E /* TDAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE60F0E60E73300A0803E /* TDAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE60D0E60E73300A0803E /* TDAssembly.m */; };
-		D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6100E60E75300A0803E /* TDAlternation.h */; };
+		D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6100E60E75300A0803E /* TDAlternation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6210E60E75300A0803E /* TDAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6110E60E75300A0803E /* TDAlternation.m */; };
-		D31FE6220E60E75300A0803E /* TDCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6120E60E75300A0803E /* TDCollectionParser.h */; };
+		D31FE6220E60E75300A0803E /* TDCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6120E60E75300A0803E /* TDCollectionParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6230E60E75300A0803E /* TDCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6130E60E75300A0803E /* TDCollectionParser.m */; };
-		D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6140E60E75300A0803E /* TDEmpty.h */; };
+		D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6140E60E75300A0803E /* TDEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6250E60E75300A0803E /* TDEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6150E60E75300A0803E /* TDEmpty.m */; };
-		D31FE6260E60E75300A0803E /* TDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6160E60E75300A0803E /* TDParser.h */; };
+		D31FE6260E60E75300A0803E /* TDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6160E60E75300A0803E /* TDParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6270E60E75300A0803E /* TDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6170E60E75300A0803E /* TDParser.m */; };
-		D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6180E60E75300A0803E /* TDRepetition.h */; };
+		D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6180E60E75300A0803E /* TDRepetition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6290E60E75300A0803E /* TDRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6190E60E75300A0803E /* TDRepetition.m */; };
-		D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61A0E60E75300A0803E /* TDSequence.h */; };
+		D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61A0E60E75300A0803E /* TDSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE62B0E60E75300A0803E /* TDSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61B0E60E75300A0803E /* TDSequence.m */; };
-		D31FE62C0E60E75300A0803E /* TDTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61C0E60E75300A0803E /* TDTerminal.h */; };
+		D31FE62C0E60E75300A0803E /* TDTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61C0E60E75300A0803E /* TDTerminal.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE62D0E60E75300A0803E /* TDTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61D0E60E75300A0803E /* TDTerminal.m */; };
-		D31FE62E0E60E75300A0803E /* TDTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61E0E60E75300A0803E /* TDTrack.h */; };
+		D31FE62E0E60E75300A0803E /* TDTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61E0E60E75300A0803E /* TDTrack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE62F0E60E75300A0803E /* TDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61F0E60E75300A0803E /* TDTrack.m */; };
-		D31FE6320E60E76500A0803E /* TDTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6300E60E76500A0803E /* TDTokenAssembly.h */; };
+		D31FE6320E60E76500A0803E /* TDTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6300E60E76500A0803E /* TDTokenAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6330E60E76500A0803E /* TDTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6310E60E76500A0803E /* TDTokenAssembly.m */; };
-		D31FE63A0E60E77600A0803E /* TDToken.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6340E60E77600A0803E /* TDToken.h */; };
+		D31FE63A0E60E77600A0803E /* TDToken.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6340E60E77600A0803E /* TDToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE63B0E60E77600A0803E /* TDToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6350E60E77600A0803E /* TDToken.m */; };
-		D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6360E60E77600A0803E /* TDTokenizer.h */; };
+		D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6360E60E77600A0803E /* TDTokenizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6370E60E77600A0803E /* TDTokenizer.m */; };
-		D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6380E60E77600A0803E /* TDTokenizerState.h */; };
+		D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6380E60E77600A0803E /* TDTokenizerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6390E60E77600A0803E /* TDTokenizerState.m */; };
-		D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6450E60E7AF00A0803E /* TDCharbufState.h */; };
-		D31FE65A0E60E7AF00A0803E /* TDCharbufState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6460E60E7AF00A0803E /* TDCharbufState.m */; };
-		D31FE65B0E60E7AF00A0803E /* TDMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6470E60E7AF00A0803E /* TDMutableStringState.h */; };
+		D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6450E60E7AF00A0803E /* TDCharbufState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE65B0E60E7AF00A0803E /* TDMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6470E60E7AF00A0803E /* TDMutableStringState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE65C0E60E7AF00A0803E /* TDMutableStringState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6480E60E7AF00A0803E /* TDMutableStringState.m */; };
-		D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6490E60E7AF00A0803E /* TDNumberState.h */; };
+		D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6490E60E7AF00A0803E /* TDNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64A0E60E7AF00A0803E /* TDNumberState.m */; };
-		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; };
+		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */; };
-		D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */; };
+		D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */; };
-		D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */; };
+		D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6640E60E7AF00A0803E /* TDSlashStarState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */; };
-		D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6510E60E7AF00A0803E /* TDSlashState.h */; };
+		D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6510E60E7AF00A0803E /* TDSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6660E60E7AF00A0803E /* TDSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6520E60E7AF00A0803E /* TDSlashState.m */; };
-		D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6530E60E7AF00A0803E /* TDSymbolState.h */; };
+		D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6530E60E7AF00A0803E /* TDSymbolState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6680E60E7AF00A0803E /* TDSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6540E60E7AF00A0803E /* TDSymbolState.m */; };
-		D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */; };
+		D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE66A0E60E7AF00A0803E /* TDWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6560E60E7AF00A0803E /* TDWhitespaceState.m */; };
-		D31FE66B0E60E7AF00A0803E /* TDWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6570E60E7AF00A0803E /* TDWordState.h */; };
+		D31FE66B0E60E7AF00A0803E /* TDWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6570E60E7AF00A0803E /* TDWordState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE66C0E60E7AF00A0803E /* TDWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6580E60E7AF00A0803E /* TDWordState.m */; };
-		D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */; };
+		D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6720E60E7E100A0803E /* TDSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */; };
-		D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */; };
+		D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6740E60E7E100A0803E /* TDSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */; };
-		D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6780E60E80600A0803E /* TDLiteral.h */; };
+		D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6780E60E80600A0803E /* TDLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6830E60E80600A0803E /* TDLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6790E60E80600A0803E /* TDLiteral.m */; };
-		D31FE6840E60E80600A0803E /* TDNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67A0E60E80600A0803E /* TDNum.h */; };
+		D31FE6840E60E80600A0803E /* TDNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67A0E60E80600A0803E /* TDNum.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6850E60E80600A0803E /* TDNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67B0E60E80600A0803E /* TDNum.m */; };
-		D31FE6860E60E80600A0803E /* TDQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67C0E60E80600A0803E /* TDQuotedString.h */; };
+		D31FE6860E60E80600A0803E /* TDQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67C0E60E80600A0803E /* TDQuotedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6870E60E80600A0803E /* TDQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67D0E60E80600A0803E /* TDQuotedString.m */; };
-		D31FE6880E60E80600A0803E /* TDSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67E0E60E80600A0803E /* TDSymbol.h */; };
+		D31FE6880E60E80600A0803E /* TDSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67E0E60E80600A0803E /* TDSymbol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6890E60E80600A0803E /* TDSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67F0E60E80600A0803E /* TDSymbol.m */; };
-		D31FE68A0E60E80600A0803E /* TDWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6800E60E80600A0803E /* TDWord.h */; };
+		D31FE68A0E60E80600A0803E /* TDWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6800E60E80600A0803E /* TDWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE68B0E60E80600A0803E /* TDWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6810E60E80600A0803E /* TDWord.m */; };
-		D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */; };
+		D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE68F0E60E82300A0803E /* TDCaseInsensitiveLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */; };
-		D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */; };
+		D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6930E60E84400A0803E /* TDWordOrReservedState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */; };
-		D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; };
+		D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6950E60E85800A0803E /* TDLowercaseWord.m */; };
-		D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6960E60E85800A0803E /* TDNonReservedWord.h */; };
+		D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6960E60E85800A0803E /* TDNonReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE69F0E60E85800A0803E /* TDNonReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6970E60E85800A0803E /* TDNonReservedWord.m */; };
-		D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6980E60E85800A0803E /* TDReservedWord.h */; };
+		D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6980E60E85800A0803E /* TDReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6A10E60E85800A0803E /* TDReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6990E60E85800A0803E /* TDReservedWord.m */; };
-		D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; };
+		D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */; };
-		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; };
+		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
-		D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; };
+		D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A90E60E87D00A0803E /* TDChar.m */; };
-		D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; };
+		D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AB0E60E87D00A0803E /* TDDigit.m */; };
-		D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; };
+		D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
-		D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; };
+		D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
 		D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
-		D31FE6D30E60E9E300A0803E /* TDSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */; };
+		D31FE6D30E60E9E300A0803E /* TDSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6D40E60E9E300A0803E /* TDSignificantWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */; };
 		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
@@ -189,6 +188,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		D31FE7170E60F24700A0803E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			remoteInfo = TDParseKit;
+		};
 		D334949F0E296AA900406085 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
@@ -1111,9 +1117,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8DC2EF4F0486A6940098B216 /* TODParseKit */ = {
+		8DC2EF4F0486A6940098B216 /* TDParseKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TODParseKit" */;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF520486A6940098B216 /* Resources */,
@@ -1124,7 +1130,7 @@
 			);
 			dependencies = (
 			);
-			name = TODParseKit;
+			name = TDParseKit;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = TODParseKit;
 			productReference = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */;
@@ -1178,6 +1184,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				D31FE7180E60F24700A0803E /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -1197,7 +1204,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* TODParseKit */,
+				8DC2EF4F0486A6940098B216 /* TDParseKit */,
 				D3C7D8790A411FBF005DD154 /* Tests */,
 				D334940F0E2963FD00406085 /* DemoApp */,
 				D34185030E520D3F0081B0DC /* DebugApp */,
@@ -1281,7 +1288,6 @@
 				D31FE63B0E60E77600A0803E /* TDToken.m in Sources */,
 				D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */,
 				D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */,
-				D31FE65A0E60E7AF00A0803E /* TDCharbufState.m in Sources */,
 				D31FE65C0E60E7AF00A0803E /* TDMutableStringState.m in Sources */,
 				D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */,
 				D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */,
@@ -1413,14 +1419,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		D31FE7180E60F24700A0803E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			targetProxy = D31FE7170E60F24700A0803E /* PBXContainerItemProxy */;
+		};
 		D33494A00E296AA900406085 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TODParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
 			targetProxy = D334949F0E296AA900406085 /* PBXContainerItemProxy */;
 		};
 		D34185100E520D6F0081B0DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TODParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
 			targetProxy = D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1618,7 +1629,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = NO;
+				GCC_ENABLE_OBJC_GC = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1683,7 +1694,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TODParseKit" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
