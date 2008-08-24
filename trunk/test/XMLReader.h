@@ -14,7 +14,7 @@
  * XMLReaderMode:
  *
  * Internal state values for the reader.
- */
+ */	
 typedef enum {
     XMLReaderReadStateInitial = 0,
     XMLReaderReadStateInteractive = 1,

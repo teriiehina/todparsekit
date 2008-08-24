@@ -1489,7 +1489,10 @@
 				);
 				PRODUCT_NAME = TDParseKit;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-				WARNING_CFLAGS = "-Wstrict-selector-match";
+				WARNING_CFLAGS = (
+					"-Wstrict-selector-match",
+					"-Wundeclared-selector",
+				);
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
@@ -1519,7 +1522,10 @@
 				);
 				PRODUCT_NAME = TDParseKit;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
-				WARNING_CFLAGS = "-Wstrict-selector-match";
+				WARNING_CFLAGS = (
+					"-Wstrict-selector-match",
+					"-Wundeclared-selector",
+				);
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
