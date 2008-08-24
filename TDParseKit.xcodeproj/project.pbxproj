@@ -1482,8 +1482,14 @@
 				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
 				PRODUCT_NAME = TDParseKit;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WARNING_CFLAGS = "-Wstrict-selector-match";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
@@ -1506,8 +1512,14 @@
 				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
 				PRODUCT_NAME = TDParseKit;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WARNING_CFLAGS = "-Wstrict-selector-match";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
@@ -1664,7 +1676,7 @@
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
-					Cocoa,
+					Foundation,
 					"-framework",
 					SenTestingKit,
 				);
@@ -1672,6 +1684,7 @@
 				PRODUCT_NAME = Tests;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src";
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = YES;
 			};
@@ -1701,13 +1714,14 @@
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
-					Cocoa,
+					Foundation,
 					"-framework",
 					SenTestingKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
