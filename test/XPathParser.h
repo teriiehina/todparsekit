@@ -1,96 +1,96 @@
 //
 //  XPathParser.h
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/16/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TODSequence.h"
+#import "TDSequence.h"
 
 @class XPathAssembler;
-@class TODAssembly;
+@class TDAssembly;
 
-@interface XPathParser : TODSequence {
+@interface XPathParser : TDSequence {
 	XPathAssembler *xpathAssembler;
-	TODCollectionParser *locationPath;
-	TODCollectionParser *absoluteLocationPath;
-	TODCollectionParser *relativeLocationPath;
-	TODCollectionParser *step;
-	TODCollectionParser *axisSpecifier;
-	TODCollectionParser *axisName;
-	TODCollectionParser *nodeTest;
-	TODCollectionParser *predicate;
-	TODCollectionParser *predicateExpr;
-	TODCollectionParser *abbreviatedAbsoluteLocationPath;
-	TODCollectionParser *abbreviatedRelativeLocationPath;
-	TODCollectionParser *abbreviatedStep;
-	TODCollectionParser *abbreviatedAxisSpecifier;
-	TODCollectionParser *expr;
-	TODCollectionParser *primaryExpr;
-	TODCollectionParser *functionCall;
-	TODCollectionParser *argument;
-	TODCollectionParser *unionExpr;
-	TODCollectionParser *pathExpr;
-	TODCollectionParser *filterExpr;
-	TODCollectionParser *orExpr;
-	TODCollectionParser *andExpr;
-	TODCollectionParser *equalityExpr;
-	TODCollectionParser *relationalExpr;
-	TODCollectionParser *additiveExpr;
-	TODCollectionParser *multiplicativeExpr;
-	TODCollectionParser *unaryExpr;
-	TODCollectionParser *exprToken;
-	TODParser *literal;
-	TODParser *number;
-	TODCollectionParser *operator;
-	TODCollectionParser *operatorName;
-	TODParser *multiplyOperator;
-	TODParser *functionName;
-	TODCollectionParser *variableReference;
-	TODCollectionParser *nameTest;
-	TODCollectionParser *nodeType;
-	TODCollectionParser *QName;
+	TDCollectionParser *locationPath;
+	TDCollectionParser *absoluteLocationPath;
+	TDCollectionParser *relativeLocationPath;
+	TDCollectionParser *step;
+	TDCollectionParser *axisSpecifier;
+	TDCollectionParser *axisName;
+	TDCollectionParser *nodeTest;
+	TDCollectionParser *predicate;
+	TDCollectionParser *predicateExpr;
+	TDCollectionParser *abbreviatedAbsoluteLocationPath;
+	TDCollectionParser *abbreviatedRelativeLocationPath;
+	TDCollectionParser *abbreviatedStep;
+	TDCollectionParser *abbreviatedAxisSpecifier;
+	TDCollectionParser *expr;
+	TDCollectionParser *primaryExpr;
+	TDCollectionParser *functionCall;
+	TDCollectionParser *argument;
+	TDCollectionParser *unionExpr;
+	TDCollectionParser *pathExpr;
+	TDCollectionParser *filterExpr;
+	TDCollectionParser *orExpr;
+	TDCollectionParser *andExpr;
+	TDCollectionParser *equalityExpr;
+	TDCollectionParser *relationalExpr;
+	TDCollectionParser *additiveExpr;
+	TDCollectionParser *multiplicativeExpr;
+	TDCollectionParser *unaryExpr;
+	TDCollectionParser *exprToken;
+	TDParser *literal;
+	TDParser *number;
+	TDCollectionParser *operator;
+	TDCollectionParser *operatorName;
+	TDParser *multiplyOperator;
+	TDParser *functionName;
+	TDCollectionParser *variableReference;
+	TDCollectionParser *nameTest;
+	TDCollectionParser *nodeType;
+	TDCollectionParser *QName;
 }
 - (id)parse:(NSString *)s;
-- (TODAssembly *)assemblyWithString:(NSString *)s;
+- (TDAssembly *)assemblyWithString:(NSString *)s;
 
-@property (retain) TODCollectionParser *locationPath;
-@property (retain) TODCollectionParser *absoluteLocationPath;
-@property (retain) TODCollectionParser *relativeLocationPath;
-@property (retain) TODCollectionParser *step;
-@property (retain) TODCollectionParser *axisSpecifier;
-@property (retain) TODCollectionParser *axisName;
-@property (retain) TODCollectionParser *nodeTest;
-@property (retain) TODCollectionParser *predicate;
-@property (retain) TODCollectionParser *predicateExpr;
-@property (retain) TODCollectionParser *abbreviatedAbsoluteLocationPath;
-@property (retain) TODCollectionParser *abbreviatedRelativeLocationPath;
-@property (retain) TODCollectionParser *abbreviatedStep;
-@property (retain) TODCollectionParser *abbreviatedAxisSpecifier;
-@property (retain) TODCollectionParser *expr;
-@property (retain) TODCollectionParser *primaryExpr;
-@property (retain) TODCollectionParser *functionCall;
-@property (retain) TODCollectionParser *argument;
-@property (retain) TODCollectionParser *unionExpr;
-@property (retain) TODCollectionParser *pathExpr;
-@property (retain) TODCollectionParser *filterExpr;
-@property (retain) TODCollectionParser *orExpr;
-@property (retain) TODCollectionParser *andExpr;
-@property (retain) TODCollectionParser *equalityExpr;
-@property (retain) TODCollectionParser *relationalExpr;
-@property (retain) TODCollectionParser *additiveExpr;
-@property (retain) TODCollectionParser *multiplicativeExpr;
-@property (retain) TODCollectionParser *unaryExpr;
-@property (retain) TODCollectionParser *exprToken;
-@property (retain) TODParser *literal;
-@property (retain) TODParser *number;
-@property (retain) TODCollectionParser *operator;
-@property (retain) TODCollectionParser *operatorName;
-@property (retain) TODParser *multiplyOperator;
-@property (retain) TODParser *functionName;
-@property (retain) TODCollectionParser *variableReference;
-@property (retain) TODCollectionParser *nameTest;
-@property (retain) TODCollectionParser *nodeType;
-@property (retain) TODCollectionParser *QName;
+@property (retain) TDCollectionParser *locationPath;
+@property (retain) TDCollectionParser *absoluteLocationPath;
+@property (retain) TDCollectionParser *relativeLocationPath;
+@property (retain) TDCollectionParser *step;
+@property (retain) TDCollectionParser *axisSpecifier;
+@property (retain) TDCollectionParser *axisName;
+@property (retain) TDCollectionParser *nodeTest;
+@property (retain) TDCollectionParser *predicate;
+@property (retain) TDCollectionParser *predicateExpr;
+@property (retain) TDCollectionParser *abbreviatedAbsoluteLocationPath;
+@property (retain) TDCollectionParser *abbreviatedRelativeLocationPath;
+@property (retain) TDCollectionParser *abbreviatedStep;
+@property (retain) TDCollectionParser *abbreviatedAxisSpecifier;
+@property (retain) TDCollectionParser *expr;
+@property (retain) TDCollectionParser *primaryExpr;
+@property (retain) TDCollectionParser *functionCall;
+@property (retain) TDCollectionParser *argument;
+@property (retain) TDCollectionParser *unionExpr;
+@property (retain) TDCollectionParser *pathExpr;
+@property (retain) TDCollectionParser *filterExpr;
+@property (retain) TDCollectionParser *orExpr;
+@property (retain) TDCollectionParser *andExpr;
+@property (retain) TDCollectionParser *equalityExpr;
+@property (retain) TDCollectionParser *relationalExpr;
+@property (retain) TDCollectionParser *additiveExpr;
+@property (retain) TDCollectionParser *multiplicativeExpr;
+@property (retain) TDCollectionParser *unaryExpr;
+@property (retain) TDCollectionParser *exprToken;
+@property (retain) TDParser *literal;
+@property (retain) TDParser *number;
+@property (retain) TDCollectionParser *operator;
+@property (retain) TDCollectionParser *operatorName;
+@property (retain) TDParser *multiplyOperator;
+@property (retain) TDParser *functionName;
+@property (retain) TDCollectionParser *variableReference;
+@property (retain) TDCollectionParser *nameTest;
+@property (retain) TDCollectionParser *nodeType;
+@property (retain) TDCollectionParser *QName;
 @end

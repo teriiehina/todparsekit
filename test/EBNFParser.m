@@ -1,6 +1,6 @@
 //
 //  EBNFParser.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/15/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -29,19 +29,19 @@ static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
 
 @interface EBNFParser ()
-- (void)configureTokenizer:(TODTokenizer *)t;
-- (void)addSymbolString:(NSString *)s toTokenizer:(TODTokenizer *)t;
+- (void)configureTokenizer:(TDTokenizer *)t;
+- (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
 
-- (void)workOnWordAssembly:(TODAssembly *)a;
-- (void)workOnNumAssembly:(TODAssembly *)a;
-- (void)workOnQuotedStringAssembly:(TODAssembly *)a;
-- (void)workOnStarAssembly:(TODAssembly *)a;
-- (void)workOnQuestionAssembly:(TODAssembly *)a;
-- (void)workOnPlusAssembly:(TODAssembly *)a;
-- (void)workOnAndAssembly:(TODAssembly *)a;
-- (void)workOnOrAssembly:(TODAssembly *)a;
-- (void)workOnAssignmentAssembly:(TODAssembly *)a;
-- (void)workOnVariableAssembly:(TODAssembly *)a;
+- (void)workOnWordAssembly:(TDAssembly *)a;
+- (void)workOnNumAssembly:(TDAssembly *)a;
+- (void)workOnQuotedStringAssembly:(TDAssembly *)a;
+- (void)workOnStarAssembly:(TDAssembly *)a;
+- (void)workOnQuestionAssembly:(TDAssembly *)a;
+- (void)workOnPlusAssembly:(TDAssembly *)a;
+- (void)workOnAndAssembly:(TDAssembly *)a;
+- (void)workOnOrAssembly:(TDAssembly *)a;
+- (void)workOnAssignmentAssembly:(TDAssembly *)a;
+- (void)workOnVariableAssembly:(TDAssembly *)a;
 @end
 
 @implementation EBNFParser
@@ -75,21 +75,21 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (id)parse:(NSString *)s {
-	TODTokenAssembly *a = [TODTokenAssembly assemblyWithString:s];
+	TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
 	[self configureTokenizer:a.tokenizer];
-	TODAssembly *result = [self completeMatchFor:a];
+	TDAssembly *result = [self completeMatchFor:a];
 	return [result pop];
 }
 
 
-- (void)configureTokenizer:(TODTokenizer *)t {
+- (void)configureTokenizer:(TDTokenizer *)t {
 	[self addSymbolString:kEBNFEqualsString toTokenizer:t];	
 	[self addSymbolString:kEBNFVariablePrefix toTokenizer:t];	
 	[self addSymbolString:kEBNFVariableSuffix toTokenizer:t];	
 }
 
 
-- (void)addSymbolString:(NSString *)s toTokenizer:(TODTokenizer *)t {
+- (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t {
 	if (s.length) {
 		NSInteger c = [s characterAtIndex:0];
 		[t setCharacterState:t.symbolState from:c to:c];
@@ -99,20 +99,20 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // statement		= exprOrAssignment ';'
-- (TODCollectionParser *)statementParser {
+- (TDCollectionParser *)statementParser {
 	if (!statementParser) {
-		self.statementParser = [TODTrack track];
+		self.statementParser = [TDTrack track];
 		[statementParser add:self.exprOrAssignmentParser];
-		[statementParser add:[[TODSymbol symbolWithString:@";"] discard]];
+		[statementParser add:[[TDSymbol symbolWithString:@";"] discard]];
 	}
 	return statementParser;
 }
 
 
 // exprOrAssignmentParser		= expression | assignment
-- (TODCollectionParser *)exprOrAssignmentParser {
+- (TDCollectionParser *)exprOrAssignmentParser {
 	if (!exprOrAssignmentParser) {
-		self.exprOrAssignmentParser = [TODAlternation alternation];
+		self.exprOrAssignmentParser = [TDAlternation alternation];
 		[exprOrAssignmentParser add:self.expressionParser];
 		[exprOrAssignmentParser add:self.assignmentParser];
 	}
@@ -121,11 +121,11 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // declaration		= variable '=' expression
-- (TODCollectionParser *)assignmentParser {
+- (TDCollectionParser *)assignmentParser {
 	if (!assignmentParser) {
-		self.assignmentParser = [TODTrack track];
+		self.assignmentParser = [TDTrack track];
 		[assignmentParser add:self.declarationParser];
-		[assignmentParser add:[[TODSymbol symbolWithString:kEBNFEqualsString] discard]];
+		[assignmentParser add:[[TDSymbol symbolWithString:kEBNFEqualsString] discard]];
 		[assignmentParser add:self.expressionParser];
 		[assignmentParser setAssembler:self selector:@selector(workOnAssignmentAssembly:)];
 	}
@@ -134,13 +134,13 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // declaration			= '$' Word
-- (TODCollectionParser *)declarationParser {
+- (TDCollectionParser *)declarationParser {
 	if (!declarationParser) {
-		self.declarationParser = [TODTrack track];
-		[declarationParser add:[[TODSymbol symbolWithString:kEBNFVariablePrefix] discard]];
-		[declarationParser add:[TODWord word]];
+		self.declarationParser = [TDTrack track];
+		[declarationParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
+		[declarationParser add:[TDWord word]];
 		if (kEBNFVariableSuffix.length) {
-			[declarationParser add:[[TODSymbol symbolWithString:kEBNFVariableSuffix] discard]];
+			[declarationParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
 		}
 	}
 	return declarationParser;
@@ -148,13 +148,13 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // variable			= '$' Word
-- (TODCollectionParser *)variableParser {
+- (TDCollectionParser *)variableParser {
 	if (!variableParser) {
-		self.variableParser = [TODTrack track];
-		[variableParser add:[[TODSymbol symbolWithString:kEBNFVariablePrefix] discard]];
-		[variableParser add:[TODWord word]];
+		self.variableParser = [TDTrack track];
+		[variableParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
+		[variableParser add:[TDWord word]];
 		if (kEBNFVariableSuffix.length) {
-			[variableParser add:[[TODSymbol symbolWithString:kEBNFVariableSuffix] discard]];
+			[variableParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
 		}
 	}
 	return variableParser;
@@ -162,32 +162,32 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // expression		= term orTerm*
-- (TODCollectionParser *)expressionParser {
+- (TDCollectionParser *)expressionParser {
 	if (!expressionParser) {
-		self.expressionParser = [TODSequence sequence];
+		self.expressionParser = [TDSequence sequence];
 		[expressionParser add:self.termParser];
-		[expressionParser add:[TODRepetition repetitionWithSubparser:self.orTermParser]];
+		[expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
 	}
 	return expressionParser;
 }
 
 
 // term				= factor nextFactor*
-- (TODCollectionParser *)termParser {
+- (TDCollectionParser *)termParser {
 	if (!termParser) {
-		self.termParser = [TODSequence sequence];
+		self.termParser = [TDSequence sequence];
 		[termParser add:self.factorParser];
-		[termParser add:[TODRepetition repetitionWithSubparser:self.nextFactorParser]];
+		[termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
 	}
 	return termParser;
 }
 
 
 // orTerm			= '|' term
-- (TODCollectionParser *)orTermParser {
+- (TDCollectionParser *)orTermParser {
 	if (!orTermParser) {
-		self.orTermParser = [TODTrack track];
-		[orTermParser add:[[TODSymbol symbolWithString:@"|"] discard]];
+		self.orTermParser = [TDTrack track];
+		[orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
 		[orTermParser add:self.termParser];
 		[orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
 	}
@@ -196,9 +196,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // factor			= phrase | phraseStar | phraseQuestion | phrasePlus
-- (TODCollectionParser *)factorParser {
+- (TDCollectionParser *)factorParser {
 	if (!factorParser) {
-		self.factorParser = [TODAlternation alternation];
+		self.factorParser = [TDAlternation alternation];
 		[factorParser add:self.phraseParser];
 		[factorParser add:self.phraseStarParser];
 		[factorParser add:self.phraseQuestionParser];
@@ -209,9 +209,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // nextFactor		= factor
-- (TODCollectionParser *)nextFactorParser {
+- (TDCollectionParser *)nextFactorParser {
 	if (!nextFactorParser) {
-		self.nextFactorParser = [TODAlternation alternation];
+		self.nextFactorParser = [TDAlternation alternation];
 		[nextFactorParser add:self.phraseParser];
 		[nextFactorParser add:self.phraseStarParser];
 		[nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
@@ -221,14 +221,14 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // phrase			= atomicValue | '(' expression ')'
-- (TODCollectionParser *)phraseParser {
+- (TDCollectionParser *)phraseParser {
 	if (!phraseParser) {
-		TODSequence *s = [TODTrack track];
-		[s add:[[TODSymbol symbolWithString:@"("] discard]];
+		TDSequence *s = [TDTrack track];
+		[s add:[[TDSymbol symbolWithString:@"("] discard]];
 		[s add:self.expressionParser];
-		[s add:[[TODSymbol symbolWithString:@")"] discard]];
+		[s add:[[TDSymbol symbolWithString:@")"] discard]];
 		
-		self.phraseParser = [TODAlternation alternation];
+		self.phraseParser = [TDAlternation alternation];
 		[phraseParser add:self.atomicValueParser];
 		[phraseParser add:s];
 	}
@@ -237,11 +237,11 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // phraseStar		= phrase '*'
-- (TODCollectionParser *)phraseStarParser {
+- (TDCollectionParser *)phraseStarParser {
 	if (!phraseStarParser) {
-		self.phraseStarParser = [TODSequence sequence];
+		self.phraseStarParser = [TDSequence sequence];
 		[phraseStarParser add:self.phraseParser];
-		[phraseStarParser add:[[TODSymbol symbolWithString:@"*"] discard]];
+		[phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
 		[phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
 	}
 	return phraseStarParser;
@@ -249,11 +249,11 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // phraseQuestion		= phrase '?'
-- (TODCollectionParser *)phraseQuestionParser {
+- (TDCollectionParser *)phraseQuestionParser {
 	if (!phraseQuestionParser) {
-		self.phraseQuestionParser = [TODSequence sequence];
+		self.phraseQuestionParser = [TDSequence sequence];
 		[phraseQuestionParser add:self.phraseParser];
-		[phraseQuestionParser add:[[TODSymbol symbolWithString:@"?"] discard]];
+		[phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
 		[phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
 	}
 	return phraseQuestionParser;
@@ -261,11 +261,11 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // phrasePlus			= phrase '+'
-- (TODCollectionParser *)phrasePlusParser {
+- (TDCollectionParser *)phrasePlusParser {
 	if (!phrasePlusParser) {
-		self.phrasePlusParser = [TODSequence sequence];
+		self.phrasePlusParser = [TDSequence sequence];
 		[phrasePlusParser add:self.phraseParser];
-		[phrasePlusParser add:[[TODSymbol symbolWithString:@"+"] discard]];
+		[phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
 		[phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
 	}
 	return phrasePlusParser;
@@ -273,19 +273,19 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 // atomicValue		= Word | Num | QuotedString | Variable
-- (TODCollectionParser *)atomicValueParser {
+- (TDCollectionParser *)atomicValueParser {
 	if (!atomicValueParser) {
-		self.atomicValueParser = [TODAlternation alternation];
+		self.atomicValueParser = [TDAlternation alternation];
 		
-		TODParser *p = [TODWord word];
+		TDParser *p = [TDWord word];
 		[p setAssembler:self selector:@selector(workOnWordAssembly:)];
 		[atomicValueParser add:p];
 		
-		p = [TODNum num];
+		p = [TDNum num];
 		[p setAssembler:self selector:@selector(workOnNumAssembly:)];
 		[atomicValueParser add:p];
 		
-		p = [TODQuotedString quotedString];
+		p = [TDQuotedString quotedString];
 		[p setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
 		[atomicValueParser add:p];
 		
@@ -297,107 +297,107 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnWordAssembly:(TODAssembly *)a {
+- (void)workOnWordAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
-	TODToken *tok = [a pop];
-	[a push:[TODLiteral literalWithString:tok.stringValue]];
+	TDToken *tok = [a pop];
+	[a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
 
-- (void)workOnNumAssembly:(TODAssembly *)a {
+- (void)workOnNumAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
-	TODToken *tok = [a pop];
-	[a push:[TODLiteral literalWithString:tok.stringValue]];
+	TDToken *tok = [a pop];
+	[a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
 
-- (void)workOnQuotedStringAssembly:(TODAssembly *)a {
+- (void)workOnQuotedStringAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
-	TODToken *tok = [a pop];
+	TDToken *tok = [a pop];
 	NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
 	
-	TODSequence *p = [TODSequence sequence];
-	TODTokenizer *t = [TODTokenizer tokenizerWithString:s];
-	TODToken *eof = [TODToken EOFToken];
+	TDSequence *p = [TDSequence sequence];
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	TDToken *eof = [TDToken EOFToken];
 	while (eof != (tok = [t nextToken])) {
-		[p add:[TODLiteral literalWithString:tok.stringValue]];
+		[p add:[TDLiteral literalWithString:tok.stringValue]];
 	}
 	
 	[a push:p];
 }
 
 
-- (void)workOnStarAssembly:(TODAssembly *)a {
+- (void)workOnStarAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
-	TODRepetition *p = [TODRepetition repetitionWithSubparser:[a pop]];
+	TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
 	[a push:p];
 }
 
 
-- (void)workOnQuestionAssembly:(TODAssembly *)a {
+- (void)workOnQuestionAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
-	TODAlternation *p = [TODAlternation alternation];
+	TDAlternation *p = [TDAlternation alternation];
 	[p add:[a pop]];
-	[p add:[TODEmpty empty]];
+	[p add:[TDEmpty empty]];
 	[a push:p];
 }
 
 
-- (void)workOnPlusAssembly:(TODAssembly *)a {
+- (void)workOnPlusAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
 	id top = [a pop];
-	TODSequence *p = [TODSequence sequence];
+	TDSequence *p = [TDSequence sequence];
 	[p add:top];
-	[p add:[TODRepetition repetitionWithSubparser:top]];
+	[p add:[TDRepetition repetitionWithSubparser:top]];
 	[a push:p];
 }
 
 
-- (void)workOnAndAssembly:(TODAssembly *)a {
+- (void)workOnAndAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
 	id top = [a pop];
-	TODSequence *p = [TODSequence sequence];
+	TDSequence *p = [TDSequence sequence];
 	[p add:[a pop]];
 	[p add:top];
 	[a push:p];
 }
 
 
-- (void)workOnOrAssembly:(TODAssembly *)a {
+- (void)workOnOrAssembly:(TDAssembly *)a {
 	//	NSLog(@"%s", _cmd);
 	//	NSLog(@"a: %@", a);
 	id top = [a pop];
 	//	NSLog(@"top: %@", top);
 	//	NSLog(@"top class: %@", [top class]);
-	TODAlternation *p = [TODAlternation alternation];
+	TDAlternation *p = [TDAlternation alternation];
 	[p add:[a pop]];
 	[p add:top];
 	[a push:p];
 }
 
 
-- (void)workOnAssignmentAssembly:(TODAssembly *)a {
+- (void)workOnAssignmentAssembly:(TDAssembly *)a {
 	NSLog(@"%s", _cmd);
 	NSLog(@"a: %@", a);
 	id val = [a pop];
-	TODToken *keyTok = [a pop];
+	TDToken *keyTok = [a pop];
 	NSMutableDictionary *table = [NSMutableDictionary dictionaryWithDictionary:a.target];
 	[table setObject:val forKey:keyTok.stringValue];
 	a.target = table;
 }
 
 
-- (void)workOnVariableAssembly:(TODAssembly *)a {
+- (void)workOnVariableAssembly:(TDAssembly *)a {
 //	NSLog(@"%s", _cmd);
 //	NSLog(@"a: %@", a);
-	TODToken *keyTok = [a pop];
+	TDToken *keyTok = [a pop];
 	id val = [a.target objectForKey:keyTok.stringValue];
 	[a push:val];
 }

@@ -1,13 +1,13 @@
 //
 //  DemoAppDelegate.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "DemoAppDelegate.h"
-#import <TODParseKit/TODParseKit.h>
+#import <TDParseKit/TDParseKit.h>
 
 @interface DemoAppDelegate ()
 - (void)doParse;
@@ -19,7 +19,7 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		self.tokenizer = [[[TODTokenizer alloc] init] autorelease];
+		self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
 		
 		[tokenizer.symbolState add:@"::"];
 		[tokenizer.symbolState add:@"<="];
@@ -72,13 +72,13 @@
 - (void)doParse {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	//self.tokenizer = [[[TODTokenizer alloc] init] autorelease];
+	//self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
 	self.tokenizer.string = self.inString;
 	
 	
 	NSMutableArray *toks = [[NSMutableArray alloc] init];
-	TODToken *tok = nil;
-	TODToken *eofTok = [TODToken EOFToken];
+	TDToken *tok = nil;
+	TDToken *eofTok = [TDToken EOFToken];
 	while (tok = [tokenizer nextToken]) {
 		if (eofTok == tok) {
 			break;
@@ -96,13 +96,13 @@
 
 - (void)done:(NSArray *)toks {
 	NSMutableString *s = [NSMutableString string];
-	for (TODToken *tok in toks) {
+	for (TDToken *tok in toks) {
 		[s appendFormat:@"%@ %C", tok.stringValue, 0xab];
 	}
 	self.tokString = [[s copy] autorelease];
 	
 	s = [NSMutableString string];
-	for (TODToken *tok in toks) {
+	for (TDToken *tok in toks) {
 		[s appendFormat:@"%@\n", [tok debugDescription]];
 	}
 	self.outString = [[s copy] autorelease];

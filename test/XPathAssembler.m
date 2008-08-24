@@ -1,13 +1,13 @@
 //
 //  XPathAssembler.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/17/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "XPathAssembler.h"
-#import <TODParseKit/TODParseKit.h>
+#import <TDParseKit/TDParseKit.h>
 #import "XPathContext.h"
 
 @implementation XPathAssembler
@@ -32,25 +32,25 @@
 }
 
 
-- (void)workOnAxisSpecifierAssembly:(TODAssembly *)a {
+- (void)workOnAxisSpecifierAssembly:(TDAssembly *)a {
 	//NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 	
-	//TODToken *tok = [a pop];
+	//TDToken *tok = [a pop];
 	
 }
 
 
-- (void)workOnNodeTestAssembly:(TODAssembly *)a {
+- (void)workOnNodeTestAssembly:(TDAssembly *)a {
 	//NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 
-- (void)workOnPredicateAssembly:(TODAssembly *)a {
+- (void)workOnPredicateAssembly:(TDAssembly *)a {
 	//NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 // [4] Step ::=   	AxisSpecifier NodeTest Predicate* | AbbreviatedStep	
-- (void)workOnStepAssembly:(TODAssembly *)a {
+- (void)workOnStepAssembly:(TDAssembly *)a {
 	//NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 

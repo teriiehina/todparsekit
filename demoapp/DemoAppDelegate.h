@@ -1,6 +1,6 @@
 //
 //  DemoAppDelegate.h
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class TODTokenizer;
+@class TDTokenizer;
 
 @interface DemoAppDelegate : NSObject {
 	IBOutlet NSTokenField *tokenField;
 	
-	TODTokenizer *tokenizer;
+	TDTokenizer *tokenizer;
 	NSString *inString;
 	NSString *outString;
 	NSString *tokString;
@@ -21,7 +21,7 @@
 }
 - (IBAction)parse:(id)sender;
 
-@property (retain) TODTokenizer *tokenizer;
+@property (retain) TDTokenizer *tokenizer;
 @property (retain) NSString *inString;
 @property (retain) NSString *outString;
 @property (retain) NSString *tokString;

@@ -1,6 +1,6 @@
 //
 //  SRGSParserTest.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/15/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -52,7 +52,7 @@
 
 - (void)testWeight {
 	s = @"/4.0/";
-	a = [TODTokenAssembly assemblyWithString:s];
+	a = [TDTokenAssembly assemblyWithString:s];
 	result = [p.weight bestMatchFor:a];
 	STAssertNotNil(result, @"");
 	STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
@@ -61,7 +61,7 @@
 
 - (void)testProbability {
 	s = @"/4.0/";
-	a = [TODTokenAssembly assemblyWithString:s];
+	a = [TDTokenAssembly assemblyWithString:s];
 	result = [p.probability bestMatchFor:a];
 	STAssertNotNil(result, @"");
 	STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
