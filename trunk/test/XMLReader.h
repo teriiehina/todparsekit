@@ -3,7 +3,7 @@
 //  XMLReader
 //
 //  Created by Todd Ditchendorf on 6/5/06.
-//  Copyright 2006 Todd Ditchendorf. All rights reserved.
+//  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
