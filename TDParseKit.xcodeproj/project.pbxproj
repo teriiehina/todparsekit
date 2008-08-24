@@ -157,6 +157,14 @@
 		D31FE6D30E60E9E300A0803E /* TDSignificantWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6D40E60E9E300A0803E /* TDSignificantWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */; };
 		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
+		D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
+		D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A60E60E5D500A0803E /* TDJsonParser.m */; };
+		D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
+		D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
+		D31FE7340E60F34600A0803E /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
+		D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
+		D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
+		D31FE7420E60F40900A0803E /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
@@ -495,6 +503,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
 				D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1332,6 +1341,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31FE7420E60F40900A0803E /* XPathContext.m in Sources */,
+				D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */,
+				D31FE7340E60F34600A0803E /* XPathParser.m in Sources */,
+				D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */,
+				D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */,
+				D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */,
+				D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */,
 				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 			);
@@ -1576,8 +1592,10 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
 				INFOPLIST_FILE = "DebugApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -1600,8 +1618,10 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
 				INFOPLIST_FILE = "DebugApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
