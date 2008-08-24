@@ -3,7 +3,7 @@
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/21/06.
-//  Copyright 2006 Todd Ditchendorf. All rights reserved.
+//  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "TDReaderTest.h"
