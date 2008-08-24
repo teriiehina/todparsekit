@@ -32,7 +32,7 @@
 //	TDAssembly *result = [p completeMatchFor:a];
 	
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
 	TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
