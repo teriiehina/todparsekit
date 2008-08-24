@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 //#import <libxml2/libxml/xmlreader.h>
 #import <libxml/xmlreader.h>
 
