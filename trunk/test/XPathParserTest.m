@@ -1,13 +1,13 @@
 //
 //  XPathParserTest.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/16/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "XPathParserTest.h"
-#import "TODNCName.h"
+#import "TDNCName.h"
 
 @implementation XPathParserTest
 
@@ -122,7 +122,7 @@
 	
 	s = @"foo:bar";
 	a = [p assemblyWithString:s];
-	//STAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TODTrackException", @"");
+	//STAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TDTrackException", @"");
 }
 
 
@@ -159,7 +159,7 @@
 	
 	s = @"foo:bar";
 	a = [p assemblyWithString:s];
-	//STAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TODTrackException", @"");
+	//STAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TDTrackException", @"");
 }
 
 

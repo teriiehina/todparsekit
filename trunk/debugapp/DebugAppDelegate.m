@@ -1,18 +1,18 @@
 //
 //  DebugAppDelegate.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "DebugAppDelegate.h"
-#import <TODParseKit/TODParseKit.h>
-#import "TODJsonParser.h"
-#import "TODFastJsonParser.h"
-#import "TODRegularParser.h"
-#import "TODXmlNameState.h"
-#import "TODXmlToken.h"
+#import <TDParseKit/TDParseKit.h>
+#import "TDJsonParser.h"
+#import "TDFastJsonParser.h"
+#import "TDRegularParser.h"
+#import "TDXmlNameState.h"
+#import "TDXmlToken.h"
 
 @implementation DebugAppDelegate
 
@@ -20,23 +20,23 @@
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 //	NSString *s = @"123";
-//	TODAssembly *a = [TODCharacterAssembly assemblyWithString:s];
-//	TODParser *p = [TODDigit digit];
+//	TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
+//	TDParser *p = [TDDigit digit];
 //	
-//	TODAssembly *result = [p completeMatchFor:a];
+//	TDAssembly *result = [p completeMatchFor:a];
 
 //	NSString *s = @"a b c";
-//	TODAssembly *a = [TODTokenAssembly assemblyWithString:s];
-//	TODParser *p = [TODWord word];
+//	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+//	TDParser *p = [TDWord word];
 //	
-//	TODAssembly *result = [p completeMatchFor:a];
+//	TDAssembly *result = [p completeMatchFor:a];
 	
 	
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
-	TODJsonParser *p = [[[TODJsonParser alloc] init] autorelease];
-//	TODFastJsonParser *p = [[[TODFastJsonParser alloc] init] autorelease];
+	TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
+//	TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
 	
 	id result = nil;
 	

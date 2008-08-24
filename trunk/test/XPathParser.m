@@ -1,15 +1,15 @@
 //
 //  XPathParser.m
-//  TODParseKit
+//  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/16/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
 #import "XPathParser.h"
-//#import "TODNCName.h"
-#import <TODParseKit/TODParseKit.h>
-#import "TODNCNameState.h"
+//#import "TDNCName.h"
+#import <TDParseKit/TDParseKit.h>
+#import "TDNCNameState.h"
 #import "XPathAssembler.h"
 
 @interface XPathParser ()
@@ -71,9 +71,9 @@
 }
 
 
-- (TODAssembly *)assemblyWithString:(NSString *)s {
-	TODTokenAssembly *a = [TODTokenAssembly assemblyWithString:s];
-	TODTokenizer *t = a.tokenizer;
+- (TDAssembly *)assemblyWithString:(NSString *)s {
+	TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
+	TDTokenizer *t = a.tokenizer;
 	
 	[t.symbolState add:@"::"];
 	[t.symbolState add:@"!="];
@@ -82,7 +82,7 @@
 	[t.symbolState add:@".."];
 	[t.symbolState add:@"//"];
 	
-//	TODNCNameState *NCNameState = [[[TODNCNameState alloc] init] autorelease];
+//	TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
 	
 	[t setCharacterState:t.wordState from: '_' to: '_'];
 //	[t setCharacterState:NCNameState from: 'a' to: 'z'];
@@ -94,17 +94,17 @@
 
 - (id)parse:(NSString *)s {
 	[xpathAssembler reset];
-	TODAssembly *a = [self assemblyWithString:s];
+	TDAssembly *a = [self assemblyWithString:s];
 	id result = [self completeMatchFor:a];
 	return result;
 }
 
 
 // [1]		LocationPath						::=   	RelativeLocationPath | AbsoluteLocationPath	
-- (TODCollectionParser *)locationPath {
+- (TDCollectionParser *)locationPath {
 	//NSLog(@"%s", _cmd);
 	if (!locationPath) {
-		self.locationPath = [TODAlternation alternation];
+		self.locationPath = [TDAlternation alternation];
 		locationPath.name = @"locationPath";
 		
 		[locationPath add:self.relativeLocationPath];
@@ -115,18 +115,18 @@
 
 
 //[2]		AbsoluteLocationPath				::=   	'/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath	
-- (TODCollectionParser *)absoluteLocationPath {
+- (TDCollectionParser *)absoluteLocationPath {
 	//NSLog(@"%s", _cmd);
 	if (!absoluteLocationPath) {
-		self.absoluteLocationPath = [TODAlternation alternation];
+		self.absoluteLocationPath = [TDAlternation alternation];
 		absoluteLocationPath.name = @"absoluteLocationPath";
 
-		TODAlternation *a = [TODAlternation alternation];
-		[a add:[TODEmpty empty]];
+		TDAlternation *a = [TDAlternation alternation];
+		[a add:[TDEmpty empty]];
 		[a add:self.relativeLocationPath];
 		
-		TODSequence *s = [TODSequence sequence];
-		[s add:[TODSymbol symbolWithString:@"/"]];
+		TDSequence *s = [TDSequence sequence];
+		[s add:[TDSymbol symbolWithString:@"/"]];
 		[s add:a];
 		
 		[absoluteLocationPath add:s];
@@ -143,22 +143,22 @@
 // avoiding left recursion by changing to this
 //[3] RelativeLocationPath ::= Step SlashStep*	| AbbreviatedRelativeLocationPath
 
-- (TODCollectionParser *)relativeLocationPath {
+- (TDCollectionParser *)relativeLocationPath {
 	//NSLog(@"%s", _cmd);
 	if (!relativeLocationPath) {
-		self.relativeLocationPath = [TODAlternation alternation];
+		self.relativeLocationPath = [TDAlternation alternation];
 		relativeLocationPath.name = @"relativeLocationPath";
 
-		TODSequence *s = [TODSequence sequence];
+		TDSequence *s = [TDSequence sequence];
 		[s add:self.step];
 
-		TODSequence *slashStep = [TODSequence sequence];
-		[slashStep add:[TODSymbol symbolWithString:@"/"]];
+		TDSequence *slashStep = [TDSequence sequence];
+		[slashStep add:[TDSymbol symbolWithString:@"/"]];
 		[slashStep add:self.step];
-		[s add:[TODRepetition repetitionWithSubparser:slashStep]];
+		[s add:[TDRepetition repetitionWithSubparser:slashStep]];
 
 		[relativeLocationPath add:s];
-		// TODO this is causing and infinite loop!
+		// TDO this is causing and infinite loop!
 //		[relativeLocationPath add:self.abbreviatedRelativeLocationPath];
 	}
 	return relativeLocationPath;
@@ -166,16 +166,16 @@
 
 
 // [4] Step ::=   	AxisSpecifier NodeTest Predicate* | AbbreviatedStep	
-- (TODCollectionParser *)step {
+- (TDCollectionParser *)step {
 	NSLog(@"%s", _cmd);
 	if (!step) {
-		self.step = [TODAlternation alternation];
+		self.step = [TDAlternation alternation];
 		step.name = @"step";
 		
-		TODSequence *s = [TODSequence sequence];
+		TDSequence *s = [TDSequence sequence];
 		[s add:self.axisSpecifier];
 		[s add:self.nodeTest];
-		[s add:[TODRepetition repetitionWithSubparser:self.predicate]];
+		[s add:[TDRepetition repetitionWithSubparser:self.predicate]];
 		
 		[step add:s];
 		[step add:self.abbreviatedStep];
@@ -187,15 +187,15 @@
 
 
 // [5]	AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
-- (TODCollectionParser *)axisSpecifier {
+- (TDCollectionParser *)axisSpecifier {
 	//NSLog(@"%s", _cmd);
 	if (!axisSpecifier) {
-		self.axisSpecifier = [TODAlternation alternation];
+		self.axisSpecifier = [TDAlternation alternation];
 		axisSpecifier.name = @"axisSpecifier";
 		
-		TODSequence *s = [TODSequence sequence];
+		TDSequence *s = [TDSequence sequence];
 		[s add:self.axisName];
-		[s add:[TODSymbol symbolWithString:@"::"]];
+		[s add:[TDSymbol symbolWithString:@"::"]];
 		
 		[axisSpecifier add:s];
 		[axisSpecifier add:self.abbreviatedAxisSpecifier];
@@ -207,48 +207,48 @@
 
 // [6] AxisName ::= 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
 //			| 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
-- (TODCollectionParser *)axisName {
+- (TDCollectionParser *)axisName {
 	//NSLog(@"%s", _cmd);
 	if (!axisName) {
-		self.axisName = [TODAlternation alternation];
+		self.axisName = [TDAlternation alternation];
 		axisName.name = @"axisName";
-		[axisName add:[TODLiteral literalWithString:@"ancestor"]];
-		[axisName add:[TODLiteral literalWithString:@"ancestor-or-self"]];
-		[axisName add:[TODLiteral literalWithString:@"attribute"]];
-		[axisName add:[TODLiteral literalWithString:@"child"]];
-		[axisName add:[TODLiteral literalWithString:@"descendant"]];
-		[axisName add:[TODLiteral literalWithString:@"descendant-or-self"]];
-		[axisName add:[TODLiteral literalWithString:@"following"]];
-		[axisName add:[TODLiteral literalWithString:@"following-sibling"]];
-		[axisName add:[TODLiteral literalWithString:@"preceeding"]];
-		[axisName add:[TODLiteral literalWithString:@"preceeding-sibling"]];
-		[axisName add:[TODLiteral literalWithString:@"namespace"]];
-		[axisName add:[TODLiteral literalWithString:@"parent"]];
-		[axisName add:[TODLiteral literalWithString:@"self"]];
+		[axisName add:[TDLiteral literalWithString:@"ancestor"]];
+		[axisName add:[TDLiteral literalWithString:@"ancestor-or-self"]];
+		[axisName add:[TDLiteral literalWithString:@"attribute"]];
+		[axisName add:[TDLiteral literalWithString:@"child"]];
+		[axisName add:[TDLiteral literalWithString:@"descendant"]];
+		[axisName add:[TDLiteral literalWithString:@"descendant-or-self"]];
+		[axisName add:[TDLiteral literalWithString:@"following"]];
+		[axisName add:[TDLiteral literalWithString:@"following-sibling"]];
+		[axisName add:[TDLiteral literalWithString:@"preceeding"]];
+		[axisName add:[TDLiteral literalWithString:@"preceeding-sibling"]];
+		[axisName add:[TDLiteral literalWithString:@"namespace"]];
+		[axisName add:[TDLiteral literalWithString:@"parent"]];
+		[axisName add:[TDLiteral literalWithString:@"self"]];
 	}
 	return axisName;
 }
 
 
 // [7]  NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
-- (TODCollectionParser *)nodeTest {
+- (TDCollectionParser *)nodeTest {
 	//NSLog(@"%s", _cmd);
 	if (!nodeTest) {
-		self.nodeTest = [TODAlternation alternation];
+		self.nodeTest = [TDAlternation alternation];
 		nodeTest.name = @"nodeTest";
 		[nodeTest add:self.nameTest];
 		
-		TODSequence *s = [TODSequence sequence];
+		TDSequence *s = [TDSequence sequence];
 		[s add:self.nodeType];
-		[s add:[TODSymbol symbolWithString:@"("]];
-		[s add:[TODSymbol symbolWithString:@")"]];
+		[s add:[TDSymbol symbolWithString:@"("]];
+		[s add:[TDSymbol symbolWithString:@")"]];
 		[nodeTest add:s];
 		
-		s = [TODSequence sequence];
-		[s add:[TODLiteral literalWithString:@"processing-instruction"]];
-		[s add:[TODSymbol symbolWithString:@"("]];
+		s = [TDSequence sequence];
+		[s add:[TDLiteral literalWithString:@"processing-instruction"]];
+		[s add:[TDSymbol symbolWithString:@"("]];
 		[s add:self.literal];
-		[s add:[TODSymbol symbolWithString:@")"]];
+		[s add:[TDSymbol symbolWithString:@")"]];
 		[nodeTest add:s];		
 	}
 	return nodeTest;
@@ -256,24 +256,24 @@
 
 
 // [8]  Predicate ::=  '[' PredicateExpr ']'	
-- (TODCollectionParser *)predicate {
+- (TDCollectionParser *)predicate {
 	//NSLog(@"%s", _cmd);
 	if (!predicate) {
-		self.predicate = [TODSequence sequence];
+		self.predicate = [TDSequence sequence];
 		predicate.name = @"predicate";
-		[predicate add:[TODSymbol symbolWithString:@"["]];
+		[predicate add:[TDSymbol symbolWithString:@"["]];
 		[predicate add:self.predicateExpr];
-		[predicate add:[TODSymbol symbolWithString:@"]"]];
+		[predicate add:[TDSymbol symbolWithString:@"]"]];
 	}
 	return predicate;
 }
 
 
 // [9]  PredicateExpr	::=   	Expr
-- (TODCollectionParser *)predicateExpr {
+- (TDCollectionParser *)predicateExpr {
 	//NSLog(@"%s", _cmd);
 	if (!predicateExpr) {
-		// TODO
+		// TDO
 		self.predicateExpr = self.expr;
 		predicateExpr.name = @"predicateExpr";
 	}
@@ -282,12 +282,12 @@
 
 
 // [10]  AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath	
-- (TODCollectionParser *)abbreviatedAbsoluteLocationPath {
+- (TDCollectionParser *)abbreviatedAbsoluteLocationPath {
 	//NSLog(@"%s", _cmd);
 	if (!abbreviatedAbsoluteLocationPath) {
-		self.abbreviatedAbsoluteLocationPath = [TODSequence sequence];
+		self.abbreviatedAbsoluteLocationPath = [TDSequence sequence];
 		abbreviatedAbsoluteLocationPath.name = @"abbreviatedAbsoluteLocationPath";
-		[abbreviatedAbsoluteLocationPath add:[TODSymbol symbolWithString:@"//"]];
+		[abbreviatedAbsoluteLocationPath add:[TDSymbol symbolWithString:@"//"]];
 		[abbreviatedAbsoluteLocationPath add:self.relativeLocationPath];
 	}
 	return abbreviatedAbsoluteLocationPath;
@@ -295,13 +295,13 @@
 
 
 // [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step	
-- (TODCollectionParser *)abbreviatedRelativeLocationPath {
+- (TDCollectionParser *)abbreviatedRelativeLocationPath {
 	//NSLog(@"%s", _cmd);
 	if (!abbreviatedRelativeLocationPath) {
-		self.abbreviatedRelativeLocationPath = [TODSequence sequence];
+		self.abbreviatedRelativeLocationPath = [TDSequence sequence];
 		abbreviatedRelativeLocationPath.name = @"abbreviatedRelativeLocationPath";
 		[abbreviatedRelativeLocationPath add:self.relativeLocationPath];
-		[abbreviatedRelativeLocationPath add:[TODSymbol symbolWithString:@"//"]];
+		[abbreviatedRelativeLocationPath add:[TDSymbol symbolWithString:@"//"]];
 		[abbreviatedRelativeLocationPath add:self.step];
 	}
 	return abbreviatedRelativeLocationPath;
@@ -309,36 +309,36 @@
 
 
 // [12] AbbreviatedStep	::=   	'.'	| '..'
-- (TODCollectionParser *)abbreviatedStep {
+- (TDCollectionParser *)abbreviatedStep {
 	//NSLog(@"%s", _cmd);
 	if (!abbreviatedStep) {
-		self.abbreviatedStep = [TODAlternation alternation];
+		self.abbreviatedStep = [TDAlternation alternation];
 		abbreviatedStep.name = @"abbreviatedStep";
-		[abbreviatedStep add:[TODSymbol symbolWithString:@"."]];
-		[abbreviatedStep add:[TODSymbol symbolWithString:@".."]];
+		[abbreviatedStep add:[TDSymbol symbolWithString:@"."]];
+		[abbreviatedStep add:[TDSymbol symbolWithString:@".."]];
 	}
 	return abbreviatedStep;
 }
 
 
 // [13] AbbreviatedAxisSpecifier ::=   	'@'?
-- (TODCollectionParser *)abbreviatedAxisSpecifier {
+- (TDCollectionParser *)abbreviatedAxisSpecifier {
 	//NSLog(@"%s", _cmd);
 	if (!abbreviatedAxisSpecifier) {
-		self.abbreviatedAxisSpecifier = [TODAlternation alternation];
+		self.abbreviatedAxisSpecifier = [TDAlternation alternation];
 		abbreviatedAxisSpecifier.name = @"abbreviatedAxisSpecifier";
-		[abbreviatedAxisSpecifier add:[TODEmpty empty]];
-		[abbreviatedAxisSpecifier add:[TODSymbol symbolWithString:@"@"]];
+		[abbreviatedAxisSpecifier add:[TDEmpty empty]];
+		[abbreviatedAxisSpecifier add:[TDSymbol symbolWithString:@"@"]];
 	}
 	return abbreviatedAxisSpecifier;
 }
 
 
 // [14]   	Expr ::=   	OrExpr	
-- (TODCollectionParser *)expr {
+- (TDCollectionParser *)expr {
 	//NSLog(@"%s", _cmd);
 	if (!expr) {
-		// TODO
+		// TDO
 		self.expr = self.orExpr;
 		expr.name = @"expr";
 	}
@@ -351,17 +351,17 @@
 //					| Literal	
 //					| Number	
 //					| FunctionCall
-- (TODCollectionParser *)primaryExpr {
+- (TDCollectionParser *)primaryExpr {
 	//NSLog(@"%s", _cmd);
 	if (!primaryExpr) {
-		self.primaryExpr = [TODAlternation alternation];
+		self.primaryExpr = [TDAlternation alternation];
 		primaryExpr.name = @"primaryExpr";
 		[primaryExpr add:self.variableReference];
 		
-		TODSequence *s = [TODSequence sequence];
-		[s add:[TODSymbol symbolWithString:@"("]];
+		TDSequence *s = [TDSequence sequence];
+		[s add:[TDSymbol symbolWithString:@"("]];
 		[s add:self.expr];
-		[s add:[TODSymbol symbolWithString:@")"]];
+		[s add:[TDSymbol symbolWithString:@")"]];
 		[primaryExpr add:s];
 		
 		[primaryExpr add:self.literal];
@@ -376,38 +376,38 @@
 
 // commaArg ::= ',' Argument
 // [16] FunctionCall ::= FunctionName '(' ( Argument commaArg* )? ')'	
-- (TODCollectionParser *)functionCall {
+- (TDCollectionParser *)functionCall {
 	//NSLog(@"%s", _cmd);
 	if (!functionCall) {
-		self.functionCall = [TODSequence sequence];
+		self.functionCall = [TDSequence sequence];
 		functionCall.name = @"functionCall";
 		[functionCall add:self.functionName];
-		[functionCall add:[TODSymbol symbolWithString:@"("]];
+		[functionCall add:[TDSymbol symbolWithString:@"("]];
 		
-		TODSequence *commaArg = [TODSequence sequence];
-		[commaArg add:[TODSymbol symbolWithString:@","]];
+		TDSequence *commaArg = [TDSequence sequence];
+		[commaArg add:[TDSymbol symbolWithString:@","]];
 		[commaArg add:self.argument];
 		
-		TODSequence *args = [TODSequence sequence];
+		TDSequence *args = [TDSequence sequence];
 		[args add:self.argument];
-		[args add:[TODRepetition repetitionWithSubparser:commaArg]];
+		[args add:[TDRepetition repetitionWithSubparser:commaArg]];
 		
-		TODAlternation *a = [TODAlternation alternation];
-		[a add:[TODEmpty empty]];
+		TDAlternation *a = [TDAlternation alternation];
+		[a add:[TDEmpty empty]];
 		[a add:args];
 		
 		[functionCall add:a];
-		[functionCall add:[TODSymbol symbolWithString:@")"]];
+		[functionCall add:[TDSymbol symbolWithString:@")"]];
 	}
 	return functionCall;
 }
 
 
 // [17] Argument ::=   	Expr
-- (TODCollectionParser *)argument {
+- (TDCollectionParser *)argument {
 	//NSLog(@"%s", _cmd);
 	if (!argument) {
-		// TODO
+		// TDO
 		self.argument = self.expr;
 		argument.name = @"argument";
 	}
@@ -422,18 +422,18 @@
 
 // pipePathExpr :: = | PathExpr
 // [18]  UnionExpr ::=   	PathExpr PipePathExpr*
-- (TODCollectionParser *)unionExpr {
+- (TDCollectionParser *)unionExpr {
 	//NSLog(@"%s", _cmd);
 	if (!unionExpr) {
-		self.unionExpr = [TODSequence sequence];
+		self.unionExpr = [TDSequence sequence];
 		unionExpr.name = @"unionExpr";
 
-		TODSequence *pipePathExpr = [TODSequence sequence];
-		[pipePathExpr add:[TODSymbol symbolWithString:@"|"]];
+		TDSequence *pipePathExpr = [TDSequence sequence];
+		[pipePathExpr add:[TDSymbol symbolWithString:@"|"]];
 		[pipePathExpr add:self.pathExpr];
 		
 		[unionExpr add:self.pathExpr];
-		[unionExpr add:[TODRepetition repetitionWithSubparser:pipePathExpr]];
+		[unionExpr add:[TDRepetition repetitionWithSubparser:pipePathExpr]];
 	}
 	return unionExpr;
 }
@@ -443,23 +443,23 @@
 //					| FilterExpr	
 //					| FilterExpr '/' RelativeLocationPath	
 //					| FilterExpr '//' RelativeLocationPath	
-- (TODCollectionParser *)pathExpr {
+- (TDCollectionParser *)pathExpr {
 	//NSLog(@"%s", _cmd);
 	if (!pathExpr) {
-		self.pathExpr = [TODAlternation alternation];
+		self.pathExpr = [TDAlternation alternation];
 		pathExpr.name = @"pathExpr";
 		[pathExpr add:self.locationPath];
 		[pathExpr add:self.filterExpr];
 		
-		TODSequence *s = [TODSequence sequence];
+		TDSequence *s = [TDSequence sequence];
 		[s add:self.filterExpr];
-		[s add:[TODSymbol symbolWithString:@"/"]];
+		[s add:[TDSymbol symbolWithString:@"/"]];
 		[s add:self.relativeLocationPath];
 		[pathExpr add:s];
 		
-		s = [TODSequence sequence];
+		s = [TDSequence sequence];
 		[s add:self.filterExpr];
-		[s add:[TODSymbol symbolWithString:@"//"]];
+		[s add:[TDSymbol symbolWithString:@"//"]];
 		[s add:self.relativeLocationPath];
 		[pathExpr add:s];
 	}
@@ -474,15 +474,15 @@
 
 
 // [20]  FilterExpr	 ::=   	PrimaryExpr Predicate?
-- (TODCollectionParser *)filterExpr {
+- (TDCollectionParser *)filterExpr {
 	//NSLog(@"%s", _cmd);
 	if (!filterExpr) {
-		self.filterExpr = [TODSequence sequence];
+		self.filterExpr = [TDSequence sequence];
 		filterExpr.name = @"filterExpr";
 		[filterExpr add:self.primaryExpr];
 		
-		TODAlternation *a = [TODAlternation alternation];
-		[a add:[TODEmpty empty]];
+		TDAlternation *a = [TDAlternation alternation];
+		[a add:[TDEmpty empty]];
 		[a add:self.predicate];
 		[filterExpr add:a];
 	}
@@ -496,19 +496,19 @@
 
 // orAndExpr ::= 'or' AndExpr
 // me: AndExpr orAndExpr*
-- (TODCollectionParser *)orExpr {
+- (TDCollectionParser *)orExpr {
 	//NSLog(@"%s", _cmd);
 	if (!orExpr) {
-		self.orExpr = [TODSequence sequence];
+		self.orExpr = [TDSequence sequence];
 		orExpr.name = @"orExpr";
 		
 		[orExpr add:self.andExpr];
 		
-		TODSequence *orAndExpr = [TODSequence sequence];
-		[orAndExpr add:[TODLiteral literalWithString:@"or"]];
+		TDSequence *orAndExpr = [TDSequence sequence];
+		[orAndExpr add:[TDLiteral literalWithString:@"or"]];
 		[orAndExpr add:self.andExpr];
 		
-		[orExpr add:[TODRepetition repetitionWithSubparser:orAndExpr]];
+		[orExpr add:[TDRepetition repetitionWithSubparser:orAndExpr]];
 	}
 	return orExpr;
 }
@@ -523,18 +523,18 @@
 // andEqualityExpr
 // EqualityExpr andEqualityExpr
 
-- (TODCollectionParser *)andExpr {
+- (TDCollectionParser *)andExpr {
 	//NSLog(@"%s", _cmd);
 	if (!andExpr) {
-		self.andExpr = [TODSequence sequence];
+		self.andExpr = [TDSequence sequence];
 		andExpr.name = @"andExpr";
 		[andExpr add:self.equalityExpr];
 
-		TODSequence *andEqualityExpr = [TODSequence sequence];
-		[andEqualityExpr add:[TODLiteral literalWithString:@"and"]];
+		TDSequence *andEqualityExpr = [TDSequence sequence];
+		[andEqualityExpr add:[TDLiteral literalWithString:@"and"]];
 		[andEqualityExpr add:self.equalityExpr];
 		
-		[andExpr add:[TODRepetition repetitionWithSubparser:andEqualityExpr]];
+		[andExpr add:[TDRepetition repetitionWithSubparser:andEqualityExpr]];
 	}
 	return andExpr;
 }
@@ -549,27 +549,27 @@
 
 // RelationalExpr (equalsRelationalExpr | notEqualsRelationalExpr)?
 
-- (TODCollectionParser *)equalityExpr {
+- (TDCollectionParser *)equalityExpr {
 	//NSLog(@"%s", _cmd);
 	if (!equalityExpr) {
-		self.equalityExpr = [TODSequence sequence];
+		self.equalityExpr = [TDSequence sequence];
 		equalityExpr.name = @"equalityExpr";
 		[equalityExpr add:self.relationalExpr];
 		
-		TODSequence *equalsRelationalExpr = [TODSequence sequence];
-		[equalsRelationalExpr add:[TODSymbol symbolWithString:@"="]];
+		TDSequence *equalsRelationalExpr = [TDSequence sequence];
+		[equalsRelationalExpr add:[TDSymbol symbolWithString:@"="]];
 		[equalsRelationalExpr add:self.relationalExpr];
 		
-		TODSequence *notEqualsRelationalExpr = [TODSequence sequence];
-		[notEqualsRelationalExpr add:[TODSymbol symbolWithString:@"!="]];
+		TDSequence *notEqualsRelationalExpr = [TDSequence sequence];
+		[notEqualsRelationalExpr add:[TDSymbol symbolWithString:@"!="]];
 		[notEqualsRelationalExpr add:self.relationalExpr];
 		
-		TODAlternation *a = [TODAlternation alternation];
+		TDAlternation *a = [TDAlternation alternation];
 		[a add:equalsRelationalExpr];
 		[a add:notEqualsRelationalExpr];
 		
-		TODAlternation *a1 = [TODAlternation alternation];
-		[a1 add:[TODEmpty empty]];
+		TDAlternation *a1 = [TDAlternation alternation];
+		[a1 add:[TDEmpty empty]];
 		[a1 add:a];
 		
 		[equalityExpr add:a1];
@@ -588,34 +588,34 @@
 //						| RelationalExpr '>=' AdditiveExpr
 
 // RelationalExpr = AdditiveExpr (ltAdditiveExpr | gtAdditiveExpr | lteAdditiveExpr | gteAdditiveExpr)?
-- (TODCollectionParser *)relationalExpr {
+- (TDCollectionParser *)relationalExpr {
 	//NSLog(@"%s", _cmd);
 	if (!relationalExpr) {
 		
-		self.relationalExpr = [TODSequence sequence];
+		self.relationalExpr = [TDSequence sequence];
 		relationalExpr.name = @"relationalExpr";
 		[relationalExpr add:self.additiveExpr];
 		
-		TODAlternation *a = [TODAlternation alternation];
+		TDAlternation *a = [TDAlternation alternation];
 		
-		TODSequence *ltAdditiveExpr = [TODSequence sequence];
-		[ltAdditiveExpr add:[TODSymbol symbolWithString:@"<"]];
+		TDSequence *ltAdditiveExpr = [TDSequence sequence];
+		[ltAdditiveExpr add:[TDSymbol symbolWithString:@"<"]];
 		[a add:ltAdditiveExpr];
 
-		TODSequence *gtAdditiveExpr = [TODSequence sequence];
-		[gtAdditiveExpr add:[TODSymbol symbolWithString:@">"]];
+		TDSequence *gtAdditiveExpr = [TDSequence sequence];
+		[gtAdditiveExpr add:[TDSymbol symbolWithString:@">"]];
 		[a add:gtAdditiveExpr];
 
-		TODSequence *lteAdditiveExpr = [TODSequence sequence];
-		[lteAdditiveExpr add:[TODSymbol symbolWithString:@"<="]];
+		TDSequence *lteAdditiveExpr = [TDSequence sequence];
+		[lteAdditiveExpr add:[TDSymbol symbolWithString:@"<="]];
 		[a add:lteAdditiveExpr];
 
-		TODSequence *gteAdditiveExpr = [TODSequence sequence];
-		[gteAdditiveExpr add:[TODSymbol symbolWithString:@">="]];
+		TDSequence *gteAdditiveExpr = [TDSequence sequence];
+		[gteAdditiveExpr add:[TDSymbol symbolWithString:@">="]];
 		[a add:gteAdditiveExpr];
 		
-		TODAlternation *a1 = [TODAlternation alternation];
-		[a1 add:[TODEmpty empty]];
+		TDAlternation *a1 = [TDAlternation alternation];
+		[a1 add:[TDEmpty empty]];
 		[a1 add:a];
 		
 		[relationalExpr add:a1];
@@ -632,27 +632,27 @@
 //						| AdditiveExpr '-' MultiplicativeExpr	
 
 // AdditiveExpr ::= MultiplicativeExpr (plusMultiplicativeExpr | minusMultiplicativeExpr)?
-- (TODCollectionParser *)additiveExpr {
+- (TDCollectionParser *)additiveExpr {
 	//NSLog(@"%s", _cmd);
 	if (!additiveExpr) {
-		self.additiveExpr = [TODSequence sequence];
+		self.additiveExpr = [TDSequence sequence];
 		additiveExpr.name = @"additiveExpr";
 		[additiveExpr add:self.multiplicativeExpr];
 		
-		TODAlternation *a = [TODAlternation alternation];
+		TDAlternation *a = [TDAlternation alternation];
 
-		TODSequence *plusMultiplicativeExpr = [TODSequence sequence];
-		[plusMultiplicativeExpr add:[TODSymbol symbolWithString:@"+"]];
+		TDSequence *plusMultiplicativeExpr = [TDSequence sequence];
+		[plusMultiplicativeExpr add:[TDSymbol symbolWithString:@"+"]];
 		[plusMultiplicativeExpr add:self.multiplicativeExpr];
 		[a add:plusMultiplicativeExpr];
 		
-		TODSequence *minusMultiplicativeExpr = [TODSequence sequence];
-		[minusMultiplicativeExpr add:[TODSymbol symbolWithString:@"-"]];
+		TDSequence *minusMultiplicativeExpr = [TDSequence sequence];
+		[minusMultiplicativeExpr add:[TDSymbol symbolWithString:@"-"]];
 		[minusMultiplicativeExpr add:self.multiplicativeExpr];
 		[a add:minusMultiplicativeExpr];
 		
-		TODAlternation *a1 = [TODAlternation alternation];
-		[a1 add:[TODEmpty empty]];
+		TDAlternation *a1 = [TDAlternation alternation];
+		[a1 add:[TDEmpty empty]];
 		[a1 add:a];
 		
 		[additiveExpr add:a1];
@@ -670,32 +670,32 @@
 //							| MultiplicativeExpr 'mod' UnaryExpr
 
 // MultiplicativeExpr :: = UnaryExpr (multiplyUnaryExpr | divUnaryExpr | modUnaryExpr)? 
-- (TODCollectionParser *)multiplicativeExpr {
+- (TDCollectionParser *)multiplicativeExpr {
 	//NSLog(@"%s", _cmd);
 	if (!multiplicativeExpr) {
-		self.multiplicativeExpr = [TODSequence sequence];
+		self.multiplicativeExpr = [TDSequence sequence];
 		multiplicativeExpr.name = @"multiplicativeExpr";
 		[multiplicativeExpr add:self.unaryExpr];
 		
-		TODAlternation *a = [TODAlternation alternation];
+		TDAlternation *a = [TDAlternation alternation];
 		
-		TODSequence *multiplyUnaryExpr = [TODSequence sequence];
+		TDSequence *multiplyUnaryExpr = [TDSequence sequence];
 		[multiplyUnaryExpr add:self.multiplyOperator];
 		[multiplyUnaryExpr add:self.unaryExpr];
 		[a add:multiplyUnaryExpr];
 		
-		TODSequence *divUnaryExpr = [TODSequence sequence];
-		[divUnaryExpr add:[TODLiteral literalWithString:@"div"]];
+		TDSequence *divUnaryExpr = [TDSequence sequence];
+		[divUnaryExpr add:[TDLiteral literalWithString:@"div"]];
 		[divUnaryExpr add:self.unaryExpr];
 		[a add:divUnaryExpr];
 		
-		TODSequence *modUnaryExpr = [TODSequence sequence];
-		[modUnaryExpr add:[TODLiteral literalWithString:@"mod"]];
+		TDSequence *modUnaryExpr = [TDSequence sequence];
+		[modUnaryExpr add:[TDLiteral literalWithString:@"mod"]];
 		[modUnaryExpr add:self.unaryExpr];
 		[a add:modUnaryExpr];
 		
-		TODAlternation *a1 = [TODAlternation alternation];
-		[a1 add:[TODEmpty empty]];
+		TDAlternation *a1 = [TDAlternation alternation];
+		[a1 add:[TDEmpty empty]];
 		[a1 add:a];
 		
 		[multiplicativeExpr add:a1];
@@ -710,24 +710,24 @@
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
 
 // UnaryExpr ::= '-'? UnionExpr
-- (TODCollectionParser *)unaryExpr {
+- (TDCollectionParser *)unaryExpr {
 	//NSLog(@"%s", _cmd);
 	if (!unaryExpr) {
-		self.unaryExpr = [TODSequence sequence];
+		self.unaryExpr = [TDSequence sequence];
 		unaryExpr.name = @"unaryExpr";
 		
-		TODAlternation *a = [TODAlternation alternation];
-		[a add:[TODEmpty empty]];
-		[a add:[TODSymbol symbolWithString:@"-"]];
+		TDAlternation *a = [TDAlternation alternation];
+		[a add:[TDEmpty empty]];
+		[a add:[TDSymbol symbolWithString:@"-"]];
 		
 		[unaryExpr add:a];
 		[unaryExpr add:self.unionExpr];
 		
-		//		self.unaryExpr = [TODAlternation alternation];
+		//		self.unaryExpr = [TDAlternation alternation];
 //		[unaryExpr add:self.unionExpr];
 //		
-//		TODSequence *s = [TODSequence sequence];
-//		[s add:[TODSymbol symbolWithString:@"-"]];
+//		TDSequence *s = [TDSequence sequence];
+//		[s add:[TDSymbol symbolWithString:@"-"]];
 //		[s add:unaryExpr];
 //		[unionExpr add:s];
 	}
@@ -744,22 +744,22 @@
 //					| Literal	
 //					| Number	
 //					| VariableReference	
-- (TODCollectionParser *)exprToken {
+- (TDCollectionParser *)exprToken {
 	//NSLog(@"%s", _cmd);
 	if (!exprToken) {
-		self.exprToken = [TODAlternation alternation];
+		self.exprToken = [TDAlternation alternation];
 		exprToken.name = @"exprToken";
 		
-		TODAlternation *a = [TODAlternation alternation];
-		[a add:[TODSymbol symbolWithString:@"("]];
-		[a add:[TODSymbol symbolWithString:@")"]];
-		[a add:[TODSymbol symbolWithString:@"["]];
-		[a add:[TODSymbol symbolWithString:@"]"]];
-		[a add:[TODSymbol symbolWithString:@"."]];
-		[a add:[TODSymbol symbolWithString:@".."]];
-		[a add:[TODSymbol symbolWithString:@"@"]];
-		[a add:[TODSymbol symbolWithString:@","]];
-		[a add:[TODSymbol symbolWithString:@"::"]];
+		TDAlternation *a = [TDAlternation alternation];
+		[a add:[TDSymbol symbolWithString:@"("]];
+		[a add:[TDSymbol symbolWithString:@")"]];
+		[a add:[TDSymbol symbolWithString:@"["]];
+		[a add:[TDSymbol symbolWithString:@"]"]];
+		[a add:[TDSymbol symbolWithString:@"."]];
+		[a add:[TDSymbol symbolWithString:@".."]];
+		[a add:[TDSymbol symbolWithString:@"@"]];
+		[a add:[TDSymbol symbolWithString:@","]];
+		[a add:[TDSymbol symbolWithString:@"::"]];
 		[exprToken add:a];
 		
 		[exprToken add:self.nameTest];
@@ -775,20 +775,20 @@
 }
 
 
-- (TODParser *)literal {
+- (TDParser *)literal {
 	//NSLog(@"%s", _cmd);
 	if (!literal) {
-		self.literal = [TODQuotedString quotedString];
+		self.literal = [TDQuotedString quotedString];
 		literal.name = @"literal";
 	}
 	return literal;
 }
 
 
-- (TODParser *)number {
+- (TDParser *)number {
 	//NSLog(@"%s", _cmd);
 	if (!number) {
-		self.number = [TODNum num];
+		self.number = [TDNum num];
 		number.name = @"number";
 	}
 	return number;
@@ -798,49 +798,49 @@
 // [32] Operator ::= OperatorName	
 //					| MultiplyOperator	
 //					| '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>='	
-- (TODCollectionParser *)operator {
+- (TDCollectionParser *)operator {
 	//NSLog(@"%s", _cmd);
 	if (!operator) {
-		self.operator = [TODAlternation alternation];
+		self.operator = [TDAlternation alternation];
 		operator.name = @"operator";
 		[operator add:self.operatorName];
 		[operator add:self.multiplyOperator];
-		[operator add:[TODSymbol symbolWithString: @"/"]];
-		[operator add:[TODSymbol symbolWithString:@"//"]];
-		[operator add:[TODSymbol symbolWithString: @"|"]];
-		[operator add:[TODSymbol symbolWithString: @"+"]];
-		[operator add:[TODSymbol symbolWithString: @"-"]];
-		[operator add:[TODSymbol symbolWithString: @"="]];
-		[operator add:[TODSymbol symbolWithString:@"!="]];
-		[operator add:[TODSymbol symbolWithString: @"<"]];
-		[operator add:[TODSymbol symbolWithString:@"<="]];
-		[operator add:[TODSymbol symbolWithString: @">"]];
-		[operator add:[TODSymbol symbolWithString:@">="]];
+		[operator add:[TDSymbol symbolWithString: @"/"]];
+		[operator add:[TDSymbol symbolWithString:@"//"]];
+		[operator add:[TDSymbol symbolWithString: @"|"]];
+		[operator add:[TDSymbol symbolWithString: @"+"]];
+		[operator add:[TDSymbol symbolWithString: @"-"]];
+		[operator add:[TDSymbol symbolWithString: @"="]];
+		[operator add:[TDSymbol symbolWithString:@"!="]];
+		[operator add:[TDSymbol symbolWithString: @"<"]];
+		[operator add:[TDSymbol symbolWithString:@"<="]];
+		[operator add:[TDSymbol symbolWithString: @">"]];
+		[operator add:[TDSymbol symbolWithString:@">="]];
 	}
 	return operator;
 }
 
 
 // [33] OperatorName ::=   	'and' | 'or' | 'mod' | 'div'	
-- (TODCollectionParser *)operatorName {
+- (TDCollectionParser *)operatorName {
 	//NSLog(@"%s", _cmd);
 	if (!operatorName) {
-		self.operatorName = [TODAlternation alternation];
+		self.operatorName = [TDAlternation alternation];
 		operatorName.name = @"operatorName";
-		[operatorName add:[TODLiteral literalWithString:@"and"]];
-		[operatorName add:[TODLiteral literalWithString: @"or"]];
-		[operatorName add:[TODLiteral literalWithString:@"mod"]];
-		[operatorName add:[TODLiteral literalWithString:@"div"]];
+		[operatorName add:[TDLiteral literalWithString:@"and"]];
+		[operatorName add:[TDLiteral literalWithString: @"or"]];
+		[operatorName add:[TDLiteral literalWithString:@"mod"]];
+		[operatorName add:[TDLiteral literalWithString:@"div"]];
 	}
 	return operatorName;
 }
 
 
 // [34]   	MultiplyOperator					::=   	'*'	
-- (TODParser *)multiplyOperator {
+- (TDParser *)multiplyOperator {
 	//NSLog(@"%s", _cmd);
 	if (!multiplyOperator) {
-		self.multiplyOperator = [TODSymbol symbolWithString:@"*"];
+		self.multiplyOperator = [TDSymbol symbolWithString:@"*"];
 		multiplyOperator.name = @"multiplyOperator";
 	}
 	return multiplyOperator;
@@ -852,19 +852,19 @@
 //[9]   	UnprefixedName	 ::=   	 LocalPart
 //[10]   	Prefix	   ::=   	NCName
 //[11]   	LocalPart	   ::=   	NCName
-- (TODCollectionParser *)QName {
+- (TDCollectionParser *)QName {
 	//NSLog(@"%s", _cmd);
 	if (!QName) {
-		self.QName = [TODAlternation alternation];
+		self.QName = [TDAlternation alternation];
 		QName.name = @"QName";
 
-		TODParser *prefix = [TODWord word];
-		TODParser *localPart = [TODWord word];
-		TODParser *unprefixedName = localPart;
+		TDParser *prefix = [TDWord word];
+		TDParser *localPart = [TDWord word];
+		TDParser *unprefixedName = localPart;
 		
-		TODSequence *prefixedName = [TODSequence sequence];
+		TDSequence *prefixedName = [TDSequence sequence];
 		[prefixedName add:prefix];
-		[prefixedName add:[TODSymbol symbolWithString:@":"]];
+		[prefixedName add:[TDSymbol symbolWithString:@":"]];
 		[prefixedName add:localPart];
 		
 		[QName add:prefixedName];
@@ -875,10 +875,10 @@
 
 
 // [35] FunctionName ::= QName - NodeType	
-- (TODParser *)functionName {
+- (TDParser *)functionName {
 	//NSLog(@"%s", _cmd);
 	if (!functionName) {
-		self.functionName = self.QName; // TODO QName - NodeType
+		self.functionName = self.QName; // TDO QName - NodeType
 		functionName.name = @"functionName";
 	}
 	return functionName;
@@ -886,12 +886,12 @@
 
 
 // [36]  VariableReference ::=   	'$' QName	
-- (TODCollectionParser *)variableReference {
+- (TDCollectionParser *)variableReference {
 	//NSLog(@"%s", _cmd);
 	if (!variableReference) {
-		self.variableReference = [TODSequence sequence];
+		self.variableReference = [TDSequence sequence];
 		variableReference.name = @"variableReference";
-		[variableReference add:[TODSymbol symbolWithString:@"$"]];
+		[variableReference add:[TDSymbol symbolWithString:@"$"]];
 		[variableReference add:self.QName];
 	}
 	return variableReference;
@@ -899,17 +899,17 @@
 
 
 // [37] NameTest ::= '*' | NCName ':' '*' | QName	
-- (TODCollectionParser *)nameTest {
+- (TDCollectionParser *)nameTest {
 	//NSLog(@"%s", _cmd);
 	if (!nameTest) {
-		self.nameTest = [TODAlternation alternation];
+		self.nameTest = [TDAlternation alternation];
 		nameTest.name = @"nameTest";
-		[nameTest add:[TODSymbol symbolWithString:@"*"]];
+		[nameTest add:[TDSymbol symbolWithString:@"*"]];
 
-		TODSequence *s = [TODSequence sequence];
-		[s add:[TODWord word]];
-		[s add:[TODSymbol symbolWithString:@":"]];
-		[s add:[TODSymbol symbolWithString:@"*"]];
+		TDSequence *s = [TDSequence sequence];
+		[s add:[TDWord word]];
+		[s add:[TDSymbol symbolWithString:@":"]];
+		[s add:[TDSymbol symbolWithString:@"*"]];
 		[nameTest add:s];
 		
 		[nameTest add:self.QName];
@@ -922,15 +922,15 @@
 //					| 'text'	
 //					| 'processing-instruction'	
 //					| 'node'
-- (TODCollectionParser *)nodeType {
+- (TDCollectionParser *)nodeType {
 	//NSLog(@"%s", _cmd);
 	if (!nodeType) {
-		self.nodeType = [TODAlternation alternation];
+		self.nodeType = [TDAlternation alternation];
 		nodeType.name = @"nodeType";
-		[nodeType add:[TODLiteral literalWithString:@"comment"]];
-		[nodeType add:[TODLiteral literalWithString:@"text"]];
-		[nodeType add:[TODLiteral literalWithString:@"processing-instruction"]];
-		[nodeType add:[TODLiteral literalWithString:@"node"]];
+		[nodeType add:[TDLiteral literalWithString:@"comment"]];
+		[nodeType add:[TDLiteral literalWithString:@"text"]];
+		[nodeType add:[TDLiteral literalWithString:@"processing-instruction"]];
+		[nodeType add:[TDLiteral literalWithString:@"node"]];
 	}
 	return nodeType;
 }
