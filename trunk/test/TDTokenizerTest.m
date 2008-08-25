@@ -242,10 +242,28 @@
 	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
 	
 	TDToken *t = [tokenizer nextToken];
+	STAssertEqualObjects(@"+", t.stringValue, @"");	
+	STAssertTrue(t.isSymbol, @"");
+
+	t = [tokenizer nextToken];
+	STAssertEquals(2.0f, t.floatValue, @"");	
+	STAssertTrue(t.isNumber, @"");
+	STAssertEqualObjects(@"2", t.stringValue, @"");	
+
+	STAssertEquals([TDToken EOFToken], [tokenizer nextToken], @"");
+}
+
+
+- (void)testMinusPlusTwoCustom {
+	self.string = @"+2";
+	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+	[tokenizer setCharacterState:tokenizer.numberState from:'+' to:'+'];
+	
+	TDToken *t = [tokenizer nextToken];
 	STAssertEquals(2.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");
 	STAssertEqualObjects(@"+2", t.stringValue, @"");	
-
+	
 	STAssertEquals([TDToken EOFToken], [tokenizer nextToken], @"");
 }
 
