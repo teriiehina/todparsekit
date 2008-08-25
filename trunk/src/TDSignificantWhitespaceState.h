@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDWhitespaceState.h>
+#import <TDParseKit/TDToken.h>
+
+static const NSInteger TDTT_WHITESPACE = 5;
+
+@interface TDToken (TDSignificantWhitespaceStateAdditions)
+@property (nonatomic, readonly, getter=isWhitespace) BOOL whitespace;
+@end
 
 @interface TDSignificantWhitespaceState : TDWhitespaceState {
 

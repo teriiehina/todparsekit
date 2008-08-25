@@ -662,6 +662,8 @@
 		D34A1F410E54F6F800A4A0BF /* states */ = {
 			isa = PBXGroup;
 			children = (
+				D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */,
+				D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */,
 				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
 				D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */,
 			);
@@ -704,8 +706,6 @@
 				D31FE6540E60E7AF00A0803E /* TDSymbolState.m */,
 				D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */,
 				D31FE6560E60E7AF00A0803E /* TDWhitespaceState.m */,
-				D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */,
-				D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */,
 				D3541F890DFB108300429B4F /* symbol */,
 			);
 			name = states;

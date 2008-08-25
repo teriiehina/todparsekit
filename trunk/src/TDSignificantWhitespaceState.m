@@ -16,6 +16,19 @@
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
+@implementation TDToken (TDSignificantWhitespaceStateAdditions)
+
+- (BOOL)isWhitespace {
+	return self.tokenType == TDTT_WHITESPACE;
+}
+
+
+- (NSString *)debugDescription {
+	return [NSString stringWithFormat:@"<Whitespace %C%@%C>", 0x00ab, self.value, 0x00bb];
+}
+
+@end
+
 @implementation TDSignificantWhitespaceState
 
 - (void)dealloc {

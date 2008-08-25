@@ -22,7 +22,7 @@
 @property (nonatomic, readwrite, getter=isQuotedString) BOOL quotedString;
 @property (nonatomic, readwrite, getter=isSymbol) BOOL symbol;
 @property (nonatomic, readwrite, getter=isWord) BOOL word;
-@property (nonatomic, readwrite, getter=isWhitespace) BOOL whitespace;
+
 @property (nonatomic, readwrite) CGFloat floatValue;
 @property (nonatomic, readwrite, copy) NSString *stringValue;
 @property (nonatomic, readwrite) TDTokenType tokenType;
@@ -75,7 +75,6 @@
 		self.quotedString = (t == TDTT_QUOTED);
 		self.symbol = (t == TDTT_SYMBOL);
 		self.word = (t == TDTT_WORD);
-		self.whitespace = (t == TDTT_WHITESPACE);
 		
 		id v = nil;
 		if (self.isNumber) {
@@ -86,7 +85,7 @@
 			v = stringValue;
 		} else if (self.isWord) {
 			v = stringValue;
-		} else if (self.isWhitespace) {
+		} else { // support for token type extensions
 			v = stringValue;
 		}
 		self.value = v;
@@ -153,8 +152,6 @@
 		typeString = @"Symbol";
 	} else if (self.isWord) {
 		typeString = @"Word";
-	} else if (self.isWhitespace) {
-		typeString = @"Whitespace";
 	}
 	return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00ab, self.value, 0x00bb];
 }
@@ -169,7 +166,6 @@
 @synthesize quotedString;
 @synthesize symbol;
 @synthesize word;
-@synthesize whitespace;
 @synthesize floatValue;
 @synthesize stringValue;
 @synthesize tokenType;
