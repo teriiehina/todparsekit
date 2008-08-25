@@ -4,9 +4,9 @@
 	<style>
 		h1 {position:fixed; left:0; top:0; right:0; margin:0; border-bottom:1px solid silver; padding:3px 10px; background:#eeeeec; font:bold 16px "Lucida Grande";}
 		#content {width:575px; margin:60px auto 30px; text-align:justify;}
-		body, html {margin:0; padding:0; font:14px "Lucida Grande", Helvetica, Verdana;}
+		body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
 		tt, pre {font:12px Monaco;}
-		table {border:1px solid silver; background:#eee; margin:25px 5px;}
+		table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
 		th, td {border:1px solid silver;}
 		.code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
 		h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
@@ -22,7 +22,7 @@
 	<ul>
 		<li><a href="#basic-usage">Basic Usage of <tt>TDTokenizer</tt></a></li>
 		<li><a href="#default-behavior">Default Behavior of <tt>TDTokenizer</tt></a></li>
-		<li><a href="#cutsom-behavior">Customizing <tt>TDTokenizer</tt> behavior</a></li>
+		<li><a href="#custom-behavior">Customizing <tt>TDTokenizer</tt> behavior</a></li>
 	</ul>
 
 <a name="basic-usage"></a>
@@ -40,7 +40,8 @@
 			<tt>+ (id)tokenizerWithString:(NSString *)s;</tt><br/>
 			</p>
 			<p>
-			<tt>- (TDToken *)nextToken;</tt><br/>
+				<tt>- (TDToken *)nextToken;</tt><br/>
+				<tt>...</tt><br/>
 			</p>
 		</td>
 	</tr>
@@ -100,6 +101,9 @@ while ((tok = [t nextToken]) != eof) {
 				<tt>@property (readonly) BOOL isWord;</tt><br/>
 				<tt>@property (readonly) BOOL isQuotedString;</tt><br/>
 			</p>
+			<p>
+				<tt>...</tt><br/>
+			</p>
 		</td>
 	</tr>
 </table>
@@ -130,7 +134,29 @@ while ((tok = [t nextToken]) != eof) {
 <h4>Whitespace</h4>
 <p>By default, <tt>Whitespace</tt> tokens are not emitted by <tt>TDTokenizer</tt>. Again, this is configurable.</p>
 
-<!-- 
+
+<a name="custom-behavior"></a>
+<h3>Customizing <tt>TDTokenizer</tt> behavior</h3>
+
+<p>There are two basic types of decisions <tt>TDTokenizer</tt> must make when tokenizing strings:</p>
+
+<ol>
+	<li>What character marks the start of a new token?</li>
+	<li>Once a token of a certain type is being created, what characters signal the end of the current token?</li>
+</ol>
+
+<p><tt>TDTokenizer</tt>'s behavior with respect to these two types of decisions is totally configurable. Let's take them one at a time.</p>
+
+<h4>Changing which characters start new tokens</h4>
+
+<p>To change which characters signal the start of a new token (and which type of token type they signal), you must call methods of the <tt>TDTokenizer</tt> object itself.</p>
+
+
+
+<h4>Changing which characters are allowed within a token of a particular type</h4>
+
+<p>Which characters are allowed within a token of a given type is controlled by one of a series of helper objects used by <tt>TDTokenizer</tt>. Those objects are subclasses of <tt>TDTokenizerState</tt>: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, and <tt>TDQuoteState</tt>. To alter tokenization behavior with respect to the second question, you must call methods of the tokenizer's <tt>Token State</tt> helper objects. These helper objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
+
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
 		<th><tt>TDTokenizer</tt></th>
@@ -138,23 +164,17 @@ while ((tok = [t nextToken]) != eof) {
 	<tr>
 		<td>
 			<p>
-			<tt>+ (id)tokenizerWithString:(NSString *)s;</tt><br/>
-			</p>
-			<p>
-			<tt>- (TDToken *)nextToken;</tt><br/>
-			<tt>- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;</tt><br/>
-			</p>
-			<p>
-			<tt>@property (readonly, retain) TDNumberState *numberState;</tt><br/>
-			<tt>@property (readonly, retain) TDQuoteState *quoteState;</tt><br/>
-			<tt>@property (readonly, retain) TDSlashState *slashState;</tt><br/>
-			<tt>@property (readonly, retain) TDSymbolState *symbolState;</tt><br/>
-			<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
-			<tt>@property (readonly, retain) TDWordState *wordState;</tt><br/>
+				<tt>...</tt><br/>
+				<tt>@property (readonly, retain) TDNumberState *numberState;</tt><br/>
+				<tt>@property (readonly, retain) TDQuoteState *quoteState;</tt><br/>
+				<tt>@property (readonly, retain) TDSlashState *slashState;</tt><br/>
+				<tt>@property (readonly, retain) TDSymbolState *symbolState;</tt><br/>
+				<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
+				<tt>@property (readonly, retain) TDWordState *wordState;</tt><br/>
 			</p>
 		</td>
 	</tr>
-</table> -->
+</table>
 </div>
 </body>
 </html>
