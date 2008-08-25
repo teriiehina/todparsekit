@@ -20,7 +20,7 @@
 	a = [[TDTokenAssembly alloc] initWithString:s];
 	NSLog(@"a: %@", a);
 	
-	p = [TDNum numWithString:s];
+	p = [TDNum num];
 	TDAssembly *result = [p completeMatchFor:a];
 	
 	// -[TDParser completeMatchFor:]

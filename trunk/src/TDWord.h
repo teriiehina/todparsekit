@@ -13,5 +13,4 @@
 
 }
 + (id)word;
-+ (id)wordWithString:(NSString *)s;
 @end

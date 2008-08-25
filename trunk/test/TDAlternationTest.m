@@ -39,7 +39,7 @@
 	p = [TDAlternation alternation];
 	[p add:[TDLiteral literalWithString:@"bar"]];
 	[p add:[TDLiteral literalWithString:@"baz"]];
-	[p add:[TDNum numWithString:@"123"]];
+	[p add:[TDNum num]];
 	
 	TDAssembly *result = [p bestMatchFor:a];
 	
@@ -87,7 +87,7 @@
 	p = [TDAlternation alternation];
 	[p add:[TDLiteral literalWithString:@"foo"]];
 	[p add:[TDLiteral literalWithString:@"baz"]];
-	[p add:[TDNum numWithString:@"123"]];
+	[p add:[TDNum num]];
 	
 	TDAssembly *result = [p bestMatchFor:a];
 	
