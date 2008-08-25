@@ -1,0 +1,143 @@
+<html>
+<head>
+	<title>TDParseKit README</title>
+	<style>
+		#content {width:575px; margin:10px auto; text-align:justify;}
+		body {font:14px LucidaGrande, Helvetica, Verdana;}
+		tt, pre {font:12px Monaco;}
+		table {border:1px solid silver; background:#eee; margin:25px 5px;}
+		th, td {border:1px solid silver;}
+		.code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
+		h3 {margin-top:60px; border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
+	</style>
+</head>
+<body>
+<div id="content">	
+	<h2>Tokenization</h2>
+	
+	<ul>
+		<li><a href="#basic-usage">Basic Usage of <tt>TDTokenizer</tt></a></li>
+		<li><a href="#default-behavior">Default Behavior of <tt>TDTokenizer</tt></a></li>
+		<li><a href="#cutsom-behavior">Customizing <tt>TDTokenizer</tt> behavior</a></li>
+	</ul>
+
+<h3><a name="basic-usage"></a>Basic Usage of <tt>TDTokenizer</tt></h3>
+
+<p><b>TDParseKit</b> provides general-purpose string tokenization services through the <tt><b>TDTokenizer</b></tt> and <tt><b>TDToken</b></tt> classes. Cocoa developers will be familiar with the <tt><b>NSScanner</b></tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TDTokenizer</tt> class is much easier to use than NSScanner for many common tokenization tasks, and offers powerful configuration options if the default tokenization behavior doesn't match your needs.</p>
+
+<p>Here are the methods of <tt>TDTokenizer</tt> you will need to get started.</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th><tt><b>TDTokenizer</b></tt></th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+			<tt>+ (id)tokenizerWithString:(NSString *)s;</tt><br/>
+			</p>
+			<p>
+			<tt>- (TDToken *)nextToken;</tt><br/>
+			</p>
+		</td>
+	</tr>
+</table>
+
+<p>Create an instance of <tt>TDTokenizer</tt> with any <tt>NSString</tt> object and it will return a series of <tt>TDToken</tt> objects as you repeatedly call the <tt>-nextToken</tt> method. The <tt>EOFToken</tt> singleton signals the end.</p>
+
+<div class="code">
+<pre>
+NSString *s = @"2 != -47. /* comment */ Blast-off!! 'Woo-hoo!' // comment";
+TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+
+TDToken *eof = [TDToken EOFToken];
+TDToken *tok = nil;
+
+while ((tok = [t nextToken]) != eof) {
+    NSLog(@"(%@) (%.1f) : %@", 
+        tok.stringValue, tok.floatValue, [tok debugDescription]);
+}
+</pre>
+</div>
+
+<p>Outputs:</p>
+
+<div class="code">
+<pre>
+(2) (2.0) : &lt;Number &laquo;2&raquo;>
+(!=) (0.0) : &lt;Symbol &laquo;!=&raquo;>
+(-47) (-47.0) : &lt;Number &laquo;-47&raquo;>
+(.) (0.0) : &lt;Symbol &laquo;.&raquo;>
+(Blast-off) (0.0) : &lt;Word &laquo;Blast-off&raquo;>
+(!) (0.0) : &lt;Symbol &laquo;!&raquo;>
+(!) (0.0) : &lt;Symbol &laquo;!&raquo;>
+('Woo-hoo!') (0.0) : &lt;Quoted String &laquo;'Woo-hoo!'&raquo;>
+</pre>
+</div>
+
+<p>Each <tt>TDToken</tt> object returned has a <tt>stringValue</tt>, a <tt>floatValue</tt> and a <tt>tokenType</tt>. The <tt>tokenType</tt> is one of <tt>Word</tt>, <tt>Number</tt>, <tt>Symbol</tt>, or <tt>Quoted String</tt> (actually an <tt>enum</tt> of type <tt>TDTokenType</tt>).</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th><tt><b>TDToken</b></tt></th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+				<tt>+ (TDToken *)EOFToken;</tt><br/>
+			</p>
+			<p>
+				<tt>@property (readonly) CGFloat floatValue;</tt><br/>
+				<tt>@property (readonly, copy) NSString *stringValue;</tt><br/>
+				<tt>@property (readonly) TDTokenType tokenType;</tt><br/>
+			</p>
+		</td>
+	</tr>
+</table>
+
+<h3><a name="default-behavior"></a>Default Behavior of <tt>TDTokenizer</tt></h3>
+
+<p>Let's examine the default behavior of <tt>TDTokenizer</tt> for each token type.</p>
+
+<h4>Number</h4>
+
+<p>Digits (<tt>&laquo;2&raquo;</tt>) are recognized as the beginning of a new <tt>Number</tt> token. Sequential digit characters (<tt>&laquo;47&raquo;</tt>) and floating point numbers (<tt>&laquo;47.5&raquo;</tt>) are combined to form a single <tt>Number</tt> token as you'd expect (rather than two <tt>Number</tt> tokens separated by a <tt>&laquo;.&raquo;</tt> <tt>Symbol</tt> token). By default, <tt>TDTokenizer</tt> will recognize a <tt>&laquo;-&raquo;</tt> symbol followed immediately by digits (<tt>&laquo;-47&raquo;</tt>) as a number token with a negative value. However, <tt>&laquo;+&raquo;</tt> characters are always seen as a <tt>Symbol</tt> token by default, even when followed immediately by digits. (see below for an example of how to configure <tt>TDTokenizer</tt> to support numbers starting with an explicit <tt>&laquo;+&raquo;</tt> character).</p>
+	
+<h4>Symbol</h4>
+	
+<p>Most symbol characters (<tt>&laquo;.&raquo;</tt> <tt>&laquo;!&raquo;</tt>) are recognized as single-character <tt>Symbol</tt> tokens (even when sequencial such as <tt>&laquo;!&raquo;&laquo;!&raquo;</tt>). However, notice that <tt>TDTokenizer</tt> recognizes common multi-character symbols (<tt>&laquo;!=&raquo;</tt>) as a single <tt>Symbol</tt> token by default. In fact, <tt>TDTokenizer</tt> can be configured to recognize any given string as a multi-character symbol, or it can be configured to recognize no multi-character symbols at all.</p>
+
+<h4>Word</h4>
+<p>Also note that <tt>&laquo;Blast-off&raquo;</tt> is recognized as a single <tt>Word</tt> token despite containing a symbol character (<tt>&laquo;-&raquo;</tt>) that would normally signal the start of a new <tt>Symbol</tt> token. By default, <tt>TDTokenzier</tt> allows <tt>Word</tt> tokens to <b>contain</b> (but <b>not start with</b>) several symbol and number characters: <tt>&laquo;-&raquo;</tt>, <tt>&laquo;_&raquo;</tt>, <tt>&laquo;'&raquo;</tt>, <tt>&laquo;0&raquo;</tt>-<tt>&laquo;9&raquo;</tt>. The consequence of this behavior is that <tt>TDTokenizer</tt> will recognize the follwing strings as individual <tt>Word</tt> tokens by default: <tt>&laquo;it's&raquo;</tt>, <tt>&laquo;first_name&raquo;</tt>, <tt>&laquo;sat-yr-9&raquo;</tt> <tt>&laquo;Rodham-Clinton&raquo;</tt>. Again, you can configure <tt>TDTokenizer</tt> to alter this default behavior.</p>
+
+<p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>//</tt>) and C++-style (<tt>/* */</tt>)</p>
+
+
+<!-- 
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th><tt>TDTokenizer</tt></th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+			<tt>+ (id)tokenizerWithString:(NSString *)s;</tt><br/>
+			</p>
+			<p>
+			<tt>- (TDToken *)nextToken;</tt><br/>
+			<tt>- (void)setCharacterState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;</tt><br/>
+			</p>
+			<p>
+			<tt>@property (readonly, retain) TDNumberState *numberState;</tt><br/>
+			<tt>@property (readonly, retain) TDQuoteState *quoteState;</tt><br/>
+			<tt>@property (readonly, retain) TDSlashState *slashState;</tt><br/>
+			<tt>@property (readonly, retain) TDSymbolState *symbolState;</tt><br/>
+			<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
+			<tt>@property (readonly, retain) TDWordState *wordState;</tt><br/>
+			</p>
+		</td>
+	</tr>
+</table> -->
+</div>
+</body>
+</html>
