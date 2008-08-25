@@ -55,7 +55,8 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	if (preAssembler && [preAssembler respondsToSelector:preAssemblerSelector]) {
+	if (preAssembler) {
+	//if (preAssembler && [preAssembler respondsToSelector:preAssemblerSelector]) {
 		for (TDAssembly *a in inAssemblies) {
 			[preAssembler performSelector:preAssemblerSelector withObject:a];
 		}
