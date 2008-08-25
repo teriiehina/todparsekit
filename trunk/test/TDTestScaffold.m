@@ -22,7 +22,7 @@
 }
 @end
 
-#define RUN_ALL_TEST_CASES 0
+#define RUN_ALL_TEST_CASES 1
 
 @implementation TDTestScaffold
 
