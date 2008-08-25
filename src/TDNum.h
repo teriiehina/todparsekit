@@ -13,5 +13,4 @@
 
 }
 + (id)num;
-+ (id)numWithString:(NSString *)s;	
 @end

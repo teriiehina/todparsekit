@@ -16,11 +16,6 @@
 }
 
 
-+ (id)numWithString:(NSString *)s {
-	return [[[[self class] alloc] initWithString:s] autorelease];
-}
-
-
 - (BOOL)qualifies:(id)obj {
 	TDToken *tok = (TDToken *)obj;
 	return tok.isNumber;

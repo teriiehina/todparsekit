@@ -13,5 +13,4 @@
 
 }
 + (id)quotedString;
-+ (id)quotedStringWithString:(NSString *)s;
 @end
