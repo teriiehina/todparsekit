@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDMutableStringState.h>
+#import <TDParseKit/TDTokenizerState.h>
 
-@interface TDQuoteState : TDMutableStringState {
+@interface TDQuoteState : TDTokenizerState {
 	
 }
 

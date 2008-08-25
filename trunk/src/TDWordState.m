@@ -11,6 +11,11 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTokenizerState ()
+- (void)reset;
+@property (nonatomic, retain) NSMutableString *stringbuf;
+@end
+
 @interface TDWordState () 
 - (BOOL)isWordChar:(NSInteger)c;
 
@@ -117,9 +122,7 @@
 	
 	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_WORD 
-									stringValue:stringValue
-									 floatValue:0.0f] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_WORD stringValue:stringValue floatValue:0.0f];
 }
 #endif
 

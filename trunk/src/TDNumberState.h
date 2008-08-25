@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDMutableStringState.h>
+#import <TDParseKit/TDTokenizerState.h>
 
-@interface TDNumberState : TDMutableStringState {
+@interface TDNumberState : TDTokenizerState {
+	BOOL allowsEndingWithDot;
 	BOOL gotADigit;
 	BOOL negative;
 	NSInteger c;
 	CGFloat floatValue;
 }
+@property (nonatomic) BOOL allowsEndingWithDot;
 @end

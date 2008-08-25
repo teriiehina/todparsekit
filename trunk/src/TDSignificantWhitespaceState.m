@@ -11,6 +11,11 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTokenizerState ()
+- (void)reset;
+@property (nonatomic, retain) NSMutableString *stringbuf;
+@end
+
 @interface TDSignificantWhitespaceState () 
 @property (nonatomic, retain) NSMutableArray *whitespaceChars;
 @property (nonatomic, retain) NSNumber *yesFlag;
@@ -74,9 +79,9 @@
 		[r unread];
 	}
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_WHITESPACE 
-									stringValue:[[stringbuf copy] autorelease]
-									 floatValue:0.0f] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_WHITESPACE 
+						   stringValue:[[stringbuf copy] autorelease]
+							floatValue:0.0f];
 }
 
 

@@ -1,30 +1,30 @@
 <html>
 <head>
-	<title>TODParseKit README</title>
+	<title>TDParseKit README</title>
 	<style>
 		.code {border:1px solid silver; background:#eee; padding:5px 10px; margin:5px;}
 	</style>
 </head>
 <body>
-<h1>TODParseKit</h1>
+<h1>TDParseKit</h1>
 
 <h2>About</h2>
-<p>TODParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C port of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. Some changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, the changes are relatively few (Java and ObjC are more similar than they are different), and the book is the best documentation available for this framework.</p>
+<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C port of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. Some changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, the changes are relatively superficial, and the book is the best documentation available for this framework.</p>
 
 
 <h2>Xcode Project</h2>
 <p>The Xcode project containing this framework consists of 4 targets:</p>
 
 <ol>
-<li><b>Framework</b> : the TODParseKit Framework.</li>
+<li><b>Framework</b> : the TDParseKit Framework.</li>
 <li><b>Tests</b> : a UnitTest Bundle containing many unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world usages of the framework.</li>
-<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TODTokenizer class.</li>
-<li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle. dunno why).</li>
+<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TDTokenizer class.</li>
+<li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle.).</li>
 </ol>
 
-<h2>TODParseKit Framework</h2>
+<h2>TDParseKit Framework</h2>
 
-<p>Classes in the TODParseKit Framework offer 2 basic services of general use to Cocoa developers:</p>
+<p>Classes in the TDParseKit Framework offer 2 basic services of general use to Cocoa developers:</p>
 
 <ol>
 <li><b>Tokenization</b> via a tokenizer class</li>
@@ -34,7 +34,7 @@
 <hr/>
 <h3>Tokenization</h3>
 
-<p>The API for tokenization is provided by the <tt>TODTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TODTokenizer</tt> class is much simpler, yet more configurable, flexible, and powerful.</p>
+<p>The API for tokenization is provided by the <tt>TDTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TDTokenizer</tt> class is much simpler, yet more configurable, flexible, and powerful.</p>
 
 <p>Example usage:</p>
 
@@ -42,10 +42,10 @@
 <pre>
 NSString *s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
               @"and &lt;= 3.5 'ticks' later /* wince */, it's blast-off!";
-TODTokenizer *t = [TODTokenizer tokenizerWithString:s];
+TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
 
-TODToken *eof = [TODToken EOFToken];
-TODToken *tok = nil;
+TDToken *eof = [TDToken EOFToken];
+TDToken *tok = nil;
 
 while ((tok = [t nextToken]) != eof) {
     NSLog(@" (%@)", tok.stringValue);
@@ -72,10 +72,10 @@ while ((tok = [t nextToken]) != eof) {
 </pre>
 </div>
 
-<p>Each token produced is an object of class <tt>TODToken</tt>. <tt>TODToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
+<p>Each token produced is an object of class <tt>TDToken</tt>. <tt>TDToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
 
 
-<p>As you can see from the output, <tt>TODTokenzier</tt> is configured by default to handle several common parsing tasks:</p>
+<p>As you can see from the output, <tt>TDTokenzier</tt> is configured by default to handle several common parsing tasks:</p>
 <ul>
 <li>C- and C++-style comments</li>
 <li>single- and double-quoted string tokens</li>
@@ -84,7 +84,7 @@ while ((tok = [t nextToken]) != eof) {
 </ul>
 
 
-<p>All of those features are configurable. TODTokenizer may be configured to:</p>
+<p>All of those features are configurable. TDTokenizer may be configured to:</p>
 
 <ul>
 
@@ -111,13 +111,13 @@ while ((tok = [t nextToken]) != eof) {
 <hr/>
 <h3>Parsing</h3>
 
-<p>TODParseKit also includes a collection of token parser subclasses (of the abstract <tt>TODParser</tt> class) including collection parsers such as <tt>TODAlternation</tt>, <tt>TODSequence</tt>, and <tt>TODRepetition</tt> as well as terminal parsers including <tt>TODWord</tt>, <tt>TODNum</tt>, <tt>TODSymbol</tt>, <tt>TODQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>TODChar</tt>, <tt>TODDigit</tt>, and <tt>TODSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
+<p>TDParseKit also includes a collection of token parser subclasses (of the abstract <tt>TDParser</tt> class) including collection parsers such as <tt>TDAlternation</tt>, <tt>TDSequence</tt>, and <tt>TDRepetition</tt> as well as terminal parsers including <tt>TDWord</tt>, <tt>TDNum</tt>, <tt>TDSymbol</tt>, <tt>TDQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>TDChar</tt>, <tt>TDDigit</tt>, and <tt>TDSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
 
 <p>The parser classes represent a <b>Composite</b> pattern. Programs can build a composite parser, in <b>Objective-C</b> (rather than a separate language like with lex&amp;yacc), from a collection of terminal parsers composed into alternations, sequences, and repetitions to represent an infinite number of languages.</p>
 
-<p>Parsers built from TODParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
+<p>Parsers built from TDParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
 
-<p>Here is an example of how one might build a parser for a simple voice-search command language (note: TODParseKit does not include any kind of speech recognition technology). The language consists of:</p>
+<p>Here is an example of how one might build a parser for a simple voice-search command language (note: TDParseKit does not include any kind of speech recognition technology). The language consists of:</p>
 
 <div class="code">
 <pre>search google for? &lt;search-term&gt;</pre>
@@ -131,22 +131,22 @@ while ((tok = [t nextToken]) != eof) {
 ...
 	
 - (void)parseString:(NSString *)s {
-	TODSequence *parser = [TODSequence sequence];
+	TDSequence *parser = [TDSequence sequence];
 
-	[parser add:[[TODLiteral literalWithString:@"search"] discard]];
-	[parser add:[[TODLiteral literalWithString:@"google"] discard]];
+	[parser add:[[TDLiteral literalWithString:@"search"] discard]];
+	[parser add:[[TDLiteral literalWithString:@"google"] discard]];
 
-	TODAlternation *optionalFor = [TODAlternation alternation];
-	[optionalFor add:[TODEmpty empty]];
-	[optionalFor add:[TODLiteral literalWithString:@"for"]];
+	TDAlternation *optionalFor = [TDAlternation alternation];
+	[optionalFor add:[TDEmpty empty]];
+	[optionalFor add:[TDLiteral literalWithString:@"for"]];
 
 	[parser add:[optionalFor discard]];
 
-	TODParser *searchTerm = [TODQuotedString quotedString];
+	TDParser *searchTerm = [TDQuotedString quotedString];
 	[searchTerm setAssembler:self selector:@selector(workOnSearchTermAssembly:)];
 	[parser add:searchTerm];
 
-	TODAssembly *result = [parser bestMatchFor:[TODTokenAssembly assmeblyWithString:s]];
+	TDAssembly *result = [parser bestMatchFor:[TDTokenAssembly assmeblyWithString:s]];
 	
 	NSLog(@" %@", result);
 
@@ -156,8 +156,8 @@ while ((tok = [t nextToken]) != eof) {
 
 ...
 
-- (void)workOnSearchTermAssembly:(TODAssembly *)a {
-	TODToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
+- (void)workOnSearchTermAssembly:(TDAssembly *)a {
+	TDToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
 	[self doGoogleSearchForTerm:t.stringValue];
 }
 

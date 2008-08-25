@@ -99,8 +99,6 @@
 		D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6380E60E77600A0803E /* TDTokenizerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6390E60E77600A0803E /* TDTokenizerState.m */; };
 		D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6450E60E7AF00A0803E /* TDCharbufState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE65B0E60E7AF00A0803E /* TDMutableStringState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6470E60E7AF00A0803E /* TDMutableStringState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE65C0E60E7AF00A0803E /* TDMutableStringState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6480E60E7AF00A0803E /* TDMutableStringState.m */; };
 		D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6490E60E7AF00A0803E /* TDNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64A0E60E7AF00A0803E /* TDNumberState.m */; };
 		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -382,8 +380,6 @@
 		D31FE6390E60E77600A0803E /* TDTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerState.m; path = src/TDTokenizerState.m; sourceTree = "<group>"; };
 		D31FE6450E60E7AF00A0803E /* TDCharbufState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharbufState.h; path = src/TDCharbufState.h; sourceTree = "<group>"; };
 		D31FE6460E60E7AF00A0803E /* TDCharbufState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharbufState.m; path = src/TDCharbufState.m; sourceTree = "<group>"; };
-		D31FE6470E60E7AF00A0803E /* TDMutableStringState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMutableStringState.h; path = src/TDMutableStringState.h; sourceTree = "<group>"; };
-		D31FE6480E60E7AF00A0803E /* TDMutableStringState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMutableStringState.m; path = src/TDMutableStringState.m; sourceTree = "<group>"; };
 		D31FE6490E60E7AF00A0803E /* TDNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNumberState.h; path = src/TDNumberState.h; sourceTree = "<group>"; };
 		D31FE64A0E60E7AF00A0803E /* TDNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNumberState.m; path = src/TDNumberState.m; sourceTree = "<group>"; };
 		D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuoteState.h; path = src/TDQuoteState.h; sourceTree = "<group>"; };
@@ -692,8 +688,6 @@
 		D3541F870DFB105900429B4F /* states */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6470E60E7AF00A0803E /* TDMutableStringState.h */,
-				D31FE6480E60E7AF00A0803E /* TDMutableStringState.m */,
 				D31FE6570E60E7AF00A0803E /* TDWordState.h */,
 				D31FE6580E60E7AF00A0803E /* TDWordState.m */,
 				D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */,
@@ -1092,7 +1086,6 @@
 				D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */,
 				D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */,
 				D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */,
-				D31FE65B0E60E7AF00A0803E /* TDMutableStringState.h in Headers */,
 				D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */,
 				D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */,
 				D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */,
@@ -1299,7 +1292,6 @@
 				D31FE63B0E60E77600A0803E /* TDToken.m in Sources */,
 				D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */,
 				D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */,
-				D31FE65C0E60E7AF00A0803E /* TDMutableStringState.m in Sources */,
 				D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */,
 				D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */,
 				D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */,
@@ -1670,7 +1662,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = YES;
+				GCC_ENABLE_OBJC_GC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;

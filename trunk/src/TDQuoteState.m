@@ -10,8 +10,12 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDToken.h>
 
-@implementation TDQuoteState
+@interface TDTokenizerState ()
+- (void)reset;
+@property (nonatomic, retain) NSMutableString *stringbuf;
+@end
 
+@implementation TDQuoteState
 
 - (void)dealloc {
 	[super dealloc];
@@ -58,9 +62,7 @@
 		[stringbuf appendFormat:@"%C", c];
 	} while (c != cin);
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_QUOTED 
-									stringValue:stringbuf
-									 floatValue:0.0f] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringbuf floatValue:0.0f];
 }
 
 @end

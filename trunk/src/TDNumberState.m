@@ -12,11 +12,17 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDSymbolState.h>
 
+@interface TDTokenizerState ()
+- (void)reset;
+@property (nonatomic, retain) NSMutableString *stringbuf;
+@end
+
 @interface TDNumberState ()
 - (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)fraction;
 - (void)parseLeftSideFromReader:(TDReader *)r;
 - (void)parseRightSideFromReader:(TDReader *)r;
 - (void)reset:(NSInteger)cin;
+- (BOOL)isDigitChar:(NSInteger)c;
 @end
 
 
@@ -56,8 +62,16 @@
 	} else {
 		[self parseLeftSideFromReader:r];
 		if ('.' == c) {
-			[stringbuf appendString:@"."];
-			[self parseRightSideFromReader:r];
+			NSInteger n = [r read];
+			// check for trailing '.' and handle approriately
+			BOOL nextIsDigit = [self isDigitChar:n];
+			if (-1 != n) {
+				[r unread];
+			}
+			if (nextIsDigit || allowsEndingWithDot) {
+				[stringbuf appendString:@"."];
+				[self parseRightSideFromReader:r];
+			}
 		}
 	}
 	if (-1 != c) {
@@ -73,9 +87,9 @@
 		floatValue = -floatValue;
 	}
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_NUMBER 
-									stringValue:[[stringbuf copy] autorelease] //[[NSNumber numberWithDouble:floatValue] stringValue]
-									 floatValue:floatValue] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_NUMBER 
+						   stringValue:[[stringbuf copy] autorelease] 
+							floatValue:floatValue];
 }
 
 
@@ -84,7 +98,7 @@
 	CGFloat v = 0.0;
 	
 	while (1) {
-		if ('0' <= c && c <= '9') {
+		if ([self isDigitChar:c]) {
 			[stringbuf appendFormat:@"%C", c];
 			gotADigit = YES;
 			v = v * 10.0 + (c - '0');
@@ -122,4 +136,9 @@
 	c = cin;
 }
 
+- (BOOL)isDigitChar:(NSInteger)n {
+	return ('0' <= n && n <= '9');
+}
+
+@synthesize allowsEndingWithDot;
 @end

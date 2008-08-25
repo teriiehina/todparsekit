@@ -71,13 +71,6 @@
 		[self setCharacterState:quoteState		from: '"' to: '"']; // From: 34 to: 34	From:0x22 to:0x22
 		[self setCharacterState:quoteState		from:'\'' to:'\'']; // From: 39 to: 39	From:0x27 to:0x27
 		[self setCharacterState:slashState		from: '/' to: '/']; // From: 47 to: 47	From:0x2f to:0x2f
-		
-		[symbolState add:@"<="];
-		[symbolState add:@">="];
-		[symbolState add:@":="];
-		[symbolState add:@"!="];
-		[symbolState add:@"=="];
-		[symbolState add:@"<>"];
 	}
 	return self;
 }
