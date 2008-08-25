@@ -47,22 +47,6 @@
 }
 
 
-#pragma mark -
-
-- (id)initWithFloatValue:(CGFloat)n {
-	return [self initWithTokenType:TDTT_NUMBER
-					   stringValue:[[NSNumber numberWithFloat:n] stringValue]
-						floatValue:n];
-}
-
-
-- (id)initWithStringValue:(NSString *)s {
-	return [self initWithTokenType:TDTT_WORD
-					   stringValue:s
-						floatValue:[s floatValue]];
-}
-
-
 // designated initializer
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
 	self = [super init];

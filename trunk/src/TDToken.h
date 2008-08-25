@@ -31,9 +31,6 @@ typedef enum {
 + (TDToken *)EOFToken;
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
-- (id)initWithFloatValue:(CGFloat)n;
-- (id)initWithStringValue:(NSString *)s;
-
 // designated initializer
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
