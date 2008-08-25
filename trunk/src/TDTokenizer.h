@@ -37,7 +37,7 @@
 
 - (id)initWithString:(NSString *)s;
 - (TDToken *)nextToken;
-- (void)setCharacterState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
+- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 @property (nonatomic, copy) NSString *string;
 

@@ -11,6 +11,11 @@
 #import "TDReader.h"
 #import "TDXmlToken.h"
 
+@interface TDTokenizerState ()
+- (void)reset;
+@property (nonatomic, retain) NSMutableString *stringbuf;
+@end
+
 @interface TDNCNameState ()
 + (BOOL)isLetter:(NSInteger)c;
 + (BOOL)isDigit:(NSInteger)c;

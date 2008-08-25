@@ -85,8 +85,8 @@
 	
 	//	TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
 	
-	[t setCharacterState:t.symbolState from: '-' to: '-'];
-	[t setCharacterState:t.symbolState from: '.' to: '.'];
+	[t setTokenizerState:t.symbolState from: '-' to: '-'];
+	[t setTokenizerState:t.symbolState from: '.' to: '.'];
 	//[t.wordState setWordChars:YES from:'-' to:'-'];
 	return a;	
 }

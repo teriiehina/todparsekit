@@ -92,7 +92,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t {
 	if (s.length) {
 		NSInteger c = [s characterAtIndex:0];
-		[t setCharacterState:t.symbolState from:c to:c];
+		[t setTokenizerState:t.symbolState from:c to:c];
 		[t.symbolState add:s];
 	}
 }
