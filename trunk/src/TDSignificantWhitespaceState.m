@@ -16,54 +16,10 @@
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
-@interface TDSignificantWhitespaceState () 
-@property (nonatomic, retain) NSMutableArray *whitespaceChars;
-@property (nonatomic, retain) NSNumber *yesFlag;
-@property (nonatomic, retain) NSNumber *noFlag;
-@end
-
 @implementation TDSignificantWhitespaceState
 
-- (id)init {
-	self = [super init];
-	if (self != nil) {
-		self.yesFlag = [NSNumber numberWithBool:YES];
-		self.noFlag = [NSNumber numberWithBool:NO];
-		
-		self.whitespaceChars = [NSMutableArray array];
-		NSInteger i = 0;
-		for ( ; i < 256; i++) {
-			[whitespaceChars addObject:noFlag];
-		}
-		
-		[self setWhitespaceChars:YES from: 0 to: ' '];
-	}
-	return self;
-}
-
-
 - (void)dealloc {
-	self.whitespaceChars = nil;
-	self.yesFlag = nil;
-	self.noFlag = nil;
 	[super dealloc];
-}
-
-
-- (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
-	id obj = yn ? yesFlag : noFlag;
-	NSInteger i = 0;
-	for (i = start; i <= end; i++) {
-		[whitespaceChars replaceObjectAtIndex:i withObject:obj];
-	}
-}
-
-
-- (BOOL)isWhitespaceChar:(NSInteger)cin {
-	if (-1 == cin || cin > whitespaceChars.count - 1) {
-		return NO;
-	}
-	return yesFlag == [whitespaceChars objectAtIndex:cin];
 }
 
 
@@ -84,8 +40,4 @@
 							floatValue:0.0f];
 }
 
-
-@synthesize whitespaceChars;
-@synthesize yesFlag;
-@synthesize noFlag;
 @end

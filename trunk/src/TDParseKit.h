@@ -42,6 +42,7 @@
 #import <TDParseKit/TDSymbolState.h>
 #import <TDParseKit/TDWordState.h>
 #import <TDParseKit/TDWhitespaceState.h>
+#import <TDParseKit/TDSignificantWhitespaceState.h>
 #import <TDParseKit/TDWordOrReservedState.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizer.h>
