@@ -116,7 +116,7 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@)", [[self className] substringFromIndex:3], name];
+	return [NSString stringWithFormat:@"%@ (%@)", [[self className] substringFromIndex:2], name];
 }
 
 @synthesize assembler;
