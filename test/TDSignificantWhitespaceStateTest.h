@@ -7,7 +7,6 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDSignificantWhitespaceStateTest : SenTestCase {

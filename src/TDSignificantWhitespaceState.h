@@ -7,14 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDTokenizerState.h>
+#import <TDParseKit/TDWhitespaceState.h>
 
-@interface TDSignificantWhitespaceState : TDTokenizerState {
-	NSInteger c;
-	NSMutableArray *whitespaceChars;
-	NSNumber *yesFlag;
-	NSNumber *noFlag;
+@interface TDSignificantWhitespaceState : TDWhitespaceState {
+
 }
-- (BOOL)isWhitespaceChar:(NSInteger)cin;
-- (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
 @end
