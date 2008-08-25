@@ -84,10 +84,10 @@
 	
 //	TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
 	
-	[t setCharacterState:t.wordState from: '_' to: '_'];
-//	[t setCharacterState:NCNameState from: 'a' to: 'z'];
-//	[t setCharacterState:NCNameState from: 'A' to: 'Z'];
-//	[t setCharacterState:NCNameState from:0xc0 to:0xff];
+	[t setTokenizerState:t.wordState from: '_' to: '_'];
+//	[t setTokenizerState:NCNameState from: 'a' to: 'z'];
+//	[t setTokenizerState:NCNameState from: 'A' to: 'Z'];
+//	[t setTokenizerState:NCNameState from:0xc0 to:0xff];
 	return a;	
 }
 

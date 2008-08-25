@@ -60,17 +60,17 @@
 			[tokenizerStates addObject:symbolState];
 		}
 		
-		[self setCharacterState:whitespaceState	from:   0 to: ' ']; // From:  0 to: 32	From:0x00 to:0x20
-		[self setCharacterState:wordState		from: 'a' to: 'z']; // From: 97 to:122	From:0x61 to:0x7a
-		[self setCharacterState:wordState		from: 'A' to: 'Z']; // From: 65 to: 90	From:0x41 to:0x5a
-		[self setCharacterState:wordState		from:0xc0 to:0xff]; // From:192 to:255	From:0xc0 to:0xff
-		[self setCharacterState:numberState		from: '0' to: '9']; // From: 48 to: 57	From:0x30 to:0x39
-		[self setCharacterState:numberState		from: '-' to: '-']; // From: 45 to: 45	From:0x2d to:0x2d
-		[self setCharacterState:symbolState		from: '+' to: '+']; // 
-		[self setCharacterState:numberState		from: '.' to: '.']; // 
-		[self setCharacterState:quoteState		from: '"' to: '"']; // From: 34 to: 34	From:0x22 to:0x22
-		[self setCharacterState:quoteState		from:'\'' to:'\'']; // From: 39 to: 39	From:0x27 to:0x27
-		[self setCharacterState:slashState		from: '/' to: '/']; // From: 47 to: 47	From:0x2f to:0x2f
+		[self setTokenizerState:whitespaceState	from:   0 to: ' ']; // From:  0 to: 32	From:0x00 to:0x20
+		[self setTokenizerState:wordState		from: 'a' to: 'z']; // From: 97 to:122	From:0x61 to:0x7a
+		[self setTokenizerState:wordState		from: 'A' to: 'Z']; // From: 65 to: 90	From:0x41 to:0x5a
+		[self setTokenizerState:wordState		from:0xc0 to:0xff]; // From:192 to:255	From:0xc0 to:0xff
+		[self setTokenizerState:numberState		from: '0' to: '9']; // From: 48 to: 57	From:0x30 to:0x39
+		[self setTokenizerState:numberState		from: '-' to: '-']; // From: 45 to: 45	From:0x2d to:0x2d
+		[self setTokenizerState:symbolState		from: '+' to: '+']; // 
+		[self setTokenizerState:numberState		from: '.' to: '.']; // 
+		[self setTokenizerState:quoteState		from: '"' to: '"']; // From: 34 to: 34	From:0x22 to:0x22
+		[self setTokenizerState:quoteState		from:'\'' to:'\'']; // From: 39 to: 39	From:0x27 to:0x27
+		[self setTokenizerState:slashState		from: '/' to: '/']; // From: 47 to: 47	From:0x2f to:0x2f
 	}
 	return self;
 }
@@ -110,7 +110,7 @@
 }
 
 
-- (void)setCharacterState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
+- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
 	NSInteger i = start;
 	for ( ; i <= end; i++) {
 		[tokenizerStates replaceObjectAtIndex:i withObject:state];

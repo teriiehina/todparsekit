@@ -51,8 +51,8 @@
 	TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
 	
 	TDTokenizer *tokenizer = a.tokenizer;
-	[tokenizer setCharacterState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
-	[tokenizer setCharacterState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
+	[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
+	[tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
 
 	TDAssembly *result = [self completeMatchFor:a];
 	return [result pop];

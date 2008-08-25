@@ -257,7 +257,7 @@
 - (void)testMinusPlusTwoCustom {
 	self.string = @"+2";
 	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
-	[tokenizer setCharacterState:tokenizer.numberState from:'+' to:'+'];
+	[tokenizer setTokenizerState:tokenizer.numberState from:'+' to:'+'];
 	
 	TDToken *t = [tokenizer nextToken];
 	STAssertEquals(2.0f, t.floatValue, @"");	

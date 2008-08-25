@@ -20,14 +20,14 @@
 //	//Name	   ::=   	(Letter | '_' | ':') (NameChar)*
 //	TDXmlNameState *nameState = [[[TDXmlNameState alloc] init] autorelease];
 //	
-//	[t setCharacterState:nameState from: '_' to: '_'];
-//	[t setCharacterState:nameState from: ':' to: ':'];
-//	[t setCharacterState:nameState from: 'a' to: 'z'];
-//	[t setCharacterState:nameState from: 'A' to: 'Z'];
-//	[t setCharacterState:nameState from:0xc0 to:0xff];
+//	[t setTokenizerState:nameState from: '_' to: '_'];
+//	[t setTokenizerState:nameState from: ':' to: ':'];
+//	[t setTokenizerState:nameState from: 'a' to: 'z'];
+//	[t setTokenizerState:nameState from: 'A' to: 'Z'];
+//	[t setTokenizerState:nameState from:0xc0 to:0xff];
 //	
 //	TDXmlNmtokenState *nmtokenState = [[[TDXmlNmtokenState alloc] init] autorelease];
-//	[t setCharacterState:nmtokenState from: '0' to: '9'];
+//	[t setTokenizerState:nmtokenState from: '0' to: '9'];
 //	
 //	TDXmlToken *tok = nil;
 //	
