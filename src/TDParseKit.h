@@ -42,8 +42,6 @@
 #import <TDParseKit/TDSymbolState.h>
 #import <TDParseKit/TDWordState.h>
 #import <TDParseKit/TDWhitespaceState.h>
-#import <TDParseKit/TDSignificantWhitespaceState.h>
-#import <TDParseKit/TDWordOrReservedState.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDWord.h>
@@ -52,6 +50,10 @@
 #import <TDParseKit/TDSymbol.h>
 #import <TDParseKit/TDLiteral.h>
 #import <TDParseKit/TDCaseInsensitiveLiteral.h>
+
+// ext
+#import <TDParseKit/TDSignificantWhitespaceState.h>
+#import <TDParseKit/TDWordOrReservedState.h>
 #import <TDParseKit/TDUppercaseWord.h>
 #import <TDParseKit/TDLowercaseWord.h>
 #import <TDParseKit/TDReservedWord.h>

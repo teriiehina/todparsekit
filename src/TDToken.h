@@ -13,8 +13,7 @@ typedef enum {
 	TDTT_NUMBER,
 	TDTT_QUOTED,
 	TDTT_SYMBOL,
-	TDTT_WORD,
-	TDTT_WHITESPACE
+	TDTT_WORD
 } TDTokenType;
 
 @interface TDToken : NSObject {
@@ -26,7 +25,6 @@ typedef enum {
 	BOOL quotedString;
 	BOOL symbol;
 	BOOL word;
-	BOOL whitespace;
 	
 	id value;
 }
@@ -47,7 +45,7 @@ typedef enum {
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 @property (nonatomic, readonly, getter=isWord) BOOL word;
-@property (nonatomic, readonly, getter=isWhitespace) BOOL whitespace;
+
 @property (nonatomic, readonly) CGFloat floatValue;
 @property (nonatomic, readonly, copy) NSString *stringValue;
 @property (nonatomic, readonly) TDTokenType tokenType;
