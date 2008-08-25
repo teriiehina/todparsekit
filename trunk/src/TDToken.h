@@ -43,8 +43,8 @@ typedef enum {
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
+@property (nonatomic, readonly) TDTokenType tokenType;
 @property (nonatomic, readonly) CGFloat floatValue;
 @property (nonatomic, readonly, copy) NSString *stringValue;
-@property (nonatomic, readonly) TDTokenType tokenType;
 @property (nonatomic, readonly, copy) id value;
 @end
