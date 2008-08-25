@@ -29,7 +29,7 @@
 	self = [super initWithString:s];
 	if (self != nil) {
 		if (s.length) {
-			self.symbol = [[[TDToken alloc] initWithTokenType:TDTT_SYMBOL stringValue:s floatValue:0.] autorelease];
+			self.symbol = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:s floatValue:0.0f];
 		}
 	}
 	return self;

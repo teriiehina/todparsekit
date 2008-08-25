@@ -42,9 +42,7 @@
 //	//NSString *stringValue = [[[NSString alloc] initWithBytesNoCopy:charbuf length:i encoding:NSISOLatin1StringEncoding freeWhenDone:YES] autorelease];
 //	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSISOLatin1StringEncoding] autorelease];
 //
-//	return [[[TDToken alloc] initWithTokenType:TDTT_QUOTED 
-//										   stringValue:stringValue
-//										   floatValue:0.0f] autorelease];
+//	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringValue floatValue:0.0f];
 //}
 
 

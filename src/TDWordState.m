@@ -141,9 +141,9 @@
 		[r unread];
 	}
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_WORD 
-									stringValue:[[stringbuf copy] autorelease] 
-									 floatValue:0.0f] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_WORD 
+						   stringValue:[[stringbuf copy] autorelease] 
+							floatValue:0.0f];
 }
 #endif
 

@@ -28,7 +28,7 @@
 - (id)initWithString:(NSString *)s {
 	self = [super initWithString:s];
 	if (self != nil) {
-		self.literal = [[[TDToken alloc] initWithTokenType:TDTT_WORD stringValue:s floatValue:0.] autorelease];
+		self.literal = [TDToken tokenWithTokenType:TDTT_WORD stringValue:s floatValue:0.0f];
 	}
 	return self;
 }

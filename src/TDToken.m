@@ -35,7 +35,7 @@
 	static TDToken *EOFToken = nil;
 	@synchronized (self) {
 		if (!EOFToken) {
-			EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTT_EOF stringValue:nil floatValue:0.];
+			EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTT_EOF stringValue:nil floatValue:0.0f];
 		}
 	}
 	return EOFToken;
