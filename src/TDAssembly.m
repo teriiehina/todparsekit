@@ -154,7 +154,7 @@
 	NSInteger i = 0;
 	NSInteger len = stack.count;
 	
-	for (id obj in self.stack) {
+	for (id obj in stack) {
 		[s appendString:[obj description]];
 		if (i != len - 1) {
 			[s appendString:@", "];
