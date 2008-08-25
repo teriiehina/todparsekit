@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDMutableStringState.h>
+#import <TDParseKit/TDTokenizerState.h>
 
-@interface TDWordState : TDMutableStringState {
+@interface TDWordState : TDTokenizerState {
 	NSMutableArray *wordChars;
 	NSNumber *yesFlag;
 	NSNumber *noFlag;

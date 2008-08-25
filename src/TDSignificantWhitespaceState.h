@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDMutableStringState.h>
+#import <TDParseKit/TDTokenizerState.h>
 
-@interface TDSignificantWhitespaceState : TDMutableStringState {
+@interface TDSignificantWhitespaceState : TDTokenizerState {
 	NSInteger c;
 	NSMutableArray *whitespaceChars;
 	NSNumber *yesFlag;

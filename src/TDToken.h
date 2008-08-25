@@ -51,7 +51,5 @@ typedef enum {
 @property (nonatomic, readonly) CGFloat floatValue;
 @property (nonatomic, readonly, copy) NSString *stringValue;
 @property (nonatomic, readonly) TDTokenType tokenType;
-
-// TDO make retain?
 @property (nonatomic, readonly, copy) id value;
 @end

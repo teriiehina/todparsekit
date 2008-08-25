@@ -22,6 +22,12 @@
 	self = [super init];
 	if (self != nil) {
 		self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
+		[self add:@"<="];
+		[self add:@">="];
+		[self add:@":="];
+		[self add:@"!="];
+		[self add:@"=="];
+		[self add:@"<>"];
 	}
 	return self;
 }
@@ -36,9 +42,7 @@
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
 	NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
 	
-	return [[[TDToken alloc] initWithTokenType:TDTT_SYMBOL 
-									stringValue:symbol
-									 floatValue:0.0f] autorelease];
+	return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:symbol floatValue:0.0f];
 }
 
 

@@ -13,7 +13,7 @@
 @class TDReader;
 
 @interface TDTokenizerState : NSObject {
-
+	NSMutableString *stringbuf;
 }
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t;
 @end

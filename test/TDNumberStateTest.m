@@ -86,7 +86,18 @@
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
-	STAssertEqualObjects(@"1.", t.stringValue, @"");	
+	STAssertEqualObjects(@"1", t.stringValue, @"");	
+}
+
+
+- (void)testCustomOneDot {
+	s = @"1.";
+	r = [[TDReader alloc] initWithString:s];
+	numberState.allowsEndingWithDot = YES;
+	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+	STAssertEquals(1.0f, t.floatValue, @"");
+	STAssertTrue(t.isNumber, @"");	
+	STAssertEqualObjects(@"1.", t.stringValue, @"");		
 }
 
 
@@ -103,6 +114,17 @@
 - (void)testPositiveOneDot {
 	s = @"+1.";
 	r = [[TDReader alloc] initWithString:s];
+	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+	STAssertEquals(1.0f, t.floatValue, @"");
+	STAssertTrue(t.isNumber, @"");	
+	STAssertEqualObjects(@"+1", t.stringValue, @"");
+}
+
+
+- (void)testPositiveOneDotCustom {
+	s = @"+1.";
+	r = [[TDReader alloc] initWithString:s];
+	numberState.allowsEndingWithDot = YES;
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
@@ -136,6 +158,17 @@
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(-1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
+	STAssertEqualObjects(@"-1", t.stringValue, @"");
+}
+
+
+- (void)testNegativeOneDotCustom {
+	s = @"-1.";
+	r = [[TDReader alloc] initWithString:s];
+	numberState.allowsEndingWithDot = YES;
+	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+	STAssertEquals(-1.0f, t.floatValue, @"");
+	STAssertTrue(t.isNumber, @"");	
 	STAssertEqualObjects(@"-1.", t.stringValue, @"");	
 }
 
@@ -146,7 +179,7 @@
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(-1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
-	STAssertEqualObjects(@"-1.", t.stringValue, @"");	
+	STAssertEqualObjects(@"-1", t.stringValue, @"");	
 }
 
 

@@ -49,7 +49,7 @@
 		if (-1 != c) {
 			[r unread];
 		}
-		return [[[TDToken alloc] initWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f] autorelease];
+		return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
 	}
 }
 

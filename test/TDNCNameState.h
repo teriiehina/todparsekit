@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDMutableStringState.h"
+#import "TDTokenizerState.h"
 
-@interface TDNCNameState : TDMutableStringState {
+@interface TDNCNameState : TDTokenizerState {
 	
 }
 
