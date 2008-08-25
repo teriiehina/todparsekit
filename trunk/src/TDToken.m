@@ -51,7 +51,7 @@
 
 - (id)initWithFloatValue:(CGFloat)n {
 	return [self initWithTokenType:TDTT_NUMBER
-					   stringValue:[[NSNumber numberWithDouble:n] stringValue]
+					   stringValue:[[NSNumber numberWithFloat:n] stringValue]
 						floatValue:n];
 }
 
@@ -79,7 +79,7 @@
 		
 		id v = nil;
 		if (self.isNumber) {
-			v = [NSNumber numberWithDouble:floatValue];
+			v = [NSNumber numberWithFloat:floatValue];
 		} else if (self.isQuotedString) {
 			v = stringValue;
 		} else if (self.isSymbol) {
