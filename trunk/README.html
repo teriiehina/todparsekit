@@ -98,12 +98,12 @@ while ((tok = [t nextToken]) != eof) {
 </li>
 	
 	
-<li>change which chars singnal the start of a token of any given type. ex: <div class="code"><pre>[t setCharacterState:t.wordState from:'_' to:'_'];</pre></div>
+<li>change which chars singnal the start of a token of any given type. ex: <div class="code"><pre>[t setTokenizerState:t.wordState from:'_' to:'_'];</pre></div>
 <p><small>allows Word tokens to start with underscore</small></p>
 </li>
 
 <li>turn off recognition of "slash-slash" (//) comments.ex: 
-<div class="code"><pre>[t setCharacterState:t.symbolState from:'/' to:'/'];</pre></div>
+<div class="code"><pre>[t setTokenizerState:t.symbolState from:'/' to:'/'];</pre></div>
 <p><small>slash chars now produce a Symbol token rather than causing the tokenizer to strip text until the next newline char or begin striping for a multiline comment if appropriate (<tt>/*</tt>)</small></p>
 </li>
 </ul>
