@@ -52,6 +52,7 @@
 #import <TDParseKit/TDCaseInsensitiveLiteral.h>
 
 // ext
+#import <TDParseKit/TDScientificNumberState.h>
 #import <TDParseKit/TDSignificantWhitespaceState.h>
 #import <TDParseKit/TDWordOrReservedState.h>
 #import <TDParseKit/TDUppercaseWord.h>

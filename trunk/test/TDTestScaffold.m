@@ -35,7 +35,8 @@
 	SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"Solo Test Suite"];
 	
 	NSArray *classNames = [NSArray arrayWithObjects:
-						   @"TDArithmeticParserTest",
+						   @"TDScientificNumberStateTest",
+						   @"TDNumberStateTest",
 						   nil];
 	
 	[suite addSuitesForClassNames:classNames];
@@ -102,6 +103,7 @@
 						   @"XMLReaderTest",
 						   @"TDXmlTokenizerTest",
 						   @"TDArithmeticParserTest",
+						   @"TDScientificNumberStateTest",
 						   nil];
 	
 	[suite addSuitesForClassNames:classNames];

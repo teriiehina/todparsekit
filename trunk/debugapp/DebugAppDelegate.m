@@ -32,21 +32,30 @@
 //	TDAssembly *result = [p completeMatchFor:a];
 	
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-	NSString *s = [NSString stringWithContentsOfFile:path];
+//	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+//	NSString *s = [NSString stringWithContentsOfFile:path];
+//	
+//	TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
+////	TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
+//	
+//	id result = nil;
+//	
+//	@try {
+//		result = [p parse:s];
+//	}
+//	@catch (NSException *e) {
+//		NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
+//	}
+//	NSLog(@"result %@", result);
+
 	
-	TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
-//	TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
+	NSString *s = @"2.0e2";
+	TDReader *r = [[[TDReader alloc] initWithString:s] autorelease];
+	TDTokenizerState *numberState = [[[TDScientificNumberState alloc] init] autorelease];
+
+	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	
-	id result = nil;
-	
-	@try {
-		result = [p parse:s];
-	}
-	@catch (NSException *e) {
-		NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
-	}
-	NSLog(@"result %@", result);
+	NSLog(@"t: %@", t);
 	
 	[pool release];
 	
