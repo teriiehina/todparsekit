@@ -185,6 +185,8 @@
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
+		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
@@ -468,6 +470,10 @@
 		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3C85C790E63B438000445FD /* TDArithmeticParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParser.h; path = test/TDArithmeticParser.h; sourceTree = "<group>"; };
+		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
+		D3C85C7E0E63B9E9000445FD /* TDArithmeticParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParserTest.h; path = test/TDArithmeticParserTest.h; sourceTree = "<group>"; };
+		D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParserTest.m; path = test/TDArithmeticParserTest.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -838,6 +844,7 @@
 				D3D63F570E2A8548009BF5CD /* parse */,
 				D3D63F560E2A8538009BF5CD /* tokens */,
 				D34A20080E55FD5F00A4A0BF /* chars */,
+				D3C85C770E63B400000445FD /* arithmetic */,
 				D3E786030E5510AE008C7D61 /* regex */,
 				D3E788890E567B6D008C7D61 /* ebnf */,
 				D318EAE30E2FD5B6009F47DF /* json */,
@@ -878,6 +885,17 @@
 				D3E7842E0E53BE23008C7D61 /* ext */,
 			);
 			name = tokens;
+			sourceTree = "<group>";
+		};
+		D3C85C770E63B400000445FD /* arithmetic */ = {
+			isa = PBXGroup;
+			children = (
+				D3C85C790E63B438000445FD /* TDArithmeticParser.h */,
+				D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */,
+				D3C85C7E0E63B9E9000445FD /* TDArithmeticParserTest.h */,
+				D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */,
+			);
+			name = arithmetic;
 			sourceTree = "<group>";
 		};
 		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
@@ -1423,6 +1441,8 @@
 				D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */,
 				D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */,
 				D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */,
+				D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */,
+				D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
