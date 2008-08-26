@@ -21,9 +21,16 @@
 - (void)parseRightSideFromReader:(TDReader *)r {
 	[super parseRightSideFromReader:r];
 	if ('e' == c || 'E' == c) {
-		[stringbuf appendFormat:@"%C", c];
-		c = [r read];
-		exp = [super absorbDigitsFromReader:r isFraction:NO];
+		NSInteger n = [r read];
+		BOOL nextIsDigit = isdigit(n);
+		if (-1 != n) {
+			[r unread];
+		}
+		if (nextIsDigit) {
+			[stringbuf appendFormat:@"%C", c];
+			c = [r read];
+			exp = [super absorbDigitsFromReader:r isFraction:NO];
+		}
 	}
 }
 
@@ -37,7 +44,7 @@
 - (CGFloat)value {
 	CGFloat result = floatValue;
 	
-	NSInteger i = 1;
+	NSInteger i = 0;
 	for ( ; i < exp; i++) {
 		result *= 10.0f;
 	}

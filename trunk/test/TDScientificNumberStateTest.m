@@ -582,7 +582,7 @@
 	s = @"1e1";
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEquals(1.0f, t.floatValue, @"");	
+	STAssertEquals(10.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");	
 }
 
@@ -591,7 +591,7 @@
 	s = @"1e2";
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEquals(10.0f, t.floatValue, @"");	
+	STAssertEquals(100.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");	
 }
 
@@ -601,7 +601,7 @@
 	s = @"2.0e2";
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEquals(20.0f, t.floatValue, @"");	
+	STAssertEquals(200.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");	
 	STAssertEqualObjects(s, t.stringValue, @"");	
 }
@@ -612,7 +612,7 @@
 	s = @"2.0E2";
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEquals(20.0f, t.floatValue, @"");	
+	STAssertEquals(200.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");	
 	STAssertEqualObjects(s, t.stringValue, @"");	
 }
@@ -623,7 +623,7 @@
 	s = @"2e2";
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEquals(20.0f, t.floatValue, @"");	
+	STAssertEquals(200.0f, t.floatValue, @"");	
 	STAssertTrue(t.isNumber, @"");	
 	STAssertEqualObjects(s, t.stringValue, @"");	
 }
@@ -639,10 +639,10 @@
 	t.string = s;
 
 //	TDToken *tok = [t nextToken];
-//	STAssertEquals(20.0f, tok.floatValue, @"");	
+//	STAssertEquals(200.0f, tok.floatValue, @"");	
 //	STAssertTrue(tok.isNumber, @"");	
 //	STAssertEqualObjects(s, tok.stringValue, @"");	
-
+//
 //	tok = [t nextToken];
 //	STAssertTrue(tok.isWord, @"");	
 //	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
