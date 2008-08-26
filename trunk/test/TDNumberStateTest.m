@@ -80,6 +80,21 @@
 }
 
 
+- (void)testMultipleDots {
+	s = @"1.1.1";
+	r = [[TDReader alloc] initWithString:s];
+	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+	STAssertEquals(1.1f, t.floatValue, @"");
+	STAssertTrue(t.isNumber, @"");	
+	STAssertEqualObjects(@"1.1", t.stringValue, @"");	
+
+	t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+	STAssertEquals(0.1f, t.floatValue, @"");
+	STAssertTrue(t.isNumber, @"");	
+	STAssertEqualObjects(@".1", t.stringValue, @"");	
+}
+
+
 - (void)testOneDot {
 	s = @"1.";
 	r = [[TDReader alloc] initWithString:s];
@@ -93,7 +108,7 @@
 - (void)testCustomOneDot {
 	s = @"1.";
 	r = [[TDReader alloc] initWithString:s];
-	numberState.allowsEndingWithDot = YES;
+	numberState.allowsTrailingDot = YES;
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
@@ -124,7 +139,7 @@
 - (void)testPositiveOneDotCustom {
 	s = @"+1.";
 	r = [[TDReader alloc] initWithString:s];
-	numberState.allowsEndingWithDot = YES;
+	numberState.allowsTrailingDot = YES;
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
@@ -165,7 +180,7 @@
 - (void)testNegativeOneDotCustom {
 	s = @"-1.";
 	r = [[TDReader alloc] initWithString:s];
-	numberState.allowsEndingWithDot = YES;
+	numberState.allowsTrailingDot = YES;
 	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEquals(-1.0f, t.floatValue, @"");
 	STAssertTrue(t.isNumber, @"");	
