@@ -10,11 +10,11 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 @interface TDNumberState : TDTokenizerState {
-	BOOL allowsEndingWithDot;
+	BOOL allowsTrailingDot;
 	BOOL gotADigit;
 	BOOL negative;
 	NSInteger c;
 	CGFloat floatValue;
 }
-@property (nonatomic) BOOL allowsEndingWithDot;
+@property (nonatomic) BOOL allowsTrailingDot;
 @end

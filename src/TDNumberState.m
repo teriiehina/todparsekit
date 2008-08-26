@@ -22,7 +22,6 @@
 - (void)parseLeftSideFromReader:(TDReader *)r;
 - (void)parseRightSideFromReader:(TDReader *)r;
 - (void)reset:(NSInteger)cin;
-- (BOOL)isDigitChar:(NSInteger)c;
 @end
 
 
@@ -64,11 +63,11 @@
 		if ('.' == c) {
 			NSInteger n = [r read];
 			// check for trailing '.' and handle approriately
-			BOOL nextIsDigit = [self isDigitChar:n];
+			BOOL nextIsDigit = ('0' <= n && n <= '9');
 			if (-1 != n) {
 				[r unread];
 			}
-			if (nextIsDigit || allowsEndingWithDot) {
+			if (nextIsDigit || allowsTrailingDot) {
 				[stringbuf appendString:@"."];
 				[self parseRightSideFromReader:r];
 			}
@@ -98,7 +97,7 @@
 	CGFloat v = 0.0;
 	
 	while (1) {
-		if ([self isDigitChar:c]) {
+		if ('0' <= c && c <= '9') {
 			[stringbuf appendFormat:@"%C", c];
 			gotADigit = YES;
 			v = v * 10.0 + (c - '0');
@@ -136,9 +135,5 @@
 	c = cin;
 }
 
-- (BOOL)isDigitChar:(NSInteger)n {
-	return ('0' <= n && n <= '9');
-}
-
-@synthesize allowsEndingWithDot;
+@synthesize allowsTrailingDot;
 @end

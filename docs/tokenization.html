@@ -145,53 +145,13 @@ while ((tok = [t nextToken]) != eof) {
 	<li>Which characters are allowed within the current token being created?</li>
 </ol>
 
-<p><tt>TDTokenizer</tt>'s behavior with respect to these two types of decisions is totally configurable. Let's take them one at a time.</p>
+<p><tt>TDTokenizer</tt>'s behavior with respect to these two types of decisions is totally configurable. Let's tackle them, starting with the second question first.</p>
 
-<h4>Changing which token type is created for a given start character</h4>
 
-<p><tt>TDTokenizer</tt> controls the logic for deciding which token type to create for a given start character. So to change which token type is created for a given start character, you must call a method of the <tt>TDTokenizer</tt> object itself, <tt>-setTokenizerState:from:to:</tt>.</p>
-
-<table border="1" cellpadding="5" cellspacing="0">
-	<tr>
-		<th><tt>TDTokenizer</tt></th>
-	</tr>
-	<tr>
-		<td>
-			<p>
-				<tt>...</tt>
-				<pre>- (void)setTokenizerState:(TDTokenizerState *)state 
-                     from:(NSInteger)start 
-                       to:(NSInteger)end;</pre>
-				<tt>...</tt><br/>
-			</p>
-		</td>
-	</tr>
-</table>
-
-<p>For example, suppose you want to add support for new <tt>Quoted String</tt> token delimiters, such as <tt>&laquo;#&raquo;</tt>. This would cause a string like <tt>#oh hai#</tt> to be recognized as a <tt>Quoted String </tt> token rather than a <tt>Symbol</tt>, two <tt>Word</tt>s, and a <tt>Symbol</tt>. Here's how:</p>
-
-<div class="code">
-<pre>
-...
-TDTokenizer *t = [TDTokenizerWithString:s];
-[t setTokenizerState:t.symbolState from:'#' to:'/'];
-...</pre>
-</div>
-
-<p>As another example, you may want to turn off comments. By default, TDTokenizer passes control to its <tt>slashState</tt> object which silently consumes the comment text found after <tt>//</tt> or between <tt>/* */</tt>. To disable recognizing comments, tell <tt>TDTokenizer</tt> to pass control to its <tt>symbolState</tt> instead of it's <tt>slashState</tt>.</p>
-
-<div class="code">
-<pre>
-...
-[t setTokenizerState:t.symbolState from:'/' to:'/'];
-...</pre>
-</div>
-
-<p>Now <tt>TDTokenizer</tt> will return <tt>Symbol</tt> tokens for <tt>&laquo;/&raquo;</tt> characters.</p>
 
 <h4>Changing which characters are allowed within a token of a particular type</h4>
 
-<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character, it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the <tt>TDTokenizerState</tt> class: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, and <tt>TDQuoteState</tt>. The state objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
+<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character (see below), it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the <tt>TDTokenizerState</tt> class: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, and <tt>TDQuoteState</tt>. The state objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -211,6 +171,113 @@ TDTokenizer *t = [TDTokenizerWithString:s];
 		</td>
 	</tr>
 </table>
+
+<p>Some of the <tt>TDTokenizerState</tt> subclasses have methods that alter what characters are allowed within tokens of their associated token type.</p>
+
+<p>For example, if you want to add a new multiple-character symbol like <tt>&laquo;===&raquo;</tt>:</p>
+
+<div class="code">
+<pre>
+...
+TDTokenizer *t = [TDTokenizerWithString:s];
+[t.symbolState add:@"==="];
+...</pre>
+</div>
+
+<p>Now <tt>&laquo;===&raquo;</tt> strings will be recognized as a single <tt>Symbol</tt> token with a <tt>stringValue</tt> of <tt>&laquo;===&raquo;</tt>.</p>
+
+<p>If you don't want to allow digits within <tt>Word</tt> tokens (digits <b>are</b> allowed within <tt>Words</tt> by default):</p>
+
+<div class="code">
+<pre>
+...
+[t.wordState setWordChars:NO from:'0' to:'9'];
+...</pre>
+</div>
+
+<p>Say you want to allow floating-point <tt>Number</tt> tokens to end with a <tt>&laquo;.&raquo;</tt> sans trailing <tt>&laquo;0&raquo;</tt>. In other words, you want <tt>&laquo;49.&raquo;</tt> to be recognized as a single <tt>Number</tt> token with a <tt>floatValue</tt> of <tt>&laquo;49.0&raquo;</tt> rather than a <tt>Number</tt> token followed by a <tt>Symbol</tt> token with a <tt>stringValue</tt> of <tt>&laquo;.&raquo;</tt>:</p>
+
+<div class="code">
+<pre>
+...
+t.numberState.allowsTrailingDot = YES;
+...</pre>
+</div>
+
+
+<p>You can also configure which characters are recognized as whitespace within a whitespace token:</p>
+
+<div class="code">
+<pre>
+...
+[t.whitespaceState setWhitespaceChars:YES from:'0' to:'9'];
+...</pre>
+</div>
+
+
+<h4>Changing which token type is created for a given start character</h4>
+
+<p><tt>TDTokenizer</tt> controls the logic for deciding which token type should be created for a given start character. So to change which type is created for a given start character, you must call a method of the <tt>TDTokenizer</tt> object itself: <tt>-setTokenizerState:from:to:</tt>.</p>
+
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th><tt>TDTokenizer</tt></th>
+	</tr>
+	<tr>
+		<td>
+			<p>
+				<tt>...</tt>
+				<pre>- (void)setTokenizerState:(TDTokenizerState *)state 
+                     from:(NSInteger)start 
+                       to:(NSInteger)end;</pre>
+				<tt>...</tt><br/>
+			</p>
+		</td>
+	</tr>
+</table>
+
+<p>For example, suppose you want to turn off support for <tt>Number</tt> tokens altogether. Instead, you'd like digits to be recognized as signaling the start of <tt>Word</tt> tokens:</p>
+
+<div class="code">
+<pre>
+...
+TDTokenizer *t = [TDTokenizerWithString:s];
+[t setTokenizerState:t.wordState from:'0' to:'9'];
+...</pre>
+</div>
+
+<p>This will cause <tt>TDTokenizer</tt> to begin creating a <tt>Word</tt> token whenever a digit (<tt>&laquo;0&raquo;</tt>, <tt>&laquo;1&raquo;</tt>, <tt>&laquo;2&raquo;</tt>, <tt>&laquo;3&raquo;</tt>,<tt>&laquo;4&raquo;</tt>, <tt>&laquo;5&raquo;</tt>, <tt>&laquo;6&raquo;</tt>, <tt>&laquo;7&raquo;</tt>, <tt>&laquo;8&raquo;</tt>, <tt>&laquo;9&raquo;</tt>, <tt>&laquo;0&raquo;</tt> ) is encountered rather than a <tt>Number</tt> token. </p>
+
+<p>As another example, say you want to add support for new <tt>Quoted String</tt> token delimiters, such as <tt>&laquo;#&raquo;</tt>. This would cause a string like <tt>#oh hai#</tt> to be recognized as a <tt>Quoted String </tt> token rather than a <tt>Symbol</tt>, two <tt>Word</tt>s, and a <tt>Symbol</tt>. Here's how:</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.quoteState from:'#' to:'#'];
+...</pre>
+</div>
+
+<p>Alternatively, say you want to recognize <tt>&laquo;+&raquo;</tt> characters followed immediately by digits as explicitly positive <tt>Number</tt> tokens rather than as a <tt>Symbol</tt> token followed by a <tt>Number</tt> token:</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.numberState from:'+' to:'+'];
+...</pre>
+</div>
+
+<p>As a final example, you may want to turn off comments. By default, TDTokenizer passes control to its <tt>slashState</tt> object which silently consumes the comment text found after <tt>//</tt> or between <tt>/* */</tt>. To disable recognizing comments, tell <tt>TDTokenizer</tt> to pass control to its <tt>symbolState</tt> instead of it's <tt>slashState</tt>.</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.symbolState from:'/' to:'/'];
+...</pre>
+</div>
+
+<p>Now <tt>TDTokenizer</tt> will return <tt>Symbol</tt> tokens for <tt>&laquo;/&raquo;</tt> characters.</p>
+
+
 </div>
 </body>
 </html>

@@ -39,13 +39,11 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
 	NSInteger c = [r read];
-//	NSLog(@"c: %c", c);
 	if ('/' == c) {
 		return [slashSlashState nextTokenFromReader:r startingWith:c tokenizer:t];
 	} else if ('*' == c) {
 		return [slashStarState nextTokenFromReader:r startingWith:c tokenizer:t];
 	} else {
-		// TDO symbol
 		if (-1 != c) {
 			[r unread];
 		}
