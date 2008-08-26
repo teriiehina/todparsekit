@@ -41,10 +41,10 @@
 
 @property (nonatomic, copy) NSString *string;
 
-@property (nonatomic, readonly, retain) TDNumberState *numberState;
-@property (nonatomic, readonly, retain) TDQuoteState *quoteState;
-@property (nonatomic, readonly, retain) TDSlashState *slashState;
-@property (nonatomic, readonly, retain) TDSymbolState *symbolState;
-@property (nonatomic, readonly, retain) TDWhitespaceState *whitespaceState;
-@property (nonatomic, readonly, retain) TDWordState *wordState;
+@property (nonatomic, retain) TDNumberState *numberState;
+@property (nonatomic, retain) TDQuoteState *quoteState;
+@property (nonatomic, retain) TDSlashState *slashState;
+@property (nonatomic, retain) TDSymbolState *symbolState;
+@property (nonatomic, retain) TDWhitespaceState *whitespaceState;
+@property (nonatomic, retain) TDWordState *wordState;
 @end

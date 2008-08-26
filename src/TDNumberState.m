@@ -19,11 +19,11 @@
 
 @interface TDNumberState ()
 - (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)fraction;
+- (CGFloat)value;
 - (void)parseLeftSideFromReader:(TDReader *)r;
 - (void)parseRightSideFromReader:(TDReader *)r;
 - (void)reset:(NSInteger)cin;
 @end
-
 
 @implementation TDNumberState
 
@@ -56,25 +56,10 @@
 	
 	[self reset:cin];
 	if ('.' == c) {
-		[stringbuf appendString:@"."];
 		[self parseRightSideFromReader:r];
 	} else {
 		[self parseLeftSideFromReader:r];
-		if ('.' == c) {
-			NSInteger n = [r read];
-			// check for trailing '.' and handle approriately
-			BOOL nextIsDigit = ('0' <= n && n <= '9');
-			if (-1 != n) {
-				[r unread];
-			}
-			if (nextIsDigit || allowsTrailingDot) {
-				[stringbuf appendString:@"."];
-				[self parseRightSideFromReader:r];
-			}
-		}
-	}
-	if (-1 != c) {
-		[r unread];
+		[self parseRightSideFromReader:r];
 	}
 	
 	// erroneous ., +, or -
@@ -82,19 +67,28 @@
 		return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
 	}
 	
+	if (-1 != c) {
+		[r unread];
+	}
+
 	if (negative) {
 		floatValue = -floatValue;
 	}
 	
 	return [TDToken tokenWithTokenType:TDTT_NUMBER 
 						   stringValue:[[stringbuf copy] autorelease] 
-							floatValue:floatValue];
+							floatValue:[self value]];
 }
 
 
-- (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)fraction {
-	CGFloat divideBy = 1.0;
-	CGFloat v = 0.0;
+- (CGFloat)value {
+	return floatValue;
+}
+
+
+- (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction {
+	CGFloat divideBy = 1.0f;
+	CGFloat v = 0.0f;
 	
 	while (1) {
 		if ('0' <= c && c <= '9') {
@@ -102,15 +96,15 @@
 			gotADigit = YES;
 			v = v * 10.0 + (c - '0');
 			c = [r read];
-			if (fraction) {
-				divideBy *= 10.0;
+			if (isFraction) {
+				divideBy *= 10.0f;
 			}
 		} else {
 			break;
 		}
 	}
 	
-	if (fraction) {
+	if (isFraction) {
 		v = v / divideBy;
 	}
 
@@ -124,14 +118,27 @@
 
 
 - (void)parseRightSideFromReader:(TDReader *)r {
-	c = [r read];
-	floatValue += [self absorbDigitsFromReader:r isFraction:YES];
+	if ('.' == c) {
+		NSInteger n = [r read];
+		BOOL nextIsDigit = ('0' <= n && n <= '9');
+		if (-1 != n) {
+			[r unread];
+		}
+
+		if (nextIsDigit || allowsTrailingDot) {
+			[stringbuf appendString:@"."];
+			if (nextIsDigit) {
+				c = [r read];
+				floatValue += [self absorbDigitsFromReader:r isFraction:YES];
+			}
+		}
+	}
 }
 
 
 - (void)reset:(NSInteger)cin {
 	gotADigit = NO;
-	floatValue = 0.0;
+	floatValue = 0.0f;
 	c = cin;
 }
 

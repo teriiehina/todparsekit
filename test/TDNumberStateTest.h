@@ -7,9 +7,7 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-
 #import <TDParseKit/TDParseKit.h>
-
 
 @interface TDNumberStateTest : SenTestCase {
 	TDNumberState *numberState;

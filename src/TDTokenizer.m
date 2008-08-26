@@ -11,14 +11,6 @@
 
 @interface TDTokenizer ()
 @property (nonatomic, retain) TDReader *reader;
-
-@property (nonatomic, readwrite, retain) TDNumberState *numberState;
-@property (nonatomic, readwrite, retain) TDQuoteState *quoteState;
-@property (nonatomic, readwrite, retain) TDSlashState *slashState;
-@property (nonatomic, readwrite, retain) TDSymbolState *symbolState;
-@property (nonatomic, readwrite, retain) TDWhitespaceState *whitespaceState;
-@property (nonatomic, readwrite, retain) TDWordState *wordState;
-
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 
 - (TDTokenizerState *)tokenizerStateFor:(NSInteger)c;
