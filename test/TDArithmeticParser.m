@@ -8,15 +8,15 @@
 
 #import "TDArithmeticParser.h"
 
-// expr			= term (plusTerm | minusTerm)*
-// term			= factor (timesFactor | divFactor)*
-// plusTerm		= '+' term
-// minusTerm	= '-' term
-// factor		= phrase expFactor | phrase
-// timesFactor	= '*' factor
-// divFactor	= '/' factor
-// expFactor	= '^' factor
-// phrase		= '(' expr ')' | Num
+// expr				= term (plusTerm | minusTerm)*
+// term				= factor (timesFactor | divFactor)*
+// plusTerm			= '+' term
+// minusTerm		= '-' term
+// factor			= phrase exponentFactor | phrase
+// timesFactor		= '*' factor
+// divFactor		= '/' factor
+// exponentFactor	= '^' factor
+// phrase			= '(' expr ')' | Num
 
 @implementation TDArithmeticParser
 
@@ -37,7 +37,7 @@
 	self.factorParser = nil;
 	self.timesFactorParser = nil;
 	self.divFactorParser = nil;
-	self.expFactorParser = nil;
+	self.exponentFactorParser = nil;
 	self.phraseParser = nil;
 	[super dealloc];
 }
@@ -107,14 +107,14 @@
 }
 
 
-// factor		= phrase expFactor | phrase
+// factor		= phrase exponentFactor | phrase
 - (TDCollectionParser *)factorParser {
 	if (!factorParser) {
 		self.factorParser = [TDAlternation alternation];
 		
 		TDSequence *s = [TDSequence sequence];
 		[s add:self.phraseParser];
-		[s add:self.expFactorParser];
+		[s add:self.exponentFactorParser];
 		
 		[factorParser add:s];
 		[factorParser add:self.phraseParser];
@@ -141,21 +141,21 @@
 		self.divFactorParser = [TDSequence sequence];
 		[divFactorParser add:[[TDSymbol symbolWithString:@"/"] discard]];
 		[divFactorParser add:self.factorParser];
-		[divFactorParser setAssembler:self selector:@selector(workOnDivAssembly:)];
+		[divFactorParser setAssembler:self selector:@selector(workOnDivideAssembly:)];
 	}
 	return divFactorParser;
 }
 
 
-// expFactor	= '^' factor
-- (TDCollectionParser *)expFactorParser {
-	if (!expFactorParser) {
-		self.expFactorParser = [TDSequence sequence];
-		[expFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
-		[expFactorParser add:self.factorParser];
-		[expFactorParser setAssembler:self selector:@selector(workOnExpAssembly:)];
+// exponentFactor	= '^' factor
+- (TDCollectionParser *)exponentFactorParser {
+	if (!exponentFactorParser) {
+		self.exponentFactorParser = [TDSequence sequence];
+		[exponentFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
+		[exponentFactorParser add:self.factorParser];
+		[exponentFactorParser setAssembler:self selector:@selector(workOnExpAssembly:)];
 	}
-	return expFactorParser;
+	return exponentFactorParser;
 }
 
 
@@ -209,7 +209,7 @@
 }
 
 
-- (void)workOnDivAssembly:(TDAssembly *)a {
+- (void)workOnDivideAssembly:(TDAssembly *)a {
 	TDToken *tok2 = [a pop];
 	TDToken *tok1 = [a pop];
 	[a push:[NSNumber numberWithFloat:tok1.floatValue / tok2.floatValue]];
@@ -239,6 +239,6 @@
 @synthesize factorParser;
 @synthesize timesFactorParser;
 @synthesize divFactorParser;
-@synthesize expFactorParser;
+@synthesize exponentFactorParser;
 @synthesize phraseParser;
 @end

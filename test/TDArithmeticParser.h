@@ -16,7 +16,7 @@
 	TDCollectionParser *factorParser;
 	TDCollectionParser *timesFactorParser;
 	TDCollectionParser *divFactorParser;
-	TDCollectionParser *expFactorParser;
+	TDCollectionParser *exponentFactorParser;
 	TDCollectionParser *phraseParser;
 }
 - (CGFloat)parse:(NSString *)s;
@@ -28,6 +28,6 @@
 @property (retain) TDCollectionParser *factorParser;
 @property (retain) TDCollectionParser *timesFactorParser;
 @property (retain) TDCollectionParser *divFactorParser;
-@property (retain) TDCollectionParser *expFactorParser;
+@property (retain) TDCollectionParser *exponentFactorParser;
 @property (retain) TDCollectionParser *phraseParser;
 @end
