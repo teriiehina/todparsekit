@@ -168,14 +168,34 @@ while ((tok = [t nextToken]) != eof) {
 	</tr>
 </table>
 
+<p>For example, suppose you want to add support for new <tt>Quoted String</tt> token delimiters, such as <tt>&laquo;#&raquo;</tt>. This would cause a string like <tt>#oh hai#</tt> to be recognized as a <tt>Quoted String </tt> token rather than a <tt>Symbol</tt>, two <tt>Word</tt>s, and a <tt>Symbol</tt>. Here's how:</p>
+
+<div class="code">
+<pre>
+...
+TDTokenizer *t = [TDTokenizerWithString:s];
+[t setTokenizerState:t.symbolState from:'#' to:'/'];
+...</pre>
+</div>
+
+<p>As another example, you may want to turn off comments. By default, TDTokenizer passes control to its <tt>slashState</tt> object which silently consumes the comment text found after <tt>//</tt> or between <tt>/* */</tt>. To disable recognizing comments, tell <tt>TDTokenizer</tt> to pass control to its <tt>symbolState</tt> instead of it's <tt>slashState</tt>.</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.symbolState from:'/' to:'/'];
+...</pre>
+</div>
+
+<p>Now <tt>TDTokenizer</tt> will return <tt>Symbol</tt> tokens for <tt>&laquo;/&raquo;</tt> characters.</p>
 
 <h4>Changing which characters are allowed within a token of a particular type</h4>
 
-<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character, it temporarily passes control to one of a series of "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for which characters are allowed within a token of a given type is controlled by subclasses of <tt>TDTokenizerState</tt>: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, and <tt>TDQuoteState</tt>. These helper objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
+<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character, it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the <tt>TDTokenizerState</tt> class: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, and <tt>TDQuoteState</tt>. The state objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
-		<th><tt>TDTokenizer</tt></th>
+		<th><tt><b>TDTokenizer</b></tt></th>
 	</tr>
 	<tr>
 		<td>
