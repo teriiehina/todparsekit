@@ -151,7 +151,7 @@
 }
 
 
-- (void)testTokenzierAddGtEqualLtFoo {
+- (void)testTokenzierAddGtEqualLtSpaceFoo {
 	s = @">=< foo";
 	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
 	[t.symbolState add:@">=<"];
@@ -164,6 +164,78 @@
 	STAssertEqualObjects(@"foo", tok.stringValue, @"");
 	STAssertEqualObjects(@"foo", tok.value, @"");
 	STAssertTrue(tok.isWord, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddGtEqualLtFoo {
+	s = @">=<foo";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@">=<"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");
+	STAssertEqualObjects(@"foo", tok.value, @"");
+	STAssertTrue(tok.isWord, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddGtEqualLtDot {
+	s = @">=<.";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@">=<"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddGtEqualLtSpaceDot {
+	s = @">=< .";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@">=<"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddGtEqualLtSpaceDotSpace {
+	s = @">=< . ";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@">=<"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
 	
 	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
 }
