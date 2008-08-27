@@ -22,33 +22,11 @@
 }
 
 
-// charbuf impl
-//- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-//	
-//	NSInteger i = 0;
-//	charbuf[i++] = cin;
-//	NSInteger c;
-//	do {
-//		c = [r read];
-//		if (c < 0) {
-//			c = cin;
-//		}
-//
-//		[self checkBufLength:i];
-//		charbuf[i++] = c;
-//	} while (c != cin);
-//	
-//	//NSString *stringValue = [NSString stringWithCString:charbuf length:i];
-//	//NSString *stringValue = [[[NSString alloc] initWithBytesNoCopy:charbuf length:i encoding:NSISOLatin1StringEncoding freeWhenDone:YES] autorelease];
-//	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSISOLatin1StringEncoding] autorelease];
-//
-//	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringValue floatValue:0.0f];
-//}
-
-
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
 	[self reset];
 	
+//	NSInteger i = 0;
+//	charbuf[i++] = cin;
 	[stringbuf appendFormat:@"%C", cin];
 	NSInteger c;
 	do {
@@ -57,9 +35,13 @@
 			c = cin;
 		}
 		
+//		[self checkBufLength:i];
+//		charbuf[i++] = c;
 		[stringbuf appendFormat:@"%C", c];
 	} while (c != cin);
 	
+//	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
+
 	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringbuf floatValue:0.0f];
 }
 

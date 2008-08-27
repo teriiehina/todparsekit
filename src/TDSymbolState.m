@@ -22,12 +22,6 @@
 	self = [super init];
 	if (self != nil) {
 		self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
-		[self add:@"<="];
-		[self add:@">="];
-		[self add:@":="];
-		[self add:@"!="];
-		[self add:@"=="];
-		[self add:@"<>"];
 	}
 	return self;
 }
