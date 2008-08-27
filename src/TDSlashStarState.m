@@ -19,7 +19,7 @@
 		c = [r read];
 		
 		if ('*' == c) {
-			char peek = [r read];
+			NSInteger peek = [r read];
 			if ('/' == peek) {
 				c = [r read];
 				break;
