@@ -50,9 +50,8 @@
 
 
 - (NSString *)nextWithFirst:(NSInteger)cin rest:(TDReader *)r parent:(TDSymbolNode *)p {
-	unichar c = (unichar)cin;
-	NSString *result = [NSString stringWithCharacters:&c length:1];
-	NSNumber *key = [NSNumber numberWithUnsignedChar:cin];
+	NSString *result = [[[NSString alloc] initWithBytes:&cin length:1 encoding:NSUTF8StringEncoding] autorelease];
+	NSNumber *key = [NSNumber numberWithInteger:cin];
 	TDSymbolNode *child = [p.children objectForKey:key];
 	
 	if (!child) {
