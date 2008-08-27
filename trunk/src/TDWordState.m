@@ -57,7 +57,7 @@
 
 
 - (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
-	if (start >= 256 || end >= 256) {
+	if (start >= 256 || end >= 256 || start < 0 || end < 0) {
 		[NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin-1 set (under 256)"];
 	}
 	

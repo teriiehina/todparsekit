@@ -10,6 +10,7 @@
 
 @interface TDScientificNumberState : TDNumberState {
 	CGFloat exp;
+	BOOL negativeExp;
 }
 
 @end

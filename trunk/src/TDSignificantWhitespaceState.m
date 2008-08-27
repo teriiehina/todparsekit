@@ -23,9 +23,9 @@
 }
 
 
-//- (NSString *)debugDescription {
-//	return [NSString stringWithFormat:@"<Whitespace %C%@%C>", 0x00ab, self.value, 0x00bb];
-//}
+- (NSString *)debugDescription {
+	return [NSString stringWithFormat:@"<Whitespace %C%@%C>", 0x00ab, self.value, 0x00bb];
+}
 
 @end
 

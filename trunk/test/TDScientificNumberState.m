@@ -22,12 +22,25 @@
 	[super parseRightSideFromReader:r];
 	if ('e' == c || 'E' == c) {
 		NSInteger n = [r read];
-		BOOL nextIsDigit = isdigit(n);
+		
+		BOOL hasExp = isdigit(n);
+		negativeExp = ('-' == n);
+		BOOL positiveExp = ('+' == n);
+
+		if (!hasExp && (negativeExp || positiveExp)) {
+			n = [r read];
+			hasExp = isdigit(n);
+		}
 		if (-1 != n) {
 			[r unread];
 		}
-		if (nextIsDigit) {
+		if (hasExp) {
 			[stringbuf appendFormat:@"%C", c];
+			if (negativeExp) {
+				[stringbuf appendString:@"-"];
+			} else if (positiveExp) {
+				[stringbuf appendString:@"+"];
+			}
 			c = [r read];
 			exp = [super absorbDigitsFromReader:r isFraction:NO];
 		}
@@ -38,6 +51,7 @@
 - (void)reset:(NSInteger)cin {
 	[super reset:cin];
 	exp = 0.0f;
+	negativeExp = NO;
 }
 
 
@@ -47,6 +61,10 @@
 	NSInteger i = 0;
 	for ( ; i < exp; i++) {
 		result *= 10.0f;
+	}
+	
+	if (negativeExp) {
+		result = -result;
 	}
 	
 	return (CGFloat)result;
