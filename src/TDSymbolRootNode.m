@@ -11,7 +11,7 @@
 
 @interface TDSymbolRootNode ()
 - (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (NSString *)nextWithFirst:(NSInteger)cin rest:(TDReader *)r parent:(TDSymbolNode *)p;
+- (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p;
 @end
 
 @implementation TDSymbolRootNode
@@ -49,9 +49,9 @@
 }
 
 
-- (NSString *)nextWithFirst:(NSInteger)cin rest:(TDReader *)r parent:(TDSymbolNode *)p {
-	NSString *result = [[[NSString alloc] initWithBytes:&cin length:1 encoding:NSUTF8StringEncoding] autorelease];
-	NSNumber *key = [NSNumber numberWithInteger:cin];
+- (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
+	NSString *result = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF8StringEncoding] autorelease];
+	NSNumber *key = [NSNumber numberWithInteger:c];
 	TDSymbolNode *child = [p.children objectForKey:key];
 	
 	if (!child) {
@@ -63,12 +63,12 @@
 		}
 	} 
 	
-	cin = [r read];
-	if (-1 == cin) {
+	c = [r read];
+	if (-1 == c) {
 		return result;
 	}
 	
-	return [result stringByAppendingString:[self nextWithFirst:cin rest:r parent:child]];
+	return [result stringByAppendingString:[self nextWithFirst:c rest:r parent:child]];
 }
 
 @end
