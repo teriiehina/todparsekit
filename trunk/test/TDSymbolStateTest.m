@@ -132,7 +132,7 @@
 	r = [[TDReader alloc] initWithString:s];
 	TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
 	STAssertEqualObjects(@">=<", t.stringValue, @"");
-	//STAssertEqualObjects(@">=<", t.value, @"");
+	STAssertEqualObjects(@">=<", t.value, @"");
 	STAssertTrue(t.isSymbol, @"");
 	STAssertEquals((NSInteger)-1, [r read], @"");
 }
