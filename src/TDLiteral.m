@@ -46,7 +46,7 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:3], name, literal.stringValue];
+	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, literal.stringValue];
 }
 
 @synthesize literal;
