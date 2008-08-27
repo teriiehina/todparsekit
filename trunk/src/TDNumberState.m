@@ -91,7 +91,7 @@
 	CGFloat v = 0.0f;
 	
 	while (1) {
-		if ('0' <= c && c <= '9') {
+		if (isdigit(c)) {
 			[stringbuf appendFormat:@"%C", c];
 			gotADigit = YES;
 			v = v * 10.0 + (c - '0');
@@ -120,7 +120,7 @@
 - (void)parseRightSideFromReader:(TDReader *)r {
 	if ('.' == c) {
 		NSInteger n = [r read];
-		BOOL nextIsDigit = ('0' <= n && n <= '9');
+		BOOL nextIsDigit = isdigit(n);
 		if (-1 != n) {
 			[r unread];
 		}
