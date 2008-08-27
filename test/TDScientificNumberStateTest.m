@@ -629,6 +629,26 @@
 }
 
 
+- (void)test2eNegative2Tok {
+	s = @"2e-2";
+	TDTokenizer *t = [TDTokenizer tokenizer];
+	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+	t.numberState = sns;
+	[t setTokenizerState:sns from:'0' to:'9'];
+	[t setTokenizerState:sns from:'-' to:'-'];
+	t.string = s;
+	
+	TDToken *tok = [t nextToken];
+	STAssertEquals(-200.0f, tok.floatValue, @"");	
+	STAssertTrue(tok.isNumber, @"");	
+	STAssertEqualObjects(s, tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue([TDToken EOFToken] == tok, @"");	
+}
+
+
+
 - (void)test2e2Tok {
 	s = @"2e2";
 	TDTokenizer *t = [TDTokenizer tokenizer];
@@ -666,11 +686,101 @@
 	tok = [t nextToken];
 	STAssertTrue(tok.isWord, @"");	
 	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
-
+	
 	tok = [t nextToken];
 	STAssertTrue([TDToken EOFToken] == tok, @"");	
 }
 
 
+- (void)test2eNegative2fooTok {
+	s = @"2e-2 foo";
+	TDTokenizer *t = [TDTokenizer tokenizer];
+	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+	t.numberState = sns;
+	[t setTokenizerState:sns from:'0' to:'9'];
+	[t setTokenizerState:sns from:'-' to:'-'];
+	t.string = s;
+	
+	TDToken *tok = [t nextToken];
+	STAssertEquals(-200.0f, tok.floatValue, @"");	
+	STAssertTrue(tok.isNumber, @"");	
+	STAssertEqualObjects(@"2e-2", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue(tok.isWord, @"");	
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue([TDToken EOFToken] == tok, @"");	
+}
+
+
+- (void)test2ePositive2fooTok {
+	s = @"2e+2 foo";
+	TDTokenizer *t = [TDTokenizer tokenizer];
+	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+	t.numberState = sns;
+	[t setTokenizerState:sns from:'0' to:'9'];
+	[t setTokenizerState:sns from:'-' to:'-'];
+	t.string = s;
+	
+	TDToken *tok = [t nextToken];
+	STAssertEquals(200.0f, tok.floatValue, @"");	
+	STAssertTrue(tok.isNumber, @"");	
+	STAssertEqualObjects(@"2e+2", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue(tok.isWord, @"");	
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue([TDToken EOFToken] == tok, @"");	
+}
+
+
+- (void)test2dot0ePositive2fooTok {
+	s = @"2.0e+2 foo";
+	TDTokenizer *t = [TDTokenizer tokenizer];
+	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+	t.numberState = sns;
+	[t setTokenizerState:sns from:'0' to:'9'];
+	[t setTokenizerState:sns from:'-' to:'-'];
+	t.string = s;
+	
+	TDToken *tok = [t nextToken];
+	STAssertEquals(200.0f, tok.floatValue, @"");	
+	STAssertTrue(tok.isNumber, @"");	
+	STAssertEqualObjects(@"2.0e+2", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue(tok.isWord, @"");	
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue([TDToken EOFToken] == tok, @"");	
+}
+
+
+- (void)test2dot0eNegative2fooTok {
+	s = @"2.0e-2 foo";
+	TDTokenizer *t = [TDTokenizer tokenizer];
+	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+	t.numberState = sns;
+	[t setTokenizerState:sns from:'0' to:'9'];
+	[t setTokenizerState:sns from:'-' to:'-'];
+	t.string = s;
+	
+	TDToken *tok = [t nextToken];
+	STAssertEquals(-200.0f, tok.floatValue, @"");	
+	STAssertTrue(tok.isNumber, @"");	
+	STAssertEqualObjects(@"2.0e-2", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue(tok.isWord, @"");	
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");	
+	
+	tok = [t nextToken];
+	STAssertTrue([TDToken EOFToken] == tok, @"");	
+}
 
 @end
