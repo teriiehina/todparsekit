@@ -11,12 +11,6 @@
 
 @implementation TDCaseInsensitiveLiteral
 
-- (BOOL)matches:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	return (NSOrderedSame == [tok.stringValue caseInsensitiveCompare:string]);
-}
-
-
 - (BOOL)qualifies:(id)obj {
 	return [literal isEqualIgnoringCase:obj];
 }
