@@ -158,7 +158,7 @@
 		[s add:[TDRepetition repetitionWithSubparser:slashStep]];
 
 		[relativeLocationPath add:s];
-		// TDO this is causing and infinite loop!
+		// TODO this is causing and infinite loop!
 //		[relativeLocationPath add:self.abbreviatedRelativeLocationPath];
 	}
 	return relativeLocationPath;
@@ -273,7 +273,6 @@
 - (TDCollectionParser *)predicateExpr {
 	//NSLog(@"%s", _cmd);
 	if (!predicateExpr) {
-		// TDO
 		self.predicateExpr = self.expr;
 		predicateExpr.name = @"predicateExpr";
 	}
@@ -338,7 +337,6 @@
 - (TDCollectionParser *)expr {
 	//NSLog(@"%s", _cmd);
 	if (!expr) {
-		// TDO
 		self.expr = self.orExpr;
 		expr.name = @"expr";
 	}
@@ -407,7 +405,6 @@
 - (TDCollectionParser *)argument {
 	//NSLog(@"%s", _cmd);
 	if (!argument) {
-		// TDO
 		self.argument = self.expr;
 		argument.name = @"argument";
 	}
@@ -878,7 +875,7 @@
 - (TDParser *)functionName {
 	//NSLog(@"%s", _cmd);
 	if (!functionName) {
-		self.functionName = self.QName; // TDO QName - NodeType
+		self.functionName = self.QName; // TODO QName - NodeType
 		functionName.name = @"functionName";
 	}
 	return functionName;

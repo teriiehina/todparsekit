@@ -51,7 +51,7 @@
 	} else if ([[self class] isValidNonStartSymbolChar:c]) {
 		return YES;
 	}
-	// TDO CombiningChar & Extender
+	// TODO CombiningChar & Extender
 	return NO;
 }
 

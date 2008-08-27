@@ -123,7 +123,7 @@
 	if (!ruleName) {
 		self.ruleName = [TDSequence sequence];
 		[ruleName add:[TDSymbol symbolWithString:@"$"]];
-		[ruleName add:[TDWord word]]; // TDO: ConstrainedName
+		[ruleName add:[TDWord word]]; // TODO: ConstrainedName
 	}
 	return ruleName;
 }

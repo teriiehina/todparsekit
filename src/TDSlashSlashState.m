@@ -17,7 +17,7 @@
 	do {
 		c = [r read];
 		
-		// TDO should we be handling carriage returns??
+	// TODO should we be handling carriage returns??
 	} while (c != '\n' && c != '\r' && c != -1);
 	
 	return [t nextToken];
