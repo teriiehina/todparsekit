@@ -44,8 +44,7 @@
 
 
 - (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin {
-	NSString *result = [self nextWithFirst:cin rest:r parent:self];
-	return result;
+	return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
