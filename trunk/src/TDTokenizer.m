@@ -46,6 +46,13 @@
 		self.whitespaceState	= [[[TDWhitespaceState alloc] init] autorelease];
 		self.wordState			= [[[TDWordState alloc] init] autorelease];
 
+		[symbolState add:@"<="];
+		[symbolState add:@">="];
+		[symbolState add:@":="];
+		[symbolState add:@"!="];
+		[symbolState add:@"=="];
+		[symbolState add:@"<>"];
+		
 		self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
 		NSInteger i = 0;
 		for ( ; i < 256; i++) {
