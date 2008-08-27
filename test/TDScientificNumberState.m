@@ -21,21 +21,22 @@
 - (void)parseRightSideFromReader:(TDReader *)r {
 	[super parseRightSideFromReader:r];
 	if ('e' == c || 'E' == c) {
-		NSInteger n = [r read];
+		NSInteger e = c;
+		c = [r read];
 		
-		BOOL hasExp = isdigit(n);
-		negativeExp = ('-' == n);
-		BOOL positiveExp = ('+' == n);
+		BOOL hasExp = isdigit(c);
+		negativeExp = ('-' == c);
+		BOOL positiveExp = ('+' == c);
 
 		if (!hasExp && (negativeExp || positiveExp)) {
-			n = [r read];
-			hasExp = isdigit(n);
+			c = [r read];
+			hasExp = isdigit(c);
 		}
-		if (-1 != n) {
+		if (-1 != c) {
 			[r unread];
 		}
 		if (hasExp) {
-			[stringbuf appendFormat:@"%C", c];
+			[stringbuf appendFormat:@"%C", e];
 			if (negativeExp) {
 				[stringbuf appendString:@"-"];
 			} else if (positiveExp) {
