@@ -137,4 +137,35 @@
 	STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
+
+- (void)testTokenzierAddGtEqualLt {
+	s = @">=<";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:s];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddGtEqualLtFoo {
+	s = @">=< foo";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@">=<"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@">=<", tok.stringValue, @"");
+	STAssertEqualObjects(@">=<", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+
+	tok = [t nextToken];
+	STAssertEqualObjects(@"foo", tok.stringValue, @"");
+	STAssertEqualObjects(@"foo", tok.value, @"");
+	STAssertTrue(tok.isWord, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
 @end
