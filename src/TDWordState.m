@@ -99,40 +99,15 @@
 	}
 }
 
-#if 0
-// charbuf impl 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	//	'a' to: 'z'
-	//	'A' to: 'Z'
-	//	0xc0 to:0xff
-	
-	[self reset];
 
-	NSInteger i = 0;
-	NSInteger c = cin;
-	do {
-		[self checkBufLength:i];
-		charbuf[i++] = c;
-		c = [r read];
-	} while ([self isWordChar:c]);
-	
-	if (c != -1) {
-		[r unread];
-	}
-	
-	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
-	
-	return [TDToken tokenWithTokenType:TDTT_WORD stringValue:stringValue floatValue:0.0f];
-}
-#endif
-
-
-#if 1
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
 	[self reset];
 	
+//	NSInteger i = 0;
 	NSInteger c = cin;
 	do {
+//		[self checkBufLength:i];
+//		charbuf[i++] = c;
 		[stringbuf appendFormat:@"%C", c];
 		c = [r read];
 	} while ([self isWordChar:c]);
@@ -141,11 +116,12 @@
 		[r unread];
 	}
 	
+//	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
+
 	return [TDToken tokenWithTokenType:TDTT_WORD 
 						   stringValue:[[stringbuf copy] autorelease] 
 							floatValue:0.0f];
 }
-#endif
 
 
 @synthesize wordChars;

@@ -49,13 +49,17 @@
 //	NSLog(@"result %@", result);
 
 	
-	NSString *s = @"2.0e2";
-	TDReader *r = [[[TDReader alloc] initWithString:s] autorelease];
-	TDTokenizerState *numberState = [[[TDScientificNumberState alloc] init] autorelease];
-
-	TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	
-	NSLog(@"t: %@", t);
+//	NSString *s = @"2e2";
+//	TDTokenizer *t = [TDTokenizer tokenizer];
+//	TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+//	t.numberState = sns;
+//	[t setTokenizerState:sns from:'0' to:'9'];
+//	[t setTokenizerState:sns from:'-' to:'-'];
+//	t.string = s;
+//	
+//	TDToken *tok = [t nextToken];
+//	
+//	NSLog(@"t: %@", t);
 	
 	[pool release];
 	
