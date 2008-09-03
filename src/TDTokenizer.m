@@ -168,7 +168,6 @@
 	return [tokenizerStates objectAtIndex:c];
 }
 
-
 @synthesize numberState;
 @synthesize quoteState;
 @synthesize slashState;

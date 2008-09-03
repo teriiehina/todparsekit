@@ -145,7 +145,6 @@
 	return stringValue;
 }
 
-
 @synthesize number;
 @synthesize quotedString;
 @synthesize symbol;
