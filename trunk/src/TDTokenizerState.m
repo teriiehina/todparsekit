@@ -26,10 +26,10 @@
 	return nil;
 }
 
+
 - (void)reset {
 	self.stringbuf = [NSMutableString string];
 }
 
 @synthesize stringbuf;
-
 @end
