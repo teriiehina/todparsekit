@@ -190,6 +190,8 @@
 		D3C85D2F0E63CD3C000445FD /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C85D2D0E63CD3C000445FD /* TDScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C85D300E63CD3C000445FD /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D2E0E63CD3C000445FD /* TDScientificNumberState.m */; };
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
+		D3C863280E67C279000445FD /* TDXmlSyntaxColoring.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C863270E67C279000445FD /* TDXmlSyntaxColoring.m */; };
+		D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
@@ -481,6 +483,8 @@
 		D3C85D2E0E63CD3C000445FD /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = test/TDScientificNumberState.m; sourceTree = "<group>"; };
 		D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberStateTest.h; path = test/TDScientificNumberStateTest.h; sourceTree = "<group>"; };
 		D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberStateTest.m; path = test/TDScientificNumberStateTest.m; sourceTree = "<group>"; };
+		D3C863260E67C279000445FD /* TDXmlSyntaxColoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlSyntaxColoring.h; path = test/TDXmlSyntaxColoring.h; sourceTree = "<group>"; };
+		D3C863270E67C279000445FD /* TDXmlSyntaxColoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlSyntaxColoring.m; path = test/TDXmlSyntaxColoring.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -524,6 +528,7 @@
 			files = (
 				D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */,
 				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
+				D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -862,6 +867,7 @@
 				D3D647CE0E2C7569009BF5CD /* xml */,
 				D36E94F40E57865500496BD3 /* xpath */,
 				D3E788900E567DDA008C7D61 /* srgs */,
+				D3C863240E67C249000445FD /* syntax coloring */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -907,6 +913,23 @@
 				D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */,
 			);
 			name = arithmetic;
+			sourceTree = "<group>";
+		};
+		D3C863240E67C249000445FD /* syntax coloring */ = {
+			isa = PBXGroup;
+			children = (
+				D3C863250E67C255000445FD /* xml */,
+			);
+			name = "syntax coloring";
+			sourceTree = "<group>";
+		};
+		D3C863250E67C255000445FD /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				D3C863260E67C279000445FD /* TDXmlSyntaxColoring.h */,
+				D3C863270E67C279000445FD /* TDXmlSyntaxColoring.m */,
+			);
+			name = xml;
 			sourceTree = "<group>";
 		};
 		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
@@ -1457,6 +1480,7 @@
 				D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */,
 				D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */,
 				D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */,
+				D3C863280E67C279000445FD /* TDXmlSyntaxColoring.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
