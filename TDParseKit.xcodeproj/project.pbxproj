@@ -192,6 +192,9 @@
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
 		D3C863280E67C279000445FD /* TDXmlSyntaxColoring.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C863270E67C279000445FD /* TDXmlSyntaxColoring.m */; };
 		D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		D3E27A120E741C880078CC2C /* TDXmlSyntaxColoring.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C863270E67C279000445FD /* TDXmlSyntaxColoring.m */; };
+		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
+		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
 		D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
@@ -1289,6 +1292,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */,
+				D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */,
 				D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */,
 				D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */,
 				D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */,
@@ -1389,6 +1394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3E27A120E741C880078CC2C /* TDXmlSyntaxColoring.m in Sources */,
 				D31FE7420E60F40900A0803E /* XPathContext.m in Sources */,
 				D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */,
 				D31FE7340E60F34600A0803E /* XPathParser.m in Sources */,

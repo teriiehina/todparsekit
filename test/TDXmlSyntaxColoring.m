@@ -31,8 +31,13 @@
 		[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
 		[tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
 		
-		self.ltToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"{" floatValue:0.0];
-		self.gtToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"[" floatValue:0.0];
+		TDSignificantWhitespaceState *whitespaceState = [[TDSignificantWhitespaceState alloc] init];
+		tokenizer.whitespaceState = whitespaceState;
+		[tokenizer setTokenizerState:whitespaceState from:0 to:' '];
+		[whitespaceState release];
+		
+		self.ltToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<" floatValue:0.0f];
+		self.gtToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@">" floatValue:0.0f];
 		
 		self.textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
 							   [NSColor blackColor], NSForegroundColorAttributeName,
@@ -53,7 +58,7 @@
 	self.stack = nil;
 	self.ltToken = nil;
 	self.gtToken = nil;
-	self.result = nil;
+	self.coloredString = nil;
 	self.textAttributes = nil;
 	self.tagAttributes = nil;
 	[super dealloc];
@@ -62,7 +67,7 @@
 
 - (NSAttributedString *)parse:(NSString *)s {
 	self.stack = [NSMutableArray array];
-	self.result = [[[NSMutableAttributedString alloc] init] autorelease];
+	self.coloredString = [[[NSMutableAttributedString alloc] init] autorelease];
 	
 	tokenizer.string = s;
 	TDToken *eof = [TDToken EOFToken];
@@ -77,25 +82,36 @@
 				[stack addObject:tok];
 			} else if ([@">" isEqualToString:sval]) {
 				[self workOnTag];
+			} else {
+				[stack addObject:sval];
 			}
 		} else {
 			[stack addObject:sval];
 		}
 	}
 	
-	return result;
+	return coloredString;
 }
 
 
 - (void)workOnTag {
 	NSArray *a = [self objectsAbove:ltToken];
+
+	NSAttributedString *as = [[NSAttributedString alloc] initWithString:@"<" attributes:tagAttributes];
+	[coloredString appendAttributedString:as];
+	[as release];
+	
 	NSEnumerator *e = [a reverseObjectEnumerator];
 	NSString *s = nil;
 	while (s = [e nextObject]) {
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:s attributes:tagAttributes];
-		[result appendAttributedString:as];
+		as = [[NSAttributedString alloc] initWithString:s attributes:tagAttributes];
+		[coloredString appendAttributedString:as];
 		[as release];
 	}
+
+	as = [[NSAttributedString alloc] initWithString:@">" attributes:tagAttributes];
+	[coloredString appendAttributedString:as];
+	[as release];
 }
 
 
@@ -105,7 +121,7 @@
 	NSString *s = nil;
 	while (s = [e nextObject]) {
 		NSAttributedString *as = [[NSAttributedString alloc] initWithString:s attributes:textAttributes];
-		[result appendAttributedString:as];
+		[coloredString appendAttributedString:as];
 		[as release];
 	}
 }
@@ -131,7 +147,7 @@
 @synthesize tokenizer;
 @synthesize ltToken;
 @synthesize gtToken;
-@synthesize result;
+@synthesize coloredString;
 @synthesize tagAttributes;
 @synthesize textAttributes;
 @end

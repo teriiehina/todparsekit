@@ -16,13 +16,13 @@
 	NSMutableArray *stack;
 	TDToken *ltToken;
 	TDToken *gtToken;
-	NSMutableAttributedString *result;
+	NSMutableAttributedString *coloredString;
 	NSDictionary *tagAttributes;
 	NSDictionary *textAttributes;
 }
 - (NSAttributedString *)parse:(NSString *)s;
 
-@property (nonatomic, retain) NSMutableAttributedString *result;
+@property (nonatomic, retain) NSMutableAttributedString *coloredString;
 @property (nonatomic, retain) NSDictionary *tagAttributes;
 @property (nonatomic, retain) NSDictionary *textAttributes;
 @end

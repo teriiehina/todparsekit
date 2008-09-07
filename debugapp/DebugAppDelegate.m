@@ -13,11 +13,26 @@
 #import "TDRegularParser.h"
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
+#import "TDXmlSyntaxColoring.h"
 
 @implementation DebugAppDelegate
 
+- (void)dealloc {
+	self.displayString = nil;
+	[super dealloc];
+}
+
+
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
+	NSString *s = [NSString stringWithContentsOfFile:path];
+	
+	TDXmlSyntaxColoring *colorer = [[TDXmlSyntaxColoring alloc] init];
+	self.displayString = [colorer parse:s];
+	[colorer release];
+
 
 //	NSString *s = @"123";
 //	TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
@@ -65,4 +80,5 @@
 	
 }
 
+@synthesize displayString;
 @end
