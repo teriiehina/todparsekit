@@ -1,4 +1,4 @@
-<result name="value">
+<result name="value" foo="bar">
 <url xmls:foo="bar">http://www.apple.com/</url>
 <baz/>
 </result>

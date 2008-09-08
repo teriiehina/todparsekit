@@ -7,7 +7,7 @@
 //
 
 #import "TDXmlSyntaxColoring.h"
-#import "TDParseKit.h"
+#import <TDParseKit/TDParseKit.h>
 
 @interface TDXmlSyntaxColoring ()
 - (void)workOnTag;
@@ -31,6 +31,8 @@
 	if (self != nil) {
 		self.tokenizer = [TDTokenizer tokenizer];
 		
+		[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // XML doesn't have slash slash or slash star comments
+
 		TDSignificantWhitespaceState *whitespaceState = [[TDSignificantWhitespaceState alloc] init];
 		tokenizer.whitespaceState = whitespaceState;
 		[tokenizer setTokenizerState:whitespaceState from:0 to:' '];
