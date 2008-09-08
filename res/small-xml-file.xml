@@ -1,3 +1,5 @@
-<result>
-<url>http://www.apple.com/</url>
+<result name="value">
+<url xmls:foo="bar">http://www.apple.com/</url>
+<baz/>
 </result>
+<!-- woohoo -->
