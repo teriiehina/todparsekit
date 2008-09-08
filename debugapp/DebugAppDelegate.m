@@ -13,7 +13,7 @@
 #import "TDRegularParser.h"
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
-#import "TDXmlSyntaxColoring.h"
+#import "TDXmlSyntaxHighlighter.h"
 
 @implementation DebugAppDelegate
 
@@ -26,21 +26,13 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-//	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
-//	NSString *s = [NSString stringWithContentsOfFile:path];
-//	
-//	TDXmlSyntaxColoring *colorer = [[TDXmlSyntaxColoring alloc] init];
-//	self.displayString = [colorer parse:s];
-//	[colorer release];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
+	NSString *s = [NSString stringWithContentsOfFile:path];
+	
+	TDXmlSyntaxHighlighter *colorer = [[TDXmlSyntaxHighlighter alloc] init];
+	self.displayString = [colorer parse:s];
+	[colorer release];
 
-	
-	
-	NSString *s = @"--> . ";
-	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-	[t.symbolState add:@"-->"];
-	TDToken *tok = [t nextToken];
-	NSLog(@"sval: %@", tok.stringValue);
-	self.displayString = [[[NSAttributedString alloc] initWithString:tok.stringValue] autorelease];
 
 	//STAssertTrue(tok.isSymbol, @"");
 	//STAssertEqualObjects(@"-->", tok.stringValue, @"");

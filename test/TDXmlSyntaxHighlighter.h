@@ -1,5 +1,5 @@
 //
-//  TDXmlSyntaxColoring.h
+//  TDXmlSyntaxHighlighter.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/28/08.
@@ -11,14 +11,14 @@
 @class TDTokenizer;
 @class TDToken;
 
-@interface TDXmlSyntaxColoring : NSObject {
+@interface TDXmlSyntaxHighlighter : NSObject {
 	TDTokenizer *tokenizer;
 	NSMutableArray *stack;
 	TDToken *ltToken;
 	TDToken *gtToken;
 	TDToken *startCommentToken;
 	TDToken *endCommentToken;
-	NSMutableAttributedString *coloredString;
+	NSMutableAttributedString *highlightedString;
 	NSDictionary *tagAttributes;
 	NSDictionary *textAttributes;
 	NSDictionary *attrNameAttributes;
@@ -26,9 +26,9 @@
 	NSDictionary *eqAttributes;
 	NSDictionary *commentAttributes;
 }
-- (NSAttributedString *)parse:(NSString *)s;
+- (NSAttributedString *)attributedStringForString:(NSString *)s;
 
-@property (nonatomic, retain) NSMutableAttributedString *coloredString;
+@property (nonatomic, retain) NSMutableAttributedString *highlightedString;
 @property (nonatomic, retain) NSDictionary *tagAttributes;
 @property (nonatomic, retain) NSDictionary *textAttributes;
 @property (nonatomic, retain) NSDictionary *attrNameAttributes;

@@ -1,19 +1,19 @@
 //
-//  TDXmlSyntaxColoring.m
+//  TDXmlSyntaxHighlighter.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/28/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "TDXmlSyntaxColoring.h"
+#import "TDXmlSyntaxHighlighter.h"
 #import <TDParseKit/TDParseKit.h>
 
-@interface NSArray (TDXmlSyntaxColoringAdditions)
+@interface NSArray (TDXmlSyntaxHighlighterAdditions)
 - (NSMutableArray *)reversedMutableArray;
 @end
 
-@implementation NSArray (TDXmlSyntaxColoringAdditions)
+@implementation NSArray (TDXmlSyntaxHighlighterAdditions)
 
 - (NSMutableArray *)reversedMutableArray {
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
@@ -27,7 +27,7 @@
 
 @end
 
-@interface TDXmlSyntaxColoring ()
+@interface TDXmlSyntaxHighlighter ()
 - (void)workOnTag;
 - (void)workOnText;
 - (void)workOnComment;
@@ -44,7 +44,7 @@
 @property (retain) TDToken *endCommentToken;
 @end
 
-@implementation TDXmlSyntaxColoring
+@implementation TDXmlSyntaxHighlighter
 
 - (id)init {
 	self = [super init];
@@ -106,7 +106,7 @@
 	self.gtToken = nil;
 	self.startCommentToken = nil;
 	self.endCommentToken = nil;
-	self.coloredString = nil;
+	self.highlightedString = nil;
 	self.textAttributes = nil;
 	self.tagAttributes = nil;
 	self.attrNameAttributes = nil;
@@ -117,9 +117,9 @@
 }
 
 
-- (NSAttributedString *)parse:(NSString *)s {
+- (NSAttributedString *)attributedStringForString:(NSString *)s {
 	self.stack = [NSMutableArray array];
-	self.coloredString = [[[NSMutableAttributedString alloc] init] autorelease];
+	self.highlightedString = [[[NSMutableAttributedString alloc] init] autorelease];
 	
 	tokenizer.string = s;
 	TDToken *eof = [TDToken EOFToken];
@@ -144,7 +144,7 @@
 		}
 	}
 	
-	return coloredString;
+	return highlightedString;
 }
 
 
@@ -152,7 +152,7 @@
 	TDToken *tok = [e nextObject];
 	while (tok.isWhitespace) {
 		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
-		[coloredString appendAttributedString:as];
+		[highlightedString appendAttributedString:as];
 		[as release];
 		tok = [e nextObject];
 	}
@@ -165,7 +165,7 @@
 	NSMutableArray *toks = [[self objectsAbove:startCommentToken] reversedMutableArray];
 	
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 
 	NSEnumerator *e = [toks objectEnumerator];
@@ -176,13 +176,13 @@
 			break;
 		} else {
 			as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes];
-			[coloredString appendAttributedString:as];
+			[highlightedString appendAttributedString:as];
 			[as release];			
 		}
 	}
 
 	as = [[NSAttributedString alloc] initWithString:endCommentToken.stringValue attributes:commentAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 }
 
@@ -200,7 +200,7 @@
 	}
 	
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 	
 	// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
@@ -209,7 +209,7 @@
 	
 	// "="
 	as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:eqAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 	
 	// quoted string attr value or ns url value
@@ -217,7 +217,7 @@
 	if (!tok) return;
 	
 	as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 }
 
@@ -226,7 +226,7 @@
 	// consume tagName
 	TDToken *tok = [e nextObject];
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 }
 
@@ -237,7 +237,7 @@
 	
 	// append "<"
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 	
 	NSEnumerator *e = [toks objectEnumerator];
@@ -248,7 +248,7 @@
 	if (tok) {
 		// consume tagName or "/"
 		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
-		[coloredString appendAttributedString:as];
+		[highlightedString appendAttributedString:as];
 		[as release];
 		
 		if ([tok.stringValue isEqualToString:@"/"]) {
@@ -260,7 +260,7 @@
 		
 	// append ">"
 	as = [[NSAttributedString alloc] initWithString:gtToken.stringValue attributes:tagAttributes];
-	[coloredString appendAttributedString:as];
+	[highlightedString appendAttributedString:as];
 	[as release];
 }
 
@@ -271,7 +271,7 @@
 	TDToken *tok = nil;
 	while (tok = [e nextObject]) {
 		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes];
-		[coloredString appendAttributedString:as];
+		[highlightedString appendAttributedString:as];
 		[as release];
 	}
 }
@@ -316,7 +316,7 @@
 @synthesize gtToken;
 @synthesize startCommentToken;
 @synthesize endCommentToken;
-@synthesize coloredString;
+@synthesize highlightedString;
 @synthesize tagAttributes;
 @synthesize textAttributes;
 @synthesize attrNameAttributes;
