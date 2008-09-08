@@ -1,19 +1,19 @@
 //
-//  TDXmlSyntaxHighlighter.m
+//  TDHtmlSyntaxHighlighter.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/28/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "TDXmlSyntaxHighlighter.h"
+#import "TDHtmlSyntaxHighlighter.h"
 #import <TDParseKit/TDParseKit.h>
 
-@interface NSArray (TDXmlSyntaxHighlighterAdditions)
+@interface NSArray (TDHtmlSyntaxHighlighterAdditions)
 - (NSMutableArray *)reversedMutableArray;
 @end
 
-@implementation NSArray (TDXmlSyntaxHighlighterAdditions)
+@implementation NSArray (TDHtmlSyntaxHighlighterAdditions)
 
 - (NSMutableArray *)reversedMutableArray {
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
@@ -27,7 +27,7 @@
 
 @end
 
-@interface TDXmlSyntaxHighlighter ()
+@interface TDHtmlSyntaxHighlighter ()
 - (void)workOnTag;
 - (void)workOnText;
 - (void)workOnComment;
@@ -44,7 +44,7 @@
 @property (retain) TDToken *endCommentToken;
 @end
 
-@implementation TDXmlSyntaxHighlighter
+@implementation TDHtmlSyntaxHighlighter
 
 - (id)init {
 	self = [super init];
@@ -87,7 +87,7 @@
 									monacoFont, NSFontAttributeName,
 									nil];
 		self.eqAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							 [NSColor colorWithDeviceRed:0. green:.3 blue:0. alpha:1.], NSForegroundColorAttributeName,
+							 [NSColor darkGrayColor], NSForegroundColorAttributeName,
 							 monacoFont, NSFontAttributeName,
 							 nil];
 		self.commentAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
