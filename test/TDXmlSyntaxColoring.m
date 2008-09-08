@@ -9,10 +9,30 @@
 #import "TDXmlSyntaxColoring.h"
 #import <TDParseKit/TDParseKit.h>
 
+@interface NSArray (TDXmlSyntaxColoringAdditions)
+- (NSMutableArray *)reversedMutableArray;
+@end
+
+@implementation NSArray (TDXmlSyntaxColoringAdditions)
+
+- (NSMutableArray *)reversedMutableArray {
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
+	NSEnumerator *e = [self reverseObjectEnumerator];
+	id obj = nil;
+	while (obj = [e nextObject]) {
+		[result addObject:obj];
+	}
+	return result;
+}
+
+@end
+
 @interface TDXmlSyntaxColoring ()
 - (void)workOnTag;
 - (void)workOnText;
 - (void)workOnComment;
+- (id)peek;
+- (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
 - (TDToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e;
 
@@ -141,22 +161,16 @@
 
 
 - (void)workOnComment {
-	NSArray *reversedToks = [self objectsAbove:startCommentToken];
-	
 	// reverse toks to be in document order
-	NSMutableArray *toks = [NSMutableArray arrayWithCapacity:reversedToks.count];
-	NSEnumerator *e = [reversedToks reverseObjectEnumerator];
-	TDToken *tok = nil;
-	while (tok = [e nextObject]) {
-		[toks addObject:tok];
-	}
+	NSMutableArray *toks = [[self objectsAbove:startCommentToken] reversedMutableArray];
 	
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes];
 	[coloredString appendAttributedString:as];
 	[as release];
 
-	e = [toks objectEnumerator];
+	NSEnumerator *e = [toks objectEnumerator];
 
+	TDToken *tok = nil;
 	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
 		if ([tok isEqual:endCommentToken]) {
 			break;
@@ -218,25 +232,18 @@
 
 
 - (void)workOnTag {
-	NSArray *reversedToks = [self objectsAbove:ltToken];
-	
 	// reverse toks to be in document order
-	NSMutableArray *toks = [NSMutableArray arrayWithCapacity:reversedToks.count];
-	NSEnumerator *e = [reversedToks reverseObjectEnumerator];
-	TDToken *tok = nil;
-	while (tok = [e nextObject]) {
-		[toks addObject:tok];
-	}
+	NSMutableArray *toks = [[self objectsAbove:ltToken] reversedMutableArray];
 	
 	// append "<"
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes];
 	[coloredString appendAttributedString:as];
 	[as release];
 	
-	e = [toks objectEnumerator];
+	NSEnumerator *e = [toks objectEnumerator];
 
 	// consume whitespace to tagName or "/" for end tags or "!" for comments
-	tok = [self nextNonWhitespaceTokenFrom:e];
+	TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
 	
 	if (tok) {
 		// consume tagName or "/"
@@ -276,14 +283,31 @@
 		if (!stack.count) {
 			break;
 		}
-		id obj = [stack lastObject];
-		[stack removeLastObject];
+		id obj = [self pop];
 		if ([obj isEqual:fence]) {
 			break;
 		}
 		[res addObject:obj];
 	}
 	return res;
+}
+
+
+- (id)peek {
+	id obj = nil;
+	if (stack.count) {
+		obj = [stack lastObject];
+	}
+	return obj;
+}
+
+
+- (id)pop {
+	id obj = [self peek];
+	if (obj) {
+		[stack removeLastObject];
+	}
+	return obj;
 }
 
 @synthesize stack;
