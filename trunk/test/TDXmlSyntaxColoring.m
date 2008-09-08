@@ -64,7 +64,7 @@
 		self.gtToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@">" floatValue:0.0f];
 
 		self.startCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<!--" floatValue:0.0f];
-		self.endCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"->" floatValue:0.0f];
+		self.endCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"-->" floatValue:0.0f];
 
 		[tokenizer.symbolState add:startCommentToken.stringValue];
 		[tokenizer.symbolState add:endCommentToken.stringValue];

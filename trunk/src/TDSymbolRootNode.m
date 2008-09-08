@@ -70,4 +70,9 @@
 	return [result stringByAppendingString:[self nextWithFirst:c rest:r parent:child]];
 }
 
+
+- (NSString *)description {
+	return @"<TDSymbolRootNode>";
+}
+
 @end

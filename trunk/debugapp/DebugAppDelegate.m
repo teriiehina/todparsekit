@@ -26,13 +26,34 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
-	NSString *s = [NSString stringWithContentsOfFile:path];
-	
-	TDXmlSyntaxColoring *colorer = [[TDXmlSyntaxColoring alloc] init];
-	self.displayString = [colorer parse:s];
-	[colorer release];
+//	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
+//	NSString *s = [NSString stringWithContentsOfFile:path];
+//	
+//	TDXmlSyntaxColoring *colorer = [[TDXmlSyntaxColoring alloc] init];
+//	self.displayString = [colorer parse:s];
+//	[colorer release];
 
+	
+	
+	NSString *s = @"--> . ";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"-->"];
+	TDToken *tok = [t nextToken];
+	NSLog(@"sval: %@", tok.stringValue);
+	self.displayString = [[[NSAttributedString alloc] initWithString:tok.stringValue] autorelease];
+
+	//STAssertTrue(tok.isSymbol, @"");
+	//STAssertEqualObjects(@"-->", tok.stringValue, @"");
+	//	STAssertEqualObjects(@"-->", tok.value, @"");
+	
+	//	tok = [t nextToken];
+	//	STAssertEqualObjects(@".", tok.stringValue, @"");
+	//	STAssertEqualObjects(@".", tok.value, @"");
+	//	STAssertTrue(tok.isSymbol, @"");
+	//	
+	//	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+	
+	
 
 //	NSString *s = @"123";
 //	TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
