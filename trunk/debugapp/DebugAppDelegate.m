@@ -13,7 +13,7 @@
 #import "TDRegularParser.h"
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
-#import "TDXmlSyntaxHighlighter.h"
+#import "TDHtmlSyntaxHighlighter.h"
 
 @implementation DebugAppDelegate
 
@@ -29,7 +29,7 @@
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nasty" ofType:@"html"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
-	TDXmlSyntaxHighlighter *highlighter = [[TDXmlSyntaxHighlighter alloc] init];
+	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] init];
 	self.displayString = [highlighter attributedStringForString:s];
 	[highlighter release];
 

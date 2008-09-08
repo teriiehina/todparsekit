@@ -1,5 +1,5 @@
 //
-//  TDXmlSyntaxHighlighter.h
+//  TDHtmlSyntaxHighlighter.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/28/08.
@@ -11,7 +11,7 @@
 @class TDTokenizer;
 @class TDToken;
 
-@interface TDXmlSyntaxHighlighter : NSObject {
+@interface TDHtmlSyntaxHighlighter : NSObject {
 	TDTokenizer *tokenizer;
 	NSMutableArray *stack;
 	TDToken *ltToken;

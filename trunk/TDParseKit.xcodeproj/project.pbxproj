@@ -200,10 +200,10 @@
 		D3E788960E567E0A008C7D61 /* SRGSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E788950E567E0A008C7D61 /* SRGSParser.m */; };
 		D3E78A190E574C99008C7D61 /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
 		D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A180E574C99008C7D61 /* EBNFParserTest.m */; };
-		D3EADCFA0E75E27300F78584 /* TDXmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */; };
-		D3EADD050E75E2DA00F78584 /* TDXmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */; };
 		D3EADD800E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
 		D3EADD810E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
+		D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
+		D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -497,9 +497,9 @@
 		D3E78A160E574C99008C7D61 /* EBNFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParser.m; path = test/EBNFParser.m; sourceTree = "<group>"; };
 		D3E78A170E574C99008C7D61 /* EBNFParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBNFParserTest.h; path = test/EBNFParserTest.h; sourceTree = "<group>"; };
 		D3E78A180E574C99008C7D61 /* EBNFParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParserTest.m; path = test/EBNFParserTest.m; sourceTree = "<group>"; };
-		D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlSyntaxHighlighter.m; path = test/TDXmlSyntaxHighlighter.m; sourceTree = "<group>"; };
-		D3EADCF90E75E27300F78584 /* TDXmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlSyntaxHighlighter.h; path = test/TDXmlSyntaxHighlighter.h; sourceTree = "<group>"; };
 		D3EADD7F0E75E9CC00F78584 /* nasty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nasty.html; path = res/nasty.html; sourceTree = "<group>"; };
+		D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHtmlSyntaxHighlighter.m; path = test/TDHtmlSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHtmlSyntaxHighlighter.h; path = test/TDHtmlSyntaxHighlighter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -924,18 +924,18 @@
 		D3C863240E67C249000445FD /* syntax highlight */ = {
 			isa = PBXGroup;
 			children = (
-				D3C863250E67C255000445FD /* xml */,
+				D3C863250E67C255000445FD /* html */,
 			);
 			name = "syntax highlight";
 			sourceTree = "<group>";
 		};
-		D3C863250E67C255000445FD /* xml */ = {
+		D3C863250E67C255000445FD /* html */ = {
 			isa = PBXGroup;
 			children = (
-				D3EADCF90E75E27300F78584 /* TDXmlSyntaxHighlighter.h */,
-				D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */,
+				D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */,
+				D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */,
 			);
-			name = xml;
+			name = html;
 			sourceTree = "<group>";
 		};
 		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
@@ -1400,7 +1400,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3EADD050E75E2DA00F78584 /* TDXmlSyntaxHighlighter.m in Sources */,
+				D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */,
 				D31FE7420E60F40900A0803E /* XPathContext.m in Sources */,
 				D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */,
 				D31FE7340E60F34600A0803E /* XPathParser.m in Sources */,
@@ -1492,7 +1492,7 @@
 				D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */,
 				D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */,
 				D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */,
-				D3EADCFA0E75E27300F78584 /* TDXmlSyntaxHighlighter.m in Sources */,
+				D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
