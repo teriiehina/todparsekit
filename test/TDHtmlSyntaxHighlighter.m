@@ -35,6 +35,7 @@
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
 - (TDToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e;
+- (void)consumeWhitespaceOnStack;
 
 @property (retain) TDTokenizer *tokenizer;
 @property (retain) NSMutableArray *stack;
@@ -144,7 +145,11 @@
 		}
 	}
 	
-	return highlightedString;
+	NSAttributedString *result = [[highlightedString copy] autorelease];
+	self.stack = nil;
+	self.highlightedString = nil;
+	tokenizer.string = nil;
+	return result;
 }
 
 
@@ -160,9 +165,23 @@
 }
 
 
+- (void)consumeWhitespaceOnStack {
+	TDToken *tok = [self peek];
+	while (tok.isWhitespace) {
+		tok = [self pop];
+		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
+		[highlightedString appendAttributedString:as];
+		[as release];
+		tok = [self peek];
+	}
+}
+
+
 - (void)workOnComment {
 	// reverse toks to be in document order
 	NSMutableArray *toks = [[self objectsAbove:startCommentToken] reversedMutableArray];
+	
+	[self consumeWhitespaceOnStack];
 	
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes];
 	[highlightedString appendAttributedString:as];
