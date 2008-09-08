@@ -240,4 +240,122 @@
 	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
 }
 
+
+- (void)testTokenzierAddLtBangDashDashSpaceDotSpace {
+	s = @"<!-- . ";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"<!--"];
+	TDToken *tok = [t nextToken];
+	STAssertEqualObjects(@"<!--", tok.stringValue, @"");
+	STAssertEqualObjects(@"<!--", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDashGt {
+	s = @"-->";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"-->"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"-->", tok.stringValue, @"");
+	STAssertEqualObjects(@"-->", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDashGtSpaceDot {
+	s = @"--> .";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"-->"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"-->", tok.stringValue, @"");
+	STAssertEqualObjects(@"-->", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDashGtSpaceDotSpace {
+	s = @"--> . ";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"-->"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"-->", tok.stringValue, @"");
+	STAssertEqualObjects(@"-->", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDash {
+	s = @"--";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"--"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"--", tok.stringValue, @"");
+	STAssertEqualObjects(@"--", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDashSpaceDot {
+	s = @"-- .";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"--"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"--", tok.stringValue, @"");
+	STAssertEqualObjects(@"--", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierAddDashDashSpaceDotSpace {
+	s = @"-- . ";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"--"];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"--", tok.stringValue, @"");
+	STAssertEqualObjects(@"--", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@".", tok.stringValue, @"");
+	STAssertEqualObjects(@".", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
 @end

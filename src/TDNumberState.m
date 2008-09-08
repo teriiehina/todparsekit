@@ -64,6 +64,9 @@
 	
 	// erroneous ., +, or -
 	if (!gotADigit) {
+		if (negative && '-' == c) { // ??
+			[r unread];
+		}
 		return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
 	}
 	
