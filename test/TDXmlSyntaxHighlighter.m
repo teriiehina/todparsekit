@@ -79,19 +79,19 @@
 							   monacoFont, NSFontAttributeName,
 							   nil];
 		self.attrNameAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSColor blueColor], NSForegroundColorAttributeName,
+									[NSColor colorWithDeviceRed:0. green:0. blue:.75 alpha:1.], NSForegroundColorAttributeName,
 									monacoFont, NSFontAttributeName,
 									nil];
 		self.attrValueAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSColor redColor], NSForegroundColorAttributeName,
+									[NSColor colorWithDeviceRed:.75 green:0. blue:0. alpha:1.], NSForegroundColorAttributeName,
 									monacoFont, NSFontAttributeName,
 									nil];
 		self.eqAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							 [NSColor blackColor], NSForegroundColorAttributeName,
+							 [NSColor colorWithDeviceRed:0. green:.3 blue:0. alpha:1.], NSForegroundColorAttributeName,
 							 monacoFont, NSFontAttributeName,
 							 nil];
 		self.commentAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-								  [NSColor lightGrayColor], NSForegroundColorAttributeName,
+								  [NSColor grayColor], NSForegroundColorAttributeName,
 								  monacoFont, NSFontAttributeName,
 								  nil];
 	}
@@ -188,37 +188,50 @@
 
 
 - (void)workOnStartTag:(NSEnumerator *)e {
-	// tagName
-	TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
-	if (!tok) return;
-	
-	NSDictionary *attrs = nil;
-	if ([tok.stringValue isEqualToString:@"/"]) {
-		attrs = tagAttributes;
-	} else {
-		attrs = attrNameAttributes;
+	while (1) {
+		// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
+		TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
+		if (!tok) return;
+		
+		NSDictionary *attrs = nil;
+		if ([tok.stringValue isEqualToString:@"="]) {
+			attrs = eqAttributes;
+		} else if ([tok.stringValue isEqualToString:@"/"]) {
+			attrs = tagAttributes;
+		} else if (tok.isQuotedString) {
+			attrs = attrValueAttributes;
+		} else {
+			attrs = attrNameAttributes;
+		}
+
+		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
+		[highlightedString appendAttributedString:as];
+		[as release];
+
+		// "="
+		tok = [self nextNonWhitespaceTokenFrom:e];
+		if (!tok) return;
+		
+		if ([tok.stringValue isEqualToString:@"="]) {
+			attrs = eqAttributes;
+		} else if (tok.isQuotedString) {
+			attrs = attrValueAttributes;
+		} else {
+			attrs = tagAttributes;
+		}
+
+		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
+		[highlightedString appendAttributedString:as];
+		[as release];
+		
+		// quoted string attr value or ns url value
+		tok = [self nextNonWhitespaceTokenFrom:e];
+		if (!tok) return;
+		
+		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes];
+		[highlightedString appendAttributedString:as];
+		[as release];		
 	}
-	
-	NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
-	[highlightedString appendAttributedString:as];
-	[as release];
-	
-	// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
-	tok = [self nextNonWhitespaceTokenFrom:e];
-	if (!tok) return;
-	
-	// "="
-	as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:eqAttributes];
-	[highlightedString appendAttributedString:as];
-	[as release];
-	
-	// quoted string attr value or ns url value
-	tok = [self nextNonWhitespaceTokenFrom:e];
-	if (!tok) return;
-	
-	as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes];
-	[highlightedString appendAttributedString:as];
-	[as release];
 }
 
 
