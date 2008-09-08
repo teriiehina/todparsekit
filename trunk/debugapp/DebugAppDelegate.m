@@ -26,12 +26,12 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nasty" ofType:@"html"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
-	TDXmlSyntaxHighlighter *colorer = [[TDXmlSyntaxHighlighter alloc] init];
-	self.displayString = [colorer parse:s];
-	[colorer release];
+	TDXmlSyntaxHighlighter *highlighter = [[TDXmlSyntaxHighlighter alloc] init];
+	self.displayString = [highlighter attributedStringForString:s];
+	[highlighter release];
 
 
 	//STAssertTrue(tok.isSymbol, @"");

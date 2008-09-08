@@ -202,6 +202,8 @@
 		D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A180E574C99008C7D61 /* EBNFParserTest.m */; };
 		D3EADCFA0E75E27300F78584 /* TDXmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */; };
 		D3EADD050E75E2DA00F78584 /* TDXmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */; };
+		D3EADD800E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
+		D3EADD810E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -497,6 +499,7 @@
 		D3E78A180E574C99008C7D61 /* EBNFParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParserTest.m; path = test/EBNFParserTest.m; sourceTree = "<group>"; };
 		D3EADCF80E75E27300F78584 /* TDXmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlSyntaxHighlighter.m; path = test/TDXmlSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D3EADCF90E75E27300F78584 /* TDXmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlSyntaxHighlighter.h; path = test/TDXmlSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D3EADD7F0E75E9CC00F78584 /* nasty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nasty.html; path = res/nasty.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1023,6 +1026,7 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
+				D3EADD7F0E75E9CC00F78584 /* nasty.html */,
 				D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */,
 				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
 				D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */,
@@ -1297,6 +1301,7 @@
 				D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */,
 				D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */,
 				D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */,
+				D3EADD810E75E9CC00F78584 /* nasty.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1310,6 +1315,7 @@
 				D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */,
 				D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */,
 				D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */,
+				D3EADD800E75E9CC00F78584 /* nasty.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
