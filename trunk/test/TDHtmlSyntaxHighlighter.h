@@ -21,7 +21,8 @@
 	TDToken *endCommentToken;
 	TDToken *startCDATAToken;
 	TDToken *endCDATAToken;
-	TDToken *currentStartCommentToken;
+	TDToken *startPIToken;
+	TDToken *endPIToken;
 	
 	NSMutableAttributedString *highlightedString;
 	NSDictionary *tagAttributes;
@@ -30,6 +31,7 @@
 	NSDictionary *attrValueAttributes;
 	NSDictionary *eqAttributes;
 	NSDictionary *commentAttributes;
+	NSDictionary *piAttributes;
 }
 - (id)initWithAttributesForDarkBackground:(BOOL)isDark;
 
@@ -42,4 +44,5 @@
 @property (nonatomic, retain) NSDictionary *attrValueAttributes;
 @property (nonatomic, retain) NSDictionary *eqAttributes;
 @property (nonatomic, retain) NSDictionary *commentAttributes;
+@property (nonatomic, retain) NSDictionary *piAttributes;
 @end

@@ -32,6 +32,7 @@
 - (void)workOnText;
 - (void)workOnComment;
 - (void)workOnCDATA;
+- (void)workOnPI;
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
@@ -46,7 +47,8 @@
 @property (retain) TDToken *endCommentToken;
 @property (retain) TDToken *startCDATAToken;
 @property (retain) TDToken *endCDATAToken;
-@property (retain) TDToken *currentStartCommentToken;
+@property (retain) TDToken *startPIToken;
+@property (retain) TDToken *endPIToken;
 @end
 
 @implementation TDHtmlSyntaxHighlighter
@@ -85,6 +87,11 @@
 		[tokenizer.symbolState add:startCDATAToken.stringValue];
 		[tokenizer.symbolState add:endCDATAToken.stringValue];
 
+		self.startPIToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<?" floatValue:0.0f];
+		self.endPIToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"?>" floatValue:0.0f];
+		[tokenizer.symbolState add:startPIToken.stringValue];
+		[tokenizer.symbolState add:endPIToken.stringValue];
+
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
 		NSColor *textColor = nil;
@@ -93,6 +100,7 @@
 		NSColor *attrValueColor = nil;
 		NSColor *eqColor = nil;
 		NSColor *commentColor = nil;
+		NSColor *piColor = nil;
 		
 		if (isDarkBG) {
 			textColor = [NSColor whiteColor];
@@ -101,6 +109,7 @@
 			attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
 			eqColor = tagColor;
 			commentColor = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
+			piColor = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
 		} else {
 			textColor = [NSColor blackColor];
 			tagColor = [NSColor purpleColor];
@@ -108,6 +117,7 @@
 			attrValueColor = [NSColor colorWithDeviceRed:.75 green:0. blue:0. alpha:1.];
 			eqColor = [NSColor darkGrayColor];
 			commentColor = [NSColor grayColor];
+			piColor = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
 		}
 		
 		self.textAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
@@ -134,6 +144,10 @@
 									   commentColor, NSForegroundColorAttributeName,
 									   monacoFont, NSFontAttributeName,
 									   nil];
+		self.piAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
+									   piColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
 	}
 	return self;
 }
@@ -146,6 +160,10 @@
 	self.gtToken = nil;
 	self.startCommentToken = nil;
 	self.endCommentToken = nil;
+	self.startCDATAToken = nil;
+	self.endCDATAToken = nil;
+	self.startPIToken = nil;
+	self.endPIToken = nil;
 	self.highlightedString = nil;
 	self.textAttributes = nil;
 	self.tagAttributes = nil;
@@ -153,9 +171,7 @@
 	self.attrValueAttributes = nil;
 	self.eqAttributes = nil;
 	self.commentAttributes = nil;
-	self.startCDATAToken = nil;
-	self.endCDATAToken = nil;
-	self.currentStartCommentToken = nil;
+	self.piAttributes = nil;
 	[super dealloc];
 }
 
@@ -168,31 +184,42 @@
 	TDToken *eof = [TDToken EOFToken];
 	TDToken *tok = nil;
 	BOOL inComment = NO;
+	BOOL inCDATA = NO;
+	BOOL inPI = NO;
 	
-	while ((tok = [tokenizer nextToken]) != eof) {
-		NSString *sval = tok.stringValue;
+	while ((tok = [tokenizer nextToken]) != eof) {	
 		
-		if (!inComment && tok.isSymbol) {
-			if ([startCommentToken isEqual:tok] || [startCDATAToken isEqual:tok]) {
-				self.currentStartCommentToken = tok;
-				inComment = YES;
+		if (!inComment && !inCDATA && !inPI && tok.isSymbol) {
+			if ([startCommentToken isEqual:tok]) {
 				[stack addObject:tok];
-			} else if ([ltToken.stringValue isEqualToString:sval]) {
+				inComment = YES;
+			} else if ([startCDATAToken isEqual:tok]) {
+				[stack addObject:tok];
+				inCDATA = YES;
+			} else if ([startPIToken isEqual:tok]) {
+				[stack addObject:tok];
+				inPI = YES;
+			} else if ([ltToken isEqual:tok]) {
 				[self workOnText];
 				[stack addObject:tok];
-			} else if ([gtToken.stringValue isEqualToString:sval]) {
+			} else if ([gtToken isEqual:tok]) {
+				[stack addObject:tok];
 				[self workOnTag];
 			} else {
 				[stack addObject:tok];
 			}
-		} else if (inComment && ([endCommentToken isEqual:tok] || [endCDATAToken isEqual:tok])) {
+		} else if (inComment && [endCommentToken isEqual:tok]) {
 			inComment = NO;
 			[stack addObject:tok];
-			if ([endCommentToken isEqual:tok]) {
-				[self workOnComment];
-			} else {
-				[self workOnCDATA];
-			}
+			[self workOnComment];
+		} else if (inCDATA && [endCDATAToken isEqual:tok]) {
+			inCDATA = NO;
+			[stack addObject:tok];
+			[self workOnCDATA];
+		} else if (inPI && [endPIToken isEqual:tok]) {
+			inPI = NO;
+			[stack addObject:tok];
+			[self workOnPI];
 		} else {
 			[stack addObject:tok];
 		}
@@ -280,6 +307,32 @@
 }
 
 
+- (void)workOnPI {
+	// reverse toks to be in document order
+	NSMutableArray *toks = [[self objectsAbove:startPIToken] reversedMutableArray];
+	
+	[self consumeWhitespaceOnStack];
+	
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:startPIToken.stringValue attributes:piAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+	
+	NSEnumerator *e = [toks objectEnumerator];
+	
+	TDToken *tok = nil;
+	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
+		if ([tok isEqual:endPIToken]) {
+			break;
+		} else {
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:piAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
+	}
+	
+	as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:piAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+}
+
+
 - (void)workOnStartTag:(NSEnumerator *)e {
 	while (1) {
 		// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
@@ -289,7 +342,7 @@
 		NSDictionary *attrs = nil;
 		if ([tok.stringValue isEqualToString:@"="]) {
 			attrs = eqAttributes;
-		} else if ([tok.stringValue isEqualToString:@"/"]) {
+		} else if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
 			attrs = tagAttributes;
 		} else if (tok.isQuotedString) {
 			attrs = attrValueAttributes;
@@ -306,6 +359,8 @@
 		
 		if ([tok.stringValue isEqualToString:@"="]) {
 			attrs = eqAttributes;
+		} else if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
+			attrs = tagAttributes;
 		} else if (tok.isQuotedString) {
 			attrs = attrValueAttributes;
 		} else {
@@ -319,17 +374,25 @@
 		tok = [self nextNonWhitespaceTokenFrom:e];
 		if (!tok) return;
 		
-		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes] autorelease];
+		if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
+			attrs = tagAttributes;
+		} else {
+			attrs = attrValueAttributes;
+		}
+
+		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs] autorelease];
 		[highlightedString appendAttributedString:as];
 	}
 }
 
 
 - (void)workOnEndTag:(NSEnumerator *)e {
-	// consume tagName
-	TDToken *tok = [e nextObject];
-	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
-	[highlightedString appendAttributedString:as];
+	// consume tagName to ">"
+	TDToken *tok = nil; 
+	while (tok = [e nextObject]) {
+		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
+		[highlightedString appendAttributedString:as];
+	}
 }
 
 
@@ -357,10 +420,6 @@
 			[self workOnStartTag:e];
 		}
 	}
-	
-	// append ">"
-	as = [[[NSAttributedString alloc] initWithString:gtToken.stringValue attributes:tagAttributes] autorelease];
-	[highlightedString appendAttributedString:as];
 }
 
 
@@ -414,6 +473,10 @@
 @synthesize gtToken;
 @synthesize startCommentToken;
 @synthesize endCommentToken;
+@synthesize startCDATAToken;
+@synthesize endCDATAToken;
+@synthesize startPIToken;
+@synthesize endPIToken;
 @synthesize highlightedString;
 @synthesize tagAttributes;
 @synthesize textAttributes;
@@ -421,7 +484,5 @@
 @synthesize attrValueAttributes;
 @synthesize eqAttributes;
 @synthesize commentAttributes;
-@synthesize startCDATAToken;
-@synthesize endCDATAToken;
-@synthesize currentStartCommentToken;
+@synthesize piAttributes;
 @end
