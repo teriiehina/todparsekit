@@ -23,6 +23,8 @@
 	TDToken *endCDATAToken;
 	TDToken *startPIToken;
 	TDToken *endPIToken;
+	TDToken *fwdSlashToken;
+	TDToken *eqToken;
 	
 	NSMutableAttributedString *highlightedString;
 	NSDictionary *tagAttributes;
