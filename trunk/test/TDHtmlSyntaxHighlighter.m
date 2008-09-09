@@ -49,6 +49,8 @@
 @property (retain) TDToken *endCDATAToken;
 @property (retain) TDToken *startPIToken;
 @property (retain) TDToken *endPIToken;
+@property (retain) TDToken *fwdSlashToken;
+@property (retain) TDToken *eqToken;
 @end
 
 @implementation TDHtmlSyntaxHighlighter
@@ -65,12 +67,11 @@
 		
 		self.tokenizer = [TDTokenizer tokenizer];
 		
-		[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // XML doesn't have slash slash or slash star comments
+		[tokenizer setTokenizerState:tokenizer.symbolState from:'/' to:'/']; // XML doesn't have slash slash or slash star comments
 		
-		TDSignificantWhitespaceState *whitespaceState = [[TDSignificantWhitespaceState alloc] init];
+		TDSignificantWhitespaceState *whitespaceState = [[[TDSignificantWhitespaceState alloc] init] autorelease];
 		tokenizer.whitespaceState = whitespaceState;
 		[tokenizer setTokenizerState:whitespaceState from:0 to:' '];
-		[whitespaceState release];
 		
 		[tokenizer.wordState setWordChars:YES from:':' to:':'];
 		
@@ -91,6 +92,9 @@
 		self.endPIToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"?>" floatValue:0.0f];
 		[tokenizer.symbolState add:startPIToken.stringValue];
 		[tokenizer.symbolState add:endPIToken.stringValue];
+
+		self.fwdSlashToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
+		self.eqToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"=" floatValue:0.0f];
 
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
@@ -164,6 +168,8 @@
 	self.endCDATAToken = nil;
 	self.startPIToken = nil;
 	self.endPIToken = nil;
+	self.fwdSlashToken = nil;
+	self.eqToken = nil;
 	self.highlightedString = nil;
 	self.textAttributes = nil;
 	self.tagAttributes = nil;
@@ -340,9 +346,9 @@
 		if (!tok) return;
 		
 		NSDictionary *attrs = nil;
-		if ([tok.stringValue isEqualToString:@"="]) {
+		if ([tok isEqual:eqToken]) {
 			attrs = eqAttributes;
-		} else if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
+		} else if ([tok isEqual:fwdSlashToken] || [tok isEqual:gtToken]) {
 			attrs = tagAttributes;
 		} else if (tok.isQuotedString) {
 			attrs = attrValueAttributes;
@@ -357,9 +363,9 @@
 		tok = [self nextNonWhitespaceTokenFrom:e];
 		if (!tok) return;
 		
-		if ([tok.stringValue isEqualToString:@"="]) {
+		if ([tok isEqual:eqToken]) {
 			attrs = eqAttributes;
-		} else if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
+		} else if ([tok isEqual:fwdSlashToken] || [tok isEqual:gtToken]) {
 			attrs = tagAttributes;
 		} else if (tok.isQuotedString) {
 			attrs = attrValueAttributes;
@@ -374,7 +380,7 @@
 		tok = [self nextNonWhitespaceTokenFrom:e];
 		if (!tok) return;
 		
-		if ([tok.stringValue isEqualToString:@"/"] || [tok isEqual:gtToken]) {
+		if ([tok isEqual:fwdSlashToken] || [tok isEqual:gtToken]) {
 			attrs = tagAttributes;
 		} else {
 			attrs = attrValueAttributes;
@@ -414,7 +420,7 @@
 		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
 		
-		if ([tok.stringValue isEqualToString:@"/"]) {
+		if ([tok isEqual:fwdSlashToken]) {
 			[self workOnEndTag:e];
 		} else {
 			[self workOnStartTag:e];
@@ -477,6 +483,8 @@
 @synthesize endCDATAToken;
 @synthesize startPIToken;
 @synthesize endPIToken;
+@synthesize fwdSlashToken;
+@synthesize eqToken;
 @synthesize highlightedString;
 @synthesize tagAttributes;
 @synthesize textAttributes;
