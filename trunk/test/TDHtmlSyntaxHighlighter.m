@@ -186,6 +186,7 @@
 			}
 		} else if (inComment && ([endCommentToken.stringValue isEqualToString:sval] || [endCDATAToken.stringValue isEqualToString:sval])) {
 			inComment = NO;
+			[stack addObject:tok];
 			[self workOnComment];
 		} else {
 			[stack addObject:tok];
@@ -243,8 +244,7 @@
 		}
 	}
 	
-	TDToken *endTok = [tok isEqual:endCommentToken] ? endCommentToken : endCDATAToken;
-	as = [[[NSAttributedString alloc] initWithString:endTok.stringValue attributes:commentAttributes] autorelease];
+	as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
 }
 
