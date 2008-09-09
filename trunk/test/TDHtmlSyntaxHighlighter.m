@@ -33,6 +33,7 @@
 - (void)workOnComment;
 - (void)workOnCDATA;
 - (void)workOnPI;
+- (void)workOnDoctype;
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
@@ -49,6 +50,7 @@
 @property (retain) TDToken *endCDATAToken;
 @property (retain) TDToken *startPIToken;
 @property (retain) TDToken *endPIToken;
+@property (retain) TDToken *startDoctypeToken;
 @property (retain) TDToken *fwdSlashToken;
 @property (retain) TDToken *eqToken;
 @end
@@ -93,6 +95,9 @@
 		[tokenizer.symbolState add:startPIToken.stringValue];
 		[tokenizer.symbolState add:endPIToken.stringValue];
 
+		self.startDoctypeToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<!DOCTYPE" floatValue:0.0f];
+		[tokenizer.symbolState add:startDoctypeToken.stringValue];
+		
 		self.fwdSlashToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
 		self.eqToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"=" floatValue:0.0f];
 
@@ -168,6 +173,7 @@
 	self.endCDATAToken = nil;
 	self.startPIToken = nil;
 	self.endPIToken = nil;
+	self.startDoctypeToken = nil;
 	self.fwdSlashToken = nil;
 	self.eqToken = nil;
 	self.highlightedString = nil;
@@ -192,10 +198,11 @@
 	BOOL inComment = NO;
 	BOOL inCDATA = NO;
 	BOOL inPI = NO;
+	BOOL inDoctype = NO;
 	
 	while ((tok = [tokenizer nextToken]) != eof) {	
 		
-		if (!inComment && !inCDATA && !inPI && tok.isSymbol) {
+		if (!inComment && !inCDATA && !inPI && !inDoctype && tok.isSymbol) {
 			if ([startCommentToken isEqual:tok]) {
 				[stack addObject:tok];
 				inComment = YES;
@@ -205,6 +212,9 @@
 			} else if ([startPIToken isEqual:tok]) {
 				[stack addObject:tok];
 				inPI = YES;
+			} else if ([startDoctypeToken isEqual:tok]) {
+				[stack addObject:tok];
+				inDoctype = YES;
 			} else if ([ltToken isEqual:tok]) {
 				[self workOnText];
 				[stack addObject:tok];
@@ -226,6 +236,10 @@
 			inPI = NO;
 			[stack addObject:tok];
 			[self workOnPI];
+		} else if (inDoctype && [gtToken isEqual:tok]) {
+			inDoctype = NO;
+			[stack addObject:tok];
+			[self workOnDoctype];
 		} else {
 			[stack addObject:tok];
 		}
@@ -339,6 +353,32 @@
 }
 
 
+- (void)workOnDoctype {
+	// reverse toks to be in document order
+	NSMutableArray *toks = [[self objectsAbove:startDoctypeToken] reversedMutableArray];
+	
+	[self consumeWhitespaceOnStack];
+	
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:startDoctypeToken.stringValue attributes:tagAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+	
+	NSEnumerator *e = [toks objectEnumerator];
+	
+	TDToken *tok = nil;
+	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
+		if ([tok isEqual:gtToken]) {
+			break;
+		} else {
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
+	}
+	
+	as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+}
+
+
 - (void)workOnStartTag:(NSEnumerator *)e {
 	while (1) {
 		// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
@@ -405,23 +445,41 @@
 - (void)workOnTag {
 	// reverse toks to be in document order
 	NSMutableArray *toks = [[self objectsAbove:ltToken] reversedMutableArray];
-	
+		
 	// append "<"
 	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
 	
 	NSEnumerator *e = [toks objectEnumerator];
-	
+
 	// consume whitespace to tagName or "/" for end tags or "!" for comments
 	TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
+
+	if (![tok isEqual:startDoctypeToken]) {
+	}
 	
 	if (tok) {
-		// consume tagName or "/"
+		// consume tagName or "/" or "!"
 		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
 		
 		if ([tok isEqual:fwdSlashToken]) {
 			[self workOnEndTag:e];
+		} else if (tok.isSymbol) { // handle !DOCTYPE, etc.
+
+			tok = [self nextNonWhitespaceTokenFrom:e];
+			while (tok.isSymbol) {
+				as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
+				[highlightedString appendAttributedString:as];
+				
+				tok = [self nextNonWhitespaceTokenFrom:e];
+			} 
+			
+			// consume tagname
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+			[self workOnStartTag:e];
+			
 		} else {
 			[self workOnStartTag:e];
 		}
@@ -483,6 +541,7 @@
 @synthesize endCDATAToken;
 @synthesize startPIToken;
 @synthesize endPIToken;
+@synthesize startDoctypeToken;
 @synthesize fwdSlashToken;
 @synthesize eqToken;
 @synthesize highlightedString;
