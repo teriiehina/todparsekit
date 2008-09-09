@@ -29,7 +29,7 @@
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nasty" ofType:@"html"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
-	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] init];
+	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
 	self.displayString = [highlighter attributedStringForString:s];
 	[highlighter release];
 
