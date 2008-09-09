@@ -34,6 +34,7 @@
 - (void)workOnCDATA;
 - (void)workOnPI;
 - (void)workOnDoctype;
+- (void)workOnScript;
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
@@ -53,6 +54,8 @@
 @property (retain) TDToken *startDoctypeToken;
 @property (retain) TDToken *fwdSlashToken;
 @property (retain) TDToken *eqToken;
+@property (retain) TDToken *scriptToken;
+@property (retain) TDToken *endScriptToken;
 @end
 
 @implementation TDHtmlSyntaxHighlighter
@@ -100,6 +103,11 @@
 		
 		self.fwdSlashToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
 		self.eqToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"=" floatValue:0.0f];
+
+		self.scriptToken = [TDToken tokenWithTokenType:TDTT_WORD stringValue:@"script" floatValue:0.0f];
+
+		self.endScriptToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"</script>" floatValue:0.0f];
+		[tokenizer.symbolState add:endScriptToken.stringValue];
 
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
@@ -176,6 +184,8 @@
 	self.startDoctypeToken = nil;
 	self.fwdSlashToken = nil;
 	self.eqToken = nil;
+	self.scriptToken = nil;
+	self.endScriptToken = nil;
 	self.highlightedString = nil;
 	self.textAttributes = nil;
 	self.tagAttributes = nil;
@@ -195,6 +205,7 @@
 	tokenizer.string = s;
 	TDToken *eof = [TDToken EOFToken];
 	TDToken *tok = nil;
+	TDToken *lastTok = nil;
 	BOOL inComment = NO;
 	BOOL inCDATA = NO;
 	BOOL inPI = NO;
@@ -202,7 +213,7 @@
 	
 	while ((tok = [tokenizer nextToken]) != eof) {	
 		
-		if (!inComment && !inCDATA && !inPI && !inDoctype && tok.isSymbol) {
+		if (!inComment && !inCDATA && !inPI && !inDoctype && !inScript && tok.isSymbol) {
 			if ([startCommentToken isEqual:tok]) {
 				[stack addObject:tok];
 				inComment = YES;
@@ -240,8 +251,16 @@
 			inDoctype = NO;
 			[stack addObject:tok];
 			[self workOnDoctype];
+		} else if (inScript && [endScriptToken isEqual:tok]) {
+			inScript = NO;
+			[stack addObject:tok];
+			[self workOnScript];
 		} else {
 			[stack addObject:tok];
+		}
+		
+		if (!tok.isWhitespace) {
+			lastTok = tok;
 		}
 	}
 	
@@ -379,6 +398,28 @@
 }
 
 
+- (void)workOnScript {
+	// reverse toks to be in document order
+	NSMutableArray *toks = [[self objectsAbove:startDoctypeToken] reversedMutableArray];
+	
+	NSEnumerator *e = [toks objectEnumerator];
+	NSAttributedString *as = nil;
+	
+	TDToken *tok = nil;
+	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
+		if ([tok isEqual:endScriptToken]) {
+			break;
+		} else {
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
+	}
+	
+	as = [[[NSAttributedString alloc] initWithString:endScriptToken.stringValue attributes:tagAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+}
+
+
 - (void)workOnStartTag:(NSEnumerator *)e {
 	while (1) {
 		// attr name or ns prefix decl "xmlns:foo" or "/" for empty element
@@ -444,42 +485,37 @@
 
 - (void)workOnTag {
 	// reverse toks to be in document order
-	NSMutableArray *toks = [[self objectsAbove:ltToken] reversedMutableArray];
-		
-	// append "<"
-	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
-	[highlightedString appendAttributedString:as];
+	NSMutableArray *toks = [[self objectsAbove:nil] reversedMutableArray];
+	NSAttributedString *as =  nil;
+	
+//	as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
+//	[highlightedString appendAttributedString:as];
 	
 	NSEnumerator *e = [toks objectEnumerator];
 
-	// consume whitespace to tagName or "/" for end tags or "!" for comments
+	// append "<"
 	TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
-
-	if (![tok isEqual:startDoctypeToken]) {
-	}
+	as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
 	
+
+	// consume whitespace to tagName or "/" for end tags or "!" for comments
+	tok = [self nextNonWhitespaceTokenFrom:e];
+
 	if (tok) {
+		
+		if ([tok isEqual:scriptToken]) {
+			inScript = YES;
+		} else {
+			inScript = NO;
+		}
+		
 		// consume tagName or "/" or "!"
 		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
 		
 		if ([tok isEqual:fwdSlashToken]) {
 			[self workOnEndTag:e];
-		} else if (tok.isSymbol) { // handle !DOCTYPE, etc.
-
-			tok = [self nextNonWhitespaceTokenFrom:e];
-			while (tok.isSymbol) {
-				as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
-				[highlightedString appendAttributedString:as];
-				
-				tok = [self nextNonWhitespaceTokenFrom:e];
-			} 
-			
-			// consume tagname
-			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
-			[highlightedString appendAttributedString:as];
-			[self workOnStartTag:e];
-			
 		} else {
 			[self workOnStartTag:e];
 		}
@@ -544,6 +580,8 @@
 @synthesize startDoctypeToken;
 @synthesize fwdSlashToken;
 @synthesize eqToken;
+@synthesize scriptToken;
+@synthesize endScriptToken;
 @synthesize highlightedString;
 @synthesize tagAttributes;
 @synthesize textAttributes;
