@@ -13,6 +13,7 @@
 
 @interface TDHtmlSyntaxHighlighter : NSObject {
 	BOOL isDarkBG;
+	BOOL inScript;
 	TDTokenizer *tokenizer;
 	NSMutableArray *stack;
 	TDToken *ltToken;
@@ -26,6 +27,8 @@
 	TDToken *startDoctypeToken;
 	TDToken *fwdSlashToken;
 	TDToken *eqToken;
+	TDToken *scriptToken;
+	TDToken *endScriptToken;
 	
 	NSMutableAttributedString *highlightedString;
 	NSDictionary *tagAttributes;
