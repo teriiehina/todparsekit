@@ -19,6 +19,10 @@
 	TDToken *gtToken;
 	TDToken *startCommentToken;
 	TDToken *endCommentToken;
+	TDToken *startCDATAToken;
+	TDToken *endCDATAToken;
+	TDToken *currentStartCommentToken;
+	
 	NSMutableAttributedString *highlightedString;
 	NSDictionary *tagAttributes;
 	NSDictionary *textAttributes;
