@@ -932,6 +932,7 @@
 		D3C863250E67C255000445FD /* html */ = {
 			isa = PBXGroup;
 			children = (
+				D3EADD7F0E75E9CC00F78584 /* nasty.html */,
 				D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */,
 				D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */,
 			);
@@ -1026,7 +1027,6 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
-				D3EADD7F0E75E9CC00F78584 /* nasty.html */,
 				D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */,
 				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
 				D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */,
