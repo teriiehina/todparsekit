@@ -192,9 +192,8 @@
 - (TDToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e {
 	TDToken *tok = [e nextObject];
 	while (tok.isWhitespace) {
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
+		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 		tok = [e nextObject];
 	}
 	return tok;
@@ -205,9 +204,8 @@
 	TDToken *tok = [self peek];
 	while (tok.isWhitespace) {
 		tok = [self pop];
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
+		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 		tok = [self peek];
 	}
 }
@@ -219,9 +217,8 @@
 	
 	[self consumeWhitespaceOnStack];
 	
-	NSAttributedString *as = [[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes];
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
-	[as release];
 	
 	NSEnumerator *e = [toks objectEnumerator];
 	
@@ -230,15 +227,13 @@
 		if ([tok isEqual:endCommentToken]) {
 			break;
 		} else {
-			as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes];
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes] autorelease];
 			[highlightedString appendAttributedString:as];
-			[as release];			
 		}
 	}
 	
-	as = [[NSAttributedString alloc] initWithString:endCommentToken.stringValue attributes:commentAttributes];
+	as = [[[NSAttributedString alloc] initWithString:endCommentToken.stringValue attributes:commentAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
-	[as release];
 }
 
 
@@ -259,9 +254,8 @@
 			attrs = attrNameAttributes;
 		}
 		
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
+		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 		
 		// "="
 		tok = [self nextNonWhitespaceTokenFrom:e];
@@ -275,17 +269,15 @@
 			attrs = tagAttributes;
 		}
 		
-		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
+		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 		
 		// quoted string attr value or ns url value
 		tok = [self nextNonWhitespaceTokenFrom:e];
 		if (!tok) return;
 		
-		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes];
+		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrValueAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];		
 	}
 }
 
@@ -293,9 +285,8 @@
 - (void)workOnEndTag:(NSEnumerator *)e {
 	// consume tagName
 	TDToken *tok = [e nextObject];
-	NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
-	[as release];
 }
 
 
@@ -304,9 +295,8 @@
 	NSMutableArray *toks = [[self objectsAbove:ltToken] reversedMutableArray];
 	
 	// append "<"
-	NSAttributedString *as = [[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes];
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
-	[as release];
 	
 	NSEnumerator *e = [toks objectEnumerator];
 	
@@ -315,9 +305,8 @@
 	
 	if (tok) {
 		// consume tagName or "/"
-		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes];
+		as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 		
 		if ([tok.stringValue isEqualToString:@"/"]) {
 			[self workOnEndTag:e];
@@ -327,9 +316,8 @@
 	}
 	
 	// append ">"
-	as = [[NSAttributedString alloc] initWithString:gtToken.stringValue attributes:tagAttributes];
+	as = [[[NSAttributedString alloc] initWithString:gtToken.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
-	[as release];
 }
 
 
@@ -338,9 +326,8 @@
 	NSEnumerator *e = [a reverseObjectEnumerator];
 	TDToken *tok = nil;
 	while (tok = [e nextObject]) {
-		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes];
+		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
 		[highlightedString appendAttributedString:as];
-		[as release];
 	}
 }
 
