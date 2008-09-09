@@ -43,6 +43,9 @@
 @property (retain) TDToken *gtToken;
 @property (retain) TDToken *startCommentToken;
 @property (retain) TDToken *endCommentToken;
+@property (retain) TDToken *startCDATAToken;
+@property (retain) TDToken *endCDATAToken;
+@property (retain) TDToken *currentStartCommentToken;
 @end
 
 @implementation TDHtmlSyntaxHighlighter
@@ -73,10 +76,14 @@
 		
 		self.startCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<!--" floatValue:0.0f];
 		self.endCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"-->" floatValue:0.0f];
-		
 		[tokenizer.symbolState add:startCommentToken.stringValue];
 		[tokenizer.symbolState add:endCommentToken.stringValue];
-		
+
+		self.startCDATAToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<![CDATA[" floatValue:0.0f];
+		self.endCDATAToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"]]>" floatValue:0.0f];
+		[tokenizer.symbolState add:startCDATAToken.stringValue];
+		[tokenizer.symbolState add:endCDATAToken.stringValue];
+
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
 		NSColor *textColor = nil;
@@ -145,6 +152,9 @@
 	self.attrValueAttributes = nil;
 	self.eqAttributes = nil;
 	self.commentAttributes = nil;
+	self.startCDATAToken = nil;
+	self.endCDATAToken = nil;
+	self.currentStartCommentToken = nil;
 	[super dealloc];
 }
 
@@ -162,18 +172,19 @@
 		NSString *sval = tok.stringValue;
 		
 		if (!inComment && tok.isSymbol) {
-			if ([ltToken.stringValue isEqualToString:sval]) {
+			if ([startCommentToken.stringValue isEqualToString:sval] || [startCDATAToken.stringValue isEqualToString:sval]) {
+				self.currentStartCommentToken = tok;
+				inComment = YES;
+				[stack addObject:tok];
+			} else if ([ltToken.stringValue isEqualToString:sval]) {
 				[self workOnText];
 				[stack addObject:tok];
 			} else if ([gtToken.stringValue isEqualToString:sval]) {
 				[self workOnTag];
-			} else if ([startCommentToken.stringValue isEqualToString:sval]) {
-				inComment = YES;
-				[stack addObject:tok];
 			} else {
 				[stack addObject:tok];
 			}
-		} else if (inComment && [endCommentToken.stringValue isEqualToString:sval]) {
+		} else if (inComment && ([endCommentToken.stringValue isEqualToString:sval] || [endCDATAToken.stringValue isEqualToString:sval])) {
 			inComment = NO;
 			[self workOnComment];
 		} else {
@@ -224,7 +235,7 @@
 	
 	TDToken *tok = nil;
 	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
-		if ([tok isEqual:endCommentToken]) {
+		if ([tok isEqual:endCommentToken] || [tok isEqual:endCDATAToken]) {
 			break;
 		} else {
 			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes] autorelease];
@@ -232,7 +243,8 @@
 		}
 	}
 	
-	as = [[[NSAttributedString alloc] initWithString:endCommentToken.stringValue attributes:commentAttributes] autorelease];
+	TDToken *endTok = [tok isEqual:endCommentToken] ? endCommentToken : endCDATAToken;
+	as = [[[NSAttributedString alloc] initWithString:endTok.stringValue attributes:commentAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
 }
 
@@ -378,4 +390,7 @@
 @synthesize attrValueAttributes;
 @synthesize eqAttributes;
 @synthesize commentAttributes;
+@synthesize startCDATAToken;
+@synthesize endCDATAToken;
+@synthesize currentStartCommentToken;
 @end
