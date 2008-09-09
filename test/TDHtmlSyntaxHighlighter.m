@@ -106,8 +106,9 @@
 
 		self.scriptToken = [TDToken tokenWithTokenType:TDTT_WORD stringValue:@"script" floatValue:0.0f];
 
-		self.endScriptToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"</script>" floatValue:0.0f];
-		[tokenizer.symbolState add:endScriptToken.stringValue];
+		self.endScriptToken = gtToken;
+//		self.endScriptToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"</script>" floatValue:0.0f];
+//		[tokenizer.symbolState add:endScriptToken.stringValue];
 
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
@@ -488,9 +489,6 @@
 	NSMutableArray *toks = [[self objectsAbove:nil] reversedMutableArray];
 	NSAttributedString *as =  nil;
 	
-//	as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
-//	[highlightedString appendAttributedString:as];
-	
 	NSEnumerator *e = [toks objectEnumerator];
 
 	// append "<"
@@ -498,7 +496,6 @@
 	as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
 	
-
 	// consume whitespace to tagName or "/" for end tags or "!" for comments
 	tok = [self nextNonWhitespaceTokenFrom:e];
 
