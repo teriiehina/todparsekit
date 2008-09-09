@@ -3,13 +3,13 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
 		<string key="IBDocument.SystemVersion">9E17</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
+		<string key="IBDocument.InterfaceBuilderVersion">670</string>
 		<string key="IBDocument.AppKitVersion">949.33</string>
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="24"/>
-			<integer value="447"/>
+			<integer value="458"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1391,9 +1391,9 @@ aXMgY2xpY2tlZC4</string>
 											</object>
 											<object class="NSTextViewSharedData" key="NSSharedData">
 												<int key="NSFlags">11239</int>
-												<object class="NSColor" key="NSBackgroundColor" id="466015141">
-													<int key="NSColorSpace">3</int>
-													<bytes key="NSWhite">MQA</bytes>
+												<object class="NSColor" key="NSBackgroundColor">
+													<int key="NSColorSpace">1</int>
+													<bytes key="NSRGB">MC4xMTc2NDcwNiAwLjExNzY0NzA2IDAuMTQxMTc2NDgAA</bytes>
 												</object>
 												<reference key="NSInsertionColor" ref="460382933"/>
 												<object class="NSDictionary" key="NSSelectedAttributes">
@@ -1439,8 +1439,8 @@ aXMgY2xpY2tlZC4</string>
 												<nil key="NSDefaultParagraphStyle"/>
 											</object>
 											<int key="NSTVFlags">6</int>
-											<string key="NSMaxSize">{463, 1e+07}</string>
-											<string key="NSMinize">{223, 95}</string>
+											<string key="NSMaxSize">{871, 1e+07}</string>
+											<string key="NSMinize">{223, 0}</string>
 											<nil key="NSDelegate"/>
 										</object>
 									</object>
@@ -1448,7 +1448,10 @@ aXMgY2xpY2tlZC4</string>
 									<reference key="NSSuperview" ref="525752343"/>
 									<reference key="NSNextKeyView" ref="432740214"/>
 									<reference key="NSDocView" ref="432740214"/>
-									<reference key="NSBGColor" ref="466015141"/>
+									<object class="NSColor" key="NSBGColor">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MQA</bytes>
+									</object>
 									<object class="NSCursor" key="NSCursor">
 										<string key="NSHotSpot">{4, -5}</string>
 										<int key="NSCursorType">1</int>
@@ -2032,7 +2035,7 @@ aXMgY2xpY2tlZC4</string>
 							<string key="NSKeyPath">displayString</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSContinuouslyUpdatesValue</string>
-								<integer value="1" key="NS.object.0" id="5"/>
+								<reference key="NS.object.0" ref="9"/>
 							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
@@ -3437,7 +3440,7 @@ aXMgY2xpY2tlZC4</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{99, 408}, {484, 310}}</string>
 					<reference ref="9"/>
-					<reference ref="5"/>
+					<reference ref="9"/>
 					<string>{484, 310}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

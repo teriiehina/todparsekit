@@ -12,6 +12,7 @@
 @class TDToken;
 
 @interface TDHtmlSyntaxHighlighter : NSObject {
+	BOOL isDarkBG;
 	TDTokenizer *tokenizer;
 	NSMutableArray *stack;
 	TDToken *ltToken;
@@ -26,6 +27,8 @@
 	NSDictionary *eqAttributes;
 	NSDictionary *commentAttributes;
 }
+- (id)initWithAttributesForDarkBackground:(BOOL)isDark;
+
 - (NSAttributedString *)attributedStringForString:(NSString *)s;
 
 @property (nonatomic, retain) NSMutableAttributedString *highlightedString;

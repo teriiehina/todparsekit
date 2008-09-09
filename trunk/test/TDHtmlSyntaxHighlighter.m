@@ -48,8 +48,15 @@
 @implementation TDHtmlSyntaxHighlighter
 
 - (id)init {
+	return [self initWithAttributesForDarkBackground:NO];
+}
+
+
+- (id)initWithAttributesForDarkBackground:(BOOL)isDark {
 	self = [super init];
 	if (self != nil) {
+		isDarkBG = isDark;
+		
 		self.tokenizer = [TDTokenizer tokenizer];
 		
 		[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // XML doesn't have slash slash or slash star comments
@@ -71,30 +78,54 @@
 		[tokenizer.symbolState add:endCommentToken.stringValue];
 
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
-		self.textAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [NSColor blackColor], NSForegroundColorAttributeName,
-							   monacoFont, NSFontAttributeName,
-							   nil];
-		self.tagAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							   [NSColor purpleColor], NSForegroundColorAttributeName,
-							   monacoFont, NSFontAttributeName,
-							   nil];
-		self.attrNameAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSColor colorWithDeviceRed:0. green:0. blue:.75 alpha:1.], NSForegroundColorAttributeName,
-									monacoFont, NSFontAttributeName,
-									nil];
-		self.attrValueAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-									[NSColor colorWithDeviceRed:.75 green:0. blue:0. alpha:1.], NSForegroundColorAttributeName,
-									monacoFont, NSFontAttributeName,
-									nil];
-		self.eqAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-							 [NSColor darkGrayColor], NSForegroundColorAttributeName,
-							 monacoFont, NSFontAttributeName,
-							 nil];
-		self.commentAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
-								  [NSColor grayColor], NSForegroundColorAttributeName,
-								  monacoFont, NSFontAttributeName,
-								  nil];
+		
+		NSColor *textColor = nil;
+		NSColor *tagColor = nil;
+		NSColor *attrNameColor = nil;
+		NSColor *attrValueColor = nil;
+		NSColor *eqColor = nil;
+		NSColor *commentColor = nil;
+		
+		if (isDarkBG) {
+			textColor = [NSColor whiteColor];
+			tagColor = [NSColor colorWithDeviceRed:.70 green:.14 blue:.53 alpha:1.];
+			attrNameColor = [NSColor colorWithDeviceRed:.33 green:.45 blue:.48 alpha:1.];
+			attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
+			eqColor = tagColor;
+			commentColor = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
+		} else {
+			textColor = [NSColor blackColor];
+			tagColor = [NSColor purpleColor];
+			attrNameColor = [NSColor colorWithDeviceRed:0. green:0. blue:.75 alpha:1.];
+			attrValueColor = [NSColor colorWithDeviceRed:.75 green:0. blue:0. alpha:1.];
+			eqColor = [NSColor darkGrayColor];
+			commentColor = [NSColor grayColor];
+		}
+
+		self.textAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
+									   textColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
+		self.tagAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
+									   tagColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
+		self.attrNameAttributes		= [NSDictionary dictionaryWithObjectsAndKeys:
+									   attrNameColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
+		self.attrValueAttributes	= [NSDictionary dictionaryWithObjectsAndKeys:
+									   attrValueColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
+		self.eqAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
+									   eqColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
+		self.commentAttributes		= [NSDictionary dictionaryWithObjectsAndKeys:
+									   commentColor, NSForegroundColorAttributeName,
+									   monacoFont, NSFontAttributeName,
+									   nil];
 	}
 	return self;
 }
