@@ -60,7 +60,7 @@
 		self.tokenizer = [TDTokenizer tokenizer];
 		
 		[tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // XML doesn't have slash slash or slash star comments
-
+		
 		TDSignificantWhitespaceState *whitespaceState = [[TDSignificantWhitespaceState alloc] init];
 		tokenizer.whitespaceState = whitespaceState;
 		[tokenizer setTokenizerState:whitespaceState from:0 to:' '];
@@ -70,13 +70,13 @@
 		
 		self.ltToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<" floatValue:0.0f];
 		self.gtToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@">" floatValue:0.0f];
-
+		
 		self.startCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"<!--" floatValue:0.0f];
 		self.endCommentToken = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"-->" floatValue:0.0f];
-
+		
 		[tokenizer.symbolState add:startCommentToken.stringValue];
 		[tokenizer.symbolState add:endCommentToken.stringValue];
-
+		
 		NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
 		
 		NSColor *textColor = nil;
@@ -101,7 +101,7 @@
 			eqColor = [NSColor darkGrayColor];
 			commentColor = [NSColor grayColor];
 		}
-
+		
 		self.textAttributes			= [NSDictionary dictionaryWithObjectsAndKeys:
 									   textColor, NSForegroundColorAttributeName,
 									   monacoFont, NSFontAttributeName,
@@ -156,21 +156,26 @@
 	tokenizer.string = s;
 	TDToken *eof = [TDToken EOFToken];
 	TDToken *tok = nil;
+	BOOL inComment = NO;
 	
 	while ((tok = [tokenizer nextToken]) != eof) {
 		NSString *sval = tok.stringValue;
 		
-		if (tok.isSymbol) {
+		if (!inComment && tok.isSymbol) {
 			if ([ltToken.stringValue isEqualToString:sval]) {
 				[self workOnText];
 				[stack addObject:tok];
 			} else if ([gtToken.stringValue isEqualToString:sval]) {
 				[self workOnTag];
-			} else if ([endCommentToken.stringValue isEqualToString:sval]) {
-				[self workOnComment];
+			} else if ([startCommentToken.stringValue isEqualToString:sval]) {
+				inComment = YES;
+				[stack addObject:tok];
 			} else {
 				[stack addObject:tok];
 			}
+		} else if (inComment && [endCommentToken.stringValue isEqualToString:sval]) {
+			inComment = NO;
+			[self workOnComment];
 		} else {
 			[stack addObject:tok];
 		}
@@ -217,9 +222,9 @@
 	NSAttributedString *as = [[NSAttributedString alloc] initWithString:startCommentToken.stringValue attributes:commentAttributes];
 	[highlightedString appendAttributedString:as];
 	[as release];
-
+	
 	NSEnumerator *e = [toks objectEnumerator];
-
+	
 	TDToken *tok = nil;
 	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
 		if ([tok isEqual:endCommentToken]) {
@@ -230,7 +235,7 @@
 			[as release];			
 		}
 	}
-
+	
 	as = [[NSAttributedString alloc] initWithString:endCommentToken.stringValue attributes:commentAttributes];
 	[highlightedString appendAttributedString:as];
 	[as release];
@@ -253,11 +258,11 @@
 		} else {
 			attrs = attrNameAttributes;
 		}
-
+		
 		NSAttributedString *as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
 		[highlightedString appendAttributedString:as];
 		[as release];
-
+		
 		// "="
 		tok = [self nextNonWhitespaceTokenFrom:e];
 		if (!tok) return;
@@ -269,7 +274,7 @@
 		} else {
 			attrs = tagAttributes;
 		}
-
+		
 		as = [[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs];
 		[highlightedString appendAttributedString:as];
 		[as release];
@@ -304,7 +309,7 @@
 	[as release];
 	
 	NSEnumerator *e = [toks objectEnumerator];
-
+	
 	// consume whitespace to tagName or "/" for end tags or "!" for comments
 	TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
 	
@@ -320,7 +325,7 @@
 			[self workOnStartTag:e];
 		}
 	}
-		
+	
 	// append ">"
 	as = [[NSAttributedString alloc] initWithString:gtToken.stringValue attributes:tagAttributes];
 	[highlightedString appendAttributedString:as];
