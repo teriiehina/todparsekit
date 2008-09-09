@@ -23,6 +23,7 @@
 	TDToken *endCDATAToken;
 	TDToken *startPIToken;
 	TDToken *endPIToken;
+	TDToken *startDoctypeToken;
 	TDToken *fwdSlashToken;
 	TDToken *eqToken;
 	
