@@ -31,6 +31,7 @@
 - (void)workOnTag;
 - (void)workOnText;
 - (void)workOnComment;
+- (void)workOnCDATA;
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
@@ -172,7 +173,7 @@
 		NSString *sval = tok.stringValue;
 		
 		if (!inComment && tok.isSymbol) {
-			if ([startCommentToken.stringValue isEqualToString:sval] || [startCDATAToken.stringValue isEqualToString:sval]) {
+			if ([startCommentToken isEqual:tok] || [startCDATAToken isEqual:tok]) {
 				self.currentStartCommentToken = tok;
 				inComment = YES;
 				[stack addObject:tok];
@@ -184,10 +185,14 @@
 			} else {
 				[stack addObject:tok];
 			}
-		} else if (inComment && ([endCommentToken.stringValue isEqualToString:sval] || [endCDATAToken.stringValue isEqualToString:sval])) {
+		} else if (inComment && ([endCommentToken isEqual:tok] || [endCDATAToken isEqual:tok])) {
 			inComment = NO;
 			[stack addObject:tok];
-			[self workOnComment];
+			if ([endCommentToken isEqual:tok]) {
+				[self workOnComment];
+			} else {
+				[self workOnCDATA];
+			}
 		} else {
 			[stack addObject:tok];
 		}
@@ -236,7 +241,7 @@
 	
 	TDToken *tok = nil;
 	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
-		if ([tok isEqual:endCommentToken] || [tok isEqual:endCDATAToken]) {
+		if ([tok isEqual:endCommentToken]) {
 			break;
 		} else {
 			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes] autorelease];
@@ -245,6 +250,32 @@
 	}
 	
 	as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:commentAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+}
+
+
+- (void)workOnCDATA {
+	// reverse toks to be in document order
+	NSMutableArray *toks = [[self objectsAbove:startCDATAToken] reversedMutableArray];
+	
+	[self consumeWhitespaceOnStack];
+	
+	NSAttributedString *as = [[[NSAttributedString alloc] initWithString:startCDATAToken.stringValue attributes:tagAttributes] autorelease];
+	[highlightedString appendAttributedString:as];
+	
+	NSEnumerator *e = [toks objectEnumerator];
+	
+	TDToken *tok = nil;
+	while (tok = [self nextNonWhitespaceTokenFrom:e]) {
+		if ([tok isEqual:endCDATAToken]) {
+			break;
+		} else {
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
+	}
+	
+	as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
 	[highlightedString appendAttributedString:as];
 }
 
