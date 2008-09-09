@@ -411,7 +411,13 @@
 		if ([tok isEqual:endScriptToken]) {
 			break;
 		} else {
-			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
+			NSDictionary *attrs = nil;
+			if ([tok isEqual:scriptToken] || [tok isEqual:ltToken] || [tok isEqual:fwdSlashToken]) {
+				attrs = tagAttributes;
+			} else {
+				attrs = textAttributes;
+			}
+			as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:attrs] autorelease];
 			[highlightedString appendAttributedString:as];
 		}
 	}
