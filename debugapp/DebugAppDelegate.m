@@ -26,7 +26,7 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nonascii" ofType:@"html"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
 	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];

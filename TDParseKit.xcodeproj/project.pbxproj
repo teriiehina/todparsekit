@@ -938,11 +938,11 @@
 		D3C863250E67C255000445FD /* html */ = {
 			isa = PBXGroup;
 			children = (
+				D3B69D310E80249900D70C41 /* nonascii.html */,
 				D3EADD7F0E75E9CC00F78584 /* nasty.html */,
 				D3B69CB50E7EF73500D70C41 /* nyt.html */,
 				D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */,
 				D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */,
-				D3B69D310E80249900D70C41 /* nonascii.html */,
 			);
 			name = html;
 			sourceTree = "<group>";

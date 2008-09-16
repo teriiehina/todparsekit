@@ -540,8 +540,11 @@
 	NSEnumerator *e = [a reverseObjectEnumerator];
 	TDToken *tok = nil;
 	while (tok = [e nextObject]) {
-		NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
-		[highlightedString appendAttributedString:as];
+		NSString *s = tok.stringValue;
+		if (s) {
+			NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
 	}
 }
 
