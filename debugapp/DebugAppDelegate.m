@@ -26,11 +26,13 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nasty" ofType:@"html"];
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nonascii" ofType:@"html"];
 	NSString *s = [NSString stringWithContentsOfFile:path];
 	
 	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
-	self.displayString = [highlighter attributedStringForString:s];
+	NSAttributedString *o = [highlighter attributedStringForString:s];
+	NSLog(@"o: %@", [o string]);
+	self.displayString = o;
 	[highlighter release];
 
 
