@@ -15,6 +15,10 @@
 - (NSString *)description {
 	return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
 }
+
+- (NSString *)debugDescription {
+	return [self description];
+}
 @end
 
 @interface TDToken ()
