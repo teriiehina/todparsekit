@@ -265,6 +265,15 @@
 		}
 	}
 	
+	// handle case where no elements were encountered (plain text basically)
+	if (!highlightedString.length) {
+		TDToken *tok = nil;
+		while (tok = [self pop]) {
+			NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
+			[highlightedString appendAttributedString:as];
+		}
+	}
+	
 	NSAttributedString *result = [[highlightedString copy] autorelease];
 	self.stack = nil;
 	self.highlightedString = nil;
