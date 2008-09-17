@@ -42,14 +42,32 @@
 	[self addWithFirst:[s characterAtIndex:0] rest:rest parent:child];
 }
 
-
+ 
 - (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin {
 	return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
 - (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
-	NSString *result = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF8StringEncoding] autorelease];
+	NSString *result = [[[NSString alloc] initWithCharacters:(const unichar *)&c length:1] autorelease];
+	//NSString *result = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF8StringEncoding] autorelease];
+
+//	NSLog(@"c: %d", c);
+//	NSLog(@"string for c: %@", result);
+//	NSString *chars = [[[NSString alloc] initWithCharacters:(const unichar *)&c length:1] autorelease];
+//	NSString *utfs  = [[[NSString alloc] initWithUTF8String:(const char *)&c] autorelease];
+//	NSString *utf8  = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF8StringEncoding] autorelease];
+//	NSString *utf16 = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF16StringEncoding] autorelease];
+//	NSString *ascii = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSASCIIStringEncoding] autorelease];
+//	NSString *iso   = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSISOLatin1StringEncoding] autorelease];
+//
+//	NSLog(@"chars: '%@'", chars);
+//	NSLog(@"utfs: '%@'", utfs);
+//	NSLog(@"utf8: '%@'", utf8);
+//	NSLog(@"utf16: '%@'", utf16);
+//	NSLog(@"ascii: '%@'", ascii);
+//	NSLog(@"iso: '%@'", iso);
+	
 	NSNumber *key = [NSNumber numberWithInteger:c];
 	TDSymbolNode *child = [p.children objectForKey:key];
 	

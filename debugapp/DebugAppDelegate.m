@@ -26,8 +26,9 @@
 - (IBAction)run:(id)sender {
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
-	NSString *s = [NSString stringWithContentsOfFile:path];
+	//NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
+	//NSString *s = [NSString stringWithContentsOfFile:path];
+	NSString *s = @"ア";
 	
 	TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
 	NSAttributedString *o = [highlighter attributedStringForString:s];
