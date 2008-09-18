@@ -35,7 +35,7 @@
 	SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"Solo Test Suite"];
 	
 	NSArray *classNames = [NSArray arrayWithObjects:
-						   @"TDSymbolStateTest",
+						   @"TDTokenizerTest",
 						   nil];
 	
 	[suite addSuitesForClassNames:classNames];
