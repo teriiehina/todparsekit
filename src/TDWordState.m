@@ -69,20 +69,12 @@
 }
 
 
-- (BOOL)isWordChar:(NSInteger)c {
-	BOOL explicitlySet = NO;
-	
-	if (c > -1 && c < wordChars.count -1) {
-		explicitlySet = (yesFlag == [wordChars objectAtIndex:c]);
+- (BOOL)isWordChar:(NSInteger)c {	
+	if (c > -1 && c < wordChars.count - 1) {
+		return (yesFlag == [wordChars objectAtIndex:c]);
 	}
 
-	if (explicitlySet) {
-		return YES;
-	}
-	
-	if (c < 256) {
-		return NO;
-	} else if (c >= 0x2000 && c <= 0x2bff) { // various symbols
+	if (c >= 0x2000 && c <= 0x2bff) { // various symbols
 		return NO;
 	} else if (c >= 0xfe30 && c <= 0xfe6f) { // general punctuation
 		return NO;
