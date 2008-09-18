@@ -278,15 +278,64 @@
 	
 	NSMutableArray *toks = [NSMutableArray array];
 	
+	TDToken *eof = [TDToken EOFToken];
 	TDToken *token = nil;
 	while (token = [tokenizer nextToken]) {
-		if ([TDToken EOFToken] == token) break;
+		if (eof == token) break;
 		
 		[toks addObject:token];
 
 	}
 
 	NSLog(@"\n\n\n\ntoks: %@\n\n\n\n", toks);
+}
+
+
+- (void)testKatakana1 {
+	self.string = @"ア";
+	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+	
+	TDToken *eof = [TDToken EOFToken];
+	TDToken *tok = [tokenizer nextToken];
+	
+	STAssertNotNil(tok, @"");
+	STAssertTrue(tok.isWord, @"");
+	STAssertEqualObjects(string, tok.stringValue, @"");
+	
+	tok = [tokenizer nextToken];
+	STAssertEqualObjects(eof, tok, @"");
+}
+
+
+- (void)testKatakana2 {
+	self.string = @"アア";
+	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+	
+	TDToken *eof = [TDToken EOFToken];
+	TDToken *tok = [tokenizer nextToken];
+	
+	STAssertNotNil(tok, @"");
+	STAssertTrue(tok.isWord, @"");
+	STAssertEqualObjects(string, tok.stringValue, @"");
+	
+	tok = [tokenizer nextToken];
+	STAssertEqualObjects(eof, tok, @"");
+}
+
+
+- (void)testKatakana3 {
+	self.string = @"アェ";
+	self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+	
+	TDToken *eof = [TDToken EOFToken];
+	TDToken *tok = [tokenizer nextToken];
+	
+	STAssertNotNil(tok, @"");
+	STAssertTrue(tok.isWord, @"");
+	STAssertEqualObjects(string, tok.stringValue, @"");
+	
+	tok = [tokenizer nextToken];
+	STAssertEqualObjects(eof, tok, @"");
 }
 
 @end
