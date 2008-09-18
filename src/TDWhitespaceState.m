@@ -47,8 +47,8 @@
 
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
 	id obj = yn ? yesFlag : noFlag;
-	NSInteger i = 0;
-	for (i = start; i <= end; i++) {
+	NSInteger i = start;
+	for ( ; i <= end; i++) {
 		[whitespaceChars replaceObjectAtIndex:i withObject:obj];
 	}
 }
