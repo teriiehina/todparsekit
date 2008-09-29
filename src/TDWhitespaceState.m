@@ -31,7 +31,7 @@
 			[whitespaceChars addObject:noFlag];
 		}
 		
-		[self setWhitespaceChars:YES from: 0 to: ' '];
+		[self setWhitespaceChars:YES from:0 to:' '];
 	}
 	return self;
 }
