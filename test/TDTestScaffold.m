@@ -8,6 +8,9 @@
 
 #import "TDTestScaffold.h"
 
+#define RUN_ALL_TEST_CASES 1
+#define SOLO_TEST_CASE @"TDTokenizerTest"
+
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
 @end
@@ -22,8 +25,6 @@
 }
 @end
 
-#define RUN_ALL_TEST_CASES 1
-
 @implementation TDTestScaffold
 
 + (void)load {
@@ -34,9 +35,7 @@
 + (SenTestSuite *)soloTestSuite {
 	SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"Solo Test Suite"];
 	
-	NSArray *classNames = [NSArray arrayWithObjects:
-						   @"TDTokenizerTest",
-						   nil];
+	NSArray *classNames = [NSArray arrayWithObject:SOLO_TEST_CASE];
 	
 	[suite addSuitesForClassNames:classNames];
 	return suite;
