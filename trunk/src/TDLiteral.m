@@ -15,11 +15,6 @@
 
 @implementation TDLiteral
 
-+ (id)literal {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
-}
-
-
 + (id)literalWithString:(NSString *)s {
 	return [[[[self class] alloc] initWithString:s] autorelease];
 }

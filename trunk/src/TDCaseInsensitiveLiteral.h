@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDLiteral.h>
 
+/*!
+    @class       TDCaseInsensitiveLiteral 
+    @superclass  TDLiteral
+    @abstract    A CaselessLiteral matches a specified String from an assembly, disregarding case.
+    @discussion  A CaselessLiteral matches a specified String from an assembly, disregarding case.
+*/
 @interface TDCaseInsensitiveLiteral : TDLiteral {
 
 }
