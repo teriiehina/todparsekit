@@ -12,9 +12,9 @@
 
 /*!
     @class       TDTokenAssembly 
-    @superclass  TDAssembly <NSCopying>
-    @abstract    A TokenAssembly is an Assembly whose elements are Tokens.
-    @discussion  A TokenAssembly is an Assembly whose elements are Tokens. Tokens are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
+    @superclass  TDAssembly
+    @abstract    A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>.
+    @discussion  A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>. <tt>TDTokens</tt> are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
 */
 @interface TDTokenAssembly : TDAssembly <NSCopying> {
 	TDTokenizer *tokenizer;
