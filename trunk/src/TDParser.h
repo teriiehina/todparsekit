@@ -104,6 +104,7 @@
 /*!
     @method     
     @abstract   The name of this parser.
+	@discussion	Use this property to help in identifying a parser or for debugging purposes.
 */
 @property (nonatomic, copy) NSString *name;
 @end
