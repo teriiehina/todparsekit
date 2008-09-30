@@ -163,6 +163,9 @@
 		D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
 		D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
 		D31FE7420E60F40900A0803E /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
+		D323647C0E92C50E008CB5C4 /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D323647B0E92C50E008CB5C4 /* TDScientificNumberState.m */; };
+		D323647D0E92C50E008CB5C4 /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D323647A0E92C50E008CB5C4 /* TDScientificNumberState.h */; };
+		D323647E0E92C50E008CB5C4 /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D323647B0E92C50E008CB5C4 /* TDScientificNumberState.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
@@ -191,8 +194,6 @@
 		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
-		D3C85D2F0E63CD3C000445FD /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C85D2D0E63CD3C000445FD /* TDScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C85D300E63CD3C000445FD /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D2E0E63CD3C000445FD /* TDScientificNumberState.m */; };
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
 		D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
@@ -452,6 +453,8 @@
 		D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
 		D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
 		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
+		D323647A0E92C50E008CB5C4 /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = src/TDScientificNumberState.h; sourceTree = "<group>"; };
+		D323647B0E92C50E008CB5C4 /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = src/TDScientificNumberState.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
@@ -490,8 +493,6 @@
 		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
 		D3C85C7E0E63B9E9000445FD /* TDArithmeticParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParserTest.h; path = test/TDArithmeticParserTest.h; sourceTree = "<group>"; };
 		D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParserTest.m; path = test/TDArithmeticParserTest.m; sourceTree = "<group>"; };
-		D3C85D2D0E63CD3C000445FD /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = test/TDScientificNumberState.h; sourceTree = "<group>"; };
-		D3C85D2E0E63CD3C000445FD /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = test/TDScientificNumberState.m; sourceTree = "<group>"; };
 		D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberStateTest.h; path = test/TDScientificNumberStateTest.h; sourceTree = "<group>"; };
 		D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberStateTest.m; path = test/TDScientificNumberStateTest.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
@@ -692,8 +693,8 @@
 		D34A1F410E54F6F800A4A0BF /* states */ = {
 			isa = PBXGroup;
 			children = (
-				D3C85D2D0E63CD3C000445FD /* TDScientificNumberState.h */,
-				D3C85D2E0E63CD3C000445FD /* TDScientificNumberState.m */,
+				D323647A0E92C50E008CB5C4 /* TDScientificNumberState.h */,
+				D323647B0E92C50E008CB5C4 /* TDScientificNumberState.m */,
 				D31FE6D10E60E9E300A0803E /* TDSignificantWhitespaceState.h */,
 				D31FE6D20E60E9E300A0803E /* TDSignificantWhitespaceState.m */,
 				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
@@ -1181,7 +1182,7 @@
 				D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */,
 				D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */,
 				D31FE6D30E60E9E300A0803E /* TDSignificantWhitespaceState.h in Headers */,
-				D3C85D2F0E63CD3C000445FD /* TDScientificNumberState.h in Headers */,
+				D323647D0E92C50E008CB5C4 /* TDScientificNumberState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1395,7 +1396,7 @@
 				D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */,
 				D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */,
 				D31FE6D40E60E9E300A0803E /* TDSignificantWhitespaceState.m in Sources */,
-				D3C85D300E63CD3C000445FD /* TDScientificNumberState.m in Sources */,
+				D323647E0E92C50E008CB5C4 /* TDScientificNumberState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1422,6 +1423,7 @@
 				D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */,
 				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
+				D323647C0E92C50E008CB5C4 /* TDScientificNumberState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
