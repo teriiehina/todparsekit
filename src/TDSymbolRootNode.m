@@ -9,6 +9,10 @@
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDReader.h>
 
+@interface TDSymbolNode ()
+@property (nonatomic, retain) NSMutableDictionary *children;
+@end
+
 @interface TDSymbolRootNode ()
 - (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
 - (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p;

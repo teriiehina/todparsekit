@@ -10,9 +10,9 @@
 
 @interface TDSymbolNode ()
 @property (nonatomic, readwrite, retain) NSString *ancestry;
-@property (nonatomic, readwrite, assign) TDSymbolNode *parent;  // this must be 'assign' to avoid retain loop leak
-@property (nonatomic, readwrite, retain) NSMutableDictionary *children;
-@property (nonatomic, readwrite) NSInteger character;
+@property (nonatomic, assign) TDSymbolNode *parent;  // this must be 'assign' to avoid retain loop leak
+@property (nonatomic, retain) NSMutableDictionary *children;
+@property (nonatomic) NSInteger character;
 
 - (void)determineAncestry;
 @end
