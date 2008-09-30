@@ -23,7 +23,6 @@
 
 @interface TDParser ()
 + (NSSet *)deepCopy:(NSSet *)inSet;
-- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (TDAssembly *)best:(NSSet *)inAssemblies;
 @end
@@ -36,7 +35,7 @@
 
 
 + (NSSet *)deepCopy:(NSSet *)inSet {
-	return [[NSSet alloc] initWithSet:inSet copyItems:YES];
+	return [[wNSSet alloc] initWithSet:inSet copyItems:YES];
 }
 
 

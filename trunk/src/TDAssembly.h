@@ -25,7 +25,7 @@
 
 /*!
     @method     assemblyWithString:
-    @abstract   Convenenience factory method for initializing an autoreleased assembly.
+    @abstract   Convenience factory method for initializing an autoreleased assembly.
     @param      s string to be worked on
     @result     an initialized autoreleased assembly
 */
