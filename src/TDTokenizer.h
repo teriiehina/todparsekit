@@ -27,17 +27,17 @@
 				 <p>For example, by default, upon reading an 'A', a tokenizer will enter a "word" state. This means the tokenizer will ask a <tt>TDWordState</tt> object to consume the 'A', along with the characters after the 'A' that form a word. The state's responsibility is to consume characters and return a complete token.</p>
 				 <p>The default table sets a <tt>TDSymbolState</tt> for every character from 0 to 255, and then overrides this with:</p>
 <pre>
- From   To     State
- 0      ' '    whitespaceState
- 'a'    'z'    wordState
- 'A'    'Z'    wordState
- 160    255    wordState
- '0'    '9'    numberState
- '-'    '-'    numberState
- '.'    '.'    numberState
- '"'    '"'    quoteState
- '\''   '\''   quoteState
- '/'    '/'    slashState
+	 From     To    State
+		0    ' '    whitespaceState
+	  'a'    'z'    wordState
+	  'A'    'Z'    wordState
+	  160    255    wordState
+	  '0'    '9'    numberState
+	  '-'    '-'    numberState
+	  '.'    '.'    numberState
+	  '"'    '"'    quoteState
+	 '\''   '\''    quoteState
+	  '/'    '/'    slashState
 </pre>
 				 <p>In addition to allowing modification of the state table, this class makes each of the states above available. Some of these states are customizable. For example, wordState allows customization of what characters can be part of a word, after the first character.</p>
 */
@@ -57,25 +57,31 @@
 }
 /*!
     @method     tokenizer
-    @abstract   Convenience factory method.
+    @abstract   Convenience factory method. Sets string to read from to <tt>nil</tt>.
+	@result		An initialized tokenizer.
 */
 + (id)tokenizer;
 
 /*!
-	@method     tokenizer
+	@method     tokenizerWithString:
 	@abstract   Convenience factory method.
+	@param      s string to read from.
+	@result		An autoreleased initialized tokenizer.
  */
 + (id)tokenizerWithString:(NSString *)s;
 
 /*!
     @method     initWithString:
     @abstract   Designated Initializer. Constructs a tokenizer to read from the supplied string.
+	@param      s string to read from.
+	@result		An initialized tokenizer.
 */
 - (id)initWithString:(NSString *)s;
 
 /*!
     @method     nextToken
     @abstract   Returns the next token.
+	@result		the next token.
 */
 - (TDToken *)nextToken;
 
@@ -83,15 +89,15 @@
     @method     setTokenizerState:from:to:
     @abstract   Change the state the tokenizer will enter upon reading any character between "start" and "end".
     @param      state the state for this character range
-    @param      start the "start" character
-    @param      end the "end" character
+    @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
+    @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-	@method     string
-	@abstract   The string to read from.
- */
+    @method     
+    @abstract   The string to read from.
+*/
 @property (nonatomic, copy) NSString *string;
 
 /*!

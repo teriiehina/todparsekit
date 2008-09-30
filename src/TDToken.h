@@ -53,19 +53,29 @@ typedef enum {
 
 /*!
     @method     tokenWithTokenType:stringValue:floatValue:
-    @abstract   Factory convenience method for creating autoreleased <tt>TDToken</tt>.
+    @abstract   Factory convenience method for creating an autoreleased token.
+    @param      t the type of this token.
+    @param      s the string value of this token.
+    @param      n the number falue of this token.
+    @result     an autoreleased initialized token.
 */
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
     @method     initWithTokenType:stringValue:floatValue:
     @abstract   Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
+	@param      t the type of this token.
+	@param      s the string value of this token.
+	@param      n the number falue of this token.
+	@result     an autoreleased initialized token.
 */
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
     @method     isEqualIgnoringCase:
-    @abstract   Returns true if the supplied object is an equivalent token, ignoring differences in case.
+    @abstract   Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
+    @param      obj the object to compare this token to.
+    @result     true if <tt>obj</tt> is an equivalent <tt>TDToken</tt>, ignoring differences in case.
 */
 - (BOOL)isEqualIgnoringCase:(id)obj;
 
