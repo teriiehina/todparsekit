@@ -48,10 +48,8 @@
 
 		[symbolState add:@"<="];
 		[symbolState add:@">="];
-		[symbolState add:@":="];
+		[symbolState add:@":-"];
 		[symbolState add:@"!="];
-		[symbolState add:@"=="];
-		[symbolState add:@"<>"];
 		
 		self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
 		NSInteger i = 0;

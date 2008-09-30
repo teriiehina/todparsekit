@@ -12,6 +12,12 @@
 @class TDSlashSlashState;
 @class TDSlashStarState;
 
+/*!
+    @class       TDSlashState 
+    @superclass  TDTokenizerState
+    @abstract    This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
+    @discussion  This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
+*/
 @interface TDSlashState : TDTokenizerState {
 	TDSlashSlashState *slashSlashState;
 	TDSlashStarState *slashStarState;
