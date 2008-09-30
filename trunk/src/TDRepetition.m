@@ -16,8 +16,6 @@
 
 @interface TDRepetition ()
 @property (nonatomic, retain) TDParser *subparser;
-@property (nonatomic, retain) id preAssembler;
-@property (nonatomic, assign) SEL preAssemblerSelector;
 @end
 
 @implementation TDRepetition
@@ -51,6 +49,12 @@
 	self.preAssembler = nil;
 	self.preAssemblerSelector = nil;
 	[super dealloc];
+}
+
+
+- (void)setPreassembler:(id)a selector:(SEL)sel {
+	self.preAssembler = a;
+	self.preAssemblerSelector = sel;
 }
 
 
