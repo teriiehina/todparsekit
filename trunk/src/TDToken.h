@@ -89,25 +89,25 @@ typedef enum {
 
 /*!
 	@property	number
-	@brief		True if this token is a number.
+	@brief		True if this token is a number. getter=isNumber
 */
 @property (nonatomic, readonly, getter=isNumber) BOOL number;
 
 /*!
 	@property	quotedString
-	@brief		True if this token is a quoted string.
+	@brief		True if this token is a quoted string. getter=isQuotedString
 */
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
 	@property	symbol
-	@brief		True if this token is a symbol.
+	@brief		True if this token is a symbol. getter=isSymbol
 */
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
 	@property	word
-	@brief		True if this token is a word.
+	@brief		True if this token is a word. getter=isWord
 */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
