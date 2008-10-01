@@ -39,7 +39,7 @@
 - (TDTerminal *)discard;
 
 /*!
-	@fn			
+	@property	string
 	@abstract   the string matched by this parser.
 */
 @property (nonatomic, readonly, copy) NSString *string;

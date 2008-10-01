@@ -27,7 +27,7 @@
 - (void)add:(TDParser *)p;
 
 /*!
-	@fn			
+	@property	subparsers
 	@abstract   This parser's subparsers.
 */
 @property (nonatomic, readonly, retain) NSMutableArray *subparsers;

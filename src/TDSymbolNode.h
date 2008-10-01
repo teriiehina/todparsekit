@@ -31,7 +31,7 @@
 - (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c;
 
 /*!
-	@fn			
+	@property	ancestry
 	@abstract   The string of the mulit-character symbol this node represents.
 */
 @property (nonatomic, readonly, retain) NSString *ancestry;
