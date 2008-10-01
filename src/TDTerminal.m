@@ -19,16 +19,6 @@
 
 @implementation TDTerminal
 
-+ (id)terminal {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
-}
-
-
-+ (id)terminalWithString:(NSString *)s {
-	return [[[[self class] alloc] initWithString:s] autorelease];
-}
-
-
 - (id)init {
 	return [self initWithString:nil];
 }

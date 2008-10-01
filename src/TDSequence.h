@@ -9,8 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDCollectionParser.h>
 
+/*!
+    @class       TDSequence 
+    @superclass  TDCollectionParser
+    @abstract    A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
+    @discussion  A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
+*/
 @interface TDSequence : TDCollectionParser {
 
 }
+
+/*!
+	@method     sequence
+	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSequence</tt> parser.
+	@result     an initialized autoreleased <tt>TDSequence</tt> parser.
+*/
 + (id)sequence;
 @end
