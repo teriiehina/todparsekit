@@ -172,7 +172,6 @@
 		[phraseParser add:s];
 		
 		TDNum *n = [TDNum num];
-//		[n setAssembler:self selector:@selector(workOnNumAssembly:)];
 		[phraseParser add:n];
 	}
 	return phraseParser;
@@ -181,12 +180,6 @@
 
 #pragma mark -
 #pragma mark Assembler
-
-//- (void)workOnNumAssembly:(TDAssembly *)a {
-//	TDToken *tok = [a pop];
-//	[a push:[NSNumber numberWithFloat:tok.floatValue]];
-//}
-
 
 - (void)workOnPlusAssembly:(TDAssembly *)a {
 	TDToken *tok2 = [a pop];
