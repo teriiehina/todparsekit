@@ -12,20 +12,20 @@
 @class TDToken;
 
 /*!
-    @class       TDLiteral 
-    @superclass  TDTerminal
-    @abstract    A Literal matches a specific String from an assembly.
-    @discussion  A Literal matches a specific String from an assembly.
+	@class       TDLiteral 
+	@superclass  TDTerminal
+	@abstract    A Literal matches a specific String from an assembly.
+	@discussion  A Literal matches a specific String from an assembly.
 */
 @interface TDLiteral : TDTerminal {
 	TDToken *literal;
 }
 
 /*!
-    @method     literalWithString:
-    @abstract   Convenience factory method for initializing an autoreleased <tt>TDLiteral</tt> object with a given string.
+	@method     literalWithString:
+	@abstract   Convenience factory method for initializing an autoreleased <tt>TDLiteral</tt> object with a given string.
 	@param		s the string represented by this literal
-    @result     an initialized autoreleased <tt>TDLiteral</tt> object representing <tt>s</tt>
+	@result     an initialized autoreleased <tt>TDLiteral</tt> object representing <tt>s</tt>
 */
 + (id)literalWithString:(NSString *)s;
 @end

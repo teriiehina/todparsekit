@@ -10,10 +10,10 @@
 #import <TDParseKit/TDCollectionParser.h>
 
 /*!
-    @class       TDSequence 
-    @superclass  TDCollectionParser
-    @abstract    A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
-    @discussion  A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
+	@class       TDSequence 
+	@superclass  TDCollectionParser
+	@abstract    A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
+	@discussion  A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
 */
 @interface TDSequence : TDCollectionParser {
 

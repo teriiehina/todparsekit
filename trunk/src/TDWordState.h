@@ -10,9 +10,9 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 /*!
-    @class       TDWordState 
-    @superclass  TDTokenizerState
-    @abstract    A wordState returns a word from a reader.
+	@class       TDWordState 
+	@superclass  TDTokenizerState
+	@abstract    A wordState returns a word from a reader.
 	@discussion  <p>A wordState returns a word from a reader. Like other states, a tokenizer transfers the job of reading to this state, depending on an initial character. Thus, the tokenizer decides which characters may begin a word, and this state determines which characters may appear as a second or later character in a word. These are typically different sets of characters; in particular, it is typical for digits to appear as parts of a word, but not as the initial character of a word.</p>
 				 <p>By default, the following characters may appear in a word. The method setWordChars() allows customizing this.</p>
  <pre>
@@ -29,7 +29,7 @@
 	NSNumber *noFlag;
 }
 /*!
-    @method     setWordChars:from:to:
+	@method     setWordChars:from:to:
 	@abstract   Establish characters in the given range as valid characters for part of a word after the first character. Note that the tokenizer must determine which characters are valid as the beginning character of a word.
 	@param      yn true if characters in the given range are word characters
 	@param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
@@ -38,7 +38,7 @@
 - (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-    @method     isWordChar:
+	@method     isWordChar:
 	@abstract   Informs whether the given character is recognized as a word character by this state.
 	@param      cin the character to check
 	@result     true if the given chracter is recognized as a word character
