@@ -10,7 +10,6 @@
 
 /*!
 	@class       TDAssembly 
-	@superclass  NSObject
 	@brief		 An Abstract class. A <tt>TDAssembly</tt> maintains a stream of language elements along with stack and target objects.
 	@details	 <p>An Abstract class. An <tt>TDAssembly</tt> maintains a stream of language elements along with stack and target objects. Parsers use assemblers to record progress at recognizing language elements from assembly's string.</p>
 				 <p>Note that <tt>TDAssembly</tt> is an abstract class and may not be instantiated directly. Subclasses include <tt>TDTokenAssembly</tt> and <tt>TDCharAssembly</tt>.</p>

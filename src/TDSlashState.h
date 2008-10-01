@@ -14,7 +14,6 @@
 
 /*!
 	@class       TDSlashState 
-	@superclass  TDTokenizerState
 	@brief		 This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
 	@details	 This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
 */

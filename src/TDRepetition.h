@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDRepetition 
-	@superclass  TDParser
 	@brief		 A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
 	@details	 A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
 */
@@ -64,7 +63,7 @@
 /*!
 	@property	preAssemlerSelector
 	@brief		The method of <tt>preAssembler</tt> this parser will call to work on an assembly.
-	@details	The method represented by <tt>preAssemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preAssemblerSelector</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
+	@details	The method represented by <tt>preAssemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preAssemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL preAssemblerSelector;
 @end

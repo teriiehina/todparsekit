@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDNumberState 
-	@superclass  TDTokenizerState
 	@brief		 A <tt>TDNumberState</tt> object returns a number from a reader.
 	@details	 A <tt>TDNumberState</tt> object returns a number from a reader. This state's idea of a number allows an optional, initial minus sign, followed by one or more digits. A decimal point and another string of digits may follow these digits.
 */

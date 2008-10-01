@@ -13,7 +13,6 @@
 
 /*!
 	@class       TDLiteral 
-	@superclass  TDTerminal
 	@brief		 A Literal matches a specific String from an assembly.
 	@details	 A Literal matches a specific String from an assembly.
 */

@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDWord 
-	@superclass  TDTerminal
 	@brief		 A <tt>TDWord</tt> matches a word from a token assembly.
 	@details	 A <tt>TDWord</tt> matches a word from a token assembly.
 */

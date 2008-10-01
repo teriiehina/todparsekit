@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDEmpty 
-	@superclass  TDParser
 	@brief		 A <tt>TDEmpty</tt> parser matches any assembly once, and applies its assembler that one time.
 	@details	 <p>A <tt>TDEmpty</tt> parser matches any assembly once, and applies its assembler that one time.</p>
 				 <p>Language elements often contain empty parts. For example, a language may at some point allow a list of parameters in parentheses, and may allow an empty list. An empty parser makes it easy to match, within the parenthesis, either a list of parameters or "empty".</p>

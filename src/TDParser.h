@@ -16,12 +16,11 @@
 
 /*!
 	@class       TDParser 
-	@superclass  NSObject
 	@brief		 An Abstract class. A <tt>TDParser</tt> is an object that recognizes the elements of a language.
 	@details	 <p>An Abstract Class. A <tt>TDParser</tt> is an object that recognizes the elements of a language.
 				 <p>Each <tt>TDParser</tt> object is either a <tt>TDTerminal</tt> or a composition of other parsers. The <tt>TDTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>TDWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
 				 <p>In addition to <tt>TDTerminal</tt>, other subclasses of <tt>TDParser</tt> provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following <tt>TDParser</tt> objects culminate in a good parser that recognizes a description of good coffee.</p>
-<pre>
+@code
 	TDAlternation *adjective = [TDAlternation alternation];
 	[adjective add:[TDLiteral literalWithString:@"steaming"]];
 	[adjective add:[TDLiteral literalWithString:@"hot"]];
@@ -31,12 +30,12 @@
 	NSString *s = @"hot hot steaming hot coffee";
 	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
 	NSLog([good bestMatchFor:a]);
-</pre>
+@endcode
 				 <p>This prints out:</p>
-<pre>
+@code
 	[hot, hot, steaming, hot, coffee]
 	hot/hot/steaming/hot/coffee^
- <pre>
+@endcode
 				 <p>The parser does not match directly against a string, it matches against a <tt>TDAssembly</tt>. The resulting assembly shows its stack, with four words on it, along with its sequence of tokens, and the index at the end of these. In practice, parsers will do some work on an assembly, based on the text they recognize.</p>
 */
 @interface TDParser : NSObject {
@@ -55,7 +54,7 @@
 /*!
 	@fn			setAssembler:selector:
 	@brief		Sets the object and method that will work on an assembly whenever this parser successfully matches against the assembly.
-	@details	The method represented by <tt>sel</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
+	@details	The method represented by <tt>sel</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
 	@param      a the assembler this parser will use to work on an assembly
 	@param      sel a selector that assembler <tt>a</tt> responds to which will work on an assembly
 */
@@ -97,7 +96,7 @@
 /*!
 	@property	selector
 	@brief		The method of <tt>assembler</tt> this parser will call to work on a matched assembly.
-	@details	The method represented by <tt>selector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>selector</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
+	@details	The method represented by <tt>selector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>selector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL selector;
 

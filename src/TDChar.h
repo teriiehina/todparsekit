@@ -10,7 +10,6 @@
 
 /*!
 	@class       TDChar 
-	@superclass  TDTerminal
 	@brief		 A <tt>TDChar</tt> matches a character from a character assembly.
 	@details	 A <tt>TDChar</tt> matches a character from a character assembly. <tt>-[TDChar qualifies:]</tt> returns true every time, since this class assumes it is working against a <tt>TDCharacterAssembly</tt>.
 */

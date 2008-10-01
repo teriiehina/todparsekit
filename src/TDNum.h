@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDNum 
-	@superclass  TDTerminal
 	@brief		 A Num matches a number from a token assembly.
 	@details	 A Num matches a number from a token assembly.
 */
