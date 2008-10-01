@@ -9,9 +9,9 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class       TDLetter 
-	@brief		 A <tt>TDLetter</tt> matches any letter from a character assembly.
-	@details	 A <tt>TDLetter</tt> matches any letter from a character assembly. <tt>-[TDLetter qualifies:]</tt> returns true if an assembly's next element is a letter.
+	@class		TDLetter 
+	@brief		A <tt>TDLetter</tt> matches any letter from a character assembly.
+	@details	<tt>-[TDLetter qualifies:]</tt> returns true if an assembly's next element is a letter.
 */
 @interface TDLetter : TDTerminal {
 

@@ -10,9 +10,8 @@
 #import <TDParseKit/TDCollectionParser.h>
 
 /*!
-	@class       TDAlternation 
-	@brief		 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
-	@details	 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
+	@class		TDAlternation
+	@brief		A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 */
 @interface TDAlternation : TDCollectionParser {
 

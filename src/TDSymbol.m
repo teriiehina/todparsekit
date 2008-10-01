@@ -10,7 +10,7 @@
 #import <TDParseKit/TDToken.h>
 
 @interface TDSymbol ()
-@property (nonatomic, retain) TDToken *symbol;
+@property (nonatomic, retain) TDToken *symbolTok;
 @end
 
 @implementation TDSymbol
@@ -29,7 +29,7 @@
 	self = [super initWithString:s];
 	if (self != nil) {
 		if (s.length) {
-			self.symbol = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:s floatValue:0.0f];
+			self.symbolTok = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:s floatValue:0.0f];
 		}
 	}
 	return self;
@@ -37,14 +37,14 @@
 
 
 - (void)dealloc {
-	self.symbol = nil;
+	self.symbolTok = nil;
 	[super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	if (symbol) {
-		return [symbol isEqual:obj];
+	if (symbolTok) {
+		return [symbolTok isEqual:obj];
 	} else {
 		TDToken *tok = (TDToken *)obj;
 		return tok.isSymbol;
@@ -53,8 +53,8 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:3], name, symbol.stringValue];
+	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:3], name, symbolTok.stringValue];
 }
 
-@synthesize symbol;
+@synthesize symbolTok;
 @end

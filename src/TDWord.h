@@ -10,9 +10,8 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class       TDWord 
-	@brief		 A <tt>TDWord</tt> matches a word from a token assembly.
-	@details	 A <tt>TDWord</tt> matches a word from a token assembly.
+	@class		TDWord 
+	@brief		A <tt>TDWord</tt> matches a word from a token assembly.
 */
 @interface TDWord : TDTerminal {
 

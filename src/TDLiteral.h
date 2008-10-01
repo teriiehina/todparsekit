@@ -12,9 +12,8 @@
 @class TDToken;
 
 /*!
-	@class       TDLiteral 
-	@brief		 A Literal matches a specific String from an assembly.
-	@details	 A Literal matches a specific String from an assembly.
+	@class		TDLiteral 
+	@brief		A Literal matches a specific String from an assembly.
 */
 @interface TDLiteral : TDTerminal {
 	TDToken *literal;

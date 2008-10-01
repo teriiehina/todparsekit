@@ -9,9 +9,9 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class       TDSpecificChar 
-	@brief		 A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
-	@details	 A <tt>TDSpecificChar</tt> matches a specified character from a character assembly. <tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
+	@class		TDSpecificChar 
+	@brief		A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
+	@details	<tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
 */
 @interface TDSpecificChar : TDTerminal {
 }

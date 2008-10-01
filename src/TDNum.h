@@ -10,9 +10,8 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class       TDNum 
-	@brief		 A Num matches a number from a token assembly.
-	@details	 A Num matches a number from a token assembly.
+	@class		TDNum 
+	@brief		A Num matches a number from a token assembly.
 */
 @interface TDNum : TDTerminal {
 

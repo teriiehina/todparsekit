@@ -9,9 +9,9 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class       TDDigit 
-	@brief		 A <tt>TDDigit</tt> matches a digit from a character assembly.
-	@details	 A <tt>TDDigit</tt> matches a digit from a character assembly. <tt>-[TDDitgit qualifies:] returns true if an assembly's next element is a digit.
+	@class		TDDigit 
+	@brief		A <tt>TDDigit</tt> matches a digit from a character assembly.
+	@details	<tt>-[TDDitgit qualifies:] returns true if an assembly's next element is a digit.
 */
 @interface TDDigit : TDTerminal {
 
