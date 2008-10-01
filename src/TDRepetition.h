@@ -10,10 +10,10 @@
 #import <TDParseKit/TDParser.h>
 
 /*!
-    @class       TDRepetition 
-    @superclass  TDParser
-    @abstract    A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
-    @discussion  A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
+	@class       TDRepetition 
+	@superclass  TDParser
+	@abstract    A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
+	@discussion  A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
 */
 @interface TDRepetition : TDParser {
 	TDParser *subparser;
@@ -29,34 +29,34 @@
 + (id)repetition;
 
 /*!
-    @method     repetitionWithSubparser:
-    @abstract   Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
-    @param      p the subparser against wich to repeatedly match
-    @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
+	@method     repetitionWithSubparser:
+	@abstract   Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+	@param      p the subparser against wich to repeatedly match
+	@result     an initialized autoreleased <tt>TDRepetition</tt> parser.
 */
 + (id)repetitionWithSubparser:(TDParser *)p;
 
 /*!
-    @method     initWithSubparser:
-    @abstract   Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
-    @discussion Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+	@method     initWithSubparser:
+	@abstract   Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+	@discussion Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
 	@param      p the subparser against wich to repeatedly match
 	@result     an initialized <tt>TDRepetition</tt> parser.
 */
 - (id)initWithSubparser:(TDParser *)p;
 
 /*!
-    @method     setPreassembler:selector:
-    @abstract   Sets the object that will work on every assembly before matching against it.
-    @discussion Setting a preassembler is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.
+	@method     setPreassembler:selector:
+	@abstract   Sets the object that will work on every assembly before matching against it.
+	@discussion Setting a preassembler is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.
 	@param      a the assembler this parser will use to work on an assembly before matching against it.
 	@param      sel a selector that assembler <tt>a</tt> responds to which will work on an assembly
 */
 - (void)setPreassembler:(id)a selector:(SEL)sel;
 
 /*!
-    @method     
-    @abstract   The assembler this parser will use to work on an assembly before matching against it.
+	@method     
+	@abstract   The assembler this parser will use to work on an assembly before matching against it.
 	@discussion	<tt>preAssembler</tt> should respond to the selector held by this parser's <tt>preAssemblerSelector</tt> property.
 */
 @property (nonatomic, retain) id preAssembler;

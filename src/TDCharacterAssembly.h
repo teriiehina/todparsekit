@@ -9,10 +9,10 @@
 #import <TDParseKit/TDAssembly.h>
 
 /*!
-    @class       TDCharacterAssembly 
-    @superclass  TDAssembly
-    @abstract    A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
-    @discussion  A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
+	@class       TDCharacterAssembly 
+	@superclass  TDAssembly
+	@abstract    A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
+	@discussion  A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
 */
 @interface TDCharacterAssembly : TDAssembly {
 
