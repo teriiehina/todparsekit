@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDQuotedString 
-	@superclass  TDTerminal
 	@brief		 A <tt>TDQuotedString</tt> matches a quoted string, like "this one" from a token assembly.
 	@details	 A <tt>TDQuotedString</tt> matches a quoted string, like "this one" from a token assembly.
 */

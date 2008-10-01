@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDCollectionParser 
-	@superclass  TDParser
 	@brief		 An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 	@details	 An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */

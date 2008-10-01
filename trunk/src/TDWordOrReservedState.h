@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDWordOrReservedState 
-	@superclass  TDWordState
 	@brief		 Override <tt>TDWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
 	@details	 Override <tt>TDWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
 */

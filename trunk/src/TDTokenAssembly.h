@@ -12,7 +12,6 @@
 
 /*!
 	@class       TDTokenAssembly 
-	@superclass  TDAssembly
 	@brief		 A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>.
 	@details	 A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>. <tt>TDTokens</tt> are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
 */

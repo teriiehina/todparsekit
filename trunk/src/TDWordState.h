@@ -11,16 +11,15 @@
 
 /*!
 	@class       TDWordState 
-	@superclass  TDTokenizerState
 	@brief		 A wordState returns a word from a reader.
 	@details	 <p>A wordState returns a word from a reader. Like other states, a tokenizer transfers the job of reading to this state, depending on an initial character. Thus, the tokenizer decides which characters may begin a word, and this state determines which characters may appear as a second or later character in a word. These are typically different sets of characters; in particular, it is typical for digits to appear as parts of a word, but not as the initial character of a word.</p>
 				 <p>By default, the following characters may appear in a word. The method setWordChars() allows customizing this.</p>
- <pre>
+@code
 	 From     To
 	  'a'    'z'
 	  'A'    'Z'
 	  '0'    '9'
-</pre> 
+@endcode
 				 <p>as well as: minus sign <tt>-</tt>, underscore <tt>_</tt>, and apostrophe <tt>'</tt>.</p>
 */
 @interface TDWordState : TDTokenizerState {

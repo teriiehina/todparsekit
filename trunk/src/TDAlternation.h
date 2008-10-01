@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDAlternation 
-	@superclass  TDCollectionParser
 	@brief		 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 	@details	 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 */

@@ -11,7 +11,6 @@
 
 /*!
 	@class       TDWhitespaceState 
-	@superclass  TDTokenizerState
 	@brief		 A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token.
 	@details	 A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token. By default, all characters from 0 to 32 are whitespace.
 */

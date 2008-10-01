@@ -10,7 +10,6 @@
 
 /*!
 	@class       TDCharacterAssembly 
-	@superclass  TDAssembly
 	@brief		 A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
 	@details	 A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
 */
