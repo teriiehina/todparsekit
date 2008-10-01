@@ -66,7 +66,7 @@
 	@abstract   Convenience factory method.
 	@param      s string to read from.
 	@result		An autoreleased initialized tokenizer.
- */
+*/
 + (id)tokenizerWithString:(NSString *)s;
 
 /*!
@@ -102,36 +102,36 @@
 /*!
 	@fn			numberState
 	@abstract   The state this tokenizer uses to build numbers.
- */
+*/
 @property (nonatomic, retain) TDNumberState *numberState;
 
 /*!
 	@fn			quoteState
 	@abstract   The state this tokenizer uses to build quoted strings.
- */
+*/
 @property (nonatomic, retain) TDQuoteState *quoteState;
 
 /*!
 	@fn			slashState
 	@abstract   The state this tokenizer uses to recognize (and ignore) comments.
- */
+*/
 @property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
 	@fn			symbolState
 	@abstract   The state this tokenizer uses to recognize symbols.
- */
+*/
 @property (nonatomic, retain) TDSymbolState *symbolState;
 
 /*!
 	@fn			whitespaceState
 	@abstract   The state this tokenizer uses to recognize (and ignore) whitespace.
- */
+*/
 @property (nonatomic, retain) TDWhitespaceState *whitespaceState;
 
 /*!
 	@fn			wordState
 	@abstract   The state this tokenizer uses to build words.
- */
+*/
 @property (nonatomic, retain) TDWordState *wordState;
 @end

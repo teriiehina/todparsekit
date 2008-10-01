@@ -16,7 +16,7 @@
 	@var		TDTT_QUOTED A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
 	@var		TDTT_SYMBOL A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
 	@var		TDTT_WORD A constant indicating that a token is a word, like <tt>cat</tt>.
- */
+*/
 typedef enum {
 	TDTT_EOF,
 	TDTT_NUMBER,
@@ -97,42 +97,42 @@ typedef enum {
 /*!
 	@fn			isQuotedString
 	@abstract   Returns true if this token is a quoted string.
- */
+*/
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
 	@fn			isSymbol
 	@abstract   Returns true if this token is a symbol.
- */
+*/
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
 	@fn			isWord
 	@abstract   Returns true if this token is a word.
- */
+*/
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
 /*!
 	@fn			tokenType
 	@abstract   Returns the type of this token.
- */
+*/
 @property (nonatomic, readonly) TDTokenType tokenType;
 
 /*!
 	@fn			floatValue
 	@abstract   Returns the numeric value of this token.
- */
+*/
 @property (nonatomic, readonly) CGFloat floatValue;
 
 /*!
 	@fn			stringValue
 	@abstract   Returns the string value of this token.
- */
+*/
 @property (nonatomic, readonly, copy) NSString *stringValue;
 
 /*!
 	@fn			value
 	@abstract   Returns an object that represents the value of this token.
- */
+*/
 @property (nonatomic, readonly, copy) id value;
 @end
