@@ -89,25 +89,25 @@ typedef enum {
 - (NSString *)debugDescription;
 
 /*!
-	@property	isNumber
+	@property	number
 	@abstract   True if this token is a number.
 */
 @property (nonatomic, readonly, getter=isNumber) BOOL number;
 
 /*!
-	@property	isQuotedString
+	@property	quotedString
 	@abstract   True if this token is a quoted string.
 */
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
-	@property	isSymbol
+	@property	symbol
 	@abstract   True if this token is a symbol.
 */
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
-	@property	isWord
+	@property	word
 	@abstract   True if this token is a word.
 */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
