@@ -12,7 +12,7 @@
 /*!
     @class       TDCollectionParser 
     @superclass  TDParser
-    @abstract    This class abstracts the behavior common to parsers that consist of a series of other parsers.
+    @abstract    An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
     @discussion  An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
 @interface TDCollectionParser : TDParser {

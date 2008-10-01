@@ -73,7 +73,7 @@
 	s = @"Fool";
 	a = [[TDTokenAssembly alloc] initWithString:s];
 	
-	p = [TDCaseInsensitiveLiteral terminalWithString:@"Foo"];
+	p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
 	TDAssembly *result = [p completeMatchFor:a];
 	STAssertNil(result, @"");
 }
@@ -83,7 +83,7 @@
 	s = @"Foo";
 	a = [[TDTokenAssembly alloc] initWithString:s];
 		
-	p = [TDCaseInsensitiveLiteral terminalWithString:@"foo"];
+	p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
 	TDAssembly *result = [p completeMatchFor:a];
 	STAssertNotNil(result, @"");
 	STAssertEqualObjects(@"[Foo]Foo^", [result description], @"");
