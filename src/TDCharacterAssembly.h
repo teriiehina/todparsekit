@@ -11,8 +11,8 @@
 /*!
 	@class       TDCharacterAssembly 
 	@superclass  TDAssembly
-	@abstract    A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
-	@discussion  A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
+	@brief		 A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
+	@details	 A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
 */
 @interface TDCharacterAssembly : TDAssembly {
 

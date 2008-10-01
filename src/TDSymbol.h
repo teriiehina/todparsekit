@@ -14,8 +14,8 @@
 /*!
 	@class       TDSymbol 
 	@superclass  TDTerminal
-	@abstract    A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
-	@discussion  A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
+	@brief		 A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
+	@details	 A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
 */
 @interface TDSymbol : TDTerminal {
 	TDToken *symbol;
@@ -23,14 +23,14 @@
 
 /*!
 	@fn			symbol
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with a <tt>nil</tt> string value.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with a <tt>nil</tt> string value.
 	@result     an initialized autoreleased <tt>TDSymbol</tt> object with a <tt>nil</tt> string value
 */
 + (id)symbol;
 
 /*!
 	@fn			symbolWithString:
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with <tt>s</tt> as a string value.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with <tt>s</tt> as a string value.
 	@param		s the string represented by this symbol
 	@result     an initialized autoreleased <tt>TDSymbol</tt> object with <tt>s</tt> as a string value
 */

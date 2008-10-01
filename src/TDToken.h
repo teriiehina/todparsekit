@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 /*!
-	@typedef	typedef enum TDTokenType
-	@abstract   Indicates the type of a <tt>TDToken</tt>
+	@typedef	enum TDTokenType
+	@brief		Indicates the type of a <tt>TDToken</tt>
 	@var		TDTT_EOF A constant indicating that the endo fo the stream has been read.
 	@var		TDTT_NUMBER A constant indicating that a token is a number, like <tt>3.14</tt>.
 	@var		TDTT_QUOTED A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
@@ -26,10 +26,10 @@ typedef enum {
 } TDTokenType;
 
 /*!
-	@class       TDToken 
+	@class       TDToken
 	@superclass  NSObject
-	@abstract    A token represents a logical chunk of a string.
-	@discussion  A token represents a logical chunk of a string. For example, a typical tokenizer would break the string <tt>"1.23 &lt;= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
+	@brief		 A token represents a logical chunk of a string.
+	@details	 A token represents a logical chunk of a string. For example, a typical tokenizer would break the string <tt>"1.23 &lt;= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
 */
 @interface TDToken : NSObject {
 	CGFloat floatValue;
@@ -46,7 +46,7 @@ typedef enum {
 
 /*!
 	@fn			EOFToken
-	@abstract   Factory method for creating a singleton <tt>TDToken</tt> used to indicate that there are no more tokens.
+	@brief		Factory method for creating a singleton <tt>TDToken</tt> used to indicate that there are no more tokens.
 	@result		A singleton used to indicate that there are no more tokens.
 */
 + (TDToken *)EOFToken;
@@ -54,7 +54,7 @@ typedef enum {
 /*!
 	@fn			tokenWithTokenType:stringValue:floatValue:
 	@fn			
-	@abstract   Factory convenience method for creating an autoreleased token.
+	@brief		Factory convenience method for creating an autoreleased token.
 	@param      t the type of this token.
 	@param      s the string value of this token.
 	@param      n the number falue of this token.
@@ -64,7 +64,7 @@ typedef enum {
 
 /*!
 	@fn			initWithTokenType:stringValue:floatValue:
-	@abstract   Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
+	@brief		Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
 	@param      t the type of this token.
 	@param      s the string value of this token.
 	@param      n the number falue of this token.
@@ -74,7 +74,7 @@ typedef enum {
 
 /*!
 	@fn			isEqualIgnoringCase:
-	@abstract   Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
+	@brief		Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
 	@param      obj the object to compare this token to.
 	@result     true if <tt>obj</tt> is an equivalent <tt>TDToken</tt>, ignoring differences in case.
 */
@@ -82,57 +82,57 @@ typedef enum {
 
 /*!
 	@fn			debugDescription
-	@abstract   Returns more descriptive textual representation than <tt>-description</tt> which may be useful for debugging puposes only.
-	@discussion Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Number 3.14></tt>
+	@brief		Returns more descriptive textual representation than <tt>-description</tt> which may be useful for debugging puposes only.
+	@details	Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Number 3.14></tt>
 	@result     A textual representation including more descriptive information than <tt>-description</tt>.
 */
 - (NSString *)debugDescription;
 
 /*!
 	@property	number
-	@abstract   True if this token is a number.
+	@brief		True if this token is a number.
 */
 @property (nonatomic, readonly, getter=isNumber) BOOL number;
 
 /*!
 	@property	quotedString
-	@abstract   True if this token is a quoted string.
+	@brief		True if this token is a quoted string.
 */
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
 	@property	symbol
-	@abstract   True if this token is a symbol.
+	@brief		True if this token is a symbol.
 */
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
 	@property	word
-	@abstract   True if this token is a word.
+	@brief		True if this token is a word.
 */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
 /*!
 	@property	tokenType
-	@abstract   The type of this token.
+	@brief		The type of this token.
 */
 @property (nonatomic, readonly) TDTokenType tokenType;
 
 /*!
 	@property	floatValue
-	@abstract   The numeric value of this token.
+	@brief		The numeric value of this token.
 */
 @property (nonatomic, readonly) CGFloat floatValue;
 
 /*!
 	@property	stringValue
-	@abstract   The string value of this token.
+	@brief		The string value of this token.
 */
 @property (nonatomic, readonly, copy) NSString *stringValue;
 
 /*!
 	@property	value
-	@abstract   Returns an object that represents the value of this token.
+	@brief		Returns an object that represents the value of this token.
 */
 @property (nonatomic, readonly, copy) id value;
 @end

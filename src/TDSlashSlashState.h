@@ -12,8 +12,8 @@
 /*!
 	@class       TDSlashSlashState 
 	@superclass  TDTokenizerState
-	@abstract    A <tt>TDSlashSlashState</tt> ignores everything up to an end-of-line and returns the tokenizer's next token.
-	@discussion  A <tt>TDSlashSlashState</tt> ignores everything up to an end-of-line and returns the tokenizer's next token.
+	@brief		 A <tt>TDSlashSlashState</tt> ignores everything up to an end-of-line and returns the tokenizer's next token.
+	@details	 A <tt>TDSlashSlashState</tt> ignores everything up to an end-of-line and returns the tokenizer's next token.
 */
 @interface TDSlashSlashState : TDTokenizerState {
 	

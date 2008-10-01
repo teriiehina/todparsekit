@@ -13,8 +13,8 @@
 
 /*!
 	@fn			
-	@abstract   An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
-	@discussion An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
+	@brief		An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
+	@details	An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
 */
 @interface TDTerminal : TDParser {
 	NSString *string;
@@ -23,8 +23,8 @@
 
 /*!
 	@fn			initWithString:
-	@abstract   Designated Initializer for all concrete <tt>TDTerminal</tt> subclasses.
-	@discussion Note this is an abtract class and this method must be called on a concrete subclass.
+	@brief		Designated Initializer for all concrete <tt>TDTerminal</tt> subclasses.
+	@details	Note this is an abtract class and this method must be called on a concrete subclass.
 	@param      s the string matched by this parser
 	@result     initialized <tt>TDTerminal</tt> subclass object
 */
@@ -32,15 +32,15 @@
 
 /*!
 	@fn			discard
-	@abstract   By default, terminals push themselves upon a assembly's stack, after a successful match. This method will turn off that behavior.
-	@discussion This method returns this parser as a convenience for chainging-style usage.
+	@brief		By default, terminals push themselves upon a assembly's stack, after a successful match. This method will turn off that behavior.
+	@details	This method returns this parser as a convenience for chainging-style usage.
 	@result     this parser, returned for chaining/convenience
 */
 - (TDTerminal *)discard;
 
 /*!
 	@property	string
-	@abstract   the string matched by this parser.
+	@brief		the string matched by this parser.
 */
 @property (nonatomic, readonly, copy) NSString *string;
 @end

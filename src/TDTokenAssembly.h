@@ -13,8 +13,8 @@
 /*!
 	@class       TDTokenAssembly 
 	@superclass  TDAssembly
-	@abstract    A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>.
-	@discussion  A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>. <tt>TDTokens</tt> are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
+	@brief		 A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>.
+	@details	 A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDTokens</tt>. <tt>TDTokens</tt> are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
 */
 @interface TDTokenAssembly : TDAssembly <NSCopying> {
 	TDTokenizer *tokenizer;
@@ -23,7 +23,7 @@
 
 /*!
 	@property	tokenizer
-	@abstract   The tokenizer that provides the stream of tokens for this assembly.
+	@brief		The tokenizer that provides the stream of tokens for this assembly.
 */
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @end

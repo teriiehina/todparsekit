@@ -12,8 +12,8 @@
 /*!
 	@class       TDSlashStarState 
 	@superclass  TDTokenizerState
-	@abstract    A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
-	@discussion  A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
+	@brief		 A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
+	@details	 A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
 */
 @interface TDSlashStarState : TDTokenizerState {
 	

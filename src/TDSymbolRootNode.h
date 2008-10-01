@@ -14,22 +14,22 @@
 /*!
 	@class       TDSymbolRootNode 
 	@superclass  TDSymbolNode
-	@abstract    This class is a special case of a <tt>TDSymbolNode</tt>.
-	@discussion  This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
+	@brief		 This class is a special case of a <tt>TDSymbolNode</tt>.
+	@details	 This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
 */
 @interface TDSymbolRootNode : TDSymbolNode {
 }
 
 /*!
 	@fn			add:
-	@abstract   Adds the given string as a multi-character symbol.
+	@brief		Adds the given string as a multi-character symbol.
 	@param      s a multi-character symbol that should be recognized as a single symbol token by this state
 */
 - (void)add:(NSString *)s;
 
 /*!
 	@fn			nextSymbol:startingWith:
-	@abstract   Return a symbol string from a reader.
+	@brief		Return a symbol string from a reader.
 	@param      r the reader from which to read
 	@param      cin the character from witch to start
 	@result     a symbol string from a reader
