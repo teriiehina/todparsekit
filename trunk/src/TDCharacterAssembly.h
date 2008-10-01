@@ -10,7 +10,7 @@
 
 /*!
 	@class		TDCharacterAssembly 
-	@brief		A <tt>TDCharacterAssembly</tt> is an <tt>TDAssembly</tt> whose elements are characters.
+	@brief		A <tt>TDCharacterAssembly</tt> is a <tt>TDAssembly</tt> whose elements are characters.
 */
 @interface TDCharacterAssembly : TDAssembly {
 
