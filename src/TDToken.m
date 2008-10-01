@@ -125,7 +125,7 @@
 	if (self.isNumber) {
 		return floatValue == that.floatValue;
 	} else {
-		return [stringValue.lowercaseString isEqualToString:that.stringValue.lowercaseString];
+		return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
 	}
 }
 
