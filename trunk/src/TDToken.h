@@ -14,7 +14,7 @@
 	@constant   TDTT_EOF A constant indicating that the endo fo the stream has been read.
 	@constant   TDTT_NUMBER A constant indicating that a token is a number, like <tt>3.14</tt>.
 	@constant   TDTT_QUOTED A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
-	@constant   TDTT_SYMBOL A constant indicating that a token is a symbol, like <tt>"<="</tt>.
+	@constant   TDTT_SYMBOL A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
 	@constant   TDTT_WORD A constant indicating that a token is a word, like <tt>cat</tt>.
  */
 typedef enum {
@@ -29,7 +29,7 @@ typedef enum {
     @class       TDToken 
     @superclass  NSObject
     @abstract    A token represents a logical chunk of a string.
-    @discussion  A token represents a logical chunk of a string. For example, a typical tokenizer would break the string <tt>"1.23 <= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
+    @discussion  A token represents a logical chunk of a string. For example, a typical tokenizer would break the string <tt>"1.23 &lt;= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
 */
 @interface TDToken : NSObject {
 	CGFloat floatValue;
