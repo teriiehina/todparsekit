@@ -19,7 +19,7 @@
 }
 
 /*!
-	@method     char
+	@fn			char
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDChar</tt> parser.
 	@result     an initialized autoreleased <tt>TDChar</tt> parser.
 */

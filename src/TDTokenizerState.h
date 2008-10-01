@@ -23,7 +23,7 @@
 }
 
 /*!
-	@method     nextTokenFromReader:startingWith:tokenizer:
+	@fn			nextTokenFromReader:startingWith:tokenizer:
 	@abstract   Return a token that represents a logical piece of a reader.
 	@param      r the reader from which to read additional characters
 	@param      cin the character that a tokenizer used to determine to use this state

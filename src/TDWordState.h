@@ -29,7 +29,7 @@
 	NSNumber *noFlag;
 }
 /*!
-	@method     setWordChars:from:to:
+	@fn			setWordChars:from:to:
 	@abstract   Establish characters in the given range as valid characters for part of a word after the first character. Note that the tokenizer must determine which characters are valid as the beginning character of a word.
 	@param      yn true if characters in the given range are word characters
 	@param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
@@ -38,7 +38,7 @@
 - (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-	@method     isWordChar:
+	@fn			isWordChar:
 	@abstract   Informs whether the given character is recognized as a word character by this state.
 	@param      cin the character to check
 	@result     true if the given chracter is recognized as a word character

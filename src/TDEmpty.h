@@ -21,7 +21,7 @@
 }
 
 /*!
-	@method     empty
+	@fn			empty
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDEmpty</tt> parser.
 	@result     an initialized autoreleased <tt>TDEmpty</tt> parser.
 */

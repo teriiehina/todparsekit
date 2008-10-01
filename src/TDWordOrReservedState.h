@@ -20,7 +20,7 @@
 }
 
 /*!
-	@method     addReservedWord:
+	@fn			addReservedWord:
 	@abstract   Adds the specified string as a known reserved word.
 	@param      s reserved word to add
 */

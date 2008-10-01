@@ -24,7 +24,7 @@
 }
 
 /*!
-	@method     add:
+	@fn			add:
 	@abstract   Adds the given string as a multi-character symbol.
 	@param      s a multi-character symbol that should be recognized as a single symbol token by this state
 */

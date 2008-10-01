@@ -45,14 +45,15 @@ typedef enum {
 }
 
 /*!
-	@method     EOFToken
+	@fn			EOFToken
 	@abstract   Factory method for creating a singleton <tt>TDToken</tt> used to indicate that there are no more tokens.
 	@result		A singleton used to indicate that there are no more tokens.
 */
 + (TDToken *)EOFToken;
 
 /*!
-	@method     tokenWithTokenType:stringValue:floatValue:
+	@fn			tokenWithTokenType:stringValue:floatValue:
+	@fn			
 	@abstract   Factory convenience method for creating an autoreleased token.
 	@param      t the type of this token.
 	@param      s the string value of this token.
@@ -62,7 +63,7 @@ typedef enum {
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-	@method     initWithTokenType:stringValue:floatValue:
+	@fn			initWithTokenType:stringValue:floatValue:
 	@abstract   Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
 	@param      t the type of this token.
 	@param      s the string value of this token.
@@ -72,7 +73,7 @@ typedef enum {
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-	@method     isEqualIgnoringCase:
+	@fn			isEqualIgnoringCase:
 	@abstract   Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
 	@param      obj the object to compare this token to.
 	@result     true if <tt>obj</tt> is an equivalent <tt>TDToken</tt>, ignoring differences in case.
@@ -80,7 +81,7 @@ typedef enum {
 - (BOOL)isEqualIgnoringCase:(id)obj;
 
 /*!
-	@method     debugDescription
+	@fn			debugDescription
 	@abstract   Returns more descriptive textual representation than <tt>-description</tt> which may be useful for debugging puposes only.
 	@discussion Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Number 3.14></tt>
 	@result     A textual representation including more descriptive information than <tt>-description</tt>.
@@ -88,49 +89,49 @@ typedef enum {
 - (NSString *)debugDescription;
 
 /*!
-	@method     isNumber
+	@fn			isNumber
 	@abstract   Returns true if this token is a number.
 */
 @property (nonatomic, readonly, getter=isNumber) BOOL number;
 
 /*!
-	@method     isQuotedString
+	@fn			isQuotedString
 	@abstract   Returns true if this token is a quoted string.
  */
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
-	@method     isSymbol
+	@fn			isSymbol
 	@abstract   Returns true if this token is a symbol.
  */
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
-	@method     isWord
+	@fn			isWord
 	@abstract   Returns true if this token is a word.
  */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
 /*!
-	@method     tokenType
+	@fn			tokenType
 	@abstract   Returns the type of this token.
  */
 @property (nonatomic, readonly) TDTokenType tokenType;
 
 /*!
-	@method     floatValue
+	@fn			floatValue
 	@abstract   Returns the numeric value of this token.
  */
 @property (nonatomic, readonly) CGFloat floatValue;
 
 /*!
-	@method     stringValue
+	@fn			stringValue
 	@abstract   Returns the string value of this token.
  */
 @property (nonatomic, readonly, copy) NSString *stringValue;
 
 /*!
-	@method     value
+	@fn			value
 	@abstract   Returns an object that represents the value of this token.
  */
 @property (nonatomic, readonly, copy) id value;

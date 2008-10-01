@@ -22,7 +22,7 @@
 }
 
 /*!
-	@method     initWithParent:character:
+	@fn			initWithParent:character:
 	@abstract   Initializes a <tt>TDSymbolNode</tt> with the given parent, representing the given character.
 	@param      p the parent of this node
 	@param      c the character for this node
@@ -31,7 +31,7 @@
 - (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c;
 
 /*!
-	@method     
+	@fn			
 	@abstract   The string of the mulit-character symbol this node represents.
 */
 @property (nonatomic, readonly, retain) NSString *ancestry;

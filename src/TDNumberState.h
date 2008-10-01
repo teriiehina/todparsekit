@@ -24,7 +24,7 @@
 }
 
 /*!
-	@method     allowsTrailingDot
+	@fn			allowsTrailingDot
 	@abstract   If true, numbers are allowed to end with a trialing dot, e.g. <tt>42.<tt>
 	@discussion false by default.
 */

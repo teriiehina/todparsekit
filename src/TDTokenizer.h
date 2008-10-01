@@ -55,14 +55,14 @@
 	TDWordState *wordState;
 }
 /*!
-	@method     tokenizer
+	@fn			tokenizer
 	@abstract   Convenience factory method. Sets string to read from to <tt>nil</tt>.
 	@result		An initialized tokenizer.
 */
 + (id)tokenizer;
 
 /*!
-	@method     tokenizerWithString:
+	@fn			tokenizerWithString:
 	@abstract   Convenience factory method.
 	@param      s string to read from.
 	@result		An autoreleased initialized tokenizer.
@@ -70,7 +70,7 @@
 + (id)tokenizerWithString:(NSString *)s;
 
 /*!
-	@method     initWithString:
+	@fn			initWithString:
 	@abstract   Designated Initializer. Constructs a tokenizer to read from the supplied string.
 	@param      s string to read from.
 	@result		An initialized tokenizer.
@@ -78,14 +78,14 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
-	@method     nextToken
+	@fn			nextToken
 	@abstract   Returns the next token.
 	@result		the next token.
 */
 - (TDToken *)nextToken;
 
 /*!
-	@method     setTokenizerState:from:to:
+	@fn			setTokenizerState:from:to:
 	@abstract   Change the state the tokenizer will enter upon reading any character between "start" and "end".
 	@param      state the state for this character range
 	@param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
@@ -94,43 +94,43 @@
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-	@method     
+	@fn			
 	@abstract   The string to read from.
 */
 @property (nonatomic, copy) NSString *string;
 
 /*!
-	@method     numberState
+	@fn			numberState
 	@abstract   The state this tokenizer uses to build numbers.
  */
 @property (nonatomic, retain) TDNumberState *numberState;
 
 /*!
-	@method     quoteState
+	@fn			quoteState
 	@abstract   The state this tokenizer uses to build quoted strings.
  */
 @property (nonatomic, retain) TDQuoteState *quoteState;
 
 /*!
-	@method     slashState
+	@fn			slashState
 	@abstract   The state this tokenizer uses to recognize (and ignore) comments.
  */
 @property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
-	@method     symbolState
+	@fn			symbolState
 	@abstract   The state this tokenizer uses to recognize symbols.
  */
 @property (nonatomic, retain) TDSymbolState *symbolState;
 
 /*!
-	@method     whitespaceState
+	@fn			whitespaceState
 	@abstract   The state this tokenizer uses to recognize (and ignore) whitespace.
  */
 @property (nonatomic, retain) TDWhitespaceState *whitespaceState;
 
 /*!
-	@method     wordState
+	@fn			wordState
 	@abstract   The state this tokenizer uses to build words.
  */
 @property (nonatomic, retain) TDWordState *wordState;
