@@ -15,8 +15,8 @@
 /*!
 	@class       TDTokenizerState 
 	@superclass  NSObject
-	@abstract    A <tt>TDTokenizerState</tt> returns a token, given a reader, an initial character read from the reader, and a tokenizer that is conducting an overall tokenization of the reader.
-	@discussion  A <tt>TDTokenizerState</tt> returns a token, given a reader, an initial character read from the reader, and a tokenizer that is conducting an overall tokenization of the reader. The tokenizer will typically have a character state table that decides which state to use, depending on an initial character. If a single character is insufficient, a state such as <tt>TDSlashState</tt> will read a second character, and may delegate to another state, such as <tt>TDSlashStarState</tt>. This prospect of delegation is the reason that the <tt>-nextToken</tt> method has a tokenizer argument.
+	@brief		 A <tt>TDTokenizerState</tt> returns a token, given a reader, an initial character read from the reader, and a tokenizer that is conducting an overall tokenization of the reader.
+	@details	 A <tt>TDTokenizerState</tt> returns a token, given a reader, an initial character read from the reader, and a tokenizer that is conducting an overall tokenization of the reader. The tokenizer will typically have a character state table that decides which state to use, depending on an initial character. If a single character is insufficient, a state such as <tt>TDSlashState</tt> will read a second character, and may delegate to another state, such as <tt>TDSlashStarState</tt>. This prospect of delegation is the reason that the <tt>-nextToken</tt> method has a tokenizer argument.
 */
 @interface TDTokenizerState : NSObject {
 	NSMutableString *stringbuf;
@@ -24,7 +24,7 @@
 
 /*!
 	@fn			nextTokenFromReader:startingWith:tokenizer:
-	@abstract   Return a token that represents a logical piece of a reader.
+	@brief		Return a token that represents a logical piece of a reader.
 	@param      r the reader from which to read additional characters
 	@param      cin the character that a tokenizer used to determine to use this state
 	@param      t the tokenizer currently powering the tokenization

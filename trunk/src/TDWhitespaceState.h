@@ -12,8 +12,8 @@
 /*!
 	@class       TDWhitespaceState 
 	@superclass  TDTokenizerState
-	@abstract    A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token.
-	@discussion  A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token. By default, all characters from 0 to 32 are whitespace.
+	@brief		 A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token.
+	@details	 A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token. By default, all characters from 0 to 32 are whitespace.
 */
 @interface TDWhitespaceState : TDTokenizerState {
 	NSInteger c;
@@ -24,7 +24,7 @@
 
 /*!
 	@fn			isWhitespaceChar:
-	@abstract   Informs whether the given character is recognized as whitespace (and therefore ignored) by this state.
+	@brief		Informs whether the given character is recognized as whitespace (and therefore ignored) by this state.
 	@param      cin the character to check
 	@result     true if the given chracter is recognized as whitespace
 */
@@ -32,7 +32,7 @@
 
 /*!
 	@fn			setWhitespaceChars:from:to:
-	@abstract   Establish the given character range as whitespace to ignore.
+	@brief		Establish the given character range as whitespace to ignore.
 	@param      yn true if the given character range is whitespace
 	@param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
 	@param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.

@@ -11,15 +11,15 @@
 /*!
 	@class       TDSpecificChar 
 	@superclass  TDTerminal
-	@abstract    A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
-	@discussion  A <tt>TDSpecificChar</tt> matches a specified character from a character assembly. <tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
+	@brief		 A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
+	@details	 A <tt>TDSpecificChar</tt> matches a specified character from a character assembly. <tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
 */
 @interface TDSpecificChar : TDTerminal {
 }
 
 /*!
 	@fn			specificCharWithChar:
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSpecificChar</tt> parser.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDSpecificChar</tt> parser.
 	@param      c the character this object should match
 	@result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
 */
@@ -27,7 +27,7 @@
 
 /*!
 	@fn			initWithSpecificChar:
-	@abstract   Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
+	@brief		Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
 	@param      c the character this object should match
 	@result     an initialized <tt>TDSpecificChar</tt> parser.
 */

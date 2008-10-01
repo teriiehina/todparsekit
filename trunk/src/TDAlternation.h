@@ -12,8 +12,8 @@
 /*!
 	@class       TDAlternation 
 	@superclass  TDCollectionParser
-	@abstract    A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
-	@discussion  A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
+	@brief		 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
+	@details	 A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 */
 @interface TDAlternation : TDCollectionParser {
 
@@ -21,7 +21,7 @@
 
 /*!
 	@fn			alternation
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDAlternation</tt> parser.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDAlternation</tt> parser.
 	@result     an initialized autoreleased <tt>TDAlternation</tt> parser.
 */
 + (id)alternation;

@@ -12,8 +12,8 @@
 /*!
 	@class       TDCollectionParser 
 	@superclass  TDParser
-	@abstract    An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
-	@discussion  An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
+	@brief		 An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
+	@details	 An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
 @interface TDCollectionParser : TDParser {
 	NSMutableArray *subparsers;
@@ -21,14 +21,14 @@
 
 /*!
 	@fn			add:
-	@abstract   Adds a parser to the collection.
+	@brief		Adds a parser to the collection.
 	@param      p parser to add
 */
 - (void)add:(TDParser *)p;
 
 /*!
 	@property	subparsers
-	@abstract   This parser's subparsers.
+	@brief		This parser's subparsers.
 */
 @property (nonatomic, readonly, retain) NSMutableArray *subparsers;
 @end

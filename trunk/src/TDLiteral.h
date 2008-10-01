@@ -14,8 +14,8 @@
 /*!
 	@class       TDLiteral 
 	@superclass  TDTerminal
-	@abstract    A Literal matches a specific String from an assembly.
-	@discussion  A Literal matches a specific String from an assembly.
+	@brief		 A Literal matches a specific String from an assembly.
+	@details	 A Literal matches a specific String from an assembly.
 */
 @interface TDLiteral : TDTerminal {
 	TDToken *literal;
@@ -23,7 +23,7 @@
 
 /*!
 	@fn			literalWithString:
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDLiteral</tt> object with a given string.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDLiteral</tt> object with a given string.
 	@param		s the string represented by this literal
 	@result     an initialized autoreleased <tt>TDLiteral</tt> object representing <tt>s</tt>
 */

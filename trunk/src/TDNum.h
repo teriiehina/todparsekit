@@ -12,8 +12,8 @@
 /*!
 	@class       TDNum 
 	@superclass  TDTerminal
-	@abstract    A Num matches a number from a token assembly.
-	@discussion  A Num matches a number from a token assembly.
+	@brief		 A Num matches a number from a token assembly.
+	@details	 A Num matches a number from a token assembly.
 */
 @interface TDNum : TDTerminal {
 
@@ -21,7 +21,7 @@
 
 /*!
 	@fn			num
-	@abstract   Convenience factory method for initializing an autoreleased <tt>TDNum</tt> object.
+	@brief		Convenience factory method for initializing an autoreleased <tt>TDNum</tt> object.
 	@result     an initialized autoreleased <tt>TDNum</tt> object
 */
 + (id)num;
