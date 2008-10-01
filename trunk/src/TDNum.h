@@ -20,7 +20,7 @@
 }
 
 /*!
-	@method     num
+	@fn			num
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDNum</tt> object.
 	@result     an initialized autoreleased <tt>TDNum</tt> object
 */

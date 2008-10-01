@@ -20,7 +20,7 @@
 }
 
 /*!
-	@method     word
+	@fn			word
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDWord</tt> object.
 	@result     an initialized autoreleased <tt>TDWord</tt> object
 */

@@ -19,7 +19,7 @@
 }
 
 /*!
-	@method     digit
+	@fn			digit
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDDigit</tt> parser.
 	@result     an initialized autoreleased <tt>TDDigit</tt> parser.
 */

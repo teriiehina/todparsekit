@@ -18,7 +18,7 @@
 }
 
 /*!
-	@method     specificCharWithChar:
+	@fn			specificCharWithChar:
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSpecificChar</tt> parser.
 	@param      c the character this object should match
 	@result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
@@ -26,7 +26,7 @@
 + (id)specificCharWithChar:(NSInteger)c;
 
 /*!
-	@method     initWithSpecificChar:
+	@fn			initWithSpecificChar:
 	@abstract   Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
 	@param      c the character this object should match
 	@result     an initialized <tt>TDSpecificChar</tt> parser.

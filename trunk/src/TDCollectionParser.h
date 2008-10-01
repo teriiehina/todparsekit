@@ -20,14 +20,14 @@
 }
 
 /*!
-	@method     add:
+	@fn			add:
 	@abstract   Adds a parser to the collection.
 	@param      p parser to add
 */
 - (void)add:(TDParser *)p;
 
 /*!
-	@method     
+	@fn			
 	@abstract   This parser's subparsers.
 */
 @property (nonatomic, readonly, retain) NSMutableArray *subparsers;

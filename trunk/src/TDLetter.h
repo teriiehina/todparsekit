@@ -19,7 +19,7 @@
 }
 
 /*!
-	@method     letter
+	@fn			letter
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDLetter</tt> parser.
 	@result     an initialized autoreleased <tt>TDLetter</tt> parser.
 */

@@ -22,7 +22,7 @@
 }
 
 /*!
-	@method     literalWithString:
+	@fn			literalWithString:
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDLiteral</tt> object with a given string.
 	@param		s the string represented by this literal
 	@result     an initialized autoreleased <tt>TDLiteral</tt> object representing <tt>s</tt>

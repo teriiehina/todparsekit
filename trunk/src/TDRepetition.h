@@ -22,14 +22,14 @@
 }
 
 /*!
-	@method     repetition
+	@fn			repetition
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser.
 	@result     an initialized autoreleased <tt>TDRepetition</tt> parser.
 */
 + (id)repetition;
 
 /*!
-	@method     repetitionWithSubparser:
+	@fn			repetitionWithSubparser:
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
 	@param      p the subparser against wich to repeatedly match
 	@result     an initialized autoreleased <tt>TDRepetition</tt> parser.
@@ -37,7 +37,7 @@
 + (id)repetitionWithSubparser:(TDParser *)p;
 
 /*!
-	@method     initWithSubparser:
+	@fn			initWithSubparser:
 	@abstract   Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
 	@discussion Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
 	@param      p the subparser against wich to repeatedly match
@@ -46,7 +46,7 @@
 - (id)initWithSubparser:(TDParser *)p;
 
 /*!
-	@method     setPreassembler:selector:
+	@fn			setPreassembler:selector:
 	@abstract   Sets the object that will work on every assembly before matching against it.
 	@discussion Setting a preassembler is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.
 	@param      a the assembler this parser will use to work on an assembly before matching against it.
@@ -55,14 +55,14 @@
 - (void)setPreassembler:(id)a selector:(SEL)sel;
 
 /*!
-	@method     
+	@fn			
 	@abstract   The assembler this parser will use to work on an assembly before matching against it.
 	@discussion	<tt>preAssembler</tt> should respond to the selector held by this parser's <tt>preAssemblerSelector</tt> property.
 */
 @property (nonatomic, retain) id preAssembler;
 
 /*!
-	@method     
+	@fn			
 	@abstract   The method of <tt>preAssembler</tt> this parser will call to work on an assembly.
 	@discussion The method represented by <tt>preAssemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preAssemblerSelector</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
 */

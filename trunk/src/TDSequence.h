@@ -20,7 +20,7 @@
 }
 
 /*!
-	@method     sequence
+	@fn			sequence
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSequence</tt> parser.
 	@result     an initialized autoreleased <tt>TDSequence</tt> parser.
 */

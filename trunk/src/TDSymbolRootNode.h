@@ -21,14 +21,14 @@
 }
 
 /*!
-	@method     add:
+	@fn			add:
 	@abstract   Adds the given string as a multi-character symbol.
 	@param      s a multi-character symbol that should be recognized as a single symbol token by this state
 */
 - (void)add:(NSString *)s;
 
 /*!
-	@method     nextSymbol:startingWith:
+	@fn			nextSymbol:startingWith:
 	@abstract   Return a symbol string from a reader.
 	@param      r the reader from which to read
 	@param      cin the character from witch to start

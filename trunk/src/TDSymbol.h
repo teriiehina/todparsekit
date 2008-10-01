@@ -22,14 +22,14 @@
 }
 
 /*!
-	@method     symbol
+	@fn			symbol
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with a <tt>nil</tt> string value.
 	@result     an initialized autoreleased <tt>TDSymbol</tt> object with a <tt>nil</tt> string value
 */
 + (id)symbol;
 
 /*!
-	@method     symbolWithString:
+	@fn			symbolWithString:
 	@abstract   Convenience factory method for initializing an autoreleased <tt>TDSymbol</tt> object with <tt>s</tt> as a string value.
 	@param		s the string represented by this symbol
 	@result     an initialized autoreleased <tt>TDSymbol</tt> object with <tt>s</tt> as a string value
