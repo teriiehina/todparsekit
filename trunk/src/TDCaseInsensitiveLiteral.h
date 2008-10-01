@@ -12,8 +12,8 @@
 /*!
     @class       TDCaseInsensitiveLiteral 
     @superclass  TDLiteral
-    @abstract    A CaselessLiteral matches a specified String from an assembly, disregarding case.
-    @discussion  A CaselessLiteral matches a specified String from an assembly, disregarding case.
+    @abstract    A <tt>TDCaselessLiteral</tt> matches a specified <tt>NSString</tt> from an assembly, disregarding case.
+    @discussion  A <tt>TDCaselessLiteral</tt> matches a specified <tt>NSString</tt> from an assembly, disregarding case.
 */
 @interface TDCaseInsensitiveLiteral : TDLiteral {
 
