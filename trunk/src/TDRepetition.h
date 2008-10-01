@@ -55,14 +55,14 @@
 - (void)setPreassembler:(id)a selector:(SEL)sel;
 
 /*!
-	@fn			
+	@property	preAssembler
 	@abstract   The assembler this parser will use to work on an assembly before matching against it.
 	@discussion	<tt>preAssembler</tt> should respond to the selector held by this parser's <tt>preAssemblerSelector</tt> property.
 */
 @property (nonatomic, retain) id preAssembler;
 
 /*!
-	@fn			
+	@property	preAssemlerSelector
 	@abstract   The method of <tt>preAssembler</tt> this parser will call to work on an assembly.
 	@discussion The method represented by <tt>preAssemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preAssemblerSelector</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
 */

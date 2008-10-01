@@ -89,49 +89,49 @@ typedef enum {
 - (NSString *)debugDescription;
 
 /*!
-	@fn			isNumber
-	@abstract   Returns true if this token is a number.
+	@property	isNumber
+	@abstract   True if this token is a number.
 */
 @property (nonatomic, readonly, getter=isNumber) BOOL number;
 
 /*!
-	@fn			isQuotedString
-	@abstract   Returns true if this token is a quoted string.
+	@property	isQuotedString
+	@abstract   True if this token is a quoted string.
 */
 @property (nonatomic, readonly, getter=isQuotedString) BOOL quotedString;
 
 /*!
-	@fn			isSymbol
-	@abstract   Returns true if this token is a symbol.
+	@property	isSymbol
+	@abstract   True if this token is a symbol.
 */
 @property (nonatomic, readonly, getter=isSymbol) BOOL symbol;
 
 /*!
-	@fn			isWord
-	@abstract   Returns true if this token is a word.
+	@property	isWord
+	@abstract   True if this token is a word.
 */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
 
 /*!
-	@fn			tokenType
-	@abstract   Returns the type of this token.
+	@property	tokenType
+	@abstract   The type of this token.
 */
 @property (nonatomic, readonly) TDTokenType tokenType;
 
 /*!
-	@fn			floatValue
-	@abstract   Returns the numeric value of this token.
+	@property	floatValue
+	@abstract   The numeric value of this token.
 */
 @property (nonatomic, readonly) CGFloat floatValue;
 
 /*!
-	@fn			stringValue
-	@abstract   Returns the string value of this token.
+	@property	stringValue
+	@abstract   The string value of this token.
 */
 @property (nonatomic, readonly, copy) NSString *stringValue;
 
 /*!
-	@fn			value
+	@property	value
 	@abstract   Returns an object that represents the value of this token.
 */
 @property (nonatomic, readonly, copy) id value;

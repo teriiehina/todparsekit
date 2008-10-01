@@ -94,43 +94,43 @@
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-	@fn			
+	@property	string
 	@abstract   The string to read from.
 */
 @property (nonatomic, copy) NSString *string;
 
 /*!
-	@fn			numberState
+	@property	numberState
 	@abstract   The state this tokenizer uses to build numbers.
 */
 @property (nonatomic, retain) TDNumberState *numberState;
 
 /*!
-	@fn			quoteState
+	@property	quoteState
 	@abstract   The state this tokenizer uses to build quoted strings.
 */
 @property (nonatomic, retain) TDQuoteState *quoteState;
 
 /*!
-	@fn			slashState
+	@property	slashState
 	@abstract   The state this tokenizer uses to recognize (and ignore) comments.
 */
 @property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
-	@fn			symbolState
+	@property	symbolState
 	@abstract   The state this tokenizer uses to recognize symbols.
 */
 @property (nonatomic, retain) TDSymbolState *symbolState;
 
 /*!
-	@fn			whitespaceState
+	@property	whitespaceState
 	@abstract   The state this tokenizer uses to recognize (and ignore) whitespace.
 */
 @property (nonatomic, retain) TDWhitespaceState *whitespaceState;
 
 /*!
-	@fn			wordState
+	@property	wordState
 	@abstract   The state this tokenizer uses to build words.
 */
 @property (nonatomic, retain) TDWordState *wordState;

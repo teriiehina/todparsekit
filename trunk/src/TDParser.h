@@ -88,21 +88,21 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 
 /*!
-	@fn			
+	@property	assembler
 	@abstract   The assembler this parser will use to work on a matched assembly.
 	@discussion <tt>assembler</tt> should respond to the selector held by this parser's <tt>selector</tt> property.
 */
 @property (nonatomic, retain) id assembler;
 
 /*!
-	@fn			
+	@property	selector
 	@abstract   The method of <tt>assembler</tt> this parser will call to work on a matched assembly.
 	@discussion The method represented by <tt>selector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>selector</tt> should be similar to: <tt>-workOnAssembly:(TDAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL selector;
 
 /*!
-	@fn			
+	@property	name
 	@abstract   The name of this parser.
 	@discussion	Use this property to help in identifying a parser or for debugging purposes.
 */

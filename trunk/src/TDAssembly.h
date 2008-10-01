@@ -112,37 +112,37 @@
 - (NSArray *)objectsAbove:(id)fence;
 
 /*!
-	@fn			
+	@property	length
 	@abstract   The number of elements in this assembly.
 */
 @property (nonatomic, readonly) NSInteger length;
 
 /*!
-	@fn			
+	@property	objectsConsumed
 	@abstract   The number of elements that have been consumed.
 */
 @property (nonatomic, readonly) NSInteger objectsConsumed;
 
 /*!
-	@fn			
+	@property	objectsRemaining
 	@abstract   The number of elements that have not been consumed
 */
 @property (nonatomic, readonly) NSInteger objectsRemaining;
 
 /*!
-	@fn			
+	@property	defaultDelimiter
 	@abstract   The default string to show between elements
 */
 @property (nonatomic, readonly, copy) NSString *defaultDelimiter;
 
 /*!
-	@fn			
+	@property	stack
 	@abstract   This assembly's stack.
 */
 @property (nonatomic, readonly, retain) NSMutableArray *stack;
 
 /*!
-	@fn			
+	@property	target
 	@abstract   This assembly's target.
 	@discussion The object identified as this assembly's "target". Clients can set and retrieve a target, which can be a convenient supplement as a place to work, in addition to the assembly's stack. For example, a parser for an HTML file might use a web page object as its "target". As the parser recognizes markup commands like &lt;head>, it could apply its findings to the target.
 */
