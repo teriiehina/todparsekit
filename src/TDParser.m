@@ -35,7 +35,7 @@
 
 
 + (NSSet *)deepCopy:(NSSet *)inSet {
-	return [[wNSSet alloc] initWithSet:inSet copyItems:YES];
+	return [[NSSet alloc] initWithSet:inSet copyItems:YES];
 }
 
 
