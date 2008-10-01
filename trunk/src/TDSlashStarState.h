@@ -10,9 +10,8 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 /*!
-	@class       TDSlashStarState 
-	@brief		 A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
-	@details	 A <tt>TDSlashStarState</tt> ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
+	@class		TDSlashStarState 
+	@brief		A slash star state ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
 */
 @interface TDSlashStarState : TDTokenizerState {
 	

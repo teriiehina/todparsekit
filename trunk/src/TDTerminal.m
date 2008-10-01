@@ -63,7 +63,7 @@
 	if ([self qualifies:[inAssembly peek]]) {
 		outAssembly = [[inAssembly copy] autorelease];
 		id obj = [outAssembly next];
-		if (!discard) {
+		if (!discardFlag) {
 			[outAssembly push:obj];
 		}
 	}
@@ -79,7 +79,7 @@
 
 
 - (TDTerminal *)discard {
-	discard = YES;
+	discardFlag = YES;
 	return self;
 }
 

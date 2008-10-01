@@ -12,13 +12,12 @@
 @class TDToken;
 
 /*!
-	@fn			
+	@class		TDTerminal
 	@brief		An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
-	@details	An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
 */
 @interface TDTerminal : TDParser {
 	NSString *string;
-	BOOL discard;
+	BOOL discardFlag;
 }
 
 /*!
@@ -26,7 +25,7 @@
 	@brief		Designated Initializer for all concrete <tt>TDTerminal</tt> subclasses.
 	@details	Note this is an abtract class and this method must be called on a concrete subclass.
 	@param      s the string matched by this parser
-	@result     initialized <tt>TDTerminal</tt> subclass object
+	@result     an initialized <tt>TDTerminal</tt> subclass object
 */
 - (id)initWithString:(NSString *)s;
 
