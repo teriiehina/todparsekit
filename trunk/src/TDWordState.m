@@ -29,8 +29,8 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		self.yesFlag = [NSNumber numberWithBool:YES];
-		self.noFlag = [NSNumber numberWithBool:NO];
+		self.yesFlag = (id)kCFBooleanTrue;
+		self.noFlag = (id)kCFBooleanFalse;
 
 		self.wordChars = [NSMutableArray array];
 		NSInteger i = 0;
