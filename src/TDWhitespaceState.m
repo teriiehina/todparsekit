@@ -13,8 +13,8 @@
 
 @interface TDWhitespaceState () 
 @property (nonatomic, retain) NSMutableArray *whitespaceChars;
-@property (nonatomic, retain) NSNumber *yesFlag;
-@property (nonatomic, retain) NSNumber *noFlag;
+@property (nonatomic, assign) NSNumber *yesFlag;
+@property (nonatomic, assign) NSNumber *noFlag;
 @end
 
 @implementation TDWhitespaceState
@@ -22,8 +22,8 @@
 - (id)init {
 	self = [super init];
 	if (self != nil) {
-		self.yesFlag = [NSNumber numberWithBool:YES];
-		self.noFlag = [NSNumber numberWithBool:NO];
+		self.yesFlag = (id)kCFBooleanTrue;
+		self.noFlag = (id)kCFBooleanFalse;
 		
 		self.whitespaceChars = [NSMutableArray array];
 		NSInteger i = 0;
