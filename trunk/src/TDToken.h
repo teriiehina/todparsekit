@@ -52,7 +52,6 @@ typedef enum {
 
 /*!
 	@fn			tokenWithTokenType:stringValue:floatValue:
-	@fn			
 	@brief		Factory convenience method for creating an autoreleased token.
 	@param      t the type of this token.
 	@param      s the string value of this token.
