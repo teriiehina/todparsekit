@@ -20,6 +20,7 @@
 */
 @interface TDSymbolState : TDTokenizerState {
 	TDSymbolRootNode *rootNode;
+	NSMutableArray *addedSymbols;
 }
 
 /*!
