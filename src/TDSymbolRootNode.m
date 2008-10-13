@@ -53,7 +53,12 @@
 
 
 - (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
-	NSString *result = [[[NSString alloc] initWithCharacters:(const unichar *)&c length:1] autorelease];
+	NSString *result = [NSString stringWithFormat:@"%C", c];
+
+	// this also works.
+//	NSString *result = [[[NSString alloc] initWithCharacters:(const unichar *)&c length:1] autorelease];
+	
+	// none of these work.
 	//NSString *result = [[[NSString alloc] initWithBytes:&c length:1 encoding:NSUTF8StringEncoding] autorelease];
 
 //	NSLog(@"c: %d", c);
