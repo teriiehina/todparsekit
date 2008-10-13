@@ -358,4 +358,71 @@
 	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
 }
 
+
+- (void)testTokenzierEqualEqualEqualButNotEqual {
+	s = @"=";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"==="];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"=", tok.stringValue, @"");
+	STAssertEqualObjects(@"=", tok.value, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualEqualEqualButNotEqualEqual {
+	s = @"==";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"==="];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"=", tok.stringValue, @"");
+	STAssertEqualObjects(@"=", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@"=", tok.stringValue, @"");
+	STAssertEqualObjects(@"=", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualColonEqualButNotEqualColon {
+	s = @"=:";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"=:="];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"=", tok.stringValue, @"");
+	STAssertEqualObjects(@"=", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@":", tok.stringValue, @"");
+	STAssertEqualObjects(@":", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualColonEqualAndThenEqualColonEqualColon {
+	s = @"=:=:";
+	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+	[t.symbolState add:@"=:="];
+	TDToken *tok = [t nextToken];
+	STAssertTrue(tok.isSymbol, @"");
+	STAssertEqualObjects(@"=:=", tok.stringValue, @"");
+	STAssertEqualObjects(@"=:=", tok.value, @"");
+	
+	tok = [t nextToken];
+	STAssertEqualObjects(@":", tok.stringValue, @"");
+	STAssertEqualObjects(@":", tok.value, @"");
+	STAssertTrue(tok.isSymbol, @"");
+	
+	STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
 @end
