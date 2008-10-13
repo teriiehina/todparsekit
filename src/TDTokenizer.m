@@ -147,17 +147,21 @@
 
 - (TDTokenizerState *)tokenizerStateFor:(NSInteger)c {
 	if (c < 0 || c > tokenizerStates.count - 1) {
-		if (c >= 0x2000 && c <= 0x2bff) { // various symbols
+		if (c >= 0x19E0 && c <= 0x19FF) { // khmer symbols
 			return symbolState;
-		} else if (c >= 0xfe30 && c <= 0xfe6f) { // general punctuation
+		} else if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
 			return symbolState;
-		} else if (c >= 0xfe30 && c <= 0xfe6f) { // western musical symbols
+		} else if (c >= 0x2E00 && c <= 0x2E7F) { // supplemental punctuation
 			return symbolState;
-		} else if (c >= 0xff00 && c <= 0xff65) { // symbols within Hiragana & Katakana
-			return symbolState;			
-		} else if (c >= 0xfff0 && c <= 0xffff) { // specials
-			return symbolState;			
-		} else if (c < 0) {
+		} else if (c >= 0x3000 && c <= 0x303F) { // cjk symbols & punctuation
+			return symbolState;
+		} else if (c >= 0x3200 && c <= 0x33FF) { // enclosed cjk letters and months, cjk compatibility
+			return symbolState;
+		} else if (c >= 0x4DC0 && c <= 0x4DFF) { // yijing hexagram symbols
+			return symbolState;
+		} else if (c >= 0xFE30 && c <= 0xFE6F) { // cjk compatibility forms, small form variants
+			return symbolState;
+		} else if (c >= 0xFF00 && c <= 0xFFFF) { // hiragana & katakana halfwitdh & fullwidth forms, Specials
 			return symbolState;
 		} else {
 			return wordState;
