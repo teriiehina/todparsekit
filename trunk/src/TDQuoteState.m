@@ -40,6 +40,7 @@
 		[stringbuf appendFormat:@"%C", c];
 	} while (c != cin);
 	
+//	NSString *stringValue = [[[NSString alloc] initWithCharacters:(const unichar *)charbuf length:i] autorelease];
 //	NSString *stringValue = [[[NSString alloc] initWithBytes:charbuf length:i encoding:NSUTF8StringEncoding] autorelease];
 
 	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringbuf floatValue:0.0f];
