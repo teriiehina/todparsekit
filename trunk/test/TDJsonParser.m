@@ -86,7 +86,7 @@
 }
 
 
-- (TDParser *)booleanParser {
+- (TDCollectionParser *)booleanParser {
 	if (!booleanParser) {
 		self.booleanParser = [TDAlternation alternation];
 		[booleanParser add:[TDLiteral literalWithString:@"true"]];
@@ -97,7 +97,7 @@
 }
 
 
-- (TDParser *)arrayParser {
+- (TDCollectionParser *)arrayParser {
 	if (!arrayParser) {
 
 		// array = '[' content ']'
@@ -123,7 +123,7 @@
 }
 
 
-- (TDParser *)objectParser {
+- (TDCollectionParser *)objectParser {
 	if (!objectParser) {
 		
 		// object = '{' content '}'
@@ -151,7 +151,7 @@
 }
 
 
-- (TDParser *)valueParser {
+- (TDCollectionParser *)valueParser {
 	if (!valueParser) {
 		self.valueParser = [TDAlternation alternation];
 		[valueParser add:self.stringParser];
@@ -165,7 +165,7 @@
 }
 
 
-- (TDParser *)commaValueParser {
+- (TDCollectionParser *)commaValueParser {
 	if (!commaValueParser) {
 		self.commaValueParser = [TDTrack sequence];
 		[commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
@@ -175,7 +175,7 @@
 }
 
 
-- (TDParser *)propertyParser {
+- (TDCollectionParser *)propertyParser {
 	if (!propertyParser) {
 		self.propertyParser = [TDSequence sequence];
 		[propertyParser add:[TDQuotedString quotedString]];
@@ -187,7 +187,7 @@
 }
 
 
-- (TDParser *)commaPropertyParser {
+- (TDCollectionParser *)commaPropertyParser {
 	if (!commaPropertyParser) {
 		self.commaPropertyParser = [TDTrack sequence];
 		[commaPropertyParser add:[[TDSymbol symbolWithString:@","] discard]];
