@@ -18,7 +18,6 @@
 
 @interface TDXmlNameState ()
 + (BOOL)isLetter:(NSInteger)c;
-+ (BOOL)isDigit:(NSInteger)c;
 + (BOOL)isNameChar:(NSInteger)c;
 + (BOOL)isValidStartSymbolChar:(NSInteger)c;
 @end
@@ -46,7 +45,7 @@
 	
 	if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
 		return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
-	} else if (self.stringbuf.length == 1 && [[self class] isDigit:cin]) {
+	} else if (self.stringbuf.length == 1 && isdigit(cin)) {
 		return [t.numberState nextTokenFromReader:r startingWith:cin tokenizer:t];
 	} else {
 		return nil;
