@@ -12,12 +12,12 @@
 @implementation TDXmlEndTag
 
 + (id)endTag {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 + (id)endTagWithString:(NSString *)s {
-	return [[[[self class] alloc] initWithString:s] autorelease];
+	return [[[self alloc] initWithString:s] autorelease];
 }
 
 

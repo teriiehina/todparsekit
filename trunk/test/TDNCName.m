@@ -21,7 +21,7 @@ const NSInteger TDTT_NCNAME = 6;
 @implementation TDNCName
 
 + (id)NCName {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 

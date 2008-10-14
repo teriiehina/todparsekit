@@ -17,7 +17,7 @@
 @implementation TDXmlTokenizer
 
 + (id)tokenizerWithContentsOfFile:(NSString *)path {
-	return [[[[self class] alloc] initWithContentsOfFile:path] autorelease];
+	return [[[self alloc] initWithContentsOfFile:path] autorelease];
 }
 
 
