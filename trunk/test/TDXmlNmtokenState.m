@@ -17,7 +17,6 @@
 @end
 
 @interface TDXmlNameState ()
-+ (BOOL)isLetter:(NSInteger)c;
 + (BOOL)isNameChar:(NSInteger)c;
 + (BOOL)isValidStartSymbolChar:(NSInteger)c;
 @end
