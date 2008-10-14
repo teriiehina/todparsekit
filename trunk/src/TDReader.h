@@ -10,7 +10,7 @@
 
 @interface TDReader : NSObject {
 	NSString *string;
-	NSInteger cursor;
+	NSUInteger cursor;
 }
 - (id)initWithString:(NSString *)s;
 - (NSInteger)read;
