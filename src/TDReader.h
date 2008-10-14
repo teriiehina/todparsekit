@@ -1,5 +1,5 @@
 //
-//  TDPushbackInputStream.h
+//  TDReader.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/21/06.
