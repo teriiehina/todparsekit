@@ -115,7 +115,11 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@)", [[self className] substringFromIndex:2], name];
+	if (name.length) {
+		return [NSString stringWithFormat:@"%@ (%@)", [[self className] substringFromIndex:2], name];
+	} else {
+		return [NSString stringWithFormat:@"%@", [[self className] substringFromIndex:2]];
+	}
 }
 
 @synthesize assembler;

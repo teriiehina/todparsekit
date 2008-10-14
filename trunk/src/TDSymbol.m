@@ -53,7 +53,11 @@
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:3], name, symbolTok.stringValue];
+	if (name.length) {
+		return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, symbolTok.stringValue];
+	} else {
+		return [NSString stringWithFormat:@"%@ %@", [[self className] substringFromIndex:2], symbolTok.stringValue];
+	}
 }
 
 @synthesize symbolTok;

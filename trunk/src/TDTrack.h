@@ -11,8 +11,8 @@
 
 /*!
 	@class      TDTrack
-	@brief		A <tt>TDTrack</tt> is a sequence that throws a <tt>TrackException</tt> if the sequence begins but does not complete.
-	@details	If <tt>-[TDTrack allMatchesFor:] begins but does not complete, it throws a <tt>TrackException</tt>.
+	@brief		A <tt>TDTrack</tt> is a sequence that throws a <tt>TDTrackException</tt> if the sequence begins but does not complete.
+	@details	If <tt>-[TDTrack allMatchesFor:] begins but does not complete, it throws a <tt>TDTrackException</tt>.
 */
 @interface TDTrack : TDSequence {
 
