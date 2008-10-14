@@ -18,7 +18,6 @@
 
 @interface TDNCNameState ()
 + (BOOL)isLetter:(NSInteger)c;
-+ (BOOL)isDigit:(NSInteger)c;
 + (BOOL)isNameChar:(NSInteger)c;
 + (BOOL)isValidStartSymbolChar:(NSInteger)c;
 + (BOOL)isValidNonStartSymbolChar:(NSInteger)c;
@@ -32,11 +31,6 @@
 }
 
 
-+ (BOOL)isDigit:(NSInteger)c {
-	return ('0' <= c && c <= '9');
-}
-
-
 //- (BOOL)isWhitespace:(NSInteger)c {
 //	return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
 //}
@@ -46,7 +40,7 @@
 + (BOOL)isNameChar:(NSInteger)c {
 	if ([[self class] isLetter:c]) {
 		return YES;
-	} else if ([[self class] isDigit:c]) {
+	} else if (isdigit(c)) {
 		return YES;
 	} else if ([[self class] isValidNonStartSymbolChar:c]) {
 		return YES;
