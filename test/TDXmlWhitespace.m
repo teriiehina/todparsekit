@@ -12,12 +12,12 @@
 @implementation TDXmlWhitespace
 
 + (id)whitespace {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 + (id)whitespaceWithString:(NSString *)s {
-	return [[[[self class] alloc] initWithString:s] autorelease];
+	return [[[self alloc] initWithString:s] autorelease];
 }
 
 

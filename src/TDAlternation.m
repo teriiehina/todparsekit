@@ -16,7 +16,7 @@
 @implementation TDAlternation
 
 + (id)alternation {
-	return [[[[self class] alloc] init] autorelease];
+	return [[[self alloc] init] autorelease];
 }
 
 

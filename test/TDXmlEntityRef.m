@@ -12,12 +12,12 @@
 @implementation TDXmlEntityRef
 
 + (id)entityRef {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 + (id)entityRefWithString:(NSString *)s {
-	return [[[[self class] alloc] initWithString:s] autorelease];
+	return [[[self alloc] initWithString:s] autorelease];
 }
 
 

@@ -13,7 +13,7 @@
 @implementation TDWord
 
 + (id)word {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 

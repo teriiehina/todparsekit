@@ -47,7 +47,7 @@
 
 
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-	return [[[[self class] alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
+	return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
 }
 
 

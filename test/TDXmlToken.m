@@ -55,7 +55,7 @@
 
 
 + (id)tokenWithTokenType:(TDXmlTokenType)t stringValue:(NSString *)s {
-	return [[[[self class] alloc] initWithTokenType:t stringValue:s] autorelease];
+	return [[[self alloc] initWithTokenType:t stringValue:s] autorelease];
 }
 
 

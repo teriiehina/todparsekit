@@ -12,7 +12,7 @@
 @implementation TDXmlNmtoken
 
 + (id)nmtoken {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 

@@ -11,7 +11,7 @@
 @implementation TDSpecificChar
 
 + (id)specificCharWithChar:(NSInteger)c {
-	return [[[[self class] alloc] initWithSpecificChar:c] autorelease];
+	return [[[self alloc] initWithSpecificChar:c] autorelease];
 }
 
 

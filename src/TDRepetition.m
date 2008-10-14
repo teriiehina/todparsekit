@@ -21,12 +21,12 @@
 @implementation TDRepetition
 
 + (id)repetition {
-	return [[[[self class] alloc] initWithSubparser:nil] autorelease];
+	return [[[self alloc] initWithSubparser:nil] autorelease];
 }
 
 
 + (id)repetitionWithSubparser:(TDParser *)p {
-	return [[[[self class] alloc] initWithSubparser:p] autorelease];
+	return [[[self alloc] initWithSubparser:p] autorelease];
 }
 
 

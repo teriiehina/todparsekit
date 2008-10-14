@@ -15,7 +15,7 @@
 @implementation TDEmpty
 
 + (id)empty {
-	return [[[[self class] alloc] init] autorelease];
+	return [[[self alloc] init] autorelease];
 }
 
 

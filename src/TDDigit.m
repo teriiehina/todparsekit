@@ -11,7 +11,7 @@
 @implementation TDDigit
 
 + (id)digit {
-	return [[[[self class] alloc] initWithString:nil] autorelease];
+	return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
