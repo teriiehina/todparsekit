@@ -46,7 +46,8 @@
 
 
 - (NSInteger)read {
-	if (cursor > ((NSInteger)string.length) - 1) {
+	NSUInteger len = string.length;
+	if (0 == len || cursor > len - 1) {
 		return -1;
 	}
 	return [string characterAtIndex:cursor++];
@@ -54,7 +55,7 @@
 
 
 - (void)unread {
-	cursor = (--cursor < 0) ? 0 : cursor;
+	cursor = (0 == cursor) ? 0 : cursor - 1;
 }
 
 @end
