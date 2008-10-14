@@ -67,12 +67,44 @@
 				NSString *stack = [[[list completeMatchFor:a] stack] description];
 				NSLog(@"OK stack is: %@", stack);
 			}
-		}
-		@catch (TDTrackException *e) {
+		} @catch (TDTrackException *e) {
 			NSLog(@"\n\n%@\n\n", [e reason]);
 		}
 	}
 	
+}
+
+
+- (void)testMissingParen {
+	TDTrack *track = [TDTrack track];
+	[track add:[TDSymbol symbolWithString:@"("]];
+	[track add:[TDSymbol symbolWithString:@")"]];
+	
+	TDAssembly *a = [TDTokenAssembly assemblyWithString:@"("];
+	STAssertThrowsSpecificNamed([track completeMatchFor:a], TDTrackException, @"Track Exception", @"");
+	
+	@try {
+		[track completeMatchFor:a];
+		STAssertTrue(0, @"Should not be reached");
+	} @catch (TDTrackException *e) {
+		STAssertEqualObjects([e class], [TDTrackException class], @"");
+		STAssertEqualObjects([e name], @"Track Exception", @"");
+		
+		NSDictionary *userInfo = e.userInfo;
+		STAssertNotNil(userInfo, @"");
+		
+		NSString *after = [userInfo objectForKey:@"after"];
+		NSString *expected = [userInfo objectForKey:@"expected"];
+		NSString *found = [userInfo objectForKey:@"found"];
+		
+		STAssertNotNil(after, @"");
+		STAssertNotNil(expected, @"");
+		STAssertNotNil(found, @"");
+		
+		STAssertEqualObjects(after, @"(", @"");
+		STAssertEqualObjects(expected, @"Symbol )", @"");
+		STAssertEqualObjects(found, @"-nothing-", @"");
+	}
 }
 
 @end
