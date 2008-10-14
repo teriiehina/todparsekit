@@ -17,7 +17,7 @@
 
 - (BOOL)qualifies:(id)obj {
 	NSInteger c = [obj integerValue];
-	return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') ;
+	return isalpha(c);
 }
 
 @end

@@ -17,7 +17,6 @@
 @end
 
 @interface TDNCNameState ()
-+ (BOOL)isLetter:(NSInteger)c;
 + (BOOL)isNameChar:(NSInteger)c;
 + (BOOL)isValidStartSymbolChar:(NSInteger)c;
 + (BOOL)isValidNonStartSymbolChar:(NSInteger)c;
@@ -26,11 +25,6 @@
 // NCName	   ::=   	(Letter | '_') (NameChar)*
 @implementation TDNCNameState
 
-+ (BOOL)isLetter:(NSInteger)c {
-	return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z');
-}
-
-
 //- (BOOL)isWhitespace:(NSInteger)c {
 //	return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
 //}
@@ -38,7 +32,7 @@
 
 //	NameChar	   ::=   	 Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
 + (BOOL)isNameChar:(NSInteger)c {
-	if ([[self class] isLetter:c]) {
+	if (isalpha(c)) {
 		return YES;
 	} else if (isdigit(c)) {
 		return YES;
