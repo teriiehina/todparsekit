@@ -10,7 +10,7 @@
 #import <TDParseKit/TDSequence.h>
 
 /*!
-	@class      TDTrack 
+	@class      TDTrack
 	@brief		A <tt>TDTrack</tt> is a sequence that throws a <tt>TrackException</tt> if the sequence begins but does not complete.
 	@details	If <tt>-[TDTrack allMatchesFor:] begins but does not complete, it throws a <tt>TrackException</tt>.
 */
