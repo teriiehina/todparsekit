@@ -68,7 +68,7 @@
 				NSLog(@"OK stack is: %@", stack);
 			}
 		}
-		@catch (NSException * e) {
+		@catch (TDTrackException *e) {
 			NSLog(@"\n\n%@\n\n", [e reason]);
 		}
 	}

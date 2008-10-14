@@ -8,6 +8,7 @@
 
 #import <TDParseKit/TDTrack.h>
 #import <TDParseKit/TDAssembly.h>
+#import <TDParseKit/TDTrackException.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
@@ -65,8 +66,7 @@
 							  expected, @"expected",
 							  found, @"found",
 							  nil];
-	NSException *e = [NSException exceptionWithName:@"TDTrackException" reason:reason userInfo:userInfo];
-	[e raise];
+	[[TDTrackException exceptionWithName:@"Track Exception" reason:reason userInfo:userInfo] raise];
 }
 
 @end

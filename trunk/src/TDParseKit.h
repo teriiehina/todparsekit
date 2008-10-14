@@ -21,6 +21,7 @@
 #import <TDParseKit/TDEmpty.h>
 #import <TDParseKit/TDTerminal.h>
 #import <TDParseKit/TDTrack.h>
+#import <TDParseKit/TDTrackException.h>
 
 //chars
 #import <TDParseKit/TDCharacterAssembly.h>
