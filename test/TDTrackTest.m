@@ -19,7 +19,7 @@
 
 - (TDParser *)listParser {
 	TDTrack *commaWord = [TDTrack track];
-	[commaWord add:[TDSymbol symbolWithString:@","]];
+	[commaWord add:[[TDSymbol symbolWithString:@","] discard]];
 	[commaWord add:[TDWord word]];
 	
 	TDSequence *actualList = [TDSequence sequence];
