@@ -139,7 +139,7 @@
 		[string autorelease];
 		string = [s copy];
 	}
-	[reader setString:string];
+	reader.string = string;
 }
 
 
