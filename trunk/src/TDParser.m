@@ -9,18 +9,6 @@
 #import <TDParseKit/TDParser.h>
 #import <TDParseKit/TDAssembly.h>
 
-@implementation NSString (TDParseKitAdditions)
-
-- (NSString *)stringByRemovingFirstAndLastCharacters {
-	if (self.length < 2) {
-		return self;
-	} else {
-		return [[self substringFromIndex:1] substringToIndex:self.length-2];
-	}
-}
-
-@end
-
 @interface TDParser ()
 + (NSSet *)deepCopy:(NSSet *)inSet;
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
