@@ -31,8 +31,9 @@
 	NSNumber *key = [NSNumber numberWithInteger:c];
 	TDSymbolNode *child = [p.children objectForKey:key];
 	if (!child) {
-		child = [[[TDSymbolNode alloc] initWithParent:p character:c] autorelease];
+		child = [[TDSymbolNode alloc] initWithParent:p character:c];
 		[p.children setObject:child forKey:key];
+		[child release];
 	}
 
 	NSString *rest = nil;

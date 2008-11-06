@@ -48,7 +48,7 @@
 		n = n.parent;
 	}
 
-	self.ancestry = result;	
+	self.ancestry = [[result copy] autorelease]; // assign an immutable copy
 }
 
 
