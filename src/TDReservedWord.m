@@ -18,7 +18,7 @@ static NSArray *sTDReservedWords = nil;
 @implementation TDReservedWord
 
 + (NSArray *)reservedWords {
-	return [[sTDReservedWords copy] autorelease];
+	return [[sTDReservedWords retain] autorelease];
 }
 
 
