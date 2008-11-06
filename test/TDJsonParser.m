@@ -8,6 +8,7 @@
 
 #import "TDJsonParser.h"
 #import "TDParseKit.h"
+#import "NSString+TDParseKitAdditions.h"
 
 @interface TDJsonParser ()
 @property (retain) TDToken *curly;

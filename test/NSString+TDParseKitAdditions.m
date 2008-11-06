@@ -1,0 +1,21 @@
+//
+//  NSString+TDParseKitAdditions.m
+//  TDParseKit
+//
+//  Created by Todd Ditchendorf on 11/5/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//
+
+#import "NSString+TDParseKitAdditions.h"
+
+@implementation NSString (TDParseKitAdditions)
+
+- (NSString *)stringByRemovingFirstAndLastCharacters {
+	if (self.length < 2) {
+		return self;
+	} else {
+		return [[self substringFromIndex:1] substringToIndex:self.length-2];
+	}
+}
+
+@end

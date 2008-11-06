@@ -10,10 +10,6 @@
 
 @class TDAssembly;
 
-@interface NSString (TDParseKitAdditions)
-- (NSString *)stringByRemovingFirstAndLastCharacters;
-@end
-
 /*!
 	@class      TDParser 
 	@brief		An Abstract class. A <tt>TDParser</tt> is an object that recognizes the elements of a language.

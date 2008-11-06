@@ -7,6 +7,7 @@
 //
 
 #import "SRGSParser.h"
+#import "NSString+TDParseKitAdditions.h"
 
 @interface SRGSParser ()
 - (void)workOnWordAssembly:(TDAssembly *)a;
