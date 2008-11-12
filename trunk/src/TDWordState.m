@@ -44,7 +44,7 @@
 		[self setWordChars:YES from: '-' to: '-'];
 		[self setWordChars:YES from: '_' to: '_'];
 		[self setWordChars:YES from:'\'' to:'\''];
-		[self setWordChars:YES from:0xc0 to:0xff];
+		[self setWordChars:YES from:0xC0 to:0xFF];
 	}
 	return self;
 }
