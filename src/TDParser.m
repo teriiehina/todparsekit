@@ -10,7 +10,6 @@
 #import <TDParseKit/TDAssembly.h>
 
 @interface TDParser ()
-+ (NSSet *)deepCopy:(NSSet *)inSet;
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (TDAssembly *)best:(NSSet *)inAssemblies;
 @end
@@ -19,11 +18,6 @@
 
 + (id)parser {
 	return [[[self alloc] init] autorelease];
-}
-
-
-+ (NSSet *)deepCopy:(NSSet *)inSet {
-	return [[NSSet alloc] initWithSet:inSet copyItems:YES];
 }
 
 

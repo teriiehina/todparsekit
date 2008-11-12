@@ -10,7 +10,6 @@
 #import <TDParseKit/TDAssembly.h>
 
 @interface TDParser ()
-+ (NSSet *)deepCopy:(NSSet *)inSet;
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 @end
 
@@ -66,7 +65,8 @@
 		}
 	}
 	
-	NSMutableSet *outAssemblies = [NSMutableSet setWithSet:[[TDParser deepCopy:inAssemblies] autorelease]];
+	NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
+	NSMutableSet *outAssemblies = [NSMutableSet setWithSet:[deepCopy autorelease]];
 	
 	NSSet *s = inAssemblies;
 	while (s.count) {
