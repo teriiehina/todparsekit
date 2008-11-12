@@ -74,15 +74,15 @@
 		return (yesFlag == [wordChars objectAtIndex:c]);
 	}
 
-	if (c >= 0x2000 && c <= 0x2bff) { // various symbols
+	if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
 		return NO;
-	} else if (c >= 0xfe30 && c <= 0xfe6f) { // general punctuation
+	} else if (c >= 0xFE30 && c <= 0xFE6F) { // general punctuation
 		return NO;
-	} else if (c >= 0xfe30 && c <= 0xfe6f) { // western musical symbols
+	} else if (c >= 0xFE30 && c <= 0xFE6F) { // western musical symbols
 		return NO;
-	} else if (c >= 0xff00 && c <= 0xff65) { // symbols within Hiragana & Katakana
+	} else if (c >= 0xFF00 && c <= 0xFF65) { // symbols within Hiragana & Katakana
 		return NO;			
-	} else if (c >= 0xfff0 && c <= 0xffff) { // specials
+	} else if (c >= 0xFFF0 && c <= 0xFFFF) { // specials
 		return NO;			
 	} else if (c < 0) {
 		return NO;
