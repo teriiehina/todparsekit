@@ -8,10 +8,6 @@
 
 #import <TDParseKit/TDEmpty.h>
 
-@interface TDParser ()
-+ (NSSet *)deepCopy:(NSSet *)inSet;
-@end
-
 @implementation TDEmpty
 
 + (id)empty {
@@ -20,7 +16,8 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	return [[TDParser deepCopy:inAssemblies] autorelease];
+	NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
+	return [deepCopy autorelease];
 }
 
 @end
