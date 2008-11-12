@@ -95,7 +95,7 @@
 		if (isdigit(c)) {
 			[stringbuf appendFormat:@"%C", c];
 			gotADigit = YES;
-			v = v * 10.0 + (c - '0');
+			v = v * 10.0f + (c - '0');
 			c = [r read];
 			if (isFraction) {
 				divideBy *= 10.0f;
