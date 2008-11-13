@@ -12,6 +12,7 @@
 @end
 
 @implementation TDTokenEOF
+
 - (NSString *)description {
 	return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
 }
@@ -19,6 +20,7 @@
 - (NSString *)debugDescription {
 	return [self description];
 }
+
 @end
 
 @interface TDToken ()
@@ -141,7 +143,7 @@
 	} else if (self.isWord) {
 		typeString = @"Word";
 	}
-	return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00ab, self.value, 0x00bb];
+	return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00AB, self.value, 0x00BB];
 }
 
 
