@@ -11,11 +11,11 @@
 @implementation NSString (TDParseKitAdditions)
 
 - (NSString *)stringByRemovingFirstAndLastCharacters {
-	if (self.length < 2) {
-		return self;
-	} else {
-		return [[self substringFromIndex:1] substringToIndex:self.length-2];
-	}
+    if (self.length < 2) {
+        return self;
+    } else {
+        return [[self substringFromIndex:1] substringToIndex:self.length-2];
+    }
 }
 
 @end

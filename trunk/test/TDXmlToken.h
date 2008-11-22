@@ -24,36 +24,36 @@ typedef enum {
     TDTT_XML_NOTATION = 12,
     TDTT_XML_WHITESPACE = 13,
     TDTT_XML_SIGNIFICANT_WHITESPACE = 14,
-	TDTT_XML_END_TAG = 15,
+    TDTT_XML_END_TAG = 15,
     TDTT_XML_END_ENTITY = 16,
     TDTT_XML_XML_DECL = 17,
     TDTT_XML_EOF = 18
 } TDXmlTokenType;
 
 @interface TDXmlToken : NSObject {
-	NSString *stringValue;
-	TDXmlTokenType tokenType;
-	
-	BOOL none;
-	BOOL startTag;
-	BOOL attribute;
-	BOOL text;
-	BOOL cdata;
-	BOOL entityRef;
-	BOOL entity;
-	BOOL processingInstruction;
-	BOOL comment;
-	BOOL document;
-	BOOL doctype;
-	BOOL fragment;
-	BOOL notation;
-	BOOL whitespace;
-	BOOL significantWhitespace;
-	BOOL endTag;
-	BOOL endEntity;
-	BOOL xmlDecl;
-	
-	id value;
+    NSString *stringValue;
+    TDXmlTokenType tokenType;
+    
+    BOOL none;
+    BOOL startTag;
+    BOOL attribute;
+    BOOL text;
+    BOOL cdata;
+    BOOL entityRef;
+    BOOL entity;
+    BOOL processingInstruction;
+    BOOL comment;
+    BOOL document;
+    BOOL doctype;
+    BOOL fragment;
+    BOOL notation;
+    BOOL whitespace;
+    BOOL significantWhitespace;
+    BOOL endTag;
+    BOOL endEntity;
+    BOOL xmlDecl;
+    
+    id value;
 }
 + (TDXmlToken *)EOFToken;
 + (id)tokenWithTokenType:(TDXmlTokenType)t stringValue:(NSString *)s;

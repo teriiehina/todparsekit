@@ -19,118 +19,118 @@
 @class TDReader;
 
 /*!
-	@class       TDTokenizer
-	@brief		 A tokenizer divides a string into tokens.
-	@details	 <p>This class is highly customizable with regard to exactly how this division occurs, but it also has defaults that are suitable for many languages. This class assumes that the character values read from the string lie in the range <tt>0-MAXINT</tt>. For example, the Unicode value of a capital A is 65, so <tt>NSLog(@"%C", (unichar)65);</tt> prints out a capital A.</p>
-				 <p>The behavior of a tokenizer depends on its character state table. This table is an array of 256 <tt>TDTokenizerState</tt> states. The state table decides which state to enter upon reading a character from the input string.</p>
-				 <p>For example, by default, upon reading an 'A', a tokenizer will enter a "word" state. This means the tokenizer will ask a <tt>TDWordState</tt> object to consume the 'A', along with the characters after the 'A' that form a word. The state's responsibility is to consume characters and return a complete token.</p>
-				 <p>The default table sets a <tt>TDSymbolState</tt> for every character from 0 to 255, and then overrides this with:</p>
+    @class      TDTokenizer
+    @brief      A tokenizer divides a string into tokens.
+    @details    <p>This class is highly customizable with regard to exactly how this division occurs, but it also has defaults that are suitable for many languages. This class assumes that the character values read from the string lie in the range <tt>0-MAXINT</tt>. For example, the Unicode value of a capital A is 65, so <tt>NSLog(@"%C", (unichar)65);</tt> prints out a capital A.</p>
+                <p>The behavior of a tokenizer depends on its character state table. This table is an array of 256 <tt>TDTokenizerState</tt> states. The state table decides which state to enter upon reading a character from the input string.</p>
+                <p>For example, by default, upon reading an 'A', a tokenizer will enter a "word" state. This means the tokenizer will ask a <tt>TDWordState</tt> object to consume the 'A', along with the characters after the 'A' that form a word. The state's responsibility is to consume characters and return a complete token.</p>
+                <p>The default table sets a <tt>TDSymbolState</tt> for every character from 0 to 255, and then overrides this with:</p>
 @code
-	 From     To    State
-	    0    ' '    whitespaceState
-	  'a'    'z'    wordState
-	  'A'    'Z'    wordState
-	  160    255    wordState
-	  '0'    '9'    numberState
-	  '-'    '-'    numberState
-	  '.'    '.'    numberState
-	  '"'    '"'    quoteState
-	 '\''   '\''    quoteState
-	  '/'    '/'    slashState
+     From     To    State
+        0    ' '    whitespaceState
+      'a'    'z'    wordState
+      'A'    'Z'    wordState
+      160    255    wordState
+      '0'    '9'    numberState
+      '-'    '-'    numberState
+      '.'    '.'    numberState
+      '"'    '"'    quoteState
+     '\''   '\''    quoteState
+      '/'    '/'    slashState
 @endcode
-				 <p>In addition to allowing modification of the state table, this class makes each of the states above available. Some of these states are customizable. For example, wordState allows customization of what characters can be part of a word, after the first character.</p>
+                <p>In addition to allowing modification of the state table, this class makes each of the states above available. Some of these states are customizable. For example, wordState allows customization of what characters can be part of a word, after the first character.</p>
 */
 @interface TDTokenizer : NSObject {
-	NSString *string;
-	TDReader *reader;
-	
-	NSMutableArray *tokenizerStates;
-	
-	TDNumberState *numberState;
-	TDQuoteState *quoteState;
-	TDSlashState *slashState;
-	TDSymbolState *symbolState;
-	TDWhitespaceState *whitespaceState;
-	TDWordState *wordState;
+    NSString *string;
+    TDReader *reader;
+    
+    NSMutableArray *tokenizerStates;
+    
+    TDNumberState *numberState;
+    TDQuoteState *quoteState;
+    TDSlashState *slashState;
+    TDSymbolState *symbolState;
+    TDWhitespaceState *whitespaceState;
+    TDWordState *wordState;
 }
 /*!
-	@fn			tokenizer
-	@brief		Convenience factory method. Sets string to read from to <tt>nil</tt>.
-	@result		An initialized tokenizer.
+    @fn         tokenizer
+    @brief      Convenience factory method. Sets string to read from to <tt>nil</tt>.
+    @result     An initialized tokenizer.
 */
 + (id)tokenizer;
 
 /*!
-	@fn			tokenizerWithString:
-	@brief		Convenience factory method.
-	@param      s string to read from.
-	@result		An autoreleased initialized tokenizer.
+    @fn         tokenizerWithString:
+    @brief      Convenience factory method.
+    @param      s string to read from.
+    @result     An autoreleased initialized tokenizer.
 */
 + (id)tokenizerWithString:(NSString *)s;
 
 /*!
-	@fn			initWithString:
-	@brief		Designated Initializer. Constructs a tokenizer to read from the supplied string.
-	@param      s string to read from.
-	@result		An initialized tokenizer.
+    @fn         initWithString:
+    @brief      Designated Initializer. Constructs a tokenizer to read from the supplied string.
+    @param      s string to read from.
+    @result     An initialized tokenizer.
 */
 - (id)initWithString:(NSString *)s;
 
 /*!
-	@fn			nextToken
-	@brief		Returns the next token.
-	@result		the next token.
+    @fn         nextToken
+    @brief      Returns the next token.
+    @result     the next token.
 */
 - (TDToken *)nextToken;
 
 /*!
-	@fn			setTokenizerState:from:to:
-	@brief		Change the state the tokenizer will enter upon reading any character between "start" and "end".
-	@param      state the state for this character range
-	@param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
-	@param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
+    @fn         setTokenizerState:from:to:
+    @brief      Change the state the tokenizer will enter upon reading any character between "start" and "end".
+    @param      state the state for this character range
+    @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
+    @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-	@property	string
-	@brief		The string to read from.
+    @property   string
+    @brief      The string to read from.
 */
 @property (nonatomic, copy) NSString *string;
 
 /*!
-	@property	numberState
-	@brief		The state this tokenizer uses to build numbers.
+    @property    numberState
+    @brief        The state this tokenizer uses to build numbers.
 */
 @property (nonatomic, retain) TDNumberState *numberState;
 
 /*!
-	@property	quoteState
-	@brief		The state this tokenizer uses to build quoted strings.
+    @property   quoteState
+    @brief      The state this tokenizer uses to build quoted strings.
 */
 @property (nonatomic, retain) TDQuoteState *quoteState;
 
 /*!
-	@property	slashState
-	@brief		The state this tokenizer uses to recognize (and ignore) comments.
+    @property   slashState
+    @brief      The state this tokenizer uses to recognize (and ignore) comments.
 */
 @property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
-	@property	symbolState
-	@brief		The state this tokenizer uses to recognize symbols.
+    @property   symbolState
+    @brief      The state this tokenizer uses to recognize symbols.
 */
 @property (nonatomic, retain) TDSymbolState *symbolState;
 
 /*!
-	@property	whitespaceState
-	@brief		The state this tokenizer uses to recognize (and ignore) whitespace.
+    @property   whitespaceState
+    @brief      The state this tokenizer uses to recognize (and ignore) whitespace.
 */
 @property (nonatomic, retain) TDWhitespaceState *whitespaceState;
 
 /*!
-	@property	wordState
-	@brief		The state this tokenizer uses to build words.
+    @property   wordState
+    @brief      The state this tokenizer uses to build words.
 */
 @property (nonatomic, retain) TDWordState *wordState;
 @end

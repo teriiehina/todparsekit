@@ -9,19 +9,19 @@
 #import "TDParseKit.h"
 
 @interface TDJsonParser : TDAlternation {
-	TDParser *stringParser;
-	TDParser *numberParser;
-	TDParser *nullParser;
-	TDCollectionParser *booleanParser;
-	TDCollectionParser *arrayParser;
-	TDCollectionParser *objectParser;
-	TDCollectionParser *valueParser;
-	TDCollectionParser *commaValueParser;
-	TDCollectionParser *propertyParser;
-	TDCollectionParser *commaPropertyParser;
-	
-	TDToken *curly;
-	TDToken *bracket;
+    TDParser *stringParser;
+    TDParser *numberParser;
+    TDParser *nullParser;
+    TDCollectionParser *booleanParser;
+    TDCollectionParser *arrayParser;
+    TDCollectionParser *objectParser;
+    TDCollectionParser *valueParser;
+    TDCollectionParser *commaValueParser;
+    TDCollectionParser *propertyParser;
+    TDCollectionParser *commaPropertyParser;
+    
+    TDToken *curly;
+    TDToken *bracket;
 }
 
 - (id)parse:(NSString *)s;

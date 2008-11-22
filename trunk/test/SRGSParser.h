@@ -9,42 +9,42 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface SRGSParser : TDSequence {
-	TDCollectionParser *selfIdentHeader;
-	TDCollectionParser *ruleName;
-	TDCollectionParser *tagFormat;
-	TDCollectionParser *lexiconURI;
-	TDCollectionParser *weight;
-	TDCollectionParser *repeat;
-	TDCollectionParser *probability;
-	TDCollectionParser *externalRuleRef;
-	TDCollectionParser *token;
-	TDCollectionParser *languageAttachment;
-	TDCollectionParser *tag;
-	TDCollectionParser *grammar;
-	TDCollectionParser *declaration;
-	TDCollectionParser *baseDecl;
-	TDCollectionParser *languageDecl;
-	TDCollectionParser *modeDecl;
-	TDCollectionParser *rootRuleDecl;
-	TDCollectionParser *tagFormatDecl;
-	TDCollectionParser *lexiconDecl;
-	TDCollectionParser *metaDecl;
-	TDCollectionParser *tagDecl;
-	TDCollectionParser *ruleDefinition;
-	TDCollectionParser *scope;
-	TDCollectionParser *ruleExpansion;
-	TDCollectionParser *ruleAlternative;
-	TDCollectionParser *sequenceElement;
-	TDCollectionParser *subexpansion;
-	TDCollectionParser *ruleRef;
-	TDCollectionParser *localRuleRef;
-	TDCollectionParser *specialRuleRef;
-	TDCollectionParser *repeatOperator;
-	
-	TDCollectionParser *baseURI;
-	TDCollectionParser *languageCode;
-	TDCollectionParser *ABNF_URI;
-	TDCollectionParser *ABNF_URI_with_Media_Type;
+    TDCollectionParser *selfIdentHeader;
+    TDCollectionParser *ruleName;
+    TDCollectionParser *tagFormat;
+    TDCollectionParser *lexiconURI;
+    TDCollectionParser *weight;
+    TDCollectionParser *repeat;
+    TDCollectionParser *probability;
+    TDCollectionParser *externalRuleRef;
+    TDCollectionParser *token;
+    TDCollectionParser *languageAttachment;
+    TDCollectionParser *tag;
+    TDCollectionParser *grammar;
+    TDCollectionParser *declaration;
+    TDCollectionParser *baseDecl;
+    TDCollectionParser *languageDecl;
+    TDCollectionParser *modeDecl;
+    TDCollectionParser *rootRuleDecl;
+    TDCollectionParser *tagFormatDecl;
+    TDCollectionParser *lexiconDecl;
+    TDCollectionParser *metaDecl;
+    TDCollectionParser *tagDecl;
+    TDCollectionParser *ruleDefinition;
+    TDCollectionParser *scope;
+    TDCollectionParser *ruleExpansion;
+    TDCollectionParser *ruleAlternative;
+    TDCollectionParser *sequenceElement;
+    TDCollectionParser *subexpansion;
+    TDCollectionParser *ruleRef;
+    TDCollectionParser *localRuleRef;
+    TDCollectionParser *specialRuleRef;
+    TDCollectionParser *repeatOperator;
+    
+    TDCollectionParser *baseURI;
+    TDCollectionParser *languageCode;
+    TDCollectionParser *ABNF_URI;
+    TDCollectionParser *ABNF_URI_with_Media_Type;
 }
 - (id)parse:(NSString *)s;
 - (TDAssembly *)assemblyWithString:(NSString *)s;

@@ -11,8 +11,8 @@
 @class TDXmlTokenizer;
 
 @interface TDXmlTokenAssembly : TDAssembly <NSCopying> {
-	TDXmlTokenizer *tokenizer;
-	NSMutableArray *tokens;
+    TDXmlTokenizer *tokenizer;
+    NSMutableArray *tokens;
 }
 @property (nonatomic, retain) TDXmlTokenizer *tokenizer;
 @end

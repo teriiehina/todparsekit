@@ -14,49 +14,49 @@
 @implementation TDXmlNameTest
 //
 //- (void)test {
-//	NSString *s = @"_foob?ar _foobar 2baz";
-//	TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-//	
-//	//Name	   ::=   	(Letter | '_' | ':') (NameChar)*
-//	TDXmlNameState *nameState = [[[TDXmlNameState alloc] init] autorelease];
-//	
-//	[t setTokenizerState:nameState from: '_' to: '_'];
-//	[t setTokenizerState:nameState from: ':' to: ':'];
-//	[t setTokenizerState:nameState from: 'a' to: 'z'];
-//	[t setTokenizerState:nameState from: 'A' to: 'Z'];
-//	[t setTokenizerState:nameState from:0xc0 to:0xff];
-//	
-//	TDXmlNmtokenState *nmtokenState = [[[TDXmlNmtokenState alloc] init] autorelease];
-//	[t setTokenizerState:nmtokenState from: '0' to: '9'];
-//	
-//	TDXmlToken *tok = nil;
-//	
-//	// _foob
-//	tok = (TDXmlToken *)[t nextToken];
-//	STAssertNotNil(tok, @"");
-//	STAssertTrue(tok.isName, @"");
+//    NSString *s = @"_foob?ar _foobar 2baz";
+//    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+//    
+//    //Name       ::=       (Letter | '_' | ':') (NameChar)*
+//    TDXmlNameState *nameState = [[[TDXmlNameState alloc] init] autorelease];
+//    
+//    [t setTokenizerState:nameState from: '_' to: '_'];
+//    [t setTokenizerState:nameState from: ':' to: ':'];
+//    [t setTokenizerState:nameState from: 'a' to: 'z'];
+//    [t setTokenizerState:nameState from: 'A' to: 'Z'];
+//    [t setTokenizerState:nameState from:0xc0 to:0xff];
+//    
+//    TDXmlNmtokenState *nmtokenState = [[[TDXmlNmtokenState alloc] init] autorelease];
+//    [t setTokenizerState:nmtokenState from: '0' to: '9'];
+//    
+//    TDXmlToken *tok = nil;
+//    
+//    // _foob
+//    tok = (TDXmlToken *)[t nextToken];
+//    STAssertNotNil(tok, @"");
+//    STAssertTrue(tok.isName, @"");
 //
-//	// '?'
-//	tok = (TDXmlToken *)[t nextToken];
-//	STAssertNotNil(tok, @"");
-//	STAssertTrue(tok.isSymbol, @"");
-//	
-//	// ar
-//	tok = (TDXmlToken *)[t nextToken];
-//	STAssertNotNil(tok, @"");
-//	STAssertTrue(tok.isName, @"");
-//	
-//	// _foobar
-//	tok = (TDXmlToken *)[t nextToken];
-//	STAssertNotNil(tok, @"");
-//	STAssertTrue(tok.isName, @"");
-//	
-//	// 2baz
-//	tok = (TDXmlToken *)[t nextToken];
-//	STAssertNotNil(tok, @"");
-//	STAssertTrue(tok.isNmtoken, @"");
-//	NSLog(@"tok: %@", tok);
-//	
+//    // '?'
+//    tok = (TDXmlToken *)[t nextToken];
+//    STAssertNotNil(tok, @"");
+//    STAssertTrue(tok.isSymbol, @"");
+//    
+//    // ar
+//    tok = (TDXmlToken *)[t nextToken];
+//    STAssertNotNil(tok, @"");
+//    STAssertTrue(tok.isName, @"");
+//    
+//    // _foobar
+//    tok = (TDXmlToken *)[t nextToken];
+//    STAssertNotNil(tok, @"");
+//    STAssertTrue(tok.isName, @"");
+//    
+//    // 2baz
+//    tok = (TDXmlToken *)[t nextToken];
+//    STAssertNotNil(tok, @"");
+//    STAssertTrue(tok.isNmtoken, @"");
+//    NSLog(@"tok: %@", tok);
+//    
 //}
 
 @end

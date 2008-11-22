@@ -12,8 +12,8 @@
 @implementation TDXmlTerminal
 
 - (void)dealloc {
-	self.tok = nil;
-	[super dealloc];
+    self.tok = nil;
+    [super dealloc];
 }
 
 @synthesize tok;

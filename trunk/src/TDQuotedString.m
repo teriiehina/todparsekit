@@ -12,13 +12,13 @@
 @implementation TDQuotedString
 
 + (id)quotedString {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	return tok.isQuotedString;
+    TDToken *tok = (TDToken *)obj;
+    return tok.isQuotedString;
 }
 
 @end

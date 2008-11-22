@@ -12,47 +12,47 @@
 @implementation TDUppercaseWordTest
 
 - (void)testFoobar {
-	NSString *s = @"Foobar";
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDUppercaseWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[Foobar]Foobar^", [result description], @"");
+    NSString *s = @"Foobar";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDUppercaseWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[Foobar]Foobar^", [result description], @"");
 }
 
 
 - (void)testfoobar {
-	NSString *s = @"foobar";
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDUppercaseWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNil(result, @"");
+    NSString *s = @"foobar";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDUppercaseWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNil(result, @"");
 }
 
 
 - (void)test123 {
-	NSString *s = @"123";
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDUppercaseWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNil(result, @"");
+    NSString *s = @"123";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDUppercaseWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNil(result, @"");
 }
 
 
 - (void)testPercentFoobar {
-	NSString *s = @"%Foobar";
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDUppercaseWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNil(result, @"");
+    NSString *s = @"%Foobar";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDUppercaseWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNil(result, @"");
 }
 
 @end

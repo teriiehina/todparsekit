@@ -11,13 +11,13 @@
 @implementation TDEmpty
 
 + (id)empty {
-	return [[[self alloc] init] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
-	return [deepCopy autorelease];
+    NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
+    return [deepCopy autorelease];
 }
 
 @end

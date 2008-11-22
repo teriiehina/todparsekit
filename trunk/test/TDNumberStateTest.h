@@ -10,8 +10,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDNumberStateTest : SenTestCase {
-	TDNumberState *numberState;
-	TDReader *r;
-	NSString *s;
+    TDNumberState *numberState;
+    TDReader *r;
+    NSString *s;
 }
 @end

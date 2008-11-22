@@ -11,12 +11,12 @@
 @implementation TDChar
 
 + (id)char {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	return YES;
+    return YES;
 }
 
 @end

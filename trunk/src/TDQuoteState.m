@@ -18,25 +18,25 @@
 @implementation TDQuoteState
 
 - (void)dealloc {
-	[super dealloc];
+    [super dealloc];
 }
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	[self reset];
-	
-	[stringbuf appendFormat:@"%C", cin];
-	NSInteger c;
-	do {
-		c = [r read];
-		if (c < 0) {
-			c = cin;
-		}
-		
-		[stringbuf appendFormat:@"%C", c];
-	} while (c != cin);
-	
-	return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringbuf floatValue:0.0f];
+    [self reset];
+    
+    [stringbuf appendFormat:@"%C", cin];
+    NSInteger c;
+    do {
+        c = [r read];
+        if (c < 0) {
+            c = cin;
+        }
+        
+        [stringbuf appendFormat:@"%C", c];
+    } while (c != cin);
+    
+    return [TDToken tokenWithTokenType:TDTT_QUOTED stringValue:stringbuf floatValue:0.0f];
 }
 
 @end

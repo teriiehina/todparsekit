@@ -12,7 +12,7 @@
 @class XMLReader;
 
 @interface TDXmlTokenizer : NSObject {
-	XMLReader *reader;
+    XMLReader *reader;
 }
 + (id)tokenizerWithContentsOfFile:(NSString *)path;
 

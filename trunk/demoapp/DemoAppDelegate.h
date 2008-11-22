@@ -11,13 +11,13 @@
 @class TDTokenizer;
 
 @interface DemoAppDelegate : NSObject {
-	IBOutlet NSTokenField *tokenField;
-	
-	TDTokenizer *tokenizer;
-	NSString *inString;
-	NSString *outString;
-	NSString *tokString;
-	BOOL busy;
+    IBOutlet NSTokenField *tokenField;
+    
+    TDTokenizer *tokenizer;
+    NSString *inString;
+    NSString *outString;
+    NSString *tokString;
+    BOOL busy;
 }
 - (IBAction)parse:(id)sender;
 

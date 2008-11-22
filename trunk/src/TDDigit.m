@@ -11,13 +11,13 @@
 @implementation TDDigit
 
 + (id)digit {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	NSInteger c = [obj integerValue];
-	return isdigit(c);
+    NSInteger c = [obj integerValue];
+    return isdigit(c);
 }
 
 @end

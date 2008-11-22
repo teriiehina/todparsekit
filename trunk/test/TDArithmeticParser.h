@@ -9,15 +9,15 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDArithmeticParser : TDSequence {
-	TDCollectionParser *exprParser;
-	TDCollectionParser *termParser;
-	TDCollectionParser *plusTermParser;
-	TDCollectionParser *minusTermParser;
-	TDCollectionParser *factorParser;
-	TDCollectionParser *timesFactorParser;
-	TDCollectionParser *divFactorParser;
-	TDCollectionParser *exponentFactorParser;
-	TDCollectionParser *phraseParser;
+    TDCollectionParser *exprParser;
+    TDCollectionParser *termParser;
+    TDCollectionParser *plusTermParser;
+    TDCollectionParser *minusTermParser;
+    TDCollectionParser *factorParser;
+    TDCollectionParser *timesFactorParser;
+    TDCollectionParser *divFactorParser;
+    TDCollectionParser *exponentFactorParser;
+    TDCollectionParser *phraseParser;
 }
 - (CGFloat)parse:(NSString *)s;
 

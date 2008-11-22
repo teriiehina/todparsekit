@@ -21,41 +21,41 @@
 @implementation TDSymbolState
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-		self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
-		self.addedSymbols = [NSMutableArray array];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
+        self.addedSymbols = [NSMutableArray array];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.rootNode = nil;
-	self.addedSymbols = nil;
-	[super dealloc];
+    self.rootNode = nil;
+    self.addedSymbols = nil;
+    [super dealloc];
 }
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
-	NSInteger len = symbol.length;
+    NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
+    NSInteger len = symbol.length;
 
-	if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-		return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:symbol floatValue:0.0f];
-	} else {
-		NSInteger i = 0;
-		for ( ; i < len - 1; i++) {
-			[r unread];
-		}
-		return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0f];
-	}
+    if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
+        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:symbol floatValue:0.0f];
+    } else {
+        NSInteger i = 0;
+        for ( ; i < len - 1; i++) {
+            [r unread];
+        }
+        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0f];
+    }
 }
 
 
 - (void)add:(NSString *)s {
-	[self.rootNode add:s];
-	[addedSymbols addObject:s];
+    [self.rootNode add:s];
+    [addedSymbols addObject:s];
 }
 
 @synthesize rootNode;

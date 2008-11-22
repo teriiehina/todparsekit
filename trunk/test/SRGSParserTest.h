@@ -11,10 +11,10 @@
 #import "SRGSParser.h"
 
 @interface SRGSParserTest : SenTestCase {
-	NSString *s;
-	SRGSParser *p;
-	TDAssembly *a;
-	TDAssembly *result;
+    NSString *s;
+    SRGSParser *p;
+    TDAssembly *a;
+    TDAssembly *result;
 }
 
 @end

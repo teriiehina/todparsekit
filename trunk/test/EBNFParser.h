@@ -9,21 +9,21 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface EBNFParser : TDRepetition {
-	TDCollectionParser *statementParser;
-	TDCollectionParser *exprOrAssignmentParser;
-	TDCollectionParser *assignmentParser;
-	TDCollectionParser *declarationParser;
-	TDCollectionParser *variableParser;
-	TDCollectionParser *expressionParser;
-	TDCollectionParser *termParser;
-	TDCollectionParser *orTermParser;
-	TDCollectionParser *factorParser;
-	TDCollectionParser *nextFactorParser;
-	TDCollectionParser *phraseParser;
-	TDCollectionParser *phraseStarParser;
-	TDCollectionParser *phraseQuestionParser;
-	TDCollectionParser *phrasePlusParser;
-	TDCollectionParser *atomicValueParser;
+    TDCollectionParser *statementParser;
+    TDCollectionParser *exprOrAssignmentParser;
+    TDCollectionParser *assignmentParser;
+    TDCollectionParser *declarationParser;
+    TDCollectionParser *variableParser;
+    TDCollectionParser *expressionParser;
+    TDCollectionParser *termParser;
+    TDCollectionParser *orTermParser;
+    TDCollectionParser *factorParser;
+    TDCollectionParser *nextFactorParser;
+    TDCollectionParser *phraseParser;
+    TDCollectionParser *phraseStarParser;
+    TDCollectionParser *phraseQuestionParser;
+    TDCollectionParser *phrasePlusParser;
+    TDCollectionParser *atomicValueParser;
 }
 - (id)parse:(NSString *)s;
 

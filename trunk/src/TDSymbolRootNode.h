@@ -12,26 +12,26 @@
 @class TDReader;
 
 /*!
-	@class       TDSymbolRootNode 
-	@brief		 This class is a special case of a <tt>TDSymbolNode</tt>.
-	@details	 This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
+    @class      TDSymbolRootNode 
+    @brief      This class is a special case of a <tt>TDSymbolNode</tt>.
+    @details    This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
 */
 @interface TDSymbolRootNode : TDSymbolNode {
 }
 
 /*!
-	@fn			add:
-	@brief		Adds the given string as a multi-character symbol.
-	@param      s a multi-character symbol that should be recognized as a single symbol token by this state
+    @fn         add:
+    @brief      Adds the given string as a multi-character symbol.
+    @param      s a multi-character symbol that should be recognized as a single symbol token by this state
 */
 - (void)add:(NSString *)s;
 
 /*!
-	@fn			nextSymbol:startingWith:
-	@brief		Return a symbol string from a reader.
-	@param      r the reader from which to read
-	@param      cin the character from witch to start
-	@result     a symbol string from a reader
+    @fn         nextSymbol:startingWith:
+    @brief      Return a symbol string from a reader.
+    @param      r the reader from which to read
+    @param      cin the character from witch to start
+    @result     a symbol string from a reader
 */
 - (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin;
 @end

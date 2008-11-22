@@ -20,67 +20,67 @@
 @implementation TDTerminal
 
 - (id)init {
-	return [self initWithString:nil];
+    return [self initWithString:nil];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super init];
-	if (self != nil) {
-		self.string = s;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.string = s;
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.string = nil;
-	[super dealloc];
+    self.string = nil;
+    [super dealloc];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	NSMutableSet *outAssemblies = [NSMutableSet set];
-	
-	for (TDAssembly *a in inAssemblies) {
-		TDAssembly *b = [self matchOneAssembly:a];
-		if (b) {
-			[outAssemblies addObject:b];
-		}
-	}
-	
-	return outAssemblies;
+    NSMutableSet *outAssemblies = [NSMutableSet set];
+    
+    for (TDAssembly *a in inAssemblies) {
+        TDAssembly *b = [self matchOneAssembly:a];
+        if (b) {
+            [outAssemblies addObject:b];
+        }
+    }
+    
+    return outAssemblies;
 }
 
 
 - (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly {
-	if (![inAssembly hasMore]) {
-		return nil;
-	}
-	
-	TDAssembly *outAssembly = nil;
-	
-	if ([self qualifies:[inAssembly peek]]) {
-		outAssembly = [[inAssembly copy] autorelease];
-		id obj = [outAssembly next];
-		if (!discardFlag) {
-			[outAssembly push:obj];
-		}
-	}
-	
-	return outAssembly;
+    if (![inAssembly hasMore]) {
+        return nil;
+    }
+    
+    TDAssembly *outAssembly = nil;
+    
+    if ([self qualifies:[inAssembly peek]]) {
+        outAssembly = [[inAssembly copy] autorelease];
+        id obj = [outAssembly next];
+        if (!discardFlag) {
+            [outAssembly push:obj];
+        }
+    }
+    
+    return outAssembly;
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	NSAssert1(0, @"-[TDTerminal %s] must be overriden", _cmd);
-	return NO;
+    NSAssert1(0, @"-[TDTerminal %s] must be overriden", _cmd);
+    return NO;
 }
 
 
 - (TDTerminal *)discard {
-	discardFlag = YES;
-	return self;
+    discardFlag = YES;
+    return self;
 }
 
 @synthesize string;

@@ -16,51 +16,51 @@
 
 
 - (void)testDash {
-	s = @"-";
-	a = [TDTokenAssembly assemblyWithString:s];
-	
-	p = [TDSymbol symbolWithString:s];
-	
-	TDAssembly *result = [p bestMatchFor:a];
-	
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[-]-^", [result description], @"");
+    s = @"-";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSymbol symbolWithString:s];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[-]-^", [result description], @"");
 }
 
 
 - (void)testFalseDash {
-	s = @"-";
-	a = [TDTokenAssembly assemblyWithString:s];
-	
-	p = [TDSymbol symbolWithString:@"+"];
-	
-	TDAssembly *result = [p bestMatchFor:a];
-	STAssertNil(result, @"");
+    s = @"-";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSymbol symbolWithString:@"+"];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    STAssertNil(result, @"");
 }
 
 
 - (void)testTrueDash {
-	s = @"-";
-	a = [TDTokenAssembly assemblyWithString:s];
-	
-	p = [TDSymbol symbol];
-	
-	TDAssembly *result = [p bestMatchFor:a];
-	
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[-]-^", [result description], @"");
+    s = @"-";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSymbol symbol];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[-]-^", [result description], @"");
 }
 
 
 - (void)testDiscardDash {
-	s = @"-";
-	a = [TDTokenAssembly assemblyWithString:s];
-	
-	p = [[TDSymbol symbolWithString:s] discard];
-	
-	TDAssembly *result = [p bestMatchFor:a];
-	
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[]-^", [result description], @"");
+    s = @"-";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [[TDSymbol symbolWithString:s] discard];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[]-^", [result description], @"");
 }
 @end

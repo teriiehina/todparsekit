@@ -15,22 +15,22 @@
 @implementation TDCollectionParser
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-		self.subparsers = [NSMutableArray array];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.subparsers = [NSMutableArray array];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.subparsers = nil;
-	[super dealloc];
+    self.subparsers = nil;
+    [super dealloc];
 }
 
 
 - (void)add:(TDParser *)p {
-	[subparsers addObject:p];
+    [subparsers addObject:p];
 }
 
 @synthesize subparsers;

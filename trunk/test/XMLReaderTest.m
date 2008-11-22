@@ -11,17 +11,17 @@
 @implementation XMLReaderTest
 
 - (void)test {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
-	
-	NSLog(@"\n\npath: %@\n\n", path);
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
+    
+    NSLog(@"\n\npath: %@\n\n", path);
 
-	XMLReader *p = [XMLReader parserWithContentsOfFile:path];
-	NSInteger ret = [p read];
-	while (ret == 1) {
-		NSLog(@"nodeType: %d, name: %@", p.nodeType, p.name);
-		ret = [p read];
-		
-	}
+    XMLReader *p = [XMLReader parserWithContentsOfFile:path];
+    NSInteger ret = [p read];
+    while (ret == 1) {
+        NSLog(@"nodeType: %d, name: %@", p.nodeType, p.name);
+        ret = [p read];
+        
+    }
 }
 
 @end

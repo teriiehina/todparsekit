@@ -12,13 +12,13 @@
 @implementation TDUppercaseWord
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	if (!tok.isWord) {
-		return NO;
-	}
-	
-	NSString *s = tok.stringValue;
-	return s.length && isupper([s characterAtIndex:0]);
+    TDToken *tok = (TDToken *)obj;
+    if (!tok.isWord) {
+        return NO;
+    }
+    
+    NSString *s = tok.stringValue;
+    return s.length && isupper([s characterAtIndex:0]);
 }
 
 @end

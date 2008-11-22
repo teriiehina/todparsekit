@@ -11,8 +11,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDWordStateTest : SenTestCase {
-	TDWordState *wordState;
-	TDReader *r;
-	NSString *s;	
+    TDWordState *wordState;
+    TDReader *r;
+    NSString *s;    
 }
 @end

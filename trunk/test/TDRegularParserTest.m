@@ -11,11 +11,11 @@
 @implementation TDRegularParserTest
 
 - (void)test {
-	s = @"1aa(2|3)*";
-	p = [TDRegularParser parser];
-	a = [TDCharacterAssembly assemblyWithString:s];
-	result = [p completeMatchFor:a];
-	NSLog(@"result: %@", result);
+    s = @"1aa(2|3)*";
+    p = [TDRegularParser parser];
+    a = [TDCharacterAssembly assemblyWithString:s];
+    result = [p completeMatchFor:a];
+    NSLog(@"result: %@", result);
 }
 
 @end

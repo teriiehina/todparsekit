@@ -20,40 +20,40 @@
 @implementation TDSymbolNode
 
 - (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c {
-	self = [super init];
-	if (self != nil) {
-		self.parent = p;
-		self.character = c;
-		self.children = [NSMutableDictionary dictionary];
-		[self determineAncestry];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.parent = p;
+        self.character = c;
+        self.children = [NSMutableDictionary dictionary];
+        [self determineAncestry];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.parent = nil;
-	self.ancestry = nil;
-	self.children = nil;
-	[super dealloc];
+    self.parent = nil;
+    self.ancestry = nil;
+    self.children = nil;
+    [super dealloc];
 }
 
 
 - (void)determineAncestry {
-	TDSymbolNode *n = self;
-	NSMutableString *result = [NSMutableString string];
-	
-	while (-1 != n.character) {
-		[result insertString:[NSString stringWithFormat:@"%C", n.character] atIndex:0];
-		n = n.parent;
-	}
+    TDSymbolNode *n = self;
+    NSMutableString *result = [NSMutableString string];
+    
+    while (-1 != n.character) {
+        [result insertString:[NSString stringWithFormat:@"%C", n.character] atIndex:0];
+        n = n.parent;
+    }
 
-	self.ancestry = [[result copy] autorelease]; // assign an immutable copy
+    self.ancestry = [[result copy] autorelease]; // assign an immutable copy
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<TDSymbolNode %@>", self.ancestry];
+    return [NSString stringWithFormat:@"<TDSymbolNode %@>", self.ancestry];
 }
 
 @synthesize ancestry;

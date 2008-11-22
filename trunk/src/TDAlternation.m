@@ -16,18 +16,18 @@
 @implementation TDAlternation
 
 + (id)alternation {
-	return [[[self alloc] init] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	NSMutableSet *outAssemblies = [NSMutableSet set];
-	
-	for (TDParser *p in subparsers) {
-		[outAssemblies unionSet:[p matchAndAssemble:inAssemblies]];
-	}
-	
-	return outAssemblies;
+    NSMutableSet *outAssemblies = [NSMutableSet set];
+    
+    for (TDParser *p in subparsers) {
+        [outAssemblies unionSet:[p matchAndAssemble:inAssemblies]];
+    }
+    
+    return outAssemblies;
 }
 
 @end

@@ -16,21 +16,21 @@
 @implementation TDSequence
 
 + (id)sequence {
-	return [[[self alloc] init] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	NSSet *outAssemblies = inAssemblies;
-	
-	for (TDParser *p in subparsers) {
-		outAssemblies = [p matchAndAssemble:outAssemblies];
-		if (!outAssemblies.count) {
-			break;
-		}
-	}
-	
-	return outAssemblies;
+    NSSet *outAssemblies = inAssemblies;
+    
+    for (TDParser *p in subparsers) {
+        outAssemblies = [p matchAndAssemble:outAssemblies];
+        if (!outAssemblies.count) {
+            break;
+        }
+    }
+    
+    return outAssemblies;
 }
 
 @end

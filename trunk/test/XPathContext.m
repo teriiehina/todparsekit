@@ -11,25 +11,25 @@
 @implementation XPathContext
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+    }
+    return self;
 }
 
 
 - (void)resetWithCurrentNode:(NSXMLNode *)n {
-	self.currentNode = n;
-	self.contextNode = nil;
-	self.contextNodeSet = nil;
+    self.currentNode = n;
+    self.contextNode = nil;
+    self.contextNodeSet = nil;
 }
 
 
 - (void)dealloc {
-	self.currentNode = nil;
-	self.contextNode = nil;
-	self.contextNodeSet = nil;
-	[super dealloc];
+    self.currentNode = nil;
+    self.contextNode = nil;
+    self.contextNodeSet = nil;
+    [super dealloc];
 }
 
 @synthesize currentNode;

@@ -11,8 +11,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDSymbolStateTest : SenTestCase {
-	TDSymbolState *symbolState;
-	TDReader *r;
-	NSString *s;
+    TDSymbolState *symbolState;
+    TDReader *r;
+    NSString *s;
 }
 @end

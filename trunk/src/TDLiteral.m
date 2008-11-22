@@ -16,32 +16,32 @@
 @implementation TDLiteral
 
 + (id)literalWithString:(NSString *)s {
-	return [[[self alloc] initWithString:s] autorelease];
+    return [[[self alloc] initWithString:s] autorelease];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super initWithString:s];
-	if (self != nil) {
-		self.literal = [TDToken tokenWithTokenType:TDTT_WORD stringValue:s floatValue:0.0f];
-	}
-	return self;
+    self = [super initWithString:s];
+    if (self != nil) {
+        self.literal = [TDToken tokenWithTokenType:TDTT_WORD stringValue:s floatValue:0.0f];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.literal = nil;
-	[super dealloc];
+    self.literal = nil;
+    [super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	return [literal isEqual:obj];
+    return [literal isEqual:obj];
 }
 
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, literal.stringValue];
+    return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, literal.stringValue];
 }
 
 @synthesize literal;

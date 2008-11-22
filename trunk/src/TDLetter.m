@@ -11,13 +11,13 @@
 @implementation TDLetter
 
 + (id)letter {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	NSInteger c = [obj integerValue];
-	return isalpha(c);
+    NSInteger c = [obj integerValue];
+    return isalpha(c);
 }
 
 @end

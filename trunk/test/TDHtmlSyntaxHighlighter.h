@@ -12,32 +12,32 @@
 @class TDToken;
 
 @interface TDHtmlSyntaxHighlighter : NSObject {
-	BOOL isDarkBG;
-	BOOL inScript;
-	TDTokenizer *tokenizer;
-	NSMutableArray *stack;
-	TDToken *ltToken;
-	TDToken *gtToken;
-	TDToken *startCommentToken;
-	TDToken *endCommentToken;
-	TDToken *startCDATAToken;
-	TDToken *endCDATAToken;
-	TDToken *startPIToken;
-	TDToken *endPIToken;
-	TDToken *startDoctypeToken;
-	TDToken *fwdSlashToken;
-	TDToken *eqToken;
-	TDToken *scriptToken;
-	TDToken *endScriptToken;
-	
-	NSMutableAttributedString *highlightedString;
-	NSDictionary *tagAttributes;
-	NSDictionary *textAttributes;
-	NSDictionary *attrNameAttributes;
-	NSDictionary *attrValueAttributes;
-	NSDictionary *eqAttributes;
-	NSDictionary *commentAttributes;
-	NSDictionary *piAttributes;
+    BOOL isDarkBG;
+    BOOL inScript;
+    TDTokenizer *tokenizer;
+    NSMutableArray *stack;
+    TDToken *ltToken;
+    TDToken *gtToken;
+    TDToken *startCommentToken;
+    TDToken *endCommentToken;
+    TDToken *startCDATAToken;
+    TDToken *endCDATAToken;
+    TDToken *startPIToken;
+    TDToken *endPIToken;
+    TDToken *startDoctypeToken;
+    TDToken *fwdSlashToken;
+    TDToken *eqToken;
+    TDToken *scriptToken;
+    TDToken *endScriptToken;
+    
+    NSMutableAttributedString *highlightedString;
+    NSDictionary *tagAttributes;
+    NSDictionary *textAttributes;
+    NSDictionary *attrNameAttributes;
+    NSDictionary *attrValueAttributes;
+    NSDictionary *eqAttributes;
+    NSDictionary *commentAttributes;
+    NSDictionary *piAttributes;
 }
 - (id)initWithAttributesForDarkBackground:(BOOL)isDark;
 

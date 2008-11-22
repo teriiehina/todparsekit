@@ -11,21 +11,21 @@
 @implementation TDSpecificChar
 
 + (id)specificCharWithChar:(NSInteger)c {
-	return [[[self alloc] initWithSpecificChar:c] autorelease];
+    return [[[self alloc] initWithSpecificChar:c] autorelease];
 }
 
 
 - (id)initWithSpecificChar:(NSInteger)c {
-	self = [super initWithString:[NSString stringWithFormat:@"%C", c]];
-	if (self != nil) {
-	}
-	return self;
+    self = [super initWithString:[NSString stringWithFormat:@"%C", c]];
+    if (self != nil) {
+    }
+    return self;
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	NSInteger c = [obj integerValue];
-	return c == [string characterAtIndex:0];
+    NSInteger c = [obj integerValue];
+    return c == [string characterAtIndex:0];
 }
 
 @end

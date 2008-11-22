@@ -20,61 +20,61 @@
 @implementation TDRepetition
 
 + (id)repetition {
-	return [[[self alloc] initWithSubparser:nil] autorelease];
+    return [[[self alloc] initWithSubparser:nil] autorelease];
 }
 
 
 + (id)repetitionWithSubparser:(TDParser *)p {
-	return [[[self alloc] initWithSubparser:p] autorelease];
+    return [[[self alloc] initWithSubparser:p] autorelease];
 }
 
 
 - (id)init {
-	return [self initWithSubparser:nil];
+    return [self initWithSubparser:nil];
 }
 
 
 - (id)initWithSubparser:(TDParser *)p {
-	self = [super init];
-	if (self != nil) {
-		self.subparser = p;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.subparser = p;
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.subparser = nil;
-	self.preAssembler = nil;
-	self.preAssemblerSelector = nil;
-	[super dealloc];
+    self.subparser = nil;
+    self.preAssembler = nil;
+    self.preAssemblerSelector = nil;
+    [super dealloc];
 }
 
 
 - (void)setPreassembler:(id)a selector:(SEL)sel {
-	self.preAssembler = a;
-	self.preAssemblerSelector = sel;
+    self.preAssembler = a;
+    self.preAssemblerSelector = sel;
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	if (preAssembler) {
-	//if (preAssembler && [preAssembler respondsToSelector:preAssemblerSelector]) {
-		for (TDAssembly *a in inAssemblies) {
-			[preAssembler performSelector:preAssemblerSelector withObject:a];
-		}
-	}
-	
-	NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
-	NSMutableSet *outAssemblies = [NSMutableSet setWithSet:[deepCopy autorelease]];
-	
-	NSSet *s = inAssemblies;
-	while (s.count) {
-		s = [subparser matchAndAssemble:s];
-		[outAssemblies unionSet:s];
-	}
-	
-	return outAssemblies;
+    if (preAssembler) {
+    //if (preAssembler && [preAssembler respondsToSelector:preAssemblerSelector]) {
+        for (TDAssembly *a in inAssemblies) {
+            [preAssembler performSelector:preAssemblerSelector withObject:a];
+        }
+    }
+    
+    NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
+    NSMutableSet *outAssemblies = [NSMutableSet setWithSet:[deepCopy autorelease]];
+    
+    NSSet *s = inAssemblies;
+    while (s.count) {
+        s = [subparser matchAndAssemble:s];
+        [outAssemblies unionSet:s];
+    }
+    
+    return outAssemblies;
 }
 
 @synthesize subparser;

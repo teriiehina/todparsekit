@@ -12,7 +12,7 @@
 @implementation TDCaseInsensitiveLiteral
 
 - (BOOL)qualifies:(id)obj {
-	return [literal isEqualIgnoringCase:obj];
+    return [literal isEqualIgnoringCase:obj];
 }
 
 @end

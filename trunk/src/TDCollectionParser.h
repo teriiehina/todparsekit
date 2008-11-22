@@ -10,23 +10,23 @@
 #import <TDParseKit/TDParser.h>
 
 /*!
-	@class		TDCollectionParser 
-	@brief		An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
+    @class      TDCollectionParser 
+    @brief      An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
 @interface TDCollectionParser : TDParser {
-	NSMutableArray *subparsers;
+    NSMutableArray *subparsers;
 }
 
 /*!
-	@fn			add:
-	@brief		Adds a parser to the collection.
-	@param      p parser to add
+    @fn         add:
+    @brief      Adds a parser to the collection.
+    @param      p parser to add
 */
 - (void)add:(TDParser *)p;
 
 /*!
-	@property	subparsers
-	@brief		This parser's subparsers.
+    @property   subparsers
+    @brief      This parser's subparsers.
 */
 @property (nonatomic, readonly, retain) NSMutableArray *subparsers;
 @end

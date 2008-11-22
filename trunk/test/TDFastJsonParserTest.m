@@ -12,12 +12,12 @@
 @implementation TDFastJsonParserTest
 
 - (void)testRun {
-	NSString *s = @"{\"foo\":\"bar\"}";
-	TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
-	id result = [p parse:s];
-	
-	NSLog(@"result");
-	STAssertNotNil(result, @"");
+    NSString *s = @"{\"foo\":\"bar\"}";
+    TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
+    id result = [p parse:s];
+    
+    NSLog(@"result");
+    STAssertNotNil(result, @"");
 }
 
 @end

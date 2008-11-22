@@ -10,11 +10,11 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 /*!
-	@class		TDSlashSlashState 
-	@brief		A slash slash state ignores everything up to an end-of-line and returns the tokenizer's next token.
+    @class      TDSlashSlashState 
+    @brief      A slash slash state ignores everything up to an end-of-line and returns the tokenizer's next token.
 */
 @interface TDSlashSlashState : TDTokenizerState {
-	
+    
 }
 
 @end
