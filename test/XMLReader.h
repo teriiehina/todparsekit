@@ -14,7 +14,7 @@
  * XMLReaderMode:
  *
  * Internal state values for the reader.
- */	
+ */    
 typedef enum {
     XMLReaderReadStateInitial = 0,
     XMLReaderReadStateInteractive = 1,
@@ -88,11 +88,11 @@ typedef enum {
 @end
 
 @interface XMLReader : NSObject {
-	xmlTextReaderPtr _reader;
-	xmlRelaxNGPtr _schema;
-	NSString *path;
-	id errorHandler;
-	NSString *relaxNGSchemaPath;
+    xmlTextReaderPtr _reader;
+    xmlRelaxNGPtr _schema;
+    NSString *path;
+    id errorHandler;
+    NSString *relaxNGSchemaPath;
 }
 
 + (id)parserWithContentsOfFile:(NSString *)newPath;
@@ -184,7 +184,7 @@ typedef enum {
 
 // Returns the value of the attribute with the specified index relative to the containing element.
 - (NSString *)attributeAtIndex:(NSInteger)index;
-	
+    
 // Returns the value of the attribute with the specified qualified name.
 - (NSString *)attributeWithQName:(NSString *)qName;
 
@@ -193,7 +193,7 @@ typedef enum {
 
 // Determines whether the specified string is a valid XML name.
 + (BOOL)isName:(NSString *)str;
-	
+    
 // Determines whether the specified string is a valid XML name token (Nmtoken).
 + (BOOL)isNameToken:(NSString *)str;
 
@@ -208,19 +208,19 @@ typedef enum {
 
 // Moves the position of the current instance to the attribute with the specified local name and namespace URI.
 - (BOOL)moveToAttributeWithLocalName:(NSString *)localName namespaceURI:(NSString *)nsURI;
-	
+    
 // Moves the position of the current instance to the node that contains the current Attribute node.
 - (BOOL)moveToElement;
 
-// Moves the position of the current instance to the first attribute associated with the current node.	
+// Moves the position of the current instance to the first attribute associated with the current node.    
 - (BOOL)moveToFirstAttribute;
 
 // Moves the position of the current instance to the next attribute associated with the current node.
 - (BOOL)moveToNextAttribute;
 
-// Moves the position of the current instance to the next node in the stream, exposing its properties.	
+// Moves the position of the current instance to the next node in the stream, exposing its properties.    
 - (BOOL)read;
-	
+    
 // Parses an attribute value into one or more Text, EntityReference, and EndEntity nodes.
 - (BOOL)readAttributeValue;
 

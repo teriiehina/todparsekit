@@ -21,34 +21,34 @@
 @implementation TDSlashState
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-		self.slashSlashState = [[[TDSlashSlashState alloc] init] autorelease];
-		self.slashStarState  = [[[TDSlashStarState alloc] init] autorelease];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.slashSlashState = [[[TDSlashSlashState alloc] init] autorelease];
+        self.slashStarState  = [[[TDSlashStarState alloc] init] autorelease];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.slashSlashState = nil;
-	self.slashStarState = nil;
-	[super dealloc];
+    self.slashSlashState = nil;
+    self.slashStarState = nil;
+    [super dealloc];
 }
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	NSInteger c = [r read];
-	if ('/' == c) {
-		return [slashSlashState nextTokenFromReader:r startingWith:c tokenizer:t];
-	} else if ('*' == c) {
-		return [slashStarState nextTokenFromReader:r startingWith:c tokenizer:t];
-	} else {
-		if (-1 != c) {
-			[r unread];
-		}
-		return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
-	}
+    NSInteger c = [r read];
+    if ('/' == c) {
+        return [slashSlashState nextTokenFromReader:r startingWith:c tokenizer:t];
+    } else if ('*' == c) {
+        return [slashStarState nextTokenFromReader:r startingWith:c tokenizer:t];
+    } else {
+        if (-1 != c) {
+            [r unread];
+        }
+        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
+    }
 }
 
 @synthesize slashSlashState;

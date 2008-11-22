@@ -10,9 +10,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDCharacterAssemblyTest : SenTestCase {
-	NSString *s;
-	TDCharacterAssembly *a;
-	TDAssembly *result;
+    NSString *s;
+    TDCharacterAssembly *a;
+    TDAssembly *result;
 }
 
 @end

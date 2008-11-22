@@ -12,13 +12,13 @@
 @implementation TDNum
 
 + (id)num {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	return tok.isNumber;
+    TDToken *tok = (TDToken *)obj;
+    return tok.isNumber;
 }
 
 @end

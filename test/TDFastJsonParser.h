@@ -12,10 +12,10 @@
 @class TDToken;
 
 @interface TDFastJsonParser : NSObject {
-	TDTokenizer *tokenizer;
-	NSMutableArray *stack;
-	TDToken *curly;
-	TDToken *bracket;
+    TDTokenizer *tokenizer;
+    NSMutableArray *stack;
+    TDToken *curly;
+    TDToken *bracket;
 }
 - (id)parse:(NSString *)s;
 @end

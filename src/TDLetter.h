@@ -9,18 +9,18 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class		TDLetter 
-	@brief		A <tt>TDLetter</tt> matches any letter from a character assembly.
-	@details	<tt>-[TDLetter qualifies:]</tt> returns true if an assembly's next element is a letter.
+    @class      TDLetter 
+    @brief      A <tt>TDLetter</tt> matches any letter from a character assembly.
+    @details    <tt>-[TDLetter qualifies:]</tt> returns true if an assembly's next element is a letter.
 */
 @interface TDLetter : TDTerminal {
 
 }
 
 /*!
-	@fn			letter
-	@brief		Convenience factory method for initializing an autoreleased <tt>TDLetter</tt> parser.
-	@result     an initialized autoreleased <tt>TDLetter</tt> parser.
+    @fn         letter
+    @brief      Convenience factory method for initializing an autoreleased <tt>TDLetter</tt> parser.
+    @result     an initialized autoreleased <tt>TDLetter</tt> parser.
 */
 + (id)letter;
 @end

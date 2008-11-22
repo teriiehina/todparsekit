@@ -13,13 +13,13 @@
 @implementation TDWord
 
 + (id)word {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	return tok.isWord;
+    TDToken *tok = (TDToken *)obj;
+    return tok.isWord;
 }
 
 @end

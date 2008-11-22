@@ -22,59 +22,59 @@
 + (BOOL)isValidNonStartSymbolChar:(NSInteger)c;
 @end
 
-// NCName	   ::=   	(Letter | '_') (NameChar)*
+// NCName       ::=       (Letter | '_') (NameChar)*
 @implementation TDNCNameState
 
 //- (BOOL)isWhitespace:(NSInteger)c {
-//	return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
+//    return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
 //}
 
 
-//	NameChar	   ::=   	 Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
+//    NameChar       ::=        Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
 + (BOOL)isNameChar:(NSInteger)c {
-	if (isalpha(c)) {
-		return YES;
-	} else if (isdigit(c)) {
-		return YES;
-	} else if ([[self class] isValidNonStartSymbolChar:c]) {
-		return YES;
-	}
-	// TODO CombiningChar & Extender
-	return NO;
+    if (isalpha(c)) {
+        return YES;
+    } else if (isdigit(c)) {
+        return YES;
+    } else if ([[self class] isValidNonStartSymbolChar:c]) {
+        return YES;
+    }
+    // TODO CombiningChar & Extender
+    return NO;
 }
 
 
 + (BOOL)isValidStartSymbolChar:(NSInteger)c {
-	return ('_' == c);
+    return ('_' == c);
 }
 
 
 + (BOOL)isValidNonStartSymbolChar:(NSInteger)c {
-	return ('_' == c || '.' == c || '-' == c);
+    return ('_' == c || '.' == c || '-' == c);
 }
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	[self reset];
-	
-	NSInteger c = cin;
-	do {
-		[stringbuf appendFormat:@"%C", c];
-		c = [r read];
-	} while ([[self class] isNameChar:c]);
-	
-	if (c != -1) {
-		[r unread];
-	}
-	
-	if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
-		return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
-	} else {
-//		return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 
-//										   stringValue:[[stringbuf copy] autorelease] 
-//											floatValue:0.0f] autorelease];
-		return nil;
-	}
+    [self reset];
+    
+    NSInteger c = cin;
+    do {
+        [stringbuf appendFormat:@"%C", c];
+        c = [r read];
+    } while ([[self class] isNameChar:c]);
+    
+    if (c != -1) {
+        [r unread];
+    }
+    
+    if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
+        return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
+    } else {
+//        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 
+//                                           stringValue:[[stringbuf copy] autorelease] 
+//                                            floatValue:0.0f] autorelease];
+        return nil;
+    }
 }
 
 @end

@@ -11,9 +11,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDAlternationTest : SenTestCase {
-	TDCollectionParser *p;
-	TDAssembly *a;
-	NSString *s;	
+    TDCollectionParser *p;
+    TDAssembly *a;
+    NSString *s;    
 }
 
 @end

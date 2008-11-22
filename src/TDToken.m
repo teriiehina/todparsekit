@@ -14,11 +14,11 @@
 @implementation TDTokenEOF
 
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
+    return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
 }
 
 - (NSString *)debugDescription {
-	return [self description];
+    return [self description];
 }
 
 @end
@@ -38,117 +38,117 @@
 @implementation TDToken
 
 + (TDToken *)EOFToken {
-	static TDToken *EOFToken = nil;
-	@synchronized (self) {
-		if (!EOFToken) {
-			EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTT_EOF stringValue:nil floatValue:0.0f];
-		}
-	}
-	return EOFToken;
+    static TDToken *EOFToken = nil;
+    @synchronized (self) {
+        if (!EOFToken) {
+            EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTT_EOF stringValue:nil floatValue:0.0f];
+        }
+    }
+    return EOFToken;
 }
 
 
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-	return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
+    return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
 }
 
 
 // designated initializer
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-	self = [super init];
-	if (self != nil) {
-		self.tokenType = t;
-		self.stringValue = s;
-		self.floatValue = n;
-		
-		self.number = (t == TDTT_NUMBER);
-		self.quotedString = (t == TDTT_QUOTED);
-		self.symbol = (t == TDTT_SYMBOL);
-		self.word = (t == TDTT_WORD);
-		
-		id v = nil;
-		if (self.isNumber) {
-			v = [NSNumber numberWithFloat:floatValue];
-		} else if (self.isQuotedString) {
-			v = stringValue;
-		} else if (self.isSymbol) {
-			v = stringValue;
-		} else if (self.isWord) {
-			v = stringValue;
-		} else { // support for token type extensions
-			v = stringValue;
-		}
-		self.value = v;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.tokenType = t;
+        self.stringValue = s;
+        self.floatValue = n;
+        
+        self.number = (t == TDTT_NUMBER);
+        self.quotedString = (t == TDTT_QUOTED);
+        self.symbol = (t == TDTT_SYMBOL);
+        self.word = (t == TDTT_WORD);
+        
+        id v = nil;
+        if (self.isNumber) {
+            v = [NSNumber numberWithFloat:floatValue];
+        } else if (self.isQuotedString) {
+            v = stringValue;
+        } else if (self.isSymbol) {
+            v = stringValue;
+        } else if (self.isWord) {
+            v = stringValue;
+        } else { // support for token type extensions
+            v = stringValue;
+        }
+        self.value = v;
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.stringValue = nil;
-	self.value = nil;
-	[super dealloc];
+    self.stringValue = nil;
+    self.value = nil;
+    [super dealloc];
 }
 
 
 - (NSUInteger)hash {
-	return [stringValue hash];
+    return [stringValue hash];
 }
 
 
 - (BOOL)isEqual:(id)rhv {
-	if (![rhv isMemberOfClass:[TDToken class]]) {
-		return NO;
-	}
-	
-	TDToken *that = (TDToken *)rhv;
-	if (tokenType != that.tokenType) {
-		return NO;
-	}
-	
-	if (self.isNumber) {
-		return floatValue == that.floatValue;
-	} else {
-		return [stringValue isEqualToString:that.stringValue];
-	}
+    if (![rhv isMemberOfClass:[TDToken class]]) {
+        return NO;
+    }
+    
+    TDToken *that = (TDToken *)rhv;
+    if (tokenType != that.tokenType) {
+        return NO;
+    }
+    
+    if (self.isNumber) {
+        return floatValue == that.floatValue;
+    } else {
+        return [stringValue isEqualToString:that.stringValue];
+    }
 }
 
 
 - (BOOL)isEqualIgnoringCase:(id)rhv {
-	if (![rhv isMemberOfClass:[TDToken class]]) {
-		return NO;
-	}
-	
-	TDToken *that = (TDToken *)rhv;
-	if (tokenType != that.tokenType) {
-		return NO;
-	}
-	
-	if (self.isNumber) {
-		return floatValue == that.floatValue;
-	} else {
-		return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
-	}
+    if (![rhv isMemberOfClass:[TDToken class]]) {
+        return NO;
+    }
+    
+    TDToken *that = (TDToken *)rhv;
+    if (tokenType != that.tokenType) {
+        return NO;
+    }
+    
+    if (self.isNumber) {
+        return floatValue == that.floatValue;
+    } else {
+        return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
+    }
 }
 
 
 - (NSString *)debugDescription {
-	NSString *typeString = nil;
-	if (self.isNumber) {
-		typeString = @"Number";
-	} else if (self.isQuotedString) {
-		typeString = @"Quoted String";
-	} else if (self.isSymbol) {
-		typeString = @"Symbol";
-	} else if (self.isWord) {
-		typeString = @"Word";
-	}
-	return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00AB, self.value, 0x00BB];
+    NSString *typeString = nil;
+    if (self.isNumber) {
+        typeString = @"Number";
+    } else if (self.isQuotedString) {
+        typeString = @"Quoted String";
+    } else if (self.isSymbol) {
+        typeString = @"Symbol";
+    } else if (self.isWord) {
+        typeString = @"Word";
+    }
+    return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00AB, self.value, 0x00BB];
 }
 
 
 - (NSString *)description {
-	return stringValue;
+    return stringValue;
 }
 
 @synthesize number;

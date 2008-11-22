@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface XPathContext : NSObject {
-	// static context
-	NSString *baseURIString;
-	NSMutableDictionary *namespaces;
-	NSMutableDictionary *variables;
-	NSMutableDictionary *functions;
-	
-	// dynamic context
-	NSXMLNode *currentNode;
-	NSXMLNode *contextNode;
-	NSArray *contextNodeSet;
-	
-	// 
+    // static context
+    NSString *baseURIString;
+    NSMutableDictionary *namespaces;
+    NSMutableDictionary *variables;
+    NSMutableDictionary *functions;
+    
+    // dynamic context
+    NSXMLNode *currentNode;
+    NSXMLNode *contextNode;
+    NSArray *contextNodeSet;
+    
+    // 
 }
 - (void)resetWithCurrentNode:(NSXMLNode *)n;
 @property (retain) NSXMLNode *currentNode;

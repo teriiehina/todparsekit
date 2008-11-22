@@ -11,8 +11,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDSlashStateTest : SenTestCase {
-	TDSlashState *slashState;
-	TDReader *r;
-	NSString *s;
+    TDSlashState *slashState;
+    TDReader *r;
+    NSString *s;
 }
 @end

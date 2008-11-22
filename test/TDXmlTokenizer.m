@@ -17,47 +17,47 @@
 @implementation TDXmlTokenizer
 
 + (id)tokenizerWithContentsOfFile:(NSString *)path {
-	return [[[self alloc] initWithContentsOfFile:path] autorelease];
+    return [[[self alloc] initWithContentsOfFile:path] autorelease];
 }
 
 
 - (id)init {
-	return nil;
+    return nil;
 }
 
 
 - (id)initWithContentsOfFile:(NSString *)path {
-	self = [super init];
-	if (self != nil) {
-		self.reader = [[[XMLReader alloc] initWithContentsOfFile:path] autorelease];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.reader = [[[XMLReader alloc] initWithContentsOfFile:path] autorelease];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.reader = nil;
-	[super dealloc];
+    self.reader = nil;
+    [super dealloc];
 }
 
 
 - (TDXmlToken *)nextToken {
-	TDXmlToken *tok = nil;
-	NSInteger ret = -1;
-	NSInteger nodeType = -1;
-	
-	do {
-		ret = [reader read];		
-		nodeType = reader.nodeType;
-	} while (nodeType == TDTT_XML_SIGNIFICANT_WHITESPACE || nodeType == TDTT_XML_WHITESPACE);
+    TDXmlToken *tok = nil;
+    NSInteger ret = -1;
+    NSInteger nodeType = -1;
+    
+    do {
+        ret = [reader read];        
+        nodeType = reader.nodeType;
+    } while (nodeType == TDTT_XML_SIGNIFICANT_WHITESPACE || nodeType == TDTT_XML_WHITESPACE);
 
-	if (ret <= 0) {
-		tok = [TDXmlToken EOFToken];
-	} else {
-		tok = [TDXmlToken tokenWithTokenType:reader.nodeType stringValue:reader.name];
-	}
-	
-	return tok;
+    if (ret <= 0) {
+        tok = [TDXmlToken EOFToken];
+    } else {
+        tok = [TDXmlToken tokenWithTokenType:reader.nodeType stringValue:reader.name];
+    }
+    
+    return tok;
 }
 
 @synthesize reader;

@@ -13,7 +13,7 @@
 
 @implementation TDXmlTokenEOF
 - (NSString *)description {
-	return [NSString stringWithFormat:@"<TDXmlTokenEOF %p>", self];
+    return [NSString stringWithFormat:@"<TDXmlTokenEOF %p>", self];
 }
 @end
 
@@ -44,18 +44,18 @@
 @implementation TDXmlToken
 
 + (TDXmlToken *)EOFToken {
-	static TDXmlToken *EOFToken = nil;
-	@synchronized (self) {
-		if (!EOFToken) {
-			EOFToken = [[TDXmlTokenEOF alloc] initWithTokenType:TDTT_XML_EOF stringValue:nil];
-		}
-	}
-	return EOFToken;
+    static TDXmlToken *EOFToken = nil;
+    @synchronized (self) {
+        if (!EOFToken) {
+            EOFToken = [[TDXmlTokenEOF alloc] initWithTokenType:TDTT_XML_EOF stringValue:nil];
+        }
+    }
+    return EOFToken;
 }
 
 
 + (id)tokenWithTokenType:(TDXmlTokenType)t stringValue:(NSString *)s {
-	return [[[self alloc] initWithTokenType:t stringValue:s] autorelease];
+    return [[[self alloc] initWithTokenType:t stringValue:s] autorelease];
 }
 
 
@@ -63,121 +63,121 @@
 
 // designated initializer
 - (id)initWithTokenType:(TDXmlTokenType)t stringValue:(NSString *)s {
-	self = [super init];
-	if (self != nil) {
-		self.tokenType = t;
-		self.stringValue = s;
-		
-		self.none = (TDTT_XML_NONE == t);
-		self.startTag = (TDTT_XML_START_TAG == t);
-		self.attribute = (TDTT_XML_ATTRIBUTE == t);
-		self.text = (TDTT_XML_TEXT == t);
-		self.cdata = (TDTT_XML_CDATA == t);
-		self.entityRef = (TDTT_XML_ENTITY_REF == t);
-		self.entity = (TDTT_XML_ENTITY == t);
-		self.processingInstruction = (TDTT_XML_PROCESSING_INSTRUCTION == t);
-		self.comment = (TDTT_XML_COMMENT == t);
-		self.document = (TDTT_XML_DOCUMENT == t);
-		self.doctype = (TDTT_XML_DOCTYPE == t);
-		self.fragment = (TDTT_XML_FRAGMENT == t);
-		self.notation = (TDTT_XML_NOTATION == t);
-		self.whitespace = (TDTT_XML_WHITESPACE == t);
-		self.significantWhitespace = (TDTT_XML_SIGNIFICANT_WHITESPACE == t);
-		self.endTag = (TDTT_XML_END_TAG == t);
-		self.endEntity = (TDTT_XML_END_ENTITY == t);
-		self.xmlDecl = (TDTT_XML_XML_DECL == t);
-		
-		self.value = stringValue;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.tokenType = t;
+        self.stringValue = s;
+        
+        self.none = (TDTT_XML_NONE == t);
+        self.startTag = (TDTT_XML_START_TAG == t);
+        self.attribute = (TDTT_XML_ATTRIBUTE == t);
+        self.text = (TDTT_XML_TEXT == t);
+        self.cdata = (TDTT_XML_CDATA == t);
+        self.entityRef = (TDTT_XML_ENTITY_REF == t);
+        self.entity = (TDTT_XML_ENTITY == t);
+        self.processingInstruction = (TDTT_XML_PROCESSING_INSTRUCTION == t);
+        self.comment = (TDTT_XML_COMMENT == t);
+        self.document = (TDTT_XML_DOCUMENT == t);
+        self.doctype = (TDTT_XML_DOCTYPE == t);
+        self.fragment = (TDTT_XML_FRAGMENT == t);
+        self.notation = (TDTT_XML_NOTATION == t);
+        self.whitespace = (TDTT_XML_WHITESPACE == t);
+        self.significantWhitespace = (TDTT_XML_SIGNIFICANT_WHITESPACE == t);
+        self.endTag = (TDTT_XML_END_TAG == t);
+        self.endEntity = (TDTT_XML_END_ENTITY == t);
+        self.xmlDecl = (TDTT_XML_XML_DECL == t);
+        
+        self.value = stringValue;
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.stringValue = nil;
-	self.value = nil;
-	[super dealloc];
+    self.stringValue = nil;
+    self.value = nil;
+    [super dealloc];
 }
 
 
 - (NSUInteger)hash {
-	return [stringValue hash];
+    return [stringValue hash];
 }
 
 
 - (BOOL)isEqual:(id)rhv {
-	if (![rhv isMemberOfClass:[TDXmlToken class]]) {
-		return NO;
-	}
-	
-	TDXmlToken *that = (TDXmlToken *)rhv;
-	if (tokenType != that.tokenType) {
-		return NO;
-	}
-	
-	return [stringValue isEqualToString:that.stringValue];
+    if (![rhv isMemberOfClass:[TDXmlToken class]]) {
+        return NO;
+    }
+    
+    TDXmlToken *that = (TDXmlToken *)rhv;
+    if (tokenType != that.tokenType) {
+        return NO;
+    }
+    
+    return [stringValue isEqualToString:that.stringValue];
 }
 
 
 - (BOOL)isEqualIgnoringCase:(id)rhv {
-	if (![rhv isMemberOfClass:[TDXmlToken class]]) {
-		return NO;
-	}
-	
-	TDXmlToken *that = (TDXmlToken *)rhv;
-	if (tokenType != that.tokenType) {
-		return NO;
-	}
-	
-	return [stringValue.lowercaseString isEqualToString:that.stringValue.lowercaseString];
+    if (![rhv isMemberOfClass:[TDXmlToken class]]) {
+        return NO;
+    }
+    
+    TDXmlToken *that = (TDXmlToken *)rhv;
+    if (tokenType != that.tokenType) {
+        return NO;
+    }
+    
+    return [stringValue.lowercaseString isEqualToString:that.stringValue.lowercaseString];
 }
 
 
 - (NSString *)debugDescription {
-	NSString *typeString = nil;
-	if (self.isNone) {
-		typeString = @"None";
-	} else if (self.isStartTag) {
-		typeString = @"Start Tag";
-	} else if (self.isAttribute) {
-		typeString = @"Attribute";
-	} else if (self.isText) {
-		typeString = @"Text";
-	} else if (self.isCdata) {
-		typeString = @"CData";
-	} else if (self.isEntityRef) {
-		typeString = @"Entity Reference";
-	} else if (self.isEntity) {
-		typeString = @"Entity";
-	} else if (self.isProcessingInstruction) {
-		typeString = @"Processing Instruction";
-	} else if (self.isComment) {
-		typeString = @"Comment";
-	} else if (self.isDocument) {
-		typeString = @"Document";
-	} else if (self.isDoctype) {
-		typeString = @"Doctype";
-	} else if (self.isFragment) {
-		typeString = @"Fragment";
-	} else if (self.isNotation) {
-		typeString = @"Notation";
-	} else if (self.isWhitespace) {
-		typeString = @"Whitespace";
-	} else if (self.isSignificantWhitespace) {
-		typeString = @"Significant Whitespace";
-	} else if (self.isEndTag) {
-		typeString = @"End Tag";
-	} else if (self.isEndEntity) {
-		typeString = @"End Entity";
-	} else if (self.isXmlDecl) {
-		typeString = @"XML Declaration";
-	}
-	return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00ab, self.value, 0x00bb];
+    NSString *typeString = nil;
+    if (self.isNone) {
+        typeString = @"None";
+    } else if (self.isStartTag) {
+        typeString = @"Start Tag";
+    } else if (self.isAttribute) {
+        typeString = @"Attribute";
+    } else if (self.isText) {
+        typeString = @"Text";
+    } else if (self.isCdata) {
+        typeString = @"CData";
+    } else if (self.isEntityRef) {
+        typeString = @"Entity Reference";
+    } else if (self.isEntity) {
+        typeString = @"Entity";
+    } else if (self.isProcessingInstruction) {
+        typeString = @"Processing Instruction";
+    } else if (self.isComment) {
+        typeString = @"Comment";
+    } else if (self.isDocument) {
+        typeString = @"Document";
+    } else if (self.isDoctype) {
+        typeString = @"Doctype";
+    } else if (self.isFragment) {
+        typeString = @"Fragment";
+    } else if (self.isNotation) {
+        typeString = @"Notation";
+    } else if (self.isWhitespace) {
+        typeString = @"Whitespace";
+    } else if (self.isSignificantWhitespace) {
+        typeString = @"Significant Whitespace";
+    } else if (self.isEndTag) {
+        typeString = @"End Tag";
+    } else if (self.isEndEntity) {
+        typeString = @"End Entity";
+    } else if (self.isXmlDecl) {
+        typeString = @"XML Declaration";
+    }
+    return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00ab, self.value, 0x00bb];
 }
 
 
 - (NSString *)description {
-	return [self debugDescription];
+    return [self debugDescription];
 }
 
 @synthesize none;

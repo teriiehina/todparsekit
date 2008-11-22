@@ -11,10 +11,10 @@
 #import "XPathParser.h"
 
 @interface XPathParserTest : SenTestCase {
-	NSString *s;
-	XPathParser *p;
-	TDAssembly *a;
-	TDAssembly *result;
+    NSString *s;
+    XPathParser *p;
+    TDAssembly *a;
+    TDAssembly *result;
 }
 
 @end

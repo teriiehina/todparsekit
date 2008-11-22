@@ -11,7 +11,7 @@
 @class TDXmlToken;
 
 @interface TDXmlTerminal : TDTerminal {
-	TDXmlToken *tok;
+    TDXmlToken *tok;
 }
 @property (nonatomic, retain) TDXmlToken *tok;
 @end

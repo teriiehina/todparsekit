@@ -12,37 +12,37 @@
 @implementation TDXmlCdata
 
 + (id)cdata {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 + (id)cdataWithString:(NSString *)s {
-	return [[[self alloc] initWithString:s] autorelease];
+    return [[[self alloc] initWithString:s] autorelease];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super initWithString:s];
-	if (self != nil) {
-		self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_CDATA stringValue:s];
-	}
-	return self;
+    self = [super initWithString:s];
+    if (self != nil) {
+        self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_CDATA stringValue:s];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	[super dealloc];
+    [super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDXmlToken *other = (TDXmlToken *)obj;
-	
-	if (string.length) {
-		return [tok isEqual:other];
-	} else {
-		return other.isCdata;
-	}
+    TDXmlToken *other = (TDXmlToken *)obj;
+    
+    if (string.length) {
+        return [tok isEqual:other];
+    } else {
+        return other.isCdata;
+    }
 }
 
 @end

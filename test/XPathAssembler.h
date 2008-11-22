@@ -11,7 +11,7 @@
 @class XPathContext;
 
 @interface XPathAssembler : NSObject {
-	XPathContext *context;
+    XPathContext *context;
 }
 - (void)reset;
 @property (retain) XPathContext *context;

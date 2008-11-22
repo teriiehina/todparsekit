@@ -11,51 +11,51 @@
 @implementation TDReader
 
 - (id)init {
-	return [self initWithString:nil];
+    return [self initWithString:nil];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super init];
-	if (self != nil) {
-		self.string = s;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.string = s;
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.string = nil;
-	[super dealloc];
+    self.string = nil;
+    [super dealloc];
 }
 
 
 - (NSString *)string {
-	return [[string copy] autorelease];
+    return [[string copy] autorelease];
 }
 
 
 - (void)setString:(NSString *)s {
-	if (string != s) {
-		[string autorelease];
-		string = [s copy];
-	}
-	// reset cursor
-	cursor = 0;
+    if (string != s) {
+        [string autorelease];
+        string = [s copy];
+    }
+    // reset cursor
+    cursor = 0;
 }
 
 
 - (NSInteger)read {
-	NSUInteger len = string.length;
-	if (0 == len || cursor > len - 1) {
-		return -1;
-	}
-	return [string characterAtIndex:cursor++];
+    NSUInteger len = string.length;
+    if (0 == len || cursor > len - 1) {
+        return -1;
+    }
+    return [string characterAtIndex:cursor++];
 }
 
 
 - (void)unread {
-	cursor = (0 == cursor) ? 0 : cursor - 1;
+    cursor = (0 == cursor) ? 0 : cursor - 1;
 }
 
 @end

@@ -14,28 +14,28 @@
 @implementation TDSlashStarState
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	NSInteger c;
-	do {
-		c = [r read];
-		
-		if ('*' == c) {
-			NSInteger peek = [r read];
-			if ('/' == peek) {
-				c = [r read];
-				break;
-			} else {
-				if (-1 != peek) {
-					[r unread];
-				}
-			}
-		}
-	} while (-1 != c);
+    NSInteger c;
+    do {
+        c = [r read];
+        
+        if ('*' == c) {
+            NSInteger peek = [r read];
+            if ('/' == peek) {
+                c = [r read];
+                break;
+            } else {
+                if (-1 != peek) {
+                    [r unread];
+                }
+            }
+        }
+    } while (-1 != c);
 
-	if (-1 != c) {
-		[r unread];
-	}
-	
-	return [t nextToken];
+    if (-1 != c) {
+        [r unread];
+    }
+    
+    return [t nextToken];
 }
 
 @end

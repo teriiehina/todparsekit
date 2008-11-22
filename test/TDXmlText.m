@@ -12,40 +12,40 @@
 @implementation TDXmlText
 
 + (id)text {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 + (id)textWithString:(NSString *)s {
-	return [[[self alloc] initWithString:s] autorelease];
+    return [[[self alloc] initWithString:s] autorelease];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	NSLog(@"%s", _cmd);
-	self = [super initWithString:s];
-	if (self != nil) {
-		self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_TEXT stringValue:s];
-		NSLog(@"tok : %@", tok);
-	}
-	return self;
+    NSLog(@"%s", _cmd);
+    self = [super initWithString:s];
+    if (self != nil) {
+        self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_TEXT stringValue:s];
+        NSLog(@"tok : %@", tok);
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	[super dealloc];
+    [super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDXmlToken *other = (TDXmlToken *)obj;
-	NSLog(@"%s obj: %@ isText: %d", _cmd, obj, other.isText);
-	
-	if (string.length) {
-		return [tok isEqual:other];
-	} else {
-		return other.isText;
-	}
+    TDXmlToken *other = (TDXmlToken *)obj;
+    NSLog(@"%s obj: %@ isText: %d", _cmd, obj, other.isText);
+    
+    if (string.length) {
+        return [tok isEqual:other];
+    } else {
+        return other.isText;
+    }
 }
 
 @end

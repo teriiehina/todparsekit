@@ -10,9 +10,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDScientificNumberStateTest : SenTestCase {
-	TDScientificNumberState *numberState;
-	TDReader *r;
-	NSString *s;
+    TDScientificNumberState *numberState;
+    TDReader *r;
+    NSString *s;
 }
 
 @end

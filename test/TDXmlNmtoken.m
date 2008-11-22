@@ -12,13 +12,13 @@
 @implementation TDXmlNmtoken
 
 + (id)nmtoken {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 //- (BOOL)qualifies:(id)obj {
-//	TDXmlToken *tok = (TDXmlToken *)obj;
-//	return tok.isNmtoken;
+//    TDXmlToken *tok = (TDXmlToken *)obj;
+//    return tok.isNmtoken;
 //}
 
 @end

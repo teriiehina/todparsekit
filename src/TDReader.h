@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface TDReader : NSObject {
-	NSString *string;
-	NSUInteger cursor;
+    NSString *string;
+    NSUInteger cursor;
 }
 - (id)initWithString:(NSString *)s;
 - (NSInteger)read;

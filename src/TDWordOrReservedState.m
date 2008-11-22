@@ -15,27 +15,27 @@
 @implementation TDWordOrReservedState
 
 - (id)init {
-	self = [super init];
-	if (self != nil) {
-		self.reservedWords = [NSMutableSet set];
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        self.reservedWords = [NSMutableSet set];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.reservedWords = nil;
-	[super dealloc];
+    self.reservedWords = nil;
+    [super dealloc];
 }
 
 
 - (void)addReservedWord:(NSString *)s {
-	[reservedWords addObject:s];
+    [reservedWords addObject:s];
 }
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	return nil;
+    return nil;
 }
 
 @synthesize reservedWords;

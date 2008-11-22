@@ -12,101 +12,101 @@
 @implementation TDWordStateTest
 
 - (void)setUp {
-	wordState = [[TDWordState alloc] init];
+    wordState = [[TDWordState alloc] init];
 }
 
 
 - (void)tearDown {
-	[wordState release];
-	[r release];
+    [wordState release];
+    [r release];
 }
 
 
 - (void)testA {
-	s = @"a";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(@"a", t.stringValue, @"");
-	STAssertEqualObjects(@"a", t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"a";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(@"a", t.stringValue, @"");
+    STAssertEqualObjects(@"a", t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testASpace {
-	s = @"a ";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(@"a", t.stringValue, @"");
-	STAssertEqualObjects(@"a", t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)' ', [r read], @"");
+    s = @"a ";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(@"a", t.stringValue, @"");
+    STAssertEqualObjects(@"a", t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)' ', [r read], @"");
 }
 
 
 - (void)testAb {
-	s = @"ab";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"ab";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testAbc {
-	s = @"abc";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"abc";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testItApostropheS {
-	s = @"it's";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"it's";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testTwentyDashFive {
-	s = @"twenty-five";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"twenty-five";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testTwentyUnderscoreFive {
-	s = @"twenty_five";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"twenty_five";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 
 - (void)testNumber1 {
-	s = @"number1";
-	r = [[TDReader alloc] initWithString:s];
-	TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-	STAssertEqualObjects(s, t.stringValue, @"");
-	STAssertEqualObjects(s, t.value, @"");
-	STAssertTrue(t.isWord, @"");
-	STAssertEquals((NSInteger)-1, [r read], @"");
+    s = @"number1";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEqualObjects(s, t.value, @"");
+    STAssertTrue(t.isWord, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
 }
 
 @end

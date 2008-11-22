@@ -9,26 +9,26 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class		TDSpecificChar 
-	@brief		A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
-	@details	<tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
+    @class      TDSpecificChar 
+    @brief      A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
+    @details    <tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
 */
 @interface TDSpecificChar : TDTerminal {
 }
 
 /*!
-	@fn			specificCharWithChar:
-	@brief		Convenience factory method for initializing an autoreleased <tt>TDSpecificChar</tt> parser.
-	@param      c the character this object should match
-	@result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
+    @fn         specificCharWithChar:
+    @brief      Convenience factory method for initializing an autoreleased <tt>TDSpecificChar</tt> parser.
+    @param      c the character this object should match
+    @result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
 */
 + (id)specificCharWithChar:(NSInteger)c;
 
 /*!
-	@fn			initWithSpecificChar:
-	@brief		Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
-	@param      c the character this object should match
-	@result     an initialized <tt>TDSpecificChar</tt> parser.
+    @fn         initWithSpecificChar:
+    @brief      Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
+    @param      c the character this object should match
+    @result     an initialized <tt>TDSpecificChar</tt> parser.
 */
 - (id)initWithSpecificChar:(NSInteger)c;
 @end

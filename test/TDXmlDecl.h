@@ -12,5 +12,5 @@
 
 }
 + (id)xmlDecl;
-+ (id)xmlDeclWithString:(NSString *)s;	
++ (id)xmlDeclWithString:(NSString *)s;    
 @end

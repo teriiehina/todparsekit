@@ -9,7 +9,7 @@
 #import "TDTokenizerState.h"
 
 @interface TDNCNameState : TDTokenizerState {
-	
+    
 }
 
 @end

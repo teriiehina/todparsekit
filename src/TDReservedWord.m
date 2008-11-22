@@ -18,26 +18,26 @@ static NSArray *sTDReservedWords = nil;
 @implementation TDReservedWord
 
 + (NSArray *)reservedWords {
-	return [[sTDReservedWords retain] autorelease];
+    return [[sTDReservedWords retain] autorelease];
 }
 
 
 + (void)setReservedWords:(NSArray *)inWords {
-	if (inWords != sTDReservedWords) {
-		[sTDReservedWords autorelease];
-		sTDReservedWords = [inWords copy];
-	}
+    if (inWords != sTDReservedWords) {
+        [sTDReservedWords autorelease];
+        sTDReservedWords = [inWords copy];
+    }
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	if (!tok.isWord) {
-		return NO;
-	}
-	
-	NSString *s = tok.stringValue;
-	return s.length && [[TDReservedWord reservedWords] containsObject:s];
+    TDToken *tok = (TDToken *)obj;
+    if (!tok.isWord) {
+        return NO;
+    }
+    
+    NSString *s = tok.stringValue;
+    return s.length && [[TDReservedWord reservedWords] containsObject:s];
 }
 
 @end

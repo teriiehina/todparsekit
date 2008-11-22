@@ -11,8 +11,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDReaderTest : SenTestCase {
-	TDReader *reader;
-	NSString *string;
+    TDReader *reader;
+    NSString *string;
 }
 
 @end

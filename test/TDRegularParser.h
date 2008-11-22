@@ -9,14 +9,14 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDRegularParser : TDSequence {
-	TDCollectionParser *expressionParser;
-	TDCollectionParser *termParser;
-	TDCollectionParser *orTermParser;
-	TDCollectionParser *factorParser;
-	TDCollectionParser *nextFactorParser;
-	TDCollectionParser *phraseParser;
-	TDCollectionParser *phraseStarParser;
-	TDCollectionParser *letterOrDigitParser;
+    TDCollectionParser *expressionParser;
+    TDCollectionParser *termParser;
+    TDCollectionParser *orTermParser;
+    TDCollectionParser *factorParser;
+    TDCollectionParser *nextFactorParser;
+    TDCollectionParser *phraseParser;
+    TDCollectionParser *phraseStarParser;
+    TDCollectionParser *letterOrDigitParser;
 }
 - (id)parse:(NSString *)s;
 

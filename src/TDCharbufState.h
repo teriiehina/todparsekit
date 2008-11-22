@@ -13,8 +13,8 @@
 
 // Abstract Class
 @interface TDCharbufState : TDTokenizerState {
-	char *__strong charbuf;
-	NSInteger len;
+    char *__strong charbuf;
+    NSInteger len;
 }
 - (void)reset;
 - (void)checkBufLength:(NSInteger)i;

@@ -13,14 +13,14 @@
 @implementation TDSlashSlashState
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-	NSInteger c;
-	do {
-		c = [r read];
-		
-	// TODO should we be handling carriage returns??
-	} while (c != '\n' && c != '\r' && c != -1);
-	
-	return [t nextToken];
+    NSInteger c;
+    do {
+        c = [r read];
+        
+    // TODO should we be handling carriage returns??
+    } while (c != '\n' && c != '\r' && c != -1);
+    
+    return [t nextToken];
 }
 
 @end

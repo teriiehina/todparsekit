@@ -10,9 +10,9 @@
 #import "TDArithmeticParser.h"
 
 @interface TDArithmeticParserTest : SenTestCase {
-	NSString *s;
-	TDArithmeticParser *p;
-	CGFloat result;
+    NSString *s;
+    TDArithmeticParser *p;
+    CGFloat result;
 }
 
 @end

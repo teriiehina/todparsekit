@@ -10,17 +10,17 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class		TDNum 
-	@brief		A Num matches a number from a token assembly.
+    @class      TDNum 
+    @brief      A Num matches a number from a token assembly.
 */
 @interface TDNum : TDTerminal {
 
 }
 
 /*!
-	@fn			num
-	@brief		Convenience factory method for initializing an autoreleased <tt>TDNum</tt> object.
-	@result     an initialized autoreleased <tt>TDNum</tt> object
+    @fn         num
+    @brief      Convenience factory method for initializing an autoreleased <tt>TDNum</tt> object.
+    @result     an initialized autoreleased <tt>TDNum</tt> object
 */
 + (id)num;
 @end

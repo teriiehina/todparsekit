@@ -11,183 +11,183 @@
 @implementation SRGSParserTest
 
 - (void)setUp {
-	p = [[[SRGSParser alloc] init] autorelease];
+    p = [[[SRGSParser alloc] init] autorelease];
 }
 
 
 - (void)test {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example-1" ofType:@"srgs"];
-	s = [NSString stringWithContentsOfFile:path];
-	
-	a = [p assemblyWithString:s];
-	result = [p bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	NSLog(@"\n\n\n result: %@ \n\n\n", result);
-//	STAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description], @"");
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example-1" ofType:@"srgs"];
+    s = [NSString stringWithContentsOfFile:path];
+    
+    a = [p assemblyWithString:s];
+    result = [p bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    NSLog(@"\n\n\n result: %@ \n\n\n", result);
+//    STAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description], @"");
 }
 
 - (void)testSelfIdentHeader {
-	s = @"#ABNF 1.0;";
-	a = [p assemblyWithString:s];
-	result = [p.selfIdentHeader bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description], @"");
+    s = @"#ABNF 1.0;";
+    a = [p assemblyWithString:s];
+    result = [p.selfIdentHeader bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description], @"");
 
-	s = @"#ABNF 1.0 UTF;";
-	a = [p assemblyWithString:s];
-	result = [p.selfIdentHeader bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[#, ABNF, 1.0, UTF, ;]#/ABNF/1.0/UTF/;^", [result description], @"");
+    s = @"#ABNF 1.0 UTF;";
+    a = [p assemblyWithString:s];
+    result = [p.selfIdentHeader bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[#, ABNF, 1.0, UTF, ;]#/ABNF/1.0/UTF/;^", [result description], @"");
 }
 
 
 - (void)testRuleName {
-	s = @"$foobar";
-	a = [p assemblyWithString:s];
-	result = [p.ruleName bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[$, foobar]$/foobar^", [result description], @"");
+    s = @"$foobar";
+    a = [p assemblyWithString:s];
+    result = [p.ruleName bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[$, foobar]$/foobar^", [result description], @"");
 }
 
 
 - (void)testWeight {
-	s = @"/4.0/";
-	a = [TDTokenAssembly assemblyWithString:s];
-	result = [p.weight bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
+    s = @"/4.0/";
+    a = [TDTokenAssembly assemblyWithString:s];
+    result = [p.weight bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
 }
 
 
 - (void)testProbability {
-	s = @"/4.0/";
-	a = [TDTokenAssembly assemblyWithString:s];
-	result = [p.probability bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
+    s = @"/4.0/";
+    a = [TDTokenAssembly assemblyWithString:s];
+    result = [p.probability bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description], @"");
 }
 
 
 - (void)testRepeat {
-	s = @"1 - 4";
-	a = [p assemblyWithString:s];
-	result = [p.repeat bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description], @"");
+    s = @"1 - 4";
+    a = [p assemblyWithString:s];
+    result = [p.repeat bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description], @"");
 
-	s = @"1-4";
-	a = [p assemblyWithString:s];
-	result = [p.repeat bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description], @"");
+    s = @"1-4";
+    a = [p assemblyWithString:s];
+    result = [p.repeat bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description], @"");
 }
 
 
 - (void)testToken {
-	s = @"foobar";
-	a = [p assemblyWithString:s];
-	result = [p.token bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[foobar]foobar^", [result description], @"");
-	
-	s = @"'foobar'";
-	a = [p assemblyWithString:s];
-	result = [p.token bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"['foobar']'foobar'^", [result description], @"");
+    s = @"foobar";
+    a = [p assemblyWithString:s];
+    result = [p.token bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[foobar]foobar^", [result description], @"");
+    
+    s = @"'foobar'";
+    a = [p assemblyWithString:s];
+    result = [p.token bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"['foobar']'foobar'^", [result description], @"");
 }
 
 
 - (void)testTag {
-	s = @"{foobar}";
-	a = [p assemblyWithString:s];
-	result = [p.tag bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[{, foobar, }]{/foobar/}^", [result description], @"");
+    s = @"{foobar}";
+    a = [p assemblyWithString:s];
+    result = [p.tag bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[{, foobar, }]{/foobar/}^", [result description], @"");
 
-	s = @"{bar baz}";
-	a = [p assemblyWithString:s];
-	result = [p.tag bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[{, bar, baz, }]{/bar/baz/}^", [result description], @"");
-	
-	s = @"{bar 1.2 baz}";
-	a = [p assemblyWithString:s];
-	result = [p.tag bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[{, bar, 1.2, baz, }]{/bar/1.2/baz/}^", [result description], @"");
-	
-	s = @"{!{'foobar'}!}";
-	a = [p assemblyWithString:s];
-	result = [p.tag bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[{, !, {, 'foobar', }, !, }]{/!/{/'foobar'/}/!/}^", [result description], @"");
+    s = @"{bar baz}";
+    a = [p assemblyWithString:s];
+    result = [p.tag bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[{, bar, baz, }]{/bar/baz/}^", [result description], @"");
+    
+    s = @"{bar 1.2 baz}";
+    a = [p assemblyWithString:s];
+    result = [p.tag bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[{, bar, 1.2, baz, }]{/bar/1.2/baz/}^", [result description], @"");
+    
+    s = @"{!{'foobar'}!}";
+    a = [p assemblyWithString:s];
+    result = [p.tag bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[{, !, {, 'foobar', }, !, }]{/!/{/'foobar'/}/!/}^", [result description], @"");
 
-	s = @"{!{'foobar' baz}!}";
-	a = [p assemblyWithString:s];
-	result = [p.tag bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[{, !, {, 'foobar', baz, }, !, }]{/!/{/'foobar'/baz/}/!/}^", [result description], @"");
+    s = @"{!{'foobar' baz}!}";
+    a = [p assemblyWithString:s];
+    result = [p.tag bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[{, !, {, 'foobar', baz, }, !, }]{/!/{/'foobar'/baz/}/!/}^", [result description], @"");
 }
 
 
 - (void)testBaseDecl {
-	s = @"base url-goes-here;";
-	a = [p assemblyWithString:s];
-	result = [p.baseDecl bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[base, url-goes-here, ;]base/url-goes-here/;^", [result description], @"");
+    s = @"base url-goes-here;";
+    a = [p assemblyWithString:s];
+    result = [p.baseDecl bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[base, url-goes-here, ;]base/url-goes-here/;^", [result description], @"");
 }
 
 
 - (void)testLanguageDecl {
-	s = @"language en-us;";
-	a = [p assemblyWithString:s];
-	result = [p.languageDecl bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[language, en-us, ;]language/en-us/;^", [result description], @"");
+    s = @"language en-us;";
+    a = [p assemblyWithString:s];
+    result = [p.languageDecl bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[language, en-us, ;]language/en-us/;^", [result description], @"");
 }
 
 
 - (void)testModeDecl {
-	s = @"mode voice;";
-	a = [p assemblyWithString:s];
-	result = [p.modeDecl bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[mode, voice, ;]mode/voice/;^", [result description], @"");
-	
-	s = @"mode dtmf;";
-	a = [p assemblyWithString:s];
-	result = [p.modeDecl bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[mode, dtmf, ;]mode/dtmf/;^", [result description], @"");
+    s = @"mode voice;";
+    a = [p assemblyWithString:s];
+    result = [p.modeDecl bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[mode, voice, ;]mode/voice/;^", [result description], @"");
+    
+    s = @"mode dtmf;";
+    a = [p assemblyWithString:s];
+    result = [p.modeDecl bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[mode, dtmf, ;]mode/dtmf/;^", [result description], @"");
 }
 
 
 - (void)testRootRuleDecl {
-	s = @"root $foobar;";
-	a = [p assemblyWithString:s];
-	result = [p.rootRuleDecl bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[root, $, foobar, ;]root/$/foobar/;^", [result description], @"");
+    s = @"root $foobar;";
+    a = [p assemblyWithString:s];
+    result = [p.rootRuleDecl bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[root, $, foobar, ;]root/$/foobar/;^", [result description], @"");
 }
 
 
 - (void)testLanguageAttachment {
-	s = @"!en-us";
-	a = [p assemblyWithString:s];
-	result = [p.languageAttachment bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[!, en-us]!/en-us^", [result description], @"");
+    s = @"!en-us";
+    a = [p assemblyWithString:s];
+    result = [p.languageAttachment bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[!, en-us]!/en-us^", [result description], @"");
 }
 
 
 - (void)testRepeatOperator {
-	s = @"<0-1 /0.6/>";
-	a = [p assemblyWithString:s];
-	result = [p.repeatOperator bestMatchFor:a];
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[<, 0, -, 1, /, 0.6, /, >]</0/-/1///0.6///>^", [result description], @"");
+    s = @"<0-1 /0.6/>";
+    a = [p assemblyWithString:s];
+    result = [p.repeatOperator bestMatchFor:a];
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[<, 0, -, 1, /, 0.6, /, >]</0/-/1///0.6///>^", [result description], @"");
 }
 
 

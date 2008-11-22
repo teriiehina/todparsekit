@@ -11,9 +11,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDRepetitionTest : SenTestCase {
-	TDParser *p;
-	TDAssembly *a;
-	NSString *s;
+    TDParser *p;
+    TDAssembly *a;
+    NSString *s;
 }
 
 @end

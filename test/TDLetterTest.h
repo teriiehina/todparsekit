@@ -10,10 +10,10 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDLetterTest : SenTestCase {
-	NSString *s;
-	TDCharacterAssembly *a;
-	TDChar *p;
-	TDAssembly *result;
+    NSString *s;
+    TDCharacterAssembly *a;
+    TDChar *p;
+    TDAssembly *result;
 }
 
 @end

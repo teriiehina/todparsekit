@@ -22,51 +22,51 @@
 @implementation TDTrack
 
 + (id)track {
-	return [[[self alloc] init] autorelease];
+    return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-	BOOL inTrack = NO;
-	NSSet *lastAssemblies = inAssemblies;
-	NSSet *outAssemblies = inAssemblies;
-	
-	for (TDParser *p in subparsers) {
-		outAssemblies = [p matchAndAssemble:outAssemblies];
-		if (!outAssemblies.count) {
-			if (inTrack) {
-				[self throwTrackExceptionWithPreviousState:lastAssemblies parser:p];
-			}
-			break;
-		}
-		inTrack = YES;
-		lastAssemblies = outAssemblies;
-	}
-	
-	return outAssemblies;
+    BOOL inTrack = NO;
+    NSSet *lastAssemblies = inAssemblies;
+    NSSet *outAssemblies = inAssemblies;
+    
+    for (TDParser *p in subparsers) {
+        outAssemblies = [p matchAndAssemble:outAssemblies];
+        if (!outAssemblies.count) {
+            if (inTrack) {
+                [self throwTrackExceptionWithPreviousState:lastAssemblies parser:p];
+            }
+            break;
+        }
+        inTrack = YES;
+        lastAssemblies = outAssemblies;
+    }
+    
+    return outAssemblies;
 }
 
 
 - (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(TDParser *)p {
-	TDAssembly *best = [self best:inAssemblies];
+    TDAssembly *best = [self best:inAssemblies];
 
-	NSString *after = [best consumed:@" "];
-	if (!after.length) {
-		after = @"-nothing-";
-	}
-	
-	NSString *expected = [p description];
+    NSString *after = [best consumed:@" "];
+    if (!after.length) {
+        after = @"-nothing-";
+    }
+    
+    NSString *expected = [p description];
 
-	id next = [best peek];
-	NSString *found = next ? [next description] : @"-nothing-";
-	
-	NSString *reason = [NSString stringWithFormat:@"\n\nAfter : %@\nExpected : %@\nFound : %@\n\n", after, expected, found];
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-							  after, @"after",
-							  expected, @"expected",
-							  found, @"found",
-							  nil];
-	[[TDTrackException exceptionWithName:@"Track Exception" reason:reason userInfo:userInfo] raise];
+    id next = [best peek];
+    NSString *found = next ? [next description] : @"-nothing-";
+    
+    NSString *reason = [NSString stringWithFormat:@"\n\nAfter : %@\nExpected : %@\nFound : %@\n\n", after, expected, found];
+    NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+                              after, @"after",
+                              expected, @"expected",
+                              found, @"found",
+                              nil];
+    [[TDTrackException exceptionWithName:@"Track Exception" reason:reason userInfo:userInfo] raise];
 }
 
 @end

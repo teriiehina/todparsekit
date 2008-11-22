@@ -11,10 +11,10 @@
 #import "TDRegularParser.h"
 
 @interface TDRegularParserTest : SenTestCase {
-	NSString *s;
-	TDCharacterAssembly *a;
-	TDRegularParser *p;
-	TDAssembly *result;
+    NSString *s;
+    TDCharacterAssembly *a;
+    TDRegularParser *p;
+    TDAssembly *result;
 }
 
 @end

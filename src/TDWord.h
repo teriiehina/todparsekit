@@ -10,17 +10,17 @@
 #import <TDParseKit/TDTerminal.h>
 
 /*!
-	@class		TDWord 
-	@brief		A <tt>TDWord</tt> matches a word from a token assembly.
+    @class      TDWord 
+    @brief      A <tt>TDWord</tt> matches a word from a token assembly.
 */
 @interface TDWord : TDTerminal {
 
 }
 
 /*!
-	@fn			word
-	@brief		Convenience factory method for initializing an autoreleased <tt>TDWord</tt> object.
-	@result     an initialized autoreleased <tt>TDWord</tt> object
+    @fn         word
+    @brief      Convenience factory method for initializing an autoreleased <tt>TDWord</tt> object.
+    @result     an initialized autoreleased <tt>TDWord</tt> object
 */
 + (id)word;
 @end

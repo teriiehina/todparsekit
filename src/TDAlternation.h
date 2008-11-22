@@ -10,17 +10,17 @@
 #import <TDParseKit/TDCollectionParser.h>
 
 /*!
-	@class		TDAlternation
-	@brief		A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
+    @class      TDAlternation
+    @brief      A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 */
 @interface TDAlternation : TDCollectionParser {
 
 }
 
 /*!
-	@fn			alternation
-	@brief		Convenience factory method for initializing an autoreleased <tt>TDAlternation</tt> parser.
-	@result     an initialized autoreleased <tt>TDAlternation</tt> parser.
+    @fn         alternation
+    @brief      Convenience factory method for initializing an autoreleased <tt>TDAlternation</tt> parser.
+    @result     an initialized autoreleased <tt>TDAlternation</tt> parser.
 */
 + (id)alternation;
 @end

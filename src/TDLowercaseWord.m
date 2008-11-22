@@ -12,13 +12,13 @@
 @implementation TDLowercaseWord
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	if (!tok.isWord) {
-		return NO;
-	}
-	
-	NSString *s = tok.stringValue;
-	return s.length && islower([s characterAtIndex:0]);
+    TDToken *tok = (TDToken *)obj;
+    if (!tok.isWord) {
+        return NO;
+    }
+    
+    NSString *s = tok.stringValue;
+    return s.length && islower([s characterAtIndex:0]);
 }
 
 @end

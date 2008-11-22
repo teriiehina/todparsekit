@@ -13,7 +13,7 @@ const NSInteger TDTT_NCNAME = 6;
 @implementation TDToken (NCNameAdditions)
 
 - (BOOL)isNCName {
-	return self.tokenType == TDTT_NCNAME;
+    return self.tokenType == TDTT_NCNAME;
 }
 
 @end
@@ -21,13 +21,13 @@ const NSInteger TDTT_NCNAME = 6;
 @implementation TDNCName
 
 + (id)NCName {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	return tok.isNCName;
+    TDToken *tok = (TDToken *)obj;
+    return tok.isNCName;
 }
 
 @end

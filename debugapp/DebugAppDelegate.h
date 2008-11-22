@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DebugAppDelegate : NSObject {
-	NSAttributedString *displayString;
+    NSAttributedString *displayString;
 }
 - (IBAction)run:(id)sender;
 

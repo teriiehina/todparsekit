@@ -10,17 +10,17 @@
 #import <TDParseKit/TDWordState.h>
 
 /*!
-	@class		TDWordOrReservedState 
-	@brief		Override <tt>TDWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
+    @class      TDWordOrReservedState 
+    @brief      Override <tt>TDWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
 */
 @interface TDWordOrReservedState : TDWordState {
-	NSMutableSet *reservedWords;
+    NSMutableSet *reservedWords;
 }
 
 /*!
-	@fn			addReservedWord:
-	@brief		Adds the specified string as a known reserved word.
-	@param      s reserved word to add
+    @fn         addReservedWord:
+    @brief      Adds the specified string as a known reserved word.
+    @param      s reserved word to add
 */
 - (void)addReservedWord:(NSString *)s;
 @end

@@ -10,11 +10,11 @@
 
 /*!
  @class     TDTrackException
- @brief		Signals that a parser could not match text after a specific point.
- @details	The <tt>userInfo</tt> for this exception contains the following keys:
-			<tt>after</tt> (<tt>NSString *</tt>) - some indication of what text was interpretable before this exception occurred
-			<tt>expected</tt> (<tt>NSString *</tt>) - some indication of what kind of thing was expected, such as a ')' token
-			<tt>found</tt> (<tt>NSString *</tt>) - the text element the thrower actually found when it expected something else
+ @brief     Signals that a parser could not match text after a specific point.
+ @details   The <tt>userInfo</tt> for this exception contains the following keys:
+            <tt>after</tt> (<tt>NSString *</tt>) - some indication of what text was interpretable before this exception occurred
+            <tt>expected</tt> (<tt>NSString *</tt>) - some indication of what kind of thing was expected, such as a ')' token
+            <tt>found</tt> (<tt>NSString *</tt>) - the text element the thrower actually found when it expected something else
  */
 @interface TDTrackException : NSException {
 

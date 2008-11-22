@@ -13,30 +13,30 @@
 @implementation TDReservedWordTest
 
 - (void)testFoobar {
-	NSString *s = @"Foobar";
-	[TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
-	
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDReservedWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNotNil(result, @"");
-	STAssertEqualObjects(@"[Foobar]Foobar^", [result description], @"");
-//	STAssertNil(result, @"");
+    NSString *s = @"Foobar";
+    [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
+    
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDReservedWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNotNil(result, @"");
+    STAssertEqualObjects(@"[Foobar]Foobar^", [result description], @"");
+//    STAssertNil(result, @"");
 }
 
 
 - (void)testfoobar {
-	NSString *s = @"foobar";
-	[TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
-	
-	TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-	
-	TDParser *p = [TDReservedWord word];
-	TDAssembly *result = [p completeMatchFor:a];
-	
-	STAssertNil(result, @"");
+    NSString *s = @"foobar";
+    [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
+    
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    TDParser *p = [TDReservedWord word];
+    TDAssembly *result = [p completeMatchFor:a];
+    
+    STAssertNil(result, @"");
 }
 
 @end

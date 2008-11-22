@@ -11,8 +11,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDWhitespaceStateTest : SenTestCase {
-	TDWhitespaceState *whitespaceState;
-	TDReader *r;
-	NSString *s;	
+    TDWhitespaceState *whitespaceState;
+    TDReader *r;
+    NSString *s;    
 }
 @end

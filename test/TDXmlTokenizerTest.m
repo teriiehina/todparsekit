@@ -18,34 +18,34 @@
 @implementation TDXmlTokenizerTest
 
 - (void)testFoo {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
 
-	TDXmlTokenizer *t = [TDXmlTokenizer tokenizerWithContentsOfFile:path];
-	NSLog(@"\n\n %@\n\n", t);
-	
-	TDXmlToken *eof = [TDXmlToken EOFToken];
-	TDXmlToken *tok = nil;
-	
-	while ((tok = [t nextToken]) != eof) {
-		//NSLog(@" %@", [tok debugDescription]);
-	}
+    TDXmlTokenizer *t = [TDXmlTokenizer tokenizerWithContentsOfFile:path];
+    NSLog(@"\n\n %@\n\n", t);
+    
+    TDXmlToken *eof = [TDXmlToken EOFToken];
+    TDXmlToken *tok = nil;
+    
+    while ((tok = [t nextToken]) != eof) {
+        //NSLog(@" %@", [tok debugDescription]);
+    }
 }
 
 
 - (void)testAppleBoss {
-	TDSequence *s = [TDSequence sequence];
-	s.name = @"parent sequence";
-	[s add:[TDXmlStartTag startTagWithString:@"result"]];
-	[s add:[TDXmlStartTag startTagWithString:@"url"]];
-	[s add:[TDXmlText text]];
-	[s add:[TDXmlEndTag endTagWithString:@"url"]];
-	[s add:[TDXmlEndTag endTagWithString:@"result"]];
-	
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
-	TDXmlTokenAssembly *a = [TDXmlTokenAssembly assemblyWithString:path];
-	
-	TDAssembly *result = [s bestMatchFor:a];
-	NSLog(@"\n\n\n result: %@ \n\n\n", result);
+    TDSequence *s = [TDSequence sequence];
+    s.name = @"parent sequence";
+    [s add:[TDXmlStartTag startTagWithString:@"result"]];
+    [s add:[TDXmlStartTag startTagWithString:@"url"]];
+    [s add:[TDXmlText text]];
+    [s add:[TDXmlEndTag endTagWithString:@"url"]];
+    [s add:[TDXmlEndTag endTagWithString:@"result"]];
+    
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
+    TDXmlTokenAssembly *a = [TDXmlTokenAssembly assemblyWithString:path];
+    
+    TDAssembly *result = [s bestMatchFor:a];
+    NSLog(@"\n\n\n result: %@ \n\n\n", result);
 }
 
 @end

@@ -19,131 +19,131 @@
 @implementation TDTokenAssembly
 
 - (id)init {
-	return [self initWithString:nil];
+    return [self initWithString:nil];
 }
 
 
 - (id)initWithString:(NSString *)s {
-	self = [super initWithString:s];
-	if (self != nil) {
-		self.tokenizer = [[[TDTokenizer alloc] initWithString:s] autorelease];
-	}
-	return self;
+    self = [super initWithString:s];
+    if (self != nil) {
+        self.tokenizer = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    }
+    return self;
 }
 
 
 - (void)dealloc {
-	self.tokenizer = nil;
-	self.tokens = nil;
-	[super dealloc];
+    self.tokenizer = nil;
+    self.tokens = nil;
+    [super dealloc];
 }
 
 
 - (id)copyWithZone:(NSZone *)zone {
-	TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
-	a->tokens = [self.tokens mutableCopy];
+    TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
+    a->tokens = [self.tokens mutableCopy];
     return a;
 }
 
 
 - (NSMutableArray *)tokens {
-	if (!tokens) {
-		[self tokenize];
-	}
-	return [[tokens retain] autorelease];
+    if (!tokens) {
+        [self tokenize];
+    }
+    return [[tokens retain] autorelease];
 }
 
 
 - (void)setTokens:(NSMutableArray *)inArray {
-	if (inArray != tokens) {
-		[tokens autorelease];
-		tokens = [inArray retain];
-	}
+    if (inArray != tokens) {
+        [tokens autorelease];
+        tokens = [inArray retain];
+    }
 }
 
 
 - (void)tokenize {
-	self.tokens = [NSMutableArray array];
+    self.tokens = [NSMutableArray array];
 
-	TDToken *eof = [TDToken EOFToken];
-	TDToken *tok = nil;
-	while ((tok = [tokenizer nextToken]) != eof) {
-		[tokens addObject:tok];
-	}
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+    while ((tok = [tokenizer nextToken]) != eof) {
+        [tokens addObject:tok];
+    }
 }
 
 
 - (id)peek {
-	if (index >= self.tokens.count) {
-		return nil;
-	}
-	id tok = [self.tokens objectAtIndex:index];
-	
-	return tok;
+    if (index >= self.tokens.count) {
+        return nil;
+    }
+    id tok = [self.tokens objectAtIndex:index];
+    
+    return tok;
 }
 
 
 - (id)next {
-	id tok = [self peek];
-	if (tok) {
-		index++;
-	}
-	return tok;
+    id tok = [self peek];
+    if (tok) {
+        index++;
+    }
+    return tok;
 }
 
 
 - (BOOL)hasMore {
-	return (index < self.tokens.count);
+    return (index < self.tokens.count);
 }
 
 
 - (NSInteger)length {
-	return self.tokens.count;
+    return self.tokens.count;
 } 
 
 
 - (NSInteger)objectsConsumed {
-	return index;
+    return index;
 }
 
 
 - (NSInteger)objectsRemaining {
-	return (self.tokens.count - index);
+    return (self.tokens.count - index);
 }
 
 
 - (NSString *)consumed:(NSString *)delimiter {
-	NSMutableString *s = [NSMutableString string];
+    NSMutableString *s = [NSMutableString string];
 
-	NSInteger i = 0;
-	NSInteger len = self.objectsConsumed;
-	
-	for ( ; i < len; i++) {
-		TDToken *tok = [self.tokens objectAtIndex:i];
-		[s appendString:tok.stringValue];
-		if (i != len - 1) {
-			[s appendString:delimiter];
-		}
-	}
+    NSInteger i = 0;
+    NSInteger len = self.objectsConsumed;
+    
+    for ( ; i < len; i++) {
+        TDToken *tok = [self.tokens objectAtIndex:i];
+        [s appendString:tok.stringValue];
+        if (i != len - 1) {
+            [s appendString:delimiter];
+        }
+    }
 
-	return [[s copy] autorelease];
+    return [[s copy] autorelease];
 }
 
 
 - (NSString *)remainder:(NSString *)delimiter {
-	NSMutableString *s = [NSMutableString string];
-	
-	NSInteger i = self.objectsConsumed;
-	NSInteger len = self.length;
-	
-	for ( ; i < len; i++) {
-		TDToken *tok = [self.tokens objectAtIndex:i];
-		[s appendString:tok.stringValue];
-		if (i != len - 1) {
-			[s appendString:delimiter];
-		}
-	}
-	return [[s copy] autorelease];
+    NSMutableString *s = [NSMutableString string];
+    
+    NSInteger i = self.objectsConsumed;
+    NSInteger len = self.length;
+    
+    for ( ; i < len; i++) {
+        TDToken *tok = [self.tokens objectAtIndex:i];
+        [s appendString:tok.stringValue];
+        if (i != len - 1) {
+            [s appendString:delimiter];
+        }
+    }
+    return [[s copy] autorelease];
 }
 
 @synthesize tokenizer;

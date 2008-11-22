@@ -12,22 +12,22 @@
 @implementation TDXmlName
 
 + (id)name {
-	return [[[self alloc] initWithString:nil] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-	TDToken *tok = (TDToken *)obj;
-	if (!tok.isWord) {
-		return NO;
-	}
-	
-	//NSString *s = tok.stringValue;
-	if (YES) {
-		
-	}
-	
-	return YES;
+    TDToken *tok = (TDToken *)obj;
+    if (!tok.isWord) {
+        return NO;
+    }
+    
+    //NSString *s = tok.stringValue;
+    if (YES) {
+        
+    }
+    
+    return YES;
 }
 
 @end

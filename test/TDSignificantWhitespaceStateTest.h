@@ -10,8 +10,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDSignificantWhitespaceStateTest : SenTestCase {
-	TDSignificantWhitespaceState *whitespaceState;
-	TDReader *r;
-	NSString *s;	
+    TDSignificantWhitespaceState *whitespaceState;
+    TDReader *r;
+    NSString *s;    
 }
 @end
