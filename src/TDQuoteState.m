@@ -36,7 +36,7 @@
         [stringbuf appendFormat:@"%C", c];
     } while (c != cin);
     
-    return [TDToken tokenWithTokenType:TDTokenTypeQuoted stringValue:stringbuf floatValue:0.0f];
+    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:stringbuf floatValue:0.0f];
 }
 
 @end

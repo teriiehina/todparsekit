@@ -64,7 +64,7 @@
         self.floatValue = n;
         
         self.number = (TDTokenTypeNumber == t);
-        self.quotedString = (TDTokenTypeQuoted == t);
+        self.quotedString = (TDTokenTypeQuotedString == t);
         self.symbol = (TDTokenTypeSymbol == t);
         self.word = (TDTokenTypeWord == t);
         
