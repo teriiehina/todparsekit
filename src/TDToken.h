@@ -22,7 +22,8 @@ typedef enum {
     TDTokenTypeNumber,
     TDTokenTypeQuotedString,
     TDTokenTypeSymbol,
-    TDTokenTypeWord
+    TDTokenTypeWord,
+    TDTokenTypeWhitespace
 } TDTokenType;
 
 /*!
@@ -39,6 +40,7 @@ typedef enum {
     BOOL quotedString;
     BOOL symbol;
     BOOL word;
+    BOOL whitespace;
     
     id value;
 }
@@ -109,6 +111,12 @@ typedef enum {
     @brief      True if this token is a word. getter=isWord
 */
 @property (nonatomic, readonly, getter=isWord) BOOL word;
+
+/*!
+    @property   whitespace
+    @brief      True if this token is whitespace. getter=isWhitespace
+*/
+@property (nonatomic, readonly, getter=isWhitespace) BOOL whitespace;
 
 /*!
     @property   tokenType

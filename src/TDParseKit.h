@@ -54,7 +54,6 @@
 
 // ext
 #import <TDParseKit/TDScientificNumberState.h>
-#import <TDParseKit/TDSignificantWhitespaceState.h>
 #import <TDParseKit/TDWordOrReservedState.h>
 #import <TDParseKit/TDUppercaseWord.h>
 #import <TDParseKit/TDLowercaseWord.h>
