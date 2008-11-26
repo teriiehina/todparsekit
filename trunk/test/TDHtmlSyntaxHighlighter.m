@@ -74,10 +74,11 @@
         
         [tokenizer setTokenizerState:tokenizer.symbolState from:'/' to:'/']; // XML doesn't have slash slash or slash star comments
         
-        TDSignificantWhitespaceState *whitespaceState = [[[TDSignificantWhitespaceState alloc] init] autorelease];
-        tokenizer.whitespaceState = whitespaceState;
-        [tokenizer setTokenizerState:whitespaceState from:0 to:' '];
-        
+//        TDSignificantWhitespaceState *whitespaceState = [[[TDSignificantWhitespaceState alloc] init] autorelease];
+//        tokenizer.whitespaceState = whitespaceState;
+//        [tokenizer setTokenizerState:whitespaceState from:0 to:' '];
+
+        tokenizer.whitespaceState.whitespaceIsSignificant = YES;
         [tokenizer.wordState setWordChars:YES from:':' to:':'];
         
         self.ltToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0f];

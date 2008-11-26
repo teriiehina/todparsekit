@@ -165,4 +165,160 @@
 }
 
 
+#pragma mark -
+#pragma mark Significant
+
+- (void)testSignificantSpace {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @" ";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantTwoSpaces {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"  ";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantEmptyString {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantTab {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\t";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantNewLine {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\n";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantCarriageReturn {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\r";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantSpaceCarriageReturn {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @" \r";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantSpaceTabNewLineSpace {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @" \t\n ";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(s, t.stringValue, @"");
+    STAssertEquals((NSInteger)-1, [r read], @"");
+}
+
+
+- (void)testSignificantSpaceA {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @" a";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@" ", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
+
+- (void)testSignificantSpaceASpace {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @" a ";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@" ", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
+
+- (void)testSignificantTabA {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\ta";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@"\t", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
+
+- (void)testSignificantNewLineA {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\na";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@"\n", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
+
+- (void)testSignificantCarriageReturnA {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\ra";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@"\r", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
+
+- (void)testSignificantNewLineSpaceCarriageReturnA {
+    whitespaceState.whitespaceIsSignificant = YES;
+    s = @"\n \ra";
+    r = [[TDReader alloc] initWithString:s];
+    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    STAssertNotNil(t, @"");
+    STAssertEqualObjects(@"\n \r", t.stringValue, @"");
+    STAssertEquals((NSInteger)'a', [r read], @"");
+}
+
 @end

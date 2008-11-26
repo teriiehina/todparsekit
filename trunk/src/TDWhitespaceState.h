@@ -15,10 +15,8 @@
     @details    By default, all characters from 0 to 32 are whitespace.
 */
 @interface TDWhitespaceState : TDTokenizerState {
-    NSInteger c;
     NSMutableArray *whitespaceChars;
-    NSNumber *yesFlag;
-    NSNumber *noFlag;
+    BOOL whitespaceIsSignificant;
 }
 
 /*!
@@ -37,4 +35,10 @@
     @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
+
+/*!
+    @property   slashState
+    @brief      determines whether a <tt>TDTokenizer</tt> associated with this state reports or ignores whitespace tokens. default is <tt>NO</tt>
+*/
+@property (nonatomic) BOOL whitespaceIsSignificant;
 @end
