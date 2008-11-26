@@ -24,6 +24,8 @@
 @end
 
 @interface TDToken ()
+- (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase;
+
 @property (nonatomic, readwrite, getter=isNumber) BOOL number;
 @property (nonatomic, readwrite, getter=isQuotedString) BOOL quotedString;
 @property (nonatomic, readwrite, getter=isSymbol) BOOL symbol;
@@ -61,10 +63,10 @@
         self.stringValue = s;
         self.floatValue = n;
         
-        self.number = (t == TDTokenTypeNumber);
-        self.quotedString = (t == TDTokenTypeQuoted);
-        self.symbol = (t == TDTokenTypeSymbol);
-        self.word = (t == TDTokenTypeWord);
+        self.number = (TDTokenTypeNumber == t);
+        self.quotedString = (TDTokenTypeQuoted == t);
+        self.symbol = (TDTokenTypeSymbol == t);
+        self.word = (TDTokenTypeWord == t);
         
         id v = nil;
         if (self.isNumber) {
@@ -97,24 +99,16 @@
 
 
 - (BOOL)isEqual:(id)rhv {
-    if (![rhv isMemberOfClass:[TDToken class]]) {
-        return NO;
-    }
-    
-    TDToken *that = (TDToken *)rhv;
-    if (tokenType != that.tokenType) {
-        return NO;
-    }
-    
-    if (self.isNumber) {
-        return floatValue == that.floatValue;
-    } else {
-        return [stringValue isEqualToString:that.stringValue];
-    }
+    return [self isEqual:rhv ignoringCase:NO];
 }
 
 
 - (BOOL)isEqualIgnoringCase:(id)rhv {
+    return [self isEqual:rhv ignoringCase:YES];
+}
+
+
+- (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase {
     if (![rhv isMemberOfClass:[TDToken class]]) {
         return NO;
     }
@@ -127,7 +121,11 @@
     if (self.isNumber) {
         return floatValue == that.floatValue;
     } else {
-        return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
+        if (ignoringCase) {
+            return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
+        } else {
+            return [stringValue isEqualToString:that.stringValue];
+        }
     }
 }
 
