@@ -58,6 +58,12 @@
     [addedSymbols addObject:s];
 }
 
+
+- (void)remove:(NSString *)s {
+    [self.rootNode remove:s];
+    [addedSymbols removeObject:s];
+}
+
 @synthesize rootNode;
 @synthesize addedSymbols;
 @end

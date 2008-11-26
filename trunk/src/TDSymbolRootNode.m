@@ -15,6 +15,7 @@
 
 @interface TDSymbolRootNode ()
 - (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
+- (void)removeWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
 - (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p;
 @end
 
@@ -24,6 +25,13 @@
     if (s.length < 2) return;
     
     [self addWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
+}
+
+
+- (void)remove:(NSString *)s {
+    if (s.length < 2) return;
+    
+    [self removeWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
 }
 
 
@@ -47,7 +55,25 @@
     [self addWithFirst:[s characterAtIndex:0] rest:rest parent:child];
 }
 
- 
+
+- (void)removeWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+    NSNumber *key = [NSNumber numberWithInteger:c];
+    TDSymbolNode *child = [p.children objectForKey:key];
+    if (child) {
+        NSString *rest = nil;
+        
+        if (0 == s.length) {
+            return;
+        } else if (s.length > 1) {
+            rest = [s substringFromIndex:1];
+            [self removeWithFirst:[s characterAtIndex:0] rest:rest parent:child];
+        }
+        
+        [p.children removeObjectForKey:key];
+    }
+}
+
+
 - (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin {
     return [self nextWithFirst:cin rest:r parent:self];
 }
