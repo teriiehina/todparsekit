@@ -47,7 +47,7 @@
         if (-1 != c) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"/" floatValue:0.0f];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0f];
     }
 }
 

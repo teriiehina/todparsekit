@@ -20,8 +20,8 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        self.curly = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"{" floatValue:0.0f];
-        self.bracket = [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:@"[" floatValue:0.0f];
+        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0f];
+        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0f];
     }
     return self;
 }
