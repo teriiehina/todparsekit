@@ -19,7 +19,7 @@
 @implementation TDToken (TDSignificantWhitespaceStateAdditions)
 
 - (BOOL)isWhitespace {
-    return self.tokenType == TDTT_WHITESPACE;
+    return self.tokenType == TDTokenTypeWhitespace;
 }
 
 
@@ -60,7 +60,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTT_WHITESPACE stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
+    return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
 }
 
 @end
