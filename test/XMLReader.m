@@ -367,7 +367,7 @@ static void rngErr(XMLReader *self, const char *msg, ...) {
 
 
 - (NSString *)relaxNGSchemaPath {
-    return [[relaxNGSchemaPath copy] autorelease];
+    return [[relaxNGSchemaPath retain] autorelease];
 }
 
 

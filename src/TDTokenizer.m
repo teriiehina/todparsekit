@@ -48,7 +48,6 @@
 
         [symbolState add:@"<="];
         [symbolState add:@">="];
-        [symbolState add:@":-"];
         [symbolState add:@"!="];
         [symbolState add:@"=="];
         
@@ -123,22 +122,26 @@
 
 - (void)setReader:(TDReader *)r {
     if (reader != r) {
+        [self willChangeValueForKey:@"reader"];
         [reader autorelease];
         reader = [r retain];
+        [self didChangeValueForKey:@"reader"];
         [reader setString:string];
     }
 }
 
 
 - (NSString *)string {
-    return [[string copy] autorelease];
+    return [[string retain] autorelease];
 }
 
 
 - (void)setString:(NSString *)s {
     if (string != s) {
+        [self willChangeValueForKey:@"string"];
         [string autorelease];
         string = [s copy];
+        [self didChangeValueForKey:@"string"];
     }
     reader.string = string;
 }
