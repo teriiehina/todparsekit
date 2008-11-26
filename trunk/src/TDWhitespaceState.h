@@ -16,7 +16,7 @@
 */
 @interface TDWhitespaceState : TDTokenizerState {
     NSMutableArray *whitespaceChars;
-    BOOL whitespaceIsSignificant;
+    BOOL reportsWhitespaceTokens;
 }
 
 /*!
@@ -37,8 +37,8 @@
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
 
 /*!
-    @property   slashState
-    @brief      determines whether a <tt>TDTokenizer</tt> associated with this state reports or ignores whitespace tokens. default is <tt>NO</tt>
+    @property   reportsWhitespaceTokens
+    @brief      determines whether a <tt>TDTokenizer</tt> associated with this state reports or silently consumes whitespace tokens. default is <tt>NO</tt> which causes silent consumption of whitespace chars
 */
-@property (nonatomic) BOOL whitespaceIsSignificant;
+@property (nonatomic) BOOL reportsWhitespaceTokens;
 @end

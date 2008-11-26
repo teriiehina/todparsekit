@@ -169,7 +169,7 @@
 #pragma mark Significant
 
 - (void)testSignificantSpace {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @" ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -180,7 +180,7 @@
 
 
 - (void)testSignificantTwoSpaces {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"  ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -191,7 +191,7 @@
 
 
 - (void)testSignificantEmptyString {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -202,7 +202,7 @@
 
 
 - (void)testSignificantTab {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\t";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -213,7 +213,7 @@
 
 
 - (void)testSignificantNewLine {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -224,7 +224,7 @@
 
 
 - (void)testSignificantCarriageReturn {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\r";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -235,7 +235,7 @@
 
 
 - (void)testSignificantSpaceCarriageReturn {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \r";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -246,7 +246,7 @@
 
 
 - (void)testSignificantSpaceTabNewLineSpace {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \t\n ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -257,7 +257,7 @@
 
 
 - (void)testSignificantSpaceA {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -268,7 +268,7 @@
 
 
 - (void)testSignificantSpaceASpace {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -279,7 +279,7 @@
 
 
 - (void)testSignificantTabA {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ta";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -290,7 +290,7 @@
 
 
 - (void)testSignificantNewLineA {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\na";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -301,7 +301,7 @@
 
 
 - (void)testSignificantCarriageReturnA {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ra";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
@@ -312,7 +312,7 @@
 
 
 - (void)testSignificantNewLineSpaceCarriageReturnA {
-    whitespaceState.whitespaceIsSignificant = YES;
+    whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n \ra";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
