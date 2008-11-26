@@ -78,7 +78,7 @@
 //        tokenizer.whitespaceState = whitespaceState;
 //        [tokenizer setTokenizerState:whitespaceState from:0 to:' '];
 
-        tokenizer.whitespaceState.whitespaceIsSignificant = YES;
+        tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
         [tokenizer.wordState setWordChars:YES from:':' to:':'];
         
         self.ltToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0f];

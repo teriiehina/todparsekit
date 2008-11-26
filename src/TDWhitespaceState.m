@@ -70,13 +70,13 @@ static id TDNoFlag = nil;
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
-    if (whitespaceIsSignificant) {
+    if (reportsWhitespaceTokens) {
         [self reset];
     }
     
     NSInteger c = cin;
     while ([self isWhitespaceChar:c]) {
-        if (whitespaceIsSignificant) {
+        if (reportsWhitespaceTokens) {
             [stringbuf appendFormat:@"%C", c];
         }
         c = [r read];
@@ -85,7 +85,7 @@ static id TDNoFlag = nil;
         [r unread];
     }
     
-    if (whitespaceIsSignificant) {
+    if (reportsWhitespaceTokens) {
         return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
     } else {
         return [t nextToken];
@@ -93,6 +93,6 @@ static id TDNoFlag = nil;
 }
 
 @synthesize whitespaceChars;
-@synthesize whitespaceIsSignificant;
+@synthesize reportsWhitespaceTokens;
 @end
 
