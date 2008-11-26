@@ -79,7 +79,7 @@ while ((tok = [t nextToken]) != eof) {
 </pre>
 </div>
 
-<p>Each <tt>TDToken</tt> object returned has a <tt>stringValue</tt>, a <tt>floatValue</tt> and a <tt>tokenType</tt>. The <tt>tokenType</tt> is and enum value type called <tt>TDTokenType</tt> with possible values of <tt>TDTT_NUMBER</tt>, <tt>TDTT_QUOTED</tt>, <tt>TDTT_SYMBOL</tt> or <tt>TDTT_WORD</tt>. <tt>TDTokens</tt> also have corresponding <tt>BOOL</tt> properties for convenience: <tt>isNumber</tt>, <tt>isQuotedString</tt>, <tt>isSymbol</tt> and <tt>isWord</tt>.</p>
+<p>Each <tt>TDToken</tt> object returned has a <tt>stringValue</tt>, a <tt>floatValue</tt> and a <tt>tokenType</tt>. The <tt>tokenType</tt> is and enum value type called <tt>TDTokenType</tt> with possible values of <tt>TDTokenTypeNumber</tt>, <tt>TDTokenTypeQuotedString</tt>, <tt>TDTokenTypeSymbol</tt> or <tt>TDTokenTypeWord</tt>. <tt>TDTokens</tt> also have corresponding <tt>BOOL</tt> properties for convenience: <tt>isNumber</tt>, <tt>isQuotedString</tt>, <tt>isSymbol</tt> and <tt>isWord</tt>.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -111,15 +111,15 @@ while ((tok = [t nextToken]) != eof) {
 <a name="default-behavior"></a>
 <h3>Default Behavior of <tt>TDTokenizer</tt></h3>
 
-<p>Let's examine the default behavior of <tt>TDTokenizer</tt> for each token type.</p>
+<p>The default behavior of <tt>TDTokenizer</tt> for each token type is correct for many common situations. <tt>TDTokenizer</tt> will fit many tokenization needs without additional configuration.</p>
 
 <h4>Number</h4>
 
-<p>Sequences of digits (<tt>&laquo;2&raquo;</tt> <tt>&laquo;47&raquo;</tt>) are recognized as <tt>Number</tt> tokens. Floating point numbers (<tt>&laquo;47.5&raquo;</tt>) are recognized as single <tt>Number</tt> tokens as you'd expect (rather than two <tt>Number</tt> tokens separated by a <tt>&laquo;.&raquo;</tt> <tt>Symbol</tt> token). By default, <tt>TDTokenizer</tt> will recognize a <tt>&laquo;-&raquo;</tt> symbol followed immediately by digits (<tt>&laquo;-47&raquo;</tt>) as a number token with a negative value. However, <tt>&laquo;+&raquo;</tt> characters are always seen as the beginning of a <tt>Symbol</tt> token by default, even when followed immediately by digits, so "explicitly-positive" <tt>Number</tt> tokens are not supported by default (see below for an example of how to configure <tt>TDTokenizer</tt> to support numbers starting with an explicit <tt>&laquo;+&raquo;</tt> character).</p>
+<p>Sequences of digits (<tt>&laquo;2&raquo;</tt> <tt>&laquo;42&raquo;</tt> <tt>&laquo;1054&raquo;</tt>) are recognized as <tt>Number</tt> tokens. Floating point numbers containing a dot (<tt>&laquo;3.14&raquo;</tt>) are recognized as single <tt>Number</tt> tokens as you'd expect (rather than two <tt>Number</tt> tokens separated by a <tt>&laquo;.&raquo;</tt> <tt>Symbol</tt> token). By default, <tt>TDTokenizer</tt> will recognize a <tt>&laquo;-&raquo;</tt> symbol followed immediately by digits (<tt>&laquo;-47&raquo;</tt>) as a number token with a negative value. However, <tt>&laquo;+&raquo;</tt> characters are always seen as the beginning of a <tt>Symbol</tt> token by default, even when followed immediately by digits, so "explicitly-positive" <tt>Number</tt> tokens are not supported by default (this behavior can be configured, see below).</p>
 	
 <h4>Symbol</h4>
 	
-<p>Most symbol characters (<tt>&laquo;.&raquo;</tt> <tt>&laquo;!&raquo;</tt>) are recognized as single-character <tt>Symbol</tt> tokens (even when sequencial such as <tt>&laquo;!&raquo;&laquo;!&raquo;</tt>). However, notice that <tt>TDTokenizer</tt> recognizes common multi-character symbols (<tt>&laquo;!=&raquo;</tt>) as a single <tt>Symbol</tt> token by default. In fact, <tt>TDTokenizer</tt> can be configured to recognize any given string as a multi-character symbol, or it can be configured to always recognize each symbol character as a separate <tt>Symbol</tt> token (no mulit-character symbols). The default multi-character symbols recognized by <tt>TDTokenizer</tt> are: <tt>&laquo;&lt;=&raquo;</tt>, <tt>&laquo;&gt;=&raquo;</tt>, <tt>&laquo;:=&raquo;</tt>, <tt>&laquo;!=&raquo;</tt>, <tt>&laquo;==&raquo;</tt>, <tt>&laquo;&lt;&gt;&raquo;</tt>.</p>
+<p>Most symbol characters (<tt>&laquo;.&raquo;</tt> <tt>&laquo;!&raquo;</tt>) are recognized as single-character <tt>Symbol</tt> tokens (even when sequential such as <tt>&laquo;!&raquo;&laquo;!&raquo;</tt>). However, notice that <tt>TDTokenizer</tt> recognizes common multi-character symbols (<tt>&laquo;!=&raquo;</tt>) as a single <tt>Symbol</tt> token by default. In fact, <tt>TDTokenizer</tt> can be configured to recognize any given string as a multi-character symbol. Alternatively, it can be configured to always recognize each symbol character as an individual <tt>Symbol</tt> token (no mulit-character symbols). The default multi-character symbols recognized by <tt>TDTokenizer</tt> are: <tt>&laquo;&lt;=&raquo;</tt>, <tt>&laquo;&gt;=&raquo;</tt>, <tt>&laquo;:-&raquo;</tt>, <tt>&laquo;!=&raquo;</tt>, <tt>&laquo;==&raquo;</tt>.</p>
 
 <p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>//</tt>) and C++-style (<tt>/* */</tt>) comments and removes the associated comments from the output rather than producing tokens. See below for steps to turn off comments recognition.</p>
 

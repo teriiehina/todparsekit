@@ -378,13 +378,84 @@
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
     STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"==", tok.stringValue, @"");
+    STAssertEqualObjects(@"==", tok.value, @"");
+    
+    STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualEqualEqualCompareEqualEqualEqualEqual {
+    s = @"====";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    [t.symbolState add:@"==="];
+    TDToken *tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"===", tok.stringValue, @"");
+    STAssertEqualObjects(@"===", tok.value, @"");
+    
+    tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
     STAssertEqualObjects(@"=", tok.stringValue, @"");
     STAssertEqualObjects(@"=", tok.value, @"");
     
+    STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualEqualEqualCompareEqualEqualEqualEqualEqual {
+    s = @"=====";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    [t.symbolState add:@"==="];
+    TDToken *tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"===", tok.stringValue, @"");
+    STAssertEqualObjects(@"===", tok.value, @"");
+    
     tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"==", tok.stringValue, @"");
+    STAssertEqualObjects(@"==", tok.value, @"");
+    
+    STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualEqualEqualCompareEqualEqualEqualEqualEqualSpaceEqual {
+    s = @"===== =";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    [t.symbolState add:@"==="];
+    TDToken *tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"===", tok.stringValue, @"");
+    STAssertEqualObjects(@"===", tok.value, @"");
+    
+    tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"==", tok.stringValue, @"");
+    STAssertEqualObjects(@"==", tok.value, @"");
+    
+    tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
     STAssertEqualObjects(@"=", tok.stringValue, @"");
     STAssertEqualObjects(@"=", tok.value, @"");
+    
+    STAssertEquals([TDToken EOFToken], [t nextToken], @"");
+}
+
+
+- (void)testTokenzierEqualEqualEqualEqual {
+    s = @"====";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    TDToken *tok = [t nextToken];
     STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"==", tok.stringValue, @"");
+    STAssertEqualObjects(@"==", tok.value, @"");
+    
+    tok = [t nextToken];
+    STAssertTrue(tok.isSymbol, @"");
+    STAssertEqualObjects(@"==", tok.stringValue, @"");
+    STAssertEqualObjects(@"==", tok.value, @"");
     
     STAssertEquals([TDToken EOFToken], [t nextToken], @"");
 }
