@@ -78,7 +78,7 @@
         floatValue = -floatValue;
     }
     
-    return [TDToken tokenWithTokenType:TDTT_NUMBER stringValue:[[stringbuf copy] autorelease] floatValue:[self value]];
+    return [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[[stringbuf copy] autorelease] floatValue:[self value]];
 }
 
 

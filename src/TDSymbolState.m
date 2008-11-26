@@ -42,13 +42,13 @@
     NSInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:symbol floatValue:0.0f];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0f];
     } else {
         NSInteger i = 0;
         for ( ; i < len - 1; i++) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTT_SYMBOL stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0f];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0f];
     }
 }
 

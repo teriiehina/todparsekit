@@ -41,7 +41,7 @@
     static TDToken *EOFToken = nil;
     @synchronized (self) {
         if (!EOFToken) {
-            EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTT_EOF stringValue:nil floatValue:0.0f];
+            EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTokenTypeEOF stringValue:nil floatValue:0.0f];
         }
     }
     return EOFToken;
@@ -61,10 +61,10 @@
         self.stringValue = s;
         self.floatValue = n;
         
-        self.number = (t == TDTT_NUMBER);
-        self.quotedString = (t == TDTT_QUOTED);
-        self.symbol = (t == TDTT_SYMBOL);
-        self.word = (t == TDTT_WORD);
+        self.number = (t == TDTokenTypeNumber);
+        self.quotedString = (t == TDTokenTypeQuoted);
+        self.symbol = (t == TDTokenTypeSymbol);
+        self.word = (t == TDTokenTypeWord);
         
         id v = nil;
         if (self.isNumber) {

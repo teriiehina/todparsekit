@@ -11,18 +11,18 @@
 /*!
     @typedef    enum TDTokenType
     @brief      Indicates the type of a <tt>TDToken</tt>
-    @var        TDTT_EOF A constant indicating that the endo fo the stream has been read.
-    @var        TDTT_NUMBER A constant indicating that a token is a number, like <tt>3.14</tt>.
-    @var        TDTT_QUOTED A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
-    @var        TDTT_SYMBOL A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
-    @var        TDTT_WORD A constant indicating that a token is a word, like <tt>cat</tt>.
+    @var        TDTokenTypeEOF A constant indicating that the endo fo the stream has been read.
+    @var        TDTokenTypeNumber A constant indicating that a token is a number, like <tt>3.14</tt>.
+    @var        TDTokenTypeQuoted A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
+    @var        TDTokenTypeSymbol A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
+    @var        TDTokenTypeWord A constant indicating that a token is a word, like <tt>cat</tt>.
 */
 typedef enum {
-    TDTT_EOF,
-    TDTT_NUMBER,
-    TDTT_QUOTED,
-    TDTT_SYMBOL,
-    TDTT_WORD
+    TDTokenTypeEOF,
+    TDTokenTypeNumber,
+    TDTokenTypeQuoted,
+    TDTokenTypeSymbol,
+    TDTokenTypeWord
 } TDTokenType;
 
 /*!
