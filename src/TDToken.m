@@ -113,18 +113,18 @@
         return NO;
     }
     
-    TDToken *that = (TDToken *)rhv;
-    if (tokenType != that.tokenType) {
+    TDToken *tok = (TDToken *)rhv;
+    if (tokenType != tok.tokenType) {
         return NO;
     }
     
     if (self.isNumber) {
-        return floatValue == that.floatValue;
+        return floatValue == tok.floatValue;
     } else {
         if (ignoringCase) {
-            return (NSOrderedSame == [stringValue caseInsensitiveCompare:that.stringValue]);
+            return (NSOrderedSame == [stringValue caseInsensitiveCompare:tok.stringValue]);
         } else {
-            return [stringValue isEqualToString:that.stringValue];
+            return [stringValue isEqualToString:tok.stringValue];
         }
     }
 }
