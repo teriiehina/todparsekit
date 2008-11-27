@@ -9,22 +9,24 @@
 #import "EBNFParser.h"
 #import "NSString+TDParseKitAdditions.h"
 
-// statement        = exprOrAssignment ';'
-// exprOrAssignment    = expression | assigment
-// assigment        = declaration '=' expression
-// declaration        = '$' Word
-// variable            = '$' Word
-// expression        = term orTerm*
-// term                = factor nextFactor*
-// orTerm            = '|' term
-// factor            = phrase | phraseStar | phraseQuestion | phrasePlus
-// nextFactor        = factor
-// phrase            = atomicValue | '(' expression ')'
-// phraseStar        = phrase '*'
-// phraseQuestion    = phrase '?'
-// phrasePlus        = phrase '+'
-// atomicValue        = Word | Num | QuotedString | variable
-
+/*
+ statement			= exprOrAssignment ';'
+ exprOrAssignment	= expression | assigment
+ assigment			= declaration '=' expression
+ declaration		= '$' Word
+ variable			= '$' Word
+ expression			= term orTerm*
+ term				= factor nextFactor*
+ orTerm				= '|' term
+ factor				= phrase | phraseStar | phraseQuestion | phrasePlus
+ nextFactor			= factor
+ phrase				= atomicValue | '(' expression ')'
+ phraseStar			= phrase '*'
+ phraseQuestion		= phrase '?'
+ phrasePlus			= phrase '+'
+ atomicValue        = Word | Num | QuotedString | variable
+*/
+ 
 static NSString * const kEBNFEqualsString = @"=";
 static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
