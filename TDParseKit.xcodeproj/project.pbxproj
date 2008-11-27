@@ -243,8 +243,8 @@
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TDParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		D301D5A70EDE06BD0097CE86 /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
-		D301D5A80EDE06BD0097CE86 /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
+		D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
+		D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
 		D31FE54A0E60E46100A0803E /* TDTestScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTestScaffold.h; path = test/TDTestScaffold.h; sourceTree = "<group>"; };
 		D31FE54B0E60E46100A0803E /* TDTestScaffold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTestScaffold.m; path = test/TDTestScaffold.m; sourceTree = "<group>"; };
 		D31FE54D0E60E50800A0803E /* TDAlternationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAlternationTest.h; path = test/TDAlternationTest.h; sourceTree = "<group>"; };
@@ -630,13 +630,13 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */,
+				D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */,
 				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
 				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
-				D301D5A70EDE06BD0097CE86 /* TDSignificantWhitespaceState.h */,
-				D301D5A80EDE06BD0097CE86 /* TDSignificantWhitespaceState.m */,
-				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
 				D31FE6450E60E7AF00A0803E /* TDCharbufState.h */,
 				D31FE6460E60E7AF00A0803E /* TDCharbufState.m */,
+				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";

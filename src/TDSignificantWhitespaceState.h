@@ -10,6 +10,8 @@
 #import <TDParseKit/TDWhitespaceState.h>
 #import <TDParseKit/TDToken.h>
 
+// NOTE: this class is not currently in use or included in the Framework. It is an example of how to add a new token type
+
 static const NSInteger TDTokenTypeWhitespace = 5;
 
 @interface TDToken (TDSignificantWhitespaceStateAdditions)

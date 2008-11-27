@@ -20,14 +20,12 @@
 }
 
 /*!
-    @fn         repetition
     @brief      Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser.
     @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
 */
 + (id)repetition;
 
 /*!
-    @fn         repetitionWithSubparser:
     @brief      Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @param      p the subparser against wich to repeatedly match
     @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
@@ -35,7 +33,6 @@
 + (id)repetitionWithSubparser:(TDParser *)p;
 
 /*!
-    @fn         initWithSubparser:
     @brief      Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @details    Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @param      p the subparser against wich to repeatedly match
@@ -44,7 +41,6 @@
 - (id)initWithSubparser:(TDParser *)p;
 
 /*!
-    @fn         setPreassembler:selector:
     @brief      Sets the object that will work on every assembly before matching against it.
     @details    Setting a preassembler is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.
     @param      a the assembler this parser will use to work on an assembly before matching against it.

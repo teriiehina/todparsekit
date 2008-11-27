@@ -40,14 +40,12 @@
 }
 
 /*!
-    @fn         parser
     @brief      Convenience factory method for initializing an autoreleased parser.
     @result     an initialized autoreleased parser.
 */
 + (id)parser;
 
 /*!
-    @fn         setAssembler:selector:
     @brief      Sets the object and method that will work on an assembly whenever this parser successfully matches against the assembly.
     @details    The method represented by <tt>sel</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
     @param      a the assembler this parser will use to work on an assembly
@@ -56,7 +54,6 @@
 - (void)setAssembler:(id)a selector:(SEL)sel;
 
 /*!
-    @fn         bestMatchFor:
     @brief      Returns the most-matched assembly in a collection.
     @param      inAssembly the assembly for which to find the best match
     @result     an assembly with the greatest possible number of elements consumed by this parser
@@ -64,7 +61,6 @@
 - (TDAssembly *)bestMatchFor:(TDAssembly *)inAssembly;
 
 /*!
-    @fn         completeMatchFor:
     @brief      Returns either <tt>nil</tt>, or a completely matched version of the supplied assembly.
     @param      inAssembly the assembly for which to find the complete match
     @result     either <tt>nil</tt>, or a completely matched version of the supplied assembly
@@ -72,7 +68,6 @@
 - (TDAssembly *)completeMatchFor:(TDAssembly *)inAssembly;
 
 /*!
-    @fn         allMatchesFor:
     @brief      Given a set of assemblies, this method matches this parser against all of them, and returns a new set of the assemblies that result from the matches.
     @details    <p>Given a set of assemblies, this method matches this parser against all of them, and returns a new set of the assemblies that result from the matches.</p>
                 <p>For example, consider matching the regular expression <tt>a*</tt> against the string <tt>aaab</tt>. The initial set of states is <tt>{^aaab}</tt>, where the <tt>^</tt> indicates how far along the assembly is. When <tt>a*</tt> matches against this initial state, it creates a new set <tt>{^aaab, a^aab, aa^ab, aaa^b}</tt>.</p>

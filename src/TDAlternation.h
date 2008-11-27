@@ -18,7 +18,6 @@
 }
 
 /*!
-    @fn         alternation
     @brief      Convenience factory method for initializing an autoreleased <tt>TDAlternation</tt> parser.
     @result     an initialized autoreleased <tt>TDAlternation</tt> parser.
 */

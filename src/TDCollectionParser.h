@@ -18,7 +18,6 @@
 }
 
 /*!
-    @fn         add:
     @brief      Adds a parser to the collection.
     @param      p parser to add
 */

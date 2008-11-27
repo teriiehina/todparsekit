@@ -19,7 +19,6 @@
 }
 
 /*!
-    @fn         empty
     @brief      Convenience factory method for initializing an autoreleased <tt>TDEmpty</tt> parser.
     @result     an initialized autoreleased <tt>TDEmpty</tt> parser.
 */

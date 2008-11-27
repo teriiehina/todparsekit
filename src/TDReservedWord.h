@@ -12,5 +12,6 @@
 @interface TDReservedWord : TDWord {
 
 }
+
 + (void)setReservedWords:(NSArray *)inWords;
 @end

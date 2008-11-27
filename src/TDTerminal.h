@@ -21,7 +21,6 @@
 }
 
 /*!
-    @fn         initWithString:
     @brief      Designated Initializer for all concrete <tt>TDTerminal</tt> subclasses.
     @details    Note this is an abtract class and this method must be called on a concrete subclass.
     @param      s the string matched by this parser
@@ -30,7 +29,6 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
-    @fn         discard
     @brief      By default, terminals push themselves upon a assembly's stack, after a successful match. This method will turn off that behavior.
     @details    This method returns this parser as a convenience for chainging-style usage.
     @result     this parser, returned for chaining/convenience

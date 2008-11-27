@@ -53,15 +53,14 @@
     TDWhitespaceState *whitespaceState;
     TDWordState *wordState;
 }
+
 /*!
-    @fn         tokenizer
     @brief      Convenience factory method. Sets string to read from to <tt>nil</tt>.
     @result     An initialized tokenizer.
 */
 + (id)tokenizer;
 
 /*!
-    @fn         tokenizerWithString:
     @brief      Convenience factory method.
     @param      s string to read from.
     @result     An autoreleased initialized tokenizer.
@@ -69,7 +68,6 @@
 + (id)tokenizerWithString:(NSString *)s;
 
 /*!
-    @fn         initWithString:
     @brief      Designated Initializer. Constructs a tokenizer to read from the supplied string.
     @param      s string to read from.
     @result     An initialized tokenizer.
@@ -77,14 +75,12 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
-    @fn         nextToken
     @brief      Returns the next token.
     @result     the next token.
 */
 - (TDToken *)nextToken;
 
 /*!
-    @fn         setTokenizerState:from:to:
     @brief      Change the state the tokenizer will enter upon reading any character between "start" and "end".
     @param      state the state for this character range
     @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.

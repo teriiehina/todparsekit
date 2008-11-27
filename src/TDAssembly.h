@@ -23,7 +23,6 @@
 }
 
 /*!
-    @fn         assemblyWithString:
     @brief      Convenience factory method for initializing an autoreleased assembly.
     @param      s string to be worked on
     @result     an initialized autoreleased assembly
@@ -31,7 +30,6 @@
 + (id)assemblyWithString:(NSString *)s;
 
 /*!
-    @fn         initWithString:
     @brief      Designated Initializer. Initializes an assembly with a given string.
     @details    Designated Initializer.
     @param      s string to be worked on
@@ -40,7 +38,6 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
-    @fn         peek
     @brief      Shows the next object in the assembly, without removing it
     @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
     @result     the next object in the assembly.
@@ -48,7 +45,6 @@
 - (id)peek;
 
 /*!
-    @fn         next
     @brief      Returns the next object in the assembly.
     @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
     @result     the next object in the assembly.
@@ -56,14 +52,12 @@
 - (id)next;
 
 /*!
-    @fn         hasMore
     @brief      Returns true if this assembly has unconsumed elements.
     @result     true, if this assembly has unconsumed elements
 */
 - (BOOL)hasMore;
 
 /*!
-    @fn         consumed:
     @brief      Returns the elements of this assembly that have been consumed, separated by the specified delimiter.
     @param      delimiter string with which to separate elements of this assembly
     @result     string representing the elements of this assembly that have been consumed, separated by the specified delimiter
@@ -79,7 +73,6 @@
 - (NSString *)remainder:(NSString *)delimiter;
 
 /*!
-    @fn         pop
     @brief      Removes the object at the top of this assembly's stack and returns it.
     @details    Note this returns an object from this assembly's stack, not from its stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
     @result     the object at the top of this assembly's stack
@@ -87,21 +80,18 @@
 - (id)pop;
 
 /*!
-    @fn         push:
     @brief      Pushes an object onto the top of this assembly's stack.
     @param      object object to push
 */
 - (void)push:(id)object;
 
 /*!
-    @fn         isStackEmpty
     @brief      Returns true if this assembly's stack is empty.
     @result     true, if this assembly's stack is empty
 */
 - (BOOL)isStackEmpty;
 
 /*!
-    @fn         objectsAbove:
     @brief      Returns a vector of the elements on this assembly's stack that appear before a specified fence.
     @details    <p>Returns a vector of the elements on this assembly's stack that appear before a specified fence.</p>
                 <p>Sometimes a parser will recognize a list from within a pair of parentheses or brackets. The parser can mark the beginning of the list with a fence, and then retrieve all the items that come after the fence with this method.</p>

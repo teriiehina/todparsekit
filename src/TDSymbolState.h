@@ -24,17 +24,15 @@
 }
 
 /*!
-    @fn         add:
     @brief      Adds the given string as a multi-character symbol.
     @param      s a multi-character symbol that should be recognized as a single symbol token by this state
 */
 - (void)add:(NSString *)s;
 
 /*!
-    @fn         remove:
     @brief      Removes the given string as a multi-character symbol.
+    @details    If <tt>s</tt> was never added as a multi-character symbol, this has no effect.
     @param      s a multi-character symbol that should no longer be recognized as a single symbol token by this state
-    @details    if <tt>s</tt> was never added as a multi-character symbol, this has no effect
 */
 - (void)remove:(NSString *)s;
 @end
