@@ -18,7 +18,6 @@
 }
 
 /*!
-    @fn         quotedString
     @brief      Convenience factory method for initializing an autoreleased <tt>TDQuotedString</tt> object.
     @result     an initialized autoreleased <tt>TDQuotedString</tt> object
 */

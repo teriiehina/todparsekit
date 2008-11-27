@@ -46,14 +46,12 @@ typedef enum {
 }
 
 /*!
-    @fn         EOFToken
     @brief      Factory method for creating a singleton <tt>TDToken</tt> used to indicate that there are no more tokens.
     @result     A singleton used to indicate that there are no more tokens.
 */
 + (TDToken *)EOFToken;
 
 /*!
-    @fn         tokenWithTokenType:stringValue:floatValue:
     @brief      Factory convenience method for creating an autoreleased token.
     @param      t the type of this token.
     @param      s the string value of this token.
@@ -63,7 +61,6 @@ typedef enum {
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-    @fn         initWithTokenType:stringValue:floatValue:
     @brief      Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
     @param      t the type of this token.
     @param      s the string value of this token.
@@ -73,15 +70,13 @@ typedef enum {
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-    @fn            isEqualIgnoringCase:
-    @brief        Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
+    @brief      Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
     @param      obj the object to compare this token to.
     @result     true if <tt>obj</tt> is an equivalent <tt>TDToken</tt>, ignoring differences in case.
 */
 - (BOOL)isEqualIgnoringCase:(id)obj;
 
 /*!
-    @fn         debugDescription
     @brief      Returns more descriptive textual representation than <tt>-description</tt> which may be useful for debugging puposes only.
     @details    Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Number 3.14></tt>
     @result     A textual representation including more descriptive information than <tt>-description</tt>.

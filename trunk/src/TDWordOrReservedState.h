@@ -18,7 +18,6 @@
 }
 
 /*!
-    @fn         addReservedWord:
     @brief      Adds the specified string as a known reserved word.
     @param      s reserved word to add
 */

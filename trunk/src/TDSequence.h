@@ -18,7 +18,6 @@
 }
 
 /*!
-    @fn         sequence
     @brief      Convenience factory method for initializing an autoreleased <tt>TDSequence</tt> parser.
     @result     an initialized autoreleased <tt>TDSequence</tt> parser.
 */

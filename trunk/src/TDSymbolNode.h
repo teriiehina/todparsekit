@@ -21,7 +21,6 @@
 }
 
 /*!
-    @fn         initWithParent:character:
     @brief      Initializes a <tt>TDSymbolNode</tt> with the given parent, representing the given character.
     @param      p the parent of this node
     @param      c the character for this node

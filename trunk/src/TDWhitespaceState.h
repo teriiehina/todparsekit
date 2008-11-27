@@ -20,7 +20,6 @@
 }
 
 /*!
-    @fn         isWhitespaceChar:
     @brief      Informs whether the given character is recognized as whitespace (and therefore ignored) by this state.
     @param      cin the character to check
     @result     true if the given chracter is recognized as whitespace
@@ -28,7 +27,6 @@
 - (BOOL)isWhitespaceChar:(NSInteger)cin;
 
 /*!
-    @fn         setWhitespaceChars:from:to:
     @brief      Establish the given character range as whitespace to ignore.
     @param      yn true if the given character range is whitespace
     @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.

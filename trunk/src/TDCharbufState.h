@@ -9,13 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDTokenizerState.h>
 
-// NOTE: this class is not currently in use or included in the build Framework. Using TDMutableStringState instead
+// NOTE: this class is not currently in use or included in the Framework. Using TDMutableStringState instead
 
 // Abstract Class
 @interface TDCharbufState : TDTokenizerState {
     char *__strong charbuf;
     NSInteger len;
 }
+
 - (void)reset;
 - (void)checkBufLength:(NSInteger)i;
 - (char *)mallocCharbuf:(NSInteger)size;

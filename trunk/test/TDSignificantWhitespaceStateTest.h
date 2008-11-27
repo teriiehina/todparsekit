@@ -14,4 +14,5 @@
     TDReader *r;
     NSString *s;    
 }
+
 @end

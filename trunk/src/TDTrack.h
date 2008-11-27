@@ -19,7 +19,6 @@
 }
 
 /*!
-    @fn         track
     @brief      Convenience factory method for initializing an autoreleased <tt>TDTrack</tt> parser.
     @result     an initialized autoreleased <tt>TDTrack</tt> parser.
 */
