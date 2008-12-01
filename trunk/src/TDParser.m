@@ -85,9 +85,7 @@
             best = a;
             break;
         }
-        if (!best) {
-            best = a;
-        } else if (a.objectsConsumed > best.objectsConsumed) {
+        if (!best || a.objectsConsumed > best.objectsConsumed) {
             best = a;
         }
     }
