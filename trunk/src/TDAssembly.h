@@ -62,15 +62,15 @@
     @param      delimiter string with which to separate elements of this assembly
     @result     string representing the elements of this assembly that have been consumed, separated by the specified delimiter
 */
-- (NSString *)consumed:(NSString *)delimiter;
+- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter;
 
 /*!
-    @fn         remainder:
+    @fn         remainingObjectsSeparatedBy:
     @brief      Returns the elements of this assembly that remain to be consumed, separated by the specified delimiter.
     @param      delimiter string with which to separate elements of this assembly
     @result     string representing the elements of this assembly that remain to be consumed, separated by the specified delimiter
 */
-- (NSString *)remainder:(NSString *)delimiter;
+- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter;
 
 /*!
     @brief      Removes the object at the top of this assembly's stack and returns it.

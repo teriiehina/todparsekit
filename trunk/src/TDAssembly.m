@@ -71,13 +71,13 @@
 }
 
 
-- (NSString *)consumed:(NSString *)delimiter {
+- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return nil;
 }
 
 
-- (NSString *)remainder:(NSString *)delimiter {
+- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return nil;
 }
@@ -164,9 +164,9 @@
     
     [s appendString:@"]"];
     
-    [s appendString:[self consumed:self.defaultDelimiter]];
+    [s appendString:[self consumedObjectsSeparatedBy:self.defaultDelimiter]];
     [s appendString:@"^"];
-    [s appendString:[self remainder:self.defaultDelimiter]];
+    [s appendString:[self remainingObjectsSeparatedBy:self.defaultDelimiter]];
     
     return [[s copy] autorelease];
 }
