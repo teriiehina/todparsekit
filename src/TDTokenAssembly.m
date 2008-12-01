@@ -112,7 +112,7 @@
 }
 
 
-- (NSString *)consumed:(NSString *)delimiter {
+- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
 
     NSInteger i = 0;
@@ -130,7 +130,7 @@
 }
 
 
-- (NSString *)remainder:(NSString *)delimiter {
+- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
     
     NSInteger i = self.objectsConsumed;
