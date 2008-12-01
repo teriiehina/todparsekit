@@ -12,16 +12,11 @@
 
 @interface TDTokenAssembly ()
 - (void)tokenize;
-
+- (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
 @property (nonatomic, retain) NSMutableArray *tokens;
 @end
 
 @implementation TDTokenAssembly
-
-- (id)init {
-    return [self initWithString:nil];
-}
-
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
@@ -58,17 +53,6 @@
     if (inArray != tokens) {
         [tokens autorelease];
         tokens = [inArray retain];
-    }
-}
-
-
-- (void)tokenize {
-    self.tokens = [NSMutableArray array];
-
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
-    while ((tok = [tokenizer nextToken]) != eof) {
-        [tokens addObject:tok];
     }
 }
 
@@ -113,36 +97,41 @@
 
 
 - (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
-    NSMutableString *s = [NSMutableString string];
-
-    NSInteger i = 0;
-    NSInteger len = self.objectsConsumed;
-    
-    for ( ; i < len; i++) {
-        TDToken *tok = [self.tokens objectAtIndex:i];
-        [s appendString:tok.stringValue];
-        if (i != len - 1) {
-            [s appendString:delimiter];
-        }
-    }
-
-    return [[s copy] autorelease];
+    return [self objectsFrom:0 to:self.objectsConsumed separatedBy:delimiter];
 }
 
 
 - (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
+    return [self objectsFrom:self.objectsConsumed to:self.length separatedBy:delimiter];
+}
+
+
+#pragma mark -
+#pragma mark Private
+
+- (void)tokenize {
+    self.tokens = [NSMutableArray array];
+    
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+    while ((tok = [tokenizer nextToken]) != eof) {
+        [tokens addObject:tok];
+    }
+}
+
+
+- (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
-    
-    NSInteger i = self.objectsConsumed;
-    NSInteger len = self.length;
-    
-    for ( ; i < len; i++) {
+
+    NSInteger i = start;
+    for ( ; i < end; i++) {
         TDToken *tok = [self.tokens objectAtIndex:i];
         [s appendString:tok.stringValue];
-        if (i != len - 1) {
+        if (end - 1 != i) {
             [s appendString:delimiter];
         }
     }
+    
     return [[s copy] autorelease];
 }
 

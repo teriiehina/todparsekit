@@ -78,14 +78,12 @@
 
 
 - (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
-    NSInteger len = self.objectsConsumed;
-    return [string substringToIndex:len];
+    return [string substringToIndex:self.objectsConsumed];
 }
 
 
 - (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
-    NSInteger len = self.objectsConsumed;
-    return [string substringFromIndex:len];
+    return [string substringFromIndex:self.objectsConsumed];
 }
 
 
@@ -103,10 +101,9 @@
         } else {
             [s appendString:[obj description]];
         }
-        if (i != len - 1) {
+        if (len - 1 != i++) {
             [s appendString:@", "];
         }
-        i++;
     }
     
     [s appendString:@"]"];

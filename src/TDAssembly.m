@@ -156,10 +156,9 @@
     
     for (id obj in stack) {
         [s appendString:[obj description]];
-        if (i != len - 1) {
+        if (len - 1 != i++) {
             [s appendString:@", "];
         }
-        i++;
     }
     
     [s appendString:@"]"];
