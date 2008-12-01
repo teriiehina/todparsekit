@@ -51,7 +51,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 - (id)init {
     self = [super initWithSubparser:self.statementParser];
-    if (self != nil) {
+    if (self) {
     }
     return self;
 }

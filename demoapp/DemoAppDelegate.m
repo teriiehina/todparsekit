@@ -18,7 +18,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
         
         [tokenizer.symbolState add:@"::"];

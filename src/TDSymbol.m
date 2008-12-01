@@ -27,7 +27,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         if (s.length) {
             self.symbolTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0f];
         }

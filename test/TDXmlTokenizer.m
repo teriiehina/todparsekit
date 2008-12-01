@@ -28,7 +28,7 @@
 
 - (id)initWithContentsOfFile:(NSString *)path {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.reader = [[[XMLReader alloc] initWithContentsOfFile:path] autorelease];
     }
     return self;

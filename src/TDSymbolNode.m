@@ -21,7 +21,7 @@
 
 - (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.parent = p;
         self.character = c;
         self.children = [NSMutableDictionary dictionary];

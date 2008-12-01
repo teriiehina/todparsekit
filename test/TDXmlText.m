@@ -24,7 +24,7 @@
 - (id)initWithString:(NSString *)s {
     NSLog(@"%s", _cmd);
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_TEXT stringValue:s];
         NSLog(@"tok : %@", tok);
     }

@@ -25,7 +25,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         [self add:self.grammar];
     }
     return self;

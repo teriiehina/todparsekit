@@ -19,7 +19,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0f];
         self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0f];
     }

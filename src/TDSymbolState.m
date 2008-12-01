@@ -22,7 +22,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
         self.addedSymbols = [NSMutableArray array];
     }

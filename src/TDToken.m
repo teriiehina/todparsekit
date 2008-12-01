@@ -59,7 +59,7 @@
 // designated initializer
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.tokenType = t;
         self.stringValue = s;
         self.floatValue = n;

@@ -28,7 +28,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.yesFlag = (id)kCFBooleanTrue;
         self.noFlag = (id)kCFBooleanFalse;
 

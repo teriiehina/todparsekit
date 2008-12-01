@@ -16,7 +16,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.reservedWords = [NSMutableSet set];
     }
     return self;

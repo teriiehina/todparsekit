@@ -22,7 +22,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         self.literal = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:s floatValue:0.0f];
     }
     return self;

@@ -25,7 +25,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         self.tokenizer = [[[TDXmlTokenizer alloc] initWithContentsOfFile:s] autorelease];
     }
     return self;
@@ -102,12 +102,12 @@
 } 
 
 
-- (NSInteger)objectsConsumed {
+- (NSInteger)consumedObjectCount {
     return index;
 }
 
 
-- (NSInteger)objectsRemaining {
+- (NSInteger)remainingObjectCount {
     return (self.tokens.count - index);
 }
 
@@ -116,7 +116,7 @@
     NSMutableString *s = [NSMutableString string];
     
     NSInteger i = 0;
-    NSInteger len = self.objectsConsumed;
+    NSInteger len = self.consumedObjectCount;
     
     for ( ; i < len; i++) {
         TDXmlToken *tok = [self.tokens objectAtIndex:i];
@@ -133,7 +133,7 @@
 - (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
     
-    NSInteger i = self.objectsConsumed;
+    NSInteger i = self.consumedObjectCount;
     NSInteger len = self.length;
     
     for ( ; i < len; i++) {

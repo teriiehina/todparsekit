@@ -12,7 +12,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
     }
     return self;
 }
