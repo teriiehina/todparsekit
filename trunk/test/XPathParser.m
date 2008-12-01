@@ -20,7 +20,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.xpathAssembler = [[[XPathAssembler alloc] init] autorelease];
         [self add:self.locationPath];
     }

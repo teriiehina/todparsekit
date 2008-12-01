@@ -33,7 +33,7 @@ static id TDNoFlag = nil;
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.whitespaceChars = [NSMutableArray array];
         NSInteger i = 0;
         for ( ; i < 256; i++) {

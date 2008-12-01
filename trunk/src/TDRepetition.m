@@ -36,7 +36,7 @@
 
 - (id)initWithSubparser:(TDParser *)p {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.subparser = p;
     }
     return self;

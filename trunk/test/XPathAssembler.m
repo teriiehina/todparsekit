@@ -14,7 +14,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.context = [[[XPathContext alloc] init] autorelease];
     }
     return self;

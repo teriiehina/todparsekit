@@ -16,7 +16,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.subparsers = [NSMutableArray array];
     }
     return self;

@@ -22,7 +22,7 @@
 
 - (id)init {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.slashSlashState = [[[TDSlashSlashState alloc] init] autorelease];
         self.slashStarState  = [[[TDSlashStarState alloc] init] autorelease];
     }

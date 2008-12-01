@@ -17,7 +17,7 @@
 
 - (id)initWithSpecificChar:(NSInteger)c {
     self = [super initWithString:[NSString stringWithFormat:@"%C", c]];
-    if (self != nil) {
+    if (self) {
     }
     return self;
 }

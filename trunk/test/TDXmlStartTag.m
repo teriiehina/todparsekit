@@ -23,7 +23,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         self.tok = [TDXmlToken tokenWithTokenType:TDTT_XML_START_TAG stringValue:s];
     }
     return self;

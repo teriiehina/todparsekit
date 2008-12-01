@@ -20,7 +20,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
-    if (self != nil) {
+    if (self) {
         self.tokenizer = [[[TDTokenizer alloc] initWithString:s] autorelease];
     }
     return self;

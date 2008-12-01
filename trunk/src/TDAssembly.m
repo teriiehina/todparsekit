@@ -29,7 +29,7 @@
 
 - (id)initWithString:(NSString *)s {
     self = [super init];
-    if (self != nil) {
+    if (self) {
         self.stack = [NSMutableArray array];
         self.defaultDelimiter = @"/";
         self.string = s;
