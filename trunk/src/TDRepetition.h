@@ -15,8 +15,8 @@
 */
 @interface TDRepetition : TDParser {
     TDParser *subparser;
-    id preAssembler;
-    SEL preAssemblerSelector;
+    id preassembler;
+    SEL preassemblerSelector;
 }
 
 /*!
@@ -49,16 +49,16 @@
 - (void)setPreassembler:(id)a selector:(SEL)sel;
 
 /*!
-    @property   preAssembler
+    @property   preassembler
     @brief      The assembler this parser will use to work on an assembly before matching against it.
-    @discussion <tt>preAssembler</tt> should respond to the selector held by this parser's <tt>preAssemblerSelector</tt> property.
+    @discussion <tt>preassembler</tt> should respond to the selector held by this parser's <tt>preassemblerSelector</tt> property.
 */
-@property (nonatomic, retain) id preAssembler;
+@property (nonatomic, retain) id preassembler;
 
 /*!
     @property   preAssemlerSelector
-    @brief      The method of <tt>preAssembler</tt> this parser will call to work on an assembly.
-    @details    The method represented by <tt>preAssemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preAssemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
+    @brief      The method of <tt>preassembler</tt> this parser will call to work on an assembly.
+    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
 */
-@property (nonatomic, assign) SEL preAssemblerSelector;
+@property (nonatomic, assign) SEL preassemblerSelector;
 @end
