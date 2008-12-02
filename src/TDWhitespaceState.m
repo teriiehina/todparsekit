@@ -28,9 +28,10 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.whitespaceChars = [NSMutableArray array];
+        const NSUInteger len = 255;
+        self.whitespaceChars = [NSMutableArray arrayWithCapacity:len];
         NSInteger i = 0;
-        for ( ; i < 256; i++) {
+        for ( ; i <= len; i++) {
             [whitespaceChars addObject:TDFALSE];
         }
         
