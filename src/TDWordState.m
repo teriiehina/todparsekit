@@ -30,9 +30,10 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.wordChars = [NSMutableArray array];
+        const NSUInteger len = 255;
+        self.wordChars = [NSMutableArray arrayWithCapacity:len];
         NSInteger i = 0;
-        for ( ; i < 256; i++) {
+        for ( ; i <= len; i++) {
             [wordChars addObject:TDFALSE];
         }
         
@@ -55,7 +56,8 @@
 
 
 - (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
-    if (start >= 256 || end >= 256 || start < 0 || end < 0) {
+    NSInteger len = wordChars.count;
+    if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin-1 set (under 256)"];
     }
     
