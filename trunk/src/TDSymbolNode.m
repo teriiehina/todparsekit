@@ -40,9 +40,9 @@
 
 
 - (void)determineAncestry {
-    TDSymbolNode *n = self;
     NSMutableString *result = [NSMutableString string];
     
+    TDSymbolNode *n = self;
     while (-1 != n.character) {
         [result insertString:[NSString stringWithFormat:@"%C", n.character] atIndex:0];
         n = n.parent;
