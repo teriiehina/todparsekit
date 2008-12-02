@@ -11,8 +11,8 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 
-static id TDYesFlag = nil;
-static id TDNoFlag = nil;
+#define TDTRUE (id)kCFBooleanTrue
+#define TDFALSE (id)kCFBooleanFalse
 
 @interface TDTokenizerState ()
 - (void)reset;
@@ -25,19 +25,13 @@ static id TDNoFlag = nil;
 
 @implementation TDWhitespaceState
 
-+ (void)initialize {
-    TDYesFlag = (id)kCFBooleanTrue;
-    TDNoFlag = (id)kCFBooleanFalse;
-}
-
-
 - (id)init {
     self = [super init];
     if (self) {
         self.whitespaceChars = [NSMutableArray array];
         NSInteger i = 0;
         for ( ; i < 256; i++) {
-            [whitespaceChars addObject:TDNoFlag];
+            [whitespaceChars addObject:TDFALSE];
         }
         
         [self setWhitespaceChars:YES from:0 to:' '];
@@ -53,7 +47,7 @@ static id TDNoFlag = nil;
 
 
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
-    id obj = yn ? TDYesFlag : TDNoFlag;
+    id obj = yn ? TDTRUE : TDFALSE;
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [whitespaceChars replaceObjectAtIndex:i withObject:obj];
@@ -65,7 +59,7 @@ static id TDNoFlag = nil;
     if (-1 == cin || cin > whitespaceChars.count - 1) {
         return NO;
     }
-    return TDYesFlag == [whitespaceChars objectAtIndex:cin];
+    return TDTRUE == [whitespaceChars objectAtIndex:cin];
 }
 
 

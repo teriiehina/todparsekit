@@ -11,6 +11,9 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 
+#define TDTRUE (id)kCFBooleanTrue
+#define TDFALSE (id)kCFBooleanFalse
+
 @interface TDTokenizerState ()
 - (void)reset;
 @property (nonatomic, retain) NSMutableString *stringbuf;
@@ -20,8 +23,6 @@
 - (BOOL)isWordChar:(NSInteger)c;
 
 @property (nonatomic, retain) NSMutableArray *wordChars;
-@property (nonatomic, retain) NSNumber *yesFlag;
-@property (nonatomic, retain) NSNumber *noFlag;
 @end
 
 @implementation TDWordState
@@ -29,13 +30,10 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.yesFlag = (id)kCFBooleanTrue;
-        self.noFlag = (id)kCFBooleanFalse;
-
         self.wordChars = [NSMutableArray array];
         NSInteger i = 0;
         for ( ; i < 256; i++) {
-            [wordChars addObject:noFlag];
+            [wordChars addObject:TDFALSE];
         }
         
         [self setWordChars:YES from: 'a' to: 'z'];
@@ -61,7 +59,7 @@
         [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin-1 set (under 256)"];
     }
     
-    id obj = yn ? yesFlag : noFlag;
+    id obj = yn ? TDTRUE : TDFALSE;
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [wordChars replaceObjectAtIndex:i withObject:obj];
@@ -71,7 +69,7 @@
 
 - (BOOL)isWordChar:(NSInteger)c {    
     if (c > -1 && c < wordChars.count - 1) {
-        return (yesFlag == [wordChars objectAtIndex:c]);
+        return (TDTRUE == [wordChars objectAtIndex:c]);
     }
 
     if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
@@ -110,6 +108,4 @@
 
 
 @synthesize wordChars;
-@synthesize yesFlag;
-@synthesize noFlag;
 @end
