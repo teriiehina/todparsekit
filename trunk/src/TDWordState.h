@@ -24,8 +24,6 @@
 */
 @interface TDWordState : TDTokenizerState {
     NSMutableArray *wordChars;
-    NSNumber *yesFlag;
-    NSNumber *noFlag;
 }
 /*!
     @brief      Establish characters in the given range as valid characters for part of a word after the first character. Note that the tokenizer must determine which characters are valid as the beginning character of a word.
