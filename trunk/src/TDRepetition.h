@@ -20,12 +20,6 @@
 }
 
 /*!
-    @brief      Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser.
-    @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
-*/
-+ (id)repetition;
-
-/*!
     @brief      Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @param      p the subparser against wich to repeatedly match
     @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
