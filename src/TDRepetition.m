@@ -45,23 +45,23 @@
 
 - (void)dealloc {
     self.subparser = nil;
-    self.preAssembler = nil;
-    self.preAssemblerSelector = nil;
+    self.preassembler = nil;
+    self.preassemblerSelector = nil;
     [super dealloc];
 }
 
 
 - (void)setPreassembler:(id)a selector:(SEL)sel {
-    self.preAssembler = a;
-    self.preAssemblerSelector = sel;
+    self.preassembler = a;
+    self.preassemblerSelector = sel;
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-    if (preAssembler) {
-    //if (preAssembler && [preAssembler respondsToSelector:preAssemblerSelector]) {
+    if (preassembler) {
+    //if (preassembler && [preassembler respondsToSelector:preassemblerSelector]) {
         for (TDAssembly *a in inAssemblies) {
-            [preAssembler performSelector:preAssemblerSelector withObject:a];
+            [preassembler performSelector:preassemblerSelector withObject:a];
         }
     }
     
@@ -78,6 +78,6 @@
 }
 
 @synthesize subparser;
-@synthesize preAssembler;
-@synthesize preAssemblerSelector;
+@synthesize preassembler;
+@synthesize preassemblerSelector;
 @end
