@@ -6,6 +6,19 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
+/*!
+    @mainpage   TDParseKit
+                TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. 
+                The framework is an Objective-C implementation of the tools described in <a target="_top" href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622">"Building Parsers with Java" by Steven John Metsker</a>. 
+                Some changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. 
+                The changes are relatively superficial, however, and Metsker's book is still the best documentation available for this framework.
+                
+                Classes in the TDParseKit Framework offer 2 basic services of general use to Cocoa developers:
+    @li Tokenization via a tokenizer class
+    @li Parsing via a high-level parser-building toolkit
+                Learn more on the <a target="_top" href="http://code.google.com/p/todparsekit/">project site</a>
+*/
+ 
 #import <Foundation/Foundation.h>
 
 // io
