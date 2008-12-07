@@ -39,12 +39,12 @@
         self.string = s;
         self.reader = [[[TDReader alloc] init] autorelease];
         
-        self.numberState        = [[[TDNumberState alloc] init] autorelease];
-        self.quoteState         = [[[TDQuoteState alloc] init] autorelease];
-        self.slashState         = [[[TDSlashState alloc] init] autorelease];
-        self.symbolState        = [[[TDSymbolState alloc] init] autorelease];
-        self.whitespaceState    = [[[TDWhitespaceState alloc] init] autorelease];
-        self.wordState          = [[[TDWordState alloc] init] autorelease];
+        self.numberState = [[[TDNumberState alloc] init] autorelease];
+        self.quoteState = [[[TDQuoteState alloc] init] autorelease];
+        self.slashState = [[[TDSlashState alloc] init] autorelease];
+        self.symbolState = [[[TDSymbolState alloc] init] autorelease];
+        self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
+        self.wordState = [[[TDWordState alloc] init] autorelease];
 
         [symbolState add:@"<="];
         [symbolState add:@">="];
