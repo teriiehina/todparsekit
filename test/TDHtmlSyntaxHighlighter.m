@@ -69,15 +69,9 @@
     self = [super init];
     if (self) {
         isDarkBG = isDark;
-        
         self.tokenizer = [TDTokenizer tokenizer];
         
         [tokenizer setTokenizerState:tokenizer.symbolState from:'/' to:'/']; // XML doesn't have slash slash or slash star comments
-        
-//        TDSignificantWhitespaceState *whitespaceState = [[[TDSignificantWhitespaceState alloc] init] autorelease];
-//        tokenizer.whitespaceState = whitespaceState;
-//        [tokenizer setTokenizerState:whitespaceState from:0 to:' '];
-
         tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
         [tokenizer.wordState setWordChars:YES from:':' to:':'];
         
@@ -207,7 +201,6 @@
     tokenizer.string = s;
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
-    TDToken *lastTok = nil;
     BOOL inComment = NO;
     BOOL inCDATA = NO;
     BOOL inPI = NO;
@@ -259,10 +252,6 @@
             [self workOnScript];
         } else {
             [stack addObject:tok];
-        }
-        
-        if (!tok.isWhitespace) {
-            lastTok = tok;
         }
     }
     
@@ -516,7 +505,6 @@
     tok = [self nextNonWhitespaceTokenFrom:e];
 
     if (tok) {
-        
         if ([tok isEqual:scriptToken]) {
             inScript = YES;
         } else {
