@@ -114,7 +114,7 @@
         [content add:actualArray];
         
         self.arrayParser = [TDSequence sequence];
-        [arrayParser add:[TDSymbol symbolWithString:@"["]];
+        [arrayParser add:[TDSymbol symbolWithString:@"["]]; // serves as fence
         [arrayParser add:content];
         [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
         
@@ -142,7 +142,7 @@
         [content add:actualObject];
         
         self.objectParser = [TDSequence sequence];
-        [objectParser add:[TDSymbol symbolWithString:@"{"]];
+        [objectParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence
         [objectParser add:content];
         [objectParser add:[[TDSymbol symbolWithString:@"}"] discard]];
 
