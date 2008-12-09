@@ -9,13 +9,63 @@
 #import <TDParseKit/TDToken.h>
 
 @interface TDTokenEOF : TDToken {}
++ (TDTokenEOF *)instance;
 @end
 
 @implementation TDTokenEOF
 
+static TDTokenEOF *EOFToken = nil;
+
++ (TDTokenEOF *)instance {
+    @synchronized(self) {
+        if (!EOFToken) {
+            [[self alloc] init]; // assignment not done here
+        }
+    }
+    return EOFToken;
+}
+
+
++ (id)allocWithZone:(NSZone *)zone {
+    @synchronized(self) {
+        if (!EOFToken) {
+            EOFToken = [super allocWithZone:zone];
+            return EOFToken;  // assignment and return on first allocation
+        }
+    }
+    return nil; //on subsequent allocation attempts return nil
+}
+
+
+- (id)copyWithZone:(NSZone *)zone {
+    return self;
+}
+
+
+- (id)retain {
+    return self;
+}
+
+
+- (void)release {
+    // do nothing
+}
+
+
+- (id)autorelease {
+    return self;
+}
+
+
+- (NSUInteger)retainCount {
+    return UINT_MAX; // denotes an object that cannot be released
+}
+
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
 }
+
 
 - (NSString *)debugDescription {
     return [self description];
@@ -41,13 +91,7 @@
 @implementation TDToken
 
 + (TDToken *)EOFToken {
-    static TDToken *EOFToken = nil;
-    @synchronized (self) {
-        if (!EOFToken) {
-            EOFToken = [[TDTokenEOF alloc] initWithTokenType:TDTokenTypeEOF stringValue:nil floatValue:0.0f];
-        }
-    }
-    return EOFToken;
+    return [TDTokenEOF instance];
 }
 
 
