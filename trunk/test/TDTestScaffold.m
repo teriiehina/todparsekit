@@ -8,7 +8,7 @@
 
 #import "TDTestScaffold.h"
 
-#define RUN_ALL_TEST_CASES -
+#define RUN_ALL_TEST_CASES 1
 #define SOLO_TEST_CASE @"TDTokenTest"
 
 @interface SenTestSuite (TDAdditions)
@@ -112,7 +112,7 @@
 + (id)testSuiteForBundlePath:(NSString *) bundlePath {
     SenTestSuite *suite = nil;
     
-#if RUN_ALL_TEST_CASES 0
+#if RUN_ALL_TEST_CASES
     suite = [super defaultTestSuite];
 #else
     suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
