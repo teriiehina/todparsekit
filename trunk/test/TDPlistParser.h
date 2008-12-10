@@ -16,9 +16,9 @@
     TDCollectionParser *commaValueParser;
     TDCollectionParser *keyParser;
     TDCollectionParser *valueParser;
-    TDParser *nullParser;
+    TDCollectionParser *stringParser;
     TDParser *numParser;
-    TDParser *stringParser;
+    TDParser *nullParser;
 }
 - (id)parse:(NSString *)s;
 
@@ -28,7 +28,7 @@
 @property (retain) TDCollectionParser *commaValueParser;
 @property (retain) TDCollectionParser *keyParser;
 @property (retain) TDCollectionParser *valueParser;
-@property (retain) TDParser *nullParser;
+@property (retain) TDCollectionParser *stringParser;
 @property (retain) TDParser *numParser;
-@property (retain) TDParser *stringParser;
+@property (retain) TDParser *nullParser;
 @end

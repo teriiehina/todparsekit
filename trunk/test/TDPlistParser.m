@@ -10,14 +10,13 @@
 
 //{
 //    0 = 0;
-//    StringKey = String;
-//    "1.0" = 1;
 //    dictKey =     {
 //        bar = foo;
 //    };
+//    47 = 0;
 //    IntegerKey = 1;
+//    47.7 = 0;
 //    <null> = <null>;
-//    YESKey = 1;
 //    ArrayKey =     (
 //                    "one one",
 //                    two,
@@ -26,6 +25,9 @@
 //    "Null Key" = <null>;
 //    emptyDictKey =     {
 //    };
+//    StringKey = String;
+//    "1.0" = 1;
+//    YESKey = 1;
 //    "NO Key" = 0;
 //}
 
@@ -62,9 +64,9 @@
     self.commaValueParser = nil;
     self.keyParser = nil;
     self.valueParser = nil;
-    self.nullParser = nil;
-    self.numParser = nil;
     self.stringParser = nil;
+    self.numParser = nil;
+    self.nullParser = nil;
     [super dealloc];
 }
 
@@ -164,12 +166,15 @@
 }
 
 
-- (TDParser *)nullParser {
-    if (!nullParser) {
-        self.nullParser = [TDLiteral literalWithString:@"<null>"];
-        [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
+- (TDCollectionParser *)stringParser {
+    if (!stringParser) {
+        self.stringParser = [TDAlternation alternation];
+        [stringParser add:[TDQuotedString quotedString]];
+        [stringParser add:[TDWord word]];
+        // TODO add TDWord
+        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
     }
-    return nullParser;
+    return stringParser;
 }
 
 
@@ -182,26 +187,34 @@
 }
 
 
-- (TDParser *)stringParser {
-    if (!stringParser) {
-        self.stringParser = [TDQuotedString quotedString];
-        // TODO add TDWord
-        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+- (TDParser *)nullParser {
+    if (!nullParser) {
+        self.nullParser = [TDLiteral literalWithString:@"<null>"];
+        [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
     }
-    return numParser;
+    return nullParser;
 }
 
 
+- (void)workOnDictAssembly:(TDAssembly *)a {
+    
+}
 
-- (void)workOnNumAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    [a push:[NSNumber numberWithFloat:tok.floatValue]];
+
+- (void)workOnArrayAssembly:(TDAssembly *)a {
+    
 }
 
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
+}
+
+
+- (void)workOnNumAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
@@ -217,7 +230,7 @@
 @synthesize commaValueParser;
 @synthesize keyParser;
 @synthesize valueParser;
-@synthesize nullParser;
-@synthesize numParser;
 @synthesize stringParser;
+@synthesize numParser;
+@synthesize nullParser;
 @end
