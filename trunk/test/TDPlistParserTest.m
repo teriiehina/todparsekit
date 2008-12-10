@@ -11,12 +11,12 @@
 @implementation TDPlistParserTest
 
 - (void)setUp {
-    parser = [[TDPlistParser alloc] init];
+    p = [[TDPlistParser alloc] init];
 }
 
 
 - (void)tearDown {
-    [parser release];
+    [p release];
 }
 
 
@@ -32,7 +32,11 @@
 //        StringKey = String;
 //        YESKey = 1;
 //    }
-- (void)testFoo {
+- (void)testNum {
+    s = @"1.0";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.numParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
     
 }
 
