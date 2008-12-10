@@ -35,20 +35,31 @@
 // dict                 = '{' dictContent '}'
 // dictContent          = Empty | keyValuePair*
 // keyValuePair         = key '=' value ';'
-// key                  = Num | Word | QuotedString | null
-// value                = Num | Word | QuotedString | null | array | dict
+// key                  = num | string | null
+// value                = num | string | null | array | dict
 // null                 = '<null>'
+// string               = Word | QuotedString
+// num                  = Num
 
 // array                = '(' arrayContent ')'
 // arrayContent         = Empty | actualArray
 // actualArray          = value commaValue*
 // commaValue           = ',' value
 
+static NSString *kTDPlistNullString = @"<null>";
+
+@interface TDPlistParser ()
+@property (nonatomic, retain) TDToken *curly;
+@property (nonatomic, retain) TDToken *paren;
+@end
+
 @implementation TDPlistParser
 
 - (id)init {
     self = [super init];
     if (self != nil) {
+        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
+        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
         [self add:[TDEmpty empty]];
         [self add:self.arrayParser];
         [self add:self.dictParser];
@@ -67,15 +78,24 @@
     self.stringParser = nil;
     self.numParser = nil;
     self.nullParser = nil;
+    self.curly = nil;
+    self.paren = nil;
     [super dealloc];
 }
 
 
 - (id)parse:(NSString *)s {
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    
+    // add '<null>' as a multichar symbol
     TDTokenizer *t = a.tokenizer;
-    [t.symbolState add:@"<null>"];
+    [t.symbolState add:kTDPlistNullString];
+    
+    // parse
     TDAssembly *res = [self completeMatchFor:a];
+
+    // pop the built result off the assembly's stack and return.
+    // this will be an array or a dictionary
     return [res pop];
 }
 
@@ -85,7 +105,7 @@
 - (TDCollectionParser *)dictParser {
     if (!dictParser) {
         self.dictParser = [TDSequence sequence];
-        [dictParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence
+        [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
         
         TDAlternation *a = [TDAlternation alternation];
         [a add:[TDEmpty empty]];
@@ -94,7 +114,7 @@
         [dictParser add:a];
         [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
         
-//        [dictParser setAssembler:self selector:@selector(workOnDictAssembly:)];
+        [dictParser setAssembler:self selector:@selector(workOnDictAssembly:)];
     }
     return dictParser;
 }
@@ -119,7 +139,7 @@
 - (TDCollectionParser *)arrayParser {
     if (!arrayParser) {
         self.arrayParser = [TDSequence sequence];
-        [arrayParser add:[TDSymbol symbolWithString:@"("]]; // serves as fence
+        [arrayParser add:[TDSymbol symbolWithString:@"("]]; // dont discard. serves as fence
         
         TDAlternation *arrayContent = [TDAlternation alternation];
         [arrayContent add:[TDEmpty empty]];
@@ -131,36 +151,33 @@
         [arrayContent add:actualArray];
         [arrayParser add:[[TDSymbol symbolWithString:@")"] discard]];
 
-//        [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
+        [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
     }
     return arrayParser;
 }
 
 
-// key                  = Num | Word | QuotedString | null
+// key                  = Num | string | null
 - (TDCollectionParser *)keyParser {
     if (!keyParser) {
         self.keyParser = [TDAlternation alternation];
-        [keyParser add:[TDNum num]];
-        [keyParser add:[TDWord word]];
-        [keyParser add:[TDQuotedString quotedString]];
+        [keyParser add:self.numParser];
+        [keyParser add:self.stringParser];
         [keyParser add:self.nullParser];
     }
     return keyParser;
 }
 
 
-// value                = Num | Word | QuotedString | null | array | dict
+// value                = Num | string | null | array | dict
 - (TDCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
-        [valueParser add:self.numParser];
-        [valueParser add:self.stringParser];
-        [valueParser add:self.nullParser];
         [valueParser add:self.arrayParser];
         [valueParser add:self.dictParser];
-        
-//        [valueParser setAssembler:self selector:@selector(workOnValueAssembly:)];
+        [valueParser add:self.stringParser];
+        [valueParser add:self.numParser];
+        [valueParser add:self.nullParser];
     }
     return valueParser;
 }
@@ -171,7 +188,7 @@
         self.stringParser = [TDAlternation alternation];
         [stringParser add:[TDQuotedString quotedString]];
         [stringParser add:[TDWord word]];
-        // TODO add TDWord
+
         [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
     }
     return stringParser;
@@ -181,6 +198,7 @@
 - (TDParser *)numParser {
     if (!numParser) {
         self.numParser = [TDNum num];
+
         [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
     }
     return numParser;
@@ -189,7 +207,8 @@
 
 - (TDParser *)nullParser {
     if (!nullParser) {
-        self.nullParser = [TDLiteral literalWithString:@"<null>"];
+        self.nullParser = [TDLiteral literalWithString:kTDPlistNullString];
+
         [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
     }
     return nullParser;
@@ -197,12 +216,33 @@
 
 
 - (void)workOnDictAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:self.curly];
+    NSMutableDictionary *res = [NSMutableDictionary dictionaryWithCapacity:objs.count / 2.];
     
+    NSInteger i = 0;
+    for ( ; i < objs.count - 1; i++) {
+        id key = [objs objectAtIndex:i++];
+        id value = [objs objectAtIndex:i];
+        [res setObject:value forKey:key];
+    }
+    
+    [a pop]; // discard '{' tok
+    [a push:[[res copy] autorelease]];
 }
 
 
 - (void)workOnArrayAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:self.paren];
+    NSMutableArray *res = [NSMutableArray arrayWithCapacity:objs.count];
     
+    id obj = nil;
+    NSEnumerator *e = [objs reverseObjectEnumerator];
+    while (obj = [e nextObject]) {
+        [res addObject:obj];
+    }
+    
+    [a pop]; // discard '[' tok
+    [a push:[[res copy] autorelease]];
 }
 
 
@@ -219,10 +259,9 @@
 
 
 - (void)workOnNullAssembly:(TDAssembly *)a {
-    [a pop]; // discard
+    [a pop]; // discard '<null>' tok
     [a push:[NSNull null]];
 }
-
 
 @synthesize dictParser;
 @synthesize keyValuePairParser;
@@ -233,4 +272,6 @@
 @synthesize stringParser;
 @synthesize numParser;
 @synthesize nullParser;
+@synthesize curly;
+@synthesize paren;
 @end

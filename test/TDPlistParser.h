@@ -19,16 +19,19 @@
     TDCollectionParser *stringParser;
     TDParser *numParser;
     TDParser *nullParser;
+    
+    TDToken *curly;
+    TDToken *paren;
 }
 - (id)parse:(NSString *)s;
 
-@property (retain) TDCollectionParser *dictParser;
-@property (retain) TDCollectionParser *keyValuePairParser;
-@property (retain) TDCollectionParser *arrayParser;
-@property (retain) TDCollectionParser *commaValueParser;
-@property (retain) TDCollectionParser *keyParser;
-@property (retain) TDCollectionParser *valueParser;
-@property (retain) TDCollectionParser *stringParser;
-@property (retain) TDParser *numParser;
-@property (retain) TDParser *nullParser;
+@property (nonatomic, retain) TDCollectionParser *dictParser;
+@property (nonatomic, retain) TDCollectionParser *keyValuePairParser;
+@property (nonatomic, retain) TDCollectionParser *arrayParser;
+@property (nonatomic, retain) TDCollectionParser *commaValueParser;
+@property (nonatomic, retain) TDCollectionParser *keyParser;
+@property (nonatomic, retain) TDCollectionParser *valueParser;
+@property (nonatomic, retain) TDCollectionParser *stringParser;
+@property (nonatomic, retain) TDParser *numParser;
+@property (nonatomic, retain) TDParser *nullParser;
 @end

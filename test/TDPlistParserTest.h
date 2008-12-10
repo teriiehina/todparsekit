@@ -10,7 +10,10 @@
 #import "TDPlistParser.h"
 
 @interface TDPlistParserTest : SenTestCase {
-    TDPlistParser *parser;
+    TDPlistParser *p;
+    NSString *s;
+    TDAssembly *a;
+    TDAssembly *res;
 }
 
 @end
