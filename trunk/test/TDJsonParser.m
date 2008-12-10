@@ -239,7 +239,7 @@
 
 - (void)workOnObjectAssembly:(TDAssembly *)a {
     NSArray *elements = [a objectsAbove:self.curly];
-    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:elements.count / 2.];
     
     NSInteger i = 0;
     for ( ; i < elements.count - 1; i++) {
