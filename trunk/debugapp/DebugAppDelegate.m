@@ -11,6 +11,7 @@
 #import "TDJsonParser.h"
 #import "TDFastJsonParser.h"
 #import "TDRegularParser.h"
+#import "TDPlistParser.h"
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
@@ -36,60 +37,35 @@
 //    self.displayString = o;
 //    [highlighter release];
 
-
-    //STAssertTrue(tok.isSymbol, @"");
-    //STAssertEqualObjects(@"-->", tok.stringValue, @"");
-    //    STAssertEqualObjects(@"-->", tok.value, @"");
-    
-    //    tok = [t nextToken];
-    //    STAssertEqualObjects(@".", tok.stringValue, @"");
-    //    STAssertEqualObjects(@".", tok.value, @"");
-    //    STAssertTrue(tok.isSymbol, @"");
-    //    
-    //    STAssertEquals([TDToken EOFToken], [t nextToken], @"");
     
     
-
-//    NSString *s = @"123";
-//    TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
-//    TDParser *p = [TDDigit digit];
+//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+//    NSString *s = [NSString stringWithContentsOfFile:path];
 //    
-//    TDAssembly *result = [p completeMatchFor:a];
-
-//    NSString *s = @"a b c";
-//    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-//    TDParser *p = [TDWord word];
-//    
-//    TDAssembly *result = [p completeMatchFor:a];
-    
-    
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
-    
-    TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
+//    TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
 //    TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
     
-    id result = nil;
-    
-    @try {
-        result = [p parse:s];
-    } @catch (NSException *e) {
-        NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
-    }
-    NSLog(@"result %@", result);
+//    id result = nil;
+//    
+//    @try {
+//        result = [p parse:s];
+//    } @catch (NSException *e) {
+//        NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
+//    }
+//    NSLog(@"result %@", result);
 
+    NSString *s = nil;
+    TDAssembly *a = nil;
+    TDAssembly *res = nil;
+    TDPlistParser *p = nil;
     
-//    NSString *s = @"2e2";
-//    TDTokenizer *t = [TDTokenizer tokenizer];
-//    TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
-//    t.numberState = sns;
-//    [t setTokenizerState:sns from:'0' to:'9'];
-//    [t setTokenizerState:sns from:'-' to:'-'];
-//    t.string = s;
-//    
-//    TDToken *tok = [t nextToken];
-//    
-//    NSLog(@"t: %@", t);
+    p = [[[TDPlistParser alloc] init] autorelease];
+    s = @"1.0";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.numParser completeMatchFor:a];
+    
+    TDToken *tok = [res pop];
+    
     
     [pool release];
     
