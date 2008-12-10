@@ -55,16 +55,18 @@
 //    NSLog(@"result %@", result);
 
     NSString *s = nil;
-    TDAssembly *a = nil;
+    TDTokenAssembly *a = nil;
     TDAssembly *res = nil;
     TDPlistParser *p = nil;
     
     p = [[[TDPlistParser alloc] init] autorelease];
-    s = @"1.0";
+
+    s = @"<null>";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p.numParser completeMatchFor:a];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.nullParser completeMatchFor:a];
     
-    TDToken *tok = [res pop];
+//    TDToken *tok = [res pop];
     
     
     [pool release];
