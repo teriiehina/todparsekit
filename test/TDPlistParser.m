@@ -187,6 +187,16 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
+- (TDCollectionParser *)commaValueParser {
+    if (!commaValueParser) {
+        self.commaValueParser = [TDSequence sequence];
+        [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaValueParser add:self.valueParser];
+    }
+    return commaValueParser;
+}
+
+
 - (TDCollectionParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDAlternation alternation];
