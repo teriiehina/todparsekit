@@ -87,9 +87,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (id)parse:(NSString *)s {
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
-    // add '<null>' as a multichar symbol
-    TDTokenizer *t = a.tokenizer;
-    [t.symbolState add:kTDPlistNullString];
+    [self configureTokenizer:a.tokenizer];
     
     // parse
     TDAssembly *res = [self completeMatchFor:a];
@@ -97,6 +95,12 @@ static NSString *kTDPlistNullString = @"<null>";
     // pop the built result off the assembly's stack and return.
     // this will be an array or a dictionary
     return [res pop];
+}
+
+
+- (void)configureTokenizer:(TDTokenizer *)t {
+    // add '<null>' as a multichar symbol
+    [t.symbolState add:kTDPlistNullString];
 }
 
 
@@ -207,7 +211,8 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (TDParser *)nullParser {
     if (!nullParser) {
-        self.nullParser = [TDLiteral literalWithString:kTDPlistNullString];
+        // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
+        self.nullParser = [TDSymbol symbolWithString:kTDPlistNullString];
 
         [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
     }

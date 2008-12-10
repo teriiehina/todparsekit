@@ -24,6 +24,7 @@
     TDToken *paren;
 }
 - (id)parse:(NSString *)s;
+- (void)configureTokenizer:(TDTokenizer *)t;
 
 @property (nonatomic, retain) TDCollectionParser *dictParser;
 @property (nonatomic, retain) TDCollectionParser *keyValuePairParser;
