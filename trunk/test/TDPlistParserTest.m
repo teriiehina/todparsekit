@@ -33,6 +33,32 @@
 //        YESKey = 1;
 //    }
 
+- (void)testArrayEmptyArray {
+    s = @"()";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.arrayParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnArrayAssembly: has already executed. 
+    id obj = [res pop]; // NSArray *
+    STAssertTrue([obj isKindOfClass:[NSArray class]], @"");
+    STAssertEquals((NSUInteger)0, [obj count], @"");
+}
+
+
+//- (void)testArrayNumArray {
+//    s = @"(1, 2, 3)";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p.arrayParser completeMatchFor:a];
+//    STAssertNotNil(res, @"");
+//    
+////    // -workOnNullAssembly: has already executed. 
+////    id obj = [res pop]; // NSNull *
+////    STAssertTrue([obj isKindOfClass:[NSNull class]], @"");
+////    STAssertEqualObjects([NSNull null], obj, @"");
+//}
+
+
 - (void)testNullLtNullGt {
     s = @"<null>";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -47,6 +73,13 @@
 }
 
 
+- (void)testNullQuoteLtNullGtQuote {
+    s = @"\"<null>\"";
+    a = [TDTokenAssembly assemblyWithString:s];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.nullParser completeMatchFor:a];
+    STAssertNil(res, @"");
+}
 
 
 - (void)testStringQuote1Dot0Quote {
