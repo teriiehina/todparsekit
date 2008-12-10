@@ -16,6 +16,7 @@
 @end
 
 @implementation SenTestSuite (TDAdditions)
+
 - (void)addSuitesForClassNames:(NSArray *)classNames {
     for (NSString *className in classNames) {
         SenTestSuite *suite = [SenTestSuite testSuiteForTestCaseWithName:className];
@@ -23,6 +24,7 @@
     }
     
 }
+
 @end
 
 @implementation TDTestScaffold
