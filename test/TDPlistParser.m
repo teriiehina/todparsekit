@@ -34,7 +34,7 @@
 
 
 // dict                 = '{' dictContent '}'
-// dictContent          = keyValuePair+
+// dictContent          = keyValuePair*
 // keyValuePair         = key '=' value ';'
 // key                  = num | string | null
 // value                = num | string | null | array | dict
@@ -106,7 +106,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // dict                 = '{' dictContent '}'
-// dictContent          = keyValuePair+
+// dictContent          = keyValuePair*
 - (TDCollectionParser *)dictParser {
     if (!dictParser) {
         self.dictParser = [TDTrack track];
