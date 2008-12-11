@@ -16,7 +16,7 @@
     @brief      A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
 */
 @interface TDSymbol : TDTerminal {
-    TDToken *symbolTok;
+    TDToken *symbol;
 }
 
 /*!
