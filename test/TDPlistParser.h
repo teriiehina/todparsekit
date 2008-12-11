@@ -19,7 +19,6 @@
     TDCollectionParser *stringParser;
     TDParser *numParser;
     TDParser *nullParser;
-    
     TDToken *curly;
     TDToken *paren;
 }
