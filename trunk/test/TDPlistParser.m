@@ -94,7 +94,7 @@ static NSString *kTDPlistNullString = @"<null>";
     TDAssembly *res = [self completeMatchFor:a];
 
     // pop the built result off the assembly's stack and return.
-    // this will be an array or a dictionary
+    // this will be an array or a dictionary or nil
     return [res pop];
 }
 
@@ -113,7 +113,6 @@ static NSString *kTDPlistNullString = @"<null>";
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
         [dictParser add:[TDRepetition repetitionWithSubparser:self.keyValuePairParser]];
         [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
-        
         [dictParser setAssembler:self selector:@selector(workOnDictAssembly:)];
     }
     return dictParser;
@@ -151,7 +150,6 @@ static NSString *kTDPlistNullString = @"<null>";
         [arrayContent add:actualArray];
         [arrayParser add:arrayContent];
         [arrayParser add:[[TDSymbol symbolWithString:@")"] discard]];
-
         [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
     }
     return arrayParser;
@@ -216,7 +214,6 @@ static NSString *kTDPlistNullString = @"<null>";
 - (TDParser *)numParser {
     if (!numParser) {
         self.numParser = [TDNum num];
-
         [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
     }
     return numParser;
@@ -228,7 +225,6 @@ static NSString *kTDPlistNullString = @"<null>";
     if (!nullParser) {
         // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
         self.nullParser = [TDSymbol symbolWithString:kTDPlistNullString];
-
         [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
     }
     return nullParser;
