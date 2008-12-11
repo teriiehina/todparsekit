@@ -34,7 +34,7 @@
 
 
 // dict                 = '{' dictContent '}'
-// dictContent          = Empty | keyValuePair*
+// dictContent          = keyValuePair+
 // keyValuePair         = key '=' value ';'
 // key                  = num | string | null
 // value                = num | string | null | array | dict
@@ -106,17 +106,12 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // dict                 = '{' dictContent '}'
-// dictContent          = Empty | keyValuePair*
+// dictContent          = keyValuePair+
 - (TDCollectionParser *)dictParser {
     if (!dictParser) {
         self.dictParser = [TDTrack track];
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
-        
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
-        [a add:[TDRepetition repetitionWithSubparser:self.keyValuePairParser]];
-        
-        [dictParser add:a];
+        [dictParser add:[TDRepetition repetitionWithSubparser:self.keyValuePairParser]];
         [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
         
         [dictParser setAssembler:self selector:@selector(workOnDictAssembly:)];
@@ -242,7 +237,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (void)workOnDictAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:self.curly];
     NSInteger count = objs.count;
-    NSAssert(0 == count % 2, @"in -workOnDictAssembly:, the assembly's stack's count should be a multiple of 2");
+    NSAssert1(0 == count % 2, @"in -%s, the assembly's stack's count should be a multiple of 2", _cmd);
 
     NSMutableDictionary *res = [NSMutableDictionary dictionaryWithCapacity:count / 2.];
     if (count) {
