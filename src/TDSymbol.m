@@ -53,10 +53,11 @@
 
 
 - (NSString *)description {
+    NSString *className = [[self className] substringFromIndex:2];
     if (name.length) {
-        return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, symbol.stringValue];
+        return [NSString stringWithFormat:@"%@ (%@) %@", className, name, symbol.stringValue];
     } else {
-        return [NSString stringWithFormat:@"%@ %@", [[self className] substringFromIndex:2], symbol.stringValue];
+        return [NSString stringWithFormat:@"%@ %@", className, symbol.stringValue];
     }
 }
 
