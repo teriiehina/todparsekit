@@ -88,6 +88,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (id)parse:(NSString *)s {
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
+    // add  '<null>' multichar symbol recognition to the parser b4 parsing
     [self configureTokenizer:a.tokenizer];
     
     // parse
