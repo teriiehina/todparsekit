@@ -204,7 +204,7 @@ static NSString *kTDPlistNullString = @"<null>";
         [quotedString setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
         [stringParser add:quotedString];
 
-        // handle non-quoted string values (Words) separately for simplicity
+        // handle non-quoted string values (Words) in a separate assembler method for simplicity.
         TDParser *word = [TDWord word];
         [word setAssembler:self selector:@selector(workOnWordAssembly:)];
         [stringParser add:word];
