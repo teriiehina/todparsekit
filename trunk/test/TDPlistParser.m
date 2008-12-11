@@ -143,7 +143,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // actualArray          = value commaValue*
 - (TDCollectionParser *)arrayParser {
     if (!arrayParser) {
-        self.arrayParser = [TDSequence sequence];
+        self.arrayParser = [TDTrack track];
         [arrayParser add:[TDSymbol symbolWithString:@"("]]; // dont discard. serves as fence
         
         TDAlternation *arrayContent = [TDAlternation alternation];
@@ -154,6 +154,7 @@ static NSString *kTDPlistNullString = @"<null>";
         [actualArray add:[TDRepetition repetitionWithSubparser:self.commaValueParser]];
         
         [arrayContent add:actualArray];
+        [arrayParser add:arrayContent];
         [arrayParser add:[[TDSymbol symbolWithString:@")"] discard]];
 
         [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
@@ -162,7 +163,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-// key                  = Num | string | null
+// key                  = num | string | null
 - (TDCollectionParser *)keyParser {
     if (!keyParser) {
         self.keyParser = [TDAlternation alternation];
@@ -174,7 +175,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-// value                = Num | string | null | array | dict
+// value                = num | string | null | array | dict
 - (TDCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];

@@ -20,18 +20,83 @@
 }
 
 
-//    {
-//        ArrayKey =     (
-//                        one,
-//                        two,
-//                        three
-//                        );
-//        FloatKey = 1;
-//        IntegerKey = 1;
-//        NOKey = 0;
-//        StringKey = String;
-//        YESKey = 1;
-//    }
+- (void)testARealDict {
+    s = @"    {"
+    @"        ArrayKey =     ("
+    @"                        one,"
+    @"                        two,"
+    @"                        three"
+    @"                        );"
+    @"        FloatKey = 1;"
+    @"        IntegerKey = 1;"
+    @"        NOKey = 0;"
+    @"        StringKey = String;"
+    @"        YESKey = 1;"
+    @"    }";
+    
+    a = [TDTokenAssembly assemblyWithString:s];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.dictParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+
+    id obj = [res pop];
+    STAssertNotNil(obj, @"");
+    STAssertTrue([obj isKindOfClass:[NSDictionary class]], @"");
+    STAssertEquals((NSUInteger)6, [obj count], @"");
+    
+    id arr = [obj objectForKey:@"ArrayKey"];
+    STAssertNotNil(arr, @"");
+    STAssertEquals((NSUInteger)3, [arr count], @"");
+    
+    id b = [obj objectForKey:@"YESKey"];
+    STAssertNotNil(b, @"");
+    STAssertEqualObjects([NSNumber numberWithInteger:1], b, @"");
+}
+
+
+- (void)testARealDict2 {
+    s = @"{"
+    @"    0 = 0;"
+    @"    dictKey =     {"
+    @"        bar = foo;"
+    @"    };"
+    @"    47 = 0;"
+    @"    IntegerKey = 1;"
+    @"    47.7 = 0;"
+    @"    <null> = <null>;"
+    @"    ArrayKey =     ("
+    @"                    \"one one\","
+    @"                    two,"
+    @"                    three"
+    @"                    );"
+    @"    \"Null Key\" = <null>;"
+    @"    emptyDictKey =     {"
+    @"    };"
+    @"    StringKey = String;"
+    @"    \"1.0\" = 1;"
+    @"    YESKey = 1;"
+    @"   \"NO Key\" = 0;"
+    @"}";
+    
+    a = [TDTokenAssembly assemblyWithString:s];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.dictParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    id obj = [res pop];
+    STAssertNotNil(obj, @"");
+    STAssertTrue([obj isKindOfClass:[NSDictionary class]], @"");
+    STAssertEquals((NSUInteger)13, [obj count], @"");
+    
+    id arr = [obj objectForKey:@"ArrayKey"];
+    STAssertNotNil(arr, @"");
+    STAssertEquals((NSUInteger)3, [arr count], @"");
+    
+    id b = [obj objectForKey:@"YESKey"];
+    STAssertNotNil(b, @"");
+    STAssertEqualObjects([NSNumber numberWithInteger:1], b, @"");
+}
+
 
 - (void)testDictFooEqBar {
     s = @"{foo = bar;}";
@@ -148,17 +213,34 @@
 }
 
 
-//- (void)testArrayNumArray {
-//    s = @"(1, 2, 3)";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p.arrayParser completeMatchFor:a];
-//    STAssertNotNil(res, @"");
-//    
-////    // -workOnNullAssembly: has already executed. 
-////    id obj = [res pop]; // NSNull *
-////    STAssertTrue([obj isKindOfClass:[NSNull class]], @"");
-////    STAssertEqualObjects([NSNull null], obj, @"");
-//}
+- (void)testArrayNumArray {
+    s = @"(1, 2, 3)";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.arrayParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnArrayAssembly: has already executed. 
+    id obj = [res pop]; // NSArray *
+    STAssertTrue([obj isKindOfClass:[NSArray class]], @"");
+    STAssertEquals((NSUInteger)3, [obj count], @"");
+    STAssertEqualObjects([NSNumber numberWithInt:1], [obj objectAtIndex:0], @"");
+    STAssertEqualObjects([NSNumber numberWithInt:2], [obj objectAtIndex:1], @"");
+    STAssertEqualObjects([NSNumber numberWithInt:3], [obj objectAtIndex:2], @"");
+}
+
+
+- (void)testArrayTrackNumArrayMissingParen {
+    s = @"(1, 2, 3";
+    a = [TDTokenAssembly assemblyWithString:s];
+    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
+}
+
+
+- (void)testArrayTrackNumArrayMissingComma {
+    s = @"(1, 2 3)";
+    a = [TDTokenAssembly assemblyWithString:s];
+    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
+}
 
 
 - (void)testNullLtNullGt {
