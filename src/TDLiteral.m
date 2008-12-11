@@ -41,7 +41,12 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, literal.stringValue];
+    NSString *className = [[self className] substringFromIndex:2];
+    if (name.length) {
+        return [NSString stringWithFormat:@"%@ (%@) %@", className, name, literal.stringValue];
+    } else {
+        return [NSString stringWithFormat:@"%@ %@", className, literal.stringValue];
+    }
 }
 
 @synthesize literal;
