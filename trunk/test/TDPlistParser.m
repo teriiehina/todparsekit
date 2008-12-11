@@ -7,6 +7,7 @@
 //
 
 #import "TDPlistParser.h"
+#import "NSString+TDParseKitAdditions.h"
 
 //{
 //    0 = 0;
@@ -108,7 +109,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // dictContent          = Empty | keyValuePair*
 - (TDCollectionParser *)dictParser {
     if (!dictParser) {
-        self.dictParser = [TDSequence sequence];
+        self.dictParser = [TDTrack track];
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
         
         TDAlternation *a = [TDAlternation alternation];
@@ -127,7 +128,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // keyValuePair         = key '=' value ';'
 - (TDCollectionParser *)keyValuePairParser {
     if (!keyValuePairParser) {
-        self.keyValuePairParser = [TDSequence sequence];
+        self.keyValuePairParser = [TDTrack track];
         [keyValuePairParser add:self.keyParser];
         [keyValuePairParser add:[[TDSymbol symbolWithString:@"="] discard]];
         [keyValuePairParser add:self.valueParser];
@@ -197,13 +198,19 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
+// string               = QuotedString | Word
 - (TDCollectionParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDAlternation alternation];
-        [stringParser add:[TDQuotedString quotedString]];
-        [stringParser add:[TDWord word]];
+        
+        // we have to remove the quotes from QuotedString string values. so set an assembler method to do that
+        TDParser *quotedString = [TDQuotedString quotedString];
+        [quotedString setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
+        [stringParser add:quotedString];
 
-        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+        TDParser *word = [TDWord word];
+        [word setAssembler:self selector:@selector(workOnWordAssembly:)];
+        [stringParser add:word];
     }
     return stringParser;
 }
@@ -219,6 +226,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
+// null = '<null>'
 - (TDParser *)nullParser {
     if (!nullParser) {
         // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
@@ -232,13 +240,17 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (void)workOnDictAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:self.curly];
-    NSMutableDictionary *res = [NSMutableDictionary dictionaryWithCapacity:objs.count / 2.];
-    
-    NSInteger i = 0;
-    for ( ; i < objs.count - 1; i++) {
-        id key = [objs objectAtIndex:i++];
-        id value = [objs objectAtIndex:i];
-        [res setObject:value forKey:key];
+    NSInteger count = objs.count;
+    NSAssert(0 == count % 2, @"in -workOnDictAssembly:, the assembly's stack's count should be a multiple of 2");
+
+    NSMutableDictionary *res = [NSMutableDictionary dictionaryWithCapacity:count / 2.];
+    if (count) {
+        NSInteger i = 0;
+        for ( ; i < objs.count - 1; i++) {
+            id value = [objs objectAtIndex:i++];
+            id key = [objs objectAtIndex:i];
+            [res setObject:value forKey:key];
+        }
     }
     
     [a pop]; // discard '{' tok
@@ -256,12 +268,18 @@ static NSString *kTDPlistNullString = @"<null>";
         [res addObject:obj];
     }
     
-    [a pop]; // discard '[' tok
+    [a pop]; // discard '(' tok
     [a push:[[res copy] autorelease]];
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnQuotedStringAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
+}
+
+
+- (void)workOnWordAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
 }

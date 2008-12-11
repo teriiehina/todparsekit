@@ -33,6 +33,108 @@
 //        YESKey = 1;
 //    }
 
+- (void)testDictFooEqBar {
+    s = @"{foo = bar;}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.dictParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnDictionaryAssembly: has already executed. 
+    id obj = [res pop]; // NSDictionary *
+    STAssertTrue([obj isKindOfClass:[NSDictionary class]], @"");
+    STAssertEquals((NSUInteger)1, [obj count], @"");
+    
+    STAssertEqualObjects(@"bar", [obj objectForKey:@"foo"], @"");
+}
+
+
+- (void)testDictTrackFooEqBarMisingCurly {
+    s = @"{foo = bar;";
+    a = [TDTokenAssembly assemblyWithString:s];
+    STAssertThrowsSpecific([p.dictParser completeMatchFor:a], TDTrackException, @"");
+}
+
+
+- (void)testDictQuoteFooFooQuoteEqBarOneEq2 {
+    s = @"{\"foo foo\" = bar; 1 = 2.2;}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.dictParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnDictionaryAssembly: has already executed. 
+    id obj = [res pop]; // NSDictionary *
+    STAssertTrue([obj isKindOfClass:[NSDictionary class]], @"");
+    STAssertEquals((NSUInteger)2, [obj count], @"");
+    
+    STAssertEqualObjects(@"bar", [obj objectForKey:@"foo foo"], @"");    
+    STAssertEqualObjects([NSNumber numberWithFloat:2.2], [obj objectForKey:[NSNumber numberWithInteger:1]], @"");
+}
+
+
+- (void)testKeyValuePairFooEqBar {
+    s = @"foo = bar;";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.keyValuePairParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnKeyValuePairAssembly: has already executed. 
+    id value = [res pop]; // NSString *
+    id key = [res pop]; // NSString *
+    
+    STAssertTrue([key isKindOfClass:[NSString class]], @"");
+    STAssertEqualObjects(@"foo", key, @"");
+    
+    STAssertTrue([value isKindOfClass:[NSString class]], @"");
+    STAssertEqualObjects(@"bar", value, @"");
+}
+
+
+- (void)testKeyValuePairTrackFooEqBarNoSemi {
+    s = @"foo = bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    STAssertThrowsSpecific([p.keyValuePairParser completeMatchFor:a], TDTrackException, @"");
+}
+
+
+- (void)testCommaValueComma1 {
+    s = @", 1";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.commaValueParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnNumberAssembly: has already executed. 
+    id obj = [res pop]; // NSNumber *
+    STAssertTrue([obj isKindOfClass:[NSNumber class]], @"");
+    STAssertEquals(1, [obj integerValue], @"");
+}
+
+
+- (void)testCommaValueCommaFoo {
+    s = @", Foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.commaValueParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnWordAssembly: has already executed. 
+    id obj = [res pop]; // NSString *
+    STAssertTrue([obj isKindOfClass:[NSString class]], @"");
+    STAssertEqualObjects(@"Foo", obj, @"");
+}
+
+
+- (void)testCommaValueCommaQuoteFooSpaceBarQuote {
+    s = @", \"Foo Bar\"";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p.commaValueParser completeMatchFor:a];
+    STAssertNotNil(res, @"");
+    
+    // -workOnQuotedStringAssembly: has already executed. 
+    id obj = [res pop]; // NSString *
+    STAssertTrue([obj isKindOfClass:[NSString class]], @"");
+    STAssertEqualObjects(@"Foo Bar", obj, @"");
+}
+
+
 - (void)testArrayEmptyArray {
     s = @"()";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -91,7 +193,7 @@
     // -workOnStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
     STAssertTrue([obj isKindOfClass:[NSString class]], @"");
-    STAssertEqualObjects(@"\"1.0\"", obj, @"");
+    STAssertEqualObjects(@"1.0", obj, @"");
 }
 
 
@@ -117,7 +219,7 @@
     // -workOnStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
     STAssertTrue([obj isKindOfClass:[NSString class]], @"");
-    STAssertEqualObjects(@"\"foo\"", obj, @"");
+    STAssertEqualObjects(@"foo", obj, @"");
 }
 
 
