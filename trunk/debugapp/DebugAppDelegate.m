@@ -61,10 +61,46 @@
     
     p = [[[TDPlistParser alloc] init] autorelease];
 
-    s = @"(1, 2)";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p.arrayParser completeMatchFor:a];
+    s = @"{"
+    @"    0 = 0;"
+    @"    dictKey =     {"
+    @"        bar = foo;"
+    @"    };"
+    @"    47 = 0;"
+    @"    IntegerKey = 1;"
+    @"    47.7 = 0;"
+    @"    <null> = <null>;"
+    @"    ArrayKey =     ("
+    @"                    \"one one\","
+    @"                    two,"
+    @"                    three"
+    @"                    );"
+    @"    \"Null Key\" = <null>;"
+    @"    emptyDictKey =     {"
+    @"    };"
+    @"    StringKey = String;"
+    @"    \"1.0\" = 1;"
+    @"    YESKey = 1;"
+    @"   \"NO Key\" = 0;"
+    @"}";
     
+    a = [TDTokenAssembly assemblyWithString:s];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.dictParser completeMatchFor:a];
+    
+    id attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                [NSColor whiteColor], NSForegroundColorAttributeName,
+                [NSFont fontWithName:@"Monaco" size:12.], NSFontAttributeName,
+                nil];
+    id dict = [res pop];
+
+    s = [dict description];
+    a = [TDTokenAssembly assemblyWithString:s];
+    [p configureTokenizer:a.tokenizer];
+    res = [p.dictParser completeMatchFor:a];
+    dict = [res pop];
+    
+    self.displayString = [[[NSAttributedString alloc] initWithString:[dict description] attributes:attrs] autorelease];
 //    TDToken *tok = [res pop];
     
     
