@@ -60,8 +60,7 @@
         }
     }
     
-    NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
-    NSMutableSet *outAssemblies = [NSMutableSet setWithSet:[deepCopy autorelease]];
+    NSMutableSet *outAssemblies = [[[NSMutableSet alloc] initWithSet:inAssemblies copyItems:YES] autorelease];
     
     NSSet *s = inAssemblies;
     while (s.count) {
