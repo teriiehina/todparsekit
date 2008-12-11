@@ -61,12 +61,9 @@
     
     p = [[[TDPlistParser alloc] init] autorelease];
 
-    s = @", Foo";
+    s = @"(1, 2)";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p.commaValueParser completeMatchFor:a];
-    
-    // -workOnStringAssembly: has already executed. 
-    id obj = [res pop]; // NSString *
+    res = [p.arrayParser completeMatchFor:a];
     
 //    TDToken *tok = [res pop];
     
