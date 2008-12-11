@@ -10,7 +10,7 @@
 #import <TDParseKit/TDToken.h>
 
 @interface TDSymbol ()
-@property (nonatomic, retain) TDToken *symbolTok;
+@property (nonatomic, retain) TDToken *symbol;
 @end
 
 @implementation TDSymbol
@@ -29,7 +29,7 @@
     self = [super initWithString:s];
     if (self) {
         if (s.length) {
-            self.symbolTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0f];
+            self.symbol = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0f];
         }
     }
     return self;
@@ -37,14 +37,14 @@
 
 
 - (void)dealloc {
-    self.symbolTok = nil;
+    self.symbol = nil;
     [super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
-    if (symbolTok) {
-        return [symbolTok isEqual:obj];
+    if (symbol) {
+        return [symbol isEqual:obj];
     } else {
         TDToken *tok = (TDToken *)obj;
         return tok.isSymbol;
@@ -54,11 +54,11 @@
 
 - (NSString *)description {
     if (name.length) {
-        return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, symbolTok.stringValue];
+        return [NSString stringWithFormat:@"%@ (%@) %@", [[self className] substringFromIndex:2], name, symbol.stringValue];
     } else {
-        return [NSString stringWithFormat:@"%@ %@", [[self className] substringFromIndex:2], symbolTok.stringValue];
+        return [NSString stringWithFormat:@"%@ %@", [[self className] substringFromIndex:2], symbol.stringValue];
     }
 }
 
-@synthesize symbolTok;
+@synthesize symbol;
 @end
