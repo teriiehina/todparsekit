@@ -34,4 +34,7 @@
     @result     an initialized assembly
  */
 - (id)initWithTokenzier:(TDTokenizer *)t;
+
++ (id)assemblyWithTokenArray:(NSArray *)a;
+- (id)initWithTokenArray:(NSArray *)a;
 @end

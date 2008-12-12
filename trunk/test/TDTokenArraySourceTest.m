@@ -18,24 +18,24 @@
     d = @";";
     s = @"I came; I saw; I left in peace.;";
     t = [[[TDTokenizer alloc] initWithString:s] autorelease];
-    tss = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
+    tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
     
-    STAssertTrue([tss hasMore], @"");
-    NSArray *a = [tss nextTokenString];
+    STAssertTrue([tas hasMore], @"");
+    NSArray *a = [tas nextTokenArray];
     STAssertNotNil(a, @"");
     STAssertEquals((NSUInteger)2, a.count, @"");
     STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
     STAssertEqualObjects(@"came", [[a objectAtIndex:1] stringValue], @"");
 
-    STAssertTrue([tss hasMore], @"");
-    a = [tss nextTokenString];
+    STAssertTrue([tas hasMore], @"");
+    a = [tas nextTokenArray];
     STAssertNotNil(a, @"");
     STAssertEquals((NSUInteger)2, a.count, @"");
     STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
     STAssertEqualObjects(@"saw", [[a objectAtIndex:1] stringValue], @"");
 
-    STAssertTrue([tss hasMore], @"");
-    a = [tss nextTokenString];
+    STAssertTrue([tas hasMore], @"");
+    a = [tas nextTokenArray];
     STAssertNotNil(a, @"");
     STAssertEquals((NSUInteger)5, a.count, @"");
     STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
@@ -44,8 +44,8 @@
     STAssertEqualObjects(@"peace", [[a objectAtIndex:3] stringValue], @"");
     STAssertEqualObjects(@".", [[a objectAtIndex:4] stringValue], @"");
 
-    STAssertFalse([tss hasMore], @"");
-    a = [tss nextTokenString];
+    STAssertFalse([tas hasMore], @"");
+    a = [tas nextTokenArray];
     STAssertNil(a, @"");
 }
 @end

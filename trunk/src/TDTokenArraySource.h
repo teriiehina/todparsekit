@@ -20,10 +20,10 @@
     NSString *s = @"I came; I saw; I left in peace;";
 
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDTokenArraySource tss = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
+    TDTokenArraySource tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
  
-    while ([tss hasMore]) {
-        NSLog(@"%@", [tss nextTokenString]);
+    while ([tas hasMore]) {
+        NSLog(@"%@", [tas nextTokenArray]);
     }
 @endcode
  
@@ -50,7 +50,7 @@
 
 /*!
     @brief      true if the source has more arrays of tokens.
-    @result     true, if the source has more arrays of tokens that have not yet been popped with <tt>-nextTokenString</tt>
+    @result     true, if the source has more arrays of tokens that have not yet been popped with <tt>-nextTokenArray</tt>
 */
 - (BOOL)hasMore;
 
@@ -58,5 +58,5 @@
     @brief      Returns the next array of tokens from the source.
     @result     the next array of tokens from the source
 */
-- (NSArray *)nextTokenString;
+- (NSArray *)nextTokenArray;
 @end

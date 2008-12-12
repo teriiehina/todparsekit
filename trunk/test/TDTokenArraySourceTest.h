@@ -13,7 +13,7 @@
     TDTokenizer *t;
     NSString *d;
     NSString *s;
-    TDTokenArraySource *tss;
+    TDTokenArraySource *tas;
 }
 
 @end

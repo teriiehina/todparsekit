@@ -52,7 +52,7 @@
 }
 
 
-- (NSArray *)nextTokenString {
+- (NSArray *)nextTokenArray {
     if (![self hasMore]) {
         return nil;
     }
