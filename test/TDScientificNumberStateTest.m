@@ -46,7 +46,6 @@
 }
 
 
-
 - (void)testDoubleDigit {
     s = @"47";
     r = [[TDReader alloc] initWithString:s];
