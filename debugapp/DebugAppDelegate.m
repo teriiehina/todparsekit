@@ -11,6 +11,7 @@
 #import "TDJsonParser.h"
 #import "TDFastJsonParser.h"
 #import "TDRegularParser.h"
+#import "EBNFParser.h"
 #import "TDPlistParser.h"
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
@@ -24,43 +25,14 @@
 }
 
 
-- (IBAction)run:(id)sender {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
-//    NSString *s = [NSString stringWithContentsOfFile:path];
-//    //NSString *s = @"ア";
-//    
-//    TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
-//    NSAttributedString *o = [highlighter attributedStringForString:s];
-//    //NSLog(@"o: %@", [o string]);
-//    self.displayString = o;
-//    [highlighter release];
-
-    
-//    
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-//    NSString *s = [NSString stringWithContentsOfFile:path];
-//    
-//    TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
-////    TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
-//    
-//    id result = nil;
-//    
-//    @try {
-//        result = [p parse:s];
-//    } @catch (NSException *e) {
-//        NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
-//    }
-    //NSLog(@"result %@", result);
-
+- (void)doPlistParser {
     NSString *s = nil;
     TDTokenAssembly *a = nil;
     TDAssembly *res = nil;
     TDPlistParser *p = nil;
     
     p = [[[TDPlistParser alloc] init] autorelease];
-
+    
     s = @"{"
     @"    0 = 0;"
     @"    dictKey =     {"
@@ -93,15 +65,77 @@
                 [NSFont fontWithName:@"Monaco" size:12.], NSFontAttributeName,
                 nil];
     id dict = [res pop];
-
+    
     s = [dict description];
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     dict = [res pop];
     
     self.displayString = [[[NSAttributedString alloc] initWithString:[dict description] attributes:attrs] autorelease];
-//    TDToken *tok = [res pop];
+}
+
+
+- (void)doHtmlSyntaxHighlighter {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    //NSString *s = @"ア";
     
+    TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
+    NSAttributedString *o = [highlighter attributedStringForString:s];
+    //NSLog(@"o: %@", [o string]);
+    self.displayString = o;
+    [highlighter release];    
+}
+
+
+- (void)doJsonParser {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    
+    TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
+//    TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
+    
+    id result = nil;
+    
+    @try {
+        result = [p parse:s];
+    } @catch (NSException *e) {
+        NSLog(@"\n\n\nexception:\n\n %@", [e reason]);
+    }
+    NSLog(@"result %@", result);
+}
+
+
+- (void)doEBNFParser {
+    //NSString *s = @"foo (bar|baz)*;";
+    NSString *s = @"$baz = bar; ($baz|foo)*;";
+    //NSString *s = @"foo;";
+    EBNFParser *p = [[[EBNFParser alloc] init] autorelease];
+    
+    //    TDAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    //    NSLog(@"a: %@", a);
+    //    NSLog(@"a.target: %@", a.target);
+    
+    TDParser *res = [p parse:s];
+    //    NSLog(@"res: %@", res);
+    //    NSLog(@"res: %@", res.string);
+    //    NSLog(@"res.subparsers: %@", res.subparsers);
+    //    NSLog(@"res.subparsers 0: %@", [[res.subparsers objectAtIndex:0] string]);
+    //    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
+    
+    s = @"bar foo bar foo";
+    TDAssembly *a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    NSLog(@"\n\na: %@\n\n", a);
+}
+
+
+- (IBAction)run:(id)sender {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+//    [self doPlistParser];
+//    [self doHtmlSyntaxHighlighter];
+//    [self doJsonParser];
+    [self doEBNFParser];
     
     [pool release];
     

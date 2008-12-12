@@ -406,7 +406,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 //    NSLog(@"a: %@", a);
     TDToken *keyTok = [a pop];
     id val = [a.target objectForKey:keyTok.stringValue];
-    [a push:val];
+    if (val) {
+        [a push:val];
+    }
 }
 
 @synthesize tokenizer;
