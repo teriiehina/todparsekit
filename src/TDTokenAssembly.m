@@ -11,6 +11,7 @@
 #import <TDParseKit/TDToken.h>
 
 @interface TDTokenAssembly ()
+- (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a;
 - (void)tokenize;
 - (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
 
@@ -27,16 +28,36 @@
 
 - (id)initWithTokenzier:(TDTokenizer *)t {
     NSParameterAssert(t);
-    self = [super initWithString:t.string];
-    if (self) {
-        self.tokenizer = t;
-    }
-    return self;
+    return [self initWithString:t.string tokenzier:t tokenArray:nil];
+}
+
+
++ (id)assemblyWithTokenArray:(NSArray *)a {
+    return [[[self alloc] initWithTokenArray:a] autorelease];
+}
+
+
+- (id)initWithTokenArray:(NSArray *)a {
+    NSParameterAssert(a);
+    return [self initWithString:[a componentsJoinedByString:@""] tokenzier:nil tokenArray:a];
 }
 
 
 - (id)initWithString:(NSString *)s {
     return [self initWithTokenzier:[[[TDTokenizer alloc] initWithString:s] autorelease]];
+}
+
+
+- (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a {
+    self = [super initWithString:s];
+    if (self) {
+        if (t) {
+            self.tokenizer = t;
+        } else {
+            self.tokens = [NSMutableArray arrayWithArray:a];
+        }
+    }
+    return self;
 }
 
 
@@ -59,14 +80,6 @@
         [self tokenize];
     }
     return [[tokens retain] autorelease];
-}
-
-
-- (void)setTokens:(NSMutableArray *)inArray {
-    if (inArray != tokens) {
-        [tokens autorelease];
-        tokens = [inArray retain];
-    }
 }
 
 
@@ -123,6 +136,10 @@
 #pragma mark Private
 
 - (void)tokenize {
+    if (!tokenizer) {
+        return;
+    }
+    
     self.tokens = [NSMutableArray array];
     
     TDToken *eof = [TDToken EOFToken];
@@ -149,4 +166,5 @@
 }
 
 @synthesize tokenizer;
+@synthesize tokens;
 @end
