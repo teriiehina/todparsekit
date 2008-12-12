@@ -16,7 +16,7 @@
 - (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
-@property (nonatomic, retain) NSMutableArray *tokens;
+@property (nonatomic, copy) NSArray *tokens;
 @end
 
 @implementation TDTokenAssembly
@@ -54,7 +54,7 @@
         if (t) {
             self.tokenizer = t;
         } else {
-            self.tokens = [NSMutableArray arrayWithArray:a];
+            self.tokens = a;
         }
     }
     return self;
@@ -70,12 +70,12 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
-    a->tokens = [self.tokens mutableCopy];
+    a->tokens = [self.tokens copy];
     return a;
 }
 
 
-- (NSMutableArray *)tokens {
+- (NSArray *)tokens {
     if (!tokens) {
         [self tokenize];
     }
@@ -140,13 +140,15 @@
         return;
     }
     
-    self.tokens = [NSMutableArray array];
+    NSMutableArray *a = [NSMutableArray array];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     while ((tok = [tokenizer nextToken]) != eof) {
-        [tokens addObject:tok];
+        [a addObject:tok];
     }
+
+    self.tokens = a;
 }
 
 
