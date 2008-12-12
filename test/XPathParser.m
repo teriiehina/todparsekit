@@ -72,22 +72,21 @@
 
 
 - (TDAssembly *)assemblyWithString:(NSString *)s {
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    TDTokenizer *t = a.tokenizer;
-    
+    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     [t.symbolState add:@"::"];
     [t.symbolState add:@"!="];
     [t.symbolState add:@"<="];
     [t.symbolState add:@">="];
     [t.symbolState add:@".."];
     [t.symbolState add:@"//"];
-    
-//    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
-    
     [t setTokenizerState:t.wordState from: '_' to: '_'];
 //    [t setTokenizerState:NCNameState from: 'a' to: 'z'];
 //    [t setTokenizerState:NCNameState from: 'A' to: 'Z'];
 //    [t setTokenizerState:NCNameState from:0xc0 to:0xff];
+    
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];    
+//    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
+    
     return a;    
 }
 

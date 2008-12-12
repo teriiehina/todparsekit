@@ -81,18 +81,15 @@
 
 
 - (TDAssembly *)assemblyWithString:(NSString *)s {
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    TDTokenizer *t = a.tokenizer;
-    
-    //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
-    
+    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     [t setTokenizerState:t.symbolState from: '-' to: '-'];
     [t setTokenizerState:t.symbolState from: '.' to: '.'];
     //[t.wordState setWordChars:YES from:'-' to:'-'];
+
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
     return a;    
 }
-
-
 
 
 //selfIdentHeader ::= '#ABNF' #x20 VersionNumber (#x20 CharEncoding)? ';'

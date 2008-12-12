@@ -13,6 +13,8 @@
 @interface TDTokenAssembly ()
 - (void)tokenize;
 - (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
+
+@property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) NSMutableArray *tokens;
 @end
 
