@@ -17,7 +17,7 @@
 */
 @interface TDTokenAssembly : TDAssembly <NSCopying> {
     TDTokenizer *tokenizer;
-    NSMutableArray *tokens;
+    NSArray *tokens;
 }
 
 /*!
