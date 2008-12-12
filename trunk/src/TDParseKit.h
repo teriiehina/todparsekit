@@ -46,7 +46,7 @@
 // tokens
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDTokenStringSource.h>
+#import <TDParseKit/TDTokenArraySource.h>
 #import <TDParseKit/TDTokenAssembly.h>
 #import <TDParseKit/TDTokenizerState.h>
 #import <TDParseKit/TDNumberState.h>

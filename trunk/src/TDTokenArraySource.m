@@ -1,22 +1,22 @@
 //
-//  TDTokenStringSource.m
+//  TDTokenArraySource.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/11/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDTokenStringSource.h>
+#import <TDParseKit/TDTokenArraySource.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizer.h>
 
-@interface TDTokenStringSource ()
+@interface TDTokenArraySource ()
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) NSString *delimiter;
 @property (nonatomic, retain) TDToken *nextToken;
 @end
 
-@implementation TDTokenStringSource
+@implementation TDTokenArraySource
 
 - (id)init {
     return [self initWithTokenizer:nil delimiter:nil];

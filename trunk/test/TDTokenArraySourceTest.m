@@ -1,14 +1,14 @@
 //
-//  TDTokenStringSourceTest.m
+//  TDTokenArraySourceTest.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDTokenStringSourceTest.h"
+#import "TDTokenArraySourceTest.h"
 
-@implementation TDTokenStringSourceTest
+@implementation TDTokenArraySourceTest
 
 - (void)setUp {
 }
@@ -18,7 +18,7 @@
     d = @";";
     s = @"I came; I saw; I left in peace.;";
     t = [[[TDTokenizer alloc] initWithString:s] autorelease];
-    tss = [[[TDTokenStringSource alloc] initWithTokenizer:t delimiter:d] autorelease];
+    tss = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
     
     STAssertTrue([tss hasMore], @"");
     NSArray *a = [tss nextTokenString];
