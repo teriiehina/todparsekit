@@ -1,5 +1,5 @@
 //
-//  TDTokenStringSourceTest.h
+//  TDTokenArraySourceTest.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
@@ -9,11 +9,11 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDTokenStringSourceTest : SenTestCase {
+@interface TDTokenArraySourceTest : SenTestCase {
     TDTokenizer *t;
     NSString *d;
     NSString *s;
-    TDTokenStringSource *tss;
+    TDTokenArraySource *tss;
 }
 
 @end

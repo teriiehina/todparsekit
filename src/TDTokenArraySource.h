@@ -1,5 +1,5 @@
 //
-//  TDTokenStringSource.h
+//  TDTokenArraySource.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/11/08.
@@ -12,7 +12,7 @@
 @class TDToken;
 
 /*!
-    @class      TDTokenStringSource
+    @class      TDTokenArraySource
     @brief      A <tt>TokenStringSource</tt> enumerates over a specified reader, returning <tt>NSArray</tt>s of <tt>TDToken</tt>s delimited by a specified delimiter.
     @details    For example,
  
@@ -20,7 +20,7 @@
     NSString *s = @"I came; I saw; I left in peace;";
 
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDTokenStringSource tss = [[[TDTokenStringSource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
+    TDTokenArraySource tss = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
  
     while ([tss hasMore]) {
         NSLog(@"%@", [tss nextTokenString]);
@@ -35,14 +35,14 @@
     I left in peace
 @endcode
 */
-@interface TDTokenStringSource : NSObject {
+@interface TDTokenArraySource : NSObject {
     TDTokenizer *tokenizer;
     NSString *delimiter;
     TDToken *nextToken;
 }
 
 /*!
-    @brief      Constructs a <tt>TDTokenStringSource</tt> that will read <tt>NSArray</tt>s of <tt>TDToken</tt>s using the specified tokenizer, delimited by the specified delimiter.
+    @brief      Constructs a <tt>TDTokenArraySource</tt> that will read <tt>NSArray</tt>s of <tt>TDToken</tt>s using the specified tokenizer, delimited by the specified delimiter.
     @param      tokenizer a tokenizer to read tokens from
     @param      delimiter the character(s) that fences off where one array of tokens ends and the next begins
 */
