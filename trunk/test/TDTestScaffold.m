@@ -22,7 +22,6 @@
         SenTestSuite *suite = [SenTestSuite testSuiteForTestCaseWithName:className];
         [self addTest:suite];
     }
-    
 }
 
 @end

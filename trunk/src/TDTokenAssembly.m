@@ -18,12 +18,23 @@
 
 @implementation TDTokenAssembly
 
-- (id)initWithString:(NSString *)s {
-    self = [super initWithString:s];
++ (id)assemblyWithTokenizer:(TDTokenizer *)t {
+    return [[[self alloc] initWithTokenzier:t] autorelease];
+}
+
+
+- (id)initWithTokenzier:(TDTokenizer *)t {
+    NSParameterAssert(t);
+    self = [super initWithString:t.string];
     if (self) {
-        self.tokenizer = [[[TDTokenizer alloc] initWithString:s] autorelease];
+        self.tokenizer = t;
     }
     return self;
+}
+
+
+- (id)initWithString:(NSString *)s {
+    return [self initWithTokenzier:[[[TDTokenizer alloc] initWithString:s] autorelease]];
 }
 
 

@@ -34,8 +34,8 @@
     @"        YESKey = 1;"
     @"    }";
     
-    a = [TDTokenAssembly assemblyWithString:s];
-    [p configureTokenizer:a.tokenizer];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     STAssertNotNil(res, @"");
 
@@ -78,8 +78,8 @@
     @"   \"NO Key\" = 0;"
     @"}";
     
-    a = [TDTokenAssembly assemblyWithString:s];
-    [p configureTokenizer:a.tokenizer];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -100,7 +100,8 @@
 
 - (void)testDictFooEqBar {
     s = @"{foo = bar;}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -115,14 +116,16 @@
 
 - (void)testDictTrackFooEqBarMisingCurly {
     s = @"{foo = bar;";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.dictParser completeMatchFor:a], TDTrackException, @"");
 }
 
 
 - (void)testDictQuoteFooFooQuoteEqBarOneEq2 {
     s = @"{\"foo foo\" = bar; 1 = 2.2;}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -138,7 +141,8 @@
 
 - (void)testKeyValuePairFooEqBar {
     s = @"foo = bar;";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.keyValuePairParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -156,14 +160,16 @@
 
 - (void)testKeyValuePairTrackFooEqBarNoSemi {
     s = @"foo = bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.keyValuePairParser completeMatchFor:a], TDTrackException, @"");
 }
 
 
 - (void)testCommaValueComma1 {
     s = @", 1";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -176,7 +182,8 @@
 
 - (void)testCommaValueCommaFoo {
     s = @", Foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -189,7 +196,8 @@
 
 - (void)testCommaValueCommaQuoteFooSpaceBarQuote {
     s = @", \"Foo Bar\"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -202,7 +210,8 @@
 
 - (void)testArrayEmptyArray {
     s = @"()";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.arrayParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -215,7 +224,8 @@
 
 - (void)testArrayNumArray {
     s = @"(1, 2, 3)";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.arrayParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -231,22 +241,24 @@
 
 - (void)testArrayTrackNumArrayMissingParen {
     s = @"(1, 2, 3";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
 }
 
 
 - (void)testArrayTrackNumArrayMissingComma {
     s = @"(1, 2 3)";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
 }
 
 
 - (void)testNullLtNullGt {
     s = @"<null>";
-    a = [TDTokenAssembly assemblyWithString:s];
-    [p configureTokenizer:a.tokenizer];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.nullParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -259,8 +271,8 @@
 
 - (void)testNullQuoteLtNullGtQuote {
     s = @"\"<null>\"";
-    a = [TDTokenAssembly assemblyWithString:s];
-    [p configureTokenizer:a.tokenizer];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.nullParser completeMatchFor:a];
     STAssertNil(res, @"");
 }
@@ -268,7 +280,8 @@
 
 - (void)testStringQuote1Dot0Quote {
     s = @"\"1.0\"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -281,7 +294,8 @@
 
 - (void)testStringFoo {
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -294,7 +308,8 @@
 
 - (void)testStringQuoteFooQuote {
     s = @"\"foo\"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -307,7 +322,8 @@
 
 - (void)testNum1Dot0 {
     s = @"1.0";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -322,7 +338,8 @@
 
 - (void)testNumMinus1Dot0 {
     s = @"-1.0";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -337,7 +354,8 @@
 
 - (void)testNumMinus1 {
     s = @"-1";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -352,7 +370,8 @@
 
 - (void)testNum0 {
     s = @"0";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -382,7 +401,8 @@
 
 - (void)testNumMinus0Dot0 {
     s = @"-0.0";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -397,7 +417,8 @@
 
 - (void)testNum300 {
     s = @"300";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNotNil(res, @"");
     
@@ -412,7 +433,8 @@
 
 - (void)testNumEmptyString {
     s = @"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNil(res, @"");
 }
@@ -420,7 +442,8 @@
 
 - (void)testNumNil {
     s = nil;
-    a = [TDTokenAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
     STAssertNil(res, @"");
 }

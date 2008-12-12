@@ -21,6 +21,21 @@
 }
 
 /*!
+ @brief      Convenience factory method for initializing an autoreleased assembly with the string of <tt>t</tt>.
+ @param      t tokenizer whose string will be worked on
+ @result     an initialized autoreleased assembly
+ */
++ (id)assemblyWithTokenizer:(TDTokenizer *)t;
+
+/*!
+ @brief      Designated Initializer. Initializes an assembly with the string of <tt>t</tt>
+ @details    Designated Initializer.
+ @param      t tokenizer whose string will be worked on
+ @result     an initialized assembly
+ */
+- (id)initWithTokenzier:(TDTokenizer *)t;
+
+/*!
     @property   tokenizer
     @brief      The tokenizer that provides the stream of tokens for this assembly.
 */

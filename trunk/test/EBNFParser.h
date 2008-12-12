@@ -9,6 +9,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface EBNFParser : TDRepetition {
+    TDTokenizer *tokenizer;
     TDCollectionParser *statementParser;
     TDCollectionParser *exprOrAssignmentParser;
     TDCollectionParser *assignmentParser;
@@ -27,6 +28,7 @@
 }
 - (id)parse:(NSString *)s;
 
+@property (retain, readonly) TDTokenizer *tokenizer;
 @property (retain) TDCollectionParser *statementParser;
 @property (retain) TDCollectionParser *exprOrAssignmentParser;
 @property (retain) TDCollectionParser *assignmentParser;

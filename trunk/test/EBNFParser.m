@@ -32,7 +32,7 @@ static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
 
 @interface EBNFParser ()
-- (void)configureTokenizer:(TDTokenizer *)t;
+@property (retain, readwrite) TDTokenizer *tokenizer;
 - (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
 
 - (void)workOnWordAssembly:(TDAssembly *)a;
@@ -78,17 +78,21 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (id)parse:(NSString *)s {
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    [self configureTokenizer:a.tokenizer];
+    self.tokenizer.string = s;
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
     TDAssembly *result = [self completeMatchFor:a];
     return [result pop];
 }
 
 
-- (void)configureTokenizer:(TDTokenizer *)t {
-    [self addSymbolString:kEBNFEqualsString toTokenizer:t];    
-    [self addSymbolString:kEBNFVariablePrefix toTokenizer:t];    
-    [self addSymbolString:kEBNFVariableSuffix toTokenizer:t];    
+- (TDTokenizer *)tokenizer {
+    if (!tokenizer) {
+        self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+        [self addSymbolString:kEBNFEqualsString toTokenizer:tokenizer];
+        [self addSymbolString:kEBNFVariablePrefix toTokenizer:tokenizer];
+        [self addSymbolString:kEBNFVariableSuffix toTokenizer:tokenizer];
+    }
+    return tokenizer;
 }
 
 
@@ -405,7 +409,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     [a push:val];
 }
 
-
+@synthesize tokenizer;
 @synthesize statementParser;
 @synthesize exprOrAssignmentParser;
 @synthesize assignmentParser;
