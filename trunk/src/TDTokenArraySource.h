@@ -42,7 +42,7 @@
 }
 
 /*!
-    @brief      Constructs a <tt>TDTokenArraySource</tt> that will read <tt>NSArray</tt>s of <tt>TDToken</tt>s using the specified tokenizer, delimited by the specified delimiter.
+    @brief      Constructs a <tt>TDTokenArraySource</tt> that will read an <tt>NSArray</tt>s of <tt>TDToken</tt>s using the specified tokenizer, delimited by the specified delimiter.
     @param      tokenizer a tokenizer to read tokens from
     @param      delimiter the character(s) that fences off where one array of tokens ends and the next begins
 */
