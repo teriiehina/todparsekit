@@ -174,6 +174,11 @@
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
+		D3656CB90EF2481000226554 /* TDTokenStringSource.h in Headers */ = {isa = PBXBuildFile; fileRef = D3656CB70EF2481000226554 /* TDTokenStringSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3656CBA0EF2481000226554 /* TDTokenStringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656CB80EF2481000226554 /* TDTokenStringSource.m */; };
+		D3656D650EF2532900226554 /* TDTokenStringSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656D640EF2532900226554 /* TDTokenStringSourceTest.m */; };
+		D3656D660EF2532900226554 /* TDTokenStringSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656D640EF2532900226554 /* TDTokenStringSourceTest.m */; };
+		D3656D670EF2532900226554 /* TDTokenStringSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656D640EF2532900226554 /* TDTokenStringSourceTest.m */; };
 		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
 		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
 		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
@@ -472,6 +477,10 @@
 		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
 		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
 		D36568A90EEFA05300226554 /* TDPlistParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParserTest.m; path = test/TDPlistParserTest.m; sourceTree = "<group>"; };
+		D3656CB70EF2481000226554 /* TDTokenStringSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenStringSource.h; path = src/TDTokenStringSource.h; sourceTree = "<group>"; };
+		D3656CB80EF2481000226554 /* TDTokenStringSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenStringSource.m; path = src/TDTokenStringSource.m; sourceTree = "<group>"; };
+		D3656D630EF2532900226554 /* TDTokenStringSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenStringSourceTest.h; path = test/TDTokenStringSourceTest.h; sourceTree = "<group>"; };
+		D3656D640EF2532900226554 /* TDTokenStringSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenStringSourceTest.m; path = test/TDTokenStringSourceTest.m; sourceTree = "<group>"; };
 		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
 		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
 		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
@@ -690,6 +699,8 @@
 				D31FE6370E60E77600A0803E /* TDTokenizer.m */,
 				D31FE6380E60E77600A0803E /* TDTokenizerState.h */,
 				D31FE6390E60E77600A0803E /* TDTokenizerState.m */,
+				D3656CB70EF2481000226554 /* TDTokenStringSource.h */,
+				D3656CB80EF2481000226554 /* TDTokenStringSource.m */,
 			);
 			name = tokenizer;
 			sourceTree = "<group>";
@@ -1011,6 +1022,8 @@
 				D31FE5740E60E55700A0803E /* TDTokenizerTest.m */,
 				D38205BC0EEE48EE004340DD /* TDTokenTest.h */,
 				D38205BD0EEE48EE004340DD /* TDTokenTest.m */,
+				D3656D630EF2532900226554 /* TDTokenStringSourceTest.h */,
+				D3656D640EF2532900226554 /* TDTokenStringSourceTest.m */,
 				D35420EC0DFB275400429B4F /* tokenizer states */,
 			);
 			name = tokens;
@@ -1216,6 +1229,7 @@
 				D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */,
 				D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */,
 				D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */,
+				D3656CB90EF2481000226554 /* TDTokenStringSource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1429,6 +1443,7 @@
 				D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */,
 				D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */,
 				D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */,
+				D3656CBA0EF2481000226554 /* TDTokenStringSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1440,6 +1455,7 @@
 				D36E98E80E58C14000496BD3 /* main.m in Sources */,
 				D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
+				D3656D660EF2532900226554 /* TDTokenStringSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,6 +1475,7 @@
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
+				D3656D670EF2532900226554 /* TDTokenStringSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1545,6 +1562,7 @@
 				D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */,
 				D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */,
 				D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */,
+				D3656D650EF2532900226554 /* TDTokenStringSourceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
