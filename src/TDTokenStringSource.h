@@ -40,6 +40,7 @@
     NSString *delimiter;
     TDToken *nextToken;
 }
+
 /*!
     @brief      Constructs a <tt>TDTokenStringSource</tt> that will read <tt>NSArray</tt>s of <tt>TDToken</tt>s using the specified tokenizer, delimited by the specified delimiter.
     @param      tokenizer a tokenizer to read tokens from
