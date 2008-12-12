@@ -57,18 +57,18 @@
                      nil];
     
     for (NSString *s in test) {
-        NSLog(@"\n----testing: %@", s);
+        //NSLog(@"\n----testing: %@", s);
         TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
         @try {
             TDAssembly *result = [list completeMatchFor:a];
             if (!result) {
-                NSLog(@"[list completeMatchFor:] returns nil");
+                //NSLog(@"[list completeMatchFor:] returns nil");
             } else {
-                NSString *stack = [[[list completeMatchFor:a] stack] description];
-                NSLog(@"OK stack is: %@", stack);
+                //NSString *stack = [[[list completeMatchFor:a] stack] description];
+                //NSLog(@"OK stack is: %@", stack);
             }
         } @catch (TDTrackException *e) {
-            NSLog(@"\n\n%@\n\n", [e reason]);
+            //NSLog(@"\n\n%@\n\n", [e reason]);
         }
     }
     
