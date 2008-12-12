@@ -44,6 +44,9 @@
 #import <TDParseKit/TDDigit.h>
 
 // tokens
+#import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDTokenizer.h>
+#import <TDParseKit/TDTokenStringSource.h>
 #import <TDParseKit/TDTokenAssembly.h>
 #import <TDParseKit/TDTokenizerState.h>
 #import <TDParseKit/TDNumberState.h>
@@ -56,8 +59,6 @@
 #import <TDParseKit/TDSymbolState.h>
 #import <TDParseKit/TDWordState.h>
 #import <TDParseKit/TDWhitespaceState.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDWord.h>
 #import <TDParseKit/TDNum.h>
 #import <TDParseKit/TDQuotedString.h>
