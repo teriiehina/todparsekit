@@ -7,7 +7,7 @@
 //
 
 #import "TDScientificNumberStateTest.h"
-
+#import "TDArithmeticParser.h"
 
 @implementation TDScientificNumberStateTest
 
@@ -19,6 +19,20 @@
 - (void)tearDown {
     [numberState release];
     [r release];
+}
+
+
+- (void)testScientificNumberStringArithmetic {
+    TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
+    TDTokenizer *t = [[[TDTokenizer alloc] init] autorelease];
+    [t setTokenizerState:sns from:'0' to:'9'];
+    [t setTokenizerState:sns from:'.' to:'.'];
+    [t setTokenizerState:sns from:'-' to:'-'];
+    t.string = @"1e2 + 1e1 + 1e0 + 1e-1 + 1e-2 + 1e-3";
+    TDArithmeticParser *p = [[[TDArithmeticParser alloc] init] autorelease];
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    TDAssembly *res = [p bestMatchFor:a];
+    STAssertEquals(111.111f, [[res pop] floatValue], @"");
 }
 
 
@@ -639,7 +653,7 @@
     t.string = s;
     
     TDToken *tok = [t nextToken];
-    STAssertEquals(-200.0f, tok.floatValue, @"");    
+    STAssertEquals(0.02f, tok.floatValue, @"");    
     STAssertTrue(tok.isNumber, @"");    
     STAssertEqualObjects(s, tok.stringValue, @"");    
     
@@ -702,7 +716,7 @@
     t.string = s;
     
     TDToken *tok = [t nextToken];
-    STAssertEquals(-200.0f, tok.floatValue, @"");    
+    STAssertEquals(0.02f, tok.floatValue, @"");    
     STAssertTrue(tok.isNumber, @"");    
     STAssertEqualObjects(@"2e-2", tok.stringValue, @"");    
     
@@ -771,7 +785,7 @@
     t.string = s;
     
     TDToken *tok = [t nextToken];
-    STAssertEquals(-200.0f, tok.floatValue, @"");    
+    STAssertEquals(0.02f, tok.floatValue, @"");    
     STAssertTrue(tok.isNumber, @"");    
     STAssertEqualObjects(@"2.0e-2", tok.stringValue, @"");    
     
