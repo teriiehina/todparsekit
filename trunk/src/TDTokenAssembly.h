@@ -34,10 +34,4 @@
     @result     an initialized assembly
  */
 - (id)initWithTokenzier:(TDTokenizer *)t;
-
-/*!
-    @property   tokenizer
-    @brief      The tokenizer that provides the stream of tokens for this assembly.
-*/
-@property (nonatomic, retain) TDTokenizer *tokenizer;
 @end

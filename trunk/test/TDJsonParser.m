@@ -49,12 +49,12 @@
     [self add:self.arrayParser];
     [self add:self.objectParser];
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    [t setTokenizerState:t.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
+    [t setTokenizerState:t.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
     
-    TDTokenizer *tokenizer = a.tokenizer;
-    [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
-    [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
-
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
     TDAssembly *result = [self completeMatchFor:a];
     return [result pop];
 }
