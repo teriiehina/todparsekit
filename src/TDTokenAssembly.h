@@ -28,13 +28,23 @@
 + (id)assemblyWithTokenizer:(TDTokenizer *)t;
 
 /*!
-    @brief      Designated Initializer. Initializes an assembly with the tokenizer <tt>t</tt> and its string
-    @details    Designated Initializer. Note that this is different from the <tt>TDTokenAssembly</tt> superclass in which <tt>-initWithString:</tt> is the designated initializer
+    @brief      Initializes an assembly with the tokenizer <tt>t</tt> and its string
     @param      t tokenizer whose string will be worked on
     @result     an initialized assembly
  */
 - (id)initWithTokenzier:(TDTokenizer *)t;
 
+/*!
+    @brief      Convenience factory method for initializing an autoreleased assembly with the token array <tt>a</tt> and its string
+    @param      a token array whose string will be worked on
+    @result     an initialized autoreleased assembly
+*/
 + (id)assemblyWithTokenArray:(NSArray *)a;
+
+/*!
+    @brief      Initializes an assembly with the token array <tt>a</tt> and its string
+    @param      a token array whose string will be worked on
+    @result     an initialized assembly
+*/
 - (id)initWithTokenArray:(NSArray *)a;
 @end
