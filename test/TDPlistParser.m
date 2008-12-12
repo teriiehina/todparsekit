@@ -50,6 +50,7 @@
 static NSString *kTDPlistNullString = @"<null>";
 
 @interface TDPlistParser ()
+@property (nonatomic, retain, readwrite) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
 @end
@@ -59,6 +60,11 @@ static NSString *kTDPlistNullString = @"<null>";
 - (id)init {
     self = [super init];
     if (self != nil) {
+
+        self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+        // add '<null>' as a multichar symbol
+        [tokenizer.symbolState add:kTDPlistNullString];
+        
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
         self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
         [self add:[TDEmpty empty]];
@@ -70,6 +76,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (void)dealloc {
+    self.tokenizer = nil;
     self.dictParser = nil;
     self.keyValuePairParser = nil;
     self.arrayParser = nil;
@@ -86,10 +93,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (id)parse:(NSString *)s {
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    
-    // add  '<null>' multichar symbol recognition to the parser b4 parsing
-    [self configureTokenizer:a.tokenizer];
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     
     // parse
     TDAssembly *res = [self completeMatchFor:a];
@@ -97,12 +101,6 @@ static NSString *kTDPlistNullString = @"<null>";
     // pop the built result off the assembly's stack and return.
     // this will be an array or a dictionary or nil
     return [res pop];
-}
-
-
-- (void)configureTokenizer:(TDTokenizer *)t {
-    // add '<null>' as a multichar symbol
-    [t.symbolState add:kTDPlistNullString];
 }
 
 
@@ -290,6 +288,7 @@ static NSString *kTDPlistNullString = @"<null>";
     [a push:[NSNull null]];
 }
 
+@synthesize tokenizer;
 @synthesize dictParser;
 @synthesize keyValuePairParser;
 @synthesize arrayParser;

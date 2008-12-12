@@ -10,6 +10,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDPlistParser : TDAlternation {
+    TDTokenizer *tokenizer;
     TDCollectionParser *dictParser;
     TDCollectionParser *keyValuePairParser;
     TDCollectionParser *arrayParser;
@@ -23,8 +24,8 @@
     TDToken *paren;
 }
 - (id)parse:(NSString *)s;
-- (void)configureTokenizer:(TDTokenizer *)t;
 
+@property (nonatomic, retain, readonly) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDCollectionParser *dictParser;
 @property (nonatomic, retain) TDCollectionParser *keyValuePairParser;
 @property (nonatomic, retain) TDCollectionParser *arrayParser;
