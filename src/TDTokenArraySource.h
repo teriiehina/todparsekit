@@ -29,7 +29,7 @@
  
  prints out:
 
-@endcode
+@code
     I came
     I saw
     I left in peace
