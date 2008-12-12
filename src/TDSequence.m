@@ -21,6 +21,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     NSSet *outAssemblies = inAssemblies;
     
     for (TDParser *p in subparsers) {

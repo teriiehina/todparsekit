@@ -30,6 +30,7 @@
 
 
 - (id)initWithSubparser:(TDParser *)p {
+    NSParameterAssert(p);
     self = [super init];
     if (self) {
         self.subparser = p;
@@ -53,6 +54,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     if (preassembler) {
     //if (preassembler && [preassembler respondsToSelector:preassemblerSelector]) {
         for (TDAssembly *a in inAssemblies) {

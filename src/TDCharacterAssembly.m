@@ -78,11 +78,13 @@
 
 
 - (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
+    NSParameterAssert(delimiter);
     return [string substringToIndex:self.objectsConsumed];
 }
 
 
 - (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
+    NSParameterAssert(delimiter);
     return [string substringFromIndex:self.objectsConsumed];
 }
 

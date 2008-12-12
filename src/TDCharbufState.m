@@ -29,7 +29,7 @@
 
 - (void)checkBufLength:(NSInteger)i {
     if (i >= len) {
-        char *nb = [self mallocCharbuf:len*2];
+        char *nb = [self mallocCharbuf:len * 2];
         
         NSInteger j = 0;
         for ( ; j < len; j++) {

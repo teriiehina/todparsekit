@@ -13,6 +13,7 @@
 @implementation TDSlashSlashState
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+    NSParameterAssert(r);
     NSInteger c;
     do {
         c = [r read];

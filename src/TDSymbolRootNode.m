@@ -22,6 +22,7 @@
 @implementation TDSymbolRootNode
 
 - (void)add:(NSString *)s {
+    NSParameterAssert(s);
     if (s.length < 2) return;
     
     [self addWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
@@ -29,6 +30,7 @@
 
 
 - (void)remove:(NSString *)s {
+    NSParameterAssert(s);
     if (s.length < 2) return;
     
     [self removeWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
@@ -36,6 +38,7 @@
 
 
 - (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+    NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
     if (!child) {
@@ -57,6 +60,7 @@
 
 
 - (void)removeWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+    NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
     if (child) {
@@ -75,11 +79,13 @@
 
 
 - (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin {
+    NSParameterAssert(r);
     return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
 - (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
+    NSParameterAssert(p);
     NSString *result = [NSString stringWithFormat:@"%C", c];
 
     // this also works.

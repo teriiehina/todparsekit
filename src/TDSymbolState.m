@@ -38,6 +38,7 @@
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+    NSParameterAssert(r);
     NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
     NSInteger len = symbol.length;
 
@@ -54,12 +55,14 @@
 
 
 - (void)add:(NSString *)s {
+    NSParameterAssert(s);
     [self.rootNode add:s];
     [addedSymbols addObject:s];
 }
 
 
 - (void)remove:(NSString *)s {
+    NSParameterAssert(s);
     [self.rootNode remove:s];
     [addedSymbols removeObject:s];
 }

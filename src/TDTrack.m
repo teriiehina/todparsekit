@@ -27,6 +27,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     BOOL inTrack = NO;
     NSSet *lastAssemblies = inAssemblies;
     NSSet *outAssemblies = inAssemblies;

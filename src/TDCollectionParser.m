@@ -30,6 +30,7 @@
 
 
 - (void)add:(TDParser *)p {
+    NSParameterAssert(p);
     [subparsers addObject:p];
 }
 

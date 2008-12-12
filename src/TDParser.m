@@ -50,6 +50,7 @@
 
 
 - (TDAssembly *)bestMatchFor:(TDAssembly *)a {
+    NSParameterAssert(a);
     NSSet *initialState = [NSSet setWithObject:a];
     NSSet *finalState = [self matchAndAssemble:initialState];
     return [self best:finalState];
@@ -57,6 +58,7 @@
 
 
 - (TDAssembly *)completeMatchFor:(TDAssembly *)a {
+    NSParameterAssert(a);
     TDAssembly *best = [self bestMatchFor:a];
     if (best && ![best hasMore]) {
         return best;
@@ -66,6 +68,7 @@
 
 
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
     if (assembler) {
     //if (assembler && [assembler respondsToSelector:selector]) {
@@ -78,6 +81,7 @@
 
 
 - (TDAssembly *)best:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     TDAssembly *best = nil;
     
     for (TDAssembly *a in inAssemblies) {

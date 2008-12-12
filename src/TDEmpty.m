@@ -16,6 +16,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     NSSet *deepCopy = [[NSSet alloc] initWithSet:inAssemblies copyItems:YES];
     return [deepCopy autorelease];
 }

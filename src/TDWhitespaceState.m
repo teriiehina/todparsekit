@@ -70,6 +70,7 @@
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+    NSParameterAssert(r);
     if (reportsWhitespaceTokens) {
         [self reset];
     }

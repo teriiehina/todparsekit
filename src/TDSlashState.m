@@ -38,6 +38,7 @@
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+    NSParameterAssert(r);
     NSInteger c = [r read];
     if ('/' == c) {
         return [slashSlashState nextTokenFromReader:r startingWith:c tokenizer:t];
