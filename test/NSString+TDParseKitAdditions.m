@@ -14,7 +14,7 @@
     if (self.length < 2) {
         return self;
     } else {
-        return [[self substringFromIndex:1] substringToIndex:self.length-2];
+        return [self substringWithRange:NSMakeRange(1, self.length - 2)];
     }
 }
 

@@ -98,6 +98,7 @@
                            @"TDRegularParserTest",
                            @"SRGSParserTest",
                            @"EBNFParserTest",
+                           @"TDPlistParserTest",
                            @"TDXmlNameTest",
                            @"XPathParserTest",
                            @"XMLReaderTest",

@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <SenTestingKit/SenTestingKit.h>
-
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDTestScaffold : SenTestSuite {
