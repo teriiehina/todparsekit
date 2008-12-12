@@ -108,6 +108,7 @@
 
 
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
+    NSParameterAssert(state);
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [tokenizerStates replaceObjectAtIndex:i withObject:state];

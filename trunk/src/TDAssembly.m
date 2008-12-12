@@ -118,9 +118,8 @@
 
 
 - (void)push:(id)object {
-    if (object) {
-        [stack addObject:object];
-    }
+    NSParameterAssert(object);
+    [stack addObject:object];
 }
 
 
