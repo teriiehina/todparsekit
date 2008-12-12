@@ -49,6 +49,7 @@
 
 
 - (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a {
+    NSParameterAssert(s);
     self = [super initWithString:s];
     if (self) {
         if (t) {
@@ -123,11 +124,13 @@
 
 
 - (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
+    NSParameterAssert(delimiter);
     return [self objectsFrom:0 to:self.objectsConsumed separatedBy:delimiter];
 }
 
 
 - (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
+    NSParameterAssert(delimiter);
     return [self objectsFrom:self.objectsConsumed to:self.length separatedBy:delimiter];
 }
 

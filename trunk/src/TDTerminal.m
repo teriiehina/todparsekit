@@ -40,6 +40,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
+    NSParameterAssert(inAssemblies);
     NSMutableSet *outAssemblies = [NSMutableSet set];
     
     for (TDAssembly *a in inAssemblies) {
@@ -54,6 +55,7 @@
 
 
 - (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly {
+    NSParameterAssert(inAssembly);
     if (![inAssembly hasMore]) {
         return nil;
     }

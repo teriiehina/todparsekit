@@ -8,7 +8,6 @@
 
 #import <TDParseKit/TDWord.h>
 #import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDAssembly.h>
 
 @implementation TDWord
 

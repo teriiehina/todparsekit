@@ -19,6 +19,7 @@
 @implementation TDScientificNumberState
 
 - (void)parseRightSideFromReader:(TDReader *)r {
+    NSParameterAssert(r);
     [super parseRightSideFromReader:r];
     if ('e' == c || 'E' == c) {
         NSInteger e = c;

@@ -439,13 +439,4 @@
     STAssertNil(res, @"");
 }
 
-
-- (void)testNumNil {
-    s = nil;
-    p.tokenizer.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    res = [p.numParser completeMatchFor:a];
-    STAssertNil(res, @"");
-}
-
 @end
