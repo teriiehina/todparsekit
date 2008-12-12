@@ -18,7 +18,7 @@
     XMLReader *p = [XMLReader parserWithContentsOfFile:path];
     NSInteger ret = [p read];
     while (ret == 1) {
-        NSLog(@"nodeType: %d, name: %@", p.nodeType, p.name);
+        //NSLog(@"nodeType: %d, name: %@", p.nodeType, p.name);
         ret = [p read];
         
     }
