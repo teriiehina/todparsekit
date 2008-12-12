@@ -29,7 +29,7 @@
 
 /*!
     @brief      Designated Initializer. Initializes an assembly with the tokenizer <tt>t</tt> and its string
-    @details    Designated Initializer.
+    @details    Designated Initializer. Note that this is different from the <tt>TDTokenAssembly</tt> superclass in which <tt>-initWithString:</tt> is the designated initializer
     @param      t tokenizer whose string will be worked on
     @result     an initialized assembly
  */
