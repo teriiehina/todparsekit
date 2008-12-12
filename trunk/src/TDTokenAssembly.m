@@ -79,7 +79,7 @@
     if (!tokens) {
         [self tokenize];
     }
-    return [[tokens retain] autorelease];
+    return tokens;
 }
 
 
