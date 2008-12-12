@@ -61,11 +61,11 @@
     
     NSInteger i = 0;
     for ( ; i < exp; i++) {
-        result *= 10.0f;
-    }
-    
-    if (negativeExp) {
-        result = -result;
+        if (negativeExp) {
+            result /= 10.0f;
+        } else {
+            result *= 10.0f;
+        }
     }
     
     return (CGFloat)result;
