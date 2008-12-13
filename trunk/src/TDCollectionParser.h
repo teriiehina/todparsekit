@@ -19,9 +19,11 @@
 
 /*!
     @brief      Adds a parser to the collection.
+    @detail     This method returns this parser so the method can be used in chaining expressions
     @param      p parser to add
+    @result     this parser
 */
-- (void)add:(TDParser *)p;
+- (TDParser *)add:(TDParser *)p;
 
 /*!
     @property   subparsers
