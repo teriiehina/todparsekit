@@ -7,14 +7,14 @@
 //
 
 #import "TDTestScaffold.h"
-
 #import "TDRegularParser.h"
 
 @interface TDRegularParserTest : SenTestCase {
     NSString *s;
+    TDTokenizer *t;
     TDCharacterAssembly *a;
     TDRegularParser *p;
-    TDAssembly *result;
+    TDAssembly *res;
 }
 
 @end

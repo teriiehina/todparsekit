@@ -47,13 +47,13 @@
 
 
 // expression        = term orTerm*
-// term                = factor nextFactor*
+// term              = factor nextFactor*
 // orTerm            = '|' term
 // factor            = phrase | phraseStar
 // nextFactor        = factor
 // phrase            = letterOrDigit | '(' expression ')'
 // phraseStar        = phrase '*'
-// letterOrDigit    = Letter | Digit
+// letterOrDigit     = Letter | Digit
 
 
 // expression        = term orTerm*
@@ -165,7 +165,9 @@
 - (void)workOnStarAssembly:(TDAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
-    TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
+    id top = [a pop];
+    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    TDRepetition *p = [TDRepetition repetitionWithSubparser:top];
     [a push:p];
 }
 
@@ -173,10 +175,13 @@
 - (void)workOnAndAssembly:(TDAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
-    id top = [a pop];
+    id second = [a pop];
+    id first = [a pop];
+    NSAssert([first isKindOfClass:[TDParser class]], @"");
+    NSAssert([second isKindOfClass:[TDParser class]], @"");
     TDSequence *p = [TDSequence sequence];
-    [p add:[a pop]];
-    [p add:top];
+    [p add:first];
+    [p add:second];
     [a push:p];
 }
 
@@ -184,10 +189,13 @@
 - (void)workOnOrAssembly:(TDAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
-    id top = [a pop];
+    id second = [a pop];
+    id first = [a pop];
+    NSAssert([first isKindOfClass:[TDParser class]], @"");
+    NSAssert([second isKindOfClass:[TDParser class]], @"");
     TDAlternation *p = [TDAlternation alternation];
-    [p add:[a pop]];
-    [p add:top];
+    [p add:first];
+    [p add:second];
     [a push:p];
 }
 
