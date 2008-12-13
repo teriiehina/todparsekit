@@ -20,51 +20,29 @@
 }
 
 
-- (void)test1 {
-    //NSString *s = @"foo (bar|baz)*;";
-    s = @"$baz = bar; ($baz|foo)*;";
-    //NSString *s = @"foo;";
-    p = [[[TDGrammarParser alloc] init] autorelease];
-    
-    //    TDAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    //    NSLog(@"a: %@", a);
-    //    NSLog(@"a.target: %@", a.target);
-    
-    res = [p parse:s];
-    //    NSLog(@"res: %@", res);
-    //    NSLog(@"res: %@", res.string);
-    //    NSLog(@"res.subparsers: %@", res.subparsers);
-    //    NSLog(@"res.subparsers 0: %@", [[res.subparsers objectAtIndex:0] string]);
-    //    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
-    
-    s = @"bar foo bar foo";
-    a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    NSLog(@"\n\na: %@\n\n", a);
-}
+//- (void)test1 {
+//    s = @"$baz = bar; ($baz|foo)*;";
+//    res = [p parse:s];
+//    TDNotNil(res);
+//    s = @"bar foo bar foo";
+//    a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+//    TDEqualObjects(@"[bar, foo, bar, foo]bar/foo/bar/foo^", [a description]);
+//
+//    s = @"$baz = bar; ($baz|foo)+;";
+//    res = [p parse:s];
+//    s = @"bar foo bar foo";
+//    a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+//    TDEqualObjects(@"[bar, foo, bar, foo]bar/foo/bar/foo^", [a description]);
+//}
 
 
 - (void)test2 {
-    //NSString *s = @"foo (bar|baz)*;";
-    s = @"foo bar;";
-    
+    s = @"foo bar baz;";
+    res = [p parse:s];
+    TDNotNil(res);
+    s = @"foo bar baz;";
     a = [p completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    NSLog(@"a: %@", a);
-    
-    //TDParser *res = [p parse:s];
-    res = [a pop];
-    TDNotNil(res);
-    TDNotNil(res);
-
-    NSLog(@"res: %@", res);
-    //NSLog(@"res.subparsers: %@", res.subparsers);
-//    NSLog(@"res.subparsers 0: %@", [[res.subparsers objectAtIndex:0] string]);
-//    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
-    
-    s = @"foo bar";
-    a = [res bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    NSLog(@"\n\na: %@\n\n", a);
-    TDNotNil(a);
-    TDEqualObjects(@"[foo, bar]foo/bar^", [a description]);
+    TDEqualObjects(@"[Sequence]foo/bar/baz/;^", [a description]);
 }
 
 
@@ -100,8 +78,8 @@
     res = [[p.phraseParser completeMatchFor:a] pop];
     TDNotNil(res);
     TDEqualObjects([res class], [TDLiteral class]);
-    TDLiteral *n = (TDLiteral *)res;
-    TDEqualObjects(n.string, @"47.8");
+    TDLiteral *l = (TDLiteral *)res;
+    TDEqualObjects(l.string, @"47.8");
 }
 
 
@@ -134,47 +112,48 @@
     res = [[p.termParser bestMatchFor:a] pop];
     
     // Seq(Seq(foo, bar), baz)
+    // Seq(foo, bar, baz)
     TDNotNil(res);
     TDEqualObjects([res class], [TDSequence class]);
     TDSequence *seq = (TDSequence *)res;
-    TDEquals((NSUInteger)2, seq.subparsers.count);
+    TDEquals((NSUInteger)3, seq.subparsers.count);
     
-    TDSequence *s1 = [seq.subparsers objectAtIndex:0];
-    TDEqualObjects([s1 class], [TDSequence class]);
-
-    TDLiteral *l1 = [s1.subparsers objectAtIndex:0];
+//    TDSequence *s1 = [seq.subparsers objectAtIndex:0];
+//    TDEqualObjects([s1 class], [TDSequence class]);
+//
+    TDLiteral *l1 = [seq.subparsers objectAtIndex:0];
     TDEqualObjects([l1 class], [TDLiteral class]);
     TDEqualObjects(l1.string, @"foo");
-    
-    TDLiteral *l2 = [s1.subparsers objectAtIndex:1];
-    TDEqualObjects([l2 class], [TDLiteral class]);
-    TDEqualObjects(l2.string, @"bar");
-
-    TDLiteral *l3 = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([l3 class], [TDLiteral class]);
-    TDEqualObjects(l3.string, @"baz");
+//    
+//    TDLiteral *l2 = [s1.subparsers objectAtIndex:1];
+//    TDEqualObjects([l2 class], [TDLiteral class]);
+//    TDEqualObjects(l2.string, @"bar");
+//
+//    TDLiteral *l3 = [seq.subparsers objectAtIndex:1];
+//    TDEqualObjects([l3 class], [TDLiteral class]);
+//    TDEqualObjects(l3.string, @"baz");
 }
 
 
-- (void)testExpressionFooOrBar {
-    s = @"foo|bar";
-    p.tokenizer.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    res = [[p.expressionParser bestMatchFor:a] pop];
-    
-    // Alt(foo, bar)
-    TDNotNil(res);
-    TDEqualObjects([res class], [TDAlternation class]);
-    TDAlternation *alt = (TDAlternation *)res;
-    TDEquals((NSUInteger)2, alt.subparsers.count);
-
-    TDLiteral *l1 = [alt.subparsers objectAtIndex:0];
-    TDEqualObjects([l1 class], [TDLiteral class]);
-    TDEqualObjects(l1.string, @"foo");
-
-    TDLiteral *l2 = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([l2 class], [TDLiteral class]);
-    TDEqualObjects(l2.string, @"bar");
-}
+//- (void)testExpressionFooOrBar {
+//    s = @"foo|bar";
+//    p.tokenizer.string = s;
+//    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+//    res = [[p.expressionParser bestMatchFor:a] pop];
+//    
+//    // Alt(foo, bar)
+//    TDNotNil(res);
+//    TDEqualObjects([res class], [TDAlternation class]);
+//    TDAlternation *alt = (TDAlternation *)res;
+//    TDEquals((NSUInteger)2, alt.subparsers.count);
+//
+//    TDLiteral *l1 = [alt.subparsers objectAtIndex:0];
+//    TDEqualObjects([l1 class], [TDLiteral class]);
+//    TDEqualObjects(l1.string, @"foo");
+//
+//    TDLiteral *l2 = [alt.subparsers objectAtIndex:1];
+//    TDEqualObjects([l2 class], [TDLiteral class]);
+//    TDEqualObjects(l2.string, @"bar");
+//}
 
 @end
