@@ -20,8 +20,7 @@
 - (void)testForAppleBossResultTokenization {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
-    TDTokenizer *t = [[[TDTokenizer alloc] init] autorelease];
-    t.string = s;
+    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -199,6 +198,20 @@
     res = res;
     //NSLog(@"res %@", res);
 }
+
+
+- (void)testCrunchBaseJsonParserTokenization {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    s = [NSString stringWithContentsOfFile:path];
+    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+    while (eof != (tok = [t nextToken])) {
+        //NSLog(@"tok: %@", tok);
+    }    
+}
+
 
 - (void)testCrunchBaseJsonTokenParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];

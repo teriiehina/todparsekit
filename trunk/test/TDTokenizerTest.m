@@ -35,11 +35,11 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     
-    NSLog(@"\n\n starting!!! \n\n");
+    //NSLog(@"\n\n starting!!! \n\n");
     while ((tok = [t nextToken]) != eof) {
-        NSLog(@"(%@)", tok.stringValue);
+        //NSLog(@"(%@)", tok.stringValue);
     }
-    NSLog(@"\n\n done!!! \n\n");
+    //NSLog(@"\n\n done!!! \n\n");
     
 }
 
@@ -51,7 +51,7 @@
     TDToken *tok = nil;
     
     while ((tok = [t nextToken]) != eof) {
-        NSLog(@"(%@) (%.1f) : %@", tok.stringValue, tok.floatValue, [tok debugDescription]);
+        //NSLog(@"(%@) (%.1f) : %@", tok.stringValue, tok.floatValue, [tok debugDescription]);
     }
 }
 
@@ -287,7 +287,7 @@
 
     }
 
-    NSLog(@"\n\n\n\ntoks: %@\n\n\n\n", toks);
+    //NSLog(@"\n\n\n\ntoks: %@\n\n\n\n", toks);
 }
 
 

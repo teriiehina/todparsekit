@@ -55,6 +55,23 @@
 
 
 - (void)testARealDict2 {
+    //NSDictionary *d = [NSDictionary dictionaryWithObjectsAndKeys:
+    //                   [NSNumber numberWithBool:NO], @"NO Key",
+    //                   [NSNumber numberWithBool:YES], @"YESKey",
+    //                   [NSNumber numberWithInteger:1], @"IntegerKey",
+    //                   [NSNumber numberWithFloat:1.0], @"1.0",
+    //                   [NSNumber numberWithInteger:0], @"0",
+    //                   [NSNumber numberWithInteger:0], [NSNumber numberWithInteger:47],
+    //                   [NSNumber numberWithInteger:0], [NSNumber numberWithFloat:47.7],
+    //                   @"String", @"StringKey",
+    //                   [NSNull null], @"Null Key",
+    //                   [NSNull null], [NSNull null],
+    //                   [NSDictionary dictionaryWithObject:@"foo" forKey:@"bar"], @"dictKey",
+    //                   [NSDictionary dictionary], @"emptyDictKey",
+    //                   [NSArray arrayWithObjects:@"one one", @"two", @"three", nil], @"ArrayKey",
+    //                   nil];
+    //NSLog(@"%@", d);
+    
     s = @"{"
     @"    0 = 0;"
     @"    dictKey =     {"
