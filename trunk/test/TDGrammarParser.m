@@ -1,15 +1,16 @@
 //
-//  EBNFParser.m
+//  TDGrammarParser.m
 //  TDParseKit
 //
-//  Created by Todd Ditchendorf on 8/15/08.
-//  Copyright 2008 Todd Ditchendorf. All rights reserved.
+//  Created by Todd Ditchendorf on 12/12/08.
+//  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "EBNFParser.h"
+#import "TDGrammarParser.h"
 #import "NSString+TDParseKitAdditions.h"
 
 /*
+ start              = statement*
  statement			= exprOrAssignment ';'
  exprOrAssignment	= expression | assigment
  assigment			= declaration '=' expression
@@ -26,12 +27,12 @@
  phrasePlus			= phrase '+'
  atomicValue        = Word | Num | QuotedString | variable
 */
- 
-static NSString * const kEBNFEqualsString = @"=";
-static NSString * const kEBNFVariablePrefix = @"$";
-static NSString * const kEBNFVariableSuffix = @"";
 
-@interface EBNFParser ()
+static NSString * const kTDEqualsString = @"=";
+static NSString * const kTDVariablePrefix = @"$";
+static NSString * const kTDVariableSuffix = @"";
+
+@interface TDGrammarParser ()
 @property (retain, readwrite) TDTokenizer *tokenizer;
 - (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
 
@@ -41,13 +42,14 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnStarAssembly:(TDAssembly *)a;
 - (void)workOnQuestionAssembly:(TDAssembly *)a;
 - (void)workOnPlusAssembly:(TDAssembly *)a;
+- (void)workOnTermAssembly:(TDAssembly *)a;
 - (void)workOnAndAssembly:(TDAssembly *)a;
 - (void)workOnOrAssembly:(TDAssembly *)a;
 - (void)workOnAssignmentAssembly:(TDAssembly *)a;
 - (void)workOnVariableAssembly:(TDAssembly *)a;
 @end
 
-@implementation EBNFParser
+@implementation TDGrammarParser
 
 - (id)init {
     self = [super initWithSubparser:self.statementParser];
@@ -88,9 +90,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (TDTokenizer *)tokenizer {
     if (!tokenizer) {
         self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
-        [self addSymbolString:kEBNFEqualsString toTokenizer:tokenizer];
-        [self addSymbolString:kEBNFVariablePrefix toTokenizer:tokenizer];
-        [self addSymbolString:kEBNFVariableSuffix toTokenizer:tokenizer];
+        [self addSymbolString:kTDEqualsString toTokenizer:tokenizer];
+        [self addSymbolString:kTDVariablePrefix toTokenizer:tokenizer];
+        [self addSymbolString:kTDVariableSuffix toTokenizer:tokenizer];
     }
     return tokenizer;
 }
@@ -130,9 +132,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 // declaration        = variable '=' expression
 - (TDCollectionParser *)assignmentParser {
     if (!assignmentParser) {
-        self.assignmentParser = [TDTrack track];
+        self.assignmentParser = [TDSequence sequence];
         [assignmentParser add:self.declarationParser];
-        [assignmentParser add:[[TDSymbol symbolWithString:kEBNFEqualsString] discard]];
+        [assignmentParser add:[[TDSymbol symbolWithString:kTDEqualsString] discard]];
         [assignmentParser add:self.expressionParser];
         [assignmentParser setAssembler:self selector:@selector(workOnAssignmentAssembly:)];
     }
@@ -144,10 +146,10 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
         self.declarationParser = [TDTrack track];
-        [declarationParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
+        [declarationParser add:[[TDSymbol symbolWithString:kTDVariablePrefix] discard]];
         [declarationParser add:[TDWord word]];
-        if (kEBNFVariableSuffix.length) {
-            [declarationParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
+        if (kTDVariableSuffix.length) {
+            [declarationParser add:[[TDSymbol symbolWithString:kTDVariableSuffix] discard]];
         }
     }
     return declarationParser;
@@ -158,10 +160,10 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (TDCollectionParser *)variableParser {
     if (!variableParser) {
         self.variableParser = [TDTrack track];
-        [variableParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
+        [variableParser add:[[TDSymbol symbolWithString:kTDVariablePrefix] discard]];
         [variableParser add:[TDWord word]];
-        if (kEBNFVariableSuffix.length) {
-            [variableParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
+        if (kTDVariableSuffix.length) {
+            [variableParser add:[[TDSymbol symbolWithString:kTDVariableSuffix] discard]];
         }
     }
     return variableParser;
@@ -184,7 +186,9 @@ static NSString * const kEBNFVariableSuffix = @"";
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         [termParser add:self.factorParser];
-        [termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
+        TDRepetition *r = [TDRepetition repetitionWithSubparser:self.nextFactorParser];
+        //[r setAssembler:self selector:@selector(workOnTermAssembly:)];
+        [termParser add:r];
     }
     return termParser;
 }
@@ -223,6 +227,7 @@ static NSString * const kEBNFVariableSuffix = @"";
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phraseQuestionParser];
         [nextFactorParser add:self.phrasePlusParser];
+        
         [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return nextFactorParser;
@@ -379,6 +384,13 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
+- (void)workOnTermAssembly:(TDAssembly *)a {
+    NSLog(@"%s", _cmd);
+    NSLog(@"a: %@", a);
+    
+}
+
+
 - (void)workOnOrAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
@@ -393,8 +405,8 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (void)workOnAssignmentAssembly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
     id val = [a pop];
     TDToken *keyTok = [a pop];
     NSMutableDictionary *table = [NSMutableDictionary dictionaryWithDictionary:a.target];
@@ -404,8 +416,8 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
-//    NSLog(@"%s", _cmd);
-//    NSLog(@"a: %@", a);
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
     TDToken *keyTok = [a pop];
     id val = [a.target objectForKey:keyTok.stringValue];
     if (val) {

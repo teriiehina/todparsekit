@@ -199,6 +199,10 @@
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
 		D3B69D330E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
+		D3C0309F0EF34E3900C5ABEB /* TDGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */; };
+		D3C030A00EF34E3900C5ABEB /* TDGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */; };
+		D3C030A10EF34E3900C5ABEB /* TDGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */; };
+		D3C030A40EF34E5900C5ABEB /* TDGrammarParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C030A30EF34E5900C5ABEB /* TDGrammarParserTest.m */; };
 		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
@@ -510,6 +514,10 @@
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3B69D310E80249900D70C41 /* nonascii.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nonascii.html; path = res/nonascii.html; sourceTree = "<group>"; };
+		D3C0309D0EF34E3900C5ABEB /* TDGrammarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParser.h; path = test/TDGrammarParser.h; sourceTree = "<group>"; };
+		D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParser.m; path = test/TDGrammarParser.m; sourceTree = "<group>"; };
+		D3C030A20EF34E5900C5ABEB /* TDGrammarParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserTest.h; path = test/TDGrammarParserTest.h; sourceTree = "<group>"; };
+		D3C030A30EF34E5900C5ABEB /* TDGrammarParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserTest.m; path = test/TDGrammarParserTest.m; sourceTree = "<group>"; };
 		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C85C790E63B438000445FD /* TDArithmeticParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParser.h; path = test/TDArithmeticParser.h; sourceTree = "<group>"; };
 		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
@@ -899,6 +907,17 @@
 			name = tokenizer;
 			sourceTree = "<group>";
 		};
+		D3C0309C0EF34DD200C5ABEB /* syntax highlight framework */ = {
+			isa = PBXGroup;
+			children = (
+				D3C0309D0EF34E3900C5ABEB /* TDGrammarParser.h */,
+				D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */,
+				D3C030A20EF34E5900C5ABEB /* TDGrammarParserTest.h */,
+				D3C030A30EF34E5900C5ABEB /* TDGrammarParserTest.m */,
+			);
+			name = "syntax highlight framework";
+			sourceTree = "<group>";
+		};
 		D3C7D8220A411F31005DD154 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -912,6 +931,7 @@
 				D34A20080E55FD5F00A4A0BF /* chars */,
 				D3C85C770E63B400000445FD /* arithmetic */,
 				D3E786030E5510AE008C7D61 /* regex */,
+				D3C0309C0EF34DD200C5ABEB /* syntax highlight framework */,
 				D3E788890E567B6D008C7D61 /* ebnf */,
 				D36568A40EEF9FB600226554 /* plist */,
 				D318EAE30E2FD5B6009F47DF /* json */,
@@ -1453,6 +1473,7 @@
 				D36E98E80E58C14000496BD3 /* main.m in Sources */,
 				D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
+				D3C030A00EF34E3900C5ABEB /* TDGrammarParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1493,7 @@
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
+				D3C030A10EF34E3900C5ABEB /* TDGrammarParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1581,8 @@
 				D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */,
 				D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */,
 				D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */,
+				D3C0309F0EF34E3900C5ABEB /* TDGrammarParser.m in Sources */,
+				D3C030A40EF34E5900C5ABEB /* TDGrammarParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

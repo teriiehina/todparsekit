@@ -10,6 +10,16 @@
 #import <SenTestingKit/SenTestingKit.h>
 #import <TDParseKit/TDParseKit.h>
 
+#define TDAssertTrue(e) STAssertTrue((e), @"")
+#define TDAssertFalse(e) STAssertFalse((e), @"")
+#define TDAssertNil(e) STAssertNil((e), @"")
+#define TDAssertNotNil(e) STAssertNotNil((e), @"")
+#define TDAssertEquals(e1, e2) STAssertEquals((e1), (e2), @"")
+#define TDAssertEqualObjects(e1, e2) STAssertEqualObjects((e1), (e2), @"")
+#define TDAssertThrows(e) STAssertThrows((e), @"")
+#define TDAssertThrowsSpecific(e, specificException) STAssertThrowsSpecific((e), (specificException), @"")
+#define TDAssertThrowsSpecificNamed(e, specificException, name) TDAssertThrowsSpecificNamed((e), (specificException), (name) @"")
+
 @interface TDTestScaffold : SenTestSuite {
 
 }

@@ -9,15 +9,15 @@
 #import "TDArithmeticParser.h"
 
 /*
- expr				= term (plusTerm | minusTerm)*
- term				= factor (timesFactor | divFactor)*
- plusTerm			= '+' term
- minusTerm        = '-' term
+ expr           = term (plusTerm | minusTerm)*
+ term           = factor (timesFactor | divFactor)*
+ plusTerm       = '+' term
+ minusTerm      = '-' term
  factor			= phrase exponentFactor | phrase
- timesFactor		= '*' factor
- divFactor        = '/' factor
- exponentFactor   = '^' factor
- phrase           = '(' expr ')' | Num
+ timesFactor	= '*' factor
+ divFactor      = '/' factor
+ exponentFactor = '^' factor
+ phrase         = '(' expr ')' | Num
 */
 
 @implementation TDArithmeticParser
