@@ -43,6 +43,12 @@
 - (void)setPreassembler:(id)a selector:(SEL)sel;
 
 /*!
+    @property   subparser
+    @brief      this parser's subparser against which it repeatedly matches
+*/
+@property (nonatomic, readonly, retain) TDParser *subparser;
+
+/*!
     @property   preassembler
     @brief      The assembler this parser will use to work on an assembly before matching against it.
     @discussion <tt>preassembler</tt> should respond to the selector held by this parser's <tt>preassemblerSelector</tt> property.

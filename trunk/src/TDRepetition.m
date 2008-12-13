@@ -14,7 +14,7 @@
 @end
 
 @interface TDRepetition ()
-@property (nonatomic, retain) TDParser *subparser;
+@property (nonatomic, readwrite, retain) TDParser *subparser;
 @end
 
 @implementation TDRepetition
