@@ -9,6 +9,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDRegularParser : TDSequence {
+    TDTokenizer *tokenizer;
     TDCollectionParser *expressionParser;
     TDCollectionParser *termParser;
     TDCollectionParser *orTermParser;
