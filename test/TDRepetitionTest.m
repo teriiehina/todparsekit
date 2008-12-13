@@ -35,9 +35,9 @@
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
     
-    TDAssertNotNil(all);
+    TDNotNil(all);
     NSInteger c = all.count;
-    TDAssertEquals(4, c);
+    TDEquals(4, c);
 }
 
 
@@ -49,8 +49,8 @@
     
     
     TDAssembly *result = [p bestMatchFor:a];    
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -61,8 +61,8 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
 
     TDAssembly *result = [p bestMatchFor:a];    
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar]foo/bar^123", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar]foo/bar^123", [result description]);
 }
 
 
@@ -75,9 +75,9 @@
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
     
-    TDAssertNotNil(all);
+    TDNotNil(all);
     NSInteger c = all.count;
-    TDAssertEquals(3, c);
+    TDEquals(3, c);
 }    
 
 
@@ -90,9 +90,9 @@
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
     
-    TDAssertNotNil(all);
+    TDNotNil(all);
     NSInteger c = all.count;
-    TDAssertEquals(2, c);
+    TDEquals(2, c);
 }    
 
 
@@ -105,9 +105,9 @@
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
     
-    TDAssertNotNil(all);
+    TDNotNil(all);
     NSInteger c = all.count;
-    TDAssertEquals(1, c);
+    TDEquals(1, c);
 }    
 
 
@@ -118,8 +118,8 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }    
 
 
@@ -130,7 +130,7 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }    
 
 
@@ -141,7 +141,7 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }    
 
 
@@ -152,7 +152,7 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDNum num]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }    
 
 
@@ -164,9 +164,9 @@
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     
-    TDAssertNotNil(all);
+    TDNotNil(all);
     NSInteger c = all.count;
-    TDAssertEquals(3, c);
+    TDEquals(3, c);
 }    
 
 
@@ -178,8 +178,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123, 456]123/456^baz", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123, 456]123/456^baz", [result description]);
 }    
 
 
@@ -191,8 +191,8 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^", [result description]);
 }    
 
 
@@ -204,7 +204,7 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNil(result);
+    TDNil(result);
 }    
 
 
@@ -215,8 +215,8 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]foo^", [result description]);
 }
 
 @end

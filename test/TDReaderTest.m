@@ -27,13 +27,13 @@
 #pragma mark -
 
 - (void)testReadCharsMatch {
-    TDAssertNotNil(reader);
+    TDNotNil(reader);
     NSInteger len = [string length];
     NSInteger c;
     NSInteger i = 0;
     for ( ; i < len; i++) {
         c = [string characterAtIndex:i];
-        TDAssertEquals(c, [reader read]);
+        TDEquals(c, [reader read]);
     }
 }
 
@@ -44,7 +44,7 @@
     for ( ; i < len; i++) {
         [reader read];
     }
-    TDAssertEquals((NSInteger)-1, [reader read]);
+    TDEquals((NSInteger)-1, [reader read]);
 }
 
 
@@ -52,27 +52,27 @@
     [reader read];
     [reader unread];
     NSInteger a = 'a';
-    TDAssertEquals(a, [reader read]);
+    TDEquals(a, [reader read]);
 
     [reader read];
     [reader read];
     [reader unread];
     NSInteger c = 'c';
-    TDAssertEquals(c, [reader read]);
+    TDEquals(c, [reader read]);
 }
 
 
 - (void)testUnreadTooFar {
     [reader unread];
     NSInteger a = 'a';
-    TDAssertEquals(a, [reader read]);
+    TDEquals(a, [reader read]);
 
     [reader unread];
     [reader unread];
     [reader unread];
     [reader unread];
     NSInteger a2 = 'a';
-    TDAssertEquals(a2, [reader read]);
+    TDEquals(a2, [reader read]);
 }
 
 @end

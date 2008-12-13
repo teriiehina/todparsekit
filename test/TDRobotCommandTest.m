@@ -110,12 +110,12 @@
     TDParser *p = [self command];
     TDAssembly *result = [p bestMatchFor:a];
 
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[]pick/carrier/from/LINE_IN^", [result description]);    
+    TDNotNil(result);
+    TDEqualObjects(@"[]pick/carrier/from/LINE_IN^", [result description]);    
 
     id target = result.target;
-    TDAssertNotNil(target);
-    TDAssertEqualObjects(@"pick LINE_IN", [target description]);
+    TDNotNil(target);
+    TDEqualObjects(@"pick LINE_IN", [target description]);
 }
 
 
@@ -126,12 +126,12 @@
     TDParser *p = [self command];
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[]place/carrier/at/LINE_OUT^", [result description]);    
+    TDNotNil(result);
+    TDEqualObjects(@"[]place/carrier/at/LINE_OUT^", [result description]);    
 
     id target = result.target;
-    TDAssertNotNil(target);
-    TDAssertEqualObjects(@"place LINE_OUT", [target description]);
+    TDNotNil(target);
+    TDEqualObjects(@"place LINE_OUT", [target description]);
 }
 
 
@@ -142,12 +142,12 @@
     TDParser *p = [self command];
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[]scan/DB101_OUT^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[]scan/DB101_OUT^", [result description]);
 
     id target = result.target;
-    TDAssertNotNil(target);
-    TDAssertEqualObjects(@"scan DB101_OUT", [target description]);
+    TDNotNil(target);
+    TDEqualObjects(@"scan DB101_OUT", [target description]);
 }
 
 

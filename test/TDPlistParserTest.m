@@ -37,20 +37,20 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
 
     id obj = [res pop];
-    TDAssertNotNil(obj);
-    TDAssertTrue([obj isKindOfClass:[NSDictionary class]]);
-    TDAssertEquals((NSUInteger)6, [obj count]);
+    TDNotNil(obj);
+    TDTrue([obj isKindOfClass:[NSDictionary class]]);
+    TDEquals((NSUInteger)6, [obj count]);
     
     id arr = [obj objectForKey:@"ArrayKey"];
-    TDAssertNotNil(arr);
-    TDAssertEquals((NSUInteger)3, [arr count]);
+    TDNotNil(arr);
+    TDEquals((NSUInteger)3, [arr count]);
     
     id b = [obj objectForKey:@"YESKey"];
-    TDAssertNotNil(b);
-    TDAssertEqualObjects([NSNumber numberWithInteger:1], b);
+    TDNotNil(b);
+    TDEqualObjects([NSNumber numberWithInteger:1], b);
 }
 
 
@@ -98,20 +98,20 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     id obj = [res pop];
-    TDAssertNotNil(obj);
-    TDAssertTrue([obj isKindOfClass:[NSDictionary class]]);
-    TDAssertEquals((NSUInteger)13, [obj count]);
+    TDNotNil(obj);
+    TDTrue([obj isKindOfClass:[NSDictionary class]]);
+    TDEquals((NSUInteger)13, [obj count]);
     
     id arr = [obj objectForKey:@"ArrayKey"];
-    TDAssertNotNil(arr);
-    TDAssertEquals((NSUInteger)3, [arr count]);
+    TDNotNil(arr);
+    TDEquals((NSUInteger)3, [arr count]);
     
     id b = [obj objectForKey:@"YESKey"];
-    TDAssertNotNil(b);
-    TDAssertEqualObjects([NSNumber numberWithInteger:1], b);
+    TDNotNil(b);
+    TDEqualObjects([NSNumber numberWithInteger:1], b);
 }
 
 
@@ -120,14 +120,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnDictionaryAssembly: has already executed. 
     id obj = [res pop]; // NSDictionary *
-    TDAssertTrue([obj isKindOfClass:[NSDictionary class]]);
-    TDAssertEquals((NSUInteger)1, [obj count]);
+    TDTrue([obj isKindOfClass:[NSDictionary class]]);
+    TDEquals((NSUInteger)1, [obj count]);
     
-    TDAssertEqualObjects(@"bar", [obj objectForKey:@"foo"]);
+    TDEqualObjects(@"bar", [obj objectForKey:@"foo"]);
 }
 
 
@@ -144,15 +144,15 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnDictionaryAssembly: has already executed. 
     id obj = [res pop]; // NSDictionary *
-    TDAssertTrue([obj isKindOfClass:[NSDictionary class]]);
-    TDAssertEquals((NSUInteger)2, [obj count]);
+    TDTrue([obj isKindOfClass:[NSDictionary class]]);
+    TDEquals((NSUInteger)2, [obj count]);
     
-    TDAssertEqualObjects(@"bar", [obj objectForKey:@"foo foo"]);    
-    TDAssertEqualObjects([NSNumber numberWithFloat:2.2], [obj objectForKey:[NSNumber numberWithInteger:1]]);
+    TDEqualObjects(@"bar", [obj objectForKey:@"foo foo"]);    
+    TDEqualObjects([NSNumber numberWithFloat:2.2], [obj objectForKey:[NSNumber numberWithInteger:1]]);
 }
 
 
@@ -161,17 +161,17 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.keyValuePairParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnKeyValuePairAssembly: has already executed. 
     id value = [res pop]; // NSString *
     id key = [res pop]; // NSString *
     
-    TDAssertTrue([key isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"foo", key);
+    TDTrue([key isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"foo", key);
     
-    TDAssertTrue([value isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"bar", value);
+    TDTrue([value isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"bar", value);
 }
 
 
@@ -188,12 +188,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumberAssembly: has already executed. 
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEquals(1, [obj integerValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEquals(1, [obj integerValue]);
 }
 
 
@@ -202,12 +202,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnWordAssembly: has already executed. 
     id obj = [res pop]; // NSString *
-    TDAssertTrue([obj isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"Foo", obj);
+    TDTrue([obj isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"Foo", obj);
 }
 
 
@@ -216,12 +216,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.commaValueParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnQuotedStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
-    TDAssertTrue([obj isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"Foo Bar", obj);
+    TDTrue([obj isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"Foo Bar", obj);
 }
 
 
@@ -230,12 +230,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.arrayParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnArrayAssembly: has already executed. 
     id obj = [res pop]; // NSArray *
-    TDAssertTrue([obj isKindOfClass:[NSArray class]]);
-    TDAssertEquals((NSUInteger)0, [obj count]);
+    TDTrue([obj isKindOfClass:[NSArray class]]);
+    TDEquals((NSUInteger)0, [obj count]);
 }
 
 
@@ -244,15 +244,15 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.arrayParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnArrayAssembly: has already executed. 
     id obj = [res pop]; // NSArray *
-    TDAssertTrue([obj isKindOfClass:[NSArray class]]);
-    TDAssertEquals((NSUInteger)3, [obj count]);
-    TDAssertEqualObjects([NSNumber numberWithInt:1], [obj objectAtIndex:0]);
-    TDAssertEqualObjects([NSNumber numberWithInt:2], [obj objectAtIndex:1]);
-    TDAssertEqualObjects([NSNumber numberWithInt:3], [obj objectAtIndex:2]);
+    TDTrue([obj isKindOfClass:[NSArray class]]);
+    TDEquals((NSUInteger)3, [obj count]);
+    TDEqualObjects([NSNumber numberWithInt:1], [obj objectAtIndex:0]);
+    TDEqualObjects([NSNumber numberWithInt:2], [obj objectAtIndex:1]);
+    TDEqualObjects([NSNumber numberWithInt:3], [obj objectAtIndex:2]);
 }
 
 
@@ -277,12 +277,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.nullParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNullAssembly: has already executed. 
     id obj = [res pop]; // NSNull *
-    TDAssertTrue([obj isKindOfClass:[NSNull class]]);
-    TDAssertEqualObjects([NSNull null], obj);
+    TDTrue([obj isKindOfClass:[NSNull class]]);
+    TDEqualObjects([NSNull null], obj);
 }
 
 
@@ -291,7 +291,7 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.nullParser completeMatchFor:a];
-    TDAssertNil(res);
+    TDNil(res);
 }
 
 
@@ -300,12 +300,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
-    TDAssertTrue([obj isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"1.0", obj);
+    TDTrue([obj isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"1.0", obj);
 }
 
 
@@ -314,12 +314,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
-    TDAssertTrue([obj isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"foo", obj);
+    TDTrue([obj isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"foo", obj);
 }
 
 
@@ -328,12 +328,12 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.stringParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnStringAssembly: has already executed. 
     id obj = [res pop]; // NSString *
-    TDAssertTrue([obj isKindOfClass:[NSString class]]);
-    TDAssertEqualObjects(@"foo", obj);
+    TDTrue([obj isKindOfClass:[NSString class]]);
+    TDEqualObjects(@"foo", obj);
 }
 
 
@@ -342,14 +342,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"1", [obj stringValue]);
-    TDAssertEquals(1, [obj integerValue]);
-    TDAssertEquals(1.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"1", [obj stringValue]);
+    TDEquals(1, [obj integerValue]);
+    TDEquals(1.0f, [obj floatValue]);
 }
 
 
@@ -358,14 +358,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"-1", [obj stringValue]);
-    TDAssertEquals(-1, [obj integerValue]);
-    TDAssertEquals(-1.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"-1", [obj stringValue]);
+    TDEquals(-1, [obj integerValue]);
+    TDEquals(-1.0f, [obj floatValue]);
 }
 
 
@@ -374,14 +374,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"-1", [obj stringValue]);
-    TDAssertEquals(-1, [obj integerValue]);
-    TDAssertEquals(-1.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"-1", [obj stringValue]);
+    TDEquals(-1, [obj integerValue]);
+    TDEquals(-1.0f, [obj floatValue]);
 }
 
 
@@ -390,14 +390,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"0", [obj stringValue]);
-    TDAssertEquals(0, [obj integerValue]);
-    TDAssertEquals(0.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"0", [obj stringValue]);
+    TDEquals(0, [obj integerValue]);
+    TDEquals(0.0f, [obj floatValue]);
 }
 
 
@@ -405,14 +405,14 @@
     s = @"0.0";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"0", [obj stringValue]);
-    TDAssertEquals(0, [obj integerValue]);
-    TDAssertEquals(0.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"0", [obj stringValue]);
+    TDEquals(0, [obj integerValue]);
+    TDEquals(0.0f, [obj floatValue]);
 }
 
 
@@ -421,14 +421,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"-0", [obj stringValue]);
-    TDAssertEquals(-0, [obj integerValue]);
-    TDAssertEquals(-0.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"-0", [obj stringValue]);
+    TDEquals(-0, [obj integerValue]);
+    TDEquals(-0.0f, [obj floatValue]);
 }
 
 
@@ -437,14 +437,14 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNotNil(res);
+    TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
     id obj = [res pop]; // NSNumber *
-    TDAssertTrue([obj isKindOfClass:[NSNumber class]]);
-    TDAssertEqualObjects(@"300", [obj stringValue]);
-    TDAssertEquals(300, [obj integerValue]);
-    TDAssertEquals(300.0f, [obj floatValue]);
+    TDTrue([obj isKindOfClass:[NSNumber class]]);
+    TDEqualObjects(@"300", [obj stringValue]);
+    TDEquals(300, [obj integerValue]);
+    TDEquals(300.0f, [obj floatValue]);
 }
 
 
@@ -453,7 +453,7 @@
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.numParser completeMatchFor:a];
-    TDAssertNil(res);
+    TDNil(res);
 }
 
 @end

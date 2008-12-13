@@ -31,8 +31,8 @@
     // -[TDParser best:]
     
     NSLog(@"result: %@", result);
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^", [result description]);
 }
 
 
@@ -42,8 +42,8 @@
     
     p = [TDLiteral literalWithString:@"123"];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
-    TDAssertEqualObjects(@"[]^1234", [a description]);
+    TDNil(result);
+    TDEqualObjects(@"[]^1234", [a description]);
 }
 
 
@@ -53,8 +53,8 @@
     
     p = [TDLiteral literalWithString:@"Foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[Foo]Foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[Foo]Foo^", [result description]);
 }
 
 
@@ -64,7 +64,7 @@
     
     p = [TDLiteral literalWithString:@"foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -74,7 +74,7 @@
     
     p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -84,8 +84,8 @@
         
     p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[Foo]Foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[Foo]Foo^", [result description]);
 }
 
 @end

@@ -20,32 +20,32 @@
     t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
     
-    TDAssertTrue([tas hasMore]);
+    TDTrue([tas hasMore]);
     NSArray *a = [tas nextTokenArray];
-    TDAssertNotNil(a);
-    TDAssertEquals((NSUInteger)2, a.count);
-    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
-    TDAssertEqualObjects(@"came", [[a objectAtIndex:1] stringValue]);
+    TDNotNil(a);
+    TDEquals((NSUInteger)2, a.count);
+    TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDEqualObjects(@"came", [[a objectAtIndex:1] stringValue]);
 
-    TDAssertTrue([tas hasMore]);
+    TDTrue([tas hasMore]);
     a = [tas nextTokenArray];
-    TDAssertNotNil(a);
-    TDAssertEquals((NSUInteger)2, a.count);
-    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
-    TDAssertEqualObjects(@"saw", [[a objectAtIndex:1] stringValue]);
+    TDNotNil(a);
+    TDEquals((NSUInteger)2, a.count);
+    TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDEqualObjects(@"saw", [[a objectAtIndex:1] stringValue]);
 
-    TDAssertTrue([tas hasMore]);
+    TDTrue([tas hasMore]);
     a = [tas nextTokenArray];
-    TDAssertNotNil(a);
-    TDAssertEquals((NSUInteger)5, a.count);
-    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
-    TDAssertEqualObjects(@"left", [[a objectAtIndex:1] stringValue]);
-    TDAssertEqualObjects(@"in", [[a objectAtIndex:2] stringValue]);
-    TDAssertEqualObjects(@"peace", [[a objectAtIndex:3] stringValue]);
-    TDAssertEqualObjects(@".", [[a objectAtIndex:4] stringValue]);
+    TDNotNil(a);
+    TDEquals((NSUInteger)5, a.count);
+    TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDEqualObjects(@"left", [[a objectAtIndex:1] stringValue]);
+    TDEqualObjects(@"in", [[a objectAtIndex:2] stringValue]);
+    TDEqualObjects(@"peace", [[a objectAtIndex:3] stringValue]);
+    TDEqualObjects(@".", [[a objectAtIndex:4] stringValue]);
 
-    TDAssertFalse([tas hasMore]);
+    TDFalse([tas hasMore]);
     a = [tas nextTokenArray];
-    TDAssertNil(a);
+    TDNil(a);
 }
 @end

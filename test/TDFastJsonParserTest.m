@@ -17,7 +17,7 @@
     id result = [p parse:s];
     
     NSLog(@"result");
-    TDAssertNotNil(result);
+    TDNotNil(result);
 }
 
 @end
