@@ -111,6 +111,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDTrack track];
+        statementParser.name = @"statement";
         [statementParser add:self.exprOrAssignmentParser];
         [statementParser add:[[TDSymbol symbolWithString:@";"] discard]];
     }
@@ -121,6 +122,7 @@ static NSString * const kTDVariableSuffix = @"";
 // exprOrAssignmentParser        = expression | assignment
 - (TDCollectionParser *)exprOrAssignmentParser {
     if (!exprOrAssignmentParser) {
+        exprOrAssignmentParser.name = @"exprOrAssignment";
         self.exprOrAssignmentParser = [TDAlternation alternation];
         [exprOrAssignmentParser add:self.expressionParser];
         [exprOrAssignmentParser add:self.assignmentParser];
@@ -132,6 +134,7 @@ static NSString * const kTDVariableSuffix = @"";
 // declaration        = variable '=' expression
 - (TDCollectionParser *)assignmentParser {
     if (!assignmentParser) {
+        assignmentParser.name = @"assignment";
         self.assignmentParser = [TDSequence sequence];
         [assignmentParser add:self.declarationParser];
         [assignmentParser add:[[TDSymbol symbolWithString:kTDEqualsString] discard]];
@@ -145,6 +148,7 @@ static NSString * const kTDVariableSuffix = @"";
 // declaration            = '$' Word
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
+        declarationParser.name = @"declaration";
         self.declarationParser = [TDTrack track];
         [declarationParser add:[[TDSymbol symbolWithString:kTDVariablePrefix] discard]];
         [declarationParser add:[TDWord word]];
@@ -159,6 +163,7 @@ static NSString * const kTDVariableSuffix = @"";
 // variable            = '$' Word
 - (TDCollectionParser *)variableParser {
     if (!variableParser) {
+        variableParser.name = @"variable";
         self.variableParser = [TDTrack track];
         [variableParser add:[[TDSymbol symbolWithString:kTDVariablePrefix] discard]];
         [variableParser add:[TDWord word]];
@@ -173,6 +178,7 @@ static NSString * const kTDVariableSuffix = @"";
 // expression        = term orTerm*
 - (TDCollectionParser *)expressionParser {
     if (!expressionParser) {
+        expressionParser.name = @"expression";
         self.expressionParser = [TDSequence sequence];
         [expressionParser add:self.termParser];
         [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
@@ -185,10 +191,11 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
+        termParser.name = @"term";
         [termParser add:self.factorParser];
         TDRepetition *r = [TDRepetition repetitionWithSubparser:self.nextFactorParser];
-        //[r setAssembler:self selector:@selector(workOnTermAssembly:)];
         [termParser add:r];
+        [termParser setAssembler:self selector:@selector(workOnTermAssembly:)];
     }
     return termParser;
 }
@@ -197,6 +204,7 @@ static NSString * const kTDVariableSuffix = @"";
 // orTerm            = '|' term
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
+        orTermParser.name = @"orTerm";
         self.orTermParser = [TDTrack track];
         [orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
         [orTermParser add:self.termParser];
@@ -210,6 +218,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
+        factorParser.name = @"factor";
         [factorParser add:self.phraseParser];
         [factorParser add:self.phraseStarParser];
         [factorParser add:self.phraseQuestionParser];
@@ -223,12 +232,13 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
         self.nextFactorParser = [TDAlternation alternation];
+        nextFactorParser.name = @"nextFactor";
         [nextFactorParser add:self.phraseParser];
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phraseQuestionParser];
         [nextFactorParser add:self.phrasePlusParser];
         
-        [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+//        [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return nextFactorParser;
 }
@@ -243,6 +253,7 @@ static NSString * const kTDVariableSuffix = @"";
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
         
         self.phraseParser = [TDAlternation alternation];
+        phraseParser.name = @"phrase";
         [phraseParser add:self.atomicValueParser];
         [phraseParser add:s];
     }
@@ -254,6 +265,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
         self.phraseStarParser = [TDSequence sequence];
+        phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
@@ -266,6 +278,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
+        phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
@@ -278,6 +291,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
         self.phrasePlusParser = [TDSequence sequence];
+        phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
@@ -290,6 +304,7 @@ static NSString * const kTDVariableSuffix = @"";
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
+        atomicValueParser.name = @"atomicValue";
         
         TDParser *p = [TDWord word];
         [p setAssembler:self selector:@selector(workOnWordAssembly:)];
@@ -387,7 +402,24 @@ static NSString * const kTDVariableSuffix = @"";
 - (void)workOnTermAssembly:(TDAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
-    
+
+    NSMutableArray *objs = [NSMutableArray array];
+    while (![a isStackEmpty]) {
+        [objs addObject:[a pop]];
+    }
+
+    if (objs.count > 1) {
+        TDSequence *p = [TDSequence sequence];
+        
+        id obj = nil;
+        NSEnumerator *e = [objs reverseObjectEnumerator];
+        while (obj = [e nextObject]) {
+            [p add:obj];
+        }
+        [a push:p];
+    } else if (1 == objs.count) {
+        [a push:[objs objectAtIndex:0]];
+    }
 }
 
 
@@ -407,10 +439,12 @@ static NSString * const kTDVariableSuffix = @"";
 - (void)workOnAssignmentAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    id val = [a pop];
-    TDToken *keyTok = [a pop];
+    TDSequence *s = [a pop];
+    NSAssert(s.subparsers.count == 2, @"");
+    id key = [s.subparsers objectAtIndex:0];
+    id val = [s.subparsers objectAtIndex:1];
     NSMutableDictionary *table = [NSMutableDictionary dictionaryWithDictionary:a.target];
-    [table setObject:val forKey:keyTok.stringValue];
+    [table setObject:val forKey:key];
     a.target = table;
 }
 

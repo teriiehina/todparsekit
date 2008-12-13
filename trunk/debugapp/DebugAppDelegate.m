@@ -16,6 +16,7 @@
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
+#import "TDGrammarParser.h"
 
 @implementation DebugAppDelegate
 
@@ -129,13 +130,34 @@
 }
 
 
+- (void)doGrammarParser {
+    NSString *s = nil;
+    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
+    TDAssembly *a = nil;
+    TDParser *res = nil;
+    
+//    s = @"foo bar baz";
+//    p.tokenizer.string = s;
+//    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+//    res = [[p.termParser bestMatchFor:a] pop];
+//    TDSequence *seq = (TDSequence *)res;
+    
+    
+    s = @"$baz = bar; ($baz|foo)*;";
+    res = [p parse:s];
+    s = @"bar foo bar foo";
+    a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doEBNFParser];
+    [self doGrammarParser];
     
     [pool release];
     
