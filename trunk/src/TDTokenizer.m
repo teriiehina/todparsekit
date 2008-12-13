@@ -127,7 +127,7 @@
         [reader autorelease];
         reader = [r retain];
         [self didChangeValueForKey:@"reader"];
-        [reader setString:string];
+        reader.string = string;
     }
 }
 
