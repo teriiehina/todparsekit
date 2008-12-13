@@ -71,7 +71,7 @@
     NSParameterAssert(inAssemblies);
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
     if (assembler) {
-    //if (assembler && [assembler respondsToSelector:selector]) {
+        NSAssert2([assembler respondsToSelector:selector], @"provided assembler %@ should respond to %s", assembler, selector);
         for (TDAssembly *a in outAssemblies) {
             [assembler performSelector:selector withObject:a];
         }
