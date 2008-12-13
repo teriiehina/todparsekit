@@ -29,9 +29,10 @@
 }
 
 
-- (void)add:(TDParser *)p {
+- (TDParser *)add:(TDParser *)p {
     NSParameterAssert(p);
     [subparsers addObject:p];
+    return self;
 }
 
 @synthesize subparsers;
