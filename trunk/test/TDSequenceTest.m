@@ -27,8 +27,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]foo/-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]foo/-^", [result description]);
 }
 
 
@@ -43,8 +43,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, foo]foo/foo/-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, foo]foo/foo/-^", [result description]);
 }
 
 
@@ -59,8 +59,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, foo]foo/-/foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, foo]foo/-/foo^", [result description]);
 }
 
 
@@ -74,8 +74,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]-/foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]-/foo^", [result description]);
 }
 
 
@@ -90,8 +90,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]-/foo/-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]-/foo/-^", [result description]);
 }
 
 
@@ -107,8 +107,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, foo]-/foo/+/foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, foo]-/foo/+/foo^", [result description]);
 }
 
 
@@ -123,8 +123,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -139,8 +139,8 @@
 //    
 //    TDAssembly *result = [p bestMatchFor:a];
 //    
-//    TDAssertNotNil(result);
-//    TDAssertEqualObjects(@"[foo]foo^bar/baz", [result description]);
+//    TDNotNil(result);
+//    TDEqualObjects(@"[foo]foo^bar/baz", [result description]);
 //}
 
 
@@ -154,8 +154,8 @@
 //    [p add:[TDLiteral literalWithString:@"baz"]];
 //    
 //    TDAssembly *result = [p bestMatchFor:a];
-//    TDAssertNotNil(result);
-//    TDAssertEqualObjects(@"[foo]foo^bar/baz", [result description]);
+//    TDNotNil(result);
+//    TDEqualObjects(@"[foo]foo^bar/baz", [result description]);
 //}
 
 
@@ -170,8 +170,8 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -186,8 +186,8 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -201,7 +201,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -215,7 +215,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -230,7 +230,7 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
+    TDNotNil(result);
 }
 
 
@@ -245,9 +245,9 @@
 //    
 //    NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
 //    
-//    TDAssertNotNil(result);
+//    TDNotNil(result);
 //    NSInteger c = result.count;
-//    TDAssertEquals(1, c);
+//    TDEquals(1, c);
 //}
 //
 @end

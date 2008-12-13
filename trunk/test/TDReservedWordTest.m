@@ -21,9 +21,9 @@
     TDParser *p = [TDReservedWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[Foobar]Foobar^", [result description]);
-//    TDAssertNil(result);
+    TDNotNil(result);
+    TDEqualObjects(@"[Foobar]Foobar^", [result description]);
+//    TDNil(result);
 }
 
 
@@ -36,7 +36,7 @@
     TDParser *p = [TDReservedWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 @end

@@ -26,8 +26,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]foo^baz/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]foo^baz/bar", [result description]);
 }
 
 
@@ -42,8 +42,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -58,8 +58,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -74,8 +74,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -90,8 +90,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 @end

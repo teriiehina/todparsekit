@@ -26,39 +26,39 @@
     s = @"oh hai!";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDAssertEquals(3, a.length);
+    TDEquals(3, a.length);
 
-    TDAssertEquals(0, a.objectsConsumed);
-    TDAssertEquals(3, a.objectsRemaining);
-    TDAssertEqualObjects(@"[]^oh/hai/!", [a description]);
-    TDAssertTrue([a hasMore]);
-    TDAssertEqualObjects(@"oh", [[a next] stringValue]);
+    TDEquals(0, a.objectsConsumed);
+    TDEquals(3, a.objectsRemaining);
+    TDEqualObjects(@"[]^oh/hai/!", [a description]);
+    TDTrue([a hasMore]);
+    TDEqualObjects(@"oh", [[a next] stringValue]);
 
-    TDAssertEquals(1, a.objectsConsumed);
-    TDAssertEquals(2, a.objectsRemaining);
-    TDAssertEqualObjects(@"[]oh^hai/!", [a description]);
-    TDAssertTrue([a hasMore]);
-    TDAssertEqualObjects(@"hai", [[a next] stringValue]);
+    TDEquals(1, a.objectsConsumed);
+    TDEquals(2, a.objectsRemaining);
+    TDEqualObjects(@"[]oh^hai/!", [a description]);
+    TDTrue([a hasMore]);
+    TDEqualObjects(@"hai", [[a next] stringValue]);
 
-    TDAssertEquals(2, a.objectsConsumed);
-    TDAssertEquals(1, a.objectsRemaining);
-    TDAssertEqualObjects(@"[]oh/hai^!", [a description]);
-    TDAssertTrue([a hasMore]);
-    TDAssertEqualObjects(@"!", [[a next] stringValue]);
+    TDEquals(2, a.objectsConsumed);
+    TDEquals(1, a.objectsRemaining);
+    TDEqualObjects(@"[]oh/hai^!", [a description]);
+    TDTrue([a hasMore]);
+    TDEqualObjects(@"!", [[a next] stringValue]);
 
-    TDAssertEquals(3, a.objectsConsumed);
-    TDAssertEquals(0, a.objectsRemaining);
-    TDAssertEqualObjects(@"[]oh/hai/!^", [a description]);
-    TDAssertFalse([a hasMore]);
-    TDAssertNil([[a next] stringValue]);
+    TDEquals(3, a.objectsConsumed);
+    TDEquals(0, a.objectsRemaining);
+    TDEqualObjects(@"[]oh/hai/!^", [a description]);
+    TDFalse([a hasMore]);
+    TDNil([[a next] stringValue]);
 
-    TDAssertEquals(3, a.objectsConsumed);
-    TDAssertEquals(0, a.objectsRemaining);
-    TDAssertEqualObjects(@"[]oh/hai/!^", [a description]);
-    TDAssertFalse([a hasMore]);
-    TDAssertNil([[a next] stringValue]);
+    TDEquals(3, a.objectsConsumed);
+    TDEquals(0, a.objectsRemaining);
+    TDEqualObjects(@"[]oh/hai/!^", [a description]);
+    TDFalse([a hasMore]);
+    TDNil([[a next] stringValue]);
 
-    TDAssertEquals(3, a.length);
+    TDEquals(3, a.length);
 }
 
 
@@ -66,17 +66,17 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^foobar", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[foobar]foobar^", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[foobar]foobar^", [result description]);
+    TDFalse(result == a);
 
 
     result = [p bestMatchFor:result];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -84,13 +84,13 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^foobar", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertEqualObjects(@"[foobar]foobar^", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[foobar]foobar^", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -98,13 +98,13 @@
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^foo/bar", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[foo]foo^bar", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[foo]foo^bar", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -112,12 +112,12 @@
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^foo/bar", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -125,12 +125,12 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^foobar", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -138,12 +138,12 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^foobar", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -151,12 +151,12 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -167,9 +167,9 @@
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDNil(result);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^123", [a description]);
 }
 
 
@@ -177,13 +177,13 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[123]123^", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[123]123^", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -191,13 +191,13 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(1, a.length);
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEquals(1, a.length);
+    TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[123]123^", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[123]123^", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -205,13 +205,13 @@
     s = @"123 456";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^123/456", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[123]123^456", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[123]123^456", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -219,12 +219,12 @@
     s = @"123 456";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^123/456", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -232,13 +232,13 @@
     s = @"foobar 123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^foobar/123", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[foobar]foobar^123", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[foobar]foobar^123", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -246,12 +246,12 @@
     s = @"foobar 123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(2, a.length);
-    TDAssertEqualObjects(@"[]^foobar/123", [a description]);
+    TDEquals(2, a.length);
+    TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -259,13 +259,13 @@
     s = @"123 456 foobar";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDAssertEquals(3, a.length);
-    TDAssertEqualObjects(@"[]^123/456/foobar", [a description]);
+    TDEquals(3, a.length);
+    TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[123]123^456/foobar", [result description]);
-    TDAssertFalse(result == a);
+    TDEqualObjects(@"[123]123^456/foobar", [result description]);
+    TDFalse(result == a);
 }
 
 
@@ -273,12 +273,12 @@
     s = @"123 456 foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssertEquals(3, a.length);
-    TDAssertEqualObjects(@"[]^123/456/foobar", [a description]);
+    TDEquals(3, a.length);
+    TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 @end

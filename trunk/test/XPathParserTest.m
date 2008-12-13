@@ -20,51 +20,51 @@
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
 //    NSLog(@"\n\n result: %@ \n\n", result);
-    //TDAssertEqualObjects(@"[/, foo]//foo^", [result description]);
+    //TDEqualObjects(@"[/, foo]//foo^", [result description]);
 
     
     s = @"/foo";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
     NSLog(@"\n\n result: %@ \n\n", result);
-    TDAssertEqualObjects(@"[/, foo]//foo^", [result description]);
+    TDEqualObjects(@"[/, foo]//foo^", [result description]);
 
     s = @"/foo/bar";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar]//foo///bar^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar]//foo///bar^", [result description]);
     
     s = @"/foo/bar/baz";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar, /, baz]//foo///bar///baz^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar, /, baz]//foo///bar///baz^", [result description]);
     
     s = @"/foo/bar[baz]";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar, [, baz, ]]//foo///bar/[/baz/]^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar, [, baz, ]]//foo///bar/[/baz/]^", [result description]);
     
     s = @"/foo/bar[@baz]";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, ]]//foo///bar/[/@/baz/]^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar, [, @, baz, ]]//foo///bar/[/@/baz/]^", [result description]);
     
     s = @"/foo/bar[@baz='foo']";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, =, 'foo', ]]//foo///bar/[/@/baz/=/'foo'/]^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar, [, @, baz, =, 'foo', ]]//foo///bar/[/@/baz/=/'foo'/]^", [result description]);
     
     s = @"/foo/bar[baz]/foo";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertEqualObjects(@"[/, foo, /, bar, [, baz, ], /, foo]//foo///bar/[/baz/]///foo^", [result description]);
+    TDEqualObjects(@"[/, foo, /, bar, [, baz, ], /, foo]//foo///bar/[/baz/]///foo^", [result description]);
 
     // not supported
 //    s = @"//foo";
 //    a = [p assemblyWithString:s];
 //    result = [p bestMatchFor:a];
 //    NSLog(@"\n\n result: %@ \n\n", result);
-//    TDAssertEqualObjects(@"[//, foo]///foo^", [result description]);
+//    TDEqualObjects(@"[//, foo]///foo^", [result description]);
 }
 
 
@@ -73,14 +73,14 @@
     a = [p assemblyWithString:s];
     NSLog(@"\n\n a: %@ \n\n", a);
     result = [p.axisName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[child]child^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[child]child^", [result description]);
     
     s = @"preceeding-sibling";
     a = [p assemblyWithString:s];
     result = [p.axisName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[preceeding-sibling]preceeding-sibling^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[preceeding-sibling]preceeding-sibling^", [result description]);
 }
 
 
@@ -88,13 +88,13 @@
     s = @"child::";
     a = [p assemblyWithString:s];
     result = [p.axisSpecifier bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[child, ::]child/::^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[child, ::]child/::^", [result description]);
     s = @"preceeding-sibling::";
     a = [p assemblyWithString:s];
     result = [p.axisSpecifier bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[preceeding-sibling, ::]preceeding-sibling/::^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[preceeding-sibling, ::]preceeding-sibling/::^", [result description]);
 }
 
 
@@ -102,14 +102,14 @@
     s = @"and";
     a = [p assemblyWithString:s];
     result = [p.operatorName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[and]and^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[and]and^", [result description]);
     
     s = @"or";
     a = [p assemblyWithString:s];
     result = [p.operatorName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[or]or^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[or]or^", [result description]);
 }
 
 
@@ -117,8 +117,8 @@
     s = @"foo:bar";
     a = [p assemblyWithString:s];
     result = [p.QName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
@@ -130,32 +130,32 @@
     s = @"foo:bar";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
 
     s = @"*";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[*]*^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[*]*^", [result description]);
 
     s = @"foo:*";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
     
     s = @"*:bar"; // NOT ALLOWED
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[*]*^:/bar", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[*]*^:/bar", [result description]);
     
     s = @"foo";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo]foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo]foo^", [result description]);
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
@@ -167,14 +167,14 @@
     s = @"comment";
     a = [p assemblyWithString:s];
     result = [p.nodeType bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[comment]comment^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[comment]comment^", [result description]);
     
     s = @"node";
     a = [p assemblyWithString:s];
     result = [p.nodeType bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[node]node^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[node]node^", [result description]);
     
 }
 
@@ -183,50 +183,50 @@
     s = @"comment()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[comment, (, )]comment/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[comment, (, )]comment/(/)^", [result description]);
 
     s = @"processing-instruction()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[processing-instruction, (, )]processing-instruction/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[processing-instruction, (, )]processing-instruction/(/)^", [result description]);
     
     s = @"processing-instruction('baz')";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[processing-instruction, (, 'baz', )]processing-instruction/(/'baz'/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[processing-instruction, (, 'baz', )]processing-instruction/(/'baz'/)^", [result description]);
     
     s = @"node()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[node, (, )]node/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[node, (, )]node/(/)^", [result description]);
 
     s = @"text()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[text, (, )]text/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[text, (, )]text/(/)^", [result description]);
 
     s = @"*";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[*]*^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[*]*^", [result description]);
 
     s = @"foo:*";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
 
     s = @"bar";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[bar]bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[bar]bar^", [result description]);
 }
 
 
@@ -234,20 +234,20 @@
     s = @"$foo";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[$, foo]$/foo^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[$, foo]$/foo^", [result description]);
     
     s = @"$bar";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[$, bar]$/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[$, bar]$/bar^", [result description]);
 
     s = @"$foo:bar";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[$, foo, :, bar]$/foo/:/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[$, foo, :, bar]$/foo/:/bar^", [result description]);
 }
 
 
@@ -255,34 +255,34 @@
     s = @"foo()";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, (, )]foo/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, (, )]foo/(/)^", [result description]);
 
     s = @"foo('bar')";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [result description]);
 
     s = @"foo('bar', 'baz')";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [result description]);
 
     s = @"foo('bar', 1)";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [result description]);
 }
 
 - (void)testOrExpr {
     s = @"foo or bar";
     a = [p assemblyWithString:s];
     result = [p.orExpr bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, or, bar]foo/or/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, or, bar]foo/or/bar^", [result description]);
 }
 
 
@@ -290,14 +290,14 @@
     s = @"foo() and bar()";
     a = [p assemblyWithString:s];
     result = [p.andExpr bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, (, ), and, bar, (, )]foo/(/)/and/bar/(/)^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, (, ), and, bar, (, )]foo/(/)/and/bar/(/)^", [result description]);
 
     s = @"foo and bar";
     a = [p assemblyWithString:s];
     result = [p.andExpr bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foo, and, bar]foo/and/bar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foo, and, bar]foo/and/bar^", [result description]);
 }
 
 @end

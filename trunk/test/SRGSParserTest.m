@@ -21,23 +21,23 @@
     
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    TDAssertNotNil(result);
+    TDNotNil(result);
     NSLog(@"\n\n\n result: %@ \n\n\n", result);
-//    TDAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description]);
+//    TDEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description]);
 }
 
 - (void)testSelfIdentHeader {
     s = @"#ABNF 1.0;";
     a = [p assemblyWithString:s];
     result = [p.selfIdentHeader bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[#, ABNF, 1.0, ;]#/ABNF/1.0/;^", [result description]);
 
     s = @"#ABNF 1.0 UTF;";
     a = [p assemblyWithString:s];
     result = [p.selfIdentHeader bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[#, ABNF, 1.0, UTF, ;]#/ABNF/1.0/UTF/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[#, ABNF, 1.0, UTF, ;]#/ABNF/1.0/UTF/;^", [result description]);
 }
 
 
@@ -45,8 +45,8 @@
     s = @"$foobar";
     a = [p assemblyWithString:s];
     result = [p.ruleName bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[$, foobar]$/foobar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[$, foobar]$/foobar^", [result description]);
 }
 
 
@@ -54,8 +54,8 @@
     s = @"/4.0/";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [p.weight bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);
 }
 
 
@@ -63,8 +63,8 @@
     s = @"/4.0/";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [p.probability bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);
 }
 
 
@@ -72,14 +72,14 @@
     s = @"1 - 4";
     a = [p assemblyWithString:s];
     result = [p.repeat bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[1, -, 4]1/-/4^", [result description]);
 
     s = @"1-4";
     a = [p assemblyWithString:s];
     result = [p.repeat bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[1, -, 4]1/-/4^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[1, -, 4]1/-/4^", [result description]);
 }
 
 
@@ -87,14 +87,14 @@
     s = @"foobar";
     a = [p assemblyWithString:s];
     result = [p.token bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[foobar]foobar^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[foobar]foobar^", [result description]);
     
     s = @"'foobar'";
     a = [p assemblyWithString:s];
     result = [p.token bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"['foobar']'foobar'^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"['foobar']'foobar'^", [result description]);
 }
 
 
@@ -102,32 +102,32 @@
     s = @"{foobar}";
     a = [p assemblyWithString:s];
     result = [p.tag bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[{, foobar, }]{/foobar/}^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[{, foobar, }]{/foobar/}^", [result description]);
 
     s = @"{bar baz}";
     a = [p assemblyWithString:s];
     result = [p.tag bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[{, bar, baz, }]{/bar/baz/}^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[{, bar, baz, }]{/bar/baz/}^", [result description]);
     
     s = @"{bar 1.2 baz}";
     a = [p assemblyWithString:s];
     result = [p.tag bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[{, bar, 1.2, baz, }]{/bar/1.2/baz/}^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[{, bar, 1.2, baz, }]{/bar/1.2/baz/}^", [result description]);
     
     s = @"{!{'foobar'}!}";
     a = [p assemblyWithString:s];
     result = [p.tag bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[{, !, {, 'foobar', }, !, }]{/!/{/'foobar'/}/!/}^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[{, !, {, 'foobar', }, !, }]{/!/{/'foobar'/}/!/}^", [result description]);
 
     s = @"{!{'foobar' baz}!}";
     a = [p assemblyWithString:s];
     result = [p.tag bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[{, !, {, 'foobar', baz, }, !, }]{/!/{/'foobar'/baz/}/!/}^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[{, !, {, 'foobar', baz, }, !, }]{/!/{/'foobar'/baz/}/!/}^", [result description]);
 }
 
 
@@ -135,8 +135,8 @@
     s = @"base url-goes-here;";
     a = [p assemblyWithString:s];
     result = [p.baseDecl bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[base, url-goes-here, ;]base/url-goes-here/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[base, url-goes-here, ;]base/url-goes-here/;^", [result description]);
 }
 
 
@@ -144,8 +144,8 @@
     s = @"language en-us;";
     a = [p assemblyWithString:s];
     result = [p.languageDecl bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[language, en-us, ;]language/en-us/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[language, en-us, ;]language/en-us/;^", [result description]);
 }
 
 
@@ -153,14 +153,14 @@
     s = @"mode voice;";
     a = [p assemblyWithString:s];
     result = [p.modeDecl bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[mode, voice, ;]mode/voice/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[mode, voice, ;]mode/voice/;^", [result description]);
     
     s = @"mode dtmf;";
     a = [p assemblyWithString:s];
     result = [p.modeDecl bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[mode, dtmf, ;]mode/dtmf/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[mode, dtmf, ;]mode/dtmf/;^", [result description]);
 }
 
 
@@ -168,8 +168,8 @@
     s = @"root $foobar;";
     a = [p assemblyWithString:s];
     result = [p.rootRuleDecl bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[root, $, foobar, ;]root/$/foobar/;^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[root, $, foobar, ;]root/$/foobar/;^", [result description]);
 }
 
 
@@ -177,8 +177,8 @@
     s = @"!en-us";
     a = [p assemblyWithString:s];
     result = [p.languageAttachment bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[!, en-us]!/en-us^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[!, en-us]!/en-us^", [result description]);
 }
 
 
@@ -186,8 +186,8 @@
     s = @"<0-1 /0.6/>";
     a = [p assemblyWithString:s];
     result = [p.repeatOperator bestMatchFor:a];
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[<, 0, -, 1, /, 0.6, /, >]</0/-/1///0.6///>^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[<, 0, -, 1, /, 0.6, /, >]</0/-/1///0.6///>^", [result description]);
 }
 
 

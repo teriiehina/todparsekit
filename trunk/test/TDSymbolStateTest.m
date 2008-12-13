@@ -25,10 +25,10 @@
     s = @".";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@".", t.stringValue);
-    TDAssertEqualObjects(@".", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)-1, [r read]);
+    TDEqualObjects(@".", t.stringValue);
+    TDEqualObjects(@".", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -36,10 +36,10 @@
     s = @".a";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@".", t.stringValue);
-    TDAssertEqualObjects(@".", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)'a', [r read]);
+    TDEqualObjects(@".", t.stringValue);
+    TDEqualObjects(@".", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)'a', [r read]);
 }
 
 
@@ -47,10 +47,10 @@
     s = @". ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@".", t.stringValue);
-    TDAssertEqualObjects(@".", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)' ', [r read]);
+    TDEqualObjects(@".", t.stringValue);
+    TDEqualObjects(@".", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)' ', [r read]);
 }
 
 
@@ -58,10 +58,10 @@
     s = @"..";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@".", t.stringValue);
-    TDAssertEqualObjects(@".", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)'.', [r read]);
+    TDEqualObjects(@".", t.stringValue);
+    TDEqualObjects(@".", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)'.', [r read]);
 }
 
 
@@ -71,10 +71,10 @@
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@"..", t.stringValue);
-    TDAssertEqualObjects(@"..", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)-1, [r read]);
+    TDEqualObjects(@"..", t.stringValue);
+    TDEqualObjects(@"..", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -83,10 +83,10 @@
     [symbolState add:@".."];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@"..", t.stringValue);
-    TDAssertEqualObjects(@"..", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)' ', [r read]);
+    TDEqualObjects(@"..", t.stringValue);
+    TDEqualObjects(@"..", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)' ', [r read]);
 }
 
 
@@ -95,10 +95,10 @@
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@":=", t.stringValue);
-    TDAssertEqualObjects(@":=", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)-1, [r read]);
+    TDEqualObjects(@":=", t.stringValue);
+    TDEqualObjects(@":=", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -107,10 +107,10 @@
     [symbolState add:@":="];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@":=", t.stringValue);
-    TDAssertEqualObjects(@":=", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)' ', [r read]);
+    TDEqualObjects(@":=", t.stringValue);
+    TDEqualObjects(@":=", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)' ', [r read]);
 }
 
 
@@ -119,10 +119,10 @@
     [symbolState add:@">=<"];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@">=<", t.stringValue);
-    TDAssertEqualObjects(@">=<", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)' ', [r read]);
+    TDEqualObjects(@">=<", t.stringValue);
+    TDEqualObjects(@">=<", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)' ', [r read]);
 }
 
 
@@ -131,10 +131,10 @@
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDAssertEqualObjects(@">=<", t.stringValue);
-    TDAssertEqualObjects(@">=<", t.value);
-    TDAssertTrue(t.isSymbol);
-    TDAssertEquals((NSInteger)-1, [r read]);
+    TDEqualObjects(@">=<", t.stringValue);
+    TDEqualObjects(@">=<", t.value);
+    TDTrue(t.isSymbol);
+    TDEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -143,11 +143,11 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:s];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -156,16 +156,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@">=<"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
 
     tok = [t nextToken];
-    TDAssertEqualObjects(@"foo", tok.stringValue);
-    TDAssertEqualObjects(@"foo", tok.value);
-    TDAssertTrue(tok.isWord);
+    TDEqualObjects(@"foo", tok.stringValue);
+    TDEqualObjects(@"foo", tok.value);
+    TDTrue(tok.isWord);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -174,16 +174,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@">=<"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@"foo", tok.stringValue);
-    TDAssertEqualObjects(@"foo", tok.value);
-    TDAssertTrue(tok.isWord);
+    TDEqualObjects(@"foo", tok.stringValue);
+    TDEqualObjects(@"foo", tok.value);
+    TDTrue(tok.isWord);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -192,16 +192,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@">=<"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -210,16 +210,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@">=<"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -228,16 +228,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@">=<"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@">=<", tok.stringValue);
-    TDAssertEqualObjects(@">=<", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -246,16 +246,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"<!--"];
     TDToken *tok = [t nextToken];
-    TDAssertEqualObjects(@"<!--", tok.stringValue);
-    TDAssertEqualObjects(@"<!--", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@"<!--", tok.stringValue);
+    TDEqualObjects(@"<!--", tok.value);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -264,12 +264,12 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"-->"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"-->", tok.stringValue);
-    TDAssertEqualObjects(@"-->", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"-->", tok.stringValue);
+    TDEqualObjects(@"-->", tok.value);
     
     tok = [t nextToken];
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -278,16 +278,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"-->"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"-->", tok.stringValue);
-    TDAssertEqualObjects(@"-->", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"-->", tok.stringValue);
+    TDEqualObjects(@"-->", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -296,16 +296,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"-->"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"-->", tok.stringValue);
-    TDAssertEqualObjects(@"-->", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"-->", tok.stringValue);
+    TDEqualObjects(@"-->", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -314,12 +314,12 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"--"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"--", tok.stringValue);
-    TDAssertEqualObjects(@"--", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"--", tok.stringValue);
+    TDEqualObjects(@"--", tok.value);
     
     tok = [t nextToken];
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -328,16 +328,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"--"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"--", tok.stringValue);
-    TDAssertEqualObjects(@"--", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"--", tok.stringValue);
+    TDEqualObjects(@"--", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -346,16 +346,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"--"];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"--", tok.stringValue);
-    TDAssertEqualObjects(@"--", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"--", tok.stringValue);
+    TDEqualObjects(@"--", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@".", tok.stringValue);
-    TDAssertEqualObjects(@".", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -364,11 +364,11 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -377,11 +377,11 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -390,16 +390,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"===", tok.stringValue);
-    TDAssertEqualObjects(@"===", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"===", tok.stringValue);
+    TDEqualObjects(@"===", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -408,16 +408,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"===", tok.stringValue);
-    TDAssertEqualObjects(@"===", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"===", tok.stringValue);
+    TDEqualObjects(@"===", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -426,21 +426,21 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"==="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"===", tok.stringValue);
-    TDAssertEqualObjects(@"===", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"===", tok.stringValue);
+    TDEqualObjects(@"===", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -448,16 +448,16 @@
     s = @"====";
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -466,16 +466,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"=:="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@":", tok.stringValue);
-    TDAssertEqualObjects(@":", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@":", tok.stringValue);
+    TDEqualObjects(@":", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -484,16 +484,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState remove:@"=="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -502,23 +502,23 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState remove:@"=="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=", tok.stringValue);
-    TDAssertEqualObjects(@"=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=", tok.stringValue);
+    TDEqualObjects(@"=", tok.value);
     
     [t.symbolState add:@"=="];
 
     tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"==", tok.stringValue);
-    TDAssertEqualObjects(@"==", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"==", tok.stringValue);
+    TDEqualObjects(@"==", tok.value);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
@@ -527,16 +527,16 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t.symbolState add:@"=:="];
     TDToken *tok = [t nextToken];
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(@"=:=", tok.stringValue);
-    TDAssertEqualObjects(@"=:=", tok.value);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"=:=", tok.stringValue);
+    TDEqualObjects(@"=:=", tok.value);
     
     tok = [t nextToken];
-    TDAssertEqualObjects(@":", tok.stringValue);
-    TDAssertEqualObjects(@":", tok.value);
-    TDAssertTrue(tok.isSymbol);
+    TDEqualObjects(@":", tok.stringValue);
+    TDEqualObjects(@":", tok.value);
+    TDTrue(tok.isSymbol);
     
-    TDAssertEquals([TDToken EOFToken], [t nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 @end

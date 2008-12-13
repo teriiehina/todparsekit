@@ -87,23 +87,23 @@
         [track completeMatchFor:a];
         STAssertTrue(0, @"Should not be reached");
     } @catch (TDTrackException *e) {
-        TDAssertEqualObjects([e class], [TDTrackException class]);
-        TDAssertEqualObjects([e name], @"Track Exception");
+        TDEqualObjects([e class], [TDTrackException class]);
+        TDEqualObjects([e name], @"Track Exception");
         
         NSDictionary *userInfo = e.userInfo;
-        TDAssertNotNil(userInfo);
+        TDNotNil(userInfo);
         
         NSString *after = [userInfo objectForKey:@"after"];
         NSString *expected = [userInfo objectForKey:@"expected"];
         NSString *found = [userInfo objectForKey:@"found"];
         
-        TDAssertNotNil(after);
-        TDAssertNotNil(expected);
-        TDAssertNotNil(found);
+        TDNotNil(after);
+        TDNotNil(expected);
+        TDNotNil(found);
         
-        TDAssertEqualObjects(after, @"(");
-        TDAssertEqualObjects(expected, @"Symbol )");
-        TDAssertEqualObjects(found, @"-nothing-");
+        TDEqualObjects(after, @"(");
+        TDEqualObjects(expected, @"Symbol )");
+        TDEqualObjects(found, @"-nothing-");
     }
 }
 

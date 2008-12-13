@@ -23,8 +23,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[-]-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[-]-^", [result description]);
 }
 
 
@@ -35,7 +35,7 @@
     p = [TDSymbol symbolWithString:@"+"];
     
     TDAssembly *result = [p bestMatchFor:a];
-    TDAssertNil(result);
+    TDNil(result);
 }
 
 
@@ -47,8 +47,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[-]-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[-]-^", [result description]);
 }
 
 
@@ -60,7 +60,7 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    TDAssertNotNil(result);
-    TDAssertEqualObjects(@"[]-^", [result description]);
+    TDNotNil(result);
+    TDEqualObjects(@"[]-^", [result description]);
 }
 @end

@@ -16,72 +16,72 @@
 
 
 - (void)testEOFTokenReleaseOnce1 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseOnce2 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseTwice1 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseTwice2 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenAutoreleaseOnce1 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseOnce2 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseTwice1 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseTwice2 {
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
-    TDAssertNotNil(eof);
+    TDNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenRetainCount {
-    TDAssertTrue([eof retainCount] >= 17035104);
+    TDTrue([eof retainCount] >= 17035104);
     // NO IDEA WHY THIS WONT PASS
-    //TDAssertEquals(UINT_MAX, [eof retainCount]);  /*17035104 4294967295*/
-//    TDAssertEqualObjects([NSNumber numberWithUnsignedInt:4294967295], [NSNumber numberWithUnsignedInt:[eof retainCount]]);
+    //TDEquals(UINT_MAX, [eof retainCount]);  /*17035104 4294967295*/
+//    TDEqualObjects([NSNumber numberWithUnsignedInt:4294967295], [NSNumber numberWithUnsignedInt:[eof retainCount]]);
 }
 
 
 - (void)testCopyIdentity {
     id copy = [eof copy];
-    TDAssertTrue(copy == eof);
+    TDTrue(copy == eof);
 }
 
 @end

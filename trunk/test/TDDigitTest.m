@@ -15,13 +15,13 @@
     s = @"123";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEqualObjects(@"[]^123", [a description]);
     p = [TDDigit digit];
     
     result = [p bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertEqualObjects(@"[1]1^23", [result description]);
-    TDAssertTrue([a hasMore]);
+    TDNotNil(a);
+    TDEqualObjects(@"[1]1^23", [result description]);
+    TDTrue([a hasMore]);
 }
 
 
@@ -29,13 +29,13 @@
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^abc", [a description]);
+    TDEqualObjects(@"[]^abc", [a description]);
     p = [TDDigit digit];
     
     result = [p bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertNil(result);
-    TDAssertTrue([a hasMore]);
+    TDNotNil(a);
+    TDNil(result);
+    TDTrue([a hasMore]);
 }
 
 
@@ -43,14 +43,14 @@
     s = @"123";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEqualObjects(@"[]^123", [a description]);
     p = [TDDigit digit];
     TDParser *r = [TDRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertEqualObjects(@"[1, 2, 3]123^", [result description]);
-    TDAssertFalse([result hasMore]);
+    TDNotNil(a);
+    TDEqualObjects(@"[1, 2, 3]123^", [result description]);
+    TDFalse([result hasMore]);
 }
 
 @end

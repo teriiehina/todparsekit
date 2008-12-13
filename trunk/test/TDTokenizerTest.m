@@ -64,64 +64,64 @@
     TDToken *tok = nil;
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isNumber);
-    TDAssertEqualObjects(tok.stringValue, @"2");
-    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:2.0]);
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(tok.stringValue, @"2");
+    TDEqualObjects(tok.value, [NSNumber numberWithFloat:2.0]);
 
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @"!=");
-    TDAssertEqualObjects(tok.value, @"!=");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"!=");
+    TDEqualObjects(tok.value, @"!=");
 
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isNumber);
-    TDAssertEqualObjects(tok.stringValue, @"47");
-    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(tok.stringValue, @"47");
+    TDEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @".");
-    TDAssertEqualObjects(tok.value, @".");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @".");
+    TDEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isWord);
-    TDAssertEqualObjects(tok.stringValue, @"Blast-off");
-    TDAssertEqualObjects(tok.value, @"Blast-off");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"Blast-off");
+    TDEqualObjects(tok.value, @"Blast-off");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @"!");
-    TDAssertEqualObjects(tok.value, @"!");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"!");
+    TDEqualObjects(tok.value, @"!");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @"!");
-    TDAssertEqualObjects(tok.value, @"!");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"!");
+    TDEqualObjects(tok.value, @"!");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isQuotedString);
-    TDAssertEqualObjects(tok.stringValue, @"'Woo-hoo!'");
-    TDAssertEqualObjects(tok.value, @"'Woo-hoo!'");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isQuotedString);
+    TDEqualObjects(tok.stringValue, @"'Woo-hoo!'");
+    TDEqualObjects(tok.value, @"'Woo-hoo!'");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok == eof);
+    TDNotNil(tok);
+    TDTrue(tok == eof);
 }
 
 
@@ -132,22 +132,22 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isNumber);
-    TDAssertEqualObjects(tok.stringValue, @"47");
-    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(tok.stringValue, @"47");
+    TDEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @".");
-    TDAssertEqualObjects(tok.value, @".");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @".");
+    TDEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok == eof);
+    TDNotNil(tok);
+    TDTrue(tok == eof);
 }
 
 
@@ -158,29 +158,29 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isNumber);
-    TDAssertEqualObjects(tok.stringValue, @"47");
-    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(tok.stringValue, @"47");
+    TDEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isSymbol);
-    TDAssertEqualObjects(tok.stringValue, @".");
-    TDAssertEqualObjects(tok.value, @".");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @".");
+    TDEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok != eof);
-    TDAssertTrue(tok.isWord);
-    TDAssertEqualObjects(tok.stringValue, @"foo");
-    TDAssertEqualObjects(tok.value, @"foo");
+    TDNotNil(tok);
+    TDTrue(tok != eof);
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"foo");
+    TDEqualObjects(tok.value, @"foo");
     
     tok = [t nextToken];
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok == eof);
+    TDNotNil(tok);
+    TDTrue(tok == eof);
 }
 
 
@@ -189,8 +189,8 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEquals(0.999f, t.floatValue);
-    TDAssertTrue(t.isNumber);    
+    TDEquals(0.999f, t.floatValue);
+    TDTrue(t.isNumber);    
 
 //    if ([TDToken EOFToken] == token) break;
     
@@ -202,8 +202,8 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEqualObjects(@".", t.stringValue);
-    TDAssertTrue(t.isSymbol);    
+    TDEqualObjects(@".", t.stringValue);
+    TDTrue(t.isSymbol);    
     
     //    if ([TDToken EOFToken] == token) break;
     
@@ -215,9 +215,9 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEqualObjects(@"-", t.stringValue);    
-    TDAssertEquals(0.0f, t.floatValue);    
-    TDAssertTrue(t.isSymbol);    
+    TDEqualObjects(@"-", t.stringValue);    
+    TDEquals(0.0f, t.floatValue);    
+    TDTrue(t.isSymbol);    
 }
 
 
@@ -226,14 +226,14 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEqualObjects(@"-", t.stringValue);    
-    TDAssertEquals(0.0f, t.floatValue);    
-    TDAssertTrue(t.isSymbol);    
+    TDEqualObjects(@"-", t.stringValue);    
+    TDEquals(0.0f, t.floatValue);    
+    TDTrue(t.isSymbol);    
     
     t = [tokenizer nextToken];
-    TDAssertEqualObjects(@"2", t.stringValue);    
-    TDAssertEquals(2.0f, t.floatValue);    
-    TDAssertTrue(t.isNumber);    
+    TDEqualObjects(@"2", t.stringValue);    
+    TDEquals(2.0f, t.floatValue);    
+    TDTrue(t.isNumber);    
 }
 
 
@@ -242,15 +242,15 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEqualObjects(@"+", t.stringValue);    
-    TDAssertTrue(t.isSymbol);
+    TDEqualObjects(@"+", t.stringValue);    
+    TDTrue(t.isSymbol);
 
     t = [tokenizer nextToken];
-    TDAssertEquals(2.0f, t.floatValue);    
-    TDAssertTrue(t.isNumber);
-    TDAssertEqualObjects(@"2", t.stringValue);    
+    TDEquals(2.0f, t.floatValue);    
+    TDTrue(t.isNumber);
+    TDEqualObjects(@"2", t.stringValue);    
 
-    TDAssertEquals([TDToken EOFToken], [tokenizer nextToken]);
+    TDEquals([TDToken EOFToken], [tokenizer nextToken]);
 }
 
 
@@ -260,11 +260,11 @@
     [tokenizer setTokenizerState:tokenizer.numberState from:'+' to:'+'];
     
     TDToken *t = [tokenizer nextToken];
-    TDAssertEquals(2.0f, t.floatValue);    
-    TDAssertTrue(t.isNumber);
-    TDAssertEqualObjects(@"+2", t.stringValue);    
+    TDEquals(2.0f, t.floatValue);    
+    TDTrue(t.isNumber);
+    TDEqualObjects(@"+2", t.stringValue);    
     
-    TDAssertEquals([TDToken EOFToken], [tokenizer nextToken]);
+    TDEquals([TDToken EOFToken], [tokenizer nextToken]);
 }
 
 
@@ -298,12 +298,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok.isWord);
-    TDAssertEqualObjects(string, tok.stringValue);
+    TDNotNil(tok);
+    TDTrue(tok.isWord);
+    TDEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    TDAssertEqualObjects(eof, tok);
+    TDEqualObjects(eof, tok);
 }
 
 
@@ -314,12 +314,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok.isWord);
-    TDAssertEqualObjects(string, tok.stringValue);
+    TDNotNil(tok);
+    TDTrue(tok.isWord);
+    TDEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    TDAssertEqualObjects(eof, tok);
+    TDEqualObjects(eof, tok);
 }
 
 
@@ -330,12 +330,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    TDAssertNotNil(tok);
-    TDAssertTrue(tok.isWord);
-    TDAssertEqualObjects(string, tok.stringValue);
+    TDNotNil(tok);
+    TDTrue(tok.isWord);
+    TDEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    TDAssertEqualObjects(eof, tok);
+    TDEqualObjects(eof, tok);
 }
 
 @end

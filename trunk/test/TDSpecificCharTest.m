@@ -15,13 +15,13 @@
     s = @"123";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^123", [a description]);
+    TDEqualObjects(@"[]^123", [a description]);
     p = [TDSpecificChar specificCharWithChar:'1'];
     
     result = [p bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertEqualObjects(@"[1]1^23", [result description]);
-    TDAssertTrue([a hasMore]);
+    TDNotNil(a);
+    TDEqualObjects(@"[1]1^23", [result description]);
+    TDTrue([a hasMore]);
 }
 
 
@@ -29,13 +29,13 @@
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^abc", [a description]);
+    TDEqualObjects(@"[]^abc", [a description]);
     p = [TDSpecificChar specificCharWithChar:'1'];
     
     result = [p bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertNil(result);
-    TDAssertTrue([a hasMore]);
+    TDNotNil(a);
+    TDNil(result);
+    TDTrue([a hasMore]);
 }
 
 
@@ -43,14 +43,14 @@
     s = @"aaa";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    TDAssertEqualObjects(@"[]^aaa", [a description]);
+    TDEqualObjects(@"[]^aaa", [a description]);
     p = [TDSpecificChar specificCharWithChar:'a'];
     TDParser *r = [TDRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
-    TDAssertNotNil(a);
-    TDAssertEqualObjects(@"[a, a, a]aaa^", [result description]);
-    TDAssertFalse([result hasMore]);
+    TDNotNil(a);
+    TDEqualObjects(@"[a, a, a]aaa^", [result description]);
+    TDFalse([result hasMore]);
 }
 
 @end
