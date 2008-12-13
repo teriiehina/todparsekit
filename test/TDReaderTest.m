@@ -27,13 +27,13 @@
 #pragma mark -
 
 - (void)testReadCharsMatch {
-    STAssertNotNil(reader, @"");
+    TDAssertNotNil(reader);
     NSInteger len = [string length];
     NSInteger c;
     NSInteger i = 0;
     for ( ; i < len; i++) {
         c = [string characterAtIndex:i];
-        STAssertEquals(c, [reader read], @"reader didn't return expected chars");
+        TDAssertEquals(c, [reader read]);
     }
 }
 
@@ -44,7 +44,7 @@
     for ( ; i < len; i++) {
         [reader read];
     }
-    STAssertEquals((NSInteger)-1, [reader read], @"reader should return -1 when read too far");
+    TDAssertEquals((NSInteger)-1, [reader read]);
 }
 
 
@@ -52,27 +52,27 @@
     [reader read];
     [reader unread];
     NSInteger a = 'a';
-    STAssertEquals(a, [reader read], @"read didn't return expected char");
+    TDAssertEquals(a, [reader read]);
 
     [reader read];
     [reader read];
     [reader unread];
     NSInteger c = 'c';
-    STAssertEquals(c, [reader read], @"read didn't return expected char");
+    TDAssertEquals(c, [reader read]);
 }
 
 
 - (void)testUnreadTooFar {
     [reader unread];
     NSInteger a = 'a';
-    STAssertEquals(a, [reader read], @"read didn't return expected char");
+    TDAssertEquals(a, [reader read]);
 
     [reader unread];
     [reader unread];
     [reader unread];
     [reader unread];
     NSInteger a2 = 'a';
-    STAssertEquals(a2, [reader read], @"read didn't return expected char");
+    TDAssertEquals(a2, [reader read]);
 }
 
 @end

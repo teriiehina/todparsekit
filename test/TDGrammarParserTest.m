@@ -63,8 +63,8 @@
     s = @"foo bar";
     a = [res bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     NSLog(@"\n\na: %@\n\n", a);
-    STAssertNotNil(a, @"");
-    STAssertEqualObjects(@"[foo, bar]foo/bar^", [a description], @"");
+    TDAssertNotNil(a);
+    TDAssertEqualObjects(@"[foo, bar]foo/bar^", [a description]);
 }
 
 

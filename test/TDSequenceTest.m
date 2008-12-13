@@ -27,8 +27,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo]foo/-^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo]foo/-^", [result description]);
 }
 
 
@@ -43,8 +43,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, foo]foo/foo/-^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, foo]foo/foo/-^", [result description]);
 }
 
 
@@ -59,8 +59,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, foo]foo/-/foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, foo]foo/-/foo^", [result description]);
 }
 
 
@@ -74,8 +74,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo]-/foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo]-/foo^", [result description]);
 }
 
 
@@ -90,8 +90,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo]-/foo/-^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo]-/foo/-^", [result description]);
 }
 
 
@@ -107,8 +107,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, foo]-/foo/+/foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, foo]-/foo/+/foo^", [result description]);
 }
 
 
@@ -123,8 +123,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -139,8 +139,8 @@
 //    
 //    TDAssembly *result = [p bestMatchFor:a];
 //    
-//    STAssertNotNil(result, @"");
-//    STAssertEqualObjects(@"[foo]foo^bar/baz", [result description], @"");
+//    TDAssertNotNil(result);
+//    TDAssertEqualObjects(@"[foo]foo^bar/baz", [result description]);
 //}
 
 
@@ -154,8 +154,8 @@
 //    [p add:[TDLiteral literalWithString:@"baz"]];
 //    
 //    TDAssembly *result = [p bestMatchFor:a];
-//    STAssertNotNil(result, @"");
-//    STAssertEqualObjects(@"[foo]foo^bar/baz", [result description], @"");
+//    TDAssertNotNil(result);
+//    TDAssertEqualObjects(@"[foo]foo^bar/baz", [result description]);
 //}
 
 
@@ -170,8 +170,8 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -186,8 +186,8 @@
     
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
 
 
@@ -201,7 +201,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -215,7 +215,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -230,7 +230,7 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 }
 
 
@@ -245,9 +245,9 @@
 //    
 //    NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
 //    
-//    STAssertNotNil(result, @"");
+//    TDAssertNotNil(result);
 //    NSInteger c = result.count;
-//    STAssertEquals(1, c, @"");
+//    TDAssertEquals(1, c);
 //}
 //
 @end

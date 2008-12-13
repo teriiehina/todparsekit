@@ -8,7 +8,6 @@
 
 #import "TDLiteralTest.h"
 
-
 @implementation TDLiteralTest
 
 - (void)tearDown {
@@ -32,8 +31,8 @@
     // -[TDParser best:]
     
     NSLog(@"result: %@", result);
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[123]123^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[123]123^", [result description]);
 }
 
 
@@ -43,8 +42,8 @@
     
     p = [TDLiteral literalWithString:@"123"];
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNil(result, @"");
-    STAssertEqualObjects(@"[]^1234", [a description], @"");
+    TDAssertNil(result);
+    TDAssertEqualObjects(@"[]^1234", [a description]);
 }
 
 
@@ -54,8 +53,8 @@
     
     p = [TDLiteral literalWithString:@"Foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[Foo]Foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[Foo]Foo^", [result description]);
 }
 
 
@@ -65,7 +64,7 @@
     
     p = [TDLiteral literalWithString:@"foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -75,7 +74,7 @@
     
     p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -85,8 +84,8 @@
         
     p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[Foo]Foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[Foo]Foo^", [result description]);
 }
 
 @end

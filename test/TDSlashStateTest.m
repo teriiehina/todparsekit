@@ -25,9 +25,9 @@
     s = @" ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEqualObjects(t.stringValue, @"/", @"");
-    STAssertTrue(t.isSymbol, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertEqualObjects(t.stringValue, @"/");
+    TDAssertTrue(t.isSymbol);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -35,9 +35,9 @@
     s = @"/";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEqualObjects(t.stringValue, @"/", @"");
-    STAssertTrue(t.isSymbol, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertEqualObjects(t.stringValue, @"/");
+    TDAssertTrue(t.isSymbol);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -45,8 +45,8 @@
     s = @" /";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -54,8 +54,8 @@
     s = @" / ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -63,9 +63,9 @@
     s = @"/abc";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEqualObjects(t.stringValue, @"/", @"");
-    STAssertTrue(t.isSymbol, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    TDAssertEqualObjects(t.stringValue, @"/");
+    TDAssertTrue(t.isSymbol);
+    TDAssertEquals((NSInteger)'a', [r read]);
 }
 
 
@@ -73,9 +73,9 @@
     s = @"/ abc";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEqualObjects(t.stringValue, @"/", @"");
-    STAssertTrue(t.isSymbol, @"");
-    STAssertEquals((NSInteger)' ', [r read], @"");
+    TDAssertEqualObjects(t.stringValue, @"/");
+    TDAssertTrue(t.isSymbol);
+    TDAssertEquals((NSInteger)' ', [r read]);
 }
 
 
@@ -83,8 +83,8 @@
     s = @"//abc";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -92,8 +92,8 @@
     s = @"// abc";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -101,8 +101,8 @@
     s = @"/*abc*/";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -110,8 +110,8 @@
     s = @"/*abc";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -119,8 +119,8 @@
     s = @"/*abc*";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -128,8 +128,8 @@
     s = @"/*abc* ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -137,8 +137,8 @@
     s = @"/*abc/";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -146,8 +146,8 @@
     s = @"/*abc/ ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 
@@ -155,8 +155,8 @@
     s = @"/*abc\n";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    TDAssertNil(t);
+    TDAssertEquals((NSInteger)-1, [r read]);
 }
 
 

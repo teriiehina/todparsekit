@@ -49,7 +49,7 @@
     s = @"";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -57,22 +57,22 @@
     s = @"456";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p numberParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
-    STAssertEqualObjects(@"[456]456^", [result description], @"");
+    TDAssertEqualObjects(@"[456]456^", [result description]);
     id obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects([NSNumber numberWithFloat:456], obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects([NSNumber numberWithFloat:456], obj);
 
     
     s = @"-3.47";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p numberParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[-3.47]-3.47^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[-3.47]-3.47^", [result description]);
     obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects([NSNumber numberWithFloat:-3.47], obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects([NSNumber numberWithFloat:-3.47], obj);
 }
 
 
@@ -80,21 +80,21 @@
     s = @"'foobar'";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p stringParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foobar]'foobar'^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foobar]'foobar'^", [result description]);
     id obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects(@"foobar", obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects(@"foobar", obj);
 
     s = @"\"baz boo boo\"";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p stringParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     
-    STAssertEqualObjects(@"[baz boo boo]\"baz boo boo\"^", [result description], @"");
+    TDAssertEqualObjects(@"[baz boo boo]\"baz boo boo\"^", [result description]);
     obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects(@"baz boo boo", obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects(@"baz boo boo", obj);
 }
 
 
@@ -102,22 +102,22 @@
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p booleanParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
-    STAssertEqualObjects(@"[1]true^", [result description], @"");
+    TDAssertEqualObjects(@"[1]true^", [result description]);
     id obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects([NSNumber numberWithBool:YES], obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects([NSNumber numberWithBool:YES], obj);
 
     s = @"false";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p booleanParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
-    STAssertEqualObjects(@"[0]false^", [result description], @"");
+    TDAssertEqualObjects(@"[0]false^", [result description]);
     obj = [result pop];
-    STAssertNotNil(obj, @"");
-    STAssertEqualObjects([NSNumber numberWithBool:NO], obj, @"");
+    TDAssertNotNil(obj);
+    TDAssertEqualObjects([NSNumber numberWithBool:NO], obj);
 }
 
 
@@ -127,31 +127,31 @@
     result = [[p arrayParser] bestMatchFor:a];
     
     NSLog(@"result: %@", result);
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     id obj = [result pop];
-    STAssertEquals((int)3, (int)[obj count], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:1], [obj objectAtIndex:0], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:2], [obj objectAtIndex:1], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:3], [obj objectAtIndex:2], @"");
-    STAssertEqualObjects(@"[][/1/,/2/,/3/]^", [result description], @"");
+    TDAssertEquals((int)3, (int)[obj count]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:1], [obj objectAtIndex:0]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:2], [obj objectAtIndex:1]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:3], [obj objectAtIndex:2]);
+    TDAssertEqualObjects(@"[][/1/,/2/,/3/]^", [result description]);
 
     s = @"[true, 'garlic jazz!', .888]";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p arrayParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     
-    //STAssertEqualObjects(@"[true, 'garlic jazz!', .888]true/'garlic jazz!'/.888^", [result description], @"");
+    //TDAssertEqualObjects(@"[true, 'garlic jazz!', .888]true/'garlic jazz!'/.888^", [result description]);
     obj = [result pop];
-    STAssertEqualObjects([NSNumber numberWithBool:YES], [obj objectAtIndex:0], @"");
-    STAssertEqualObjects(@"garlic jazz!", [obj objectAtIndex:1], @"");
-    STAssertEqualObjects([NSNumber numberWithFloat:.888], [obj objectAtIndex:2], @"");
+    TDAssertEqualObjects([NSNumber numberWithBool:YES], [obj objectAtIndex:0]);
+    TDAssertEqualObjects(@"garlic jazz!", [obj objectAtIndex:1]);
+    TDAssertEqualObjects([NSNumber numberWithFloat:.888], [obj objectAtIndex:2]);
 
     s = @"[1, [2, [3, 4]]]";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p arrayParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     //NSLog(@"result: %@", [a stack]);
-    STAssertEqualObjects([NSNumber numberWithInteger:1], [obj objectAtIndex:0], @"");
+    TDAssertEqualObjects([NSNumber numberWithInteger:1], [obj objectAtIndex:0]);
 }
 
 
@@ -159,34 +159,34 @@
     s = @"{'key': 'value'}";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     
     id obj = [result pop];
-    STAssertEqualObjects([obj objectForKey:@"key"], @"value", @"");
+    TDAssertEqualObjects([obj objectForKey:@"key"], @"value");
 
     s = @"{'foo': false, 'bar': true, \"baz\": -9.457}";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     
     obj = [result pop];
-    STAssertEqualObjects([obj objectForKey:@"foo"], [NSNumber numberWithBool:NO], @"");
-    STAssertEqualObjects([obj objectForKey:@"bar"], [NSNumber numberWithBool:YES], @"");
-    STAssertEqualObjects([obj objectForKey:@"baz"], [NSNumber numberWithFloat:-9.457], @"");
+    TDAssertEqualObjects([obj objectForKey:@"foo"], [NSNumber numberWithBool:NO]);
+    TDAssertEqualObjects([obj objectForKey:@"bar"], [NSNumber numberWithBool:YES]);
+    TDAssertEqualObjects([obj objectForKey:@"baz"], [NSNumber numberWithFloat:-9.457]);
 
     s = @"{'baz': {'foo': [1,2]}}";
     a = [TDTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     
     obj = [result pop];
     NSDictionary *dict = [obj objectForKey:@"baz"];
-    STAssertTrue([dict isKindOfClass:[NSDictionary class]], @"");
+    TDAssertTrue([dict isKindOfClass:[NSDictionary class]]);
     NSArray *arr = [dict objectForKey:@"foo"];
-    STAssertTrue([arr isKindOfClass:[NSArray class]], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:1], [arr objectAtIndex:0], @"");
+    TDAssertTrue([arr isKindOfClass:[NSArray class]]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:1], [arr objectAtIndex:0]);
     
-    //    STAssertEqualObjects(@"['baz', 'foo', 1, 2]'baz'/'foo'/1/2^", [result description], @"");
+    //    TDAssertEqualObjects(@"['baz', 'foo', 1, 2]'baz'/'foo'/1/2^", [result description]);
 }
 
 
@@ -246,27 +246,27 @@
     @"}";
     result = [p parse:s];
     //NSLog(@"result %@", result);
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
     id d = result;
-    STAssertNotNil(d, @"");
-    STAssertTrue([d isKindOfClass:[NSDictionary class]], @"");
-    STAssertEqualObjects([d objectForKey:@"name"], @"Yahoo!", @"");
-    STAssertEqualObjects([d objectForKey:@"permalink"], @"yahoo", @"");
-    STAssertEqualObjects([d objectForKey:@"homepage_url"], @"http://www.yahoo.com", @"");
-    STAssertEqualObjects([d objectForKey:@"blog_url"], @"http://yodel.yahoo.com/", @"");
-    STAssertEqualObjects([d objectForKey:@"blog_feed_url"], @"http://ycorpblog.com/feed/", @"");
-    STAssertEqualObjects([d objectForKey:@"category_code"], @"web", @"");
-    STAssertEqualObjects([d objectForKey:@"number_of_employees"], [NSNumber numberWithInteger:13600], @"");
-    STAssertEqualObjects([d objectForKey:@"founded_year"], [NSNumber numberWithInteger:1994], @"");
-    STAssertEqualObjects([d objectForKey:@"founded_month"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"founded_day"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"deadpooled_year"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"deadpooled_month"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"deadpooled_day"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"deadpooled_url"], [NSNull null], @"");
-    STAssertEqualObjects([d objectForKey:@"tag_list"], @"search, portal, webmail, photos", @"");
-    STAssertEqualObjects([d objectForKey:@"email_address"], @"", @"");
-    STAssertEqualObjects([d objectForKey:@"phone_number"], @"(408) 349-3300", @"");
+    TDAssertNotNil(d);
+    TDAssertTrue([d isKindOfClass:[NSDictionary class]]);
+    TDAssertEqualObjects([d objectForKey:@"name"], @"Yahoo!");
+    TDAssertEqualObjects([d objectForKey:@"permalink"], @"yahoo");
+    TDAssertEqualObjects([d objectForKey:@"homepage_url"], @"http://www.yahoo.com");
+    TDAssertEqualObjects([d objectForKey:@"blog_url"], @"http://yodel.yahoo.com/");
+    TDAssertEqualObjects([d objectForKey:@"blog_feed_url"], @"http://ycorpblog.com/feed/");
+    TDAssertEqualObjects([d objectForKey:@"category_code"], @"web");
+    TDAssertEqualObjects([d objectForKey:@"number_of_employees"], [NSNumber numberWithInteger:13600]);
+    TDAssertEqualObjects([d objectForKey:@"founded_year"], [NSNumber numberWithInteger:1994]);
+    TDAssertEqualObjects([d objectForKey:@"founded_month"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"founded_day"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"deadpooled_year"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"deadpooled_month"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"deadpooled_day"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"deadpooled_url"], [NSNull null]);
+    TDAssertEqualObjects([d objectForKey:@"tag_list"], @"search, portal, webmail, photos");
+    TDAssertEqualObjects([d objectForKey:@"email_address"], @"");
+    TDAssertEqualObjects([d objectForKey:@"phone_number"], @"(408) 349-3300");
 }
 
 
@@ -284,60 +284,60 @@
     result = [p parse:s];
     //NSLog(@"result %@", result);
 
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
     id d = result;
-    STAssertNotNil(d, @"");
-    STAssertTrue([d isKindOfClass:[NSDictionary class]], @"");
+    TDAssertNotNil(d);
+    TDAssertTrue([d isKindOfClass:[NSDictionary class]]);
     
     id image = [d objectForKey:@"image"];
-    STAssertNotNil(image, @"");
-    STAssertTrue([image isKindOfClass:[NSDictionary class]], @"");
+    TDAssertNotNil(image);
+    TDAssertTrue([image isKindOfClass:[NSDictionary class]]);
 
     NSArray *sizes = [image objectForKey:@"available_sizes"];
-    STAssertNotNil(sizes, @"");
-    STAssertTrue([sizes isKindOfClass:[NSArray class]], @"");
+    TDAssertNotNil(sizes);
+    TDAssertTrue([sizes isKindOfClass:[NSArray class]]);
     
-    STAssertEquals(3, (int)sizes.count, @"");
+    TDAssertEquals(3, (int)sizes.count);
     
     NSArray *first = [sizes objectAtIndex:0];
-    STAssertNotNil(first, @"");
-    STAssertTrue([first isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)first.count, @"");
+    TDAssertNotNil(first);
+    TDAssertTrue([first isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)first.count);
     
     NSArray *firstKey = [first objectAtIndex:0];
-    STAssertNotNil(firstKey, @"");
-    STAssertTrue([firstKey isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)firstKey.count, @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:150], [firstKey objectAtIndex:0], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:37], [firstKey objectAtIndex:1], @"");
+    TDAssertNotNil(firstKey);
+    TDAssertTrue([firstKey isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)firstKey.count);
+    TDAssertEqualObjects([NSNumber numberWithInteger:150], [firstKey objectAtIndex:0]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:37], [firstKey objectAtIndex:1]);
     
     NSArray *second = [sizes objectAtIndex:1];
-    STAssertNotNil(second, @"");
-    STAssertTrue([second isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)second.count, @"");
+    TDAssertNotNil(second);
+    TDAssertTrue([second isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)second.count);
     
     NSArray *secondKey = [second objectAtIndex:0];
-    STAssertNotNil(secondKey, @"");
-    STAssertTrue([secondKey isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)secondKey.count, @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:200], [secondKey objectAtIndex:0], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:50], [secondKey objectAtIndex:1], @"");
+    TDAssertNotNil(secondKey);
+    TDAssertTrue([secondKey isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)secondKey.count);
+    TDAssertEqualObjects([NSNumber numberWithInteger:200], [secondKey objectAtIndex:0]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:50], [secondKey objectAtIndex:1]);
     
     NSArray *third = [sizes objectAtIndex:2];
-    STAssertNotNil(third, @"");
-    STAssertTrue([third isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)third.count, @"");
+    TDAssertNotNil(third);
+    TDAssertTrue([third isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)third.count);
     
     NSArray *thirdKey = [third objectAtIndex:0];
-    STAssertNotNil(thirdKey, @"");
-    STAssertTrue([thirdKey isKindOfClass:[NSArray class]], @"");
-    STAssertEquals(2, (int)thirdKey.count, @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:200], [thirdKey objectAtIndex:0], @"");
-    STAssertEqualObjects([NSNumber numberWithInteger:50], [thirdKey objectAtIndex:1], @"");
+    TDAssertNotNil(thirdKey);
+    TDAssertTrue([thirdKey isKindOfClass:[NSArray class]]);
+    TDAssertEquals(2, (int)thirdKey.count);
+    TDAssertEqualObjects([NSNumber numberWithInteger:200], [thirdKey objectAtIndex:0]);
+    TDAssertEqualObjects([NSNumber numberWithInteger:50], [thirdKey objectAtIndex:1]);
     
     
-//    STAssertEqualObjects([d objectForKey:@"name"], @"Yahoo!", @"");
+//    TDAssertEqualObjects([d objectForKey:@"name"], @"Yahoo!");
 }
 
 
@@ -380,15 +380,15 @@
     result = [p parse:s];
     //NSLog(@"result %@", result);
     
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
     id d = result;
-    STAssertNotNil(d, @"");
-    STAssertTrue([d isKindOfClass:[NSDictionary class]], @"");
+    TDAssertNotNil(d);
+    TDAssertTrue([d isKindOfClass:[NSDictionary class]]);
     
     NSArray *products = [d objectForKey:@"products"];
-    STAssertNotNil(products, @"");
-    STAssertTrue([products isKindOfClass:[NSArray class]], @"");
+    TDAssertNotNil(products);
+    TDAssertTrue([products isKindOfClass:[NSArray class]]);
 }
 
 
@@ -524,14 +524,14 @@
     result = [p parse:s];
     //NSLog(@"result %@", result);
     
-    STAssertNotNil(result, @"");
+    TDAssertNotNil(result);
 
     id d = result;
-    STAssertNotNil(d, @"");
-    STAssertTrue([d isKindOfClass:[NSArray class]], @"");
+    TDAssertNotNil(d);
+    TDAssertTrue([d isKindOfClass:[NSArray class]]);
     
 //    NSArray *products = [d objectForKey:@"products"];
-//    STAssertNotNil(products, @"");
-//    STAssertTrue([products isKindOfClass:[NSArray class]], @"");
+//    TDAssertNotNil(products);
+//    TDAssertTrue([products isKindOfClass:[NSArray class]]);
 }
 @end

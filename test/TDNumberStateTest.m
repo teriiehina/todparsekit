@@ -8,7 +8,6 @@
 
 #import "TDNumberStateTest.h"
 
-
 @implementation TDNumberStateTest
 
 - (void)setUp {
@@ -26,9 +25,9 @@
     s = @"3";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(3.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"3", t.stringValue, @"");    
+    TDAssertEquals(3.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"3", t.stringValue);    
 }
 
 
@@ -36,9 +35,9 @@
     s = @"47";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(47.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"47", t.stringValue, @"");    
+    TDAssertEquals(47.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"47", t.stringValue);    
 }
 
 
@@ -46,9 +45,9 @@
     s = @"654";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(654.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"654", t.stringValue, @"");    
+    TDAssertEquals(654.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"654", t.stringValue);    
 }
 
 
@@ -56,9 +55,9 @@
     s = @"+3";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(3.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+3", t.stringValue, @"");    
+    TDAssertEquals(3.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+3", t.stringValue);    
 }
 
 
@@ -66,8 +65,8 @@
     s = @"+22";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(22.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
+    TDAssertEquals(22.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
 }
 
 
@@ -75,8 +74,8 @@
     s = @"+22 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(22.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
+    TDAssertEquals(22.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
 }
 
 
@@ -84,14 +83,14 @@
     s = @"1.1.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1.1", t.stringValue, @"");    
+    TDAssertEquals(1.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1.1", t.stringValue);    
 
     t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@".1", t.stringValue, @"");    
+    TDAssertEquals(0.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@".1", t.stringValue);    
 }
 
 
@@ -99,9 +98,9 @@
     s = @"1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1", t.stringValue, @"");    
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1", t.stringValue);    
 }
 
 
@@ -110,9 +109,9 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1.", t.stringValue, @"");        
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1.", t.stringValue);        
 }
 
 
@@ -120,9 +119,9 @@
     s = @"1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1.0", t.stringValue, @"");
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1.0", t.stringValue);
 }
 
 
@@ -130,9 +129,9 @@
     s = @"+1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+1", t.stringValue, @"");
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+1", t.stringValue);
 }
 
 
@@ -141,9 +140,9 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+1.", t.stringValue, @"");
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+1.", t.stringValue);
 }
 
 
@@ -151,9 +150,9 @@
     s = @"+1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+1.0", t.stringValue, @"");    
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+1.0", t.stringValue);    
 }
 
 
@@ -161,9 +160,9 @@
     s = @"+1.0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+1.0", t.stringValue, @"");    
+    TDAssertEquals(1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+1.0", t.stringValue);    
 }
 
 
@@ -171,9 +170,9 @@
     s = @"-1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1", t.stringValue, @"");
+    TDAssertEquals(-1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1", t.stringValue);
 }
 
 
@@ -182,9 +181,9 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1.", t.stringValue, @"");    
+    TDAssertEquals(-1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1.", t.stringValue);    
 }
 
 
@@ -192,9 +191,9 @@
     s = @"-1. ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1", t.stringValue, @"");    
+    TDAssertEquals(-1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1", t.stringValue);    
 }
 
 
@@ -202,9 +201,9 @@
     s = @"-1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1.0", t.stringValue, @"");    
+    TDAssertEquals(-1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1.0", t.stringValue);    
 }
 
 
@@ -212,9 +211,9 @@
     s = @"-1.0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1.0", t.stringValue, @"");    
+    TDAssertEquals(-1.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1.0", t.stringValue);    
 }
 
 
@@ -222,9 +221,9 @@
     s = @"1.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1.1", t.stringValue, @"");    
+    TDAssertEquals(1.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1.1", t.stringValue);    
 }
 
 
@@ -232,9 +231,9 @@
     s = @"0.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"0.1", t.stringValue, @"");    
+    TDAssertEquals(0.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"0.1", t.stringValue);    
 }
 
 
@@ -242,9 +241,9 @@
     s = @".1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@".1", t.stringValue, @"");    
+    TDAssertEquals(0.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@".1", t.stringValue);    
 }
 
 
@@ -252,9 +251,9 @@
     s = @".0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@".0", t.stringValue, @"");    
+    TDAssertEquals(0.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@".0", t.stringValue);    
 }
 
 
@@ -262,9 +261,9 @@
     s = @"-.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.0", t.stringValue, @"");    
+    TDAssertEquals(-0.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.0", t.stringValue);    
 }
 
 
@@ -272,9 +271,9 @@
     s = @"+.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+.0", t.stringValue, @"");    
+    TDAssertEquals(0.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+.0", t.stringValue);    
 }
 
 
@@ -282,9 +281,9 @@
     s = @"+.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+.1", t.stringValue, @"");    
+    TDAssertEquals(0.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+.1", t.stringValue);    
 }
 
 
@@ -292,9 +291,9 @@
     s = @"-.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.1f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.1", t.stringValue, @"");    
+    TDAssertEquals(-0.1f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.1", t.stringValue);    
 }
 
 
@@ -302,9 +301,9 @@
     s = @"-.11";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.11f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.11", t.stringValue, @"");    
+    TDAssertEquals(-0.11f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.11", t.stringValue);    
 }
 
 
@@ -312,9 +311,9 @@
     s = @"-.111";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.111f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.111", t.stringValue, @"");    
+    TDAssertEquals(-0.111f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.111", t.stringValue);    
 }
 
 
@@ -322,9 +321,9 @@
     s = @"-.1110";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.111f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.1110", t.stringValue, @"");    
+    TDAssertEquals(-0.111f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.1110", t.stringValue);    
 }
 
 
@@ -332,9 +331,9 @@
     s = @"-.11100";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.111f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.11100", t.stringValue, @"");    
+    TDAssertEquals(-0.111f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.11100", t.stringValue);    
 }
 
 
@@ -342,9 +341,9 @@
     s = @"-.1110 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.111f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-.1110", t.stringValue, @"");    
+    TDAssertEquals(-0.111f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-.1110", t.stringValue);    
 }
 
 
@@ -352,9 +351,9 @@
     s = @"0.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.365f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"0.365", t.stringValue, @"");    
+    TDAssertEquals(0.365f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"0.365", t.stringValue);    
 }
 
 
@@ -362,9 +361,9 @@
     s = @"-0.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.365f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-0.365", t.stringValue, @"");    
+    TDAssertEquals(-0.365f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-0.365", t.stringValue);    
 }
 
 
@@ -372,9 +371,9 @@
     s = @"-24.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-24.365f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-24.365", t.stringValue, @"");    
+    TDAssertEquals(-24.365f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-24.365", t.stringValue);    
 }
 
 
@@ -382,9 +381,9 @@
     s = @"24.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(24.365f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"24.365", t.stringValue, @"");    
+    TDAssertEquals(24.365f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"24.365", t.stringValue);    
 }
 
 
@@ -392,9 +391,9 @@
     s = @"0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"0", t.stringValue, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"0", t.stringValue);    
 }
 
 
@@ -402,9 +401,9 @@
     s = @"-1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-1.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-1", t.stringValue, @"");    
+    TDAssertEquals(-1.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-1", t.stringValue);    
 }
 
 
@@ -412,9 +411,9 @@
     s = @"1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"1", t.stringValue, @"");    
+    TDAssertEquals(1.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"1", t.stringValue);    
 }
 
 
@@ -422,9 +421,9 @@
     s = @"+1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(1.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+1", t.stringValue, @"");    
+    TDAssertEquals(1.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+1", t.stringValue);    
 }
 
 
@@ -432,9 +431,9 @@
     s = @"+0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+0", t.stringValue, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+0", t.stringValue);    
 }
 
 
@@ -442,9 +441,9 @@
     s = @"+0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"+0", t.stringValue, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"+0", t.stringValue);    
 }
 
 
@@ -452,9 +451,9 @@
     s = @"-0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(-0.0f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
-    STAssertEqualObjects(@"-0", t.stringValue, @"");    
+    TDAssertEquals(-0.0f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
+    TDAssertEqualObjects(@"-0", t.stringValue);    
 }
 
 
@@ -462,8 +461,8 @@
     s = @"NULL";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -471,8 +470,8 @@
     s = @"nil";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -480,8 +479,8 @@
     s = @"";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -489,8 +488,8 @@
     s = @".";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -498,8 +497,8 @@
     s = @". ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -507,8 +506,8 @@
     s = @". 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -516,8 +515,8 @@
     s = @"+";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -525,8 +524,8 @@
     s = @"+ ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -534,8 +533,8 @@
     s = @"+ 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -543,8 +542,8 @@
     s = @"-";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -552,8 +551,8 @@
     s = @"- ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -561,8 +560,8 @@
     s = @"- 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertFalse(t.isNumber, @"");    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertFalse(t.isNumber);    
 }
 
 
@@ -570,8 +569,8 @@
     s = @"- (id)init {";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    STAssertNil(t.stringValue, @"");    
-    STAssertEquals(0.0f, t.floatValue, @"");
+    TDAssertNil(t.stringValue);    
+    TDAssertEquals(0.0f, t.floatValue);
 }
 
 

@@ -64,64 +64,64 @@
     TDToken *tok = nil;
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isNumber, @"");
-    STAssertEqualObjects(tok.stringValue, @"2", @"");
-    STAssertEqualObjects(tok.value, [NSNumber numberWithFloat:2.0], @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isNumber);
+    TDAssertEqualObjects(tok.stringValue, @"2");
+    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:2.0]);
 
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @"!=", @"");
-    STAssertEqualObjects(tok.value, @"!=", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @"!=");
+    TDAssertEqualObjects(tok.value, @"!=");
 
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isNumber, @"");
-    STAssertEqualObjects(tok.stringValue, @"47", @"");
-    STAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0], @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isNumber);
+    TDAssertEqualObjects(tok.stringValue, @"47");
+    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @".", @"");
-    STAssertEqualObjects(tok.value, @".", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @".");
+    TDAssertEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isWord, @"");
-    STAssertEqualObjects(tok.stringValue, @"Blast-off", @"");
-    STAssertEqualObjects(tok.value, @"Blast-off", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isWord);
+    TDAssertEqualObjects(tok.stringValue, @"Blast-off");
+    TDAssertEqualObjects(tok.value, @"Blast-off");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @"!", @"");
-    STAssertEqualObjects(tok.value, @"!", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @"!");
+    TDAssertEqualObjects(tok.value, @"!");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @"!", @"");
-    STAssertEqualObjects(tok.value, @"!", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @"!");
+    TDAssertEqualObjects(tok.value, @"!");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isQuotedString, @"");
-    STAssertEqualObjects(tok.stringValue, @"'Woo-hoo!'", @"");
-    STAssertEqualObjects(tok.value, @"'Woo-hoo!'", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isQuotedString);
+    TDAssertEqualObjects(tok.stringValue, @"'Woo-hoo!'");
+    TDAssertEqualObjects(tok.value, @"'Woo-hoo!'");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok == eof, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok == eof);
 }
 
 
@@ -132,22 +132,22 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isNumber, @"");
-    STAssertEqualObjects(tok.stringValue, @"47", @"");
-    STAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0], @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isNumber);
+    TDAssertEqualObjects(tok.stringValue, @"47");
+    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @".", @"");
-    STAssertEqualObjects(tok.value, @".", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @".");
+    TDAssertEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok == eof, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok == eof);
 }
 
 
@@ -158,29 +158,29 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isNumber, @"");
-    STAssertEqualObjects(tok.stringValue, @"47", @"");
-    STAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0], @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isNumber);
+    TDAssertEqualObjects(tok.stringValue, @"47");
+    TDAssertEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isSymbol, @"");
-    STAssertEqualObjects(tok.stringValue, @".", @"");
-    STAssertEqualObjects(tok.value, @".", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isSymbol);
+    TDAssertEqualObjects(tok.stringValue, @".");
+    TDAssertEqualObjects(tok.value, @".");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok != eof, @"");
-    STAssertTrue(tok.isWord, @"");
-    STAssertEqualObjects(tok.stringValue, @"foo", @"");
-    STAssertEqualObjects(tok.value, @"foo", @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok != eof);
+    TDAssertTrue(tok.isWord);
+    TDAssertEqualObjects(tok.stringValue, @"foo");
+    TDAssertEqualObjects(tok.value, @"foo");
     
     tok = [t nextToken];
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok == eof, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok == eof);
 }
 
 
@@ -189,8 +189,8 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEquals(0.999f, t.floatValue, @"");
-    STAssertTrue(t.isNumber, @"");    
+    TDAssertEquals(0.999f, t.floatValue);
+    TDAssertTrue(t.isNumber);    
 
 //    if ([TDToken EOFToken] == token) break;
     
@@ -202,8 +202,8 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEqualObjects(@".", t.stringValue, @"");
-    STAssertTrue(t.isSymbol, @"");    
+    TDAssertEqualObjects(@".", t.stringValue);
+    TDAssertTrue(t.isSymbol);    
     
     //    if ([TDToken EOFToken] == token) break;
     
@@ -215,9 +215,9 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEqualObjects(@"-", t.stringValue, @"");    
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertTrue(t.isSymbol, @"");    
+    TDAssertEqualObjects(@"-", t.stringValue);    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertTrue(t.isSymbol);    
 }
 
 
@@ -226,14 +226,14 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEqualObjects(@"-", t.stringValue, @"");    
-    STAssertEquals(0.0f, t.floatValue, @"");    
-    STAssertTrue(t.isSymbol, @"");    
+    TDAssertEqualObjects(@"-", t.stringValue);    
+    TDAssertEquals(0.0f, t.floatValue);    
+    TDAssertTrue(t.isSymbol);    
     
     t = [tokenizer nextToken];
-    STAssertEqualObjects(@"2", t.stringValue, @"");    
-    STAssertEquals(2.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");    
+    TDAssertEqualObjects(@"2", t.stringValue);    
+    TDAssertEquals(2.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);    
 }
 
 
@@ -242,15 +242,15 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEqualObjects(@"+", t.stringValue, @"");    
-    STAssertTrue(t.isSymbol, @"");
+    TDAssertEqualObjects(@"+", t.stringValue);    
+    TDAssertTrue(t.isSymbol);
 
     t = [tokenizer nextToken];
-    STAssertEquals(2.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");
-    STAssertEqualObjects(@"2", t.stringValue, @"");    
+    TDAssertEquals(2.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);
+    TDAssertEqualObjects(@"2", t.stringValue);    
 
-    STAssertEquals([TDToken EOFToken], [tokenizer nextToken], @"");
+    TDAssertEquals([TDToken EOFToken], [tokenizer nextToken]);
 }
 
 
@@ -260,11 +260,11 @@
     [tokenizer setTokenizerState:tokenizer.numberState from:'+' to:'+'];
     
     TDToken *t = [tokenizer nextToken];
-    STAssertEquals(2.0f, t.floatValue, @"");    
-    STAssertTrue(t.isNumber, @"");
-    STAssertEqualObjects(@"+2", t.stringValue, @"");    
+    TDAssertEquals(2.0f, t.floatValue);    
+    TDAssertTrue(t.isNumber);
+    TDAssertEqualObjects(@"+2", t.stringValue);    
     
-    STAssertEquals([TDToken EOFToken], [tokenizer nextToken], @"");
+    TDAssertEquals([TDToken EOFToken], [tokenizer nextToken]);
 }
 
 
@@ -298,12 +298,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok.isWord, @"");
-    STAssertEqualObjects(string, tok.stringValue, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok.isWord);
+    TDAssertEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    STAssertEqualObjects(eof, tok, @"");
+    TDAssertEqualObjects(eof, tok);
 }
 
 
@@ -314,12 +314,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok.isWord, @"");
-    STAssertEqualObjects(string, tok.stringValue, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok.isWord);
+    TDAssertEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    STAssertEqualObjects(eof, tok, @"");
+    TDAssertEqualObjects(eof, tok);
 }
 
 
@@ -330,12 +330,12 @@
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = [tokenizer nextToken];
     
-    STAssertNotNil(tok, @"");
-    STAssertTrue(tok.isWord, @"");
-    STAssertEqualObjects(string, tok.stringValue, @"");
+    TDAssertNotNil(tok);
+    TDAssertTrue(tok.isWord);
+    TDAssertEqualObjects(string, tok.stringValue);
     
     tok = [tokenizer nextToken];
-    STAssertEqualObjects(eof, tok, @"");
+    TDAssertEqualObjects(eof, tok);
 }
 
 @end

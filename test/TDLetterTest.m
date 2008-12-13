@@ -15,13 +15,13 @@
     s = @"123";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    STAssertEqualObjects(@"[]^123", [a description], @"");
+    TDAssertEqualObjects(@"[]^123", [a description]);
     p = [TDLetter letter];
     
     result = [p bestMatchFor:a];
-    STAssertNotNil(a, @"");
-    STAssertNil(result, @"");
-    STAssertTrue([a hasMore], @"");
+    TDAssertNotNil(a);
+    TDAssertNil(result);
+    TDAssertTrue([a hasMore]);
 }
 
 
@@ -29,13 +29,13 @@
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    STAssertEqualObjects(@"[]^abc", [a description], @"");
+    TDAssertEqualObjects(@"[]^abc", [a description]);
     p = [TDLetter letter];
     
     result = [p bestMatchFor:a];
-    STAssertNotNil(a, @"");
-    STAssertEqualObjects(@"[a]a^bc", [result description], @"");
-    STAssertTrue([result hasMore], @"");
+    TDAssertNotNil(a);
+    TDAssertEqualObjects(@"[a]a^bc", [result description]);
+    TDAssertTrue([result hasMore]);
 }
 
 
@@ -43,14 +43,14 @@
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
     
-    STAssertEqualObjects(@"[]^abc", [a description], @"");
+    TDAssertEqualObjects(@"[]^abc", [a description]);
     p = [TDLetter letter];
     TDParser *r = [TDRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
-    STAssertNotNil(a, @"");
-    STAssertEqualObjects(@"[a, b, c]abc^", [result description], @"");
-    STAssertFalse([result hasMore], @"");
+    TDAssertNotNil(a);
+    TDAssertEqualObjects(@"[a, b, c]abc^", [result description]);
+    TDAssertFalse([result hasMore]);
 }
 
 @end

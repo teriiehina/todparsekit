@@ -8,7 +8,6 @@
 
 #import "TDAlternationTest.h"
 
-
 @implementation TDAlternationTest
 
 - (void)tearDown {
@@ -27,8 +26,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo]foo^baz/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo]foo^baz/bar", [result description]);
 }
 
 
@@ -43,8 +42,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[123]123^baz/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -59,8 +58,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[123]123^baz/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -75,8 +74,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[123]123^baz/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 
@@ -91,8 +90,8 @@
     
     TDAssembly *result = [p bestMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[123]123^baz/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[123]123^baz/bar", [result description]);
 }
 
 @end

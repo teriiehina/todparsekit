@@ -33,28 +33,28 @@
 //    
 //    // _foob
 //    tok = (TDXmlToken *)[t nextToken];
-//    STAssertNotNil(tok, @"");
-//    STAssertTrue(tok.isName, @"");
+//    TDAssertNotNil(tok);
+//    TDAssertTrue(tok.isName);
 //
 //    // '?'
 //    tok = (TDXmlToken *)[t nextToken];
-//    STAssertNotNil(tok, @"");
-//    STAssertTrue(tok.isSymbol, @"");
+//    TDAssertNotNil(tok);
+//    TDAssertTrue(tok.isSymbol);
 //    
 //    // ar
 //    tok = (TDXmlToken *)[t nextToken];
-//    STAssertNotNil(tok, @"");
-//    STAssertTrue(tok.isName, @"");
+//    TDAssertNotNil(tok);
+//    TDAssertTrue(tok.isName);
 //    
 //    // _foobar
 //    tok = (TDXmlToken *)[t nextToken];
-//    STAssertNotNil(tok, @"");
-//    STAssertTrue(tok.isName, @"");
+//    TDAssertNotNil(tok);
+//    TDAssertTrue(tok.isName);
 //    
 //    // 2baz
 //    tok = (TDXmlToken *)[t nextToken];
-//    STAssertNotNil(tok, @"");
-//    STAssertTrue(tok.isNmtoken, @"");
+//    TDAssertNotNil(tok);
+//    TDAssertTrue(tok.isNmtoken);
 //    NSLog(@"tok: %@", tok);
 //    
 //}

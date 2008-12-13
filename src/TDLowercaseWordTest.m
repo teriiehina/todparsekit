@@ -7,7 +7,6 @@
 //
 
 #import "TDLowercaseWordTest.h"
-#import "TDParseKit.h"
 
 @implementation TDLowercaseWordTest
 
@@ -18,7 +17,7 @@
     TDParser *p = [TDLowercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -29,8 +28,8 @@
     TDParser *p = [TDLowercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foobar]foobar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foobar]foobar^", [result description]);
 }
 
 
@@ -41,7 +40,7 @@
     TDParser *p = [TDLowercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -52,7 +51,7 @@
     TDParser *p = [TDLowercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 @end

@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import "TDTestScaffold.h"
 #import "TDArithmeticParser.h"
 
 @interface TDArithmeticParserTest : SenTestCase {
