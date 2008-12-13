@@ -24,7 +24,6 @@
 		D31FE56B0E60E50800A0803E /* TDTokenAssemblyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55E0E60E50800A0803E /* TDTokenAssemblyTest.m */; };
 		D31FE56C0E60E50800A0803E /* TDTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5600E60E50800A0803E /* TDTrackTest.m */; };
 		D31FE56D0E60E50800A0803E /* TDUppercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */; };
-		D31FE5700E60E52D00A0803E /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE56F0E60E52D00A0803E /* TDLowercaseWordTest.m */; };
 		D31FE5750E60E55700A0803E /* TDReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5720E60E55700A0803E /* TDReaderTest.m */; };
 		D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5740E60E55700A0803E /* TDTokenizerTest.m */; };
 		D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */; };
@@ -203,6 +202,7 @@
 		D3C030A00EF34E3900C5ABEB /* TDGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */; };
 		D3C030A10EF34E3900C5ABEB /* TDGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */; };
 		D3C030A40EF34E5900C5ABEB /* TDGrammarParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C030A30EF34E5900C5ABEB /* TDGrammarParserTest.m */; };
+		D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */; };
 		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
@@ -281,8 +281,6 @@
 		D31FE5600E60E50800A0803E /* TDTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrackTest.m; path = test/TDTrackTest.m; sourceTree = "<group>"; };
 		D31FE5610E60E50800A0803E /* TDUppercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDUppercaseWordTest.h; path = test/TDUppercaseWordTest.h; sourceTree = "<group>"; };
 		D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDUppercaseWordTest.m; path = test/TDUppercaseWordTest.m; sourceTree = "<group>"; };
-		D31FE56E0E60E52D00A0803E /* TDLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWordTest.h; path = src/TDLowercaseWordTest.h; sourceTree = "<group>"; };
-		D31FE56F0E60E52D00A0803E /* TDLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWordTest.m; path = src/TDLowercaseWordTest.m; sourceTree = "<group>"; };
 		D31FE5710E60E55700A0803E /* TDReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReaderTest.h; path = test/TDReaderTest.h; sourceTree = "<group>"; };
 		D31FE5720E60E55700A0803E /* TDReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReaderTest.m; path = test/TDReaderTest.m; sourceTree = "<group>"; };
 		D31FE5730E60E55700A0803E /* TDTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerTest.h; path = test/TDTokenizerTest.h; sourceTree = "<group>"; };
@@ -518,6 +516,8 @@
 		D3C0309E0EF34E3900C5ABEB /* TDGrammarParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParser.m; path = test/TDGrammarParser.m; sourceTree = "<group>"; };
 		D3C030A20EF34E5900C5ABEB /* TDGrammarParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserTest.h; path = test/TDGrammarParserTest.h; sourceTree = "<group>"; };
 		D3C030A30EF34E5900C5ABEB /* TDGrammarParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserTest.m; path = test/TDGrammarParserTest.m; sourceTree = "<group>"; };
+		D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWordTest.h; path = test/TDLowercaseWordTest.h; sourceTree = "<group>"; };
+		D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWordTest.m; path = test/TDLowercaseWordTest.m; sourceTree = "<group>"; };
 		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C85C790E63B438000445FD /* TDArithmeticParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParser.h; path = test/TDArithmeticParser.h; sourceTree = "<group>"; };
 		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
@@ -1050,8 +1050,6 @@
 		D3D63F570E2A8548009BF5CD /* parse */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE56E0E60E52D00A0803E /* TDLowercaseWordTest.h */,
-				D31FE56F0E60E52D00A0803E /* TDLowercaseWordTest.m */,
 				D31FE54D0E60E50800A0803E /* TDAlternationTest.h */,
 				D31FE54E0E60E50800A0803E /* TDAlternationTest.m */,
 				D31FE54F0E60E50800A0803E /* TDLiteralTest.h */,
@@ -1074,6 +1072,8 @@
 				D31FE5600E60E50800A0803E /* TDTrackTest.m */,
 				D31FE5610E60E50800A0803E /* TDUppercaseWordTest.h */,
 				D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */,
+				D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */,
+				D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";
@@ -1523,7 +1523,6 @@
 				D31FE56B0E60E50800A0803E /* TDTokenAssemblyTest.m in Sources */,
 				D31FE56C0E60E50800A0803E /* TDTrackTest.m in Sources */,
 				D31FE56D0E60E50800A0803E /* TDUppercaseWordTest.m in Sources */,
-				D31FE5700E60E52D00A0803E /* TDLowercaseWordTest.m in Sources */,
 				D31FE5750E60E55700A0803E /* TDReaderTest.m in Sources */,
 				D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */,
 				D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */,
@@ -1583,6 +1582,7 @@
 				D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */,
 				D3C0309F0EF34E3900C5ABEB /* TDGrammarParser.m in Sources */,
 				D3C030A40EF34E5900C5ABEB /* TDGrammarParserTest.m in Sources */,
+				D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
