@@ -6,7 +6,6 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDPlistParser : TDAlternation {

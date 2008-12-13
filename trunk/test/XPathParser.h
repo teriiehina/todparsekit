@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDSequence.h"
+#import <TDParseKit/TDParseKit.h>
 
 @class XPathAssembler;
 @class TDAssembly;

@@ -28,8 +28,8 @@
     p = [TDRepetition repetitionWithSubparser:[TDNum num]];
     
     TDAssembly *result = [p completeMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[2, 4, 6, 8]2/4/6/8^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[2, 4, 6, 8]2/4/6/8^", [result description]);
 }
 
 
@@ -51,9 +51,9 @@
     
 //    TDAssembly *result = [e completeMatchFor:a];
 //    TDAssembly *result = [m completeMatchFor:a];
-//    STAssertNotNil(result, @"");
-//    //STAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/5.6/222.0^", [result description], @"");
-//    STAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/-/5.6/-/222.0^", [result description], @"");
+//    TDAssertNotNil(result);
+//    //TDAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/5.6/222.0^", [result description]);
+//    TDAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/-/5.6/-/222.0^", [result description]);
 }
 //
 //
@@ -76,9 +76,9 @@
 //    [e add:[[TDSymbol symbolWithString:@"]"] discard]];
 //    
 //    TDAssembly *result = [e completeMatchFor:a];
-//    STAssertNotNil(result, @"");
-//    //STAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/5.6/222.0^", [result description], @"");
-//    STAssertEqualObjects(@"[4.5, 5.6, 222.0][/4.5/-/5.6/-/222.0/]^", [result description], @"");
+//    TDAssertNotNil(result);
+//    //TDAssertEqualObjects(@"[4.5, 5.6, 222.0]4.5/5.6/222.0^", [result description]);
+//    TDAssertEqualObjects(@"[4.5, 5.6, 222.0][/4.5/-/5.6/-/222.0/]^", [result description]);
 //}
 //
 //
@@ -98,8 +98,8 @@
 //    
 //    TDAssembly *result = [sentence bestMatchFor:a];
 //    
-//    STAssertNotNil(result, @"");
-//    STAssertEqualObjects(@"[hot, hot, steaming, hot, coffee]hot/hot/steaming/hot/coffee^", [result description], @"");
+//    TDAssertNotNil(result);
+//    TDAssertEqualObjects(@"[hot, hot, steaming, hot, coffee]hot/hot/steaming/hot/coffee^", [result description]);
 //}
 //    
 //
@@ -123,9 +123,9 @@
 //    a = [TDTokenAssembly assemblyWithString:s];
 //
 //    result = [list bestMatchFor:a];
-//    STAssertNotNil(result, @"");
-//    //STAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description], @"");
-//    STAssertEqualObjects(@"[foo, bar, baz][/foo/,/bar/,/baz/]^", [result description], @"");
+//    TDAssertNotNil(result);
+//    //TDAssertEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
+//    TDAssertEqualObjects(@"[foo, bar, baz][/foo/,/bar/,/baz/]^", [result description]);
 //}
 //
 //
@@ -138,8 +138,8 @@
 //    [literals add:[TDNum num]];
 //    
 //    TDAssembly *result = [literals bestMatchFor:a];
-//    STAssertNotNil(result, @"");
-//    STAssertEqualObjects(@"[123]123^'boo'", [result description], @"");
+//    TDAssertNotNil(result);
+//    TDAssertEqualObjects(@"[123]123^'boo'", [result description]);
 //}
 //
 //

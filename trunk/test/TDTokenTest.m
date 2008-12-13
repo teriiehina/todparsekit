@@ -16,72 +16,72 @@
 
 
 - (void)testEOFTokenReleaseOnce1 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseOnce2 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseTwice1 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenReleaseTwice2 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof release];
 }
 
 
 - (void)testEOFTokenAutoreleaseOnce1 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseOnce2 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseTwice1 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenAutoreleaseTwice2 {
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
-    STAssertNotNil(eof, @"");
+    TDAssertNotNil(eof);
     [eof autorelease];
 }
 
 
 - (void)testEOFTokenRetainCount {
-    STAssertTrue([eof retainCount] >= 17035104, @"");
+    TDAssertTrue([eof retainCount] >= 17035104);
     // NO IDEA WHY THIS WONT PASS
-    //STAssertEquals(UINT_MAX, [eof retainCount], @"");  /*17035104 4294967295*/
-//    STAssertEqualObjects([NSNumber numberWithUnsignedInt:4294967295], [NSNumber numberWithUnsignedInt:[eof retainCount]], @"");
+    //TDAssertEquals(UINT_MAX, [eof retainCount]);  /*17035104 4294967295*/
+//    TDAssertEqualObjects([NSNumber numberWithUnsignedInt:4294967295], [NSNumber numberWithUnsignedInt:[eof retainCount]]);
 }
 
 
 - (void)testCopyIdentity {
     id copy = [eof copy];
-    STAssertTrue(copy == eof, @"");
+    TDAssertTrue(copy == eof);
 }
 
 @end

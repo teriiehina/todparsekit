@@ -20,51 +20,51 @@
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
 //    NSLog(@"\n\n result: %@ \n\n", result);
-    //STAssertEqualObjects(@"[/, foo]//foo^", [result description], @"");
+    //TDAssertEqualObjects(@"[/, foo]//foo^", [result description]);
 
     
     s = @"/foo";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
     NSLog(@"\n\n result: %@ \n\n", result);
-    STAssertEqualObjects(@"[/, foo]//foo^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo]//foo^", [result description]);
 
     s = @"/foo/bar";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar]//foo///bar^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar]//foo///bar^", [result description]);
     
     s = @"/foo/bar/baz";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar, /, baz]//foo///bar///baz^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar, /, baz]//foo///bar///baz^", [result description]);
     
     s = @"/foo/bar[baz]";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar, [, baz, ]]//foo///bar/[/baz/]^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar, [, baz, ]]//foo///bar/[/baz/]^", [result description]);
     
     s = @"/foo/bar[@baz]";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, ]]//foo///bar/[/@/baz/]^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, ]]//foo///bar/[/@/baz/]^", [result description]);
     
     s = @"/foo/bar[@baz='foo']";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, =, 'foo', ]]//foo///bar/[/@/baz/=/'foo'/]^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar, [, @, baz, =, 'foo', ]]//foo///bar/[/@/baz/=/'foo'/]^", [result description]);
     
     s = @"/foo/bar[baz]/foo";
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
-    STAssertEqualObjects(@"[/, foo, /, bar, [, baz, ], /, foo]//foo///bar/[/baz/]///foo^", [result description], @"");
+    TDAssertEqualObjects(@"[/, foo, /, bar, [, baz, ], /, foo]//foo///bar/[/baz/]///foo^", [result description]);
 
     // not supported
 //    s = @"//foo";
 //    a = [p assemblyWithString:s];
 //    result = [p bestMatchFor:a];
 //    NSLog(@"\n\n result: %@ \n\n", result);
-//    STAssertEqualObjects(@"[//, foo]///foo^", [result description], @"");
+//    TDAssertEqualObjects(@"[//, foo]///foo^", [result description]);
 }
 
 
@@ -73,14 +73,14 @@
     a = [p assemblyWithString:s];
     NSLog(@"\n\n a: %@ \n\n", a);
     result = [p.axisName bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[child]child^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[child]child^", [result description]);
     
     s = @"preceeding-sibling";
     a = [p assemblyWithString:s];
     result = [p.axisName bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[preceeding-sibling]preceeding-sibling^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[preceeding-sibling]preceeding-sibling^", [result description]);
 }
 
 
@@ -88,13 +88,13 @@
     s = @"child::";
     a = [p assemblyWithString:s];
     result = [p.axisSpecifier bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[child, ::]child/::^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[child, ::]child/::^", [result description]);
     s = @"preceeding-sibling::";
     a = [p assemblyWithString:s];
     result = [p.axisSpecifier bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[preceeding-sibling, ::]preceeding-sibling/::^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[preceeding-sibling, ::]preceeding-sibling/::^", [result description]);
 }
 
 
@@ -102,14 +102,14 @@
     s = @"and";
     a = [p assemblyWithString:s];
     result = [p.operatorName bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[and]and^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[and]and^", [result description]);
     
     s = @"or";
     a = [p assemblyWithString:s];
     result = [p.operatorName bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[or]or^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[or]or^", [result description]);
 }
 
 
@@ -117,12 +117,12 @@
     s = @"foo:bar";
     a = [p assemblyWithString:s];
     result = [p.QName bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
-    //STAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TDTrackException", @"");
+    //TDAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TDTrackException");
 }
 
 
@@ -130,36 +130,36 @@
     s = @"foo:bar";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, :, bar]foo/:/bar^", [result description]);
 
     s = @"*";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[*]*^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[*]*^", [result description]);
 
     s = @"foo:*";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
     
     s = @"*:bar"; // NOT ALLOWED
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[*]*^:/bar", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[*]*^:/bar", [result description]);
     
     s = @"foo";
     a = [p assemblyWithString:s];
     result = [p.nameTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo]foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo]foo^", [result description]);
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
-    //STAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TDTrackException", @"");
+    //TDAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TDTrackException");
 }
 
 
@@ -167,14 +167,14 @@
     s = @"comment";
     a = [p assemblyWithString:s];
     result = [p.nodeType bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[comment]comment^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[comment]comment^", [result description]);
     
     s = @"node";
     a = [p assemblyWithString:s];
     result = [p.nodeType bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[node]node^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[node]node^", [result description]);
     
 }
 
@@ -183,50 +183,50 @@
     s = @"comment()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[comment, (, )]comment/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[comment, (, )]comment/(/)^", [result description]);
 
     s = @"processing-instruction()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[processing-instruction, (, )]processing-instruction/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[processing-instruction, (, )]processing-instruction/(/)^", [result description]);
     
     s = @"processing-instruction('baz')";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[processing-instruction, (, 'baz', )]processing-instruction/(/'baz'/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[processing-instruction, (, 'baz', )]processing-instruction/(/'baz'/)^", [result description]);
     
     s = @"node()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[node, (, )]node/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[node, (, )]node/(/)^", [result description]);
 
     s = @"text()";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[text, (, )]text/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[text, (, )]text/(/)^", [result description]);
 
     s = @"*";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[*]*^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[*]*^", [result description]);
 
     s = @"foo:*";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, :, *]foo/:/*^", [result description]);
 
     s = @"bar";
     a = [p assemblyWithString:s];
     result = [p.nodeTest bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[bar]bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[bar]bar^", [result description]);
 }
 
 
@@ -234,20 +234,20 @@
     s = @"$foo";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[$, foo]$/foo^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[$, foo]$/foo^", [result description]);
     
     s = @"$bar";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[$, bar]$/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[$, bar]$/bar^", [result description]);
 
     s = @"$foo:bar";
     a = [p assemblyWithString:s];
     result = [p.variableReference bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[$, foo, :, bar]$/foo/:/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[$, foo, :, bar]$/foo/:/bar^", [result description]);
 }
 
 
@@ -255,34 +255,34 @@
     s = @"foo()";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, (, )]foo/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, (, )]foo/(/)^", [result description]);
 
     s = @"foo('bar')";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [result description]);
 
     s = @"foo('bar', 'baz')";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [result description]);
 
     s = @"foo('bar', 1)";
     a = [p assemblyWithString:s];
     result = [p.functionCall bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [result description]);
 }
 
 - (void)testOrExpr {
     s = @"foo or bar";
     a = [p assemblyWithString:s];
     result = [p.orExpr bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, or, bar]foo/or/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, or, bar]foo/or/bar^", [result description]);
 }
 
 
@@ -290,14 +290,14 @@
     s = @"foo() and bar()";
     a = [p assemblyWithString:s];
     result = [p.andExpr bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, (, ), and, bar, (, )]foo/(/)/and/bar/(/)^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, (, ), and, bar, (, )]foo/(/)/and/bar/(/)^", [result description]);
 
     s = @"foo and bar";
     a = [p assemblyWithString:s];
     result = [p.andExpr bestMatchFor:a];
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[foo, and, bar]foo/and/bar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[foo, and, bar]foo/and/bar^", [result description]);
 }
 
 @end

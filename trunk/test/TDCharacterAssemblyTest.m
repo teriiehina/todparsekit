@@ -14,39 +14,39 @@
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
 
-    STAssertNotNil(a, @"");
-    STAssertEquals((int)3, (int)s.length, @"");
-    STAssertEquals(0, a.objectsConsumed, @"");
-    STAssertEquals(3, a.objectsRemaining, @"");
-    STAssertEquals(YES, [a hasMore], @"");
+    TDAssertNotNil(a);
+    TDAssertEquals((int)3, (int)s.length);
+    TDAssertEquals(0, a.objectsConsumed);
+    TDAssertEquals(3, a.objectsRemaining);
+    TDAssertEquals(YES, [a hasMore]);
     
     id obj = [a next];
-    STAssertEqualObjects(obj, [NSNumber numberWithInteger:'a'], @"");
-    STAssertEquals((int)3, (int)s.length, @"");
-    STAssertEquals(1, a.objectsConsumed, @"");
-    STAssertEquals(2, a.objectsRemaining, @"");
-    STAssertEquals(YES, [a hasMore], @"");
+    TDAssertEqualObjects(obj, [NSNumber numberWithInteger:'a']);
+    TDAssertEquals((int)3, (int)s.length);
+    TDAssertEquals(1, a.objectsConsumed);
+    TDAssertEquals(2, a.objectsRemaining);
+    TDAssertEquals(YES, [a hasMore]);
 
     obj = [a next];
-    STAssertEqualObjects(obj, [NSNumber numberWithInteger:'b'], @"");
-    STAssertEquals((int)3, (int)s.length, @"");
-    STAssertEquals(2, a.objectsConsumed, @"");
-    STAssertEquals(1, a.objectsRemaining, @"");
-    STAssertEquals(YES, [a hasMore], @"");
+    TDAssertEqualObjects(obj, [NSNumber numberWithInteger:'b']);
+    TDAssertEquals((int)3, (int)s.length);
+    TDAssertEquals(2, a.objectsConsumed);
+    TDAssertEquals(1, a.objectsRemaining);
+    TDAssertEquals(YES, [a hasMore]);
 
     obj = [a next];
-    STAssertEqualObjects(obj, [NSNumber numberWithInteger:'c'], @"");
-    STAssertEquals((int)3, (int)s.length, @"");
-    STAssertEquals(3, a.objectsConsumed, @"");
-    STAssertEquals(0, a.objectsRemaining, @"");
-    STAssertEquals(NO, [a hasMore], @"");
+    TDAssertEqualObjects(obj, [NSNumber numberWithInteger:'c']);
+    TDAssertEquals((int)3, (int)s.length);
+    TDAssertEquals(3, a.objectsConsumed);
+    TDAssertEquals(0, a.objectsRemaining);
+    TDAssertEquals(NO, [a hasMore]);
 
     obj = [a next];
-    STAssertNil(obj, @"");
-    STAssertEquals((int)3, (int)s.length, @"");
-    STAssertEquals(3, a.objectsConsumed, @"");
-    STAssertEquals(0, a.objectsRemaining, @"");
-    STAssertEquals(NO, [a hasMore], @"");
+    TDAssertNil(obj);
+    TDAssertEquals((int)3, (int)s.length);
+    TDAssertEquals(3, a.objectsConsumed);
+    TDAssertEquals(0, a.objectsRemaining);
+    TDAssertEquals(NO, [a hasMore]);
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "XPathParser.h"
 //#import "TDNCName.h"
-#import <TDParseKit/TDParseKit.h>
+
 #import "TDNCNameState.h"
 #import "XPathAssembler.h"
 

@@ -13,7 +13,7 @@
 #import "TDXmlText.h"
 #import "TDXmlSignificantWhitespace.h"
 #import "TDXmlTokenAssembly.h"
-#import <TDParseKit/TDParseKit.h>
+
 
 @implementation TDXmlTokenizerTest
 

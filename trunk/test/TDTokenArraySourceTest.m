@@ -20,32 +20,32 @@
     t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
     
-    STAssertTrue([tas hasMore], @"");
+    TDAssertTrue([tas hasMore]);
     NSArray *a = [tas nextTokenArray];
-    STAssertNotNil(a, @"");
-    STAssertEquals((NSUInteger)2, a.count, @"");
-    STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
-    STAssertEqualObjects(@"came", [[a objectAtIndex:1] stringValue], @"");
+    TDAssertNotNil(a);
+    TDAssertEquals((NSUInteger)2, a.count);
+    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDAssertEqualObjects(@"came", [[a objectAtIndex:1] stringValue]);
 
-    STAssertTrue([tas hasMore], @"");
+    TDAssertTrue([tas hasMore]);
     a = [tas nextTokenArray];
-    STAssertNotNil(a, @"");
-    STAssertEquals((NSUInteger)2, a.count, @"");
-    STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
-    STAssertEqualObjects(@"saw", [[a objectAtIndex:1] stringValue], @"");
+    TDAssertNotNil(a);
+    TDAssertEquals((NSUInteger)2, a.count);
+    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDAssertEqualObjects(@"saw", [[a objectAtIndex:1] stringValue]);
 
-    STAssertTrue([tas hasMore], @"");
+    TDAssertTrue([tas hasMore]);
     a = [tas nextTokenArray];
-    STAssertNotNil(a, @"");
-    STAssertEquals((NSUInteger)5, a.count, @"");
-    STAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue], @"");
-    STAssertEqualObjects(@"left", [[a objectAtIndex:1] stringValue], @"");
-    STAssertEqualObjects(@"in", [[a objectAtIndex:2] stringValue], @"");
-    STAssertEqualObjects(@"peace", [[a objectAtIndex:3] stringValue], @"");
-    STAssertEqualObjects(@".", [[a objectAtIndex:4] stringValue], @"");
+    TDAssertNotNil(a);
+    TDAssertEquals((NSUInteger)5, a.count);
+    TDAssertEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
+    TDAssertEqualObjects(@"left", [[a objectAtIndex:1] stringValue]);
+    TDAssertEqualObjects(@"in", [[a objectAtIndex:2] stringValue]);
+    TDAssertEqualObjects(@"peace", [[a objectAtIndex:3] stringValue]);
+    TDAssertEqualObjects(@".", [[a objectAtIndex:4] stringValue]);
 
-    STAssertFalse([tas hasMore], @"");
+    TDAssertFalse([tas hasMore]);
     a = [tas nextTokenArray];
-    STAssertNil(a, @"");
+    TDAssertNil(a);
 }
 @end

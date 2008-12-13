@@ -17,8 +17,6 @@
 #define TDAssertEquals(e1, e2) STAssertEquals((e1), (e2), @"")
 #define TDAssertEqualObjects(e1, e2) STAssertEqualObjects((e1), (e2), @"")
 #define TDAssertThrows(e) STAssertThrows((e), @"")
-#define TDAssertThrowsSpecific(e, specificException) STAssertThrowsSpecific((e), (specificException), @"")
-#define TDAssertThrowsSpecificNamed(e, specificException, name) TDAssertThrowsSpecificNamed((e), (specificException), (name) @"")
 
 @interface TDTestScaffold : SenTestSuite {
 

@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDParseKit.h"
+#import <TDParseKit/TDParseKit.h>
 
 @interface TDJsonParser : TDAlternation {
     TDParser *stringParser;

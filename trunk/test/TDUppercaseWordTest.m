@@ -18,8 +18,8 @@
     TDParser *p = [TDUppercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNotNil(result, @"");
-    STAssertEqualObjects(@"[Foobar]Foobar^", [result description], @"");
+    TDAssertNotNil(result);
+    TDAssertEqualObjects(@"[Foobar]Foobar^", [result description]);
 }
 
 
@@ -30,7 +30,7 @@
     TDParser *p = [TDUppercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -41,7 +41,7 @@
     TDParser *p = [TDUppercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 
@@ -52,7 +52,7 @@
     TDParser *p = [TDUppercaseWord word];
     TDAssembly *result = [p completeMatchFor:a];
     
-    STAssertNil(result, @"");
+    TDAssertNil(result);
 }
 
 @end
