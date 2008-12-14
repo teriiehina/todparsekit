@@ -381,7 +381,7 @@
         p = [TDEmpty empty];
     } else {
         [NSException raise:@"Grammar Exception" format:
-         @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, QuotedString, Num, Symbol.", s];
+         @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Num, Symbol, Empty.", s];
     }
     [a push:p];
 }
