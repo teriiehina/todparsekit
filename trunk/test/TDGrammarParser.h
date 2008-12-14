@@ -27,7 +27,7 @@
     TDParser *constantParser;
     TDParser *numParser;
 }
-+ (TDCollectionParser *)parserForLanguage:(NSString *)s;
++ (TDParser *)parserForLanguage:(NSString *)s;
 + (TDSequence *)parserForExpression:(NSString *)s;
 
 @property (retain) TDTokenizer *tokenizer;
