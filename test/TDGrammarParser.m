@@ -52,7 +52,7 @@
 }
 
 
-+ (TDCollectionParser *)parserForExpression:(NSString *)s {
++ (TDSequence *)parserForExpression:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
