@@ -11,9 +11,10 @@
 
 @interface TDGrammarParserTest : SenTestCase {
     NSString *s;
-    TDAssembly *a;
+    TDTokenizer *t;
+    TDCharacterAssembly *a;
     TDGrammarParser *p;
-    TDParser *res;
+    TDAssembly *res;
 }
 
 @end
