@@ -11,7 +11,6 @@
 
 @interface TDRegularParserTest : SenTestCase {
     NSString *s;
-    TDTokenizer *t;
     TDCharacterAssembly *a;
     TDRegularParser *p;
     TDAssembly *res;

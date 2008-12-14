@@ -10,7 +10,8 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDGrammarParser ()
-- (void)workOnCharAssembly:(TDAssembly *)a;
+- (void)workOnWordAssembly:(TDAssembly *)a;
+- (void)workOnNumAssembly:(TDAssembly *)a;
 - (void)workOnStarAssembly:(TDAssembly *)a;
 - (void)workOnPlusAssembly:(TDAssembly *)a;
 - (void)workOnQuestionAssembly:(TDAssembly *)a;
@@ -31,6 +32,7 @@
 
 
 - (void)dealloc {
+    self.tokenizer = nil;
     self.expressionParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
@@ -40,30 +42,43 @@
     self.phraseStarParser = nil;
     self.phrasePlusParser = nil;
     self.phraseQuestionParser = nil;
-    self.letterOrDigitParser = nil;
+    self.atomicValueParser = nil;
+    self.wordParser = nil;
+    self.numParser = nil;
     [super dealloc];
 }
 
 
-+ (id)parserForLanguage:(NSString *)s {
++ (TDGrammarParser *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
-    TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
+    p.tokenizer.string = s;
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     a = [p completeMatchFor:a];
     return [a pop];
 }
 
 
-// expression        = term orTerm*
-// term              = factor nextFactor*
-// orTerm            = '|' term
-// factor            = phrase | phraseStar | phrasePlus | phraseQuestion
-// nextFactor        = factor
-// phrase            = letterOrDigit | '(' expression ')'
-// phraseStar        = phrase '*'
-// phraseStar        = phrase '+'
-// phraseStar        = phrase '?'
-// letterOrDigit     = Letter | Digit
+- (TDTokenizer *)tokenizer {
+    if (!tokenizer) {
+        self.tokenizer = [TDTokenizer tokenizer];
+        // customize here
+    }
+    return tokenizer;
+}
 
+
+// expression       = term orTerm*
+// term             = factor nextFactor*
+// orTerm           = '|' term
+// factor           = phrase | phraseStar | phrasePlus | phraseQuestion
+// nextFactor       = factor
+// phrase           = atomicValue | '(' expression ')'
+// phraseStar       = phrase '*'
+// phraseStar       = phrase '+'
+// phraseStar       = phrase '?'
+// atomicValue      = word | num
+// word             = Word
+// num             = Num
 
 // expression        = term orTerm*
 - (TDCollectionParser *)expressionParser {
@@ -95,7 +110,7 @@
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
-        [orTermParser add:[[TDSpecificChar specificCharWithChar:'|'] discard]];
+        [orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
     }
@@ -136,13 +151,13 @@
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
         TDSequence *s = [TDSequence sequence];
-        [s add:[[TDSpecificChar specificCharWithChar:'('] discard]];
+        [s add:[[TDSymbol symbolWithString:@"("] discard]];
         [s add:self.expressionParser];
-        [s add:[[TDSpecificChar specificCharWithChar:')'] discard]];
+        [s add:[[TDSymbol symbolWithString:@")"] discard]];
         
         self.phraseParser = [TDAlternation alternation];
         phraseParser.name = @"phrase";
-        [phraseParser add:self.letterOrDigitParser];
+        [phraseParser add:self.atomicValueParser];
         [phraseParser add:s];
     }
     return phraseParser;
@@ -155,7 +170,7 @@
         self.phraseStarParser = [TDSequence sequence];
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
-        [phraseStarParser add:[[TDSpecificChar specificCharWithChar:'*'] discard]];
+        [phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
     }
     return phraseStarParser;
@@ -168,7 +183,7 @@
         self.phrasePlusParser = [TDSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
-        [phrasePlusParser add:[[TDSpecificChar specificCharWithChar:'+'] discard]];
+        [phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
     }
     return phrasePlusParser;
@@ -181,33 +196,60 @@
         self.phraseQuestionParser = [TDSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
-        [phraseQuestionParser add:[[TDSpecificChar specificCharWithChar:'?'] discard]];
+        [phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
     }
     return phraseQuestionParser;
 }
 
 
-// letterOrDigit    = Letter | Digit
-- (TDCollectionParser *)letterOrDigitParser {
-    if (!letterOrDigitParser) {
-        self.letterOrDigitParser = [TDAlternation alternation];
-        letterOrDigitParser.name = @"letterOrDigit";
-        [letterOrDigitParser add:[TDLetter letter]];
-        [letterOrDigitParser add:[TDDigit digit]];
-        [letterOrDigitParser setAssembler:self selector:@selector(workOnCharAssembly:)];
+// atomicValue    = Word | Num
+- (TDCollectionParser *)atomicValueParser {
+    if (!atomicValueParser) {
+        self.atomicValueParser = [TDAlternation alternation];
+        atomicValueParser.name = @"atomicValue";
+        [atomicValueParser add:self.wordParser];
+        [atomicValueParser add:self.numParser];
     }
-    return letterOrDigitParser;
+    return atomicValueParser;
 }
 
 
-- (void)workOnCharAssembly:(TDAssembly *)a {
+// word = Word
+- (TDParser *)wordParser {
+    if (!wordParser) {
+        self.wordParser = [TDWord word];
+        [wordParser setAssembler:self selector:@selector(workOnWordAssembly:)];
+    }
+    return wordParser;
+}
+
+
+// num = Num
+- (TDParser *)numParser {
+    if (!numParser) {
+        self.numParser = [TDNum num];
+        [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
+    }
+    return numParser;
+}
+
+
+- (void)workOnWordAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    id obj = [a pop];
-    NSAssert([obj isKindOfClass:[NSNumber class]], @"");
-    NSInteger c = [obj integerValue];
-    [a push:[TDSpecificChar specificCharWithChar:c]];
+    TDToken *tok = [a pop];
+    NSAssert(tok.isWord, @"");
+    [a push:[TDLiteral literalWithString:tok.stringValue]];
+}
+
+
+- (void)workOnNumAssembly:(TDAssembly *)a {
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
+    TDToken *tok = [a pop];
+    NSAssert(tok.isNumber, @"");
+    [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
 
@@ -305,6 +347,7 @@
     [a push:p];
 }
 
+@synthesize tokenizer;
 @synthesize expressionParser;
 @synthesize termParser;
 @synthesize orTermParser;
@@ -314,5 +357,7 @@
 @synthesize phraseStarParser;
 @synthesize phrasePlusParser;
 @synthesize phraseQuestionParser;
-@synthesize letterOrDigitParser;
+@synthesize atomicValueParser;
+@synthesize wordParser;
+@synthesize numParser;
 @end
