@@ -12,6 +12,9 @@
     TDTokenizer *tokenizer;
     TDToken *eqTok;
     TDCollectionParser *statementParser;
+    TDCollectionParser *declarationParser;
+    TDCollectionParser *callbackParser;
+    TDCollectionParser *selectorParser;
     TDCollectionParser *expressionParser;
     TDCollectionParser *termParser;
     TDCollectionParser *orTermParser;
