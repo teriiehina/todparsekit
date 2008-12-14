@@ -10,6 +10,8 @@
 
 @interface TDGrammarParser : TDSequence {
     TDTokenizer *tokenizer;
+    TDCollectionParser *statementParser;
+    TDCollectionParser *declarationParser;
     TDCollectionParser *expressionParser;
     TDCollectionParser *termParser;
     TDCollectionParser *orTermParser;
@@ -25,9 +27,11 @@
     TDParser *constantParser;
     TDParser *numParser;
 }
-+ (TDGrammarParser *)parserForLanguage:(NSString *)s;
++ (TDCollectionParser *)parserForLanguage:(NSString *)s;
 
 @property (retain) TDTokenizer *tokenizer;
+@property (retain) TDCollectionParser *statementParser;
+@property (retain) TDCollectionParser *declarationParser;
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;
 @property (retain) TDCollectionParser *orTermParser;
