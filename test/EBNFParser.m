@@ -32,7 +32,7 @@ static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
 
 @interface EBNFParser ()
-@property (retain, readwrite) TDTokenizer *tokenizer;
+@property (readwrite, retain) TDTokenizer *tokenizer;
 - (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
 
 - (void)workOnWordAssembly:(TDAssembly *)a;
