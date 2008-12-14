@@ -22,6 +22,8 @@
 
 - (void)dealloc {
     self.tokenizer = nil;
+    self.statementParser = nil;
+    self.declarationParser = nil;
     self.expressionParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
@@ -40,13 +42,22 @@
 }
 
 
-+ (TDGrammarParser *)parserForLanguage:(NSString *)s {
++ (TDCollectionParser *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [p completeMatchFor:a];
     return [a pop];
+
+//    TDGrammarParser *p = [TDGrammarParser parser];
+//    p.tokenizer.string = s;
+//    TDRepetition *rep = [TDRepetition repetitionWithSubparser:p.expressionParser];
+//    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+//    a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+//    a = [rep completeMatchFor:a];
+//    return [a pop];
+    
 }
 
 
@@ -64,7 +75,7 @@
 // num                  = Num
 
 
-// satement             = declaration '=' expression ';'
+// satement             = declaration '=' expression
 // declaration          = 'var' LowercaseWord
 // expression           = term orTerm*
 // term                 = factor nextFactor*
@@ -79,6 +90,34 @@
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
+
+
+// satement             = declaration '=' expression
+- (TDCollectionParser *)statementParser {
+    if (!statementParser) {
+        self.statementParser = [TDSequence sequence];
+        statementParser.name = @"statement";
+        [statementParser add:self.declarationParser];
+        [statementParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [statementParser add:self.expressionParser];
+//        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
+    }
+    return statementParser;
+}
+
+
+// declaration          = 'var' LowercaseWord
+- (TDCollectionParser *)declarationParser {
+    if (!declarationParser) {
+        self.declarationParser = [TDSequence sequence];
+        declarationParser.name = @"declaration";
+        [declarationParser add:[[TDLiteral literalWithString:@"var"] discard]];
+        [declarationParser add:[TDLowercaseWord word]];
+//        [declarationParser setAssembler:self selector:@selector(workOnDeclarationAssembly:)];
+    }
+    return declarationParser;
+}
+
 
 // expression        = term orTerm*
 - (TDCollectionParser *)expressionParser {
@@ -402,6 +441,8 @@
 }
 
 @synthesize tokenizer;
+@synthesize statementParser;
+@synthesize declarationParser;
 @synthesize expressionParser;
 @synthesize termParser;
 @synthesize orTermParser;
