@@ -77,7 +77,7 @@
 // cardinalityContent   = num ',' | num ',' num | ',' num
 // num                  = Num
 
-
+// start                = statement*
 // satement             = declaration '=' expression
 // declaration          = 'var' LowercaseWord
 // expression           = term orTerm*

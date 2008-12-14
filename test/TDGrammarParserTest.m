@@ -19,7 +19,7 @@
 }
 
 
-- (void)testHelloPlus {
+- (void)testExprHelloPlus {
     s = @"'hello'+";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -32,7 +32,7 @@
 }
 
 
-- (void)testHelloStar {
+- (void)testExprHelloStar {
     s = @"'hello'*";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -45,7 +45,7 @@
 }
 
 
-- (void)testHelloQuestion {
+- (void)testExprHelloQuestion {
     s = @"'hello'?";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -58,7 +58,7 @@
 }
 
 
-- (void)testOhHaiThereQuestion {
+- (void)testExprOhHaiThereQuestion {
     s = @"'oh'? 'hai'? 'there'?";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -71,7 +71,7 @@
 }
 
 
-- (void)testFooBar {
+- (void)testExprFooBar {
     s = @"'foo' 'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
 
@@ -100,7 +100,7 @@
 }
 
 
-- (void)testFooBarBaz {
+- (void)testExprFooBarBaz {
     s = @"'foo' 'bar' 'baz'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -131,7 +131,7 @@
 }
 
 
-- (void)testFooOrBar {
+- (void)testExprFooOrBar {
     s = @"'foo'|'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -164,7 +164,7 @@
 }
 
 
-//- (void)test4Or7 {
+//- (void)testExpr4Or7 {
 //    s = @"4|7";
 //    a = [TDTokenAssembly assemblyWithString:s];
 //    res = [p bestMatchFor:a];
@@ -207,7 +207,7 @@
 //}
 
 
-- (void)testFooOrBarStar {
+- (void)testExprFooOrBarStar {
     s = @"'foo'|'bar'*";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -248,7 +248,7 @@
 }
 
 
-- (void)testFooOrBarPlus {
+- (void)testExprFooOrBarPlus {
     s = @"'foo'|'bar'+";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -301,7 +301,7 @@
 }
 
 
-- (void)testFooOrBarQuestion {
+- (void)testExprFooOrBarQuestion {
     s = @"'foo'|'bar'?";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -341,7 +341,7 @@
 }
 
 
-- (void)testParenFooOrBarParenStar {
+- (void)testExprParenFooOrBarParenStar {
     s = @"('foo'|'bar')*";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -373,7 +373,7 @@
 }
 
 
-- (void)testParenFooOrBooParenPlus {
+- (void)testExprParenFooOrBooParenPlus {
     s = @"('foo'|'bar')+";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -421,7 +421,7 @@
 }
 
 
-- (void)testParenFooOrBarParenQuestion {
+- (void)testExprParenFooOrBarParenQuestion {
     s = @"('foo'|'bar')?";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -462,7 +462,7 @@
 }
 
 
-- (void)testWord {
+- (void)testExprWord {
     s = @"Word";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -482,7 +482,7 @@
 }
 
 
-- (void)testWordPlus {
+- (void)testExprWordPlus {
     s = @"Word+";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -494,7 +494,7 @@
 }
 
 
-- (void)testNum {
+- (void)testExprNum {
     s = @"Num";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -520,7 +520,7 @@
 }
 
 
-- (void)testNumPlus {
+- (void)testExprNumPlus {
     s = @"Num+";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -532,7 +532,7 @@
 }
 
 
-- (void)testSymbol {
+- (void)testExprSymbol {
     s = @"Symbol";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -558,7 +558,7 @@
 }
 
 
-- (void)testSymbolPlus {
+- (void)testExprSymbolPlus {
     s = @"Symbol+";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
@@ -570,7 +570,7 @@
 }
 
 
-- (void)testQuotedString {
+- (void)testExprQuotedString {
     s = @"QuotedString";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
@@ -590,7 +590,7 @@
 }
 
 
-- (void)testQuotedStringPlus {
+- (void)testExprQuotedStringPlus {
     s = @"QuotedString+";
     // use the result parser
     p = [TDGrammarParser parserForExpression:s];
