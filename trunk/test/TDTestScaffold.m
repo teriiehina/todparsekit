@@ -10,6 +10,7 @@
 
 #define RUN_ALL_TEST_CASES 1
 #define SOLO_TEST_CASE @"TDGrammarParserFactoryTest"
+//#define NS_BLOCK_ASSERTIONS 0
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
