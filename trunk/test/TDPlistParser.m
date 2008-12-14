@@ -50,7 +50,7 @@
 static NSString *kTDPlistNullString = @"<null>";
 
 @interface TDPlistParser ()
-@property (nonatomic, retain, readwrite) TDTokenizer *tokenizer;
+@property (nonatomic, readwrite, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
 @end
