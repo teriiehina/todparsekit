@@ -22,6 +22,44 @@
 ////    NSLog(@"result: %@", result);
 //}
 
+- (void)testAabPlus {
+    s = @"aab+";
+    // use the result parser
+    p = [TDRegularParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSequence class]]);
+    s = @"aabbbb";
+    a = [TDCharacterAssembly assemblyWithString:s];
+    res = (TDCharacterAssembly *)[p bestMatchFor:a];
+    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);    
+}
+
+
+- (void)testAabStar {
+    s = @"aab*";
+    // use the result parser
+    p = [TDRegularParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSequence class]]);
+    s = @"aabbbb";
+    a = [TDCharacterAssembly assemblyWithString:s];
+    res = (TDCharacterAssembly *)[p bestMatchFor:a];
+    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);    
+}
+
+
+- (void)testAabQuestion {
+    s = @"aab?";
+    // use the result parser
+    p = [TDRegularParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSequence class]]);
+    s = @"aabbbb";
+    a = [TDCharacterAssembly assemblyWithString:s];
+    res = (TDCharacterAssembly *)[p bestMatchFor:a];
+    TDEqualObjects(@"[a, a, b]aab^bbb", [res description]);    
+}
+
 
 - (void)testAb {
     s = @"ab";
