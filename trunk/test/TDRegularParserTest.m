@@ -15,12 +15,12 @@
 }
 
 
-- (void)test {
-    s = @"1aa(2|3)*";
-    a = [TDCharacterAssembly assemblyWithString:s];
-    res = [p completeMatchFor:a];
-//    NSLog(@"result: %@", result);
-}
+//- (void)test {
+//    s = @"1aa(2|3)*";
+//    a = [TDCharacterAssembly assemblyWithString:s];
+//    res = [p completeMatchFor:a];
+////    NSLog(@"result: %@", result);
+//}
 
 
 - (void)testAb {
@@ -41,13 +41,44 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [p parse:s];
+    p = [TDRegularParser parserForLanguage:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"ab";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
     TDEqualObjects(@"[a, b]ab^", [res description]);
+}
+
+
+- (void)testAbc {
+    s = @"abc";
+    a = [TDCharacterAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[Sequence]abc^", [res description]);
+    TDSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    TDEquals((NSUInteger)3, seq.subparsers.count);
+    
+    TDSpecificChar *c = [seq.subparsers objectAtIndex:0];
+    TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
+    TDEqualObjects(@"a", c.string);
+    c = [seq.subparsers objectAtIndex:1];
+    TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
+    TDEqualObjects(@"b", c.string);
+    c = [seq.subparsers objectAtIndex:2];
+    TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
+    TDEqualObjects(@"c", c.string);
+    
+    // use the result parser
+    p = [TDRegularParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSequence class]]);
+    s = @"abc";
+    a = [TDCharacterAssembly assemblyWithString:s];
+    res = (TDCharacterAssembly *)[p bestMatchFor:a];
+    TDEqualObjects(@"[a, b, c]abc^", [res description]);
 }
 
 
@@ -69,7 +100,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [p parse:s];
+    p = [TDRegularParser parserForLanguage:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"b";
@@ -97,7 +128,7 @@
     TDEqualObjects(@"7", c.string);
     
     // use the result parser
-    p = [p parse:s];
+    p = [TDRegularParser parserForLanguage:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"4";
@@ -128,7 +159,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [p parse:s];
+    p = [TDRegularParser parserForLanguage:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"bbb";
@@ -160,7 +191,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [p parse:s];
+    p = [TDRegularParser parserForLanguage:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDRepetition class]]);
     s = @"bbbaaa";

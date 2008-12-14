@@ -19,7 +19,7 @@
     TDCollectionParser *phraseStarParser;
     TDCollectionParser *letterOrDigitParser;
 }
-- (id)parse:(NSString *)s;
++ (id)parserForLanguage:(NSString *)s;
 
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;
