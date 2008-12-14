@@ -10,7 +10,7 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDGrammarParser ()
-- (void)workOnWordAssembly:(TDAssembly *)a;
+- (void)workOnLiteralAssembly:(TDAssembly *)a;
 - (void)workOnNumAssembly:(TDAssembly *)a;
 - (void)workOnStarAssembly:(TDAssembly *)a;
 - (void)workOnPlusAssembly:(TDAssembly *)a;
@@ -43,7 +43,7 @@
     self.phrasePlusParser = nil;
     self.phraseQuestionParser = nil;
     self.atomicValueParser = nil;
-    self.wordParser = nil;
+    self.literalParser = nil;
     self.numParser = nil;
     [super dealloc];
 }
@@ -67,18 +67,21 @@
 }
 
 
-// expression       = term orTerm*
-// term             = factor nextFactor*
-// orTerm           = '|' term
-// factor           = phrase | phraseStar | phrasePlus | phraseQuestion
-// nextFactor       = factor
-// phrase           = atomicValue | '(' expression ')'
-// phraseStar       = phrase '*'
-// phraseStar       = phrase '+'
-// phraseStar       = phrase '?'
-// atomicValue      = word | num
-// word             = Word
-// num             = Num
+// expression           = term orTerm*
+// term                 = factor nextFactor*
+// orTerm               = '|' term
+// factor               = phrase | phraseStar | phrasePlus | phraseQuestion
+// nextFactor           = factor
+// phrase               = atomicValue | '(' expression ')'
+// phraseStar           = phrase '*'
+// phrasePlus           = phrase '+'
+// phraseQuestion       = phrase '?'
+// phraseCardinality    = phrase cardinality
+// cardinality          = '{' cardinalityContent '}'
+// cardinalityContent   = Num ',' | Num ',' Num | ',' Num
+// atomicValue          = literal | num
+// literal              = QuotedString
+// num                  = Num
 
 // expression        = term orTerm*
 - (TDCollectionParser *)expressionParser {
@@ -203,25 +206,25 @@
 }
 
 
-// atomicValue    = Word | Num
+// atomicValue    = QuotedString | Num
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
         atomicValueParser.name = @"atomicValue";
-        [atomicValueParser add:self.wordParser];
+        [atomicValueParser add:self.literalParser];
         [atomicValueParser add:self.numParser];
     }
     return atomicValueParser;
 }
 
 
-// word = Word
-- (TDParser *)wordParser {
-    if (!wordParser) {
-        self.wordParser = [TDWord word];
-        [wordParser setAssembler:self selector:@selector(workOnWordAssembly:)];
+// literal = QuotedString
+- (TDParser *)literalParser {
+    if (!literalParser) {
+        self.literalParser = [TDQuotedString quotedString];
+        [literalParser setAssembler:self selector:@selector(workOnLiteralAssembly:)];
     }
-    return wordParser;
+    return literalParser;
 }
 
 
@@ -235,12 +238,13 @@
 }
 
 
-- (void)workOnWordAssembly:(TDAssembly *)a {
+- (void)workOnLiteralAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
-    NSAssert(tok.isWord, @"");
-    [a push:[TDLiteral literalWithString:tok.stringValue]];
+    NSAssert(tok.isQuotedString, @"");
+    NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
+    [a push:[TDLiteral literalWithString:s]];
 }
 
 
@@ -358,6 +362,6 @@
 @synthesize phrasePlusParser;
 @synthesize phraseQuestionParser;
 @synthesize atomicValueParser;
-@synthesize wordParser;
+@synthesize literalParser;
 @synthesize numParser;
 @end
