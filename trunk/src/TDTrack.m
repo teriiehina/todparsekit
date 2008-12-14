@@ -67,7 +67,7 @@
                               expected, @"expected",
                               found, @"found",
                               nil];
-    [[TDTrackException exceptionWithName:@"Track Exception" reason:reason userInfo:userInfo] raise];
+    [[TDTrackException exceptionWithName:TDTrackExceptionName reason:reason userInfo:userInfo] raise];
 }
 
 @end

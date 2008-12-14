@@ -8,6 +8,8 @@
 
 #import "TDTrackException.h"
 
+NSString * const TDTrackExceptionName = @"Track Exception";
+
 @implementation TDTrackException
 
 @end
