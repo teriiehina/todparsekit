@@ -253,49 +253,6 @@
 }
 
 
-//- (void)testExpr4Or7 {
-//    s = @"4|7";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[Alternation]4/|/7^", [res description]);
-//    TDAlternation *alt = [res pop];
-//    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
-//    TDEquals((NSUInteger)2, alt.subparsers.count);
-//    
-//    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-//    TDTrue([c isMemberOfClass:[TDLiteral class]]);
-//    TDEqualObjects(@"4", c.string);
-//    c = [alt.subparsers objectAtIndex:1];
-//    TDTrue([c isMemberOfClass:[TDLiteral class]]);
-//    TDEqualObjects(@"7", c.string);
-//    
-//    // use the result parser
-//    p = [TDGrammarParserFactory parserForGrammar:s];
-//    TDNotNil(p);
-//    TDTrue([p isKindOfClass:[TDAlternation class]]);
-//    s = @"4";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p bestMatchFor:a];
-//    TDEqualObjects(@"[4]4^", [res description]);
-//
-//    s = @"7";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p bestMatchFor:a];
-//    TDEqualObjects(@"[7]7^", [res description]);
-//    
-//    s = @"7 2";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p bestMatchFor:a];
-//    TDEqualObjects(@"[7]7^2", [res description]);
-//    
-//    s = @"2";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [p bestMatchFor:a];
-//    TDNil(res);
-//}
-
-
 - (void)testExprFooOrBarStar {
     s = @"'foo'|'bar'*";
     a = [TDTokenAssembly assemblyWithString:s];
