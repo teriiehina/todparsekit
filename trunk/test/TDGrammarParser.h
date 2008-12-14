@@ -19,10 +19,13 @@
     TDCollectionParser *phraseStarParser;
     TDCollectionParser *phrasePlusParser;
     TDCollectionParser *phraseQuestionParser;
-    TDCollectionParser *letterOrDigitParser;
+    TDCollectionParser *atomicValueParser;
+    TDParser *wordParser;
+    TDParser *numParser;
 }
-+ (id)parserForLanguage:(NSString *)s;
++ (TDGrammarParser *)parserForLanguage:(NSString *)s;
 
+@property (retain) TDTokenizer *tokenizer;
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;
 @property (retain) TDCollectionParser *orTermParser;
@@ -32,5 +35,7 @@
 @property (retain) TDCollectionParser *phraseStarParser;
 @property (retain) TDCollectionParser *phrasePlusParser;
 @property (retain) TDCollectionParser *phraseQuestionParser;
-@property (retain) TDCollectionParser *letterOrDigitParser;
+@property (retain) TDCollectionParser *atomicValueParser;
+@property (retain) TDParser *wordParser;
+@property (retain) TDParser *numParser;
 @end

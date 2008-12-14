@@ -12,7 +12,7 @@
 @interface TDGrammarParserTest : SenTestCase {
     NSString *s;
     TDTokenizer *t;
-    TDCharacterAssembly *a;
+    TDTokenAssembly *a;
     TDGrammarParser *p;
     TDAssembly *res;
 }
