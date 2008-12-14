@@ -1,4 +1,5 @@
-expr = Num;
+hexcolor = '#' Num;
+expr = hexcolor | QuotedString | 'bold' | 'normal' | 'italic';
 property = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
 decl = property ':' expr;
 semiDecl = ';' decl?;
