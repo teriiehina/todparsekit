@@ -11,6 +11,8 @@
 @interface TDRegularParser ()
 - (void)workOnCharAssembly:(TDAssembly *)a;
 - (void)workOnStarAssembly:(TDAssembly *)a;
+- (void)workOnPlusAssembly:(TDAssembly *)a;
+- (void)workOnQuestionAssembly:(TDAssembly *)a;
 //- (void)workOnAndAssembly:(TDAssembly *)a;
 - (void)workOnOrAssembly:(TDAssembly *)a;
 - (void)workOnExpressionAssembly:(TDAssembly *)a;
@@ -35,6 +37,8 @@
     self.nextFactorParser = nil;
     self.phraseParser = nil;
     self.phraseStarParser = nil;
+    self.phrasePlusParser = nil;
+    self.phraseQuestionParser = nil;
     self.letterOrDigitParser = nil;
     [super dealloc];
 }
@@ -51,10 +55,12 @@
 // expression        = term orTerm*
 // term              = factor nextFactor*
 // orTerm            = '|' term
-// factor            = phrase | phraseStar
+// factor            = phrase | phraseStar | phrasePlus | phraseQuestion
 // nextFactor        = factor
 // phrase            = letterOrDigit | '(' expression ')'
 // phraseStar        = phrase '*'
+// phraseStar        = phrase '+'
+// phraseStar        = phrase '?'
 // letterOrDigit     = Letter | Digit
 
 
@@ -64,9 +70,7 @@
         self.expressionParser = [TDSequence sequence];
         expressionParser.name = @"expression";
         [expressionParser add:self.termParser];
-        
-        TDRepetition *r = [TDRepetition repetitionWithSubparser:self.orTermParser];
-        [expressionParser add:r];
+        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
         [expressionParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
     }
     return expressionParser;
@@ -98,13 +102,15 @@
 }
 
 
-// factor            = phrase | phraseStar
+// factor            = phrase | phraseStar | phrasePlus | phraseQuestion
 - (TDCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
         factorParser.name = @"factor";
         [factorParser add:self.phraseParser];
         [factorParser add:self.phraseStarParser];
+        [factorParser add:self.phrasePlusParser];
+        [factorParser add:self.phraseQuestionParser];
     }
     return factorParser;
 }
@@ -117,6 +123,8 @@
         nextFactorParser.name = @"nextFactor";
         [nextFactorParser add:self.phraseParser];
         [nextFactorParser add:self.phraseStarParser];
+        [nextFactorParser add:self.phrasePlusParser];
+        [nextFactorParser add:self.phraseQuestionParser];
 //        [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return nextFactorParser;
@@ -153,6 +161,32 @@
 }
 
 
+// phrasePlus        = phrase '+'
+- (TDCollectionParser *)phrasePlusParser {
+    if (!phrasePlusParser) {
+        self.phrasePlusParser = [TDSequence sequence];
+        phrasePlusParser.name = @"phrasePlus";
+        [phrasePlusParser add:self.phraseParser];
+        [phrasePlusParser add:[[TDSpecificChar specificCharWithChar:'+'] discard]];
+        [phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
+    }
+    return phrasePlusParser;
+}
+
+
+// phrasePlus        = phrase '?'
+- (TDCollectionParser *)phraseQuestionParser {
+    if (!phraseQuestionParser) {
+        self.phraseQuestionParser = [TDSequence sequence];
+        phraseQuestionParser.name = @"phraseQuestion";
+        [phraseQuestionParser add:self.phraseParser];
+        [phraseQuestionParser add:[[TDSpecificChar specificCharWithChar:'?'] discard]];
+        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
+    }
+    return phraseQuestionParser;
+}
+
+
 // letterOrDigit    = Letter | Digit
 - (TDCollectionParser *)letterOrDigitParser {
     if (!letterOrDigitParser) {
@@ -177,12 +211,36 @@
 
 
 - (void)workOnStarAssembly:(TDAssembly *)a {
-//    NSLog(@"%s", _cmd);
-//    NSLog(@"a: %@", a);
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[TDParser class]], @"");
-    TDRepetition *p = [TDRepetition repetitionWithSubparser:top];
-    [a push:p];
+    TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
+    [a push:rep];
+}
+
+
+- (void)workOnPlusAssembly:(TDAssembly *)a {
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
+    id top = [a pop];
+    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    TDSequence *seq = [TDSequence sequence];
+    [seq add:top];
+    [seq add:[TDRepetition repetitionWithSubparser:top]];
+    [a push:seq];
+}
+
+
+- (void)workOnQuestionAssembly:(TDAssembly *)a {
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
+    id top = [a pop];
+    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    TDAlternation *alt = [TDAlternation alternation];
+    [alt add:[TDEmpty empty]];
+    [alt add:top];
+    [a push:alt];
 }
 
 
@@ -204,6 +262,8 @@
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     
+    NSAssert(![a isStackEmpty], @"");
+    
     id obj = nil;
     NSMutableArray *objs = [NSMutableArray array];
     while (![a isStackEmpty]) {
@@ -219,9 +279,10 @@
             [seq add:obj];
         }
         [a push:seq];
-    } else if (objs.count) {
-        TDSpecificChar *c = [objs objectAtIndex:0];
-        [a push:c];
+    } else {
+        NSAssert((NSUInteger)1 == objs.count, @"");
+        TDParser *p = [objs objectAtIndex:0];
+        [a push:p];
     }
 }
 
@@ -250,5 +311,7 @@
 @synthesize nextFactorParser;
 @synthesize phraseParser;
 @synthesize phraseStarParser;
+@synthesize phrasePlusParser;
+@synthesize phraseQuestionParser;
 @synthesize letterOrDigitParser;
 @end
