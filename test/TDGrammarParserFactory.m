@@ -375,11 +375,13 @@
 
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
+    NSLog(@"%s", _cmd);
+    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
     NSAssert(a.target, @"");
     TDParser *p = [a.target objectForKey:tok.stringValue];
-    NSAssert([p isKindOfClass:[TDParser class]], @"");
+    //NSAssert([p isKindOfClass:[TDParser class]], @"");
     [a push:p];
 }
 

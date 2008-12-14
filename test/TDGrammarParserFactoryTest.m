@@ -37,6 +37,38 @@
 }
 
 
+- (void)testStartRefToLiteral {
+    s = @"foo = 'bar'; start = foo;";
+    lp = [factory parserForGrammar:s];
+    TDNotNil(lp);
+    NSLog(@"lp: %@", lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
+
+
+- (void)testStartRefToLiteral2 {
+    s = @"foo = 'bar'; baz = 'bat'; start = foo | baz;";
+    lp = [factory parserForGrammar:s];
+    TDNotNil(lp);
+    NSLog(@"lp: %@", lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+
+    s = @"bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bat]bat^", [res description]);
+}
+
+
 - (void)testExprHelloPlus {
     s = @"'hello'+";
     // use the result parser
