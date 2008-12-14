@@ -37,7 +37,8 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    return [literal isEqual:obj];
+    return [literal.stringValue isEqualToString:[obj stringValue]];
+    //return [literal isEqual:obj];
 }
 
 
