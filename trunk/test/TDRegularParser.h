@@ -17,6 +17,8 @@
     TDCollectionParser *nextFactorParser;
     TDCollectionParser *phraseParser;
     TDCollectionParser *phraseStarParser;
+    TDCollectionParser *phrasePlusParser;
+    TDCollectionParser *phraseQuestionParser;
     TDCollectionParser *letterOrDigitParser;
 }
 + (id)parserForLanguage:(NSString *)s;
@@ -28,5 +30,7 @@
 @property (retain) TDCollectionParser *nextFactorParser;
 @property (retain) TDCollectionParser *phraseParser;
 @property (retain) TDCollectionParser *phraseStarParser;
+@property (retain) TDCollectionParser *phrasePlusParser;
+@property (retain) TDCollectionParser *phraseQuestionParser;
 @property (retain) TDCollectionParser *letterOrDigitParser;
 @end
