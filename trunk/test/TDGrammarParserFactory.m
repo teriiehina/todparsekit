@@ -180,7 +180,7 @@
 // orTerm            = '|' term
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
-        self.orTermParser = [TDSequence sequence];
+        self.orTermParser = [TDTrack track];
         orTermParser.name = @"orTerm";
         [orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
         [orTermParser add:self.termParser];
@@ -225,11 +225,11 @@
         phraseParser.name = @"phrase";
         [phraseParser add:self.atomicValueParser];
 
-        TDSequence *s = [TDSequence sequence];
-        [s add:[[TDSymbol symbolWithString:@"("] discard]];
-        [s add:self.expressionParser];
-        [s add:[[TDSymbol symbolWithString:@")"] discard]];
-        [phraseParser add:s];
+        TDTrack *t = [TDTrack track];
+        [t add:[[TDSymbol symbolWithString:@"("] discard]];
+        [t add:self.expressionParser];
+        [t add:[[TDSymbol symbolWithString:@")"] discard]];
+        [phraseParser add:t];
     }
     return phraseParser;
 }
@@ -399,7 +399,8 @@
     } else if ([s isEqualToString:@"Symbol"]) {
         p = [TDSymbol symbol];
     } else {
-        //NSAssert1(0, @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, QuotedString, Num, Symbol.", s);
+        [NSException raise:@"Grammar Exception" format:
+         @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, QuotedString, Num, Symbol.", s];
     }
     [a push:p];
 }
