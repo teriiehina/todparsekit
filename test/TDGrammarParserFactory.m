@@ -1,15 +1,15 @@
 //
-//  TDGrammarParser.m
+//  TDGrammarParserFactory.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "TDGrammarParser.h"
+#import "TDGrammarParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
 
-@implementation TDGrammarParser
+@implementation TDGrammarParserFactory
 
 - (id)init {
     self = [super init];
@@ -42,8 +42,8 @@
 }
 
 
-+ (TDParser *)parserForLanguage:(NSString *)s {
-    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
++ (TDParser *)parserForGrammar:(NSString *)s {
+    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
     p.tokenizer.string = s;
     
     TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:p.tokenizer delimiter:@";"] autorelease];
@@ -72,7 +72,7 @@
 
 
 + (TDSequence *)parserForExpression:(NSString *)s {
-    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
+    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
     [seq add:p.expressionParser];

@@ -1,5 +1,5 @@
 //
-//  TDGrammarParser.h
+//  TDGrammarParserFactory.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
@@ -8,7 +8,7 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDGrammarParser : NSObject {
+@interface TDGrammarParserFactory : NSObject {
     TDTokenizer *tokenizer;
     TDToken *eqTok;
     TDCollectionParser *statementParser;
@@ -27,7 +27,7 @@
     TDParser *constantParser;
     TDParser *numParser;
 }
-+ (TDParser *)parserForLanguage:(NSString *)s;
++ (TDParser *)parserForGrammar:(NSString *)s;
 + (TDSequence *)parserForExpression:(NSString *)s;
 
 @property (retain) TDTokenizer *tokenizer;

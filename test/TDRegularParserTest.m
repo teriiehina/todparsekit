@@ -18,7 +18,7 @@
 - (void)testAabPlus {
     s = @"aab+";
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"aabbbb";
@@ -31,7 +31,7 @@
 - (void)testAabStar {
     s = @"aab*";
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"aabbbb";
@@ -44,7 +44,7 @@
 - (void)testAabQuestion {
     s = @"aab?";
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"aabbbb";
@@ -72,7 +72,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"ab";
@@ -103,7 +103,7 @@
     TDEqualObjects(@"c", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"abc";
@@ -131,7 +131,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"b";
@@ -159,7 +159,7 @@
     TDEqualObjects(@"7", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"4";
@@ -190,7 +190,7 @@
     TDEqualObjects(@"b", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"bbb";
@@ -228,7 +228,7 @@
     TDEqualObjects(@"b", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"bbb";
@@ -268,7 +268,7 @@
     TDEqualObjects(@"b", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"bbb";
@@ -305,7 +305,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDRepetition class]]);
     s = @"bbbaaa";
@@ -353,7 +353,7 @@
     TDEqualObjects(@"b", c.string);
 
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDSequence class]]);
     s = @"bbbaaa";
@@ -389,7 +389,7 @@
     TDEqualObjects(@"b", c.string);
     
     // use the result parser
-    p = [TDRegularParser parserForLanguage:s];
+    p = [TDRegularParser parserForGrammar:s];
     TDNotNil(p);
     TDTrue([p isKindOfClass:[TDAlternation class]]);
     s = @"bbbaaa";
