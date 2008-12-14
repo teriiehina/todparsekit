@@ -72,20 +72,20 @@
 - (TDParser *)parserForGrammar:(NSString *)s {
     self.tokenizer.string = s;
     
-    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"] autorelease];
-
-    TDAssembly *a = nil;
-    NSArray *toks = nil;
+    TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+
     while ([src hasMore]) {
-        toks = [src nextTokenArray];
-        a = [TDTokenAssembly assemblyWithTokenArray:toks];
+        NSArray *toks = [src nextTokenArray];
+        TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
         a.target = target;
         a = [self.statementParser completeMatchFor:a];
         target = a.target;
     }
 
-    TDCollectionParser *start = [a.target objectForKey:@"start"];
+    [src release];
+
+    TDCollectionParser *start = [target objectForKey:@"start"];
 
     if (start && [start isKindOfClass:[TDParser class]]) {
         return start;
@@ -93,7 +93,6 @@
         [NSException raise:@"GrammarException" format:@"The provided language grammar was invalid"];
         return nil;
     }
-    
 }
 
 
