@@ -23,7 +23,8 @@
     s = @"start = 'bar'";
     lp = [TDGrammarParser parserForLanguage:s];
     TDNotNil(lp);
-    TDTrue([lp class] == [TDRepetition class]);
+    NSLog(@"lp: %@", lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
     s = @"bar";
     
 }

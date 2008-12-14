@@ -12,11 +12,10 @@
 @implementation TDGrammarParser
 
 - (id)init {
-    self = [super init];
+    self = [super initWithSubparser:self.statementParser];
     if (self) {
         self.eqTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
-        [self add:[TDRepetition repetitionWithSubparser:self.statementParser]];
-//        [self setAssembler:self selector:@selector(workOnGrammarAssemly:)];
+//        [self add:[TDRepetition repetitionWithSubparser:self.statementParser]];
     }
     return self;
 }
@@ -53,7 +52,10 @@
     NSLog(@"running on a: %@", a);
     a = [p completeMatchFor:a];
     NSLog(@"returning a: %@", a);
-    return [a pop];
+    NSAssert(a.target, @"");
+    TDCollectionParser *start = [a.target objectForKey:@"start"];
+    NSAssert(start, @"");
+    return start;
 }
 
 
@@ -289,19 +291,6 @@
 }
 
 
-- (void)workOnGrammarAssemly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
-    NSLog(@"a.target: %@", a.target);
-
-    NSAssert(a.target, @"");
-    TDParser *start = [a.target objectForKey:@"start"];
-    NSAssert(start, @"");
-    //NSAssert([TDRepetition start, @"");
-    [a push:start];
-}
-
-
 - (void)workOnStatementAssembly:(TDAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
@@ -320,7 +309,7 @@
     id d = [NSMutableDictionary dictionaryWithDictionary:a.target];
     [d setObject:p forKey:tok.stringValue];
     a.target = d;
-    [a push:[TDRepetition repetitionWithSubparser:p]];
+    //[a push:[TDRepetition repetitionWithSubparser:p]];
 }
 
 
