@@ -35,6 +35,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, {, font-family, :, 47, }]foo/{/font-family/:/47/}^", [res description]);
+
+    s = @"foo {font-family:47} bar {color:33; font-style:1}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, :, 47, }, bar, {, color, :, 33, ;, font-style, :, 1, }]foo/{/font-family/:/47/}/bar/{/color/:/33/;/font-style/:/1/}^", [res description]);
 }
 
 
