@@ -9,6 +9,11 @@
 #import "TDGrammarParserFactoryTest.h"
 #import <TDParseKit/TDParseKit.h>
 
+@interface TDGrammarParserFactory ()
+- (TDSequence *)parserForExpression:(NSString *)s;
+@property (retain) TDCollectionParser *expressionParser;
+@end
+
 @implementation TDGrammarParserFactoryTest
 
 - (void)setUp {

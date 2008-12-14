@@ -30,23 +30,4 @@
 + (id)factory;
 
 - (TDParser *)parserForGrammar:(NSString *)s;
-- (TDSequence *)parserForExpression:(NSString *)s;
-
-@property (retain) TDTokenizer *tokenizer;
-@property (retain) TDToken *eqTok;
-@property (retain) TDCollectionParser *statementParser;
-@property (retain) TDCollectionParser *expressionParser;
-@property (retain) TDCollectionParser *termParser;
-@property (retain) TDCollectionParser *orTermParser;
-@property (retain) TDCollectionParser *factorParser;
-@property (retain) TDCollectionParser *nextFactorParser;
-@property (retain) TDCollectionParser *phraseParser;
-@property (retain) TDCollectionParser *phraseStarParser;
-@property (retain) TDCollectionParser *phrasePlusParser;
-@property (retain) TDCollectionParser *phraseQuestionParser;
-@property (retain) TDCollectionParser *atomicValueParser;
-@property (retain) TDParser *literalParser;
-@property (retain) TDParser *variableParser;
-@property (retain) TDParser *constantParser;
-@property (retain) TDParser *numParser;
 @end
