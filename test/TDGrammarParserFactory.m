@@ -324,7 +324,7 @@
 
 - (void)workOnStatementAssembly:(TDAssembly *)a {
     TDParser *p = [a pop];
-    TDToken *tok = [a pop]; // discard
+    TDToken *tok = [a pop]; // discard '=' tok
     tok = [a pop];
     [a.target setObject:p forKey:tok.stringValue];
 }
