@@ -19,14 +19,16 @@
 }
 
 
-- (void)testStatement {
+- (void)testStartLiteral {
     s = @"start = 'bar'";
     lp = [TDGrammarParser parserForLanguage:s];
     TDNotNil(lp);
     NSLog(@"lp: %@", lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     s = @"bar";
-    
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
 }
 
 
