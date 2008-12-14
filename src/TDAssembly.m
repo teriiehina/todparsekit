@@ -123,8 +123,9 @@
 
 
 - (void)push:(id)object {
-    NSParameterAssert(object);
-    [stack addObject:object];
+    if (object) {
+        [stack addObject:object];
+    }
 }
 
 
