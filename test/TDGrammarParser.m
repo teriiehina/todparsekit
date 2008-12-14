@@ -15,7 +15,6 @@
     self = [super initWithSubparser:self.statementParser];
     if (self) {
         self.eqTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
-//        [self add:[TDRepetition repetitionWithSubparser:self.statementParser]];
     }
     return self;
 }
@@ -46,16 +45,19 @@
 + (TDCollectionParser *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
+
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    NSAssert(a, @"");
-    NSLog(@"running on a: %@", a);
+    
     a = [p completeMatchFor:a];
-    NSLog(@"returning a: %@", a);
-    NSAssert(a.target, @"");
+    
     TDCollectionParser *start = [a.target objectForKey:@"start"];
-    NSAssert(start, @"");
-    return start;
+    if (start && [start isKindOfClass:[TDParser class]]) {
+        return start;
+    } else {
+        [NSException raise:@"GrammarException" format:@"The provided language grammar was invalid"];
+        return nil;
+    }
 }
 
 
@@ -292,52 +294,37 @@
 
 
 - (void)workOnStatementAssembly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
-
     TDParser *p = [a pop];
-    
-    //NSAssert(0, @"");
-
     NSAssert([p isKindOfClass:[TDParser class]], @"");
-    TDToken *tok = [a pop];
+
+    TDToken *tok = [a pop]; // discard
     NSAssert(tok.isSymbol, @"");
     NSAssert([tok.stringValue isEqualToString:@"="], @"");
+    
     tok = [a pop];
     NSAssert(tok.isWord, @"");
+
     NSAssert(a.target, @"");
     id d = [NSMutableDictionary dictionaryWithDictionary:a.target];
     [d setObject:p forKey:tok.stringValue];
     a.target = d;
-    //[a push:[TDRepetition repetitionWithSubparser:p]];
 }
 
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
-    
     NSAssert(![a isStackEmpty], @"");
-    
-    id obj = nil;
     NSArray *objs = [a objectsAbove:eqTok];
-//    NSMutableArray *objs = [NSMutableArray array];
-//    while (![a isStackEmpty]) {
-//        obj = [a pop];
-//        [objs addObject:obj];
-//        NSAssert([obj isKindOfClass:[TDParser class]], @"");
-//    }
-    
+    NSAssert(objs.count, @"");
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
         NSEnumerator *e = [objs reverseObjectEnumerator];
+        id obj = nil;
         while (obj = [e nextObject]) {
             NSAssert([obj isKindOfClass:[TDParser class]], @"");
             [seq add:obj];
         }
         [a push:seq];
     } else {
-        NSAssert((NSUInteger)1 == objs.count, @"");
         TDParser *p = [objs objectAtIndex:0];
         NSAssert([p isKindOfClass:[TDParser class]], @"");
         [a push:p];
@@ -346,8 +333,6 @@
 
 
 - (void)workOnLiteralAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isQuotedString, @"");
     NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
@@ -356,19 +341,16 @@
 
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
     NSAssert(a.target, @"");
     TDParser *p = [a.target objectForKey:tok.stringValue];
+    NSAssert([p isKindOfClass:[TDParser class]], @"");
     [a push:p];
 }
 
 
 - (void)workOnConstantAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
     NSString *s = tok.stringValue;
@@ -389,8 +371,6 @@
 
 
 - (void)workOnNumAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isNumber, @"");
     [a push:[TDLiteral literalWithString:tok.stringValue]];
@@ -398,8 +378,6 @@
 
 
 - (void)workOnStarAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
@@ -408,8 +386,6 @@
 
 
 - (void)workOnPlusAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDSequence *seq = [TDSequence sequence];
@@ -420,8 +396,6 @@
 
 
 - (void)workOnQuestionAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDAlternation *alt = [TDAlternation alternation];
@@ -431,29 +405,9 @@
 }
 
 
-//- (void)workOnAndAssembly:(TDAssembly *)a {
-////    NSLog(@"%s", _cmd);
-////    NSLog(@"a: %@", a);
-//    id second = [a pop];
-//    id first = [a pop];
-//    NSAssert([first isKindOfClass:[TDParser class]], @"");
-//    NSAssert([second isKindOfClass:[TDParser class]], @"");
-//    TDSequence *p = [TDSequence sequence];
-//    [p add:first];
-//    [p add:second];
-//    [a push:p];
-//}
-
-
 - (void)workOnOrAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
     id second = [a pop];
     id first = [a pop];
-    //    NSLog(@"first: %@", first);
-    //    NSLog(@"second: %@", second);
-    NSAssert(first, @"");
-    NSAssert(second, @"");
     NSAssert([first isKindOfClass:[TDParser class]], @"");
     NSAssert([second isKindOfClass:[TDParser class]], @"");
     TDAlternation *p = [TDAlternation alternation];
