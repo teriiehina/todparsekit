@@ -16,7 +16,7 @@
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
-#import "TDGrammarParser.h"
+#import "TDGrammarParserFactory.h"
 
 @implementation DebugAppDelegate
 
@@ -132,7 +132,7 @@
 
 - (void)doGrammarParser {
     NSString *s = nil;
-    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
+    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
     TDAssembly *a = nil;
     TDParser *res = nil;
     
