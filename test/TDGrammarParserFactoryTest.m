@@ -9,8 +9,6 @@
 #import "TDGrammarParserFactoryTest.h"
 #import <TDParseKit/TDParseKit.h>
 
-#define NS_BLOCK_ASSERTIONS 1
-
 @interface TDGrammarParserFactory ()
 - (TDSequence *)parserForExpression:(NSString *)s;
 @property (retain) TDCollectionParser *expressionParser;
@@ -78,7 +76,19 @@
 
 - (void)testStmtTrackException {
     s = @"start = (foo | baz*;";
-    STAssertThrowsSpecific([factory parserForGrammar:s], TDTrackException, @"");
+    STAssertThrowsSpecificNamed([factory parserForGrammar:s], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"start = ";
+    STAssertThrowsSpecificNamed([factory parserForGrammar:s], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testExprTrackException {
+    s = @"(foo";
+    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"foo|";
+    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
 }
 
 
