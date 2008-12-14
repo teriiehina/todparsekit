@@ -51,7 +51,7 @@
 
 
 - (void)testStartRefToLiteral2 {
-    s = @"foo = 'bar'; baz = 'bat'; start = foo | baz;";
+    s = @"foo = 'bar'; baz = 'bat'; start = (foo | baz)*;";
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
     NSLog(@"lp: %@", lp);
@@ -66,6 +66,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bat]bat^", [res description]);
+
+    s = @"bat bat bat bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bat, bat, bat, bar]bat/bat/bat/bar^", [res description]);
 }
 
 
