@@ -62,15 +62,15 @@
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 
-    s = @"bat";
+    s = @"bat bat";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[bat]bat^", [res description]);
+    TDEqualObjects(@"[bat, bat]bat/bat^", [res description]);
 
-    s = @"bat bat bat bar";
+    s = @"bat bat bat bat bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[bat, bat, bat, bar]bat/bat/bat/bar^", [res description]);
+    TDEqualObjects(@"[bat, bat, bat, bat, bar]bat/bat/bat/bat/bar^", [res description]);
 }
 
 
