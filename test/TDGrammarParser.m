@@ -78,8 +78,8 @@
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' cardinalityContent '}'
-// cardinalityContent   = Num ',' | Num ',' Num | ',' Num
-// atomicValue          = literal | num
+// cardinalityContent   = num ',' | num ',' num | ',' num
+// atomicValue          = literal
 // literal              = QuotedString
 // num                  = Num
 
@@ -212,7 +212,6 @@
         self.atomicValueParser = [TDAlternation alternation];
         atomicValueParser.name = @"atomicValue";
         [atomicValueParser add:self.literalParser];
-        [atomicValueParser add:self.numParser];
     }
     return atomicValueParser;
 }
