@@ -116,11 +116,6 @@
     return tokenizer;
 }
 
-// phraseCardinality    = phrase cardinality
-// cardinality          = '{' cardinalityContent '}'
-// cardinalityContent   = num ',' | num ',' num | ',' num
-// num                  = Num
-
 // start                = statement*
 // satement             = LowercaseWord '=' expression
 // expression           = term orTerm*
