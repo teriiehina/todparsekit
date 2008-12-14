@@ -527,4 +527,74 @@
     TDEqualObjects(@"[333, 444]333/444^", [res description]);    
 }
 
+
+- (void)testSymbol {
+    s = @"Symbol";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[Symbol]Symbol^", [res description]);
+    TDSymbol *w = [res pop];
+    TDTrue([w isMemberOfClass:[TDSymbol class]]);
+    
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSymbol class]]);
+    
+    s = @"? #";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[?]?^#", [res description]);    
+    
+    s = @"hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNil(res);
+}
+
+
+- (void)testSymbolPlus {
+    s = @"Symbol+";
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    s = @"% *";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[%, *]%/*^", [res description]);    
+}
+
+
+- (void)testQuotedString {
+    s = @"QuotedString";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[QuotedString]QuotedString^", [res description]);
+    TDQuotedString *w = [res pop];
+    TDTrue([w isMemberOfClass:[TDQuotedString class]]);
+    
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDQuotedString class]]);
+    s = @"'hello' 'hello'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"['hello']'hello'^'hello'", [res description]);    
+}
+
+
+- (void)testQuotedStringPlus {
+    s = @"QuotedString+";
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    s = @"'hello' 'hello'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);    
+}
+
 @end
