@@ -17,7 +17,7 @@
 
 
 - (void)testHelloPlus {
-    s = @"hello+";
+    s = @"'hello'+";
     // use the result parser
     p = [TDGrammarParser parserForLanguage:s];
     TDNotNil(p);
@@ -30,7 +30,7 @@
 
 
 - (void)testHelloStar {
-    s = @"hello*";
+    s = @"'hello'*";
     // use the result parser
     p = [TDGrammarParser parserForLanguage:s];
     TDNotNil(p);
@@ -43,7 +43,7 @@
 
 
 - (void)testHelloQuestion {
-    s = @"hello?";
+    s = @"'hello'?";
     // use the result parser
     p = [TDGrammarParser parserForLanguage:s];
     TDNotNil(p);
@@ -55,12 +55,25 @@
 }
 
 
+- (void)testOhHaiThereQuestion {
+    s = @"'oh'? 'hai'? 'there'?";
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDSequence class]]);
+    s = @"there";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[there]there^", [res description]);    
+}
+
+
 - (void)testFooBar {
-    s = @"foo bar";
+    s = @"'foo' 'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Sequence]foo/bar^", [res description]);
+    TDEqualObjects(@"[Sequence]'foo'/'bar'^", [res description]);
     TDSequence *seq = [res pop];
     TDTrue([seq isMemberOfClass:[TDSequence class]]);
     TDEquals((NSUInteger)2, seq.subparsers.count);
@@ -84,11 +97,11 @@
 
 
 - (void)testFooBarBaz {
-    s = @"foo bar baz";
+    s = @"'foo' 'bar' 'baz'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Sequence]foo/bar/baz^", [res description]);
+    TDEqualObjects(@"[Sequence]'foo'/'bar'/'baz'^", [res description]);
     TDSequence *seq = [res pop];
     TDTrue([seq isMemberOfClass:[TDSequence class]]);
     TDEquals((NSUInteger)3, seq.subparsers.count);
@@ -115,11 +128,11 @@
 
 
 - (void)testFooOrBar {
-    s = @"foo|bar";
+    s = @"'foo'|'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Alternation]foo/|/bar^", [res description]);
+    TDEqualObjects(@"[Alternation]'foo'/|/'bar'^", [res description]);
     TDAlternation *alt = [res pop];
     TDTrue([alt isMemberOfClass:[TDAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
@@ -147,55 +160,55 @@
 }
 
 
-- (void)test4Or7 {
-    s = @"4|7";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
-    TDNotNil(res);
-    TDEqualObjects(@"[Alternation]4/|/7^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
-    TDEquals((NSUInteger)2, alt.subparsers.count);
-    
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
-    TDEqualObjects(@"4", c.string);
-    c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
-    TDEqualObjects(@"7", c.string);
-    
-    // use the result parser
-    p = [TDGrammarParser parserForLanguage:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
-    s = @"4";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
-    TDEqualObjects(@"[4]4^", [res description]);
-
-    s = @"7";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
-    TDEqualObjects(@"[7]7^", [res description]);
-    
-    s = @"7 2";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
-    TDEqualObjects(@"[7]7^2", [res description]);
-    
-    s = @"2";
-    a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
-    TDNil(res);
-}
+//- (void)test4Or7 {
+//    s = @"4|7";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p bestMatchFor:a];
+//    TDNotNil(res);
+//    TDEqualObjects(@"[Alternation]4/|/7^", [res description]);
+//    TDAlternation *alt = [res pop];
+//    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+//    TDEquals((NSUInteger)2, alt.subparsers.count);
+//    
+//    TDLiteral *c = [alt.subparsers objectAtIndex:0];
+//    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+//    TDEqualObjects(@"4", c.string);
+//    c = [alt.subparsers objectAtIndex:1];
+//    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+//    TDEqualObjects(@"7", c.string);
+//    
+//    // use the result parser
+//    p = [TDGrammarParser parserForLanguage:s];
+//    TDNotNil(p);
+//    TDTrue([p isKindOfClass:[TDAlternation class]]);
+//    s = @"4";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p bestMatchFor:a];
+//    TDEqualObjects(@"[4]4^", [res description]);
+//
+//    s = @"7";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p bestMatchFor:a];
+//    TDEqualObjects(@"[7]7^", [res description]);
+//    
+//    s = @"7 2";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p bestMatchFor:a];
+//    TDEqualObjects(@"[7]7^2", [res description]);
+//    
+//    s = @"2";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [p bestMatchFor:a];
+//    TDNil(res);
+//}
 
 
 - (void)testFooOrBarStar {
-    s = @"foo|bar*";
+    s = @"'foo'|'bar'*";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Alternation]foo/|/bar/*^", [res description]);
+    TDEqualObjects(@"[Alternation]'foo'/|/'bar'/*^", [res description]);
     TDAlternation *alt = [res pop];
     TDTrue([alt isMemberOfClass:[TDAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
@@ -232,11 +245,11 @@
 
 
 - (void)testFooOrBarPlus {
-    s = @"foo|bar+";
+    s = @"'foo'|'bar'+";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Alternation]foo/|/bar/+^", [res description]);
+    TDEqualObjects(@"[Alternation]'foo'/|/'bar'/+^", [res description]);
     TDAlternation *alt = [res pop];
     TDTrue([alt isMemberOfClass:[TDAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
@@ -285,11 +298,11 @@
 
 
 - (void)testFooOrBarQuestion {
-    s = @"foo|bar?";
+    s = @"'foo'|'bar'?";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Alternation]foo/|/bar/?^", [res description]);
+    TDEqualObjects(@"[Alternation]'foo'/|/'bar'/?^", [res description]);
     TDAlternation *alt = [res pop];
     TDTrue([alt isMemberOfClass:[TDAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
@@ -325,11 +338,11 @@
 
 
 - (void)testParenFooOrBarParenStar {
-    s = @"(foo|bar)*";
+    s = @"('foo'|'bar')*";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Repetition](/foo/|/bar/)/*^", [res description]);
+    TDEqualObjects(@"[Repetition](/'foo'/|/'bar'/)/*^", [res description]);
     TDRepetition *rep = [res pop];
     TDTrue([rep isMemberOfClass:[TDRepetition class]]);
     
@@ -357,11 +370,11 @@
 
 
 - (void)testParenFooOrBooParenPlus {
-    s = @"(foo|bar)+";
+    s = @"('foo'|'bar')+";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Sequence](/foo/|/bar/)/+^", [res description]);
+    TDEqualObjects(@"[Sequence](/'foo'/|/'bar'/)/+^", [res description]);
     TDSequence *seq = [res pop];
     TDTrue([seq isMemberOfClass:[TDSequence class]]);
     
@@ -405,11 +418,11 @@
 
 
 - (void)testParenFooOrBarParenQuestion {
-    s = @"(foo|bar)?";
+    s = @"('foo'|'bar')?";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [p bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Alternation](/foo/|/bar/)/?^", [res description]);
+    TDEqualObjects(@"[Alternation](/'foo'/|/'bar'/)/?^", [res description]);
     TDAlternation *alt = [res pop];
     TDTrue([alt isMemberOfClass:[TDAlternation class]]);
     

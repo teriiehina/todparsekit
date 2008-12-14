@@ -20,7 +20,7 @@
     TDCollectionParser *phrasePlusParser;
     TDCollectionParser *phraseQuestionParser;
     TDCollectionParser *atomicValueParser;
-    TDParser *wordParser;
+    TDParser *literalParser;
     TDParser *numParser;
 }
 + (TDGrammarParser *)parserForLanguage:(NSString *)s;
@@ -36,6 +36,6 @@
 @property (retain) TDCollectionParser *phrasePlusParser;
 @property (retain) TDCollectionParser *phraseQuestionParser;
 @property (retain) TDCollectionParser *atomicValueParser;
-@property (retain) TDParser *wordParser;
+@property (retain) TDParser *literalParser;
 @property (retain) TDParser *numParser;
 @end
