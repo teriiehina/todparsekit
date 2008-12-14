@@ -14,7 +14,7 @@
 - (id)init {
     self = [super initWithSubparser:self.statementParser];
     if (self) {
-
+//        [self setAssembler:self selector:@selector(workOnGrammarAssemly:)];
     }
     return self;
 }
@@ -23,7 +23,6 @@
 - (void)dealloc {
     self.tokenizer = nil;
     self.statementParser = nil;
-    self.declarationParser = nil;
     self.expressionParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
@@ -42,12 +41,15 @@
 }
 
 
-+ (TDCollectionParser *)parserForLanguage:(NSString *)s {
++ (TDRepetition *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+    NSAssert(a, @"");
+    NSLog(@"running on a: %@", a);
     a = [p completeMatchFor:a];
+    NSLog(@"returning a: %@", a);
     return [a pop];
 }
 
@@ -78,8 +80,7 @@
 // num                  = Num
 
 // start                = statement*
-// satement             = declaration '=' expression
-// declaration          = 'var' LowercaseWord
+// satement             = LowercaseWord '=' expression
 // expression           = term orTerm*
 // term                 = factor nextFactor*
 // orTerm               = '|' term
@@ -95,30 +96,17 @@
 // constant             = UppercaseWord
 
 
-// satement             = declaration '=' expression
+// satement             = LowercaseWord '=' expression
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDSequence sequence];
         statementParser.name = @"statement";
-        [statementParser add:self.declarationParser];
-        [statementParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [statementParser add:[TDLowercaseWord word]];
+        [statementParser add:[TDSymbol symbolWithString:@"="]];
         [statementParser add:self.expressionParser];
-//        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
+        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
     }
     return statementParser;
-}
-
-
-// declaration          = 'var' LowercaseWord
-- (TDCollectionParser *)declarationParser {
-    if (!declarationParser) {
-        self.declarationParser = [TDSequence sequence];
-        declarationParser.name = @"declaration";
-        [declarationParser add:[[TDLiteral literalWithString:@"var"] discard]];
-        [declarationParser add:[TDLowercaseWord word]];
-//        [declarationParser setAssembler:self selector:@selector(workOnDeclarationAssembly:)];
-    }
-    return declarationParser;
 }
 
 
@@ -245,7 +233,7 @@
 }
 
 
-// atomicValue    = QuotedString | Num
+// atomicValue    = QuotedString | variable | constant
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
@@ -298,6 +286,73 @@
 }
 
 
+- (void)workOnGrammarAssemly:(TDAssembly *)a {
+    NSLog(@"%s", _cmd);
+    NSLog(@"a: %@", a);
+    NSLog(@"a.target: %@", a.target);
+
+    NSAssert(a.target, @"");
+    TDParser *start = [a.target objectForKey:@"start"];
+    NSAssert(start, @"");
+    //NSAssert([TDRepetition start, @"");
+    [a push:start];
+}
+
+
+- (void)workOnStatementAssembly:(TDAssembly *)a {
+    NSLog(@"%s", _cmd);
+    NSLog(@"a: %@", a);
+
+    TDParser *p = [a pop];
+    
+    //NSAssert(0, @"");
+
+    NSAssert([p isKindOfClass:[TDParser class]], @"");
+    TDToken *tok = [a pop];
+    NSAssert(tok.isSymbol, @"");
+    NSAssert([tok.stringValue isEqualToString:@"="], @"");
+    tok = [a pop];
+    NSAssert(tok.isWord, @"");
+    NSAssert(a.target, @"");
+    id d = [NSMutableDictionary dictionaryWithDictionary:a.target];
+    [d setObject:p forKey:tok.stringValue];
+    a.target = d;
+    [a push:[TDRepetition repetitionWithSubparser:p]];
+}
+
+
+- (void)workOnExpressionAssembly:(TDAssembly *)a {
+    NSLog(@"%s", _cmd);
+    NSLog(@"a: %@", a);
+    
+    NSAssert(![a isStackEmpty], @"");
+    
+    id obj = nil;
+    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
+    NSArray *objs = [a objectsAbove:tok];
+    //    while (![a isStackEmpty]) {
+    //        obj = [a pop];
+    //        [objs addObject:obj];
+    //        NSAssert([obj isKindOfClass:[TDParser class]], @"");
+    //    }
+    
+    if (objs.count > 1) {
+        TDSequence *seq = [TDSequence sequence];
+        NSEnumerator *e = [objs reverseObjectEnumerator];
+        while (obj = [e nextObject]) {
+            NSAssert([obj isKindOfClass:[TDParser class]], @"");
+            [seq add:obj];
+        }
+        [a push:seq];
+    } else {
+        NSAssert((NSUInteger)1 == objs.count, @"");
+        TDParser *p = [objs objectAtIndex:0];
+        NSAssert([p isKindOfClass:[TDParser class]], @"");
+        [a push:p];
+    }
+}
+
+
 - (void)workOnLiteralAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
@@ -313,6 +368,7 @@
     //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
+    NSAssert(a.target, @"");
     TDParser *p = [a.target objectForKey:tok.stringValue];
     [a push:p];
 }
@@ -397,35 +453,6 @@
 //}
 
 
-- (void)workOnExpressionAssembly:(TDAssembly *)a {
-    //    NSLog(@"%s", _cmd);
-    //    NSLog(@"a: %@", a);
-    
-    NSAssert(![a isStackEmpty], @"");
-    
-    id obj = nil;
-    NSMutableArray *objs = [NSMutableArray array];
-    while (![a isStackEmpty]) {
-        obj = [a pop];
-        [objs addObject:obj];
-        NSAssert([obj isKindOfClass:[TDParser class]], @"");
-    }
-    
-    if (objs.count > 1) {
-        TDSequence *seq = [TDSequence sequence];
-        NSEnumerator *e = [objs reverseObjectEnumerator];
-        while (obj = [e nextObject]) {
-            [seq add:obj];
-        }
-        [a push:seq];
-    } else {
-        NSAssert((NSUInteger)1 == objs.count, @"");
-        TDParser *p = [objs objectAtIndex:0];
-        [a push:p];
-    }
-}
-
-
 - (void)workOnOrAssembly:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
@@ -445,7 +472,6 @@
 
 @synthesize tokenizer;
 @synthesize statementParser;
-@synthesize declarationParser;
 @synthesize expressionParser;
 @synthesize termParser;
 @synthesize orTermParser;
