@@ -1,0 +1,9 @@
+expr = Num;
+property = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
+decl = property ':' expr;
+semiDecl = ';' decl?;
+actualRule = decl semiDecl*;
+rulesetContent = Empty | actualRule;
+selector = LowercaseWord;
+ruleset = selector '{' rulesetContent '}';
+start = ruleset*;

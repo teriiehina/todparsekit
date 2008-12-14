@@ -208,6 +208,9 @@
 		D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */; };
 		D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
 		D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
+		D3DCB3090EF5B29200DE5110 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB3080EF5B29200DE5110 /* css.grammar */; };
+		D3DCB30A0EF5B29800DE5110 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB3080EF5B29200DE5110 /* css.grammar */; };
+		D3DCB30B0EF5B29900DE5110 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB3080EF5B29200DE5110 /* css.grammar */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
@@ -525,6 +528,7 @@
 		D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactory.m; path = test/TDGrammarParserFactory.m; sourceTree = "<group>"; };
 		D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserFactoryTest.h; path = test/TDGrammarParserFactoryTest.h; sourceTree = "<group>"; };
 		D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactoryTest.m; path = test/TDGrammarParserFactoryTest.m; sourceTree = "<group>"; };
+		D3DCB3080EF5B29200DE5110 /* css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css.grammar; path = test/css.grammar; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -914,6 +918,7 @@
 				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
 				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
 				D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */,
+				D3DCB3080EF5B29200DE5110 /* css.grammar */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -1363,6 +1368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */,
+				D3DCB30A0EF5B29800DE5110 /* css.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1377,6 +1383,7 @@
 				D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */,
 				D3EADD810E75E9CC00F78584 /* nasty.html in Resources */,
 				D3B69D320E80249900D70C41 /* nonascii.html in Resources */,
+				D3DCB30B0EF5B29900DE5110 /* css.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,6 +1400,7 @@
 				D3EADD800E75E9CC00F78584 /* nasty.html in Resources */,
 				D3B69D330E80249900D70C41 /* nonascii.html in Resources */,
 				D38DD9E80EC29F260070BC4D /* nyt.html in Resources */,
+				D3DCB3090EF5B29200DE5110 /* css.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

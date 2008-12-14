@@ -24,11 +24,24 @@
 }
 
 
+- (void)testCSS {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path];
+    lp = [factory parserForGrammar:s];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+
+    s = @"foo {font-family:47}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, :, 47, }]foo/{/font-family/:/47/}^", [res description]);
+}
+
+
 - (void)testStartLiteral {
     s = @"start = 'bar';";
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
-    NSLog(@"lp: %@", lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -41,7 +54,6 @@
     s = @"foo = 'bar'; start = foo;";
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
-    NSLog(@"lp: %@", lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -54,7 +66,6 @@
     s = @"foo = 'bar'; baz = 'bat'; start = (foo | baz)*;";
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
-    NSLog(@"lp: %@", lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
     s = @"bar";
