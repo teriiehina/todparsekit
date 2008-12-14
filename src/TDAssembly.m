@@ -52,7 +52,11 @@
     TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string];
     [a->stack release];
     a->stack = [stack mutableCopy];
-    a->target = [target copy];
+    if ([target respondsToSelector:@selector(mutableCopy)]) {
+        a->target = [target mutableCopy];
+    } else {
+        a->target = [target copy];
+    }
     a->index = index;
     [a->defaultDelimiter release];
     a->defaultDelimiter = [defaultDelimiter copy];

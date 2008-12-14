@@ -304,9 +304,8 @@
     NSAssert(tok.isWord, @"");
 
     NSAssert(a.target, @"");
-    id d = [NSMutableDictionary dictionaryWithDictionary:a.target];
-    [d setObject:p forKey:tok.stringValue];
-    a.target = d;
+    NSAssert([a.target isKindOfClass:[NSMutableDictionary class]], @"");
+    [a.target setObject:p forKey:tok.stringValue];
 }
 
 
