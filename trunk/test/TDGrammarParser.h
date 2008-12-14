@@ -8,7 +8,7 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDGrammarParser : TDSequence {
+@interface TDGrammarParser : TDRepetition {
     TDTokenizer *tokenizer;
     TDToken *eqTok;
     TDCollectionParser *statementParser;
