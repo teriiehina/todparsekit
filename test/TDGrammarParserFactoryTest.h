@@ -15,7 +15,7 @@
     TDTokenAssembly *a;
     TDSequence *exprSeq;
     TDParser *lp; // language parser
-    TDGrammarParserFactory *gp;
+    TDGrammarParserFactory *factory;
     TDAssembly *res;
 }
 

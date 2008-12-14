@@ -12,16 +12,16 @@
 @implementation TDGrammarParserFactoryTest
 
 - (void)setUp {
-    gp = [[[TDGrammarParserFactory alloc] init] autorelease];
+    factory = [TDGrammarParserFactory factory];
     TDSequence *seq = [TDSequence sequence];
-    [seq add:gp.expressionParser];
+    [seq add:factory.expressionParser];
     exprSeq = seq;
 }
 
 
 - (void)testStartLiteral {
     s = @"start = 'bar';";
-    lp = [TDGrammarParserFactory parserForGrammar:s];
+    lp = [factory parserForGrammar:s];
     TDNotNil(lp);
     NSLog(@"lp: %@", lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -35,7 +35,7 @@
 - (void)testExprHelloPlus {
     s = @"'hello'+";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"hello hello";
@@ -48,7 +48,7 @@
 - (void)testExprHelloStar {
     s = @"'hello'*";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDRepetition class]]);
     s = @"hello hello hello";
@@ -61,7 +61,7 @@
 - (void)testExprHelloQuestion {
     s = @"'hello'?";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"hello hello hello";
@@ -74,7 +74,7 @@
 - (void)testExprOhHaiThereQuestion {
     s = @"'oh'? 'hai'? 'there'?";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"there";
@@ -103,7 +103,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo bar";
@@ -134,7 +134,7 @@
     TDEqualObjects(@"baz", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo bar baz";
@@ -162,7 +162,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"bar";
@@ -241,7 +241,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo";
@@ -289,7 +289,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo";
@@ -339,7 +339,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"bar bar bar";
@@ -376,7 +376,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDRepetition class]]);
     s = @"foo bar bar foo";
@@ -424,7 +424,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo foo bar bar";
@@ -460,7 +460,7 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo bar";
@@ -485,7 +485,7 @@
     TDTrue([w isMemberOfClass:[TDWord class]]);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDWord class]]);
     s = @"hello hello";
@@ -498,7 +498,7 @@
 - (void)testExprWordPlus {
     s = @"Word+";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -517,7 +517,7 @@
     TDTrue([w isMemberOfClass:[TDNum class]]);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDNum class]]);
 
@@ -536,7 +536,7 @@
 - (void)testExprNumPlus {
     s = @"Num+";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -555,7 +555,7 @@
     TDTrue([w isMemberOfClass:[TDSymbol class]]);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDSymbol class]]);
     
@@ -574,7 +574,7 @@
 - (void)testExprSymbolPlus {
     s = @"Symbol+";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     s = @"% *";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -593,7 +593,7 @@
     TDTrue([w isMemberOfClass:[TDQuotedString class]]);
     
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDQuotedString class]]);
     s = @"'hello' 'hello'";
@@ -606,7 +606,7 @@
 - (void)testExprQuotedStringPlus {
     s = @"QuotedString+";
     // use the result parser
-    exprSeq = [TDGrammarParserFactory parserForExpression:s];
+    exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     s = @"'hello' 'hello'";
     a = [TDTokenAssembly assemblyWithString:s];
