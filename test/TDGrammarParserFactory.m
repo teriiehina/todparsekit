@@ -256,7 +256,7 @@
 }
 
 
-// phrasePlus        = phrase '?'
+// phraseQuestion       = phrase '?'
 - (TDCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
