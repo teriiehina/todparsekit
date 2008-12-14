@@ -81,14 +81,14 @@
     [track add:[TDSymbol symbolWithString:@")"]];
     
     TDAssembly *a = [TDTokenAssembly assemblyWithString:@"("];
-    STAssertThrowsSpecificNamed([track completeMatchFor:a], TDTrackException, @"Track Exception", @"");
+    STAssertThrowsSpecificNamed([track completeMatchFor:a], TDTrackException, TDTrackExceptionName, @"");
     
     @try {
         [track completeMatchFor:a];
         STAssertTrue(0, @"Should not be reached");
     } @catch (TDTrackException *e) {
         TDEqualObjects([e class], [TDTrackException class]);
-        TDEqualObjects([e name], @"Track Exception");
+        TDEqualObjects([e name], TDTrackExceptionName);
         
         NSDictionary *userInfo = e.userInfo;
         TDNotNil(userInfo);

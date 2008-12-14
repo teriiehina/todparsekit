@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const TDTrackExceptionName;
+
 /*!
  @class     TDTrackException
  @brief     Signals that a parser could not match text after a specific point.
