@@ -15,19 +15,19 @@
     gp = [TDGrammarParser parser];
     TDSequence *seq = [TDSequence sequence];
     [seq add:gp.expressionParser];
-    p = seq;
+    exprSeq = seq;
 }
 
 
 - (void)testExprHelloPlus {
     s = @"'hello'+";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);    
 }
 
@@ -35,12 +35,12 @@
 - (void)testExprHelloStar {
     s = @"'hello'*";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDRepetition class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDRepetition class]]);
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);    
 }
 
@@ -48,12 +48,12 @@
 - (void)testExprHelloQuestion {
     s = @"'hello'?";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[hello]hello^hello/hello", [res description]);    
 }
 
@@ -61,12 +61,12 @@
 - (void)testExprOhHaiThereQuestion {
     s = @"'oh'? 'hai'? 'there'?";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"there";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[there]there^", [res description]);    
 }
 
@@ -75,7 +75,7 @@
     s = @"'foo' 'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]'foo'/'bar'^", [res description]);
     TDSequence *seq = [res pop];
@@ -90,12 +90,12 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo, bar]foo/bar^", [res description]);
 }
 
@@ -103,7 +103,7 @@
 - (void)testExprFooBarBaz {
     s = @"'foo' 'bar' 'baz'";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]'foo'/'bar'/'baz'^", [res description]);
     TDSequence *seq = [res pop];
@@ -121,12 +121,12 @@
     TDEqualObjects(@"baz", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [res description]);
 }
 
@@ -134,7 +134,7 @@
 - (void)testExprFooOrBar {
     s = @"'foo'|'bar'";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'^", [res description]);
     TDAlternation *alt = [res pop];
@@ -149,17 +149,17 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 }
 
@@ -210,7 +210,7 @@
 - (void)testExprFooOrBarStar {
     s = @"'foo'|'bar'*";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/*^", [res description]);
     TDAlternation *alt = [res pop];
@@ -228,22 +228,22 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 
     s = @"foo foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^foo", [res description]);
     
     s = @"bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
 }
 
@@ -251,7 +251,7 @@
 - (void)testExprFooOrBarPlus {
     s = @"'foo'|'bar'+";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/+^", [res description]);
     TDAlternation *alt = [res pop];
@@ -276,27 +276,27 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 
     s = @"foo foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^foo", [res description]);
     
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar", [res description]);
 
     s = @"bar bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[bar, bar, bar]bar/bar/bar^", [res description]);
 }
 
@@ -304,7 +304,7 @@
 - (void)testExprFooOrBarQuestion {
     s = @"'foo'|'bar'?";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/?^", [res description]);
     TDAlternation *alt = [res pop];
@@ -326,17 +326,17 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"bar bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^bar/bar", [res description]);
     
     s = @"foo bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar/bar", [res description]);
 }
 
@@ -344,7 +344,7 @@
 - (void)testExprParenFooOrBarParenStar {
     s = @"('foo'|'bar')*";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Repetition](/'foo'/|/'bar'/)/*^", [res description]);
     TDRepetition *rep = [res pop];
@@ -363,12 +363,12 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDRepetition class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDRepetition class]]);
     s = @"foo bar bar foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo, bar, bar, foo]foo/bar/bar/foo^", [res description]);
 }
 
@@ -376,7 +376,7 @@
 - (void)testExprParenFooOrBooParenPlus {
     s = @"('foo'|'bar')+";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence](/'foo'/|/'bar'/)/+^", [res description]);
     TDSequence *seq = [res pop];
@@ -411,12 +411,12 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
     s = @"foo foo bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo, foo, bar, bar]foo/foo/bar/bar^", [res description]);
 }
 
@@ -424,7 +424,7 @@
 - (void)testExprParenFooOrBarParenQuestion {
     s = @"('foo'|'bar')?";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation](/'foo'/|/'bar'/)/?^", [res description]);
     TDAlternation *alt = [res pop];
@@ -447,17 +447,17 @@
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDAlternation class]]);
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar", [res description]);
 
     s = @"bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^bar", [res description]);
 }
 
@@ -465,19 +465,19 @@
 - (void)testExprWord {
     s = @"Word";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Word]Word^", [res description]);
     TDWord *w = [res pop];
     TDTrue([w isMemberOfClass:[TDWord class]]);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDWord class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDWord class]]);
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[hello]hello^hello", [res description]);    
 }
 
@@ -485,11 +485,11 @@
 - (void)testExprWordPlus {
     s = @"Word+";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);    
 }
 
@@ -497,25 +497,25 @@
 - (void)testExprNum {
     s = @"Num";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Num]Num^", [res description]);
     TDNum *w = [res pop];
     TDTrue([w isMemberOfClass:[TDNum class]]);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDNum class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDNum class]]);
 
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[333]333^444", [res description]);    
 
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNil(res);
 }
 
@@ -523,11 +523,11 @@
 - (void)testExprNumPlus {
     s = @"Num+";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[333, 444]333/444^", [res description]);    
 }
 
@@ -535,25 +535,25 @@
 - (void)testExprSymbol {
     s = @"Symbol";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Symbol]Symbol^", [res description]);
     TDSymbol *w = [res pop];
     TDTrue([w isMemberOfClass:[TDSymbol class]]);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSymbol class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSymbol class]]);
     
     s = @"? #";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[?]?^#", [res description]);    
     
     s = @"hello";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNil(res);
 }
 
@@ -561,11 +561,11 @@
 - (void)testExprSymbolPlus {
     s = @"Symbol+";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
     s = @"% *";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[%, *]%/*^", [res description]);    
 }
 
@@ -573,19 +573,19 @@
 - (void)testExprQuotedString {
     s = @"QuotedString";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[QuotedString]QuotedString^", [res description]);
     TDQuotedString *w = [res pop];
     TDTrue([w isMemberOfClass:[TDQuotedString class]]);
     
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDQuotedString class]]);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDQuotedString class]]);
     s = @"'hello' 'hello'";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"['hello']'hello'^'hello'", [res description]);    
 }
 
@@ -593,11 +593,11 @@
 - (void)testExprQuotedStringPlus {
     s = @"QuotedString+";
     // use the result parser
-    p = [TDGrammarParser parserForExpression:s];
-    TDNotNil(p);
+    exprSeq = [TDGrammarParser parserForExpression:s];
+    TDNotNil(exprSeq);
     s = @"'hello' 'hello'";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [p bestMatchFor:a];
+    res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);    
 }
 

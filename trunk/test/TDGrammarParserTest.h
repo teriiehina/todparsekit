@@ -13,7 +13,7 @@
     NSString *s;
     TDTokenizer *t;
     TDTokenAssembly *a;
-    TDCollectionParser *p;
+    TDSequence *exprSeq;
     TDGrammarParser *gp;
     TDAssembly *res;
 }
