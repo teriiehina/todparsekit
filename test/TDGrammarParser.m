@@ -14,7 +14,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        [self add:self.expressionParser];
+        [self add:self.statementParser];
     }
     return self;
 }
@@ -49,15 +49,18 @@
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [p completeMatchFor:a];
     return [a pop];
+}
 
-//    TDGrammarParser *p = [TDGrammarParser parser];
-//    p.tokenizer.string = s;
-//    TDRepetition *rep = [TDRepetition repetitionWithSubparser:p.expressionParser];
-//    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-//    a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-//    a = [rep completeMatchFor:a];
-//    return [a pop];
-    
+
++ (TDCollectionParser *)parserForExpression:(NSString *)s {
+    TDGrammarParser *p = [TDGrammarParser parser];
+    p.tokenizer.string = s;
+    TDSequence *seq = [TDSequence sequence];
+    [seq add:p.expressionParser];
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+    a = [seq completeMatchFor:a];
+    return [a pop];
 }
 
 

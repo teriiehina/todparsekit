@@ -14,6 +14,7 @@
     TDTokenizer *t;
     TDTokenAssembly *a;
     TDCollectionParser *p;
+    TDGrammarParser *gp;
     TDAssembly *res;
 }
 
