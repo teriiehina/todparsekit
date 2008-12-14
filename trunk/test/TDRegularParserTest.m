@@ -15,13 +15,6 @@
 }
 
 
-//- (void)test {
-//    s = @"1aa(2|3)*";
-//    a = [TDCharacterAssembly assemblyWithString:s];
-//    res = [p completeMatchFor:a];
-////    NSLog(@"result: %@", result);
-//}
-
 - (void)testAabPlus {
     s = @"aab+";
     // use the result parser
