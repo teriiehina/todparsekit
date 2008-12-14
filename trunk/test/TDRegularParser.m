@@ -64,7 +64,9 @@
         self.expressionParser = [TDSequence sequence];
         expressionParser.name = @"expression";
         [expressionParser add:self.termParser];
-        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+        
+        TDRepetition *r = [TDRepetition repetitionWithSubparser:self.orTermParser];
+        [expressionParser add:r];
         [expressionParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
     }
     return expressionParser;
@@ -198,6 +200,47 @@
 //}
 
 
+
+
+
+
+//- (void)workOnSingleAssembly:(TDAssembly *)a {
+//    //    NSLog(@"%s", _cmd);
+//    //    NSLog(@"a: %@", a);
+//    
+//    id obj = [a pop];
+//    NSMutableArray *objs = [NSMutableArray array];
+//    while (![a isStackEmpty]) {
+//        obj = [a pop];
+//        if ([obj isKindOfClass:[TDSpecificChar class]]) {
+//            NSAssert([obj isKindOfClass:[TDSpecificChar class]], @"");
+//            [objs addObject:obj];
+//        } else {
+//            NSAssert([obj isKindOfClass:[TDParser class]], @"");
+//            [a push:obj];
+//            break;
+//        }
+//    }
+//    
+//    if (objs.count > 1) {
+//        //        NSLog(@"making a sequence");
+//        TDSequence *seq = [TDSequence sequence];
+//        NSEnumerator *e = [objs reverseObjectEnumerator];
+//        while (obj = [e nextObject]) {
+//            [seq add:obj];
+//        }
+//        [a push:seq];
+//    } else if (objs.count) {
+//        //        NSLog(@"NOT making a sequence");
+//        TDSpecificChar *c = [objs objectAtIndex:0];
+//        [a push:c];
+//    }
+//}
+
+
+
+
+
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
@@ -206,14 +249,8 @@
     NSMutableArray *objs = [NSMutableArray array];
     while (![a isStackEmpty]) {
         obj = [a pop];
-        if ([obj isKindOfClass:[TDSpecificChar class]]) {
-            NSAssert([obj isKindOfClass:[TDSpecificChar class]], @"");
-            [objs addObject:obj];
-        } else {
-            NSAssert([obj isKindOfClass:[TDParser class]], @"");
-            [a push:obj];
-            break;
-        }
+        [objs addObject:obj];
+        NSAssert([obj isKindOfClass:[TDParser class]], @"");
     }
     
     if (objs.count > 1) {
