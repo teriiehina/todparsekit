@@ -19,6 +19,16 @@
 }
 
 
+- (void)testStatement {
+    s = @"start = 'bar'";
+    lp = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(lp);
+    TDTrue([lp class] == [TDRepetition class]);
+    s = @"bar";
+    
+}
+
+
 - (void)testExprHelloPlus {
     s = @"'hello'+";
     // use the result parser
