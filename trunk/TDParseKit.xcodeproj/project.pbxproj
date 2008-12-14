@@ -907,7 +907,7 @@
 			name = tokenizer;
 			sourceTree = "<group>";
 		};
-		D3C0309C0EF34DD200C5ABEB /* syntax highlight framework */ = {
+		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
 			isa = PBXGroup;
 			children = (
 				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
@@ -915,7 +915,7 @@
 				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
 				D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */,
 			);
-			name = "syntax highlight framework";
+			name = grammar;
 			sourceTree = "<group>";
 		};
 		D3C7D8220A411F31005DD154 /* Tests */ = {
@@ -931,7 +931,7 @@
 				D34A20080E55FD5F00A4A0BF /* chars */,
 				D3C85C770E63B400000445FD /* arithmetic */,
 				D3E786030E5510AE008C7D61 /* regex */,
-				D3C0309C0EF34DD200C5ABEB /* syntax highlight framework */,
+				D3C0309C0EF34DD200C5ABEB /* grammar */,
 				D3E788890E567B6D008C7D61 /* ebnf */,
 				D36568A40EEF9FB600226554 /* plist */,
 				D318EAE30E2FD5B6009F47DF /* json */,

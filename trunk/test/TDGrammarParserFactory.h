@@ -27,8 +27,10 @@
     TDParser *constantParser;
     TDParser *numParser;
 }
-+ (TDParser *)parserForGrammar:(NSString *)s;
-+ (TDSequence *)parserForExpression:(NSString *)s;
++ (id)factory;
+
+- (TDParser *)parserForGrammar:(NSString *)s;
+- (TDSequence *)parserForExpression:(NSString *)s;
 
 @property (retain) TDTokenizer *tokenizer;
 @property (retain) TDToken *eqTok;

@@ -11,6 +11,11 @@
 
 @implementation TDGrammarParserFactory
 
++ (id)factory {
+    return [[[TDGrammarParserFactory alloc] init] autorelease];
+}
+
+
 - (id)init {
     self = [super init];
     if (self) {
@@ -42,11 +47,10 @@
 }
 
 
-+ (TDParser *)parserForGrammar:(NSString *)s {
-    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
-    p.tokenizer.string = s;
+- (TDParser *)parserForGrammar:(NSString *)s {
+    self.tokenizer.string = s;
     
-    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:p.tokenizer delimiter:@";"] autorelease];
+    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"] autorelease];
 
     TDAssembly *a = nil;
     NSArray *toks = nil;
@@ -55,7 +59,7 @@
         toks = [src nextTokenArray];
         a = [TDTokenAssembly assemblyWithTokenArray:toks];
         a.target = target;
-        a = [p.statementParser completeMatchFor:a];
+        a = [self.statementParser completeMatchFor:a];
         target = a.target;
     }
 
@@ -71,7 +75,7 @@
 }
 
 
-+ (TDSequence *)parserForExpression:(NSString *)s {
+- (TDSequence *)parserForExpression:(NSString *)s {
     TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
