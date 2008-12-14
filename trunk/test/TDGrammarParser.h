@@ -8,8 +8,9 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDGrammarParser : TDRepetition {
+@interface TDGrammarParser : TDSequence {
     TDTokenizer *tokenizer;
+    TDToken *eqTok;
     TDCollectionParser *statementParser;
     TDCollectionParser *expressionParser;
     TDCollectionParser *termParser;
@@ -26,10 +27,11 @@
     TDParser *constantParser;
     TDParser *numParser;
 }
-+ (TDRepetition *)parserForLanguage:(NSString *)s;
++ (TDCollectionParser *)parserForLanguage:(NSString *)s;
 + (TDSequence *)parserForExpression:(NSString *)s;
 
 @property (retain) TDTokenizer *tokenizer;
+@property (retain) TDToken *eqTok;
 @property (retain) TDCollectionParser *statementParser;
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;

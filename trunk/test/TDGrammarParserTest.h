@@ -14,7 +14,7 @@
     TDTokenizer *t;
     TDTokenAssembly *a;
     TDSequence *exprSeq;
-    TDRepetition *lp; // language parser
+    TDCollectionParser *lp; // language parser
     TDGrammarParser *gp;
     TDAssembly *res;
 }

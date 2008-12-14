@@ -12,8 +12,10 @@
 @implementation TDGrammarParser
 
 - (id)init {
-    self = [super initWithSubparser:self.statementParser];
+    self = [super init];
     if (self) {
+        self.eqTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
+        [self add:[TDRepetition repetitionWithSubparser:self.statementParser]];
 //        [self setAssembler:self selector:@selector(workOnGrammarAssemly:)];
     }
     return self;
@@ -22,6 +24,7 @@
 
 - (void)dealloc {
     self.tokenizer = nil;
+    self.eqTok = nil;
     self.statementParser = nil;
     self.expressionParser = nil;
     self.termParser = nil;
@@ -41,7 +44,7 @@
 }
 
 
-+ (TDRepetition *)parserForLanguage:(NSString *)s {
++ (TDCollectionParser *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
@@ -328,13 +331,13 @@
     NSAssert(![a isStackEmpty], @"");
     
     id obj = nil;
-    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
-    NSArray *objs = [a objectsAbove:tok];
-    //    while (![a isStackEmpty]) {
-    //        obj = [a pop];
-    //        [objs addObject:obj];
-    //        NSAssert([obj isKindOfClass:[TDParser class]], @"");
-    //    }
+    NSArray *objs = [a objectsAbove:eqTok];
+//    NSMutableArray *objs = [NSMutableArray array];
+//    while (![a isStackEmpty]) {
+//        obj = [a pop];
+//        [objs addObject:obj];
+//        NSAssert([obj isKindOfClass:[TDParser class]], @"");
+//    }
     
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
@@ -471,6 +474,7 @@
 }
 
 @synthesize tokenizer;
+@synthesize eqTok;
 @synthesize statementParser;
 @synthesize expressionParser;
 @synthesize termParser;
