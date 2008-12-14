@@ -8,7 +8,7 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDGrammarParser : TDRepetition {
+@interface TDGrammarParser : NSObject {
     TDTokenizer *tokenizer;
     TDToken *eqTok;
     TDCollectionParser *statementParser;
