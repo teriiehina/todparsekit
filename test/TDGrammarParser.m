@@ -12,9 +12,9 @@
 @implementation TDGrammarParser
 
 - (id)init {
-    self = [super init];
+    self = [super initWithSubparser:self.statementParser];
     if (self) {
-        [self add:self.statementParser];
+
     }
     return self;
 }
