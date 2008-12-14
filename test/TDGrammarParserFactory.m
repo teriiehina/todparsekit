@@ -15,6 +15,9 @@
 @property (retain) TDTokenizer *tokenizer;
 @property (retain) TDToken *eqTok;
 @property (retain) TDCollectionParser *statementParser;
+@property (retain) TDCollectionParser *declarationParser;
+@property (retain) TDCollectionParser *callbackParser;
+@property (retain) TDCollectionParser *selectorParser;
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;
 @property (retain) TDCollectionParser *orTermParser;
@@ -52,6 +55,9 @@
     self.eqTok = nil;
     self.statementParser = nil;
     self.expressionParser = nil;
+    self.declarationParser = nil;
+    self.callbackParser = nil;
+    self.selectorParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
     self.factorParser = nil;
@@ -117,7 +123,10 @@
 }
 
 // start                = statement*
-// satement             = LowercaseWord '=' expression
+// satement             = declaration '=' expression
+// declaration          = LowercaseWord callback?
+// callback             = '(' selector ')'
+// selector             = Word ':'
 // expression           = term orTerm*
 // term                 = factor nextFactor*
 // orTerm               = '|' term
@@ -133,17 +142,55 @@
 // constant             = UppercaseWord
 
 
-// satement             = LowercaseWord '=' expression
+// satement             = declaration '=' expression
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDTrack track];
         statementParser.name = @"statement";
-        [statementParser add:[TDLowercaseWord word]];
+        [statementParser add:self.declarationParser];
         [statementParser add:[TDSymbol symbolWithString:@"="]];
         [statementParser add:self.expressionParser];
         [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
     }
     return statementParser;
+}
+
+
+// declaration          = LowercaseWord callback?
+- (TDCollectionParser *)declarationParser {
+    if (!declarationParser) {
+        self.declarationParser = [TDSequence sequence];
+        [declarationParser add:[TDLowercaseWord word]];
+        
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:[TDEmpty empty]];
+        [a add:self.callbackParser];
+        [declarationParser add:a];
+    }
+    return declarationParser;
+}
+
+
+// callback             = '(' selector ')'
+- (TDCollectionParser *)callbackParser {
+    if (!callbackParser) {
+        self.callbackParser = [TDTrack track];
+        [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
+        [callbackParser add:self.selectorParser];
+        [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
+    }
+    return callbackParser;
+}
+
+
+// selector             = Word ':'
+- (TDCollectionParser *)selectorParser {
+    if (!selectorParser) {
+        self.selectorParser = [TDTrack track];
+        [selectorParser add:[TDWord word]];
+        [selectorParser add:[[TDSymbol symbolWithString:@":"] discard]];
+    }
+    return selectorParser;
 }
 
 
@@ -430,6 +477,9 @@
 @synthesize tokenizer;
 @synthesize eqTok;
 @synthesize statementParser;
+@synthesize declarationParser;
+@synthesize callbackParser;
+@synthesize selectorParser;
 @synthesize expressionParser;
 @synthesize termParser;
 @synthesize orTermParser;
