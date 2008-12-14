@@ -31,15 +31,15 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
-    s = @"foo {font-family:47}";
+    s = @"foo {font-family:'helvetica'}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[foo, {, font-family, :, 47, }]foo/{/font-family/:/47/}^", [res description]);
+    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', }]foo/{/font-family/:/'helvetica'/}^", [res description]);
 
-    s = @"foo {font-family:47} bar {color:33; font-style:1}";
+    s = @"foo {font-family:'Lucida Grande'} bar {color:#333; font-style:italic;}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[foo, {, font-family, :, 47, }, bar, {, color, :, 33, ;, font-style, :, 1, }]foo/{/font-family/:/47/}/bar/{/color/:/33/;/font-style/:/1/}^", [res description]);
+    TDEqualObjects(@"[foo, {, font-family, :, 'Lucida Grande', }, bar, {, color, :, #, 333, ;, font-style, :, italic, ;, }]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/#/333/;/font-style/:/italic/;/}^", [res description]);
 }
 
 
