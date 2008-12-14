@@ -457,4 +457,74 @@
     TDEqualObjects(@"[bar]bar^bar", [res description]);
 }
 
+
+- (void)testWord {
+    s = @"Word";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[Word]Word^", [res description]);
+    TDWord *w = [res pop];
+    TDTrue([w isMemberOfClass:[TDWord class]]);
+    
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDWord class]]);
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[hello]hello^hello", [res description]);    
+}
+
+
+- (void)testWordPlus {
+    s = @"Word+";
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);    
+}
+
+
+- (void)testNum {
+    s = @"Num";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[Num]Num^", [res description]);
+    TDNum *w = [res pop];
+    TDTrue([w isMemberOfClass:[TDNum class]]);
+    
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    TDTrue([p isKindOfClass:[TDNum class]]);
+
+    s = @"333 444";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[333]333^444", [res description]);    
+
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDNil(res);
+}
+
+
+- (void)testNumPlus {
+    s = @"Num+";
+    // use the result parser
+    p = [TDGrammarParser parserForLanguage:s];
+    TDNotNil(p);
+    s = @"333 444";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [p bestMatchFor:a];
+    TDEqualObjects(@"[333, 444]333/444^", [res description]);    
+}
+
 @end

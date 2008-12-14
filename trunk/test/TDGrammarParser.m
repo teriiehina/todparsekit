@@ -44,6 +44,8 @@
     self.phraseQuestionParser = nil;
     self.atomicValueParser = nil;
     self.literalParser = nil;
+    self.variableParser = nil;
+    self.constantParser = nil;
     self.numParser = nil;
     [super dealloc];
 }
@@ -53,6 +55,7 @@
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [p completeMatchFor:a];
     return [a pop];
 }
@@ -66,7 +69,14 @@
     return tokenizer;
 }
 
+// phraseCardinality    = phrase cardinality
+// cardinality          = '{' cardinalityContent '}'
+// cardinalityContent   = num ',' | num ',' num | ',' num
+// num                  = Num
 
+
+// satement             = declaration '=' expression ';'
+// declaration          = 'var' LowercaseWord
 // expression           = term orTerm*
 // term                 = factor nextFactor*
 // orTerm               = '|' term
@@ -76,12 +86,10 @@
 // phraseStar           = phrase '*'
 // phrasePlus           = phrase '+'
 // phraseQuestion       = phrase '?'
-// phraseCardinality    = phrase cardinality
-// cardinality          = '{' cardinalityContent '}'
-// cardinalityContent   = num ',' | num ',' num | ',' num
-// atomicValue          = literal
+// atomicValue          = literal | variable | constant
 // literal              = QuotedString
-// num                  = Num
+// variable             = LowercaseWord
+// constant             = UppercaseWord
 
 // expression        = term orTerm*
 - (TDCollectionParser *)expressionParser {
@@ -212,6 +220,8 @@
         self.atomicValueParser = [TDAlternation alternation];
         atomicValueParser.name = @"atomicValue";
         [atomicValueParser add:self.literalParser];
+        [atomicValueParser add:self.variableParser];
+        [atomicValueParser add:self.constantParser];
     }
     return atomicValueParser;
 }
@@ -224,6 +234,26 @@
         [literalParser setAssembler:self selector:@selector(workOnLiteralAssembly:)];
     }
     return literalParser;
+}
+
+
+// variable = LowercaseWord
+- (TDParser *)variableParser {
+    if (!variableParser) {
+        self.variableParser = [TDLowercaseWord word];
+        [variableParser setAssembler:self selector:@selector(workOnVariableAssembly:)];
+    }
+    return variableParser;
+}
+
+
+// constant = UppercaseWord
+- (TDParser *)constantParser {
+    if (!constantParser) {
+        self.constantParser = [TDUppercaseWord word];
+        [constantParser setAssembler:self selector:@selector(workOnConstantAssembly:)];
+    }
+    return constantParser;
 }
 
 
@@ -244,6 +274,38 @@
     NSAssert(tok.isQuotedString, @"");
     NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
     [a push:[TDLiteral literalWithString:s]];
+}
+
+
+- (void)workOnVariableAssembly:(TDAssembly *)a {
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
+    TDToken *tok = [a pop];
+    NSAssert(tok.isWord, @"");
+    TDParser *p = [a.target objectForKey:tok.stringValue];
+    [a push:p];
+}
+
+
+- (void)workOnConstantAssembly:(TDAssembly *)a {
+    //    NSLog(@"%s", _cmd);
+    //    NSLog(@"a: %@", a);
+    TDToken *tok = [a pop];
+    NSAssert(tok.isWord, @"");
+    NSString *s = tok.stringValue;
+    TDParser *p = nil;
+    if ([s isEqualToString:@"Word"]) {
+        p = [TDWord word];
+    } else if ([s isEqualToString:@"Num"]) {
+        p = [TDNum num];
+    } else if ([s isEqualToString:@"QuotedString"]) {
+        p = [TDQuotedString quotedString];
+    } else if ([s isEqualToString:@"Symbol"]) {
+        p = [TDSymbol symbol];
+    } else {
+        NSAssert1(0, @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, QuotedString, Num, Symbol.", s);
+    }
+    [a push:p];
 }
 
 
@@ -362,5 +424,7 @@
 @synthesize phraseQuestionParser;
 @synthesize atomicValueParser;
 @synthesize literalParser;
+@synthesize variableParser;
+@synthesize constantParser;
 @synthesize numParser;
 @end
