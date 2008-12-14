@@ -28,20 +28,20 @@
 }
 - (id)parse:(NSString *)s;
 
-@property (retain, readonly) TDTokenizer *tokenizer;
-@property (retain) TDCollectionParser *statementParser;
-@property (retain) TDCollectionParser *exprOrAssignmentParser;
-@property (retain) TDCollectionParser *assignmentParser;
-@property (retain) TDCollectionParser *declarationParser;
-@property (retain) TDCollectionParser *variableParser;
-@property (retain) TDCollectionParser *expressionParser;
-@property (retain) TDCollectionParser *termParser;
-@property (retain) TDCollectionParser *orTermParser;
-@property (retain) TDCollectionParser *factorParser;
-@property (retain) TDCollectionParser *nextFactorParser;
-@property (retain) TDCollectionParser *phraseParser;
-@property (retain) TDCollectionParser *phraseStarParser;
-@property (retain) TDCollectionParser *phraseQuestionParser;
-@property (retain) TDCollectionParser *phrasePlusParser;
-@property (retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain, readonly) TDTokenizer *tokenizer;
+@property (nonatomic, retain) TDCollectionParser *statementParser;
+@property (nonatomic, retain) TDCollectionParser *exprOrAssignmentParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentParser;
+@property (nonatomic, retain) TDCollectionParser *declarationParser;
+@property (nonatomic, retain) TDCollectionParser *variableParser;
+@property (nonatomic, retain) TDCollectionParser *expressionParser;
+@property (nonatomic, retain) TDCollectionParser *termParser;
+@property (nonatomic, retain) TDCollectionParser *orTermParser;
+@property (nonatomic, retain) TDCollectionParser *factorParser;
+@property (nonatomic, retain) TDCollectionParser *nextFactorParser;
+@property (nonatomic, retain) TDCollectionParser *phraseParser;
+@property (nonatomic, retain) TDCollectionParser *phraseStarParser;
+@property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
+@property (nonatomic, retain) TDCollectionParser *phrasePlusParser;
+@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @end

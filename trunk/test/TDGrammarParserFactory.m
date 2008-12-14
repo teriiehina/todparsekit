@@ -329,37 +329,24 @@
 
 - (void)workOnStatementAssembly:(TDAssembly *)a {
     TDParser *p = [a pop];
-    //NSAssert([p isKindOfClass:[TDParser class]], @"");
-
     TDToken *tok = [a pop]; // discard
-    //NSAssert(tok.isSymbol, @"");
-    //NSAssert([tok.stringValue isEqualToString:@"="], @"");
-    
     tok = [a pop];
-    //NSAssert(tok.isWord, @"");
-
-    //NSAssert(a.target, @"");
-    //NSAssert([a.target isKindOfClass:[NSMutableDictionary class]], @"");
     [a.target setObject:p forKey:tok.stringValue];
 }
 
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
-    //NSAssert(![a isStackEmpty], @"");
     NSArray *objs = [a objectsAbove:eqTok];
-    //NSAssert(objs.count, @"");
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
         NSEnumerator *e = [objs reverseObjectEnumerator];
         id obj = nil;
         while (obj = [e nextObject]) {
-            //NSAssert([obj isKindOfClass:[TDParser class]], @"");
             [seq add:obj];
         }
         [a push:seq];
     } else if (objs.count) {
         TDParser *p = [objs objectAtIndex:0];
-        //NSAssert([p isKindOfClass:[TDParser class]], @"");
         [a push:p];
     }
 }
@@ -367,37 +354,36 @@
 
 - (void)workOnLiteralAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    //NSAssert(tok.isQuotedString, @"");
     NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
     [a push:[TDLiteral literalWithString:s]];
 }
 
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
-    //NSAssert(tok.isWord, @"");
-    //NSAssert(a.target, @"");
     TDParser *p = [a.target objectForKey:tok.stringValue];
-    ////NSAssert([p isKindOfClass:[TDParser class]], @"");
     [a push:p];
 }
 
 
 - (void)workOnConstantAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    //NSAssert(tok.isWord, @"");
     NSString *s = tok.stringValue;
     TDParser *p = nil;
     if ([s isEqualToString:@"Word"]) {
         p = [TDWord word];
+    } else if ([s isEqualToString:@"LowercaseWord"]) {
+        p = [TDLowercaseWord word];
+    } else if ([s isEqualToString:@"UppercaseWord"]) {
+        p = [TDUppercaseWord word];
     } else if ([s isEqualToString:@"Num"]) {
         p = [TDNum num];
     } else if ([s isEqualToString:@"QuotedString"]) {
         p = [TDQuotedString quotedString];
     } else if ([s isEqualToString:@"Symbol"]) {
         p = [TDSymbol symbol];
+    } else if ([s isEqualToString:@"Empty"]) {
+        p = [TDEmpty empty];
     } else {
         [NSException raise:@"Grammar Exception" format:
          @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, QuotedString, Num, Symbol.", s];
@@ -408,14 +394,12 @@
 
 - (void)workOnNumAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    //NSAssert(tok.isNumber, @"");
     [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
 
 - (void)workOnStarAssembly:(TDAssembly *)a {
     id top = [a pop];
-    //NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
     [a push:rep];
 }
@@ -423,7 +407,6 @@
 
 - (void)workOnPlusAssembly:(TDAssembly *)a {
     id top = [a pop];
-    //NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDSequence *seq = [TDSequence sequence];
     [seq add:top];
     [seq add:[TDRepetition repetitionWithSubparser:top]];
@@ -433,7 +416,6 @@
 
 - (void)workOnQuestionAssembly:(TDAssembly *)a {
     id top = [a pop];
-    //NSAssert([top isKindOfClass:[TDParser class]], @"");
     TDAlternation *alt = [TDAlternation alternation];
     [alt add:[TDEmpty empty]];
     [alt add:top];
@@ -444,8 +426,6 @@
 - (void)workOnOrAssembly:(TDAssembly *)a {
     id second = [a pop];
     id first = [a pop];
-    //NSAssert([first isKindOfClass:[TDParser class]], @"");
-    //NSAssert([second isKindOfClass:[TDParser class]], @"");
     TDAlternation *p = [TDAlternation alternation];
     [p add:first];
     [p add:second];
