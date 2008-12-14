@@ -12,7 +12,7 @@
 @implementation TDGrammarParserTest
 
 - (void)setUp {
-    gp = [TDGrammarParser parser];
+    gp = [[[TDGrammarParser alloc] init] autorelease];
     TDSequence *seq = [TDSequence sequence];
     [seq add:gp.expressionParser];
     exprSeq = seq;
@@ -20,7 +20,7 @@
 
 
 - (void)testStartLiteral {
-    s = @"start = 'bar'";
+    s = @"start = 'bar';";
     lp = [TDGrammarParser parserForLanguage:s];
     TDNotNil(lp);
     NSLog(@"lp: %@", lp);

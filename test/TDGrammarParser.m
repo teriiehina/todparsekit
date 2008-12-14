@@ -12,7 +12,7 @@
 @implementation TDGrammarParser
 
 - (id)init {
-    self = [super initWithSubparser:self.statementParser];
+    self = [super init];
     if (self) {
         self.eqTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
     }
@@ -43,26 +43,36 @@
 
 
 + (TDParser *)parserForLanguage:(NSString *)s {
-    TDGrammarParser *p = [TDGrammarParser parser];
+    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
     p.tokenizer.string = s;
+    
+    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:p.tokenizer delimiter:@";"] autorelease];
 
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    
-    a = [p completeMatchFor:a];
-    
+    TDAssembly *a = nil;
+    NSArray *toks = nil;
+    id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+    while ([src hasMore]) {
+        toks = [src nextTokenArray];
+        a = [TDTokenAssembly assemblyWithTokenArray:toks];
+        a.target = target;
+        a = [p.statementParser completeMatchFor:a];
+        target = a.target;
+    }
+
     TDCollectionParser *start = [a.target objectForKey:@"start"];
+
     if (start && [start isKindOfClass:[TDParser class]]) {
         return start;
     } else {
         [NSException raise:@"GrammarException" format:@"The provided language grammar was invalid"];
         return nil;
     }
+    
 }
 
 
 + (TDSequence *)parserForExpression:(NSString *)s {
-    TDGrammarParser *p = [TDGrammarParser parser];
+    TDGrammarParser *p = [[[TDGrammarParser alloc] init] autorelease];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
     [seq add:p.expressionParser];
