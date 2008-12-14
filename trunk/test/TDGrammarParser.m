@@ -9,17 +9,6 @@
 #import "TDGrammarParser.h"
 #import "NSString+TDParseKitAdditions.h"
 
-@interface TDGrammarParser ()
-- (void)workOnLiteralAssembly:(TDAssembly *)a;
-- (void)workOnNumAssembly:(TDAssembly *)a;
-- (void)workOnStarAssembly:(TDAssembly *)a;
-- (void)workOnPlusAssembly:(TDAssembly *)a;
-- (void)workOnQuestionAssembly:(TDAssembly *)a;
-//- (void)workOnAndAssembly:(TDAssembly *)a;
-- (void)workOnOrAssembly:(TDAssembly *)a;
-- (void)workOnExpressionAssembly:(TDAssembly *)a;
-@end
-
 @implementation TDGrammarParser
 
 - (id)init {
