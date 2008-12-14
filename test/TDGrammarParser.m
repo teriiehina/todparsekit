@@ -42,7 +42,7 @@
 }
 
 
-+ (TDCollectionParser *)parserForLanguage:(NSString *)s {
++ (TDParser *)parserForLanguage:(NSString *)s {
     TDGrammarParser *p = [TDGrammarParser parser];
     p.tokenizer.string = s;
 
@@ -178,23 +178,22 @@
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phrasePlusParser];
         [nextFactorParser add:self.phraseQuestionParser];
-        //        [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return nextFactorParser;
 }
 
 
-// phrase            = letterOrDigit | '(' expression ')'
+// phrase            = atomicValue | '(' expression ')'
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
+        self.phraseParser = [TDAlternation alternation];
+        phraseParser.name = @"phrase";
+        [phraseParser add:self.atomicValueParser];
+
         TDSequence *s = [TDSequence sequence];
         [s add:[[TDSymbol symbolWithString:@"("] discard]];
         [s add:self.expressionParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
-        
-        self.phraseParser = [TDAlternation alternation];
-        phraseParser.name = @"phrase";
-        [phraseParser add:self.atomicValueParser];
         [phraseParser add:s];
     }
     return phraseParser;
