@@ -5,7 +5,7 @@
     to an assembler (a call back delegate), and it will return a TDParser object which can 
     parse strings conforming to this language/grammar.
     
-    The provided assembler will receive method calls like:
+    The provided assembler will receive method callbacks like:
     -workOnStartAssembly:
     -workOnObjectAssembly:
     -workOnPropertyAssembly:
