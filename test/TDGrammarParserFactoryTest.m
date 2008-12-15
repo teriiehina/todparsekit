@@ -48,6 +48,8 @@
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"workOnStartAssembly:");
+
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -60,6 +62,8 @@
     lp = [factory parserForGrammar:s];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"workOnStart:");
+
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
