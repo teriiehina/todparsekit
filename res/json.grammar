@@ -1,5 +1,10 @@
 /**
-    A Grammar for JSON
+    A Grammar for JSON.
+    
+    Feed this to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
+    to an assembler (a call back delegate), and it will return a TDParser object which can 
+    parse strings conforming to this language/grammar.
+    
  */
 
 start         = array | object;
