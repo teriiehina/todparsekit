@@ -55,6 +55,18 @@
 }
 
 
+- (void)testStartLiteralWithCallback {
+    s = @"start (workOnStart:) = 'bar';";
+    lp = [factory parserForGrammar:s];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
+
+
 - (void)testStartRefToLiteral {
     s = @"foo = 'bar'; start = foo;";
     lp = [factory parserForGrammar:s];
