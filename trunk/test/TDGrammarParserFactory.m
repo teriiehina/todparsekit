@@ -11,27 +11,29 @@
 
 @interface TDGrammarParserFactory ()
 - (TDSequence *)parserForExpression:(NSString *)s;
+- (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
-@property (retain) TDTokenizer *tokenizer;
-@property (retain) TDToken *eqTok;
-@property (retain) TDCollectionParser *statementParser;
-@property (retain) TDCollectionParser *declarationParser;
-@property (retain) TDCollectionParser *callbackParser;
-@property (retain) TDCollectionParser *selectorParser;
-@property (retain) TDCollectionParser *expressionParser;
-@property (retain) TDCollectionParser *termParser;
-@property (retain) TDCollectionParser *orTermParser;
-@property (retain) TDCollectionParser *factorParser;
-@property (retain) TDCollectionParser *nextFactorParser;
-@property (retain) TDCollectionParser *phraseParser;
-@property (retain) TDCollectionParser *phraseStarParser;
-@property (retain) TDCollectionParser *phrasePlusParser;
-@property (retain) TDCollectionParser *phraseQuestionParser;
-@property (retain) TDCollectionParser *atomicValueParser;
-@property (retain) TDParser *literalParser;
-@property (retain) TDParser *variableParser;
-@property (retain) TDParser *constantParser;
-@property (retain) TDParser *numParser;
+@property (nonatomic, retain) TDTokenizer *tokenizer;
+@property (nonatomic, retain) id assembler;
+@property (nonatomic, retain) TDToken *eqTok;
+@property (nonatomic, retain) TDCollectionParser *statementParser;
+@property (nonatomic, retain) TDCollectionParser *declarationParser;
+@property (nonatomic, retain) TDCollectionParser *callbackParser;
+@property (nonatomic, retain) TDCollectionParser *selectorParser;
+@property (nonatomic, retain) TDCollectionParser *expressionParser;
+@property (nonatomic, retain) TDCollectionParser *termParser;
+@property (nonatomic, retain) TDCollectionParser *orTermParser;
+@property (nonatomic, retain) TDCollectionParser *factorParser;
+@property (nonatomic, retain) TDCollectionParser *nextFactorParser;
+@property (nonatomic, retain) TDCollectionParser *phraseParser;
+@property (nonatomic, retain) TDCollectionParser *phraseStarParser;
+@property (nonatomic, retain) TDCollectionParser *phrasePlusParser;
+@property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
+@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) TDParser *literalParser;
+@property (nonatomic, retain) TDParser *variableParser;
+@property (nonatomic, retain) TDParser *constantParser;
+@property (nonatomic, retain) TDParser *numParser;
 @end
 
 @implementation TDGrammarParserFactory
@@ -52,6 +54,7 @@
 
 - (void)dealloc {
     self.tokenizer = nil;
+    self.assembler = nil;
     self.eqTok = nil;
     self.statementParser = nil;
     self.expressionParser = nil;
@@ -75,8 +78,9 @@
 }
 
 
-- (TDParser *)parserForGrammar:(NSString *)s {
+- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
     self.tokenizer.string = s;
+    self.assembler = ass;
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
@@ -374,19 +378,28 @@
     TDParser *p = [a pop];
     [a pop]; // discard '=' tok
     
-    NSString *parserKey = nil;
+    NSString *parserName = nil;
     NSString *selName = nil;
     id obj = [a pop];
     if ([obj isKindOfClass:[NSString class]]) { // a callback was provided
         selName = obj;
-        parserKey = [[a pop] stringValue];
+        parserName = [[a pop] stringValue];
     } else {
-        parserKey = [obj stringValue];
-        NSString *s = [NSString stringWithFormat:@"%@%@", [[parserKey substringToIndex:1] uppercaseString], [parserKey substringFromIndex:1]]; 
-        selName = [NSString stringWithFormat:@"workOn%@Assembly:", s];
+        parserName = [obj stringValue];
+        selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
-    p.name = selName;
-    [a.target setObject:p forKey:parserKey];
+    p.name = parserName;
+    SEL sel = NSSelectorFromString(selName);
+    if (assembler && [assembler respondsToSelector:sel]) {
+        [p setAssembler:assembler selector:sel];
+    }
+    [a.target setObject:p forKey:parserName];
+}
+
+
+- (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName {
+    NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
+    return [NSString stringWithFormat:@"workOn%@Assembly:", s];
 }
 
 
@@ -495,6 +508,7 @@
 }
 
 @synthesize tokenizer;
+@synthesize assembler;
 @synthesize eqTok;
 @synthesize statementParser;
 @synthesize declarationParser;

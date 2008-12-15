@@ -27,7 +27,7 @@
 - (void)testCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
-    lp = [factory parserForGrammar:s];
+    lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
@@ -45,10 +45,10 @@
 
 - (void)testStartLiteral {
     s = @"start = 'bar';";
-    lp = [factory parserForGrammar:s];
+    lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    TDEqualObjects(lp.name, @"workOnStartAssembly:");
+    TDEqualObjects(lp.name, @"start");
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -59,10 +59,10 @@
 
 - (void)testStartLiteralWithCallback {
     s = @"start (workOnStart:) = 'bar';";
-    lp = [factory parserForGrammar:s];
+    lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    TDEqualObjects(lp.name, @"workOnStart:");
+    TDEqualObjects(lp.name, @"start");
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -73,7 +73,7 @@
 
 - (void)testStartRefToLiteral {
     s = @"foo = 'bar'; start = foo;";
-    lp = [factory parserForGrammar:s];
+    lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     s = @"bar";
@@ -85,7 +85,7 @@
 
 - (void)testStartRefToLiteral2 {
     s = @"foo = 'bar'; baz = 'bat'; start = (foo | baz)*;";
-    lp = [factory parserForGrammar:s];
+    lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
@@ -108,10 +108,10 @@
 
 - (void)testStmtTrackException {
     s = @"start = (foo | baz*;";
-    STAssertThrowsSpecificNamed([factory parserForGrammar:s], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 
     s = @"start = ";
-    STAssertThrowsSpecificNamed([factory parserForGrammar:s], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 }
 
 
