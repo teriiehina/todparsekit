@@ -28,7 +28,6 @@
 
 
 - (id)initWithString:(NSString *)s {
-    NSParameterAssert(s);
     self = [super init];
     if (self) {
         self.stack = [NSMutableArray array];

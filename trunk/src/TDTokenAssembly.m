@@ -27,7 +27,6 @@
 
 
 - (id)initWithTokenzier:(TDTokenizer *)t {
-    NSParameterAssert(t);
     return [self initWithString:t.string tokenzier:t tokenArray:nil];
 }
 
@@ -38,7 +37,6 @@
 
 
 - (id)initWithTokenArray:(NSArray *)a {
-    NSParameterAssert(a);
     return [self initWithString:[a componentsJoinedByString:@""] tokenzier:nil tokenArray:a];
 }
 
@@ -49,7 +47,6 @@
 
 
 - (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a {
-    NSParameterAssert(s);
     self = [super initWithString:s];
     if (self) {
         if (t) {
