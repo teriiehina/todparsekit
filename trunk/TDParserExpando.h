@@ -10,7 +10,7 @@
 
 @class TDGrammarParserFactory;
 
-@interface TDParserExpando : NSObject {
+@interface TDParserExpando : TDParser {
     NSMutableDictionary *table;
     TDGrammarParserFactory *factory;
 }
