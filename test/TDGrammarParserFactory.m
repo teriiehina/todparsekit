@@ -141,11 +141,9 @@
 
 
 - (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
-    TDSequence *seq = [TDSequence sequence];
-    [seq add:self.expressionParser];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTable;
-    a = [seq completeMatchFor:a];
+    a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
     if (![res isKindOfClass:[TDCollectionParser class]]) {
         return res;
@@ -183,11 +181,9 @@
 
 - (TDSequence *)parserForExpression:(NSString *)s {
     self.tokenizer.string = s;
-    TDSequence *seq = [TDSequence sequence];
-    [seq add:self.expressionParser];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    a = [seq completeMatchFor:a];
+    a = [self.expressionParser completeMatchFor:a];
     return [a pop];
 }
 
