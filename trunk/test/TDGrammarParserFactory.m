@@ -537,9 +537,6 @@
 
 
 - (void)workOnPhraseCardinalityAssembly:(TDAssembly *)a {
-//    NSLog(@"%s", _cmd);
-//    NSLog(@"a: %@", a);
-
     NSRange r = [[a pop] rangeValue];
     TDParser *p = [a pop];
     TDSequence *s = [TDSequence sequence];
@@ -554,9 +551,6 @@
 
 
 - (void)workOnCardinalityAssembly:(TDAssembly *)a {
-//    NSLog(@"%s", _cmd);
-//    NSLog(@"a: %@", a);
-    
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
 
