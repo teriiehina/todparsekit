@@ -213,6 +213,9 @@
 		D3DCB3590EF5E4B700DE5110 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB3560EF5E4B700DE5110 /* css.grammar */; };
 		D3DCB3730EF5E5D600DE5110 /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
+		D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
+		D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
+		D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
@@ -546,6 +549,7 @@
 		D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactoryTest.m; path = test/TDGrammarParserFactoryTest.m; sourceTree = "<group>"; };
 		D3DCB3560EF5E4B700DE5110 /* css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css.grammar; path = res/css.grammar; sourceTree = "<group>"; };
 		D3DCB35C0EF5E52500DE5110 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = frameworks/OCMock.framework; sourceTree = "<group>"; };
+		D3DCB4C20EF6015300DE5110 /* json.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json.grammar; path = res/json.grammar; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -934,6 +938,7 @@
 			isa = PBXGroup;
 			children = (
 				D3DCB3560EF5E4B700DE5110 /* css.grammar */,
+				D3DCB4C20EF6015300DE5110 /* json.grammar */,
 				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
 				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
 				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
@@ -1389,6 +1394,7 @@
 			files = (
 				D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */,
 				D3DCB3580EF5E4B700DE5110 /* css.grammar in Resources */,
+				D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1404,6 +1410,7 @@
 				D3EADD810E75E9CC00F78584 /* nasty.html in Resources */,
 				D3B69D320E80249900D70C41 /* nonascii.html in Resources */,
 				D3DCB3590EF5E4B700DE5110 /* css.grammar in Resources */,
+				D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,6 +1427,7 @@
 				D3EADD800E75E9CC00F78584 /* nasty.html in Resources */,
 				D3B69D330E80249900D70C41 /* nonascii.html in Resources */,
 				D38DD9E80EC29F260070BC4D /* nyt.html in Resources */,
+				D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */,
 				D3DCB3570EF5E4B700DE5110 /* css.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
