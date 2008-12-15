@@ -599,28 +599,40 @@
 
 
 - (void)testExprNumCardinality {
-    s = @"Num{1}";
+    s = @"Num{2}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[Num, {, 1, }]Num/{/1/}^", [res description]);
-//    TDNum *w = [res pop];
-//    TDTrue([w isMemberOfClass:[TDNum class]]);
-//    
-//    // use the result parser
-//    exprSeq = [factory parserForExpression:s];
-//    TDNotNil(exprSeq);
-//    TDTrue([exprSeq isKindOfClass:[TDNum class]]);
-//    
-//    s = @"333 444";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [exprSeq bestMatchFor:a];
-//    TDEqualObjects(@"[333]333^444", [res description]);    
-//    
-//    s = @"hello hello";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [exprSeq bestMatchFor:a];
-//    TDNil(res);
+    TDNotNil(res);
+    TDEqualObjects(@"[Sequence]Num/{/2/}^", [res description]);
+    TDSequence *seq = [res pop];
+    TDEqualObjects([seq class], [TDSequence class]);
+    
+    TDEquals((NSUInteger)2, seq.subparsers.count);
+    TDNum *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [TDNum class]);
+
+    n = [seq.subparsers objectAtIndex:1];
+    TDEqualObjects([n class], [TDNum class]);
+
+    // use the result parser
+    exprSeq = [factory parserForExpression:s];
+    TDNotNil(exprSeq);
+    TDTrue([exprSeq isKindOfClass:[TDSequence class]]);
+    
+    s = @"333 444";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [exprSeq bestMatchFor:a];
+    TDEqualObjects(@"[333, 444]333/444^", [res description]);    
+    
+    s = @"1.1 2.2 3.3";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [exprSeq bestMatchFor:a];
+    TDEqualObjects(@"[1.1, 2.2]1.1/2.2^3.3", [res description]);    
+    
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [exprSeq bestMatchFor:a];
+    TDNil(res);
 }
 
 
