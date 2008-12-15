@@ -6,6 +6,7 @@
     parse strings conforming to this language/grammar.
     
     The provided assembler will receive method callbacks like:
+
     -workOnStartAssembly:
     -workOnObjectAssembly:
     -workOnPropertyAssembly:
