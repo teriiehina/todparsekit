@@ -374,15 +374,19 @@
     TDParser *p = [a pop];
     [a pop]; // discard '=' tok
     
-    TDToken *parserNameTok = nil;
+    NSString *parserKey = nil;
+    NSString *selName = nil;
     id obj = [a pop];
     if ([obj isKindOfClass:[NSString class]]) { // a callback was provided
-        p.name = obj;
-        parserNameTok = [a pop];
+        selName = obj;
+        parserKey = [[a pop] stringValue];
     } else {
-        parserNameTok = (TDToken *)obj;
+        parserKey = [obj stringValue];
+        NSString *s = [NSString stringWithFormat:@"%@%@", [[parserKey substringToIndex:1] uppercaseString], [parserKey substringFromIndex:1]]; 
+        selName = [NSString stringWithFormat:@"workOn%@Assembly:", s];
     }
-    [a.target setObject:p forKey:parserNameTok.stringValue];
+    p.name = selName;
+    [a.target setObject:p forKey:parserKey];
 }
 
 
