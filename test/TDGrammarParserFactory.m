@@ -28,7 +28,7 @@
 @end
 
 @interface TDGrammarParserFactory ()
-- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks
+- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
 - (TDSequence *)parserForExpression:(NSString *)s;
