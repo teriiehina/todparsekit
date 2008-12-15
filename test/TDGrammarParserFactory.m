@@ -28,7 +28,7 @@
 @end
 
 @interface TDGrammarParserFactory ()
-- (TDSequence *)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks;
+- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
 - (TDSequence *)parserForExpression:(NSString *)s;
@@ -140,7 +140,7 @@
 }
 
 
-- (TDSequence *)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
+- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
     TDSequence *seq = [TDSequence sequence];
     [seq add:self.expressionParser];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
@@ -158,10 +158,10 @@
     } else {
         // prevent infinite loops by creating the sequence first, and putting it in the table
         TDSequence *p = [TDSequence sequence];
-        p.name = parserName;
         [parserTable setObject:p forKey:parserName];
         
         p = [self expandParser:p fromTokenArray:obj];
+        p.name = parserName;
 
         NSString *selName = [selectorTable objectForKey:parserName];
 
