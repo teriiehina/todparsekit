@@ -28,7 +28,7 @@
 @end
 
 @interface TDGrammarParserFactory ()
-- (TDParser *)expandedParserNamed:(NSString *)parserName fromTokenArray:(NSArray *)toks;
+- (TDSequence *)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
 - (TDSequence *)parserForExpression:(NSString *)s;
@@ -83,6 +83,7 @@
     self.tokenizer = nil;
     self.assembler = nil;
     self.parserTable = nil;
+    self.selectorTable = nil;
     self.equals = nil;
     self.curly = nil;
     self.statementParser = nil;
@@ -139,13 +140,14 @@
 }
 
 
-- (TDParser *)expandedParserNamed:(NSString *)parserName fromTokenArray:(NSArray *)toks {
+- (TDSequence *)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
     TDSequence *seq = [TDSequence sequence];
     [seq add:self.expressionParser];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTable;
     a = [seq completeMatchFor:a];
-    return [a pop];
+    [p add:[a pop]];
+    return p;
 }
 
 
@@ -154,8 +156,12 @@
     if ([obj isKindOfClass:[TDParser class]]) {
         return obj;
     } else {
-        TDParser *p = [self expandedParserNamed:parserName fromTokenArray:obj];
+        // prevent infinite loops by creating the sequence first, and putting it in the table
+        TDSequence *p = [TDSequence sequence];
         p.name = parserName;
+        [parserTable setObject:p forKey:parserName];
+        
+        p = [self expandParser:p fromTokenArray:obj];
 
         NSString *selName = [selectorTable objectForKey:parserName];
 
@@ -171,11 +177,10 @@
 
 
 - (TDSequence *)parserForExpression:(NSString *)s {
-    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
-    p.tokenizer.string = s;
+    self.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
-    [seq add:p.expressionParser];
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    [seq add:self.expressionParser];
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [seq completeMatchFor:a];
     return [a pop];
@@ -487,6 +492,7 @@
         parserName = [obj stringValue];
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
+
     [selectorTable setObject:selName forKey:parserName];
     [a.target setObject:toks forKey:parserName];    
 }
@@ -507,18 +513,13 @@
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:equals];
-    if (objs.count > 1) {
-        TDSequence *seq = [TDSequence sequence];
-        NSEnumerator *e = [objs reverseObjectEnumerator];
-        id obj = nil;
-        while (obj = [e nextObject]) {
-            [seq add:obj];
-        }
-        [a push:seq];
-    } else if (objs.count) {
-        TDParser *p = [objs objectAtIndex:0];
-        [a push:p];
+    TDSequence *seq = [TDSequence sequence];
+    NSEnumerator *e = [objs reverseObjectEnumerator];
+    id obj = nil;
+    while (obj = [e nextObject]) {
+        [seq add:obj];
     }
+    [a push:seq];
 }
 
 

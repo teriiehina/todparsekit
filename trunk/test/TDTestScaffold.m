@@ -106,6 +106,7 @@
                            @"TDArithmeticParserTest",
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
+                           @"TDGrammarParserFactoryTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];

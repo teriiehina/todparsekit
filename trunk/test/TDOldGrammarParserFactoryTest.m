@@ -55,7 +55,7 @@
 
 
 - (void)testJSON {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json-old" ofType:@"grammar"];
     NSLog(@"path: %@", path);
     s = [NSString stringWithContentsOfFile:path];
     lp = [factory parserForGrammar:s assembler:nil];
