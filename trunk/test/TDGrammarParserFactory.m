@@ -146,8 +146,13 @@
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTable;
     a = [seq completeMatchFor:a];
-    [p add:[a pop]];
-    return p;
+    TDParser *res = [a pop];
+    if (![res isKindOfClass:[TDCollectionParser class]]) {
+        return res;
+    } else {
+        [p add:res];
+        return p;
+    }
 }
 
 
