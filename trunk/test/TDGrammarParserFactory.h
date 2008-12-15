@@ -11,7 +11,8 @@
 @interface TDGrammarParserFactory : NSObject {
     TDTokenizer *tokenizer;
     id assembler;
-    id table;
+    id parserTable;
+    id selectorTable;
     TDToken *equals;
     TDToken *curly;
     TDCollectionParser *statementParser;

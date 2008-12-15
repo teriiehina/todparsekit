@@ -36,7 +36,8 @@
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) id assembler;
-@property (nonatomic, retain) id table;
+@property (nonatomic, retain) id parserTable;
+@property (nonatomic, retain) id selectorTable;
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
@@ -81,7 +82,7 @@
 - (void)dealloc {
     self.tokenizer = nil;
     self.assembler = nil;
-    self.table = nil;
+    self.parserTable = nil;
     self.equals = nil;
     self.curly = nil;
     self.statementParser = nil;
@@ -114,6 +115,7 @@
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+    self.selectorTable = [NSMutableDictionary dictionaryWithCapacity:[parserTable count]];
 
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
@@ -125,7 +127,7 @@
 
     [src release];
 
-    self.table = target;
+    self.parserTable = target;
     TDParser *start = [self expandedParserForName:@"start"];
 
     if (start && [start isKindOfClass:[TDParser class]]) {
@@ -141,20 +143,28 @@
     TDSequence *seq = [TDSequence sequence];
     [seq add:self.expressionParser];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-    a.target = table;
+    a.target = parserTable;
     a = [seq completeMatchFor:a];
     return [a pop];
 }
 
 
 - (TDParser *)expandedParserForName:(NSString *)parserName {
-    id obj = [table objectForKey:parserName];
+    id obj = [parserTable objectForKey:parserName];
     if ([obj isKindOfClass:[TDParser class]]) {
         return obj;
     } else {
         TDParser *p = [self expandedParserNamed:parserName fromTokenArray:obj];
         p.name = parserName;
-        [table setObject:p forKey:parserName];
+
+        NSString *selName = [selectorTable objectForKey:parserName];
+
+        SEL sel = NSSelectorFromString(selName);
+        if (assembler && [assembler respondsToSelector:sel]) {
+            [p setAssembler:assembler selector:sel];
+        }
+
+        [parserTable setObject:p forKey:parserName];
         return p;
     }
 }
@@ -477,11 +487,7 @@
         parserName = [obj stringValue];
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
-//    p.name = parserName;
-//    SEL sel = NSSelectorFromString(selName);
-//    if (assembler && [assembler respondsToSelector:sel]) {
-//        [p setAssembler:assembler selector:sel];
-//    }
+    [selectorTable setObject:selName forKey:parserName];
     [a.target setObject:toks forKey:parserName];    
 }
 
@@ -622,7 +628,8 @@
 
 @synthesize tokenizer;
 @synthesize assembler;
-@synthesize table;
+@synthesize parserTable;
+@synthesize selectorTable;
 @synthesize equals;
 @synthesize curly;
 @synthesize statementParser;
