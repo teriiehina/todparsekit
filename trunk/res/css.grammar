@@ -1,4 +1,4 @@
-hexcolor    (workOnHexcolor:)    = '#' Num;
+hexcolor    (workOnHexcolor:)    = '#'Num;
 expr        (workOnExpr:)        = hexcolor | QuotedString | 'bold' | 'normal' | 'italic';
 property    (workOnProperty:)    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
 decl        (workOnDecl:)        = property ':' expr;

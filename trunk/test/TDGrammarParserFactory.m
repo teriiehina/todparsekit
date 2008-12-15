@@ -545,8 +545,7 @@
     TDSequence *s = [TDSequence sequence];
     
     NSInteger i = 0;
-    NSInteger end = r.length;
-    for ( ; i < end; i++) {
+    for ( ; i < r.length; i++) {
         [s add:p];
     }
 
@@ -557,6 +556,7 @@
 - (void)workOnCardinalityAssembly:(TDAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
+    
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
 
