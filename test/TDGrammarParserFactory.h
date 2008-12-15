@@ -10,6 +10,7 @@
 
 @interface TDGrammarParserFactory : NSObject {
     TDTokenizer *tokenizer;
+    id assembler;
     TDToken *eqTok;
     TDCollectionParser *statementParser;
     TDCollectionParser *declarationParser;
@@ -32,5 +33,5 @@
 }
 + (id)factory;
 
-- (TDParser *)parserForGrammar:(NSString *)s;
+- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)a;
 @end
