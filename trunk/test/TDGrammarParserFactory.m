@@ -15,7 +15,8 @@
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) id assembler;
-@property (nonatomic, retain) TDToken *eqTok;
+@property (nonatomic, retain) TDToken *equals;
+@property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
@@ -29,6 +30,8 @@
 @property (nonatomic, retain) TDCollectionParser *phraseStarParser;
 @property (nonatomic, retain) TDCollectionParser *phrasePlusParser;
 @property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
+@property (nonatomic, retain) TDCollectionParser *phraseCardinalityParser;
+@property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
@@ -46,7 +49,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.eqTok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
+        self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
+        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0f];
     }
     return self;
 }
@@ -55,7 +59,8 @@
 - (void)dealloc {
     self.tokenizer = nil;
     self.assembler = nil;
-    self.eqTok = nil;
+    self.equals = nil;
+    self.curly = nil;
     self.statementParser = nil;
     self.expressionParser = nil;
     self.declarationParser = nil;
@@ -69,6 +74,8 @@
     self.phraseStarParser = nil;
     self.phrasePlusParser = nil;
     self.phraseQuestionParser = nil;
+    self.phraseCardinalityParser = nil;
+    self.cardinalityParser = nil;
     self.atomicValueParser = nil;
     self.literalParser = nil;
     self.variableParser = nil;
@@ -134,12 +141,14 @@
 // expression           = term orTerm*
 // term                 = factor nextFactor*
 // orTerm               = '|' term
-// factor               = phrase | phraseStar | phrasePlus | phraseQuestion
+// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
 // nextFactor           = factor
 // phrase               = atomicValue | '(' expression ')'
 // phraseStar           = phrase '*'
 // phrasePlus           = phrase '+'
 // phraseQuestion       = phrase '?'
+// phraseCardinality    = phrase cardinality
+// cardinality          = '{' Num '}'
 // atomicValue          = literal | variable | constant
 // literal              = QuotedString
 // variable             = LowercaseWord
@@ -237,7 +246,7 @@
 }
 
 
-// factor            = phrase | phraseStar | phrasePlus | phraseQuestion
+// factor            = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
 - (TDCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
@@ -246,6 +255,7 @@
         [factorParser add:self.phraseStarParser];
         [factorParser add:self.phrasePlusParser];
         [factorParser add:self.phraseQuestionParser];
+        [factorParser add:self.phraseCardinalityParser];
     }
     return factorParser;
 }
@@ -260,6 +270,7 @@
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phrasePlusParser];
         [nextFactorParser add:self.phraseQuestionParser];
+        [nextFactorParser add:self.phraseCardinalityParser];
     }
     return nextFactorParser;
 }
@@ -318,6 +329,33 @@
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
     }
     return phraseQuestionParser;
+}
+
+
+// phraseCardinality    = phrase cardinality
+- (TDCollectionParser *)phraseCardinalityParser {
+    if (!phraseCardinalityParser) {
+        self.phraseCardinalityParser = [TDSequence sequence];
+        phraseCardinalityParser.name = @"phraseCardinality";
+        [phraseCardinalityParser add:self.phraseParser];
+        [phraseCardinalityParser add:self.cardinalityParser];
+        [phraseCardinalityParser setAssembler:self selector:@selector(workOnPhraseCardinalityAssembly:)];
+    }
+    return phraseCardinalityParser;
+}
+
+
+// cardinality          = '{' Num '}'
+- (TDCollectionParser *)cardinalityParser {
+    if (!cardinalityParser) {
+        self.cardinalityParser = [TDSequence sequence];
+        cardinalityParser.name = @"cardinality";
+        [cardinalityParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
+        [cardinalityParser add:[TDNum num]];
+        [cardinalityParser add:[[TDSymbol symbolWithString:@"}"] discard]];
+        [cardinalityParser setAssembler:self selector:@selector(workOnCardinalityAssembly:)];
+    }
+    return cardinalityParser;
 }
 
 
@@ -411,7 +449,7 @@
 
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:eqTok];
+    NSArray *objs = [a objectsAbove:equals];
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
         NSEnumerator *e = [objs reverseObjectEnumerator];
@@ -498,6 +536,36 @@
 }
 
 
+- (void)workOnPhraseCardinalityAssembly:(TDAssembly *)a {
+//    NSLog(@"%s", _cmd);
+//    NSLog(@"a: %@", a);
+
+    NSRange r = [[a pop] rangeValue];
+    TDParser *p = [a pop];
+    TDSequence *s = [TDSequence sequence];
+    
+    NSInteger i = 0;
+    NSInteger end = r.length;
+    for ( ; i < end; i++) {
+        [s add:p];
+    }
+
+    [a push:s];
+}
+
+
+- (void)workOnCardinalityAssembly:(TDAssembly *)a {
+//    NSLog(@"%s", _cmd);
+//    NSLog(@"a: %@", a);
+    NSArray *toks = [a objectsAbove:self.curly];
+    [a pop]; // discard '{' tok
+
+    TDToken *start = [toks objectAtIndex:0];
+    NSRange r = NSMakeRange(start.floatValue, start.floatValue);
+    [a push:[NSValue valueWithRange:r]];
+}
+
+
 - (void)workOnOrAssembly:(TDAssembly *)a {
     id second = [a pop];
     id first = [a pop];
@@ -509,7 +577,8 @@
 
 @synthesize tokenizer;
 @synthesize assembler;
-@synthesize eqTok;
+@synthesize equals;
+@synthesize curly;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
@@ -523,6 +592,8 @@
 @synthesize phraseStarParser;
 @synthesize phrasePlusParser;
 @synthesize phraseQuestionParser;
+@synthesize phraseCardinalityParser;
+@synthesize cardinalityParser;
 @synthesize atomicValueParser;
 @synthesize literalParser;
 @synthesize variableParser;
