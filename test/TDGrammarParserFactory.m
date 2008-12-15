@@ -178,6 +178,7 @@
         [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
         [callbackParser add:self.selectorParser];
         [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
+        [callbackParser setAssembler:self selector:@selector(workOnCallbackAssembly:)];
     }
     return callbackParser;
 }
@@ -371,9 +372,24 @@
 
 - (void)workOnStatementAssembly:(TDAssembly *)a {
     TDParser *p = [a pop];
-    TDToken *tok = [a pop]; // discard '=' tok
-    tok = [a pop];
-    [a.target setObject:p forKey:tok.stringValue];
+    [a pop]; // discard '=' tok
+    
+    TDToken *parserNameTok = nil;
+    id obj = [a pop];
+    if ([obj isKindOfClass:[NSString class]]) { // a callback was provided
+        p.name = obj;
+        parserNameTok = [a pop];
+    } else {
+        parserNameTok = (TDToken *)obj;
+    }
+    [a.target setObject:p forKey:parserNameTok.stringValue];
+}
+
+
+- (void)workOnCallbackAssembly:(TDAssembly *)a {
+    TDToken *selNameTok = [a pop];
+    NSString *selName = [NSString stringWithFormat:@"%@:", selNameTok.stringValue];
+    [a push:selName];
 }
 
 
