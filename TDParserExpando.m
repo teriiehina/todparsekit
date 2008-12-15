@@ -14,7 +14,7 @@
 @end
 
 @interface TDParserExpando ()
-- (TDCollectionParser *)expandedParserForName:(NSString *)name;
+- (TDCollectionParser *)expandedParserForName:(NSString *)n;
 
 @property (nonatomic, retain) NSMutableDictionary *table;
 @property (nonatomic, retain) TDGrammarParserFactory *factory;
@@ -39,32 +39,32 @@
 }
 
 
-- (TDParser *)parserForName:(NSString *)name {
-    NSParameterAssert(name);
-    id obj = [table objectForKey:name];
+- (TDParser *)parserForName:(NSString *)n {
+    NSParameterAssert(n);
+    id obj = [table objectForKey:n];
     if ([obj isKindOfClass:[TDParser class]]) {
         return obj;
     } else {
-        TDParser *p = [self expandedParserForName:name];
-        [table setObject:p forKey:name];
+        TDParser *p = [self expandedParserForName:n];
+        [table setObject:p forKey:n];
         return p;
     }
 }
 
 
-- (void)setExpression:(NSString *)expr forParserName:(NSString *)name {
+- (void)setExpression:(NSString *)expr forParserName:(NSString *)n {
     NSParameterAssert(expr);
-    NSParameterAssert(name);
-    [table setObject:expr forKey:name];
+    NSParameterAssert(n);
+    [table setObject:expr forKey:n];
 }
 
 
 #pragma mark -
 #pragma mark Private
 
-- (TDCollectionParser *)expandedParserForName:(NSString *)name {
-    NSParameterAssert(name);
-    NSString *expr = [table objectForKey:name];
+- (TDCollectionParser *)expandedParserForName:(NSString *)n {
+    NSParameterAssert(n);
+    NSString *expr = [table objectForKey:n];
     NSAssert([expr isKindOfClass:[NSString class]], @"");
     return [factory parserForExpression:expr];
 }
