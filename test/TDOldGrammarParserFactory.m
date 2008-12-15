@@ -1,42 +1,20 @@
 //
-//  TDGrammarParserFactory.m
+//  TDOldGrammarParserFactory.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "TDGrammarParserFactory.h"
+#import "TDOldGrammarParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
 
-@interface NSArray (TDParseKitAdditions)
-- (NSArray *)reversedArray;
-@end
-
-@implementation NSArray (TDParseKitAdditions)
-
-- (NSArray *)reversedArray {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
-    NSEnumerator *e = [self reverseObjectEnumerator];
-    id obj = nil;
-    while (obj = [e nextObject]) {
-        [result addObject:obj];
-    }
-    return [[result copy] autorelease];
-}
-
-@end
-
-@interface TDGrammarParserFactory ()
-- (TDParser *)expandedParserNamed:(NSString *)parserName fromTokenArray:(NSArray *)toks;
-- (TDParser *)expandedParserForName:(NSString *)parserName;
-
+@interface TDOldGrammarParserFactory ()
 - (TDSequence *)parserForExpression:(NSString *)s;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) id assembler;
-@property (nonatomic, retain) id table;
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
@@ -61,10 +39,10 @@
 @property (nonatomic, retain) TDParser *numParser;
 @end
 
-@implementation TDGrammarParserFactory
+@implementation TDOldGrammarParserFactory
 
 + (id)factory {
-    return [[[TDGrammarParserFactory alloc] init] autorelease];
+    return [[[TDOldGrammarParserFactory alloc] init] autorelease];
 }
 
 
@@ -81,7 +59,6 @@
 - (void)dealloc {
     self.tokenizer = nil;
     self.assembler = nil;
-    self.table = nil;
     self.equals = nil;
     self.curly = nil;
     self.statementParser = nil;
@@ -114,7 +91,7 @@
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-
+    
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
         TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
@@ -122,12 +99,11 @@
         a = [self.statementParser completeMatchFor:a];
         target = a.target;
     }
-
+    
     [src release];
-
-    self.table = target;
-    TDParser *start = [self expandedParserForName:@"start"];
-
+    
+    TDCollectionParser *start = [target objectForKey:@"start"];
+    
     if (start && [start isKindOfClass:[TDParser class]]) {
         return start;
     } else {
@@ -137,31 +113,8 @@
 }
 
 
-- (TDParser *)expandedParserNamed:(NSString *)parserName fromTokenArray:(NSArray *)toks {
-    TDSequence *seq = [TDSequence sequence];
-    [seq add:self.expressionParser];
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-    a.target = table;
-    a = [seq completeMatchFor:a];
-    return [a pop];
-}
-
-
-- (TDParser *)expandedParserForName:(NSString *)parserName {
-    id obj = [table objectForKey:parserName];
-    if ([obj isKindOfClass:[TDParser class]]) {
-        return obj;
-    } else {
-        TDParser *p = [self expandedParserNamed:parserName fromTokenArray:obj];
-        p.name = parserName;
-        [table setObject:p forKey:parserName];
-        return p;
-    }
-}
-
-
 - (TDSequence *)parserForExpression:(NSString *)s {
-    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
+    TDOldGrammarParserFactory *p = [[[TDOldGrammarParserFactory alloc] init] autorelease];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];
     [seq add:p.expressionParser];
@@ -209,12 +162,8 @@
         statementParser.name = @"statement";
         [statementParser add:self.declarationParser];
         [statementParser add:[TDSymbol symbolWithString:@"="]];
-        
-        TDSequence *seq = [TDSequence sequence];
-        [seq add:[TDAny any]];
-        [seq add:[TDRepetition repetitionWithSubparser:[TDAny any]]];
-        [statementParser add:seq];
-        [statementParser setAssembler:self selector:@selector(workOnExpandoStatementAssembly:)];
+        [statementParser add:self.expressionParser];
+        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
     }
     return statementParser;
 }
@@ -333,7 +282,7 @@
         self.phraseParser = [TDAlternation alternation];
         phraseParser.name = @"phrase";
         [phraseParser add:self.atomicValueParser];
-
+        
         TDTrack *t = [TDTrack track];
         [t add:[[TDSymbol symbolWithString:@"("] discard]];
         [t add:self.expressionParser];
@@ -463,10 +412,10 @@
 }
 
 
-- (void)workOnExpandoStatementAssembly:(TDAssembly *)a {
-    NSArray *toks = [[a objectsAbove:equals] reversedArray];
+- (void)workOnStatementAssembly:(TDAssembly *)a {
+    TDParser *p = [a pop];
     [a pop]; // discard '=' tok
-
+    
     NSString *parserName = nil;
     NSString *selName = nil;
     id obj = [a pop];
@@ -477,12 +426,12 @@
         parserName = [obj stringValue];
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
-//    p.name = parserName;
-//    SEL sel = NSSelectorFromString(selName);
-//    if (assembler && [assembler respondsToSelector:sel]) {
-//        [p setAssembler:assembler selector:sel];
-//    }
-    [a.target setObject:toks forKey:parserName];    
+    p.name = parserName;
+    SEL sel = NSSelectorFromString(selName);
+    if (assembler && [assembler respondsToSelector:sel]) {
+        [p setAssembler:assembler selector:sel];
+    }
+    [a.target setObject:p forKey:parserName];
 }
 
 
@@ -525,7 +474,7 @@
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    TDParser *p = [self expandedParserForName:tok.stringValue]; //[a.target objectForKey:tok.stringValue];
+    TDParser *p = [a.target objectForKey:tok.stringValue];
     [a push:p];
 }
 
@@ -596,7 +545,7 @@
     for ( ; i < r.length; i++) {
         [s add:p];
     }
-
+    
     [a push:s];
 }
 
@@ -604,7 +553,7 @@
 - (void)workOnCardinalityAssembly:(TDAssembly *)a {
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
-
+    
     TDToken *start = [toks objectAtIndex:0];
     NSRange r = NSMakeRange(start.floatValue, start.floatValue);
     [a push:[NSValue valueWithRange:r]];
@@ -622,7 +571,6 @@
 
 @synthesize tokenizer;
 @synthesize assembler;
-@synthesize table;
 @synthesize equals;
 @synthesize curly;
 @synthesize statementParser;
