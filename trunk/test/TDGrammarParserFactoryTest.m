@@ -8,10 +8,16 @@
 
 #import "TDGrammarParserFactoryTest.h"
 #import <TDParseKit/TDParseKit.h>
+#import <OCMock/OCMock.h>
 
 @interface TDGrammarParserFactory ()
 - (TDSequence *)parserForExpression:(NSString *)s;
 @property (retain) TDCollectionParser *expressionParser;
+@end
+
+@protocol TDMockAssember
+- (void)workOnStartAssembly:(TDAssembly *)a;
+- (void)workOnStart:(TDAssembly *)a;
 @end
 
 @implementation TDGrammarParserFactoryTest
@@ -44,30 +50,40 @@
 
 
 - (void)testStartLiteral {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    [[mock expect] workOnStartAssembly:OCMOCK_ANY];
     s = @"start = 'bar';";
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStartAssembly:");
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
-    res = [lp bestMatchFor:a];
+    res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
 }
 
 
 - (void)testStartLiteralWithCallback {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    [[mock expect] workOnStart:OCMOCK_ANY];
     s = @"start (workOnStart:) = 'bar';";
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
 }
 
 
