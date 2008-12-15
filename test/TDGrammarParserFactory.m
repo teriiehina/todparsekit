@@ -375,8 +375,6 @@
 
 
 - (void)workOnStatementAssembly:(TDAssembly *)a {
-    NSLog(@"%s", _cmd);
-    NSLog(@"a: %@", a);
     TDParser *p = [a pop];
     [a pop]; // discard '=' tok
     
@@ -392,11 +390,8 @@
     }
     p.name = parserName;
     SEL sel = NSSelectorFromString(selName);
-    NSLog(@"sel: %@", selName);
-    NSLog(@"assembler: %@", assembler);
     if (assembler && [assembler respondsToSelector:sel]) {
         [p setAssembler:assembler selector:sel];
-        NSLog(@"p.assembler: %@", assembler);
     }
     [a.target setObject:p forKey:parserName];
 }

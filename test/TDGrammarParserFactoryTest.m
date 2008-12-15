@@ -585,16 +585,42 @@
     exprSeq = [factory parserForExpression:s];
     TDNotNil(exprSeq);
     TDTrue([exprSeq isKindOfClass:[TDNum class]]);
-
+    
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDEqualObjects(@"[333]333^444", [res description]);    
-
+    
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNil(res);
+}
+
+
+- (void)testExprNumCardinality {
+    s = @"Num{1}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [exprSeq bestMatchFor:a];
+//    TDNotNil(res);
+//    TDEqualObjects(@"[Num, {, 1, }]Num/{/1/}^", [res description]);
+//    TDNum *w = [res pop];
+//    TDTrue([w isMemberOfClass:[TDNum class]]);
+//    
+//    // use the result parser
+//    exprSeq = [factory parserForExpression:s];
+//    TDNotNil(exprSeq);
+//    TDTrue([exprSeq isKindOfClass:[TDNum class]]);
+//    
+//    s = @"333 444";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [exprSeq bestMatchFor:a];
+//    TDEqualObjects(@"[333]333^444", [res description]);    
+//    
+//    s = @"hello hello";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [exprSeq bestMatchFor:a];
+//    TDNil(res);
 }
 
 
