@@ -100,7 +100,7 @@
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    //TDEqualObjects(lp.name, @"start");
+    TDEqualObjects(lp.name, @"start");
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStartAssembly:");
 
@@ -119,7 +119,7 @@
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    //TDEqualObjects(lp.name, @"start");
+    TDEqualObjects(lp.name, @"start");
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
 
