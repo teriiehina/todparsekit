@@ -28,7 +28,9 @@
 @end
 
 @interface TDGrammarParserFactory ()
-- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks;
+- (NSString *)parserClassNameForTokenArray:(NSArray *)toks;
+
+- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
 - (TDSequence *)parserForExpression:(NSString *)s;
@@ -121,7 +123,6 @@
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
-    firstRunFlag = YES;
 
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
@@ -133,8 +134,20 @@
 
     [src release];
 
-    firstRunFlag = NO;
     self.parserTokensTable = target;
+    //NSLog(@"parserTokensTable: %@", parserTokensTable);
+    isGatheringClasses = YES;
+    
+    // discover the actual parser class types
+    for (NSString *parserName in parserTokensTable) {
+        NSString *className = [self parserClassNameForTokenArray:[parserTokensTable objectForKey:parserName]];
+        NSAssert(className, @"");
+        [parserClassTable setObject:className forKey:parserName];
+    }
+
+    //NSLog(@"parserClassTable: %@", parserClassTable);
+
+    isGatheringClasses = NO;
     TDParser *start = [self expandedParserForName:@"start"];
 
     if (start && [start isKindOfClass:[TDParser class]]) {
@@ -146,7 +159,16 @@
 }
 
 
-- (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
+- (NSString *)parserClassNameForTokenArray:(NSArray *)toks {
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    a.target = parserTokensTable;
+    a = [self.expressionParser completeMatchFor:a];
+    TDParser *res = [a pop];
+    return [res className];
+}
+
+
+- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
@@ -165,8 +187,12 @@
     if ([obj isKindOfClass:[TDParser class]]) {
         return obj;
     } else {
-        // prevent infinite loops by creating the sequence first, and putting it in the table
-        TDSequence *p = [TDSequence sequence];
+        // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
+//        TDSequence *p = [TDSequence sequence];
+        NSString *className = [parserClassTable objectForKey:parserName];
+        TDCollectionParser *p = [[[NSClassFromString(className) alloc] init] autorelease];
+//        NSLog(@"parserTokensTable: %@", parserTokensTable);
+        //NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         
         p = [self expandParser:p fromTokenArray:obj];
@@ -522,13 +548,17 @@
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:equals];
-    TDSequence *seq = [TDSequence sequence];
-    NSEnumerator *e = [objs reverseObjectEnumerator];
-    id obj = nil;
-    while (obj = [e nextObject]) {
-        [seq add:obj];
+    if (objs.count > 1) {
+        TDSequence *seq = [TDSequence sequence];
+        NSEnumerator *e = [objs reverseObjectEnumerator];
+        id obj = nil;
+        while (obj = [e nextObject]) {
+            [seq add:obj];
+        }
+        [a push:seq];
+    } else {
+        [a push:[objs objectAtIndex:0]];
     }
-    [a push:seq];
 }
 
 
@@ -541,7 +571,16 @@
 
 - (void)workOnVariableAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    TDParser *p = [self expandedParserForName:tok.stringValue]; //[a.target objectForKey:tok.stringValue];
+    NSString *parserName = tok.stringValue;
+    TDParser *p = nil;
+    if (isGatheringClasses) {
+        p = [a.target objectForKey:parserName];
+        if (!p) {
+            p = [TDSequence sequence];
+        }
+    } else {
+        p = [self expandedParserForName:parserName];
+    }
     [a push:p];
 }
 
