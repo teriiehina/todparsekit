@@ -13,7 +13,7 @@
  term           = factor (timesFactor | divFactor)*
  plusTerm       = '+' term
  minusTerm      = '-' term
- factor			= phrase exponentFactor | phrase
+ factor         = phrase exponentFactor | phrase
  timesFactor	= '*' factor
  divFactor      = '/' factor
  exponentFactor = '^' factor
