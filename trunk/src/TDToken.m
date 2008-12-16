@@ -102,7 +102,7 @@ static TDTokenEOF *EOFToken = nil;
 
 // designated initializer
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-    NSParameterAssert(s);
+    //NSParameterAssert(s);
     self = [super init];
     if (self) {
         self.tokenType = t;

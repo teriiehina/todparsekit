@@ -16,7 +16,7 @@
     NSMutableDictionary *selectorTable;
     TDToken *equals;
     TDToken *curly;
-    BOOL firstRunFlag;
+    BOOL isGatheringClasses;
     TDCollectionParser *statementParser;
     TDCollectionParser *declarationParser;
     TDCollectionParser *callbackParser;
