@@ -17,7 +17,8 @@
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    return [[inAssemblies copy] autorelease];
+    //return [[[NSSet alloc] initWithSet:inAssemblies copyItems:YES] autorelease];
+    return inAssemblies;
 }
 
 @end
