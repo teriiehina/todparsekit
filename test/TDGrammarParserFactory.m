@@ -36,8 +36,9 @@
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) id assembler;
-@property (nonatomic, retain) id parserTable;
-@property (nonatomic, retain) id selectorTable;
+@property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
+@property (nonatomic, retain) NSMutableDictionary *parserClassTable;
+@property (nonatomic, retain) NSMutableDictionary *selectorTable;
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
@@ -82,7 +83,9 @@
 - (void)dealloc {
     self.tokenizer = nil;
     self.assembler = nil;
-    self.parserTable = nil;
+    self.parserTokensTable = nil;
+    self.parserTokensTable = nil;
+    self.parserClassTable = nil;
     self.selectorTable = nil;
     self.equals = nil;
     self.curly = nil;
@@ -116,7 +119,9 @@
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    self.selectorTable = [NSMutableDictionary dictionaryWithCapacity:[parserTable count]];
+    self.selectorTable = [NSMutableDictionary dictionary];
+    self.parserClassTable = [NSMutableDictionary dictionary];
+    firstRunFlag = YES;
 
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
@@ -128,7 +133,8 @@
 
     [src release];
 
-    self.parserTable = target;
+    firstRunFlag = NO;
+    self.parserTokensTable = target;
     TDParser *start = [self expandedParserForName:@"start"];
 
     if (start && [start isKindOfClass:[TDParser class]]) {
@@ -142,7 +148,7 @@
 
 - (id)expandParser:(TDSequence *)p fromTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-    a.target = parserTable;
+    a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
     if (![res isKindOfClass:[TDCollectionParser class]]) {
@@ -155,13 +161,13 @@
 
 
 - (TDParser *)expandedParserForName:(NSString *)parserName {
-    id obj = [parserTable objectForKey:parserName];
+    id obj = [parserTokensTable objectForKey:parserName];
     if ([obj isKindOfClass:[TDParser class]]) {
         return obj;
     } else {
         // prevent infinite loops by creating the sequence first, and putting it in the table
         TDSequence *p = [TDSequence sequence];
-        [parserTable setObject:p forKey:parserName];
+        [parserTokensTable setObject:p forKey:parserName];
         
         p = [self expandParser:p fromTokenArray:obj];
         p.name = parserName;
@@ -173,7 +179,7 @@
             [p setAssembler:assembler selector:sel];
         }
 
-        [parserTable setObject:p forKey:parserName];
+        [parserTokensTable setObject:p forKey:parserName];
         return p;
     }
 }
@@ -226,11 +232,13 @@
         [statementParser add:self.declarationParser];
         [statementParser add:[TDSymbol symbolWithString:@"="]];
         
+//        [statementParser add:self.expressionParser];
+
         TDSequence *seq = [TDSequence sequence];
         [seq add:[TDAny any]];
         [seq add:[TDRepetition repetitionWithSubparser:[TDAny any]]];
         [statementParser add:seq];
-        [statementParser setAssembler:self selector:@selector(workOnExpandoStatementAssembly:)];
+        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
     }
     return statementParser;
 }
@@ -479,7 +487,7 @@
 }
 
 
-- (void)workOnExpandoStatementAssembly:(TDAssembly *)a {
+- (void)workOnStatementAssembly:(TDAssembly *)a {
     NSArray *toks = [[a objectsAbove:equals] reversedArray];
     [a pop]; // discard '=' tok
 
@@ -495,7 +503,7 @@
     }
 
     [selectorTable setObject:selName forKey:parserName];
-    [a.target setObject:toks forKey:parserName];    
+    [a.target setObject:toks forKey:parserName];
 }
 
 
@@ -630,7 +638,8 @@
 
 @synthesize tokenizer;
 @synthesize assembler;
-@synthesize parserTable;
+@synthesize parserTokensTable;
+@synthesize parserClassTable;
 @synthesize selectorTable;
 @synthesize equals;
 @synthesize curly;
