@@ -28,6 +28,7 @@
 @end
 
 @interface TDGrammarParserFactory ()
+- (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesForTokens;
 - (NSString *)parserClassNameForTokenArray:(NSArray *)toks;
 
@@ -117,29 +118,21 @@
 
 
 - (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
     self.tokenizer.string = s;
     self.assembler = ass;
-    
-    TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"];
-    id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
-
-    while ([src hasMore]) {
-        NSArray *toks = [src nextTokenArray];
-        TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-        a.target = target;
-        a = [self.statementParser completeMatchFor:a];
-        target = a.target;
-    }
-
-    [src release];
-    self.parserTokensTable = target;
+    self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
     [self gatherParserClassNamesForTokens];
 
-    TDParser *start = [self expandedParserForName:@"start"];
-
+    TDParser *start = [[self expandedParserForName:@"start"] retain]; // retain to survive pool release
+    
+    [pool release];
+    [start autorelease]; // autorelease to balance
+    
     if (start && [start isKindOfClass:[TDParser class]]) {
         return start;
     } else {
@@ -148,6 +141,26 @@
     }
 }
 
+
+- (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"] autorelease];
+    id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
+    
+    while ([src hasMore]) {
+        NSArray *toks = [src nextTokenArray];
+        TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+        a.target = target;
+        a = [self.statementParser completeMatchFor:a];
+        target = a.target;
+    }
+    
+    [target retain]; // retain to survive the pool releaase
+    [pool release];
+    
+    return [target autorelease]; // autorelease it to balance
+}
 
 - (void)gatherParserClassNamesForTokens {
     isGatheringClasses = YES;
