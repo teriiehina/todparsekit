@@ -131,22 +131,28 @@
 
 
 - (void)doGrammarParser {
-    NSString *s = nil;
-    TDGrammarParserFactory *p = [[[TDGrammarParserFactory alloc] init] autorelease];
-    TDAssembly *a = nil;
-    TDParser *res = nil;
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+
+    JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
+    TDParser *lp = [factory parserForGrammar:s assembler:assembler];
+
+    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    s = [NSString stringWithContentsOfFile:path];
     
-//    s = @"foo bar baz";
-//    p.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-//    res = [[p.termParser bestMatchFor:a] pop];
-//    TDSequence *seq = (TDSequence *)res;
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
+    a.target = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:assembler.defaultAttrs] autorelease];
+    a = [lp completeMatchFor:a];
+    id res = [a pop];
+    NSLog(@"res: %@", res);
+    self.displayString = res;
+}
+
+
+- (void)workOnStartAssembly:(TDAssembly *)a {
     
-    s = @"$baz = bar; ($baz|foo)*;";
-    res = [p parse:s];
-    s = @"bar foo bar foo";
-    a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
     
 }
 

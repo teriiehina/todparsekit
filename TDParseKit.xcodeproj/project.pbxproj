@@ -238,6 +238,7 @@
 		D3EADD810E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
 		D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
 		D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
+		D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -578,6 +579,8 @@
 		D3EADD7F0E75E9CC00F78584 /* nasty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nasty.html; path = res/nasty.html; sourceTree = "<group>"; };
 		D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHtmlSyntaxHighlighter.m; path = test/TDHtmlSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHtmlSyntaxHighlighter.h; path = test/TDHtmlSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D3F740B50EF8C38A00559B9F /* JSONAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAssembler.h; sourceTree = "<group>"; };
+		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -891,6 +894,8 @@
 				D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */,
 				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
 				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
+				D3F740B50EF8C38A00559B9F /* JSONAssembler.h */,
+				D3F740B60EF8C38A00559B9F /* JSONAssembler.m */,
 			);
 			name = DebugApp;
 			path = debugapp;
@@ -1568,6 +1573,7 @@
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
 				D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
+				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

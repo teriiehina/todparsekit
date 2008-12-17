@@ -82,6 +82,7 @@
 - (void)testCopyIdentity {
     id copy = [eof copy];
     TDTrue(copy == eof);
+    [copy release]; // appease clang sa
 }
 
 @end
