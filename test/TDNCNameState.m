@@ -32,11 +32,9 @@
 
 //    NameChar       ::=        Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
 + (BOOL)isNameChar:(NSInteger)c {
-    if (isalpha(c)) {
+    if (isalnum(c)) {
         return YES;
-    } else if (isdigit(c)) {
-        return YES;
-    } else if ([[self class] isValidNonStartSymbolChar:c]) {
+    } else if ([self isValidNonStartSymbolChar:c]) {
         return YES;
     }
     // TODO CombiningChar & Extender
@@ -61,13 +59,13 @@
     do {
         [stringbuf appendFormat:@"%C", c];
         c = [r read];
-    } while ([[self class] isNameChar:c]);
+    } while ([TDNCNameState isNameChar:c]);
     
     if (c != -1) {
         [r unread];
     }
     
-    if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
+    if (self.stringbuf.length == 1 && [TDNCNameState isValidStartSymbolChar:cin]) {
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
 //        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 
