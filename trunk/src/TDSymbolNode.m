@@ -32,7 +32,7 @@
 
 
 - (void)dealloc {
-    self.parent = nil;
+    parent = nil; // makes clang static analyzer happy
     self.ancestry = nil;
     self.children = nil;
     [super dealloc];
