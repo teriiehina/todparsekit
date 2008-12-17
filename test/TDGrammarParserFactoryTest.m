@@ -131,17 +131,17 @@
 }
 
 
-//- (void)testStartRefToLiteral {
-//    s = @" start = foo; foo = 'bar';";
-//    lp = [factory parserForGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//}
+- (void)testStartRefToLiteral {
+    s = @" start = foo; foo = 'bar';";
+    lp = [factory parserForGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
 
 
 - (void)testStartRefToLiteral3 {

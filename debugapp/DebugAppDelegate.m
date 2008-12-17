@@ -172,14 +172,14 @@
     
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
-    [self doJsonParser];
+//    [self doJsonParser];
 //    [self doGrammarParser];
 
-//    NSString *s = @"(foo";
-//    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];
     
-    
+    NSString *s = @" start = foo; foo = 'bar';";
+    TDParser *p = [factory parserForGrammar:s assembler:nil];
 
     
     [pool release];
