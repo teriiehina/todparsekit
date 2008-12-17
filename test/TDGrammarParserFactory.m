@@ -28,6 +28,7 @@
 @end
 
 @interface TDGrammarParserFactory ()
+- (void)gatherParserClassNamesForTokens;
 - (NSString *)parserClassNameForTokenArray:(NSArray *)toks;
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
@@ -133,21 +134,10 @@
     }
 
     [src release];
-
     self.parserTokensTable = target;
-    //NSLog(@"parserTokensTable: %@", parserTokensTable);
-    isGatheringClasses = YES;
-    
-    // discover the actual parser class types
-    for (NSString *parserName in parserTokensTable) {
-        NSString *className = [self parserClassNameForTokenArray:[parserTokensTable objectForKey:parserName]];
-        NSAssert(className, @"");
-        [parserClassTable setObject:className forKey:parserName];
-    }
 
-    //NSLog(@"parserClassTable: %@", parserClassTable);
+    [self gatherParserClassNamesForTokens];
 
-    isGatheringClasses = NO;
     TDParser *start = [self expandedParserForName:@"start"];
 
     if (start && [start isKindOfClass:[TDParser class]]) {
@@ -156,6 +146,17 @@
         [NSException raise:@"GrammarException" format:@"The provided language grammar was invalid"];
         return nil;
     }
+}
+
+
+- (void)gatherParserClassNamesForTokens {
+    isGatheringClasses = YES;
+    // discover the actual parser class types
+    for (NSString *parserName in parserTokensTable) {
+        NSString *className = [self parserClassNameForTokenArray:[parserTokensTable objectForKey:parserName]];
+        [parserClassTable setObject:className forKey:parserName];
+    }
+    isGatheringClasses = NO;
 }
 
 
@@ -188,11 +189,8 @@
         return obj;
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
-//        TDSequence *p = [TDSequence sequence];
         NSString *className = [parserClassTable objectForKey:parserName];
         TDCollectionParser *p = [[[NSClassFromString(className) alloc] init] autorelease];
-//        NSLog(@"parserTokensTable: %@", parserTokensTable);
-        //NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         
         p = [self expandParser:p fromTokenArray:obj];
@@ -257,9 +255,8 @@
         statementParser.name = @"statement";
         [statementParser add:self.declarationParser];
         [statementParser add:[TDSymbol symbolWithString:@"="]];
-        
-//        [statementParser add:self.expressionParser];
 
+        // accept any tokens in the parser expr the first time around. just gather tokens for later
         TDSequence *seq = [TDSequence sequence];
         [seq add:[TDAny any]];
         [seq add:[TDRepetition repetitionWithSubparser:[TDAny any]]];
