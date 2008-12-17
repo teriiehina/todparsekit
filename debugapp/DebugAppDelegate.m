@@ -20,6 +20,11 @@
 #import "JSONAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
 
+@interface TDGrammarParserFactory ()
+- (TDSequence *)parserForExpression:(NSString *)s;
+@property (retain) TDCollectionParser *expressionParser;
+@end
+
 @implementation DebugAppDelegate
 
 - (void)dealloc {
@@ -168,7 +173,14 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
     [self doJsonParser];
-    //[self doGrammarParser];
+//    [self doGrammarParser];
+
+//    NSString *s = @"(foo";
+//    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+//    TDParser *p = [factory parserForExpression:s];
+    
+    
+
     
     [pool release];
     
