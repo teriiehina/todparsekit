@@ -9,7 +9,7 @@
 #import "TDTerminal.h"
 #import "TDToken.h"
 
-extern const NSInteger TDTT_NCNAME;
+extern const NSInteger TDTokenTypeNCName;
 
 @interface TDToken (NCNameAdditions)
 @property (readonly, getter=isNCName) BOOL NCName;
