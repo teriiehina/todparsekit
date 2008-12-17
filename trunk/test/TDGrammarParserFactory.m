@@ -186,8 +186,9 @@
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
-        TDCollectionParser *p = [[[NSClassFromString(className) alloc] init] autorelease];
+        TDCollectionParser *p = [[NSClassFromString(className) alloc] init];
         [parserTokensTable setObject:p forKey:parserName];
+        [p release];
         
         p = [self expandParser:p fromTokenArray:obj];
         p.name = parserName;
@@ -549,7 +550,7 @@
             [seq add:obj];
         }
         [a push:seq];
-    } else {
+    } else if (objs.count) {
         [a push:[objs objectAtIndex:0]];
     }
 }

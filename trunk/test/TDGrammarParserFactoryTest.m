@@ -183,16 +183,19 @@
 - (void)testStmtTrackException {
     s = @"start = ";
     STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"start";
+    STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 }
 
 
-//- (void)testExprTrackException {
-//    s = @"(foo";
-//    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
-//
-//    s = @"foo|";
-//    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
-//}
+- (void)testExprTrackException {
+    s = @"(foo";
+    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"foo|";
+    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
+}
 
 
 - (void)testExprHelloPlus {
