@@ -568,8 +568,10 @@
     NSString *parserName = tok.stringValue;
     TDParser *p = nil;
     if (isGatheringClasses) {
+        // lookup the actual possible parser. 
+        // if its not there, or still a token array, just spoof it with a sequence
         p = [a.target objectForKey:parserName];
-        if (!p) {
+        if (![p isKindOfClass:[TDParser parser]]) {
             p = [TDSequence sequence];
         }
     } else {
