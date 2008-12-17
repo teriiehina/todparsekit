@@ -13,12 +13,11 @@
     NSString *s;
     TDTokenizer *t;
     TDTokenAssembly *a;
-    TDParser *lp; // language parser
     TDGrammarParserFactory *factory;
     TDAssembly *res;
 
     TDSequence *exprSeq;
-    TDParser *p;
+    TDParser *lp; // language parser
 }
 
 @end
