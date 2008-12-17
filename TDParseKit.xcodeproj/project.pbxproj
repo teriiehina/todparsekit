@@ -244,6 +244,7 @@
 		D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F740C70EF8D93000559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 		D3F740C80EF8D93100559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
+		D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741360EF8E5B000559B9F /* css-old.grammar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -588,6 +589,7 @@
 		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
 		D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+TDParseKitAdditions.h"; path = "test/NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TDParseKitAdditions.m"; path = "test/NSArray+TDParseKitAdditions.m"; sourceTree = "<group>"; };
+		D3F741360EF8E5B000559B9F /* css-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "css-old.grammar"; path = "test/css-old.grammar"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1192,6 +1194,7 @@
 			isa = PBXGroup;
 			children = (
 				D3D6E65C0EF654DE00292EE6 /* json-old.grammar */,
+				D3F741360EF8E5B000559B9F /* css-old.grammar */,
 				D3DCB51D0EF61F3000DE5110 /* TDOldGrammarParserFactory.h */,
 				D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */,
 				D3DCB5230EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.h */,
@@ -1478,6 +1481,7 @@
 				D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */,
 				D3DCB3570EF5E4B700DE5110 /* css.grammar in Resources */,
 				D3D6E65D0EF654DE00292EE6 /* json-old.grammar in Resources */,
+				D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
