@@ -37,6 +37,11 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
+    s = @"foo {font-family:'helvetica';}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', ;, }]foo/{/font-family/:/'helvetica'/;/}^", [res description]);
+    
     s = @"foo {font-family:'helvetica'}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -46,6 +51,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar, {, color, :, #, 333, ;, font-style, :, italic, ;, }]bar/{/color/:/#/333/;/font-style/:/italic/;/}^", [res description]);
+    
+    s = @"bar {color:#333; font-style:italic}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar, {, color, :, #, 333, ;, font-style, :, italic, }]bar/{/color/:/#/333/;/font-style/:/italic/}^", [res description]);
     
     s = @"foo {font-family:'Lucida Grande'} bar {color:#333; font-style:italic;}";
     a = [TDTokenAssembly assemblyWithString:s];
