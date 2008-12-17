@@ -8,24 +8,7 @@
 
 #import "TDGrammarParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
-
-@interface NSArray (TDParseKitAdditions)
-- (NSArray *)reversedArray;
-@end
-
-@implementation NSArray (TDParseKitAdditions)
-
-- (NSArray *)reversedArray {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
-    NSEnumerator *e = [self reverseObjectEnumerator];
-    id obj = nil;
-    while (obj = [e nextObject]) {
-        [result addObject:obj];
-    }
-    return [[result copy] autorelease];
-}
-
-@end
+#import "NSArray+TDParseKitAdditions.h"
 
 @interface TDGrammarParserFactory ()
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;

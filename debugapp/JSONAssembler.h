@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface JSONAssembler : NSObject {
+    NSMutableAttributedString *displayString;
     id defaultAttrs;
     id objectAttrs;
     id arrayAttrs;
@@ -16,6 +17,7 @@
     id valueAttrs;
     id constantAttrs;
 }
+@property (retain) NSMutableAttributedString *displayString;
 @property (retain) id defaultAttrs;
 @property (retain) id objectAttrs;
 @property (retain) id arrayAttrs;

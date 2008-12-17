@@ -7,25 +7,8 @@
 //
 
 #import "TDHtmlSyntaxHighlighter.h"
+#import "NSArray+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
-
-@interface NSArray (TDHtmlSyntaxHighlighterAdditions)
-- (NSMutableArray *)reversedMutableArray;
-@end
-
-@implementation NSArray (TDHtmlSyntaxHighlighterAdditions)
-
-- (NSMutableArray *)reversedMutableArray {
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:self.count];
-    NSEnumerator *e = [self reverseObjectEnumerator];
-    id obj = nil;
-    while (obj = [e nextObject]) {
-        [result addObject:obj];
-    }
-    return result;
-}
-
-@end
 
 @interface TDHtmlSyntaxHighlighter ()
 - (void)workOnTag;
