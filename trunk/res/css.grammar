@@ -1,13 +1,15 @@
 /**
     A Grammar for a small subset of CSS
  */
-hexcolor    = '#'Num;
-expr        = hexcolor | QuotedString | 'bold' | 'normal' | 'italic';
-property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
-decl        = property ':' expr;
-semiDecl    = ';' decl?;
-actualDecls = decl semiDecl*;
-decls       = Empty | actualDecls;
+
+start       = ruleset*;
+ruleset     = selector '{' decls '}';
 selector    = LowercaseWord;            // forcing selectors to be lowercase words for use in a future syntax-highlight framework where i want that
-rules       = selector '{' decls '}';
-start       = rules*;
+decls       = Empty | actualDecls;
+actualDecls = decl semiDecl*;
+semiDecl    = ';' decl?;
+decl        = property ':' expr;
+property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
+expr        = hexcolor | QuotedString | 'bold' | 'normal' | 'italic';
+hexcolor    = '#'Num;
+
