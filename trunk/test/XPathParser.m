@@ -67,6 +67,7 @@
     self.variableReference = nil;
     self.nameTest = nil;
     self.nodeType = nil;
+    self.QName = nil;
     [super dealloc];
 }
 

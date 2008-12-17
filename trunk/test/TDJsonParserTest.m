@@ -194,8 +194,8 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
     TDJsonParser *parser = [[[TDJsonParser alloc] init] autorelease];
-    id res = [parser parse:s];
-    res = res;
+    [parser parse:s];
+//    id res = [parser parse:s];
     //NSLog(@"res %@", res);
 }
 
@@ -217,8 +217,8 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
     TDFastJsonParser *parser = [[[TDFastJsonParser alloc] init] autorelease];
-    id res = [parser parse:s];
-    res = res;
+    [parser parse:s];
+    //    id res = [parser parse:s];
     //NSLog(@"res %@", res);
 }
 
