@@ -1,0 +1,180 @@
+//[1]        LocationPath                        ::=       RelativeLocationPath | AbsoluteLocationPath
+locationPath = relativeLocationPath | absoluteLocationPath
+
+
+//[2]        AbsoluteLocationPath                ::=       '/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath    
+absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath
+
+
+//[3] RelativeLocationPath ::= Step    | RelativeLocationPath '/' Step    | AbbreviatedRelativeLocationPath
+// avoiding left recursion by changing to this
+//[3] RelativeLocationPath ::= Step SlashStep*    | AbbreviatedRelativeLocationPath
+relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath
+
+
+// [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
+step = axisSpecifier nodeTest predicate* | abbreviatedStep    
+
+
+// [5]    AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
+axisSpecifier = axisName '::' | abbreviatedAxisSpecifier
+
+
+// [6] AxisName ::= 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
+//            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
+axisName = 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
+            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
+
+
+// [7]  NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
+nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')'
+
+
+// [8]  Predicate ::=  '[' PredicateExpr ']'
+predicate ::=  '[' predicateExpr ']'
+
+
+// [9]  PredicateExpr    ::=       Expr
+predicateExpr = expr
+
+
+// [10]  AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath    
+// [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step    
+// [12] AbbreviatedStep    ::=       '.'    | '..'
+// [13] AbbreviatedAxisSpecifier ::=       '@'?
+// [14]       Expr ::=       OrExpr    
+// [15] PrimaryExpr    ::=  VariableReference    
+//                    | '(' Expr ')'    
+//                    | Literal    
+//                    | Number    
+//                    | FunctionCall
+// [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'    
+
+// commaArg ::= ',' Argument
+// [16] FunctionCall ::= FunctionName '(' ( Argument commaArg* )? ')'    
+// [17] Argument ::=       Expr
+
+// [18]  UnionExpr ::=       PathExpr | UnionExpr '|' PathExpr    
+
+// pipePathExpr :: = | PathExpr
+// [18]  UnionExpr ::=       PathExpr PipePathExpr*
+//[19]       PathExpr ::= LocationPath    
+//                    | FilterExpr    
+//                    | FilterExpr '/' RelativeLocationPath    
+//                    | FilterExpr '//' RelativeLocationPath    
+
+#pragma mark -
+#pragma mark Left Recursion????????????
+
+// [20]  FilterExpr     ::=       PrimaryExpr    | FilterExpr Predicate
+
+// [20]  FilterExpr     ::=       PrimaryExpr Predicate?
+
+
+#pragma mark -
+#pragma mark Left Recursion
+// [21] OrExpr ::= AndExpr    | OrExpr 'or' AndExpr    
+
+// orAndExpr ::= 'or' AndExpr
+// me: AndExpr orAndExpr*
+
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [22] AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr    
+
+
+// andEqualityExpr
+// EqualityExpr andEqualityExpr
+
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [23] EqualityExpr ::= RelationalExpr    
+//            | EqualityExpr '=' RelationalExpr
+//            | EqualityExpr '!=' RelationalExpr    
+
+// RelationalExpr (equalsRelationalExpr | notEqualsRelationalExpr)?
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [24] RelationalExpr ::= AdditiveExpr
+//                        | RelationalExpr '<' AdditiveExpr    
+//                        | RelationalExpr '>' AdditiveExpr    
+//                        | RelationalExpr '<=' AdditiveExpr    
+//                        | RelationalExpr '>=' AdditiveExpr
+
+// RelationalExpr = AdditiveExpr (ltAdditiveExpr | gtAdditiveExpr | lteAdditiveExpr | gteAdditiveExpr)?
+
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [25] AdditiveExpr ::= MultiplicativeExpr    
+//                        | AdditiveExpr '+' MultiplicativeExpr    
+//                        | AdditiveExpr '-' MultiplicativeExpr    
+
+// AdditiveExpr ::= MultiplicativeExpr (plusMultiplicativeExpr | minusMultiplicativeExpr)?
+
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [26] MultiplicativeExpr ::= UnaryExpr    
+//                            | MultiplicativeExpr MultiplyOperator UnaryExpr    
+//                            | MultiplicativeExpr 'div' UnaryExpr    
+//                            | MultiplicativeExpr 'mod' UnaryExpr
+
+// MultiplicativeExpr :: = UnaryExpr (multiplyUnaryExpr | divUnaryExpr | modUnaryExpr)? 
+
+
+#pragma mark -
+#pragma mark Left Recursion
+
+// [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
+
+// UnaryExpr ::= '-'? UnionExpr
+
+// [28] ExprToken ::= '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
+//                    | NameTest    
+//                    | NodeType    
+//                    | Operator    
+//                    | FunctionName    
+//                    | AxisName    
+//                    | Literal    
+//                    | Number    
+//                    | VariableReference    
+
+
+// [32] Operator ::= OperatorName    
+//                    | MultiplyOperator    
+//                    | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>='    
+
+
+// [33] OperatorName ::=       'and' | 'or' | 'mod' | 'div'    
+
+// [34]       MultiplyOperator                    ::=       '*'    
+
+
+//[7]       QName       ::=   PrefixedName| UnprefixedName
+//[8]       PrefixedName ::=        Prefix ':' LocalPart
+//[9]       UnprefixedName     ::=        LocalPart
+//[10]       Prefix       ::=       NCName
+//[11]       LocalPart       ::=       NCName
+
+
+// [35] FunctionName ::= QName - NodeType    
+
+// [36]  VariableReference ::=       '$' QName    
+
+
+// [37] NameTest ::= '*' | NCName ':' '*' | QName    
+
+
+// [38] NodeType ::= 'comment'    
+//                    | 'text'    
+//                    | 'processing-instruction'    
+//                    | 'node'
