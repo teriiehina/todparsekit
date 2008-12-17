@@ -17,6 +17,8 @@
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
 #import "TDGrammarParserFactory.h"
+#import "JSONAssembler.h"
+#import "NSArray+TDParseKitAdditions.h"
 
 @implementation DebugAppDelegate
 
@@ -142,12 +144,15 @@
     s = [NSString stringWithContentsOfFile:path];
     
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    
-    a.target = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:assembler.defaultAttrs] autorelease];
     a = [lp completeMatchFor:a];
     id res = [a pop];
     NSLog(@"res: %@", res);
-    self.displayString = res;
+    NSArray *strings = [[a objectsAbove:nil] reversedArray];
+    NSMutableAttributedString *as = [[[NSMutableAttributedString alloc] init] autorelease];
+    for (id obj in strings) {
+        [as appendAttributedString:obj];
+    }
+    self.displayString = as;
 }
 
 
@@ -162,8 +167,8 @@
     
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
-//    [self doJsonParser];
-    [self doGrammarParser];
+    [self doJsonParser];
+    //[self doGrammarParser];
     
     [pool release];
     

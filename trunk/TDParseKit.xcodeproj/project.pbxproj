@@ -239,6 +239,11 @@
 		D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
 		D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
 		D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
+		D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F740C70EF8D93000559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
+		D3F740C80EF8D93100559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -581,6 +586,8 @@
 		D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHtmlSyntaxHighlighter.h; path = test/TDHtmlSyntaxHighlighter.h; sourceTree = "<group>"; };
 		D3F740B50EF8C38A00559B9F /* JSONAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAssembler.h; sourceTree = "<group>"; };
 		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
+		D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+TDParseKitAdditions.h"; path = "test/NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
+		D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TDParseKitAdditions.m"; path = "test/NSArray+TDParseKitAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -893,9 +900,9 @@
 				D36E98DF0E58C12800496BD3 /* main.m */,
 				D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */,
 				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
-				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
 				D3F740B50EF8C38A00559B9F /* JSONAssembler.h */,
 				D3F740B60EF8C38A00559B9F /* JSONAssembler.m */,
+				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
 			);
 			name = DebugApp;
 			path = debugapp;
@@ -977,6 +984,8 @@
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
 				D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */,
 				D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */,
+				D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */,
+				D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */,
 				D3D63F570E2A8548009BF5CD /* parse */,
 				D3D63F560E2A8538009BF5CD /* tokens */,
 				D34A20080E55FD5F00A4A0BF /* chars */,
@@ -1552,6 +1561,8 @@
 				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
 				D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
+				D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+				D3F740C80EF8D93100559B9F /* JSONAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,6 +1585,7 @@
 				D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
+				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1665,6 +1677,8 @@
 				D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */,
 				D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */,
+				D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+				D3F740C70EF8D93000559B9F /* JSONAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
