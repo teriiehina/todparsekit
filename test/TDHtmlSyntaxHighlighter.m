@@ -497,12 +497,12 @@
     NSEnumerator *e = [toks objectEnumerator];
 
     // append "<"
-    TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
+    [self nextNonWhitespaceTokenFrom:e]; // discard
     as = [[[NSAttributedString alloc] initWithString:ltToken.stringValue attributes:tagAttributes] autorelease];
     [highlightedString appendAttributedString:as];
     
     // consume whitespace to tagName or "/" for end tags or "!" for comments
-    tok = [self nextNonWhitespaceTokenFrom:e];
+    TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
 
     if (tok) {
         if ([tok isEqual:scriptToken]) {
