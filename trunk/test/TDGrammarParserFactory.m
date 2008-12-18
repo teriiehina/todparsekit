@@ -159,10 +159,6 @@
 - (NSString *)parserClassNameForTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    //    TDSequence *exprSeq = [TDSequence sequence];
-    //    [exprSeq add:self.expressionParser];
-    //    [exprSeq add:[TDRepetition repetitionWithSubparser:self.expressionParser]];
-    //    a = [exprSeq completeMatchFor:a];
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
     return [res className];
@@ -172,10 +168,6 @@
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    //    TDSequence *exprSeq = [TDSequence sequence];
-    //    [exprSeq add:self.expressionParser];
-    //    [exprSeq add:[TDRepetition repetitionWithSubparser:self.expressionParser]];
-    //    a = [exprSeq completeMatchFor:a];
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
     if (![res isKindOfClass:[TDCollectionParser class]]) {
