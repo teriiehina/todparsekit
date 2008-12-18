@@ -12,7 +12,8 @@
 @implementation TDCaseInsensitiveLiteral
 
 - (BOOL)qualifies:(id)obj {
-    return [literal isEqualIgnoringCase:obj];
+    return NSOrderedSame == [literal.stringValue caseInsensitiveCompare:[obj stringValue]];
+//    return [literal isEqualIgnoringCase:obj];
 }
 
 @end

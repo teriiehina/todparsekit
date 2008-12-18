@@ -11,7 +11,9 @@ start = stylesheet;
 //        [ [ ruleset | media | page | font_face ] [S|CDO|CDC]* ]*
 //      ;
 charsetSymbol   = '@' 'charset';
-stylesheet      = (charsetSymbol Word ';')? stuff* (import stuff*)* ((ruleset | media | page | fontFace) stuff*)*;
+charset         = (charsetSymbol Word ';');
+stylesheet      = charset? import* contents;
+contents        = (ruleset | media | page | fontFace)*;
 stuff           = (cdo|cdc)*;
 
 
@@ -22,7 +24,7 @@ stuff           = (cdo|cdc)*;
 mediaList       = medium commaMedium*;
 commaMedium     = ',' medium;
 importSymbol    = '@' 'import';
-import          = importSymbol (string | uri) mediaList? ';';
+import          = importSymbol (Word | uri) mediaList? ';';
 
 
 //    media
@@ -46,20 +48,22 @@ medium          = identifier;
 //        '{' S* declaration [ ';' S* declaration ]* '}' S*
 //      ;
 pageSymbol      = '@' 'page';
-page            = pageSymbol identifier? pseudoPage? '{' decl decl* '}';
+page            = pagePrefix pageBody;
+pagePrefix      = pageSymbol identifier? pseudoPage?;
+pageBody        = '{' decl decl* '}';
 
 
 //    pseudo_page
 //      : ':' IDENT
 //      ;
-pseudoPage?     = ':' identifier;
+pseudoPage     = ':' identifier;
 
 
 //    font_face
 //      : FONT_FACE_SYM S*
 //        '{' S* declaration [ ';' S* declaration ]* '}' S*
 //      ;
-fontFaceSymbol  = '@' fontface;
+fontFaceSymbol  = '@' fontFace;
 fontFace        = fontFaceSymbol '{' decl decl* '}';
 
 
@@ -118,7 +122,7 @@ class           = '.' identifier;
 //    element_name
 //      : IDENT | '*'
 //      ;
-elementName?    = identifier | '*';
+elementName    = identifier | '*';
 
 
 //    attrib
@@ -138,7 +142,7 @@ pseudo          = ':' identifier | function identifier ')';
 //      : property ':' S* expr prio?
 //      | /* empty * /
 //      ;
-decl            = (property ':' expr prio?) | empty;
+decl            = (property ':' expr prio?) | Empty;
 
 
 //    prio
@@ -160,7 +164,7 @@ expr            = term (operator term)*;
 //      | STRING S* | IDENT S* | URI S* | RGB S* | UNICODERANGE S* | hexcolor
 //      ;
 term            = unaryOperator? (Num | percentage | length | ems | exs | angle | time | freq | function)
-                    | Word | identifier | uri | rgb | unicoderange | hexcolor;
+                    | Word  | identifier | uri | hexcolor;
 
 
 //    function

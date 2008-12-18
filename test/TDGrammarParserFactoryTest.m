@@ -30,6 +30,20 @@
 }
 
 
+- (void)testCSS2_1 {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css2_1" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path];
+    lp = [factory parserForGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+//    s = @"foo {font-size:12px}";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [lp bestMatchFor:a];
+//    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', ;, }]foo/{/font-family/:/'helvetica'/;/}^", [res description]);
+}    
+
+
 - (void)testCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
@@ -274,10 +288,10 @@
     TDEquals((NSUInteger)2, seq.subparsers.count);
     
     TDLiteral *c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [seq.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -302,13 +316,13 @@
     TDEquals((NSUInteger)3, seq.subparsers.count);
     
     TDLiteral *c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [seq.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     c = [seq.subparsers objectAtIndex:2];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"baz", c.string);
     
     // use the result parser
@@ -334,10 +348,10 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -369,13 +383,13 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     TDRepetition *rep = [alt.subparsers objectAtIndex:1];
     TDEqualObjects([TDRepetition class], [rep class]);
     c = (TDLiteral *)rep.subparser;
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -412,20 +426,20 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     TDSequence *seq = [alt.subparsers objectAtIndex:1];
     TDEqualObjects([TDSequence class], [seq class]);
     
     c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     TDRepetition *rep = [seq.subparsers objectAtIndex:1];
     TDEqualObjects([TDRepetition class], [rep class]);
     c = (TDLiteral *)rep.subparser;
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -465,7 +479,7 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     alt = [alt.subparsers objectAtIndex:1];
@@ -475,7 +489,7 @@
     TDTrue([e isMemberOfClass:[TDEmpty class]]);
     
     c = (TDLiteral *)[alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -508,11 +522,11 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -542,11 +556,11 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     TDRepetition *rep = [seq.subparsers objectAtIndex:1];
@@ -556,11 +570,11 @@
     TDEqualObjects([TDAlternation class], [alt class]);
     
     c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -592,11 +606,11 @@
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isMemberOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
