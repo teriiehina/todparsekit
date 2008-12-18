@@ -56,7 +56,7 @@ medium          = identifier;
 //      : PAGE_SYM S* IDENT? pseudo_page? S*
 //        '{' S* declaration [ ';' S* declaration ]* '}' S*
 //      ;
-pageSymbol      = '@' page;
+pageSymbol      = '@' 'page';
 page            = pageSymbol identifier? pseudoPage? '{' decl decl* '}';
 
 
@@ -117,7 +117,7 @@ selector        = simpleSelector (combinator simpleSelector)*;
 //    simple_selector
 //      : element_name? [ HASH | class | attrib | pseudo ]* S*
 //      ;
-simpleSelector  = elementName? (hexcolor | class | attrib | pseudo)*;
+simpleSelector  = elementName? (hash | class | attrib | pseudo)*;
 
 
 //    class
@@ -137,8 +137,6 @@ elementName?    = identifier | '*';
 //        [ IDENT | STRING ] S* ]? ']'
 //      ;
 attrib          = '[' identifier (('=' | includes | dashmatch) (identifier | Word))? ']';
-includes        = '~';
-dashmatch       = '~=';
 
 
 //    pseudo
@@ -182,14 +180,33 @@ term            = unaryOperator? (Num | percentage | length | ems | exs | angle 
 function        = XXX expr ')';
 
 
-//    /*
+//    *
 //     * There is a constraint on the color that it must
 //     * have either 3 or 6 hex-digits (i.e., [0-9a-fA-F])
 //     * after the "#"; e.g., "#000" is OK, but "#abcd" is not.
-//     * /
+//     * 
 //    hexcolor
 //      : HASH S*
 //      ;
-hexcolor        = '#' Num;
+hexcolor        = hash;
+
+cdo             = '<!--';
+cdc             = '-->';
+includes        = '~=';
+dashmatch       = '|=';
+
+identifier      = Word;
+
+hash            = '#' (Word|Num);
+ems             = Num 'em';
+exs             = Num 'ex';
+length          = Num ('px'|'cm'|'mm'|'in'|'pt'|'pc');
+angle           = Num ('deg'|'rad'|'grad');
+time            = Num ('s'|'ms');
+freq            = Num ('hz'|'khz');
+dimension       = Num identifier;
+percentage      = Num '%';
+uri             = 'url' '(' (Word|Symbol|Num)+ ')';
+function        = identifier '(';
 
 */
