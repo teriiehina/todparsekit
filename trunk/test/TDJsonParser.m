@@ -225,9 +225,7 @@
     NSArray *elements = [a objectsAbove:self.bracket];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
     
-    NSEnumerator *e = [elements reverseObjectEnumerator];
-    id element = nil;
-    while (element = [e nextObject]) {
+    for (id element in [elements reverseObjectEnumerator]) {
         if (element) {
             [array addObject:element];
         }

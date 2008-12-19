@@ -452,9 +452,7 @@
     NSArray *objs = [a objectsAbove:equals];
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
-        NSEnumerator *e = [objs reverseObjectEnumerator];
-        id obj = nil;
-        while (obj = [e nextObject]) {
+        for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
         [a push:seq];

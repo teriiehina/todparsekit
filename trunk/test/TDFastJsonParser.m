@@ -109,9 +109,7 @@
 - (void)workOnArray {
     NSArray *a = [self objectsAbove:bracket];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:a.count];
-    NSEnumerator *e = [a reverseObjectEnumerator];
-    id obj = nil;
-    while (obj = [e nextObject]) {
+    for (id obj in [a reverseObjectEnumerator]) {
         [result addObject:obj];
     }
     [stack addObject:result];

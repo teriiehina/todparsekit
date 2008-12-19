@@ -274,8 +274,7 @@
     
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
-        NSEnumerator *e = [objs reverseObjectEnumerator];
-        while (obj = [e nextObject]) {
+        for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
         [a push:seq];
