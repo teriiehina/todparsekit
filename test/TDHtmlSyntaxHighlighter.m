@@ -509,9 +509,7 @@
 
 - (void)workOnText {
     NSArray *a = [self objectsAbove:gtToken];
-    NSEnumerator *e = [a reverseObjectEnumerator];
-    TDToken *tok = nil;
-    while (tok = [e nextObject]) {
+    for (TDToken *tok in [a reverseObjectEnumerator]) {
         NSString *s = tok.stringValue;
         if (s) {
             NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];

@@ -254,9 +254,7 @@ static NSString *kTDPlistNullString = @"<null>";
     NSArray *objs = [a objectsAbove:self.paren];
     NSMutableArray *res = [NSMutableArray arrayWithCapacity:objs.count];
     
-    id obj = nil;
-    NSEnumerator *e = [objs reverseObjectEnumerator];
-    while (obj = [e nextObject]) {
+    for (id obj in [objs reverseObjectEnumerator]) {
         [res addObject:obj];
     }
     
