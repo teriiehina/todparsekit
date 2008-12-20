@@ -18,6 +18,7 @@
     TDSymbolNode *parent;
     NSMutableDictionary *children;
     NSInteger character;
+    NSString *string;
 }
 
 /*!
