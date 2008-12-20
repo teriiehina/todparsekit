@@ -1,104 +1,142 @@
 //[1]        LocationPath                        ::=       RelativeLocationPath | AbsoluteLocationPath
-locationPath = relativeLocationPath | absoluteLocationPath
+locationPath = relativeLocationPath | absoluteLocationPath;
 
 
 //[2]        AbsoluteLocationPath                ::=       '/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath    
-absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath
+absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath;
 
 
 //[3] RelativeLocationPath ::= Step    | RelativeLocationPath '/' Step    | AbbreviatedRelativeLocationPath
 // avoiding left recursion by changing to this
 //[3] RelativeLocationPath ::= Step SlashStep*    | AbbreviatedRelativeLocationPath
-relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath
+relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath;
 
 
 // [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
-step = axisSpecifier nodeTest predicate* | abbreviatedStep    
+step = axisSpecifier nodeTest predicate* | abbreviatedStep;
 
 
 // [5]    AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
-axisSpecifier = axisName '::' | abbreviatedAxisSpecifier
+axisSpecifier = axisName '::' | abbreviatedAxisSpecifier;
 
 
 // [6] AxisName ::= 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
 //            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
 axisName = 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
-            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
+            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self';
 
 
 // [7]  NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
-nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')'
+nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')';
 
 
 // [8]  Predicate ::=  '[' PredicateExpr ']'
-predicate ::=  '[' predicateExpr ']'
+predicate = '[' predicateExpr ']';
 
 
 // [9]  PredicateExpr    ::=       Expr
-predicateExpr = expr
+predicateExpr = expr;
 
 
 // [10]  AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath    
+abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
+
 // [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step    
+abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
+
 // [12] AbbreviatedStep    ::=       '.'    | '..'
+AbbreviatedStep = '.' | '..';
+
 // [13] AbbreviatedAxisSpecifier ::=       '@'?
+abbreviatedAxisSpecifier = '@'?;
+
+
 // [14]       Expr ::=       OrExpr    
+expr = orExpr;
+
+
 // [15] PrimaryExpr    ::=  VariableReference    
 //                    | '(' Expr ')'    
 //                    | Literal    
 //                    | Number    
 //                    | FunctionCall
+primaryExpr = variableReference | '(' expr ')' | Word | Num | functionCall
+
+
+
 // [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'    
 
 // commaArg ::= ',' Argument
 // [16] FunctionCall ::= FunctionName '(' ( Argument commaArg* )? ')'    
+
+commaArg = ',' argument;
+functionCall ::= functionName '(' (argument commaArg*)? ')'    
+
+
 // [17] Argument ::=       Expr
+argument = expr;
+
 
 // [18]  UnionExpr ::=       PathExpr | UnionExpr '|' PathExpr    
+unionExpr = pathExpr | unionExpr '|' pathExpr;
+
+
 
 // pipePathExpr :: = | PathExpr
 // [18]  UnionExpr ::=       PathExpr PipePathExpr*
+
+pipePathExpr = | pathExpr;
+unionExpr = pathExpr pipePathExpr*;
+
+
+
 //[19]       PathExpr ::= LocationPath    
 //                    | FilterExpr    
 //                    | FilterExpr '/' RelativeLocationPath    
 //                    | FilterExpr '//' RelativeLocationPath    
+pathExpr = locationPath | filterExpr | filterExpr '/' relativeLocationPath | filterExpr '//' relativeLocationPath;
 
-#pragma mark -
+
 #pragma mark Left Recursion????????????
-
 // [20]  FilterExpr     ::=       PrimaryExpr    | FilterExpr Predicate
-
 // [20]  FilterExpr     ::=       PrimaryExpr Predicate?
 
+filterExpr = primaryExpr predicate?
 
-#pragma mark -
-#pragma mark Left Recursion
-// [21] OrExpr ::= AndExpr    | OrExpr 'or' AndExpr    
 
+// #pragma mark Left Recursion
+// [21] OrExpr ::= AndExpr    | OrExpr 'or' AndExpr
 // orAndExpr ::= 'or' AndExpr
 // me: AndExpr orAndExpr*
 
+orExpr = andExpr orAndExpr*;
+orAndExpr = 'or' AndExpr;
 
-#pragma mark -
-#pragma mark Left Recursion
 
+
+// #pragma mark Left Recursion
 // [22] AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr    
-
-
 // andEqualityExpr
 // EqualityExpr andEqualityExpr
 
+andEqualityExpr = 'and' equalityExpr;
+andExpr = equalityExpr andEqualityExpr;
 
-#pragma mark -
+
+
+
 #pragma mark Left Recursion
-
 // [23] EqualityExpr ::= RelationalExpr    
 //            | EqualityExpr '=' RelationalExpr
 //            | EqualityExpr '!=' RelationalExpr    
 
 // RelationalExpr (equalsRelationalExpr | notEqualsRelationalExpr)?
 
-#pragma mark -
+
+
+
+
+
 #pragma mark Left Recursion
 
 // [24] RelationalExpr ::= AdditiveExpr
@@ -110,7 +148,7 @@ predicateExpr = expr
 // RelationalExpr = AdditiveExpr (ltAdditiveExpr | gtAdditiveExpr | lteAdditiveExpr | gteAdditiveExpr)?
 
 
-#pragma mark -
+
 #pragma mark Left Recursion
 
 // [25] AdditiveExpr ::= MultiplicativeExpr    
@@ -120,7 +158,7 @@ predicateExpr = expr
 // AdditiveExpr ::= MultiplicativeExpr (plusMultiplicativeExpr | minusMultiplicativeExpr)?
 
 
-#pragma mark -
+
 #pragma mark Left Recursion
 
 // [26] MultiplicativeExpr ::= UnaryExpr    
@@ -131,7 +169,7 @@ predicateExpr = expr
 // MultiplicativeExpr :: = UnaryExpr (multiplyUnaryExpr | divUnaryExpr | modUnaryExpr)? 
 
 
-#pragma mark -
+
 #pragma mark Left Recursion
 
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
