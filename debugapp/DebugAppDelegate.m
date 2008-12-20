@@ -143,21 +143,33 @@
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 
     JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserForGrammar:s assembler:assembler];
+    NSDate *start = [NSDate date];
+    TDParser *lp = [factory parserForGrammar:s assembler:nil];
+    CGFloat ms4grammar = -([start timeIntervalSinceNow]);
+    
 
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
     
+    start = [NSDate date];
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
-    id res = [a pop];
-    NSLog(@"res: %@", res);
-    NSArray *strings = [[a objectsAbove:nil] reversedArray];
-    NSMutableAttributedString *as = [[[NSMutableAttributedString alloc] init] autorelease];
-    for (id obj in strings) {
-        [as appendAttributedString:obj];
-    }
-    self.displayString = as;
+    CGFloat ms4json = -([start timeIntervalSinceNow]);
+//    id res = [a pop];
+   // NSLog(@"res: %@", a);
+//    NSArray *strings = [[a objectsAbove:nil] reversedArray];
+//    NSMutableAttributedString *as = [[[NSMutableAttributedString alloc] init] autorelease];
+//    for (id obj in strings) {
+//        [as appendAttributedString:obj];
+//    }
+
+    id attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                [NSFont fontWithName:@"Monaco" size:14.], NSFontAttributeName,
+                [NSColor whiteColor], NSForegroundColorAttributeName,
+                nil];
+
+    s = [NSString stringWithFormat:@"grammar parse: %f sec\n\njson parse: %f sec", ms4grammar, ms4json];
+    self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
 }
 
 
@@ -173,13 +185,12 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-//    [self doGrammarParser];
+    [self doGrammarParser];
 
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+//    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];
-    
-    NSString *s = @" start = foo; foo = 'bar';";
-    TDParser *p = [factory parserForGrammar:s assembler:nil];
+//    NSString *s = @" start = foo; foo = 'bar';";
+//    TDParser *p = [factory parserForGrammar:s assembler:nil];
 
     
     [pool release];
