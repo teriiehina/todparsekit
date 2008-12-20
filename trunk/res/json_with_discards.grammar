@@ -1,5 +1,5 @@
 /**
-    A Grammar for JSON.
+    A Grammar for JSON which specifies which tokens should be discarded
     
     Feed this to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
     to an assembler (a call back delegate), and it will return a TDParser object which can 
