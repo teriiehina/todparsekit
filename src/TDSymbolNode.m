@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDSymbolNode.h>
+#import <TDParseKit/TDSymbolRootNode.h>
 
 @interface TDSymbolNode ()
 @property (nonatomic, readwrite, retain) NSString *ancestry;
@@ -40,15 +41,19 @@
 
 
 - (void)determineAncestry {
-    NSMutableString *result = [NSMutableString string];
-    
-    TDSymbolNode *n = self;
-    while (-1 != n.character) {
-        [result insertString:[NSString stringWithFormat:@"%C", n.character] atIndex:0];
-        n = n.parent;
+    if (-1 == parent.character) { // optimization for sinlge-char symbol (parent is symbol root node)
+        self.ancestry = [NSString stringWithFormat:@"%C", character];
+    } else {
+        NSMutableString *result = [NSMutableString string];
+        
+        TDSymbolNode *n = self;
+        while (-1 != n.character) {
+            [result insertString:[NSString stringWithFormat:@"%C", n.character] atIndex:0];
+            n = n.parent;
+        }
+        
+        self.ancestry = [[result copy] autorelease]; // assign an immutable copy
     }
-
-    self.ancestry = [[result copy] autorelease]; // assign an immutable copy
 }
 
 
