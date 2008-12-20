@@ -11,15 +11,21 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDJsonParser ()
-@property (retain) TDToken *curly;
-@property (retain) TDToken *bracket;
+@property (nonatomic, retain) TDToken *curly;
+@property (nonatomic, retain) TDToken *bracket;
 @end
 
 @implementation TDJsonParser
 
 - (id)init {
+    return [self initWithIntentToAssemble:YES];
+}
+
+
+- (id)initWithIntentToAssemble:(BOOL)yn {
     self = [super init];
     if (self) {
+        shouldAssemble = yn;
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0f];
         self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0f];
     }
@@ -63,7 +69,9 @@
 - (TDParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
-        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+        if (shouldAssemble) {
+            [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+        }
     }
     return stringParser;
 }
@@ -72,7 +80,9 @@
 - (TDParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
-        [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
+        if (shouldAssemble) {
+            [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
+        }
     }
     return numberParser;
 }
@@ -81,7 +91,9 @@
 - (TDParser *)nullParser {
     if (!nullParser) {
         self.nullParser = [[TDLiteral literalWithString:@"null"] discard];
-        [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
+        if (shouldAssemble) {
+            [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
+        }
     }
     return nullParser;
 }
@@ -92,7 +104,9 @@
         self.booleanParser = [TDAlternation alternation];
         [booleanParser add:[TDLiteral literalWithString:@"true"]];
         [booleanParser add:[TDLiteral literalWithString:@"false"]];
-        [booleanParser setAssembler:self selector:@selector(workOnBooleanAssembly:)];
+        if (shouldAssemble) {
+            [booleanParser setAssembler:self selector:@selector(workOnBooleanAssembly:)];
+        }
     }
     return booleanParser;
 }
@@ -118,7 +132,9 @@
         [arrayParser add:content];
         [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
         
-        [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
+        if (shouldAssemble) {
+            [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
+        }
     }
     return arrayParser;
 }
@@ -146,7 +162,9 @@
         [objectParser add:content];
         [objectParser add:[[TDSymbol symbolWithString:@"}"] discard]];
 
-        [objectParser setAssembler:self selector:@selector(workOnObjectAssembly:)];
+        if (shouldAssemble) {
+            [objectParser setAssembler:self selector:@selector(workOnObjectAssembly:)];
+        }
     }
     return objectParser;
 }
@@ -182,7 +200,9 @@
         [propertyParser add:[TDQuotedString quotedString]];
         [propertyParser add:[[TDSymbol symbolWithString:@":"] discard]];
         [propertyParser add:self.valueParser];
-        [propertyParser setAssembler:self selector:@selector(workOnPropertyAssembly:)];
+        if (shouldAssemble) {
+            [propertyParser setAssembler:self selector:@selector(workOnPropertyAssembly:)];
+        }
     }
     return propertyParser;
 }

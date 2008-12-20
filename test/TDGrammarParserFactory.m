@@ -44,6 +44,7 @@
 @property (nonatomic, retain) TDCollectionParser *phraseCardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) TDCollectionParser *discardParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
@@ -92,7 +93,7 @@
     self.phraseCardinalityParser = nil;
     self.cardinalityParser = nil;
     self.atomicValueParser = nil;
-    self.literalParser = nil;
+    self.discardParser = nil;
     self.variableParser = nil;
     self.constantParser = nil;
     self.numParser = nil;
@@ -239,7 +240,8 @@
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num '}'
-// atomicValue          = literal | variable | constant
+// atomicValue          = (literal | variable | constant) discard?
+// discard              = '.' 'discard'
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
@@ -454,16 +456,37 @@
 }
 
 
-// atomicValue    = QuotedString | variable | constant
+// atomicValue          = (literal | variable | constant) discard?
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
-        self.atomicValueParser = [TDAlternation alternation];
+        self.atomicValueParser = [TDSequence sequence];
         atomicValueParser.name = @"atomicValue";
-        [atomicValueParser add:self.literalParser];
-        [atomicValueParser add:self.variableParser];
-        [atomicValueParser add:self.constantParser];
+        
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:self.literalParser];
+        [a add:self.variableParser];
+        [a add:self.constantParser];
+        [atomicValueParser add:a];
+
+        a = [TDAlternation alternation];
+        [a add:[TDEmpty empty]];
+        [a add:self.discardParser];
+        [atomicValueParser add:a];        
     }
     return atomicValueParser;
+}
+
+
+// discard              = '.' 'discard'
+- (TDCollectionParser *)discardParser {
+    if (!discardParser) {
+        self.discardParser = [TDSequence sequence];
+        discardParser.name = @"discardParser";
+        [discardParser add:[[TDSymbol symbolWithString:@"."] discard]];
+        [discardParser add:[[TDLiteral literalWithString:@"discard"] discard]];
+        [discardParser setAssembler:self selector:@selector(workOnDiscardAssembly:)];
+    }
+    return discardParser;
 }
 
 
@@ -551,6 +574,13 @@
     } else if (objs.count) {
         [a push:[objs objectAtIndex:0]];
     }
+}
+
+
+- (void)workOnDiscardAssembly:(TDAssembly *)a {
+    TDTerminal *t = [a pop]; // tell terminal to discard itself when matched
+    [t discard];
+    [a push:t];
 }
 
 
@@ -692,6 +722,7 @@
 @synthesize phraseCardinalityParser;
 @synthesize cardinalityParser;
 @synthesize atomicValueParser;
+@synthesize discardParser;
 @synthesize literalParser;
 @synthesize variableParser;
 @synthesize constantParser;

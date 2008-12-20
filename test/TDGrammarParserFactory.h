@@ -33,6 +33,7 @@
     TDCollectionParser *phraseCardinalityParser;
     TDCollectionParser *cardinalityParser;
     TDCollectionParser *atomicValueParser;
+    TDCollectionParser *discardParser;
     TDParser *literalParser;
     TDParser *variableParser;
     TDParser *constantParser;

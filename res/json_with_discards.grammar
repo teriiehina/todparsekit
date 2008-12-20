@@ -1,0 +1,39 @@
+/**
+    A Grammar for JSON.
+    
+    Feed this to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
+    to an assembler (a call back delegate), and it will return a TDParser object which can 
+    parse strings conforming to this language/grammar.
+    
+    The when the returned parser is used, the provided assembler will receive method callbacks like:
+
+    -workOnStartAssembly:
+    -workOnObjectAssembly:
+    -workOnPropertyAssembly:
+    -workOnArrayAssembly:
+    etc.
+    
+    whenever a grammar production of the corresponding name has been matched.
+    
+    Each callback method must accept a single TDAssembly argument. The provided assembly
+    will contain information about the progress made on the the string currently being parsed.
+    Also the assembly's stack will contain the tokens parsed so far in the current statement.
+ */
+
+start         = array | object;
+
+object        = '{' objectContent '}'.discard;
+objectContent = Empty | actualObject;
+actualObject  = property commaProperty*;
+commaProperty = ','.discard property;
+property      = QuotedString ':'.discard value;         // NOTE: property names are quoted in JSON
+
+array         = '[' arrayContent ']'.discard;
+arrayContent  = Empty | actualArray;
+actualArray   = value commaValue*;
+commaValue    = ','.discard value;
+
+value         = null | true | false | array | object | Num | QuotedString;
+null          = 'null'.discard;
+true          = 'true'.discard;
+false         = 'false'.discard;
