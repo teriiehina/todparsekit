@@ -9,6 +9,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDJsonParser : TDAlternation {
+    BOOL shouldAssemble;
+
     TDParser *stringParser;
     TDParser *numberParser;
     TDParser *nullParser;
@@ -24,16 +26,18 @@
     TDToken *bracket;
 }
 
+- (id)initWithIntentToAssemble:(BOOL)shouldAssemble;
+
 - (id)parse:(NSString *)s;
 
-@property (retain) TDParser *stringParser;
-@property (retain) TDParser *numberParser;
-@property (retain) TDParser *nullParser;
-@property (retain) TDCollectionParser *booleanParser;
-@property (retain) TDCollectionParser *arrayParser;
-@property (retain) TDCollectionParser *objectParser;
-@property (retain) TDCollectionParser *valueParser;
-@property (retain) TDCollectionParser *commaValueParser;
-@property (retain) TDCollectionParser *propertyParser;
-@property (retain) TDCollectionParser *commaPropertyParser;
+@property (nonatomic, retain) TDParser *stringParser;
+@property (nonatomic, retain) TDParser *numberParser;
+@property (nonatomic, retain) TDParser *nullParser;
+@property (nonatomic, retain) TDCollectionParser *booleanParser;
+@property (nonatomic, retain) TDCollectionParser *arrayParser;
+@property (nonatomic, retain) TDCollectionParser *objectParser;
+@property (nonatomic, retain) TDCollectionParser *valueParser;
+@property (nonatomic, retain) TDCollectionParser *commaValueParser;
+@property (nonatomic, retain) TDCollectionParser *propertyParser;
+@property (nonatomic, retain) TDCollectionParser *commaPropertyParser;
 @end

@@ -104,16 +104,55 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, 'foo', ,, true, ,, null, ]][/'foo'/,/true/,/null/]^", [res description]);
-
+    
     s = @"[[]]";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [, ], ]][/[/]/]^", [res description]);
-
+    
     s = @"[[[1]]]";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [, [, 1, ], ], ]][/[/[/1/]/]/]^", [res description]);
+}
+
+
+- (void)testJSONWithDiscards {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path];
+    lp = [factory parserForGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"{'foo':'bar'}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', 'bar']{/'foo'/:/'bar'/}^", [res description]);
+    
+    s = @"{'foo':{}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', {]{/'foo'/:/{/}/}^", [res description]);
+    
+    s = @"{'foo':{'bar':[]}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', {, 'bar', []{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
+    
+    s = @"['foo', true, null]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, 'foo'][/'foo'/,/true/,/null/]^", [res description]);
+    
+    s = @"[[]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [][/[/]/]^", [res description]);
+    
+    s = @"[[[1]]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [, [, 1][/[/[/1/]/]/]^", [res description]);
 }
 
 

@@ -204,6 +204,9 @@
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
 		D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		D3D01CAA0EFDB89900C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
+		D3D01CAB0EFDB8A000C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
+		D3D01CAC0EFDB8A100C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
 		D3D6E4E30EF625D700292EE6 /* TDAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D6E4E10EF625D700292EE6 /* TDAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3D6E4E40EF625D700292EE6 /* TDAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6E4E20EF625D700292EE6 /* TDAny.m */; };
 		D3D6E65D0EF654DE00292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
@@ -563,6 +566,7 @@
 		D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParserTest.m; path = test/TDArithmeticParserTest.m; sourceTree = "<group>"; };
 		D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberStateTest.h; path = test/TDScientificNumberStateTest.h; sourceTree = "<group>"; };
 		D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberStateTest.m; path = test/TDScientificNumberStateTest.m; sourceTree = "<group>"; };
+		D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_with_discards.grammar; path = res/json_with_discards.grammar; sourceTree = "<group>"; };
 		D3D6E4E10EF625D700292EE6 /* TDAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAny.h; path = src/TDAny.h; sourceTree = "<group>"; };
 		D3D6E4E20EF625D700292EE6 /* TDAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAny.m; path = src/TDAny.m; sourceTree = "<group>"; };
 		D3D6E65C0EF654DE00292EE6 /* json-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "json-old.grammar"; path = "res/json-old.grammar"; sourceTree = "<group>"; };
@@ -978,6 +982,7 @@
 				D3DCB3560EF5E4B700DE5110 /* css.grammar */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3DCB4C20EF6015300DE5110 /* json.grammar */,
+				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
 				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
 				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
 				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
@@ -1454,6 +1459,7 @@
 				D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */,
 				D3D6E65E0EF654E500292EE6 /* json-old.grammar in Resources */,
 				D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */,
+				D3D01CAB0EFDB8A000C24DDE /* json_with_discards.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,6 +1478,7 @@
 				D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */,
 				D3D6E65F0EF654E600292EE6 /* json-old.grammar in Resources */,
 				D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */,
+				D3D01CAC0EFDB8A100C24DDE /* json_with_discards.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1494,6 +1501,7 @@
 				D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */,
 				D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */,
 				D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */,
+				D3D01CAA0EFDB89900C24DDE /* json_with_discards.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
