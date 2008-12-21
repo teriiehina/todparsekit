@@ -315,7 +315,7 @@
 - (void)test100minus5exp2times3 { // exp
     s = @"100 - 5^2*3";
     result = [p parse:s];
-    TDEquals((CGFloat)(CGFloat)25.0, result);
+    TDEquals((CGFloat)25.0, result);
 }
 
 

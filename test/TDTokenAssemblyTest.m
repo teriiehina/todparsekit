@@ -26,39 +26,39 @@
     s = @"oh hai!";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDEquals(3, a.length);
+    TDEquals((NSUInteger)3, a.length);
 
-    TDEquals(0, a.objectsConsumed);
-    TDEquals(3, a.objectsRemaining);
+    TDEquals((NSUInteger)0, a.objectsConsumed);
+    TDEquals((NSUInteger)3, a.objectsRemaining);
     TDEqualObjects(@"[]^oh/hai/!", [a description]);
     TDTrue([a hasMore]);
     TDEqualObjects(@"oh", [[a next] stringValue]);
 
-    TDEquals(1, a.objectsConsumed);
-    TDEquals(2, a.objectsRemaining);
+    TDEquals((NSUInteger)1, a.objectsConsumed);
+    TDEquals((NSUInteger)2, a.objectsRemaining);
     TDEqualObjects(@"[]oh^hai/!", [a description]);
     TDTrue([a hasMore]);
     TDEqualObjects(@"hai", [[a next] stringValue]);
 
-    TDEquals(2, a.objectsConsumed);
-    TDEquals(1, a.objectsRemaining);
+    TDEquals((NSUInteger)2, a.objectsConsumed);
+    TDEquals((NSUInteger)1, a.objectsRemaining);
     TDEqualObjects(@"[]oh/hai^!", [a description]);
     TDTrue([a hasMore]);
     TDEqualObjects(@"!", [[a next] stringValue]);
 
-    TDEquals(3, a.objectsConsumed);
-    TDEquals(0, a.objectsRemaining);
+    TDEquals((NSUInteger)3, a.objectsConsumed);
+    TDEquals((NSUInteger)0, a.objectsRemaining);
     TDEqualObjects(@"[]oh/hai/!^", [a description]);
     TDFalse([a hasMore]);
     TDNil([[a next] stringValue]);
 
-    TDEquals(3, a.objectsConsumed);
-    TDEquals(0, a.objectsRemaining);
+    TDEquals((NSUInteger)3, a.objectsConsumed);
+    TDEquals((NSUInteger)0, a.objectsRemaining);
     TDEqualObjects(@"[]oh/hai/!^", [a description]);
     TDFalse([a hasMore]);
     TDNil([[a next] stringValue]);
 
-    TDEquals(3, a.length);
+    TDEquals((NSUInteger)3, a.length);
 }
 
 
@@ -66,7 +66,7 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
@@ -84,7 +84,7 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
@@ -98,7 +98,7 @@
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
@@ -112,7 +112,7 @@
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
@@ -125,7 +125,7 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
@@ -138,7 +138,7 @@
     s = @"foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
@@ -151,7 +151,7 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDWord alloc] init];
@@ -168,7 +168,7 @@
     p = [[TDWord alloc] init];
     TDAssembly *result = [p completeMatchFor:a];
     TDNil(result);
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
 }
 
@@ -177,7 +177,7 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
@@ -191,7 +191,7 @@
     s = @"123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(1, a.length);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
@@ -205,7 +205,7 @@
     s = @"123 456";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
@@ -219,7 +219,7 @@
     s = @"123 456";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
@@ -232,7 +232,7 @@
     s = @"foobar 123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
@@ -246,7 +246,7 @@
     s = @"foobar 123";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(2, a.length);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
@@ -259,7 +259,7 @@
     s = @"123 456 foobar";
     a = [TDTokenAssembly assemblyWithString:s];
 
-    TDEquals(3, a.length);
+    TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];
@@ -273,7 +273,7 @@
     s = @"123 456 foobar";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDEquals(3, a.length);
+    TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];

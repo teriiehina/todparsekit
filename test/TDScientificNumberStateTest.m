@@ -32,7 +32,8 @@
     TDArithmeticParser *p = [[[TDArithmeticParser alloc] init] autorelease];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     TDAssembly *res = [p bestMatchFor:a];
-    TDEquals(111.111f, [[res pop] floatValue]);
+    TDToken *tok = [res pop];
+    TDEquals((CGFloat)111.111, [tok floatValue]);
 }
 
 
