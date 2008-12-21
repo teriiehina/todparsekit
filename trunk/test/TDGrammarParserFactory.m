@@ -22,7 +22,7 @@
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
-@property (nonatomic, retain) id assembler;
+@property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
 @property (nonatomic, retain) NSMutableDictionary *selectorTable;
@@ -69,19 +69,19 @@
 
 
 - (void)dealloc {
+    assembler = nil; // appease clang static analyzer
+
     self.tokenizer = nil;
-    self.assembler = nil;
-    self.parserTokensTable = nil;
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
     self.selectorTable = nil;
     self.equals = nil;
     self.curly = nil;
     self.statementParser = nil;
-    self.expressionParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
     self.selectorParser = nil;
+    self.expressionParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
     self.factorParser = nil;
@@ -94,6 +94,7 @@
     self.cardinalityParser = nil;
     self.atomicValueParser = nil;
     self.discardParser = nil;
+    self.literalParser = nil;
     self.variableParser = nil;
     self.constantParser = nil;
     self.numParser = nil;
@@ -116,6 +117,11 @@
     
     [pool release];
     [start autorelease]; // autorelease to balance
+    
+    assembler = nil;
+    self.selectorTable = nil;
+    self.parserClassTable = nil;
+    self.parserTokensTable = nil;
     
     if (start && [start isKindOfClass:[TDParser class]]) {
         return start;
