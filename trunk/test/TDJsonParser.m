@@ -11,6 +11,7 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDJsonParser ()
+@property (nonatomic, retain, readwrite) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *bracket;
 @end
@@ -28,12 +29,17 @@
         shouldAssemble = yn;
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0f];
         self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0f];
+        
+        self.tokenizer = [TDTokenizer tokenizer];
+        [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
+        [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
     }
     return self;
 }
 
 
 - (void)dealloc {
+    self.tokenizer = nil;
     self.stringParser = nil;
     self.numberParser = nil;
     self.nullParser = nil;
@@ -55,11 +61,8 @@
     [self add:self.arrayParser];
     [self add:self.objectParser];
     
-    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
-    [t setTokenizerState:t.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
-    [t setTokenizerState:t.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
-    
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    tokenizer.string = s;
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     
     TDAssembly *result = [self completeMatchFor:a];
     return [result pop];
@@ -282,6 +285,7 @@
     [a push:value];
 }
 
+@synthesize tokenizer;
 @synthesize stringParser;
 @synthesize numberParser;
 @synthesize nullParser;
