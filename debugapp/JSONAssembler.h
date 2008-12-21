@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class TDToken;
+
 @interface JSONAssembler : NSObject {
     NSMutableAttributedString *displayString;
     id defaultAttrs;
@@ -16,6 +18,10 @@
     id propertyNameAttrs;
     id valueAttrs;
     id constantAttrs;
+    
+    TDToken *comma;
+    TDToken *curly;
+    TDToken *bracket;
 }
 @property (retain) NSMutableAttributedString *displayString;
 @property (retain) id defaultAttrs;
@@ -24,4 +30,7 @@
 @property (retain) id propertyNameAttrs;
 @property (retain) id valueAttrs;
 @property (retain) id constantAttrs;
+@property (retain) TDToken *comma;
+@property (retain) TDToken *curly;
+@property (retain) TDToken *bracket;
 @end

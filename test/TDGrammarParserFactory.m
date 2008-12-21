@@ -103,9 +103,16 @@
 
 
 - (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
+    return [self parserForGrammar:s assembler:ass reportsWhitespace:NO];
+}
+
+
+- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass reportsWhitespace:(BOOL)yn {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     self.tokenizer.string = s;
+    self.tokenizer.whitespaceState.reportsWhitespaceTokens = NO
+    ;
     self.assembler = ass;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];

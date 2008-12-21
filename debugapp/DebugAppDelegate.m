@@ -138,6 +138,24 @@
 
 
 - (void)doGrammarParser {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    
+    JSONAssembler *ass = [[[JSONAssembler alloc] init] autorelease];
+    TDParser *lp = [factory parserForGrammar:s assembler:ass reportsWhitespace:YES];
+    
+    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    s = [NSString stringWithContentsOfFile:path];
+    
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp completeMatchFor:a];
+    
+    self.displayString = ass.displayString;
+}
+
+
+- (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
@@ -221,8 +239,9 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doGrammarParser];
+//    [self doProf];
 //    [self doTokenize];
+    [self doGrammarParser];
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];
