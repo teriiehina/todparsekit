@@ -24,7 +24,7 @@
     //NSParameterAssert(s);
     self = [super initWithString:s];
     if (self) {
-        self.literal = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:s floatValue:0.0f];
+        self.literal = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:s floatValue:0.0];
     }
     return self;
 }

@@ -61,7 +61,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
+    return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
 }
 
 @end

@@ -106,7 +106,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
+    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
 }
 
 

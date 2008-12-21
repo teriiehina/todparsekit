@@ -87,7 +87,7 @@
     }
     
     if (reportsWhitespaceTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0f];
+        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
     } else {
         return [t nextToken];
     }
