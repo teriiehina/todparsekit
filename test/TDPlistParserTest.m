@@ -349,7 +349,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"1", [obj stringValue]);
     TDEquals(1, [obj integerValue]);
-    TDEquals(1.0f, [obj floatValue]);
+    TDEquals((CGFloat)1.0, [obj floatValue]);
 }
 
 
@@ -365,7 +365,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-1", [obj stringValue]);
     TDEquals(-1, [obj integerValue]);
-    TDEquals(-1.0f, [obj floatValue]);
+    TDEquals((CGFloat)-1.0, [obj floatValue]);
 }
 
 
@@ -381,7 +381,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-1", [obj stringValue]);
     TDEquals(-1, [obj integerValue]);
-    TDEquals(-1.0f, [obj floatValue]);
+    TDEquals((CGFloat)-1.0, [obj floatValue]);
 }
 
 
@@ -397,7 +397,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"0", [obj stringValue]);
     TDEquals(0, [obj integerValue]);
-    TDEquals(0.0f, [obj floatValue]);
+    TDEquals((CGFloat)0.0, [obj floatValue]);
 }
 
 
@@ -412,7 +412,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"0", [obj stringValue]);
     TDEquals(0, [obj integerValue]);
-    TDEquals(0.0f, [obj floatValue]);
+    TDEquals((CGFloat)0.0, [obj floatValue]);
 }
 
 
@@ -428,7 +428,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-0", [obj stringValue]);
     TDEquals(-0, [obj integerValue]);
-    TDEquals(-0.0f, [obj floatValue]);
+    TDEquals((CGFloat)-0.0, [obj floatValue]);
 }
 
 
@@ -444,7 +444,7 @@
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"300", [obj stringValue]);
     TDEquals(300, [obj integerValue]);
-    TDEquals(300.0f, [obj floatValue]);
+    TDEquals((CGFloat)300.0, [obj floatValue]);
 }
 
 

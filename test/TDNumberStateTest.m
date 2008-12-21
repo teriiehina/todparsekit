@@ -25,7 +25,7 @@
     s = @"3";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(3.0f, t.floatValue);    
+    TDEquals((CGFloat)3.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"3", t.stringValue);    
 }
@@ -35,7 +35,7 @@
     s = @"47";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(47.0f, t.floatValue);    
+    TDEquals((CGFloat)47.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"47", t.stringValue);    
 }
@@ -45,7 +45,7 @@
     s = @"654";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(654.0f, t.floatValue);    
+    TDEquals((CGFloat)654.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"654", t.stringValue);    
 }
@@ -55,7 +55,7 @@
     s = @"+3";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(3.0f, t.floatValue);    
+    TDEquals((CGFloat)3.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+3", t.stringValue);    
 }
@@ -65,7 +65,7 @@
     s = @"+22";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(22.0f, t.floatValue);    
+    TDEquals((CGFloat)22.0, t.floatValue);    
     TDTrue(t.isNumber);    
 }
 
@@ -74,7 +74,7 @@
     s = @"+22 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(22.0f, t.floatValue);    
+    TDEquals((CGFloat)22.0, t.floatValue);    
     TDTrue(t.isNumber);    
 }
 
@@ -83,12 +83,12 @@
     s = @"1.1.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.1f, t.floatValue);
+    TDEquals((CGFloat)1.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1.1", t.stringValue);    
 
     t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.1f, t.floatValue);
+    TDEquals((CGFloat)0.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@".1", t.stringValue);    
 }
@@ -98,7 +98,7 @@
     s = @"1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1", t.stringValue);    
 }
@@ -109,7 +109,7 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1.", t.stringValue);        
 }
@@ -119,7 +119,7 @@
     s = @"1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1.0", t.stringValue);
 }
@@ -129,7 +129,7 @@
     s = @"+1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+1", t.stringValue);
 }
@@ -140,7 +140,7 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+1.", t.stringValue);
 }
@@ -150,7 +150,7 @@
     s = @"+1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+1.0", t.stringValue);    
 }
@@ -160,7 +160,7 @@
     s = @"+1.0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);
+    TDEquals((CGFloat)1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+1.0", t.stringValue);    
 }
@@ -170,7 +170,7 @@
     s = @"-1.";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);
+    TDEquals((CGFloat)-1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1", t.stringValue);
 }
@@ -181,7 +181,7 @@
     r = [[TDReader alloc] initWithString:s];
     numberState.allowsTrailingDot = YES;
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);
+    TDEquals((CGFloat)-1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1.", t.stringValue);    
 }
@@ -191,7 +191,7 @@
     s = @"-1. ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);
+    TDEquals((CGFloat)-1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1", t.stringValue);    
 }
@@ -201,7 +201,7 @@
     s = @"-1.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);
+    TDEquals((CGFloat)-1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1.0", t.stringValue);    
 }
@@ -211,7 +211,7 @@
     s = @"-1.0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);
+    TDEquals((CGFloat)-1.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1.0", t.stringValue);    
 }
@@ -221,7 +221,7 @@
     s = @"1.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.1f, t.floatValue);
+    TDEquals((CGFloat)1.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1.1", t.stringValue);    
 }
@@ -231,7 +231,7 @@
     s = @"0.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.1f, t.floatValue);
+    TDEquals((CGFloat)0.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"0.1", t.stringValue);    
 }
@@ -241,7 +241,7 @@
     s = @".1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.1f, t.floatValue);
+    TDEquals((CGFloat)0.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@".1", t.stringValue);    
 }
@@ -251,7 +251,7 @@
     s = @".0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);
+    TDEquals((CGFloat)0.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@".0", t.stringValue);    
 }
@@ -261,7 +261,7 @@
     s = @"-.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.0f, t.floatValue);
+    TDEquals((CGFloat)-0.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.0", t.stringValue);    
 }
@@ -271,7 +271,7 @@
     s = @"+.0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);
+    TDEquals((CGFloat)0.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+.0", t.stringValue);    
 }
@@ -281,7 +281,7 @@
     s = @"+.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.1f, t.floatValue);
+    TDEquals((CGFloat)0.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+.1", t.stringValue);    
 }
@@ -291,7 +291,7 @@
     s = @"-.1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.1f, t.floatValue);
+    TDEquals((CGFloat)-0.1f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.1", t.stringValue);    
 }
@@ -301,7 +301,7 @@
     s = @"-.11";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.11f, t.floatValue);
+    TDEquals((CGFloat)-0.11f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.11", t.stringValue);    
 }
@@ -311,7 +311,7 @@
     s = @"-.111";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.111f, t.floatValue);
+    TDEquals((CGFloat)-0.111f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.111", t.stringValue);    
 }
@@ -321,7 +321,7 @@
     s = @"-.1110";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.111f, t.floatValue);
+    TDEquals((CGFloat)-0.111f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.1110", t.stringValue);    
 }
@@ -331,7 +331,7 @@
     s = @"-.11100";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.111f, t.floatValue);
+    TDEquals((CGFloat)-0.111f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.11100", t.stringValue);    
 }
@@ -341,7 +341,7 @@
     s = @"-.1110 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.111f, t.floatValue);
+    TDEquals((CGFloat)-0.111f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-.1110", t.stringValue);    
 }
@@ -351,7 +351,7 @@
     s = @"0.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.365f, t.floatValue);
+    TDEquals((CGFloat)0.365f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"0.365", t.stringValue);    
 }
@@ -361,7 +361,7 @@
     s = @"-0.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.365f, t.floatValue);
+    TDEquals((CGFloat)-0.365f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-0.365", t.stringValue);    
 }
@@ -371,7 +371,7 @@
     s = @"-24.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-24.365f, t.floatValue);
+    TDEquals((CGFloat)-24.365f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-24.365", t.stringValue);    
 }
@@ -381,7 +381,7 @@
     s = @"24.365";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(24.365f, t.floatValue);
+    TDEquals((CGFloat)24.365f, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"24.365", t.stringValue);    
 }
@@ -391,7 +391,7 @@
     s = @"0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"0", t.stringValue);    
 }
@@ -401,7 +401,7 @@
     s = @"-1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-1.0f, t.floatValue);    
+    TDEquals((CGFloat)-1.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-1", t.stringValue);    
 }
@@ -411,7 +411,7 @@
     s = @"1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);    
+    TDEquals((CGFloat)1.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"1", t.stringValue);    
 }
@@ -421,7 +421,7 @@
     s = @"+1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(1.0f, t.floatValue);    
+    TDEquals((CGFloat)1.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+1", t.stringValue);    
 }
@@ -431,7 +431,7 @@
     s = @"+0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+0", t.stringValue);    
 }
@@ -441,7 +441,7 @@
     s = @"+0 ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDTrue(t.isNumber);    
     TDEqualObjects(@"+0", t.stringValue);    
 }
@@ -451,7 +451,7 @@
     s = @"-0";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(-0.0f, t.floatValue);
+    TDEquals((CGFloat)-0.0, t.floatValue);
     TDTrue(t.isNumber);    
     TDEqualObjects(@"-0", t.stringValue);    
 }
@@ -461,7 +461,7 @@
     s = @"NULL";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -470,7 +470,7 @@
     s = @"nil";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -479,7 +479,7 @@
     s = @"";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -488,7 +488,7 @@
     s = @".";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -497,7 +497,7 @@
     s = @". ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -506,7 +506,7 @@
     s = @". 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -515,7 +515,7 @@
     s = @"+";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -524,7 +524,7 @@
     s = @"+ ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -533,7 +533,7 @@
     s = @"+ 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -542,7 +542,7 @@
     s = @"-";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -551,7 +551,7 @@
     s = @"- ";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -560,7 +560,7 @@
     s = @"- 1";
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDFalse(t.isNumber);    
 }
 
@@ -570,7 +570,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *t = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(t.stringValue);    
-    TDEquals(0.0f, t.floatValue);
+    TDEquals((CGFloat)0.0, t.floatValue);
 }
 
 

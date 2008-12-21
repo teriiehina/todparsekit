@@ -189,7 +189,7 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDEquals(0.999f, t.floatValue);
+    TDEquals((CGFloat)0.999f, t.floatValue);
     TDTrue(t.isNumber);    
 
 //    if ([TDToken EOFToken] == token) break;
@@ -216,7 +216,7 @@
     
     TDToken *t = [tokenizer nextToken];
     TDEqualObjects(@"-", t.stringValue);    
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDTrue(t.isSymbol);    
 }
 
@@ -227,12 +227,12 @@
     
     TDToken *t = [tokenizer nextToken];
     TDEqualObjects(@"-", t.stringValue);    
-    TDEquals(0.0f, t.floatValue);    
+    TDEquals((CGFloat)0.0, t.floatValue);    
     TDTrue(t.isSymbol);    
     
     t = [tokenizer nextToken];
     TDEqualObjects(@"2", t.stringValue);    
-    TDEquals(2.0f, t.floatValue);    
+    TDEquals((CGFloat)2.0, t.floatValue);    
     TDTrue(t.isNumber);    
 }
 
@@ -246,7 +246,7 @@
     TDTrue(t.isSymbol);
 
     t = [tokenizer nextToken];
-    TDEquals(2.0f, t.floatValue);    
+    TDEquals((CGFloat)2.0, t.floatValue);    
     TDTrue(t.isNumber);
     TDEqualObjects(@"2", t.stringValue);    
 
@@ -260,7 +260,7 @@
     [tokenizer setTokenizerState:tokenizer.numberState from:'+' to:'+'];
     
     TDToken *t = [tokenizer nextToken];
-    TDEquals(2.0f, t.floatValue);    
+    TDEquals((CGFloat)2.0, t.floatValue);    
     TDTrue(t.isNumber);
     TDEqualObjects(@"+2", t.stringValue);    
     
