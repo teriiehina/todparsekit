@@ -187,28 +187,28 @@
 - (void)workOnPlusAssembly:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithFloat:tok1.floatValue + tok2.floatValue]];
+    [a push:[NSNumber numberWithDouble:tok1.floatValue + tok2.floatValue]];
 }
 
 
 - (void)workOnMinusAssembly:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithFloat:tok1.floatValue - tok2.floatValue]];
+    [a push:[NSNumber numberWithDouble:tok1.floatValue - tok2.floatValue]];
 }
 
 
 - (void)workOnTimesAssembly:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithFloat:tok1.floatValue * tok2.floatValue]];
+    [a push:[NSNumber numberWithDouble:tok1.floatValue * tok2.floatValue]];
 }
 
 
 - (void)workOnDivideAssembly:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithFloat:tok1.floatValue / tok2.floatValue]];
+    [a push:[NSNumber numberWithDouble:tok1.floatValue / tok2.floatValue]];
 }
 
 
@@ -220,12 +220,12 @@
     CGFloat n2 = tok2.floatValue;
     
     CGFloat res = n1;
-    NSInteger i = 1;
+    NSUInteger i = 1;
     for ( ; i < n2; i++) {
         res *= n1;
     }
     
-    [a push:[NSNumber numberWithFloat:res]];
+    [a push:[NSNumber numberWithDouble:res]];
 }
 
 @synthesize exprParser;
