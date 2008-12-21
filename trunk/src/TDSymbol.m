@@ -29,7 +29,7 @@
     self = [super initWithString:s];
     if (self) {
         if (s.length) {
-            self.symbol = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0f];
+            self.symbol = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0];
         }
     }
     return self;
