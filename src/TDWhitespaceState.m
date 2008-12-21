@@ -30,7 +30,7 @@
     if (self) {
         const NSUInteger len = 255;
         self.whitespaceChars = [NSMutableArray arrayWithCapacity:len];
-        NSInteger i = 0;
+        NSUInteger i = 0;
         for ( ; i <= len; i++) {
             [whitespaceChars addObject:TDFALSE];
         }
@@ -48,13 +48,13 @@
 
 
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
-    NSInteger len = whitespaceChars.count;
+    NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin-1 set (under 256)"];
     }
 
     id obj = yn ? TDTRUE : TDFALSE;
-    NSInteger i = start;
+    NSUInteger i = start;
     for ( ; i <= end; i++) {
         [whitespaceChars replaceObjectAtIndex:i withObject:obj];
     }
