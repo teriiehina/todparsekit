@@ -12,7 +12,7 @@
 - (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a;
 
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
-@property (nonatomic) NSInteger index;
+@property (nonatomic) NSUInteger index;
 @property (nonatomic, copy) NSString *string;
 @property (nonatomic, readwrite, copy) NSString *defaultDelimiter;
 @end
@@ -89,19 +89,19 @@
 }
 
 
-- (NSInteger)length {
+- (NSUInteger)length {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return 0;
 }
 
 
-- (NSInteger)objectsConsumed {
+- (NSUInteger)objectsConsumed {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return 0;
 }
 
 
-- (NSInteger)objectsRemaining {
+- (NSUInteger)objectsRemaining {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return 0;
 }

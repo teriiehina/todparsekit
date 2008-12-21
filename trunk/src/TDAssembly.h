@@ -17,7 +17,7 @@
 @interface TDAssembly : NSObject <NSCopying> {
     NSMutableArray *stack;
     id target;
-    NSInteger index;
+    NSUInteger index;
     NSString *string;
     NSString *defaultDelimiter;
 }
@@ -104,19 +104,19 @@
     @property   length
     @brief      The number of elements in this assembly.
 */
-@property (nonatomic, readonly) NSInteger length;
+@property (nonatomic, readonly) NSUInteger length;
 
 /*!
     @property   objectsConsumed
     @brief      The number of elements that have been consumed.
 */
-@property (nonatomic, readonly) NSInteger objectsConsumed;
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
 
 /*!
     @property   objectsRemaining
     @brief      The number of elements that have not been consumed
 */
-@property (nonatomic, readonly) NSInteger objectsRemaining;
+@property (nonatomic, readonly) NSUInteger objectsRemaining;
 
 /*!
     @property   defaultDelimiter
