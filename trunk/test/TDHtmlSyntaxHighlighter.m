@@ -58,34 +58,34 @@
         tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
         [tokenizer.wordState setWordChars:YES from:':' to:':'];
         
-        self.ltToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0f];
-        self.gtToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@">" floatValue:0.0f];
+        self.ltToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0];
+        self.gtToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@">" floatValue:0.0];
         
-        self.startCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!--" floatValue:0.0f];
-        self.endCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"-->" floatValue:0.0f];
+        self.startCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!--" floatValue:0.0];
+        self.endCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"-->" floatValue:0.0];
         [tokenizer.symbolState add:startCommentToken.stringValue];
         [tokenizer.symbolState add:endCommentToken.stringValue];
 
-        self.startCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<![CDATA[" floatValue:0.0f];
-        self.endCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"]]>" floatValue:0.0f];
+        self.startCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<![CDATA[" floatValue:0.0];
+        self.endCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"]]>" floatValue:0.0];
         [tokenizer.symbolState add:startCDATAToken.stringValue];
         [tokenizer.symbolState add:endCDATAToken.stringValue];
 
-        self.startPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<?" floatValue:0.0f];
-        self.endPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"?>" floatValue:0.0f];
+        self.startPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<?" floatValue:0.0];
+        self.endPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"?>" floatValue:0.0];
         [tokenizer.symbolState add:startPIToken.stringValue];
         [tokenizer.symbolState add:endPIToken.stringValue];
 
-        self.startDoctypeToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!DOCTYPE" floatValue:0.0f];
+        self.startDoctypeToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!DOCTYPE" floatValue:0.0];
         [tokenizer.symbolState add:startDoctypeToken.stringValue];
         
-        self.fwdSlashToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0f];
-        self.eqToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0f];
+        self.fwdSlashToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
+        self.eqToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
 
-        self.scriptToken = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:@"script" floatValue:0.0f];
+        self.scriptToken = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:@"script" floatValue:0.0];
 
         self.endScriptToken = gtToken;
-//        self.endScriptToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"</script>" floatValue:0.0f];
+//        self.endScriptToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"</script>" floatValue:0.0];
 //        [tokenizer.symbolState add:endScriptToken.stringValue];
 
         NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];

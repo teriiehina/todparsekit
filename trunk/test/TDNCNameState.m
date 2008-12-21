@@ -70,7 +70,7 @@
     } else {
 //        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 
 //                                           stringValue:[[stringbuf copy] autorelease] 
-//                                            floatValue:0.0f] autorelease];
+//                                            floatValue:0.0] autorelease];
         return nil;
     }
 }

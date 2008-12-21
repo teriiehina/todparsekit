@@ -50,7 +50,7 @@
         return nil;
 //        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NMTOKEN
 //                                           stringValue:[[stringbuf copy] autorelease] 
-//                                            floatValue:0.0f] autorelease];
+//                                            floatValue:0.0] autorelease];
     }
 }
 
