@@ -9,6 +9,8 @@
 #import <TDParseKit/TDAssembly.h>
 
 @interface TDAssembly ()
+- (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a;
+
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSInteger index;
 @property (nonatomic, copy) NSString *string;
@@ -28,11 +30,19 @@
 
 
 - (id)initWithString:(NSString *)s {
+    return [self initWithString:s defaultDelimiter:@"/" stack:[NSMutableArray array]];
+}
+
+
+// designated initializer. 
+// this exists simply to improve the performance of the -copyWithZone: method.
+// this is private so as not to complicate the public API with a not-particularly-useful constructor
+- (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a {
     self = [super init];
     if (self) {
-        self.stack = [NSMutableArray array];
-        self.defaultDelimiter = @"/";
+        self.stack = a;
         self.string = s;
+        self.defaultDelimiter = d;
     }
     return self;
 }
@@ -48,13 +58,9 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string];
-    [a->stack release];
-    a->stack = [stack mutableCopy];
+    TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string defaultDelimiter:defaultDelimiter stack:[stack mutableCopy]];
     a->target = [target mutableCopy];
     a->index = index;
-    [a->defaultDelimiter release];
-    a->defaultDelimiter = [defaultDelimiter copy];
     return a;
 }
 

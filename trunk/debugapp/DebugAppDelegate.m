@@ -146,7 +146,7 @@
 
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
     NSDate *start = [NSDate date];
-    TDParser *lp = [factory parserForGrammar:s assembler:nil];
+    TDParser *lp = [factory parserForGrammar:s assembler:p];
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -157,12 +157,12 @@
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
     
-    return;
+//    return;
 
 //    NSLog(@"res: %@", a);
 //    NSLog(@"a.target: %@", a.target);
 
-//    TDJsonParser *p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
+    p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
     start = [NSDate date];
     id res = [p parse:s];
     CGFloat ms4json2 = -([start timeIntervalSinceNow]);
@@ -172,10 +172,10 @@
     res = [p parse:s];
     CGFloat ms4json3 = -([start timeIntervalSinceNow]);
     
-//    id fp = [[[TDFastJsonParser alloc] init] autorelease];
-//    start = [NSDate date];
-//    res = [fp parse:s];
-    CGFloat ms4json4 = 0;// -([start timeIntervalSinceNow]);
+    id fp = [[[TDFastJsonParser alloc] init] autorelease];
+    start = [NSDate date];
+    res = [fp parse:s];
+    CGFloat ms4json4 = -([start timeIntervalSinceNow]);
     
     
 
