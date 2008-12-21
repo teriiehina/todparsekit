@@ -191,9 +191,9 @@
     TDNotNil(res);
     
     // -workOnNumberAssembly: has already executed. 
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
-    TDEquals(1, [obj integerValue]);
+    TDEquals((NSInteger)1, [obj integerValue]);
 }
 
 
@@ -345,11 +345,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"1", [obj stringValue]);
-    TDEquals(1, [obj integerValue]);
-    TDEquals((CGFloat)1.0, [obj floatValue]);
+    TDEquals((NSInteger)1, [obj integerValue]);
+    TDEquals((CGFloat)1.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -361,11 +361,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-1", [obj stringValue]);
-    TDEquals(-1, [obj integerValue]);
-    TDEquals((CGFloat)-1.0, [obj floatValue]);
+    TDEquals((NSInteger)-1, [obj integerValue]);
+    TDEquals((CGFloat)-1.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -377,11 +377,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-1", [obj stringValue]);
-    TDEquals(-1, [obj integerValue]);
-    TDEquals((CGFloat)-1.0, [obj floatValue]);
+    TDEquals((NSInteger)-1, [obj integerValue]);
+    TDEquals((CGFloat)-1.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -393,11 +393,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"0", [obj stringValue]);
-    TDEquals(0, [obj integerValue]);
-    TDEquals((CGFloat)0.0, [obj floatValue]);
+    TDEquals((NSInteger)0, [obj integerValue]);
+    TDEquals((CGFloat)0.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -408,11 +408,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"0", [obj stringValue]);
-    TDEquals(0, [obj integerValue]);
-    TDEquals((CGFloat)0.0, [obj floatValue]);
+    TDEquals((NSInteger)0, [obj integerValue]);
+    TDEquals((CGFloat)0.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -424,11 +424,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed. 'floatness' has been lost
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"-0", [obj stringValue]);
-    TDEquals(-0, [obj integerValue]);
-    TDEquals((CGFloat)-0.0, [obj floatValue]);
+    TDEquals((NSInteger)-0, [obj integerValue]);
+    TDEquals((CGFloat)-0.0, (CGFloat)[obj floatValue]);
 }
 
 
@@ -440,11 +440,11 @@
     TDNotNil(res);
     
     // -workOnNumAssembly: has already executed.
-    id obj = [res pop]; // NSNumber *
+    NSNumber *obj = [res pop];
     TDTrue([obj isKindOfClass:[NSNumber class]]);
     TDEqualObjects(@"300", [obj stringValue]);
-    TDEquals(300, [obj integerValue]);
-    TDEquals((CGFloat)300.0, [obj floatValue]);
+    TDEquals((NSInteger)300, [obj integerValue]);
+    TDEquals((CGFloat)300.0, (CGFloat)[obj floatValue]);
 }
 
 
