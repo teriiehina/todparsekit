@@ -168,6 +168,7 @@
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
+    a.target = nil;
     return [res className];
 }
 
