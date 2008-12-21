@@ -46,6 +46,7 @@
 }
 
 
+// designated initializer. this method is private and should not be called from other classes
 - (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a {
     self = [super initWithString:s];
     if (self) {
