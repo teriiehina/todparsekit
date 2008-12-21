@@ -9,6 +9,8 @@
 #import <TDParseKit/TDCharacterAssembly.h>
 
 @interface TDAssembly ()
+- (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a;
+
 @property (nonatomic, readwrite, copy) NSString *defaultDelimiter;
 @end
 
@@ -20,9 +22,8 @@
 
 
 - (id)initWithString:(NSString *)s {
-    self = [super initWithString:s];
+    self = [super initWithString:s defaultDelimiter:@"" stack:[NSMutableArray array]];
     if (self) {
-        self.defaultDelimiter = @"";
     }
     return self;
 }
