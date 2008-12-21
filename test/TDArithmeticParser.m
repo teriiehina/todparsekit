@@ -49,7 +49,8 @@
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [self completeMatchFor:a];
 //    NSLog(@"\n\na: %@\n\n", a);
-    return [[a pop] floatValue];
+    NSNumber *n = [a pop];
+    return (CGFloat)[n floatValue];
 }
 
 

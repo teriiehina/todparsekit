@@ -294,7 +294,7 @@
 - (void)test7minus3minus1 { // minus associativity
     s = @"7 - 3 - 1";
     result = [p parse:s];
-    TDEquals((CGFloat)3.0, result);
+    TDEquals((CGFloat)3.0, (CGFloat)result);
 }
 
 

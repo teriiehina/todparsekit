@@ -36,8 +36,8 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSInteger c = all.count;
-    TDEquals(4, c);
+    NSUInteger c = all.count;
+    TDEquals((NSUInteger)4, c);
 }
 
 
@@ -76,8 +76,8 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSInteger c = all.count;
-    TDEquals(3, c);
+    NSUInteger c = all.count;
+    TDEquals((NSUInteger)3, c);
 }    
 
 
@@ -91,8 +91,8 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSInteger c = all.count;
-    TDEquals(2, c);
+    NSUInteger c = all.count;
+    TDEquals((NSUInteger)2, c);
 }    
 
 
@@ -106,8 +106,8 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSInteger c = all.count;
-    TDEquals(1, c);
+    NSUInteger c = all.count;
+    TDEquals((NSUInteger)1, c);
 }    
 
 
@@ -166,7 +166,7 @@
     
     TDNotNil(all);
     NSInteger c = all.count;
-    TDEquals(3, c);
+    TDEquals((NSUInteger)3, (NSUInteger)c);
 }    
 
 
