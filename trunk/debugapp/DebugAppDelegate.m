@@ -141,9 +141,10 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
-
-    TDJsonParser *p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
-
+    TDJsonParser *p = nil;
+    
+    p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
+    
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
     NSDate *start = [NSDate date];
     TDParser *lp = [factory parserForGrammar:s assembler:p];
@@ -156,38 +157,24 @@
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
-    
-//    return;
 
-//    NSLog(@"res: %@", a);
-//    NSLog(@"a.target: %@", a.target);
-
-    p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
+    p = [[TDJsonParser alloc] initWithIntentToAssemble:NO];
     start = [NSDate date];
     id res = [p parse:s];
     CGFloat ms4json2 = -([start timeIntervalSinceNow]);
+    [p release];
     
-    p = [[[TDJsonParser alloc] initWithIntentToAssemble:YES] autorelease];
+    p = [[TDJsonParser alloc] initWithIntentToAssemble:YES];
     start = [NSDate date];
     res = [p parse:s];
     CGFloat ms4json3 = -([start timeIntervalSinceNow]);
+    [p release];
     
     id fp = [[[TDFastJsonParser alloc] init] autorelease];
     start = [NSDate date];
     res = [fp parse:s];
     CGFloat ms4json4 = -([start timeIntervalSinceNow]);
     
-    
-
-    
-    //    id res = [a pop];
-   // NSLog(@"res: %@", a);
-//    NSArray *strings = [[a objectsAbove:nil] reversedArray];
-//    NSMutableAttributedString *as = [[[NSMutableAttributedString alloc] init] autorelease];
-//    for (id obj in strings) {
-//        [as appendAttributedString:obj];
-//    }
-
     id attrs = [NSDictionary dictionaryWithObjectsAndKeys:
                 [NSFont fontWithName:@"Monaco" size:14.], NSFontAttributeName,
                 [NSColor whiteColor], NSForegroundColorAttributeName,
@@ -195,9 +182,30 @@
 
     s = [NSString stringWithFormat:@"grammar parse: %f sec\n\nlp json parse: %f sec\n\np json parse (not assembled): %f sec\n\np json parse (assembled): %f sec\n\nfast json parse (assembled): %f sec\n\n %f", ms4grammar, ms4json, ms4json2, ms4json3, ms4json4, (ms4json/ms4json4)];
     self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
+}
+
+
+- (void)doTokenize {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
     
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+
+    NSDate *start = [NSDate date];    
+    while ((tok = [t nextToken]) != eof) ;
+    CGFloat secs = -([start timeIntervalSinceNow]);
     
+    id attrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                [NSFont fontWithName:@"Monaco" size:14.], NSFontAttributeName,
+                [NSColor whiteColor], NSForegroundColorAttributeName,
+                nil];
     
+
+    s = [NSString stringWithFormat:@"tokenize: %f", secs];
+    self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
+
 }
 
 
@@ -214,6 +222,7 @@
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
     [self doGrammarParser];
+//    [self doTokenize];
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];
