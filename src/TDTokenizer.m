@@ -19,7 +19,7 @@
 @implementation TDTokenizer
 
 + (id)tokenizer {
-    return [[self class] tokenizerWithString:nil];
+    return [self tokenizerWithString:nil];
 }
 
 

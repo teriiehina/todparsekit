@@ -146,7 +146,7 @@
 
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
     NSDate *start = [NSDate date];
-    TDParser *lp = [factory parserForGrammar:s assembler:p];
+    TDParser *lp = [factory parserForGrammar:s assembler:nil];
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -156,6 +156,8 @@
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
+    
+    return;
 
 //    NSLog(@"res: %@", a);
 //    NSLog(@"a.target: %@", a.target);
@@ -170,10 +172,10 @@
     res = [p parse:s];
     CGFloat ms4json3 = -([start timeIntervalSinceNow]);
     
-    id fp = [[[TDFastJsonParser alloc] init] autorelease];
-    start = [NSDate date];
-    res = [fp parse:s];
-    CGFloat ms4json4 = -([start timeIntervalSinceNow]);
+//    id fp = [[[TDFastJsonParser alloc] init] autorelease];
+//    start = [NSDate date];
+//    res = [fp parse:s];
+    CGFloat ms4json4 = 0;// -([start timeIntervalSinceNow]);
     
     
 
