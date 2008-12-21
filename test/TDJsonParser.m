@@ -10,6 +10,10 @@
 #import "TDParseKit.h"
 #import "NSString+TDParseKitAdditions.h"
 
+@interface TDCollectionParser ()
+@property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
+@end
+
 @interface TDJsonParser ()
 @property (nonatomic, retain, readwrite) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDToken *curly;
@@ -33,12 +37,19 @@
         self.tokenizer = [TDTokenizer tokenizer];
         [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
         [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
+        
+        [self add:self.objectParser];        
+        [self add:self.arrayParser];
     }
     return self;
 }
 
 
 - (void)dealloc {
+    // yikes. this is necessary to prevent a very nasty retain cycle leak.
+    // its a retain cycle cuz object and array reference value and value references object and array!
+    valueParser.subparsers = nil;
+    
     self.tokenizer = nil;
     self.stringParser = nil;
     self.numberParser = nil;
@@ -57,10 +68,6 @@
 
 
 - (id)parse:(NSString *)s {
-    [self add:[TDEmpty empty]];
-    [self add:self.arrayParser];
-    [self add:self.objectParser];
-    
     tokenizer.string = s;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     
