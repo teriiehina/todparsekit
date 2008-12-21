@@ -20,4 +20,14 @@
     TDNotNil(result);
 }
 
+
+- (void)testCrunchBaseJsonParser {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    TDFastJsonParser *parser = [[[TDFastJsonParser alloc] init] autorelease];
+    [parser parse:s];
+    //    id res = [parser parse:s];
+    //NSLog(@"res %@", res);
+}
+
 @end
