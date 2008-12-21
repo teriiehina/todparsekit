@@ -40,6 +40,7 @@
         [self willChangeValueForKey:@"string"];
         [string autorelease];
         string = [s copy];
+        length = string.length;
         [self didChangeValueForKey:@"string"];
     }
     // reset cursor
@@ -48,8 +49,7 @@
 
 
 - (NSInteger)read {
-    NSUInteger len = string.length;
-    if (0 == len || cursor > len - 1) {
+    if (0 == length || cursor > length - 1) {
         return -1;
     }
     return [string characterAtIndex:cursor++];
