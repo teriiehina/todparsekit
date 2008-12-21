@@ -58,7 +58,7 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string defaultDelimiter:defaultDelimiter stack:[stack mutableCopy]];
+    TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string defaultDelimiter:defaultDelimiter stack:[[stack mutableCopy] autorelease]];
     a->target = [target mutableCopy];
     a->index = index;
     return a;
