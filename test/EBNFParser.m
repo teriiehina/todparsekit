@@ -58,6 +58,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (void)dealloc {
+    self.tokenizer = nil;
     self.statementParser = nil;
     self.exprOrAssignmentParser = nil;
     self.assignmentParser = nil;
