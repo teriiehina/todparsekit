@@ -30,7 +30,7 @@
 
 
 - (void)dealloc {
-    self.assembler = nil;
+    assembler = nil;
     self.selector = nil;
     self.name = nil;
     [super dealloc];
