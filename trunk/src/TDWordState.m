@@ -58,7 +58,7 @@
 - (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
     NSInteger len = wordChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin-1 set (under 256)"];
+        [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
     
     id obj = yn ? TDTRUE : TDFALSE;
