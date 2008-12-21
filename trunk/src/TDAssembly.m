@@ -116,7 +116,7 @@
 - (id)pop {
     id result = nil;
     if (stack.count) {
-        result = [[stack.lastObject retain] autorelease];
+        result = [[[stack lastObject] retain] autorelease];
         [stack removeLastObject];
     }
     return result;
@@ -157,8 +157,8 @@
     NSMutableString *s = [NSMutableString string];
     [s appendString:@"["];
     
-    NSInteger i = 0;
-    NSInteger len = stack.count;
+    NSUInteger i = 0;
+    NSUInteger len = stack.count;
     
     for (id obj in stack) {
         [s appendString:[obj description]];
