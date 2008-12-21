@@ -193,7 +193,7 @@
                 [NSColor whiteColor], NSForegroundColorAttributeName,
                 nil];
 
-    s = [NSString stringWithFormat:@"grammar parse: %f sec\n\nlp json parse: %f sec\n\np json parse (not assembled): %f sec\n\np json parse (assembled): %f sec\n\nfast json parse (assembled): %f sec", ms4grammar, ms4json, ms4json2, ms4json3, ms4json4];
+    s = [NSString stringWithFormat:@"grammar parse: %f sec\n\nlp json parse: %f sec\n\np json parse (not assembled): %f sec\n\np json parse (assembled): %f sec\n\nfast json parse (assembled): %f sec\n\n %f", ms4grammar, ms4json, ms4json2, ms4json3, ms4json4, (ms4json/ms4json4)];
     self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
     
     
