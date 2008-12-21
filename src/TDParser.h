@@ -81,7 +81,7 @@
     @brief      The assembler this parser will use to work on a matched assembly.
     @details    <tt>assembler</tt> should respond to the selector held by this parser's <tt>selector</tt> property.
 */
-@property (nonatomic, retain) id assembler;
+@property (nonatomic, assign) id assembler;
 
 /*!
     @property   selector
