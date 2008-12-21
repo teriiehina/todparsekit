@@ -50,7 +50,7 @@
 - (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
     NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin-1 set (under 256)"];
+        [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
 
     id obj = yn ? TDTRUE : TDFALSE;
