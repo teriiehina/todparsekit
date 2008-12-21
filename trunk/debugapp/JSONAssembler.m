@@ -19,7 +19,7 @@
         NSFont *monaco = [NSFont fontWithName:@"Monaco" size:11.];
         self.defaultAttrs       = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSColor whiteColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
+                                   [NSColor blackColor], NSBackgroundColorAttributeName,
                                    monaco, NSFontAttributeName,
                                    nil];
         self.objectAttrs        = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -44,11 +44,15 @@
                                    nil];
         self.constantAttrs      = [NSDictionary dictionaryWithObjectsAndKeys:
                                    [NSColor yellowColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
+                                   [NSColor blackColor], NSBackgroundColorAttributeName,
                                    monaco, NSFontAttributeName,
                                    nil];
 
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:defaultAttrs] autorelease];
+        
+        self.comma = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"," floatValue:0];
+        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
+        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0];
     }
     return self;
 }
@@ -62,73 +66,61 @@
     self.propertyNameAttrs = nil;
     self.valueAttrs = nil;
     self.constantAttrs = nil;
+    self.comma = nil;
+    self.curly = nil;
+    self.bracket = nil;
     [super dealloc];
 }
 
 
-- (void)colorWithAssembly:(TDAssembly *)a attrs:(id)attrs {
-    NSArray *objs = [[a objectsAbove:nil] reversedArray];
+- (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs {
+//    NSMutableAttributedString *mas = [[[NSMutableAttributedString alloc] init] autorelease];
     for (id obj in objs) {
-        if ([obj isMemberOfClass:[TDToken class]]) {
-            obj = [[[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs] autorelease];
-        } 
-        [a push:obj];
-    }    
+        NSAttributedString *as = [[[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs] autorelease];
+        [displayString appendAttributedString:as];
+    }
+//    return mas;
 }
 
 
 - (void)workOnStartAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:objectAttrs];
+
 }
 
 
-- (void)workOnObjectAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:objectAttrs];
+- (void)workOnSymbolCharAssembly:(TDAssembly *)a {
+    NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self appendAttributedStringForObjects:objs withAttrs:objectAttrs];
 }
 
 
-- (void)workOnPropertyAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:propertyNameAttrs];
+- (void)workOnPropertyNameAssembly:(TDAssembly *)a {
+    NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self appendAttributedStringForObjects:objs withAttrs:propertyNameAttrs];
 }
 
 
-- (void)workOnCommaPropertyAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:propertyNameAttrs];
+- (void)workOnStringAssembly:(TDAssembly *)a {
+    NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self appendAttributedStringForObjects:objs withAttrs:arrayAttrs];
 }
 
 
-- (void)workOnArrayAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:arrayAttrs];
-}
-
-
-- (void)workOnValueAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:valueAttrs];
+- (void)workOnNumberAssembly:(TDAssembly *)a {
+    NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self appendAttributedStringForObjects:objs withAttrs:valueAttrs];
 }
 
 
 - (void)workOnCommaValueAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:valueAttrs];
+//    NSArray *objs = [a objectsAbove:comma];
+//    [self appendAttributedStringForObjects:objs withAttrs:arrayAttrs];
 }
 
 
 - (void)workOnConstantAssembly:(TDAssembly *)a {
-    [self colorWithAssembly:a attrs:constantAttrs];
-}
-
-
-- (void)workOnNullAssembly:(TDAssembly *)a {
-    [self workOnConstantAssembly:a];
-}
-
-
-- (void)workOnTrueAssembly:(TDAssembly *)a {
-    [self workOnConstantAssembly:a];
-}
-
-
-- (void)workOnFalseAssembly:(TDAssembly *)a {
-    [self workOnConstantAssembly:a];
+    NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self appendAttributedStringForObjects:objs withAttrs:constantAttrs];
 }
 
 @synthesize displayString;
@@ -138,5 +130,8 @@
 @synthesize propertyNameAttrs;
 @synthesize valueAttrs;
 @synthesize constantAttrs;
+@synthesize comma;
+@synthesize curly;
+@synthesize bracket;
 @end
 

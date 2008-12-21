@@ -22,18 +22,28 @@
 
 start         = Empty | array | object;
 
-object        = '{' objectContent '}';
+openCurly (workOnSymbolCharAssembly:) = '{';
+closeCurly (workOnSymbolCharAssembly:) = '}';
+openBracket (workOnSymbolCharAssembly:) = '[';
+closeBracket (workOnSymbolCharAssembly:) = ']';
+comma (workOnSymbolCharAssembly:) = ',';
+colon (workOnSymbolCharAssembly:) = ':';
+
+object        = openCurly objectContent closeCurly;
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
-commaProperty = ',' property;
-property      = QuotedString ':' value;         // NOTE: property names are quoted in JSON
+commaProperty = comma property;
+propertyName  = QuotedString;
+property      = propertyName colon value;         // NOTE: property names are quoted in JSON
 
-array         = '[' arrayContent ']';
+array         = openBracket arrayContent closeBracket;
 arrayContent  = Empty | actualArray;
 actualArray   = value commaValue*;
-commaValue    = ',' value;
+commaValue    = comma value;
 
-value         = null | true | false | array | object | Num | QuotedString;
-null          = 'null';
-true          = 'true';
-false         = 'false';
+value         = null | true | false | array | object | number | string;
+string        = QuotedString;
+number        = Num;
+null  (workOnConstantAssembly:) = 'null';
+true  (workOnConstantAssembly:) = 'true';
+false (workOnConstantAssembly:) = 'false';
