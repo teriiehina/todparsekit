@@ -97,17 +97,17 @@
 }
 
 
-- (NSInteger)length {
+- (NSUInteger)length {
     return self.tokens.count;
 } 
 
 
-- (NSInteger)consumedObjectCount {
+- (NSUInteger)consumedObjectCount {
     return index;
 }
 
 
-- (NSInteger)remainingObjectCount {
+- (NSUInteger)remainingObjectCount {
     return (self.tokens.count - index);
 }
 

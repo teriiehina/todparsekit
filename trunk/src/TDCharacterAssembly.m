@@ -63,17 +63,17 @@
 }
 
 
-- (NSInteger)length {
+- (NSUInteger)length {
     return string.length;
 } 
 
 
-- (NSInteger)objectsConsumed {
+- (NSUInteger)objectsConsumed {
     return index;
 }
 
 
-- (NSInteger)objectsRemaining {
+- (NSUInteger)objectsRemaining {
     return (string.length - index);
 }
 
