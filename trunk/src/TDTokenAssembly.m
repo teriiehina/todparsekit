@@ -95,7 +95,6 @@
 
 - (id)peek {
     TDToken *tok = nil;
-    //NSUInteger i = index;
     
     while (1) {
         if (index >= self.tokens.count) {
