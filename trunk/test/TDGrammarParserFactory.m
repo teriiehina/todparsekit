@@ -566,12 +566,12 @@
     NSString *prefix = nil;
     if ([parserName hasPrefix:@"@"]) {
         parserName = [parserName substringFromIndex:1];
-        prefix = @"workOn"; // TODO
+        prefix = @"_";
     } else {
-        prefix = @"workOn";
+        prefix = @"";
     }
     NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
-    return [NSString stringWithFormat:@"%@%@Assembly:", prefix, s];
+    return [NSString stringWithFormat:@"workOn%@%@Assembly:", prefix, s];
 }
 
 

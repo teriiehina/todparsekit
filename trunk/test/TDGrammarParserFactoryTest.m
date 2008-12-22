@@ -17,6 +17,7 @@
 
 @protocol TDMockAssember
 - (void)workOnStartAssembly:(TDAssembly *)a;
+- (void)workOn_StartAssembly:(TDAssembly *)a;
 - (void)workOnStart:(TDAssembly *)a;
 @end
 
@@ -158,14 +159,14 @@
 
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-    [[mock expect] workOnStartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
     s = @"@start = 'bar';";
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDTrue(lp.assembler == mock);
-    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStartAssembly:");
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
