@@ -103,11 +103,6 @@
 }
 
 
-- (void)workOn_StartAssembly:(TDAssembly *)a {
-    NSLog(@"FFFFFFFFFFFFFFFFFFFFFFFFF");   
-}
-
-
 - (void)workOnSymbolCharAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];

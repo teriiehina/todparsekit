@@ -202,8 +202,6 @@
         p.name = parserName;
 
         NSString *selName = [selectorTable objectForKey:parserName];
-        NSLog(@"SelName: %@", selName);
-        NSAssert([[selName substringFromIndex:selName.length - 1] isEqualToString:@":"], selName);
 
         SEL sel = NSSelectorFromString(selName);
         if (assembler && [assembler respondsToSelector:sel]) {
@@ -546,16 +544,12 @@
     id obj = [a pop];
     if ([obj isKindOfClass:[NSString class]]) { // a callback was provided
         selName = obj;
-        obj = [a pop];
-        NSAssert([obj isKindOfClass:[TDToken class]], @"");
-        parserName = [obj stringValue];
+        parserName = [[a pop] stringValue];
     } else {
-        NSAssert([obj isKindOfClass:[TDToken class]], @"");
         parserName = [obj stringValue];
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
     
-    NSAssert([[selName substringFromIndex:selName.length - 1] isEqualToString:@":"], selName);
     [selectorTable setObject:selName forKey:parserName];
     [a.target setObject:toks forKey:parserName];
 }
