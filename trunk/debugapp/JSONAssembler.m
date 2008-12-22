@@ -15,20 +15,12 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
-        NSColor *textColor = nil;
-        NSColor *tagColor = nil;
-        NSColor *attrNameColor = nil;
-        NSColor *attrValueColor = nil;
-        NSColor *eqColor = nil;
-        NSColor *commentColor = nil;
-        NSColor *piColor = nil;
-        
-        textColor = [NSColor whiteColor];
-        tagColor = [NSColor colorWithDeviceRed:.70 green:.14 blue:.53 alpha:1.];
-        attrNameColor = [NSColor colorWithDeviceRed:.33 green:.45 blue:.48 alpha:1.];
-        attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
-        commentColor = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
-        piColor = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
+        NSColor *textColor = [NSColor whiteColor];
+        NSColor *tagColor = [NSColor colorWithDeviceRed:.70 green:.14 blue:.53 alpha:1.];
+        NSColor *attrNameColor = [NSColor colorWithDeviceRed:.33 green:.45 blue:.48 alpha:1.];
+        NSColor *attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
+        NSColor *commentColor = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
+        NSColor *piColor = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
 
         NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
             
@@ -156,7 +148,6 @@
 - (void)workOnCloseCurlyAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
 - (void)workOnOpenBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
 - (void)workOnCloseBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-
 
 @synthesize displayString;
 @synthesize defaultAttrs;
