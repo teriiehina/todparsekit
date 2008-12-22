@@ -225,10 +225,7 @@
 
 // start                = statement*
 // satement             = declaration '=' expression
-// declaration          = productionName callback?
-// productionName       = userProductionName | reservedProductionName
-// userProductionName   = LowercaseWord
-// reservedProductionName = '@'? LowercaseWord
+// declaration          = Word callback?
 // callback             = '(' selector ')'
 // selector             = Word ':'
 // expression           = term orTerm*
@@ -303,7 +300,7 @@
     if (!selectorParser) {
         self.selectorParser = [TDTrack track];
         selectorParser.name = @"selector";
-        [selectorParser add:[TDWord word]];
+        [selectorParser add:[TDLowercaseWord word]];
         [selectorParser add:[[TDSymbol symbolWithString:@":"] discard]];
     }
     return selectorParser;
