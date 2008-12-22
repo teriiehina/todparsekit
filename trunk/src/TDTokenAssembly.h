@@ -50,9 +50,8 @@
 - (id)initWithTokenArray:(NSArray *)a;
 
 /*!
-    @property   target
-    @brief      This assembly's target.
-    @details    The object identified as this assembly's "target". Clients can set and retrieve a target, which can be a convenient supplement as a place to work, in addition to the assembly's stack. For example, a parser for an HTML file might use a web page object as its "target". As the parser recognizes markup commands like &lt;head>, it could apply its findings to the target.
+    @property   preservesWhitespaceTokens
+    @brief      If true, whitespace tokens retreived from this assembly's tokenizier will be silently placed on this assembly's stack without being reported by -next or -peek. Default is false.
 */
 @property (nonatomic) BOOL preservesWhitespaceTokens;
 @end
