@@ -25,14 +25,14 @@
     @brief      Convenience factory method for initializing an autoreleased assembly with the tokenizer <tt>t</tt> and its string
     @param      t tokenizer whose string will be worked on
     @result     an initialized autoreleased assembly
- */
+*/
 + (id)assemblyWithTokenizer:(TDTokenizer *)t;
 
 /*!
     @brief      Initializes an assembly with the tokenizer <tt>t</tt> and its string
     @param      t tokenizer whose string will be worked on
     @result     an initialized assembly
- */
+*/
 - (id)initWithTokenzier:(TDTokenizer *)t;
 
 /*!
@@ -49,5 +49,10 @@
 */
 - (id)initWithTokenArray:(NSArray *)a;
 
+/*!
+    @property   target
+    @brief      This assembly's target.
+    @details    The object identified as this assembly's "target". Clients can set and retrieve a target, which can be a convenient supplement as a place to work, in addition to the assembly's stack. For example, a parser for an HTML file might use a web page object as its "target". As the parser recognizes markup commands like &lt;head>, it could apply its findings to the target.
+*/
 @property (nonatomic) BOOL preservesWhitespaceTokens;
 @end
