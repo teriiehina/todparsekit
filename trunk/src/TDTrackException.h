@@ -17,7 +17,7 @@ extern NSString * const TDTrackExceptionName;
             <tt>after</tt> (<tt>NSString *</tt>) - some indication of what text was interpretable before this exception occurred
             <tt>expected</tt> (<tt>NSString *</tt>) - some indication of what kind of thing was expected, such as a ')' token
             <tt>found</tt> (<tt>NSString *</tt>) - the text element the thrower actually found when it expected something else</pre>
- */
+*/
 @interface TDTrackException : NSException {
 
 }
