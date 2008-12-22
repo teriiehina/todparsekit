@@ -15,38 +15,47 @@
 - (id)init {
     self = [super init];
     if (self != nil) {
+        NSColor *textColor = nil;
+        NSColor *tagColor = nil;
+        NSColor *attrNameColor = nil;
+        NSColor *attrValueColor = nil;
+        NSColor *eqColor = nil;
+        NSColor *commentColor = nil;
+        NSColor *piColor = nil;
         
-        NSFont *monaco = [NSFont fontWithName:@"Monaco" size:11.];
-        self.defaultAttrs       = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor whiteColor], NSForegroundColorAttributeName,
-                                   [NSColor blackColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
-        self.objectAttrs        = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor redColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
-        self.arrayAttrs         = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor blueColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
-        self.propertyNameAttrs  = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor purpleColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
-        self.valueAttrs         = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor orangeColor], NSForegroundColorAttributeName,
-                                   [NSColor clearColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
-        self.constantAttrs      = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   [NSColor yellowColor], NSForegroundColorAttributeName,
-                                   [NSColor blackColor], NSBackgroundColorAttributeName,
-                                   monaco, NSFontAttributeName,
-                                   nil];
+        textColor = [NSColor whiteColor];
+        tagColor = [NSColor colorWithDeviceRed:.70 green:.14 blue:.53 alpha:1.];
+        attrNameColor = [NSColor colorWithDeviceRed:.33 green:.45 blue:.48 alpha:1.];
+        attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
+        commentColor = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
+        piColor = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
+
+        NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
+            
+        self.defaultAttrs      = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  textColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
+        self.objectAttrs       = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  tagColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
+        self.propertyNameAttrs = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  attrNameColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
+        self.valueAttrs        = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  attrValueColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
+        self.constantAttrs     = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  piColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
+        self.arrayAttrs        = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  commentColor, NSForegroundColorAttributeName,
+                                  monacoFont, NSFontAttributeName,
+                                  nil];
 
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:defaultAttrs] autorelease];
         
@@ -74,17 +83,11 @@
 
 
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs {
-//    NSMutableAttributedString *mas = [[[NSMutableAttributedString alloc] init] autorelease];
     for (id obj in objs) {
-        NSAttributedString *as = [[[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs] autorelease];
+        NSAttributedString *as = [[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs];
         [displayString appendAttributedString:as];
+        [as release];
     }
-//    return mas;
-}
-
-
-- (void)workOnStartAssembly:(TDAssembly *)a {
-
 }
 
 
@@ -103,9 +106,8 @@
     
     if (whitespaceToks.count) {
         whitespaceToks = [whitespaceToks reversedMutableArray];
+        [self appendAttributedStringForObjects:whitespaceToks withAttrs:defaultAttrs];
     }
-    
-    [self appendAttributedStringForObjects:whitespaceToks withAttrs:defaultAttrs];
 }
 
 
@@ -118,32 +120,43 @@
 
 - (void)workOnPropertyNameAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:propertyNameAttrs];
 }
 
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:arrayAttrs];
 }
 
 
 - (void)workOnNumberAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:valueAttrs];
-}
-
-
-- (void)workOnCommaValueAssembly:(TDAssembly *)a {
-//    NSArray *objs = [a objectsAbove:comma];
-//    [self appendAttributedStringForObjects:objs withAttrs:arrayAttrs];
 }
 
 
 - (void)workOnConstantAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:constantAttrs];
 }
+
+
+- (void)workOnNullAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+- (void)workOnTrueAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+- (void)workOnFalseAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+
+- (void)workOnColonAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnCommaAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnOpenCurlyAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnCloseCurlyAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnOpenBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnCloseBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+
 
 @synthesize displayString;
 @synthesize defaultAttrs;

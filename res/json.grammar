@@ -22,12 +22,12 @@
 
 start         = Empty | array | object;
 
-openCurly (workOnSymbolCharAssembly:) = '{';
-closeCurly (workOnSymbolCharAssembly:) = '}';
-openBracket (workOnSymbolCharAssembly:) = '[';
-closeBracket (workOnSymbolCharAssembly:) = ']';
-comma (workOnSymbolCharAssembly:) = ',';
-colon (workOnSymbolCharAssembly:) = ':';
+openCurly     = '{';
+closeCurly    = '}';
+openBracket   = '[';
+closeBracket  = ']';
+comma         = ',';
+colon         = ':';
 
 object        = openCurly objectContent closeCurly;
 objectContent = Empty | actualObject;
@@ -44,6 +44,6 @@ commaValue    = comma value;
 value         = null | true | false | array | object | number | string;
 string        = QuotedString;
 number        = Num;
-null  (workOnConstantAssembly:) = 'null';
-true  (workOnConstantAssembly:) = 'true';
-false (workOnConstantAssembly:) = 'false';
+null          = 'null';
+true          = 'true';
+false         = 'false';
