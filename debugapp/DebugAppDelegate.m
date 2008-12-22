@@ -225,17 +225,9 @@
                 [NSFont fontWithName:@"Monaco" size:14.], NSFontAttributeName,
                 [NSColor whiteColor], NSForegroundColorAttributeName,
                 nil];
-    
 
     s = [NSString stringWithFormat:@"tokenize: %f", secs];
     self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
-
-}
-
-
-- (void)workOnStartAssembly:(TDAssembly *)a {
-    
-    
 }
 
 
@@ -256,7 +248,6 @@
 
     
     [pool release];
-    
 }
 
 @synthesize displayString;
