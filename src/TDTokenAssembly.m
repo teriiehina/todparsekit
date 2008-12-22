@@ -70,6 +70,7 @@
 - (id)copyWithZone:(NSZone *)zone {
     TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
     a->tokens = [self.tokens copy];
+    a->preservesWhitespaceTokens = preservesWhitespaceTokens;
     return a;
 }
 
@@ -82,11 +83,37 @@
 }
 
 
+//- (id)peek {
+//    if (index >= self.tokens.count) {
+//        return nil;
+//    }
+//    id tok = [self.tokens objectAtIndex:index];
+//    
+//    return tok;
+//}
+
+
 - (id)peek {
-    if (index >= self.tokens.count) {
-        return nil;
+    TDToken *tok = nil;
+    //NSUInteger i = index;
+    
+    while (1) {
+        if (index >= self.tokens.count) {
+            tok = nil;
+            break;
+        }
+        
+        tok = [self.tokens objectAtIndex:index];
+        if (!preservesWhitespaceTokens) {
+            break;
+        }
+        if (TDTokenTypeWhitespace == tok.tokenType) {
+            [self push:tok];
+            index++;
+        } else {
+            break;
+        }
     }
-    id tok = [self.tokens objectAtIndex:index];
     
     return tok;
 }
@@ -170,4 +197,5 @@
 
 @synthesize tokenizer;
 @synthesize tokens;
+@synthesize preservesWhitespaceTokens;
 @end

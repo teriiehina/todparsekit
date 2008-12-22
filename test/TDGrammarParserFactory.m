@@ -63,6 +63,8 @@
     if (self) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        
+        self.tokenizer = [TDTokenizer tokenizer];
     }
     return self;
 }
@@ -103,16 +105,9 @@
 
 
 - (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
-    return [self parserForGrammar:s assembler:ass reportsWhitespace:NO];
-}
-
-
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass reportsWhitespace:(BOOL)yn {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    self.tokenizer.string = s;
-    self.tokenizer.whitespaceState.reportsWhitespaceTokens = NO
-    ;
+    tokenizer.string = s;
     self.assembler = ass;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
@@ -142,7 +137,7 @@
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:self.tokenizer delimiter:@";"] autorelease];
+    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:tokenizer delimiter:@";"] autorelease];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     
     while ([src hasMore]) {
@@ -222,21 +217,13 @@
 
 
 - (TDSequence *)parserForExpression:(NSString *)s {
-    self.tokenizer.string = s;
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
+    tokenizer.string = s;
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [self.expressionParser completeMatchFor:a];
     return [a pop];
 }
 
-
-- (TDTokenizer *)tokenizer {
-    if (!tokenizer) {
-        self.tokenizer = [TDTokenizer tokenizer];
-        // customize here
-    }
-    return tokenizer;
-}
 
 // start                = statement*
 // satement             = declaration '=' expression

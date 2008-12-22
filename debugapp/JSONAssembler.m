@@ -88,8 +88,30 @@
 }
 
 
+- (void)consumeWhitespaceFrom:(TDAssembly *)a {
+    NSMutableArray *whitespaceToks = [NSMutableArray array];
+    TDToken *tok = nil;
+    while (1) {
+        tok = [a pop];
+        if (TDTokenTypeWhitespace == tok.tokenType) {
+            [whitespaceToks addObject:tok];
+        } else {
+            [a push:tok];
+            break;
+        }
+    }
+    
+    if (whitespaceToks.count) {
+        whitespaceToks = [whitespaceToks reversedMutableArray];
+    }
+    
+    [self appendAttributedStringForObjects:whitespaceToks withAttrs:defaultAttrs];
+}
+
+
 - (void)workOnSymbolCharAssembly:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
+    [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:objectAttrs];
 }
 
