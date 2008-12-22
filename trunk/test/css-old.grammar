@@ -1,6 +1,6 @@
 /**
     A Grammar for a small subset of CSS
-*/
+ */
 hexcolor    = '#'Num;
 expr        = hexcolor | QuotedString | 'bold' | 'normal' | 'italic';
 property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';

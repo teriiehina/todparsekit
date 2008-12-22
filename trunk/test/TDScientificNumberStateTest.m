@@ -33,7 +33,7 @@
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     TDAssembly *res = [p bestMatchFor:a];
     TDToken *tok = [res pop];
-    TDEquals((CGFloat)111.111, [tok floatValue]);
+    TDEquals((CGFloat)111.111, tok.floatValue);
 }
 
 
