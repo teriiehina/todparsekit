@@ -3,7 +3,7 @@
  */
 
 
-start = stylesheet;
+@start          = stylesheet;
 
 //  stylesheet
 //      : [ CHARSET_SYM S* STRING S* ';' ]?

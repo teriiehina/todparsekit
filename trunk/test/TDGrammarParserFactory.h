@@ -9,7 +9,6 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDGrammarParserFactory : NSObject {
-    TDTokenizer *tokenizer;
     id assembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;

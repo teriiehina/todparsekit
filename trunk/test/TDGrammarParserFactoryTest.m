@@ -159,11 +159,11 @@
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     [[mock expect] workOnStartAssembly:OCMOCK_ANY];
-    s = @"start = 'bar';";
+    s = @"@start = 'bar';";
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    TDEqualObjects(lp.name, @"start");
+    TDEqualObjects(lp.name, @"@start");
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStartAssembly:");
 
@@ -178,11 +178,11 @@
 - (void)testStartLiteralWithCallback {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     [[mock expect] workOnStart:OCMOCK_ANY];
-    s = @"start (workOnStart:) = 'bar';";
+    s = @"@start (workOnStart:) = 'bar';";
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
-    TDEqualObjects(lp.name, @"start");
+    TDEqualObjects(lp.name, @"@start");
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
 
@@ -195,7 +195,7 @@
 
 
 - (void)testStartRefToLiteral {
-    s = @" start = foo; foo = 'bar';";
+    s = @" @start = foo; foo = 'bar';";
     lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -208,7 +208,7 @@
 
 
 - (void)testStartRefToLiteral3 {
-    s = @" start = foo|baz; baz = 'bat'; foo = 'bar';";
+    s = @" @start = foo|baz; baz = 'bat'; foo = 'bar';";
     lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -221,7 +221,7 @@
 
 
 - (void)testStartRefToLiteral2 {
-    s = @"foo = 'bar'; baz = 'bat'; start = (foo | baz)*;";
+    s = @"foo = 'bar'; baz = 'bat'; @start = (foo | baz)*;";
     lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -244,10 +244,10 @@
 
 
 - (void)testStmtTrackException {
-    s = @"start = ";
+    s = @"@start = ";
     STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 
-    s = @"start";
+    s = @"@start";
     STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 }
 

@@ -21,7 +21,6 @@
 - (TDSequence *)parserForExpression:(NSString *)s;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
-@property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
@@ -63,8 +62,6 @@
     if (self) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        
-        self.tokenizer = [TDTokenizer tokenizer];
     }
     return self;
 }
@@ -73,7 +70,6 @@
 - (void)dealloc {
     assembler = nil; // appease clang static analyzer
 
-    self.tokenizer = nil;
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
     self.selectorTable = nil;
@@ -107,7 +103,6 @@
 - (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    tokenizer.string = s;
     self.assembler = ass;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
@@ -115,7 +110,7 @@
 
     [self gatherParserClassNamesForTokens];
 
-    TDParser *start = [[self expandedParserForName:@"start"] retain]; // retain to survive pool release
+    TDParser *start = [[self expandedParserForName:@"@start"] retain]; // retain to survive pool release
     
     [pool release];
     [start autorelease]; // autorelease to balance
@@ -137,7 +132,10 @@
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:tokenizer delimiter:@";"] autorelease];
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    [t setTokenizerState:t.wordState from:'@' to:'@'];
+    
+    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     
     while ([src hasMore]) {
@@ -217,8 +215,8 @@
 
 
 - (TDSequence *)parserForExpression:(NSString *)s {
-    tokenizer.string = s;
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [self.expressionParser completeMatchFor:a];
     return [a pop];
@@ -227,7 +225,10 @@
 
 // start                = statement*
 // satement             = declaration '=' expression
-// declaration          = LowercaseWord callback?
+// declaration          = productionName callback?
+// productionName       = userProductionName | reservedProductionName
+// userProductionName   = LowercaseWord
+// reservedProductionName = '@'? LowercaseWord
 // callback             = '(' selector ')'
 // selector             = Word ':'
 // expression           = term orTerm*
@@ -267,11 +268,12 @@
 }
 
 
-// declaration          = LowercaseWord callback?
+// declaration          = productionName callback?
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
         self.declarationParser = [TDSequence sequence];
-        [declarationParser add:[TDLowercaseWord word]];
+        declarationParser.name = @"declaration";
+        [declarationParser add:[TDWord word]];
         
         TDAlternation *a = [TDAlternation alternation];
         [a add:[TDEmpty empty]];
@@ -286,6 +288,7 @@
 - (TDCollectionParser *)callbackParser {
     if (!callbackParser) {
         self.callbackParser = [TDTrack track];
+        callbackParser.name = @"callback";
         [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
         [callbackParser add:self.selectorParser];
         [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
@@ -299,6 +302,7 @@
 - (TDCollectionParser *)selectorParser {
     if (!selectorParser) {
         self.selectorParser = [TDTrack track];
+        selectorParser.name = @"selector";
         [selectorParser add:[TDWord word]];
         [selectorParser add:[[TDSymbol symbolWithString:@":"] discard]];
     }
@@ -505,6 +509,7 @@
 - (TDParser *)variableParser {
     if (!variableParser) {
         self.variableParser = [TDLowercaseWord word];
+        variableParser.name = @"variable";
         [variableParser setAssembler:self selector:@selector(workOnVariableAssembly:)];
     }
     return variableParser;
@@ -515,6 +520,7 @@
 - (TDParser *)constantParser {
     if (!constantParser) {
         self.constantParser = [TDUppercaseWord word];
+        constantParser.name = @"constant";
         [constantParser setAssembler:self selector:@selector(workOnConstantAssembly:)];
     }
     return constantParser;
@@ -525,6 +531,7 @@
 - (TDParser *)numParser {
     if (!numParser) {
         self.numParser = [TDNum num];
+        numParser.name = @"num";
         [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
     }
     return numParser;
@@ -543,17 +550,31 @@
         parserName = [[a pop] stringValue];
     } else {
         parserName = [obj stringValue];
-        selName = [self defaultAssemblerSelectorNameForParserName:parserName];
+    }
+    
+    if ([a hasMore]) { // check for '@'
+        parserName = [NSString stringWithFormat:@"%@%@", [[a pop] stringValue], parserName];
     }
 
+    if (!selName) {
+        selName = [self defaultAssemblerSelectorNameForParserName:parserName];
+    }
+    
     [selectorTable setObject:selName forKey:parserName];
     [a.target setObject:toks forKey:parserName];
 }
 
 
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName {
+    NSString *prefix = nil;
+    if ([parserName hasPrefix:@"@"]) {
+        parserName = [parserName substringFromIndex:1];
+        prefix = @"workOn"; // TODO
+    } else {
+        prefix = @"workOn";
+    }
     NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
-    return [NSString stringWithFormat:@"workOn%@Assembly:", s];
+    return [NSString stringWithFormat:@"%@%@Assembly:", prefix, s];
 }
 
 
@@ -700,7 +721,6 @@
     [a push:p];
 }
 
-@synthesize tokenizer;
 @synthesize assembler;
 @synthesize parserTokensTable;
 @synthesize parserClassTable;
