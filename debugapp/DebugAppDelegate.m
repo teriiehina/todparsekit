@@ -238,9 +238,9 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-//    [self doProf];
+    [self doProf];
 //    [self doTokenize];
-    [self doGrammarParser];
+//    [self doGrammarParser];
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];

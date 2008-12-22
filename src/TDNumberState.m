@@ -44,7 +44,7 @@
     NSParameterAssert(r);
     [self reset];
     negative = NO;
-    char originalCin = cin;
+    NSInteger originalCin = cin;
     
     if ('-' == cin) {
         negative = YES;
@@ -89,17 +89,17 @@
 
 
 - (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction {
-    CGFloat divideBy = 1.0f;
-    CGFloat v = 0.0f;
+    CGFloat divideBy = 1.0;
+    CGFloat v = 0.0;
     
     while (1) {
         if (isdigit(c)) {
             [stringbuf appendFormat:@"%C", c];
             gotADigit = YES;
-            v = v * 10.0f + (c - '0');
+            v = v * 10.0 + (c - '0');
             c = [r read];
             if (isFraction) {
-                divideBy *= 10.0f;
+                divideBy *= 10.0;
             }
         } else {
             break;
@@ -140,7 +140,7 @@
 
 - (void)reset:(NSInteger)cin {
     gotADigit = NO;
-    floatValue = 0.0f;
+    floatValue = 0.0;
     c = cin;
 }
 

@@ -189,7 +189,7 @@
     self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
     
     TDToken *t = [tokenizer nextToken];
-    TDEquals((CGFloat)0.999f, t.floatValue);
+    STAssertEqualsWithAccuracy((CGFloat)0.999, t.floatValue, 0.01, @"");
     TDTrue(t.isNumber);    
 
 //    if ([TDToken EOFToken] == token) break;

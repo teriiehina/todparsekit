@@ -52,20 +52,20 @@
 
 - (void)reset:(NSInteger)cin {
     [super reset:cin];
-    exp = 0.0f;
+    exp = (CGFloat)0.0;
     negativeExp = NO;
 }
 
 
 - (CGFloat)value {
-    CGFloat result = floatValue;
+    CGFloat result = (CGFloat)floatValue;
     
-    NSInteger i = 0;
+    NSUInteger i = 0;
     for ( ; i < exp; i++) {
         if (negativeExp) {
-            result /= 10.0f;
+            result /= (CGFloat)10.0;
         } else {
-            result *= 10.0f;
+            result *= (CGFloat)10.0;
         }
     }
     
