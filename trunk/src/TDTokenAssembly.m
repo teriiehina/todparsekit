@@ -69,7 +69,7 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
-    a->tokens = [self.tokens copy];
+    a->tokens = [self.tokens copyWithZone:zone];
     a->preservesWhitespaceTokens = preservesWhitespaceTokens;
     return a;
 }
@@ -81,16 +81,6 @@
     }
     return tokens;
 }
-
-
-//- (id)peek {
-//    if (index >= self.tokens.count) {
-//        return nil;
-//    }
-//    id tok = [self.tokens objectAtIndex:index];
-//    
-//    return tok;
-//}
 
 
 - (id)peek {
