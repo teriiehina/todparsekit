@@ -16,9 +16,11 @@
 @end
 
 @protocol TDMockAssember
+- (void)workOnFooAssembly:(TDAssembly *)a;
+- (void)workOnBazAssembly:(TDAssembly *)a;
+- (void)workOnStart:(TDAssembly *)a;
 - (void)workOnStartAssembly:(TDAssembly *)a;
 - (void)workOn_StartAssembly:(TDAssembly *)a;
-- (void)workOnStart:(TDAssembly *)a;
 @end
 
 @implementation TDGrammarParserFactoryTest
@@ -159,7 +161,6 @@
 
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
     s = @"@start = 'bar';";
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
@@ -167,7 +168,8 @@
     TDEqualObjects(lp.name, @"@start");
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
-
+    
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
@@ -176,9 +178,100 @@
 }
 
 
+- (void)testStartLiteralNonReserved {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo*; foo = 'bar';";
+    lp = [factory parserForGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
+    
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOnFooAssembly:OCMOCK_ANY];
+    [[mock expect] workOnFooAssembly:OCMOCK_ANY];
+    s = @"bar bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved2 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)*; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserForGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
+    
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOnFooAssembly:OCMOCK_ANY];
+    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+    s = @"bar bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved3 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserForGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
+    
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOnFooAssembly:OCMOCK_ANY];
+    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+    s = @"bar bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved4 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserForGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_StartAssembly:");
+    
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOn_StartAssembly:OCMOCK_ANY];
+    [[mock expect] workOnFooAssembly:OCMOCK_ANY];
+    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+    s = @"bar bat bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat, bat]bar/bat/bat^", [res description]);
+    [mock verify];
+}
+
+
 - (void)testStartLiteralWithCallback {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-    [[mock expect] workOnStart:OCMOCK_ANY];
     s = @"@start (workOnStart:) = 'bar';";
     lp = [factory parserForGrammar:s assembler:mock];
     TDNotNil(lp);
@@ -187,6 +280,7 @@
     TDTrue(lp.assembler == mock);
     TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
 
+    [[mock expect] workOnStart:OCMOCK_ANY];
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -253,13 +347,13 @@
 }
 
 
-- (void)testExprTrackException {
-    s = @"(foo";
-    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
-
-    s = @"foo|";
-    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
-}
+//- (void)testExprTrackException {
+//    s = @"(foo";
+//    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
+//
+//    s = @"foo|";
+//    STAssertThrowsSpecificNamed([factory parserForExpression:s], TDTrackException, TDTrackExceptionName, @"");
+//}
 
 
 - (void)testExprHelloPlus {
