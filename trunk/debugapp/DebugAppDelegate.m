@@ -140,16 +140,22 @@
 - (void)doGrammarParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
+    //s = @"start = openCurly closeCurly; openCurly (workOnSymbolCharAssembly:) = '{'; closeCurly (workOnSymbolCharAssembly:) = '}';";
+    
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     
     JSONAssembler *ass = [[[JSONAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserForGrammar:s assembler:ass reportsWhitespace:YES];
+    TDParser *lp = [factory parserForGrammar:s assembler:ass];
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
-    
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    a = [lp completeMatchFor:a];
+   
+    //s = @"{ }";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a.preservesWhitespaceTokens = YES;
+    TDAssembly *res = [lp completeMatchFor:a];
     
     self.displayString = ass.displayString;
 }

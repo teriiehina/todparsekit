@@ -18,6 +18,7 @@
 @interface TDTokenAssembly : TDAssembly <NSCopying> {
     TDTokenizer *tokenizer;
     NSArray *tokens;
+    BOOL preservesWhitespaceTokens;
 }
 
 /*!
@@ -47,4 +48,6 @@
     @result     an initialized assembly
 */
 - (id)initWithTokenArray:(NSArray *)a;
+
+@property (nonatomic) BOOL preservesWhitespaceTokens;
 @end

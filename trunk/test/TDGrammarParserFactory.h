@@ -42,5 +42,4 @@
 + (id)factory;
 
 - (TDParser *)parserForGrammar:(NSString *)s assembler:(id)a;
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)a reportsWhitespace:(BOOL)yn;
 @end
