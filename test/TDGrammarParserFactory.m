@@ -202,6 +202,8 @@
         p.name = parserName;
 
         NSString *selName = [selectorTable objectForKey:parserName];
+        NSLog(@"SelName: %@", selName);
+        NSAssert([[selName substringFromIndex:selName.length - 1] isEqualToString:@":"], selName);
 
         SEL sel = NSSelectorFromString(selName);
         if (assembler && [assembler respondsToSelector:sel]) {
@@ -223,7 +225,7 @@
 }
 
 
-// start                = statement*
+// @start               = statement*
 // satement             = declaration '=' expression
 // declaration          = Word callback?
 // callback             = '(' selector ')'
@@ -544,19 +546,16 @@
     id obj = [a pop];
     if ([obj isKindOfClass:[NSString class]]) { // a callback was provided
         selName = obj;
-        parserName = [[a pop] stringValue];
-    } else {
+        obj = [a pop];
+        NSAssert([obj isKindOfClass:[TDToken class]], @"");
         parserName = [obj stringValue];
-    }
-    
-    if ([a hasMore]) { // check for '@'
-        parserName = [NSString stringWithFormat:@"%@%@", [[a pop] stringValue], parserName];
-    }
-
-    if (!selName) {
+    } else {
+        NSAssert([obj isKindOfClass:[TDToken class]], @"");
+        parserName = [obj stringValue];
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
     
+    NSAssert([[selName substringFromIndex:selName.length - 1] isEqualToString:@":"], selName);
     [selectorTable setObject:selName forKey:parserName];
     [a.target setObject:toks forKey:parserName];
 }
@@ -566,12 +565,12 @@
     NSString *prefix = nil;
     if ([parserName hasPrefix:@"@"]) {
         parserName = [parserName substringFromIndex:1];
-        prefix = @"_";
+        prefix = @"workOn_";
     } else {
-        prefix = @"";
+        prefix = @"workOn";
     }
     NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
-    return [NSString stringWithFormat:@"workOn%@%@Assembly:", prefix, s];
+    return [NSString stringWithFormat:@"%@%@Assembly:", prefix, s];
 }
 
 
