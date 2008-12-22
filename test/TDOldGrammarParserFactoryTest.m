@@ -74,8 +74,6 @@
 }
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     [[mock expect] workOnStartAssembly:OCMOCK_ANY];
@@ -93,11 +91,8 @@
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralWithCallback {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     [[mock expect] workOnStart:OCMOCK_ANY];
@@ -115,7 +110,6 @@
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
 }
-#endif
 
 
 - (void)testStartRefToLiteral {

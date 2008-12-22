@@ -159,8 +159,6 @@
 }
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = 'bar';";
@@ -178,11 +176,8 @@
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralNonReserved {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo*; foo = 'bar';";
@@ -204,11 +199,8 @@
     TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralNonReserved2 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)*; foo = 'bar'; baz = 'bat'";
@@ -230,11 +222,8 @@
     TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralNonReserved3 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
@@ -255,11 +244,8 @@
     TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralNonReserved4 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
@@ -282,11 +268,8 @@
     TDEqualObjects(@"[bar, bat, bat]bar/bat/bat^", [res description]);
     [mock verify];
 }
-#endif
 
 
-#if CURRENT_ARCH == NATIVE_ARCH_64
-#elif
 - (void)testStartLiteralWithCallback {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start (workOnStart:) = 'bar';";
@@ -304,7 +287,6 @@
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
 }
-#endif
 
 
 - (void)testStartRefToLiteral {
