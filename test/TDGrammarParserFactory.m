@@ -135,7 +135,7 @@
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.wordState from:'@' to:'@'];
     
-    TDTokenArraySource *src = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
+    TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     
     while ([src hasMore]) {
@@ -145,6 +145,8 @@
         a = [self.statementParser completeMatchFor:a];
         target = a.target;
     }
+
+    [src release];
     
     [target retain]; // retain to survive the pool releaase
     [pool release];
