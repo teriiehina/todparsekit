@@ -157,7 +157,8 @@
     t.whitespaceState.reportsWhitespaceTokens = YES;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.preservesWhitespaceTokens = YES;
-    TDAssembly *res = [lp completeMatchFor:a];
+    //TDAssembly *res = 
+    [lp completeMatchFor:a];
     
     self.displayString = ass.displayString;
 }
@@ -240,7 +241,9 @@
     
     TDSimpleCSSAssembler *assembler = [[[TDSimpleCSSAssembler alloc] init] autorelease];
     TDParser *lp = [factory parserForGrammar:s assembler:assembler];
-
+    s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp completeMatchFor:a];
     
 }
 
