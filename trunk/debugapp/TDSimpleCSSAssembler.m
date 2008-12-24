@@ -49,7 +49,7 @@
 
 - (NSUInteger)hexValueFor:(NSString *)inStr {
     NSUInteger i = [[inStr substringWithRange:NSMakeRange(0, 1)] integerValue];
-    i = i*=16;
+    i = i *= 16;
     i += [[inStr substringWithRange:NSMakeRange(1, 1)] integerValue];
     return i;
 }
