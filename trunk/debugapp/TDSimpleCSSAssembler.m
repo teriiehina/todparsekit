@@ -47,6 +47,13 @@
 //}
 
 
+- (NSUInteger)hexValueFor:(NSString *)inStr {
+    NSUInteger i = [[inStr substringWithRange:NSMakeRange(0, 1)] integerValue];
+    i = i*=16;
+    i += [[inStr substringWithRange:NSMakeRange(1, 1)] integerValue];
+    return i;
+}
+
 - (void)workOnHexcolorAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSString *s = tok.stringValue;
@@ -54,18 +61,14 @@
 
     if (6 == s.length) {
         NSString *redStr   = [s substringWithRange:NSMakeRange(0, 2)];
-        NSString *greenStr = [s substringWithRange:NSMakeRange(2, 4)];
-        NSString *blueStr  = [s substringWithRange:NSMakeRange(4, 6)];
+        NSString *greenStr = [s substringWithRange:NSMakeRange(2, 2)];
+        NSString *blueStr  = [s substringWithRange:NSMakeRange(4, 2)];
         
-        redStr   = [NSString stringWithFormat:@"0x00%@", redStr];
-        greenStr = [NSString stringWithFormat:@"0x00%@", greenStr];
-        blueStr  = [NSString stringWithFormat:@"0x00%@", blueStr];
+        NSUInteger red   = [self hexValueFor:redStr];
+        NSUInteger green = [self hexValueFor:greenStr];
+        NSUInteger blue  = [self hexValueFor:blueStr];
         
-        CGFloat red   = [redStr doubleValue];
-        CGFloat green = [greenStr doubleValue];
-        CGFloat blue  = [blueStr doubleValue];
-        
-        color = [NSColor colorWithDeviceRed:red/16.0 green:green/16.0 blue:blue/16.0 alpha:1.0];
+        color = [NSColor colorWithDeviceRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
     } else {
         color = [NSColor magentaColor]; // signals incorrect value in stylesheet
     }
