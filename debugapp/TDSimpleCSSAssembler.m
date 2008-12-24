@@ -41,10 +41,10 @@
 // hexcolor    = '#'.discard Num
 // string      = QuotedString
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
-}
+//- (void)workOnStringAssembly:(TDAssembly *)a {
+//    TDToken *tok = [a pop];
+//    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
+//}
 
 
 - (void)workOnHexcolorAssembly:(TDAssembly *)a {
@@ -57,38 +57,38 @@
         NSString *greenStr = [s substringWithRange:NSMakeRange(2, 4)];
         NSString *blueStr  = [s substringWithRange:NSMakeRange(4, 6)];
         
-        redStr   = [NSString stringWithFormat:@"0x00%@" redStr];
-        greenStr = [NSString stringWithFormat:@"0x00%@" greenStr];
-        blueStr  = [NSString stringWithFormat:@"0x00%@" blueStr];
+        redStr   = [NSString stringWithFormat:@"0x00%@", redStr];
+        greenStr = [NSString stringWithFormat:@"0x00%@", greenStr];
+        blueStr  = [NSString stringWithFormat:@"0x00%@", blueStr];
         
         CGFloat red   = [redStr doubleValue];
         CGFloat green = [greenStr doubleValue];
         CGFloat blue  = [blueStr doubleValue];
         
-        color = [NSColor colorWithDeviceRed:red green:green blue:blue alpha:1.0];
+        color = [NSColor colorWithDeviceRed:red/16.0 green:green/16.0 blue:blue/16.0 alpha:1.0];
     } else {
         color = [NSColor magentaColor]; // signals incorrect value in stylesheet
     }
-    [a push:];
+    [a push:color];
 }
 
 
-- (void)workOnExprAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    
-}
+//- (void)workOnExprAssembly:(TDAssembly *)a {
+//    TDToken *tok = [a pop];
+//    
+//}
 
 
-- (void)workOnDeclAssembly:(TDAssembly *)a {
-    NSMutableDictionary *d = a.target;
-    if (!d) {
-        d = [NSMutableDictionary dictionary];
-        a.target = d;
-    }
-    id propVal = [a pop];
-    id propName = [a pop];
-    [d setObject:propVal forKey:propName];
-}
+//- (void)workOnDeclAssembly:(TDAssembly *)a {
+//    NSMutableDictionary *d = a.target;
+//    if (!d) {
+//        d = [NSMutableDictionary dictionary];
+//        a.target = d;
+//    }
+//    id propVal = [a pop];
+//    id propName = [a pop];
+//    [d setObject:propVal forKey:propName];
+//}
 
 
 @synthesize properties;
