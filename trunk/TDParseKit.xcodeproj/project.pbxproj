@@ -192,6 +192,7 @@
 		D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */ = {isa = PBXBuildFile; fileRef = D36EA0E20E5BE61D00496BD3 /* example-1.srgs */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
+		D385F82D0F01BAA100DB2946 /* TDSimpleCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F82C0F01BAA100DB2946 /* TDSimpleCSSAssembler.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -245,8 +246,6 @@
 		D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
-		D3F740C70EF8D93000559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
-		D3F740C80EF8D93100559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 		D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741360EF8E5B000559B9F /* css-old.grammar */; };
 		D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
@@ -552,6 +551,8 @@
 		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
+		D385F82B0F01BAA100DB2946 /* TDSimpleCSSAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSimpleCSSAssembler.h; path = test/TDSimpleCSSAssembler.h; sourceTree = SOURCE_ROOT; };
+		D385F82C0F01BAA100DB2946 /* TDSimpleCSSAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSimpleCSSAssembler.m; path = test/TDSimpleCSSAssembler.m; sourceTree = SOURCE_ROOT; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -914,6 +915,8 @@
 				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
 				D3F740B50EF8C38A00559B9F /* JSONAssembler.h */,
 				D3F740B60EF8C38A00559B9F /* JSONAssembler.m */,
+				D385F82B0F01BAA100DB2946 /* TDSimpleCSSAssembler.h */,
+				D385F82C0F01BAA100DB2946 /* TDSimpleCSSAssembler.m */,
 				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
 			);
 			name = DebugApp;
@@ -1586,7 +1589,6 @@
 				D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
-				D3F740C80EF8D93100559B9F /* JSONAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1610,6 +1612,7 @@
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
 				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+				D385F82D0F01BAA100DB2946 /* TDSimpleCSSAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1702,7 +1705,6 @@
 				D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */,
 				D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
-				D3F740C70EF8D93000559B9F /* JSONAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
