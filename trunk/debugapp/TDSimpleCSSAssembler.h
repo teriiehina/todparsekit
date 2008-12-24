@@ -8,8 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class TDToken;
+
 @interface TDSimpleCSSAssembler : NSObject {
     NSMutableDictionary *properties;
+    TDToken *paren;
+    TDToken *curly;
 }
 @property (nonatomic, retain) NSMutableDictionary *properties;
+@property (nonatomic, retain) TDToken *paren;
+@property (nonatomic, retain) TDToken *curly;
 @end
