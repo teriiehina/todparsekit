@@ -63,13 +63,19 @@
 }
 
 
+- (void)workOnNumAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:[NSNumber numberWithFloat:tok.floatValue]];
+}
+
+
 - (void)workOnRgbAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
-    TDToken *blueTok  = [objs objectAtIndex:0];
-    TDToken *greenTok = [objs objectAtIndex:1];
-    TDToken *redTok   = [objs objectAtIndex:2];
-    [a push:[NSColor colorWithDeviceRed:redTok.floatValue green:greenTok.floatValue blue:blueTok.floatValue alpha:1.0]];
+    NSNumber *blue  = [objs objectAtIndex:0];
+    NSNumber *green = [objs objectAtIndex:1];
+    NSNumber *red   = [objs objectAtIndex:2];
+    [a push:[NSColor colorWithDeviceRed:[red floatValue] green:[green floatValue] blue:[blue floatValue] alpha:1.0]];
 }
 
 
