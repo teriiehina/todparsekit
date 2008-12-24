@@ -18,6 +18,7 @@
 #import "TDHtmlSyntaxHighlighter.h"
 #import "TDGrammarParserFactory.h"
 #import "JSONAssembler.h"
+#import "TDSimpleCSSAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
 
 @interface TDGrammarParserFactory ()
@@ -232,15 +233,28 @@
 }
 
 
+- (void)doSimpleCSS {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    
+    TDSimpleCSSAssembler *assembler = [[[TDSimpleCSSAssembler alloc] init] autorelease];
+    TDParser *lp = [factory parserForGrammar:s assembler:assembler];
+
+    
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doProf];
+//    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
+    [self doSimpleCSS];  
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];

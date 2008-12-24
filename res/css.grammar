@@ -3,12 +3,13 @@
  */
 
 @start      = ruleset*;
-ruleset     = selector '{' decls '}'.discard;
+ruleset     = selector '{' decls '}';
 selector    = LowercaseWord;            // forcing selectors to be lowercase words for use in a future syntax-highlight framework where i want that
 decls       = Empty | actualDecls;
 actualDecls = decl decl*;
-decl        = property ':'.discard expr ';'?;
+decl        = property ':' expr ';'?;
 property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
-expr        = hexcolor | string
-hexcolor    = '#'.discard Num
-string      = QuotedString
+expr        = hexcolor | string | constants;
+hexcolor    = '#' Num;
+string      = QuotedString;
+constants   = 'bold' | 'normal' | 'italic';
