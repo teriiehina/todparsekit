@@ -16,6 +16,8 @@
     self = [super init];
     if (self) {
         self.properties = [NSMutableDictionary dictionary];
+        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
     }
     return self;
 }
@@ -23,6 +25,7 @@
 
 - (void)dealloc {
     self.properties = nil;
+    self.paren = nil;
     [super dealloc];
 }
 
@@ -30,69 +33,99 @@
 #pragma mark -
 #pragma mark Assembler Callbacks
 
-// @start      = ruleset*;
-// ruleset     = selector '{' decls '}'.discard;
-// selector    = LowercaseWord;            // forcing selectors to be lowercase words for use in a future syntax-highlight framework where i want that
-// decls       = Empty | actualDecls;
-// actualDecls = decl decl*;
-// decl        = property ':'.discard expr ';'?;
-// property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
-// expr        = hexcolor | string
-// hexcolor    = '#'.discard Num
-// string      = QuotedString
+//    @start      = ruleset*;
+//    ruleset     = selector '{' decls '}'.discard;
+//    selector    = LowercaseWord;            // forcing selectors to be lowercase words for use in a future syntax-highlight framework where i want that
+//    decls       = Empty | actualDecls;
+//    actualDecls = decl decl*;
+//    decl        = property ':'.discard expr ';'.discard?;
+//    property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
+//    expr        = rgb | string | constants;
+//    rgb         = 'rgb'.discard '(' Num ','.discard Num ','.discard Num ')'.discard;
+//    string      = QuotedString;
+//    constants   = 'bold' | 'normal' | 'italic';
 
-//- (void)workOnStringAssembly:(TDAssembly *)a {
-//    TDToken *tok = [a pop];
-//    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
-//}
-
-
-- (NSUInteger)hexValueFor:(NSString *)inStr {
-    NSUInteger i = [[inStr substringWithRange:NSMakeRange(0, 1)] integerValue];
-    i = i *= 16;
-    i += [[inStr substringWithRange:NSMakeRange(1, 1)] integerValue];
-    return i;
-}
-
-- (void)workOnHexcolorAssembly:(TDAssembly *)a {
+- (void)workOnPropertyAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    NSString *s = tok.stringValue;
-    NSColor *color = nil;
-
-    if (6 == s.length) {
-        NSString *redStr   = [s substringWithRange:NSMakeRange(0, 2)];
-        NSString *greenStr = [s substringWithRange:NSMakeRange(2, 2)];
-        NSString *blueStr  = [s substringWithRange:NSMakeRange(4, 2)];
-        
-        NSUInteger red   = [self hexValueFor:redStr];
-        NSUInteger green = [self hexValueFor:greenStr];
-        NSUInteger blue  = [self hexValueFor:blueStr];
-        
-        color = [NSColor colorWithDeviceRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
-    } else {
-        color = [NSColor magentaColor]; // signals incorrect value in stylesheet
-    }
-    [a push:color];
+    [a push:tok.stringValue];
 }
 
 
-//- (void)workOnExprAssembly:(TDAssembly *)a {
-//    TDToken *tok = [a pop];
-//    
-//}
+- (void)workOnStringAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
+}
 
 
-//- (void)workOnDeclAssembly:(TDAssembly *)a {
-//    NSMutableDictionary *d = a.target;
-//    if (!d) {
-//        d = [NSMutableDictionary dictionary];
-//        a.target = d;
-//    }
-//    id propVal = [a pop];
-//    id propName = [a pop];
-//    [d setObject:propVal forKey:propName];
-//}
+- (void)workOnConstantAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:tok.stringValue];
+}
 
+
+- (void)workOnRgbAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:paren];
+    [a pop]; // discard '('
+    TDToken *blueTok  = [objs objectAtIndex:0];
+    TDToken *greenTok = [objs objectAtIndex:1];
+    TDToken *redTok   = [objs objectAtIndex:2];
+    [a push:[NSColor colorWithDeviceRed:redTok.floatValue green:greenTok.floatValue blue:blueTok.floatValue alpha:1.0]];
+}
+
+
+- (void)workOnActualDeclsAssembly:(TDAssembly *)a {
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    NSArray *objs = [a objectsAbove:curly];
+    [a pop]; // discard curly
+
+    NSInteger i = 0;
+    NSInteger count = objs.count;
+    for ( ; i < count - 1; i++) {
+        id propVal = [objs objectAtIndex:i];
+        id propName = [objs objectAtIndex:++i];
+        [d setObject:propVal forKey:propName];
+    }
+    
+    [a push:d];
+}
+
+
+- (void)workOnRulesetAssembly:(TDAssembly *)a {
+    id props = [a pop];
+    TDToken *selectorTok = [a pop];
+    [properties setObject:props forKey:selectorTok.stringValue];
+}
 
 @synthesize properties;
+@synthesize paren;
+@synthesize curly;
 @end
+
+
+//- (NSUInteger)hexValueFor:(NSString *)inStr {
+//    NSUInteger i = [[inStr substringWithRange:NSMakeRange(0, 1)] integerValue];
+//    i = i *= 16;
+//    i += [[inStr substringWithRange:NSMakeRange(1, 1)] integerValue];
+//    return i;
+//}
+//
+//- (void)workOnHexcolorAssembly:(TDAssembly *)a {
+//    TDToken *tok = [a pop];
+//    NSString *s = tok.stringValue;
+//    NSColor *color = nil;
+//    
+//    if (6 == s.length) {
+//        NSString *redStr   = [s substringWithRange:NSMakeRange(0, 2)];
+//        NSString *greenStr = [s substringWithRange:NSMakeRange(2, 2)];
+//        NSString *blueStr  = [s substringWithRange:NSMakeRange(4, 2)];
+//        
+//        NSUInteger red   = [self hexValueFor:redStr];
+//        NSUInteger green = [self hexValueFor:greenStr];
+//        NSUInteger blue  = [self hexValueFor:blueStr];
+//        
+//        color = [NSColor colorWithDeviceRed:red/255.0 green:green/255.0 blue:blue/255.0 alpha:1.0];
+//    } else {
+//        color = [NSColor magentaColor]; // signals incorrect value in stylesheet
+//    }
+//    [a push:color];
+//}
