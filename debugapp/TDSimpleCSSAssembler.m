@@ -39,8 +39,9 @@
 //    decls       = Empty | actualDecls;
 //    actualDecls = decl decl*;
 //    decl        = property ':'.discard expr ';'.discard?;
-//    property    = 'color' | 'background-color' | 'font-weight' | 'font-style' | 'font-family' | 'font-size';
-//    expr        = rgb | string | constants;
+//    property    = 'color' | 'background-color' | 'font-family' | 'font-size';
+//    expr        = pixelValue | rgb | string | constants;
+//    pixelValue  = Num 'px'.discard;
 //    rgb         = 'rgb'.discard '(' Num ','.discard Num ','.discard Num ')'.discard;
 //    string      = QuotedString;
 //    constants   = 'bold' | 'normal' | 'italic';
@@ -64,6 +65,12 @@
 
 
 - (void)workOnNumAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    [a push:[NSNumber numberWithFloat:tok.floatValue]];
+}
+
+
+- (void)workOnPixelValueAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
@@ -99,7 +106,26 @@
 - (void)workOnRulesetAssembly:(TDAssembly *)a {
     id props = [a pop];
     TDToken *selectorTok = [a pop];
-    [properties setObject:props forKey:selectorTok.stringValue];
+    NSString *selector = selectorTok.stringValue;
+    [properties setObject:props forKey:selector];
+    [self gatherFontPropertiesForSelector:selector];
+}
+
+
+- (void)gatherFontPropertiesForSelector:(NSString *)selector {
+    NSDictionary *props = [properties objectForKey:selector];
+
+    NSString *fontFamily = [props objectForKey:@"font-family"];
+    if (!fontFamily.length) {
+        fontFamily = @"Monaco";
+    }
+    CGFloat *fontSize = [[props objectForKey:@"font-size"] floatValue];
+    if (fontSize < 9.0) {
+        fontSize = 11.0;
+    }
+    
+    NSFont *font = [NSFont fontWithName:fontFamily size:fontSize];
+    [props setObject:font forKey:@"font"];
 }
 
 @synthesize properties;
