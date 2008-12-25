@@ -64,20 +64,20 @@
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/}^", [res description]);
     
-    s = @"bar {color:rgb(1, 255, 255); font-style:italic;}";
+    s = @"bar {color:rgb(1, 255, 255); font-size:13px;}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[bar, {, color, (, 1, 255, 255, font-style, italic]bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-style/:/italic/;/}^", [res description]);
+    TDEqualObjects(@"[bar, {, color, (, 1, 255, 255, font-size, 13]bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/13/px/;/}^", [res description]);
     
-    s = @"bar {color:rgb(1, 255, 47.0); font-style:italic}";
+    s = @"bar {color:rgb(1, 255, 47.0); font-family:'Helvetica'}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[bar, {, color, (, 1, 255, 47.0, font-style, italic]bar/{/color/:/rgb/(/1/,/255/,/47.0/)/;/font-style/:/italic/}^", [res description]);
+    TDEqualObjects(@"[bar, {, color, (, 1, 255, 47.0, font-family, 'Helvetica']bar/{/color/:/rgb/(/1/,/255/,/47.0/)/;/font-family/:/'Helvetica'/}^", [res description]);
     
-    s = @"foo {font-family:'Lucida Grande'} bar {color:rgb(1, 255, 255); font-style:italic;}";
+    s = @"foo {font-family:'Lucida Grande'} bar {color:rgb(1, 255, 255); font-size:9px;}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[foo, {, font-family, 'Lucida Grande', bar, {, color, (, 1, 255, 255, font-style, italic]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-style/:/italic/;/}^", [res description]);
+    TDEqualObjects(@"[foo, {, font-family, 'Lucida Grande', bar, {, color, (, 1, 255, 255, font-size, 9]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/9/px/;/}^", [res description]);
 }
 
 
