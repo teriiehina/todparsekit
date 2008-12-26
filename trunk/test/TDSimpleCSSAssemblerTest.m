@@ -50,15 +50,89 @@
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]foo/{/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/}^", [a description]);
     TDNotNil(ass.properties);
-    id fooProps = [ass.properties objectForKey:@"foo"];
-    TDNotNil(fooProps);
-    NSColor *color = [fooProps objectForKey:@"background-color"];
+    
+    id props = [ass.properties objectForKey:@"foo"];
+    TDNotNil(props);
+    
+    NSColor *color = [props objectForKey:@"background-color"];
     TDNotNil(color);
     STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(255.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(0.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([color blueComponent], (CGFloat)(255.0/255.0), 0.001, @"");
 }
 
+
+- (void)testFontSize {
+    TDNotNil(lp);
+    
+    s = @"decl { font-size:12px }";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp bestMatchFor:a];
+    TDEqualObjects(@"[]decl/{/font-size/:/12/px/}^", [a description]);
+    TDNotNil(ass.properties);
+    
+    id props = [ass.properties objectForKey:@"decl"];
+    TDNotNil(props);
+    
+    NSNumber *size = [props objectForKey:@"font-size"];
+    TDNotNil(size);
+    TDEquals((CGFloat)[size doubleValue], (CGFloat)12.0);
+    
+    NSFont *font = [props objectForKey:@"font"];
+    TDNotNil(font);
+    TDEquals((CGFloat)[font pointSize], (CGFloat)12.0);
+    TDEqualObjects([font familyName], @"Monaco");
+}
+
+
+- (void)testSmallFontSize {
+    TDNotNil(lp);
+    
+    s = @"decl { font-size:8px }";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp bestMatchFor:a];
+    TDEqualObjects(@"[]decl/{/font-size/:/8/px/}^", [a description]);
+    TDNotNil(ass.properties);
+    
+    id props = [ass.properties objectForKey:@"decl"];
+    TDNotNil(props);
+    
+    NSNumber *size = [props objectForKey:@"font-size"];
+    TDNotNil(size);
+    TDEquals((CGFloat)[size doubleValue], (CGFloat)8.0);
+    
+    NSFont *font = [props objectForKey:@"font"];
+    TDNotNil(font);
+    TDEquals((CGFloat)[font pointSize], (CGFloat)9.0);
+    TDEqualObjects([font familyName], @"Monaco");
+}
+
+
+- (void)testFont {
+    TDNotNil(lp);
+    
+    s = @"expr { font-size:16px; font-family:'Helvetica' }";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp bestMatchFor:a];
+    TDEqualObjects(@"[]expr/{/font-size/:/16/px/;/font-family/:/'Helvetica'/}^", [a description]);
+    TDNotNil(ass.properties);
+
+    id props = [ass.properties objectForKey:@"expr"];
+    TDNotNil(props);
+
+    NSString *fontFamily = [props objectForKey:@"font-family"];
+    TDNotNil(fontFamily);
+    TDEqualObjects(fontFamily, @"Helvetica");
+    
+    NSNumber *size = [props objectForKey:@"font-size"];
+    TDNotNil(size);
+    TDEquals((CGFloat)[size doubleValue], (CGFloat)16.0);
+
+    NSFont *font = [props objectForKey:@"font"];
+    TDNotNil(font);
+    TDEqualObjects([font familyName], @"Helvetica");
+    TDEquals((CGFloat)[font pointSize], (CGFloat)16.0);
+}
 
 
 @end

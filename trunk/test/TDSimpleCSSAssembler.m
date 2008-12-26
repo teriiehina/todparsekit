@@ -126,7 +126,7 @@
     
     CGFloat fontSize = [[props objectForKey:@"font-size"] doubleValue];
     if (fontSize < 9.0) {
-        fontSize = 11.0;
+        fontSize = 9.0;
     }
     
     NSFont *font = [NSFont fontWithName:fontFamily size:fontSize];
