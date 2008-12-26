@@ -1,3 +1,12 @@
+/**
+
+A CSS Stylesheet that matches the JSON grammar
+
+note that each terminal production from json.grammar is listed in a CSS selector below.
+text that matches any of these productions will display with the css properties listed here
+
+*/
+
 openCurly, closeCurly, openBracket, closeBracket, comma, colon {
     color:rgb(178.5, 35.7, 135.15);
     background-color:rgb(30, 30, 36);
