@@ -31,7 +31,6 @@
     s = [NSString stringWithContentsOfFile:path];
     a = [TDTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
-    //TDEqualObjects(@"[]bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
     
     TDNotNil(cssAssember.attributes);
     id props = [cssAssember.attributes objectForKey:@"openCurly"];

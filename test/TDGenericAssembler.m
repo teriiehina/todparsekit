@@ -40,34 +40,43 @@
 }
 
 
-- (void)forwardInvocation:(NSInvocation *)invocation {
-    SEL sel = [invocation selector];
+- (BOOL)respondsToSelector:(SEL)sel {
+    return YES;
+//    NSString *selName = NSStringFromSelector(sel);
+//    if ([selName hasPrefix:@"workOn"]) {
+//        return YES; //!parsing;
+//    }
+//    return [super respondsToSelector:sel];
+}
+
+
+- (void)performSelector:(SEL)sel withObject:(id)obj {
     NSString *selName = NSStringFromSelector(sel);
     NSString *prefix = @"workOn";
     NSString *suffix = @"Assembly:";
 
     if ([selName hasPrefix:prefix] && [selName hasSuffix:@"Assembly:"]) {
-        NSRange r = NSMakeRange(prefix.length, selName.length - suffix.length);
-        NSString *productionName = [selName substringWithRange:r];
+        NSInteger c = ((NSInteger)[selName characterAtIndex:prefix.length]) + 32; // lowercase
+        NSRange r = NSMakeRange(prefix.length + 1, selName.length - (prefix.length + suffix.length + 1 /*:*/));
+        NSString *productionName = [NSString stringWithFormat:@"%C%@", c, [selName substringWithRange:r]];
         
-        TDAssembly *a = nil;
-        [invocation getArgument:&a atIndex:0];
-        [self workOnProductionNamed:productionName withAssembly:a];
-        
+        [self workOnProductionNamed:productionName withAssembly:obj];
     } else {
-        [self doesNotRecognizeSelector:sel];
+        [super performSelector:sel withObject:obj];
     }
 }
 
 
 - (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a {
     // lookup CSS values
+    NSArray *objs = [a objectsAbove:nil];
+    if (!objs.count) return;
+    
     id props = [attributes objectForKey:name];
     if (!props) {
         props = defaultProperties;
     }
 
-    NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:props];
     

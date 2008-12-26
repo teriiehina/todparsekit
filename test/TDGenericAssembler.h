@@ -15,5 +15,5 @@
 }
 @property (nonatomic, retain) NSMutableDictionary *attributes;
 @property (nonatomic, retain) NSMutableDictionary *defaultProperties;
-@property (nonatomic, copy) NSMutableAttributedString *displayString;
+@property (nonatomic, retain) NSMutableAttributedString *displayString;
 @end
