@@ -83,10 +83,10 @@
 - (void)workOnRgbAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
-    NSNumber *blue = [objs objectAtIndex:0];
-    NSNumber *green = [objs objectAtIndex:1];
-    NSNumber *red = [objs objectAtIndex:2];
-    [a push:[NSColor colorWithDeviceRed:[red floatValue] green:[green floatValue] blue:[blue floatValue] alpha:1.0]];
+    CGFloat blue  = [[objs objectAtIndex:0] floatValue]/255.0;
+    CGFloat green = [[objs objectAtIndex:1] floatValue]/255.0;
+    CGFloat red   = [[objs objectAtIndex:2] floatValue]/255.0;
+    [a push:[NSColor colorWithDeviceRed:red green:green blue:blue alpha:1.0]];
 }
 
 

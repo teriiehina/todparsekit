@@ -7,12 +7,17 @@
 //
 
 #import "TDTestScaffold.h"
+#import "TDGrammarParserFactory.h"
 #import "TDSimpleCSSAssembler.h"
 
 @interface TDSimpleCSSAssemblerTest : SenTestCase {
-    TDTokenAssembly *a;
+    NSString *path;
+    NSString *grammarString;
     NSString *s;
     TDSimpleCSSAssembler *ass;
+    TDGrammarParserFactory *factory;
+    TDParser *lp;
+    TDAssembly *a;
 }
 
 @end
