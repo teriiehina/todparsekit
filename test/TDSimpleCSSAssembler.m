@@ -10,6 +10,10 @@
 #import "NSString+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
 
+@interface TDSimpleCSSAssembler ()
+- (void)gatherFontPropertiesForSelector:(NSString *)selector;
+@end
+
 @implementation TDSimpleCSSAssembler
 
 - (id)init {
@@ -79,15 +83,15 @@
 - (void)workOnRgbAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
-    NSNumber *blue  = [objs objectAtIndex:0];
+    NSNumber *blue = [objs objectAtIndex:0];
     NSNumber *green = [objs objectAtIndex:1];
-    NSNumber *red   = [objs objectAtIndex:2];
+    NSNumber *red = [objs objectAtIndex:2];
     [a push:[NSColor colorWithDeviceRed:[red floatValue] green:[green floatValue] blue:[blue floatValue] alpha:1.0]];
 }
 
 
 - (void)workOnActualDeclsAssembly:(TDAssembly *)a {
-    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    id d = [NSMutableDictionary dictionary];
     NSArray *objs = [a objectsAbove:curly];
     [a pop]; // discard curly
 
@@ -113,13 +117,14 @@
 
 
 - (void)gatherFontPropertiesForSelector:(NSString *)selector {
-    NSDictionary *props = [properties objectForKey:selector];
+    id props = [properties objectForKey:selector];
 
     NSString *fontFamily = [props objectForKey:@"font-family"];
     if (!fontFamily.length) {
         fontFamily = @"Monaco";
     }
-    CGFloat *fontSize = [[props objectForKey:@"font-size"] floatValue];
+    
+    CGFloat fontSize = [[props objectForKey:@"font-size"] doubleValue];
     if (fontSize < 9.0) {
         fontSize = 11.0;
     }
