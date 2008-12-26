@@ -1,9 +1,3 @@
-//NSColor *tagColor       = [NSColor colorWithDeviceRed:.70 green:.14 blue:.53 alpha:1.];
-//NSColor *attrNameColor  = [NSColor colorWithDeviceRed:.33 green:.45 blue:.48 alpha:1.];
-//NSColor *attrValueColor = [NSColor colorWithDeviceRed:.77 green:.18 blue:.20 alpha:1.];
-//NSColor *commentColor   = [NSColor colorWithDeviceRed:.24 green:.70 blue:.27 alpha:1.];
-//NSColor *piColor        = [NSColor colorWithDeviceRed:.09 green:.62 blue:.74 alpha:1.];
-
 openCurly, closeCurly, openBracket, closeBracket, comma, colon {
     color:rgb(178.5, 35.7, 135.15);
     background-color:rgb(30, 30, 36);
