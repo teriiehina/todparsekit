@@ -1,40 +1,36 @@
 /**
     A Grammar for JSON.
     
-    Feed this to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
+    The builtin terminal production types are (note titlecase) : Empty, Word, Num, QuotedString
+    You define collections (alternations, repetitions or sequences) and literal terminals (in quotes). These should be lowercase.
+    The special '@start' production is the outermost production.
+    
+    Feed this grammar to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
     to an assembler (a call back delegate), and it will return a TDParser object which can 
     parse strings conforming to this language/grammar.
-    
-    The when the returned parser is used, the provided assembler will receive method callbacks like:
+        
+    The when the returned parser is used, the provided assembler will receive method callbacks for each production matched, like:
 
-    -workOnOpenCurlyAssembly:
     -workOnObjectAssembly:
+    -workOnObjectContentAssembly:
     -workOnPropertyAssembly:
     -workOnArrayAssembly:
+    -workOnOpenCurlyAssembly:
     etc.
     
-    whenever a grammar production of the corresponding name has been matched.
-    
-    Each callback method must accept a single TDAssembly argument. The provided assembly
+    Each callback method must accept a single TDAssembly argument. This assembly argument
     will contain information about the progress made on the the string currently being parsed.
     Also the assembly's stack will contain the tokens parsed so far in the current statement.
  */
 
 @start        = Empty | array | object;
 
-openCurly     = '{';
-closeCurly    = '}';
-openBracket   = '[';
-closeBracket  = ']';
-comma         = ',';
-colon         = ':';
-
 object        = openCurly objectContent closeCurly;
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
+property      = propertyName colon value;
 commaProperty = comma property;
-propertyName  = QuotedString;
-property      = propertyName colon value;         // NOTE: property names are quoted in JSON
+propertyName  = QuotedString;         // NOTE: property names are quoted in JSON
 
 array         = openBracket arrayContent closeBracket;
 arrayContent  = Empty | actualArray;
@@ -42,8 +38,16 @@ actualArray   = value commaValue*;
 commaValue    = comma value;
 
 value         = null | true | false | array | object | number | string;
+
 string        = QuotedString;
 number        = Num;
 null          = 'null';
 true          = 'true';
 false         = 'false';
+
+openCurly     = '{';
+closeCurly    = '}';
+openBracket   = '[';
+closeBracket  = ']';
+comma         = ',';
+colon         = ':';
