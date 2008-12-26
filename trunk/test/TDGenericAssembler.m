@@ -22,13 +22,19 @@
     self = [super init];
     if (self) {
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] autorelease];
+        self.defaultProperties = [NSDictionary dictionaryWithObjectsAndKeys:
+                                  [NSColor blackColor], NSForegroundColorAttributeName,
+                                  [NSColor whiteColor], NSBackgroundColorAttributeName,
+                                  [NSFont fontWithName:@"Monaco" size:11.0], NSFontAttributeName,
+                                  nil];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.properties = nil;
+    self.attributes = nil;
+    self.defaultProperties = nil;
     self.displayString = nil;
     [super dealloc];
 }
@@ -56,10 +62,14 @@
 
 - (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a {
     // lookup CSS values
+    id props = [attributes objectForKey:name];
+    if (!props) {
+        props = defaultProperties;
+    }
 
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
-    [self appendAttributedStringForObjects:objs withAttrs:nil];
+    [self appendAttributedStringForObjects:objs withAttrs:props];
     
 }
 
@@ -92,6 +102,7 @@
     }
 }
 
-@synthesize properties;
+@synthesize attributes;
+@synthesize defaultProperties;
 @synthesize displayString;
 @end
