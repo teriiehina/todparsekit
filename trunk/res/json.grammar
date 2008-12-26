@@ -1,26 +1,6 @@
 /**
     A Grammar for JSON.
     
-    The built-in terminal production types are (note titlecase) : Empty, Word, Num, QuotedString
-    You define collections (alternations, repetitions or sequences) and literal terminals (in quotes). These should be lowercase.
-    The special '@start' production is the outermost production.
-    
-    Feed this grammar to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
-    to an assembler (a call back delegate), and it will return a TDParser object which can 
-    parse strings conforming to this language/grammar.
-        
-    The when the returned parser is used, the provided assembler will receive method callbacks for each production matched, like:
-
-    -workOnObjectAssembly:
-    -workOnObjectContentAssembly:
-    -workOnPropertyAssembly:
-    -workOnArrayAssembly:
-    -workOnOpenCurlyAssembly:
-    etc.
-    
-    Each callback method must accept a single TDAssembly argument. This assembly argument
-    will contain information about the progress made on the the string currently being parsed.
-    Also the assembly's stack will contain the tokens parsed so far in the current statement.
  */
 
 @start        = Empty | array | object;
@@ -51,3 +31,29 @@ openBracket   = '[';
 closeBracket  = ']';
 comma         = ',';
 colon         = ':';
+
+
+/**
+
+    The built-in terminal production types are (note titlecase) : Empty, Word, Num, QuotedString
+    You define collections (alternations, repetitions or sequences) and literal terminals (in quotes). These should be lowercase.
+    The special '@start' production is the outermost production.
+    
+    Feed this grammar to -[TDGrammarParserFactory parserForGrammar:assembler:] along with a reference
+    to an assembler (a call back delegate), and it will return a TDParser object which can 
+    parse strings conforming to this language/grammar.
+        
+    The when the returned parser is used, the provided assembler will receive method callbacks for each production matched, like:
+
+    -workOnObjectAssembly:
+    -workOnObjectContentAssembly:
+    -workOnPropertyAssembly:
+    -workOnArrayAssembly:
+    -workOnOpenCurlyAssembly:
+    etc.
+    
+    Each callback method must accept a single TDAssembly argument. This assembly argument
+    will contain information about the progress made on the the string currently being parsed.
+    Also the assembly's stack will contain the tokens parsed so far in the current statement.
+
+*/
