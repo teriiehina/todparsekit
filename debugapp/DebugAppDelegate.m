@@ -248,6 +248,20 @@
 }
 
 
+- (void)doSimpleCSS2 {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    NSString *grammarString = [NSString stringWithContentsOfFile:path];
+    id ass = [[TDSimpleCSSAssembler alloc] init];
+    id factory = [TDGrammarParserFactory factory];
+    TDParser *lp = [factory parserForGrammar:grammarString assembler:ass];
+    NSString *s = @"bar { color:rgb(10, 200, 30); }";
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp bestMatchFor:a];
+    //TDEqualObjects(@"[]bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
+    
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
