@@ -1,7 +1,7 @@
 /**
     A Grammar for JSON.
     
-    The builtin terminal production types are (note titlecase) : Empty, Word, Num, QuotedString
+    The built-in terminal production types are (note titlecase) : Empty, Word, Num, QuotedString
     You define collections (alternations, repetitions or sequences) and literal terminals (in quotes). These should be lowercase.
     The special '@start' production is the outermost production.
     
