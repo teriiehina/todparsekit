@@ -11,7 +11,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDSimpleCSSAssembler ()
-- (void)gatherFontPropertiesForSelector:(NSString *)selector;
+- (void)gatherPropertiesIn:(id)props;
 @end
 
 @implementation TDSimpleCSSAssembler
@@ -19,7 +19,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.properties = [NSMutableDictionary dictionary];
+        self.attributes = [NSMutableDictionary dictionary];
         self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
     }
@@ -28,7 +28,7 @@
 
 
 - (void)dealloc {
-    self.properties = nil;
+    self.attributes = nil;
     self.paren = nil;
     [super dealloc];
 }
@@ -109,16 +109,30 @@
 
 - (void)workOnRulesetAssembly:(TDAssembly *)a {
     id props = [a pop];
-    TDToken *selectorTok = [a pop];
-    NSString *selector = selectorTok.stringValue;
-    [properties setObject:props forKey:selector];
-    [self gatherFontPropertiesForSelector:selector];
+    [self gatherPropertiesIn:props];
+
+    for (TDToken *selectorTok in [a objectsAbove:nil]) {
+        NSString *selector = selectorTok.stringValue;
+        [attributes setObject:props forKey:selector];
+    }
 }
 
 
-- (void)gatherFontPropertiesForSelector:(NSString *)selector {
-    id props = [properties objectForKey:selector];
+- (void)gatherPropertiesIn:(id)props {
+    NSColor *color = [props objectForKey:@"color"];
+    if (!color) {
+        color = [NSColor blackColor];
+    }
+    [props setObject:color forKey:NSForegroundColorAttributeName];
+    [props removeObjectForKey:@"color"];
 
+    color = [props objectForKey:@"background-color"];
+    if (!color) {
+        color = [NSColor whiteColor];
+    }
+    [props setObject:color forKey:NSBackgroundColorAttributeName];
+    [props removeObjectForKey:@"background-color"];
+    
     NSString *fontFamily = [props objectForKey:@"font-family"];
     if (!fontFamily.length) {
         fontFamily = @"Monaco";
@@ -130,10 +144,12 @@
     }
     
     NSFont *font = [NSFont fontWithName:fontFamily size:fontSize];
-    [props setObject:font forKey:@"font"];
+    [props setObject:font forKey:NSFontAttributeName];
+    [props removeObjectForKey:@"font-family"];
+    [props removeObjectForKey:@"font-size"];
 }
 
-@synthesize properties;
+@synthesize attributes;
 @synthesize paren;
 @synthesize curly;
 @end
