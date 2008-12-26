@@ -14,6 +14,9 @@
 - (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
 - (void)consumeWhitespaceFrom:(TDAssembly *)a;
+
+@property (nonatomic, retain) NSString *prefix;
+@property (nonatomic, retain) NSString *suffix;
 @end
 
 @implementation TDGenericAssembler
@@ -22,11 +25,14 @@
     self = [super init];
     if (self) {
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] autorelease];
+        self.productionNames = [NSMutableDictionary dictionary];
         self.defaultProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSColor blackColor], NSForegroundColorAttributeName,
                                   [NSColor whiteColor], NSBackgroundColorAttributeName,
                                   [NSFont fontWithName:@"Monaco" size:11.0], NSFontAttributeName,
                                   nil];
+        self.prefix = @"workOn";
+        self.suffix = @"Assembly:";
     }
     return self;
 }
@@ -35,7 +41,10 @@
 - (void)dealloc {
     self.attributes = nil;
     self.defaultProperties = nil;
+    self.productionNames = nil;
     self.displayString = nil;
+    self.prefix = nil;
+    self.suffix = nil;
     [super dealloc];
 }
 
@@ -52,18 +61,22 @@
 
 - (void)performSelector:(SEL)sel withObject:(id)obj {
     NSString *selName = NSStringFromSelector(sel);
-    NSString *prefix = @"workOn";
-    NSString *suffix = @"Assembly:";
-
-    if ([selName hasPrefix:prefix] && [selName hasSuffix:@"Assembly:"]) {
-        NSInteger c = ((NSInteger)[selName characterAtIndex:prefix.length]) + 32; // lowercase
-        NSRange r = NSMakeRange(prefix.length + 1, selName.length - (prefix.length + suffix.length + 1 /*:*/));
-        NSString *productionName = [NSString stringWithFormat:@"%C%@", c, [selName substringWithRange:r]];
+    
+//    if ([selName hasPrefix:prefix] && [selName hasSuffix:suffix]) {
+        
+        NSString *productionName = [productionNames objectForKey:selName];
+        if (!productionName) {
+            NSUInteger prefixLen = prefix.length;
+            NSInteger c = ((NSInteger)[selName characterAtIndex:prefixLen]) + 32; // lowercase
+            NSRange r = NSMakeRange(prefixLen + 1, selName.length - (prefixLen + suffix.length + 1 /*:*/));
+            productionName = [NSString stringWithFormat:@"%C%@", c, [selName substringWithRange:r]];
+            [productionNames setObject:productionName forKey:selName];
+        }
         
         [self workOnProductionNamed:productionName withAssembly:obj];
-    } else {
-        [super performSelector:sel withObject:obj];
-    }
+//    } else {
+//        [super performSelector:sel withObject:obj];
+//    }
 }
 
 
@@ -113,5 +126,8 @@
 
 @synthesize attributes;
 @synthesize defaultProperties;
+@synthesize productionNames;
 @synthesize displayString;
+@synthesize prefix;
+@synthesize suffix;
 @end
