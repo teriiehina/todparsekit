@@ -11,11 +11,11 @@
 @class TDToken;
 
 @interface TDSimpleCSSAssembler : NSObject {
-    NSMutableDictionary *properties;
+    NSMutableDictionary *attributes;
     TDToken *paren;
     TDToken *curly;
 }
-@property (nonatomic, retain) NSMutableDictionary *properties;
+@property (nonatomic, retain) NSMutableDictionary *attributes;
 @property (nonatomic, retain) TDToken *paren;
 @property (nonatomic, retain) TDToken *curly;
 @end

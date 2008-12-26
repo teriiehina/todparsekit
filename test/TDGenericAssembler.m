@@ -28,6 +28,7 @@
 
 
 - (void)dealloc {
+    self.properties = nil;
     self.displayString = nil;
     [super dealloc];
 }
@@ -91,5 +92,6 @@
     }
 }
 
+@synthesize properties;
 @synthesize displayString;
 @end

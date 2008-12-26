@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface TDGenericAssembler : NSObject {
+    NSMutableDictionary *properties;
     NSMutableAttributedString *displayString;
 }
+@property (nonatomic, retain) NSMutableDictionary *properties;
 @property (nonatomic, copy) NSMutableAttributedString *displayString;
 @end

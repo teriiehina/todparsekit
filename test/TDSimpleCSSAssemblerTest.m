@@ -31,11 +31,40 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
-    TDNotNil(ass.properties);
-    id props = [ass.properties objectForKey:@"bar"];
+    TDNotNil(ass.attributes);
+    id props = [ass.attributes objectForKey:@"bar"];
     TDNotNil(props);
+    
+    NSColor *color = [props objectForKey:NSForegroundColorAttributeName];
+    TDNotNil(color);
+    STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(10.0/255.0), 0.001, @"");
+    STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(200.0/255.0), 0.001, @"");
+    STAssertEqualsWithAccuracy([color blueComponent], (CGFloat)(30.0/255.0), 0.001, @"");
+}
 
-    NSColor *color = [props objectForKey:@"color"];
+
+- (void)testMultiSelectorColor {
+    TDNotNil(lp);
+    
+    s = @"foo, bar { color:rgb(10, 200, 30); }";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [lp bestMatchFor:a];
+    TDEqualObjects(@"[]foo/,/bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
+    TDNotNil(ass.attributes);
+
+    id props = [ass.attributes objectForKey:@"bar"];
+    TDNotNil(props);
+    
+    NSColor *color = [props objectForKey:NSForegroundColorAttributeName];
+    TDNotNil(color);
+    STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(10.0/255.0), 0.001, @"");
+    STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(200.0/255.0), 0.001, @"");
+    STAssertEqualsWithAccuracy([color blueComponent], (CGFloat)(30.0/255.0), 0.001, @"");
+
+    props = [ass.attributes objectForKey:@"foo"];
+    TDNotNil(props);
+    
+    color = [props objectForKey:NSForegroundColorAttributeName];
     TDNotNil(color);
     STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(10.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(200.0/255.0), 0.001, @"");
@@ -50,12 +79,12 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]foo/{/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/}^", [a description]);
-    TDNotNil(ass.properties);
+    TDNotNil(ass.attributes);
     
-    id props = [ass.properties objectForKey:@"foo"];
+    id props = [ass.attributes objectForKey:@"foo"];
     TDNotNil(props);
     
-    NSColor *color = [props objectForKey:@"background-color"];
+    NSColor *color = [props objectForKey:NSBackgroundColorAttributeName];
     TDNotNil(color);
     STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(255.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(0.0/255.0), 0.001, @"");
@@ -70,16 +99,12 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]decl/{/font-size/:/12/px/}^", [a description]);
-    TDNotNil(ass.properties);
+    TDNotNil(ass.attributes);
     
-    id props = [ass.properties objectForKey:@"decl"];
+    id props = [ass.attributes objectForKey:@"decl"];
     TDNotNil(props);
     
-    NSNumber *size = [props objectForKey:@"font-size"];
-    TDNotNil(size);
-    TDEquals((CGFloat)[size doubleValue], (CGFloat)12.0);
-    
-    NSFont *font = [props objectForKey:@"font"];
+    NSFont *font = [props objectForKey:NSFontAttributeName];
     TDNotNil(font);
     TDEquals((CGFloat)[font pointSize], (CGFloat)12.0);
     TDEqualObjects([font familyName], @"Monaco");
@@ -93,16 +118,12 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]decl/{/font-size/:/8/px/}^", [a description]);
-    TDNotNil(ass.properties);
+    TDNotNil(ass.attributes);
     
-    id props = [ass.properties objectForKey:@"decl"];
+    id props = [ass.attributes objectForKey:@"decl"];
     TDNotNil(props);
     
-    NSNumber *size = [props objectForKey:@"font-size"];
-    TDNotNil(size);
-    TDEquals((CGFloat)[size doubleValue], (CGFloat)8.0);
-    
-    NSFont *font = [props objectForKey:@"font"];
+    NSFont *font = [props objectForKey:NSFontAttributeName];
     TDNotNil(font);
     TDEquals((CGFloat)[font pointSize], (CGFloat)9.0);
     TDEqualObjects([font familyName], @"Monaco");
@@ -116,20 +137,12 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]expr/{/font-size/:/16/px/;/font-family/:/'Helvetica'/}^", [a description]);
-    TDNotNil(ass.properties);
+    TDNotNil(ass.attributes);
     
-    id props = [ass.properties objectForKey:@"expr"];
+    id props = [ass.attributes objectForKey:@"expr"];
     TDNotNil(props);
-    
-    NSString *fontFamily = [props objectForKey:@"font-family"];
-    TDNotNil(fontFamily);
-    TDEqualObjects(fontFamily, @"Helvetica");
-    
-    NSNumber *size = [props objectForKey:@"font-size"];
-    TDNotNil(size);
-    TDEquals((CGFloat)[size doubleValue], (CGFloat)16.0);
-    
-    NSFont *font = [props objectForKey:@"font"];
+        
+    NSFont *font = [props objectForKey:NSFontAttributeName];
     TDNotNil(font);
     TDEqualObjects([font familyName], @"Helvetica");
     TDEquals((CGFloat)[font pointSize], (CGFloat)16.0);
@@ -143,31 +156,23 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]expr/{/font-size/:/9.0/px/;/font-family/:/'Courier'/;/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/;/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
-    TDNotNil(ass.properties);
+    TDNotNil(ass.attributes);
     
-    id props = [ass.properties objectForKey:@"expr"];
+    id props = [ass.attributes objectForKey:@"expr"];
     TDNotNil(props);
     
-    NSString *fontFamily = [props objectForKey:@"font-family"];
-    TDNotNil(fontFamily);
-    TDEqualObjects(fontFamily, @"Courier");
-    
-    NSNumber *size = [props objectForKey:@"font-size"];
-    TDNotNil(size);
-    TDEquals((CGFloat)[size doubleValue], (CGFloat)9.0);
-    
-    NSFont *font = [props objectForKey:@"font"];
+    NSFont *font = [props objectForKey:NSFontAttributeName];
     TDNotNil(font);
     TDEqualObjects([font familyName], @"Courier");
     TDEquals((CGFloat)[font pointSize], (CGFloat)9.0);
 
-    NSColor *bgColor = [props objectForKey:@"background-color"];
+    NSColor *bgColor = [props objectForKey:NSBackgroundColorAttributeName];
     TDNotNil(bgColor);
     STAssertEqualsWithAccuracy([bgColor redComponent], (CGFloat)(255.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([bgColor greenComponent], (CGFloat)(0.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([bgColor blueComponent], (CGFloat)(255.0/255.0), 0.001, @"");
 
-    NSColor *color = [props objectForKey:@"color"];
+    NSColor *color = [props objectForKey:NSForegroundColorAttributeName];
     TDNotNil(color);
     STAssertEqualsWithAccuracy([color redComponent], (CGFloat)(10.0/255.0), 0.001, @"");
     STAssertEqualsWithAccuracy([color greenComponent], (CGFloat)(200.0/255.0), 0.001, @"");
