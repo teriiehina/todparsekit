@@ -1,0 +1,27 @@
+openCurly, closeCurly, openBracket, closeBracket, comma, colon {
+    color:rgb(255, 0, 0);
+    background-color:rgb(0, 0, 255);
+    font-family:'Helvetica';
+    font-size:17px;
+}
+
+null, true, false {
+    color:rgb(255, 255, 0);
+    background-color:rgb(0, 255, 255);
+    font-family:'Courier';
+    font-size:26px;
+}
+
+string {
+    color:rgb(0, 100, 0);
+    background-color:rgb(255, 0, 255);
+    font-family:'Zapfino';
+    font-size:9px;
+}
+
+number {
+    color:rgb(255, 200, 60);
+    background-color:rgb(12, 220, 255);
+    font-family:'Monaco';
+    font-size:26px;
+}
