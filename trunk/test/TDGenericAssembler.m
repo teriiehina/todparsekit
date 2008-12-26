@@ -59,7 +59,7 @@
 }
 
 
-- (void)performSelector:(SEL)sel withObject:(id)obj {
+- (id)performSelector:(SEL)sel withObject:(id)obj {
     NSString *selName = NSStringFromSelector(sel);
     
 //    if ([selName hasPrefix:prefix] && [selName hasSuffix:suffix]) {
@@ -77,6 +77,7 @@
 //    } else {
 //        [super performSelector:sel withObject:obj];
 //    }
+    return nil;
 }
 
 
