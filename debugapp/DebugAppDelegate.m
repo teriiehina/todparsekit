@@ -250,28 +250,37 @@
 
 
 - (void)doSimpleCSS2 {
+    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+
+    // create CSS parser
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     NSString *grammarString = [NSString stringWithContentsOfFile:path];
     TDSimpleCSSAssembler *cssAssembler = [[[TDSimpleCSSAssembler alloc] init] autorelease];
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     TDParser *cssParser = [factory parserForGrammar:grammarString assembler:cssAssembler];
     
+    // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path];
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     
+    // get attributes from css
     id attrs = cssAssembler.attributes;
     
+    // create JSON Parser
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
     grammarString = [NSString stringWithContentsOfFile:path];
     TDGenericAssembler *genericAssembler = [[[TDGenericAssembler alloc] init] autorelease];
+
+    // give it the attrs from CSS
     genericAssembler.attributes = attrs;
     TDParser *jsonParser = [factory parserForGrammar:grammarString assembler:genericAssembler];
     
+    // parse JSON
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
 
+    // take care to preseve the whitespace in the JSON
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     t.whitespaceState.reportsWhitespaceTokens = YES;
     TDTokenAssembly *a1 = [TDTokenAssembly assemblyWithTokenizer:t];

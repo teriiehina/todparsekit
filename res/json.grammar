@@ -7,7 +7,7 @@
     
     The when the returned parser is used, the provided assembler will receive method callbacks like:
 
-    -workOnStartAssembly:
+    -workOnOpenCurlyAssembly:
     -workOnObjectAssembly:
     -workOnPropertyAssembly:
     -workOnArrayAssembly:
