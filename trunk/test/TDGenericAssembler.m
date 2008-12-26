@@ -81,9 +81,8 @@
 
 
 - (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a {
-    // lookup CSS values
-    NSArray *objs = [a objectsAbove:nil];
-    if (!objs.count) return;
+    TDToken *tok = [a pop];
+    if (!tok) return;
     
     id props = [attributes objectForKey:name];
     if (!props) {
@@ -91,8 +90,7 @@
     }
 
     [self consumeWhitespaceFrom:a];
-    [self appendAttributedStringForObjects:objs withAttrs:props];
-    
+    [self appendAttributedStringForObjects:[NSArray arrayWithObject:tok] withAttrs:props];
 }
 
 
@@ -106,11 +104,14 @@
 
 
 - (void)consumeWhitespaceFrom:(TDAssembly *)a {
-    NSMutableArray *whitespaceToks = [NSMutableArray array];
+    NSMutableArray *whitespaceToks = nil;
     TDToken *tok = nil;
     while (1) {
         tok = [a pop];
         if (TDTokenTypeWhitespace == tok.tokenType) {
+            if (!whitespaceToks) {
+                whitespaceToks = [NSMutableArray array];
+            }
             [whitespaceToks addObject:tok];
         } else {
             [a push:tok];
@@ -118,7 +119,7 @@
         }
     }
     
-    if (whitespaceToks.count) {
+    if (whitespaceToks) {
         whitespaceToks = [whitespaceToks reversedMutableArray];
         [self appendAttributedStringForObjects:whitespaceToks withAttrs:nil];
     }

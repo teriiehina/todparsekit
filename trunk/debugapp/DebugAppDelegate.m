@@ -290,9 +290,9 @@
 //    [self doJsonParser];
 //    [self doProf];
 //    [self doTokenize];
-//    [self doGrammarParser];
+    [self doGrammarParser];
 //    [self doSimpleCSS];
-    [self doSimpleCSS2];
+//    [self doSimpleCSS2];
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];
