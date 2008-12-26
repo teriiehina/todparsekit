@@ -33,7 +33,7 @@ object        = openCurly objectContent closeCurly;
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
 commaProperty = comma property;
-propertyName  = string;
+propertyName  = QuotedString;
 property      = propertyName colon value;         // NOTE: property names are quoted in JSON
 
 array         = openBracket arrayContent closeBracket;
