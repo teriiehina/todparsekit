@@ -48,7 +48,7 @@
 
 
 - (void)testCSS {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
     lp = [factory parserForGrammar:s assembler:nil];
     TDNotNil(lp);
