@@ -9,6 +9,10 @@
 #import "TDScientificNumberState.h"
 #import <TDParseKit/TDReader.h>
 
+@interface TDTokenizerState ()
+- (void)append:(NSInteger)c;
+@end
+
 @interface TDNumberState ()
 - (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction;
 - (void)parseRightSideFromReader:(TDReader *)r;
@@ -37,11 +41,11 @@
             [r unread];
         }
         if (hasExp) {
-            [stringbuf appendFormat:@"%C", e];
+            [self append:e];
             if (negativeExp) {
-                [stringbuf appendString:@"-"];
+                [self append:'-'];
             } else if (positiveExp) {
-                [stringbuf appendString:@"+"];
+                [self append:'+'];
             }
             c = [r read];
             exp = [super absorbDigitsFromReader:r isFraction:NO];

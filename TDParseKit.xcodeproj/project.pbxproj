@@ -100,7 +100,6 @@
 		D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6370E60E77600A0803E /* TDTokenizer.m */; };
 		D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6380E60E77600A0803E /* TDTokenizerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6390E60E77600A0803E /* TDTokenizerState.m */; };
-		D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6450E60E7AF00A0803E /* TDCharbufState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6490E60E7AF00A0803E /* TDNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64A0E60E7AF00A0803E /* TDNumberState.m */; };
 		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -457,8 +456,6 @@
 		D31FE6370E60E77600A0803E /* TDTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizer.m; path = src/TDTokenizer.m; sourceTree = "<group>"; };
 		D31FE6380E60E77600A0803E /* TDTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerState.h; path = src/TDTokenizerState.h; sourceTree = "<group>"; };
 		D31FE6390E60E77600A0803E /* TDTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerState.m; path = src/TDTokenizerState.m; sourceTree = "<group>"; };
-		D31FE6450E60E7AF00A0803E /* TDCharbufState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharbufState.h; path = src/TDCharbufState.h; sourceTree = "<group>"; };
-		D31FE6460E60E7AF00A0803E /* TDCharbufState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharbufState.m; path = src/TDCharbufState.m; sourceTree = "<group>"; };
 		D31FE6490E60E7AF00A0803E /* TDNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNumberState.h; path = src/TDNumberState.h; sourceTree = "<group>"; };
 		D31FE64A0E60E7AF00A0803E /* TDNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNumberState.m; path = src/TDNumberState.m; sourceTree = "<group>"; };
 		D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuoteState.h; path = src/TDQuoteState.h; sourceTree = "<group>"; };
@@ -739,8 +736,6 @@
 				D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */,
 				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
 				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
-				D31FE6450E60E7AF00A0803E /* TDCharbufState.h */,
-				D31FE6460E60E7AF00A0803E /* TDCharbufState.m */,
 				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
 			);
 			name = "Other Sources";
@@ -1330,7 +1325,6 @@
 				D31FE63A0E60E77600A0803E /* TDToken.h in Headers */,
 				D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */,
 				D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */,
-				D31FE6590E60E7AF00A0803E /* TDCharbufState.h in Headers */,
 				D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */,
 				D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */,
 				D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */,
@@ -1982,7 +1976,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = YES;
+				GCC_ENABLE_OBJC_GC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
