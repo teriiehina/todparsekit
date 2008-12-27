@@ -10,6 +10,7 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
+- (void)append:(NSInteger)c;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -29,6 +30,11 @@
 
 - (void)reset {
     self.stringbuf = [NSMutableString string];
+}
+
+
+- (void)append:(NSInteger)c {
+    [stringbuf appendFormat:@"%C", c];
 }
 
 @synthesize stringbuf;

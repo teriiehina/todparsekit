@@ -16,6 +16,7 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
+- (void)append:(NSInteger)c;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -78,7 +79,7 @@
     NSInteger c = cin;
     while ([self isWhitespaceChar:c]) {
         if (reportsWhitespaceTokens) {
-            [stringbuf appendFormat:@"%C", c];
+            [self append:c];
         }
         c = [r read];
     }
