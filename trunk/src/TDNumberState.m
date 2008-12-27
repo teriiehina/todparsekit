@@ -15,6 +15,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -27,14 +28,6 @@
 @end
 
 @implementation TDNumberState
-
-- (id)init {
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-
 
 - (void)dealloc {
     [super dealloc];
@@ -80,7 +73,7 @@
         floatValue = -floatValue;
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[[stringbuf copy] autorelease] floatValue:[self value]];
+    return [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
 }
 
 

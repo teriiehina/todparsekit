@@ -13,6 +13,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -42,7 +43,7 @@
         
     } while (c != cin);
     
-    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
 }
 
 @synthesize balancesEOFTerminatedQuotes;

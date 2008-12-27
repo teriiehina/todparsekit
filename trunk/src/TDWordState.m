@@ -17,6 +17,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -107,7 +108,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0];
 }
 
 

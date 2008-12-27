@@ -13,6 +13,7 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
+- (void)append:(NSInteger)c;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -57,7 +58,7 @@
     
     NSInteger c = cin;
     do {
-        [stringbuf appendFormat:@"%C", c];
+        [self append:c];
         c = [r read];
     } while ([TDNCNameState isNameChar:c]);
     

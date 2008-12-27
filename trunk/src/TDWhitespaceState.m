@@ -17,6 +17,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -88,7 +89,7 @@
     }
     
     if (reportsWhitespaceTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
+        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
     } else {
         return [t nextToken];
     }
