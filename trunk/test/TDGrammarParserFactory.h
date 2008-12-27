@@ -6,7 +6,11 @@
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import <TDParseKit/TDParseKit.h>
+#import <Foundation/Foundation.h>
+
+@class TDToken;
+@class TDParser;
+@class TDCollectionParser;
 
 @interface TDGrammarParserFactory : NSObject {
     id assembler;
