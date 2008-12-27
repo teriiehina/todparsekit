@@ -663,7 +663,7 @@
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
-    NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
+    NSString *s = [tok.stringValue stringByTrimmingQuotes];
     
     TDSequence *p = [TDSequence sequence];
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];

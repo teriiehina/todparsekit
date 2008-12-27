@@ -601,7 +601,7 @@
 
 - (void)workOnLiteralAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    NSString *s = [tok.stringValue stringByRemovingFirstAndLastCharacters];
+    NSString *s = [tok.stringValue stringByTrimmingQuotes];
     [a push:[TDCaseInsensitiveLiteral literalWithString:s]];
 }
 
