@@ -1,5 +1,5 @@
 //
-//  TDSimpleCSSAssembler.h
+//  TDMiniCSSAssembler.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/23/08.
@@ -10,7 +10,7 @@
 
 @class TDToken;
 
-@interface TDSimpleCSSAssembler : NSObject {
+@interface TDMiniCSSAssembler : NSObject {
     NSMutableDictionary *attributes;
     TDToken *paren;
     TDToken *curly;

@@ -18,7 +18,7 @@
 #import "TDHtmlSyntaxHighlighter.h"
 #import "TDGrammarParserFactory.h"
 #import "JSONAssembler.h"
-#import "TDSimpleCSSAssembler.h"
+#import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
 
@@ -240,7 +240,7 @@
     NSString *s = [NSString stringWithContentsOfFile:path];
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     
-    TDSimpleCSSAssembler *assembler = [[[TDSimpleCSSAssembler alloc] init] autorelease];
+    TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *lp = [factory parserForGrammar:s assembler:assembler];
     s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
@@ -255,7 +255,7 @@
     // create CSS parser
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     NSString *grammarString = [NSString stringWithContentsOfFile:path];
-    TDSimpleCSSAssembler *cssAssembler = [[[TDSimpleCSSAssembler alloc] init] autorelease];
+    TDMiniCSSAssembler *cssAssembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *cssParser = [factory parserForGrammar:grammarString assembler:cssAssembler];
     
     // parse CSS

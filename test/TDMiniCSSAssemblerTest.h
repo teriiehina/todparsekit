@@ -1,5 +1,5 @@
 //
-//  TDSimpleCSSAssemblerTest.h
+//  TDMiniCSSAssemblerTest.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/25/08.
@@ -8,13 +8,13 @@
 
 #import "TDTestScaffold.h"
 #import "TDGrammarParserFactory.h"
-#import "TDSimpleCSSAssembler.h"
+#import "TDMiniCSSAssembler.h"
 
-@interface TDSimpleCSSAssemblerTest : SenTestCase {
+@interface TDMiniCSSAssemblerTest : SenTestCase {
     NSString *path;
     NSString *grammarString;
     NSString *s;
-    TDSimpleCSSAssembler *ass;
+    TDMiniCSSAssembler *ass;
     TDGrammarParserFactory *factory;
     TDParser *lp;
     TDAssembly *a;

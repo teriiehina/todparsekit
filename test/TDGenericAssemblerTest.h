@@ -8,14 +8,14 @@
 
 #import "TDTestScaffold.h"
 #import "TDGrammarParserFactory.h"
-#import "TDSimpleCSSAssembler.h"
+#import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 
 @interface TDGenericAssemblerTest : SenTestCase {
     NSString *path;
     NSString *grammarString;
     NSString *s;
-    TDSimpleCSSAssembler *cssAssember;
+    TDMiniCSSAssembler *cssAssember;
     TDGrammarParserFactory *factory;
     TDParser *cssParser;
     TDAssembly *a;

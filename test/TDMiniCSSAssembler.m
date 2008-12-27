@@ -1,20 +1,20 @@
 //
-//  TDSimpleCSSAssembler.m
+//  TDMiniCSSAssembler.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/23/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDSimpleCSSAssembler.h"
+#import "TDMiniCSSAssembler.h"
 #import "NSString+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
 
-@interface TDSimpleCSSAssembler ()
+@interface TDMiniCSSAssembler ()
 - (void)gatherPropertiesIn:(id)props;
 @end
 
-@implementation TDSimpleCSSAssembler
+@implementation TDMiniCSSAssembler
 
 - (id)init {
     self = [super init];
