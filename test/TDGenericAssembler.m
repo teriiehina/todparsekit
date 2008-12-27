@@ -11,7 +11,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDGenericAssembler ()
-- (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a;
+- (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
 - (void)consumeWhitespaceFrom:(TDAssembly *)a;
@@ -68,13 +68,13 @@
         [productionNames setObject:productionName forKey:selName];
     }
     
-    [self workOnProductionNamed:productionName withAssembly:obj];
+    [self workOnTerminalNamed:productionName withAssembly:obj];
     
     return nil;
 }
 
 
-- (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a {
+- (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     if (!tok) return;
     
