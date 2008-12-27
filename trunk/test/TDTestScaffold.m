@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDSimpleCSSAssemblerTest"
+#define SOLO_TEST_CASE @"TDMiniCSSAssemblerTest"
 //#define NS_BLOCK_ASSERTIONS 0
 
 @interface SenTestSuite (TDAdditions)
@@ -107,7 +107,7 @@
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
                            @"TDGrammarParserFactoryTest",
-                           @"TDSimpleCSSAssemblerTest",
+                           @"TDMiniCSSAssemblerTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];

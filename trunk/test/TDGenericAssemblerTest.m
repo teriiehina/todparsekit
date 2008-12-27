@@ -13,7 +13,7 @@
 - (void)setUp {
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     grammarString = [NSString stringWithContentsOfFile:path];
-    cssAssember = [[TDSimpleCSSAssembler alloc] init];
+    cssAssember = [[TDMiniCSSAssembler alloc] init];
     factory = [TDGrammarParserFactory factory];
     cssParser = [factory parserForGrammar:grammarString assembler:cssAssember];
 }

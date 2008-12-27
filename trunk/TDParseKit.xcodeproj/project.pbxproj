@@ -193,13 +193,13 @@
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
-		D385F98D0F046FE900DB2946 /* TDSimpleCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F98B0F046FE900DB2946 /* TDSimpleCSSAssembler.m */; };
 		D385F98E0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
-		D385F98F0F046FE900DB2946 /* TDSimpleCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F98B0F046FE900DB2946 /* TDSimpleCSSAssembler.m */; };
-		D385F9960F0471A800DB2946 /* TDSimpleCSSAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9950F0471A800DB2946 /* TDSimpleCSSAssemblerTest.m */; };
 		D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */; };
 		D385FA250F04993500DB2946 /* json.css in Resources */ = {isa = PBXBuildFile; fileRef = D385FA240F04993500DB2946 /* json.css */; };
 		D385FA260F04993500DB2946 /* json.css in Resources */ = {isa = PBXBuildFile; fileRef = D385FA240F04993500DB2946 /* json.css */; };
+		D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
+		D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */; };
+		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -560,13 +560,13 @@
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D385F9880F046FE900DB2946 /* TDGenericAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssembler.h; path = test/TDGenericAssembler.h; sourceTree = "<group>"; };
 		D385F9890F046FE900DB2946 /* TDGenericAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGenericAssembler.m; path = test/TDGenericAssembler.m; sourceTree = "<group>"; };
-		D385F98A0F046FE900DB2946 /* TDSimpleCSSAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSimpleCSSAssembler.h; path = test/TDSimpleCSSAssembler.h; sourceTree = "<group>"; };
-		D385F98B0F046FE900DB2946 /* TDSimpleCSSAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSimpleCSSAssembler.m; path = test/TDSimpleCSSAssembler.m; sourceTree = "<group>"; };
-		D385F9940F0471A800DB2946 /* TDSimpleCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSimpleCSSAssemblerTest.h; path = test/TDSimpleCSSAssemblerTest.h; sourceTree = "<group>"; };
-		D385F9950F0471A800DB2946 /* TDSimpleCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSimpleCSSAssemblerTest.m; path = test/TDSimpleCSSAssemblerTest.m; sourceTree = "<group>"; };
 		D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssemblerTest.h; path = test/TDGenericAssemblerTest.h; sourceTree = "<group>"; };
 		D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGenericAssemblerTest.m; path = test/TDGenericAssemblerTest.m; sourceTree = "<group>"; };
 		D385FA240F04993500DB2946 /* json.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = json.css; path = res/json.css; sourceTree = "<group>"; };
+		D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssembler.h; path = test/TDMiniCSSAssembler.h; sourceTree = "<group>"; };
+		D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssembler.m; path = test/TDMiniCSSAssembler.m; sourceTree = "<group>"; };
+		D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssemblerTest.h; path = test/TDMiniCSSAssemblerTest.h; sourceTree = "<group>"; };
+		D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssemblerTest.m; path = test/TDMiniCSSAssemblerTest.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1003,14 +1003,14 @@
 				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
 				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
 				D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */,
+				D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */,
+				D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */,
+				D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */,
+				D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */,
 				D385F9880F046FE900DB2946 /* TDGenericAssembler.h */,
 				D385F9890F046FE900DB2946 /* TDGenericAssembler.m */,
 				D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */,
 				D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */,
-				D385F98A0F046FE900DB2946 /* TDSimpleCSSAssembler.h */,
-				D385F98B0F046FE900DB2946 /* TDSimpleCSSAssembler.m */,
-				D385F9940F0471A800DB2946 /* TDSimpleCSSAssemblerTest.h */,
-				D385F9950F0471A800DB2946 /* TDSimpleCSSAssemblerTest.m */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -1636,7 +1636,7 @@
 				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
 				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
-				D385F98D0F046FE900DB2946 /* TDSimpleCSSAssembler.m in Sources */,
+				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,9 +1730,9 @@
 				D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */,
 				D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 				D385F98E0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
-				D385F98F0F046FE900DB2946 /* TDSimpleCSSAssembler.m in Sources */,
-				D385F9960F0471A800DB2946 /* TDSimpleCSSAssemblerTest.m in Sources */,
 				D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */,
+				D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */,
+				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

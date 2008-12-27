@@ -1,19 +1,19 @@
 //
-//  TDSimpleCSSAssemblerTest.m
+//  TDMiniCSSAssemblerTest.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/25/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDSimpleCSSAssemblerTest.h"
+#import "TDMiniCSSAssemblerTest.h"
 
-@implementation TDSimpleCSSAssemblerTest
+@implementation TDMiniCSSAssemblerTest
 
 - (void)setUp {
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
     grammarString = [NSString stringWithContentsOfFile:path];
-    ass = [[TDSimpleCSSAssembler alloc] init];
+    ass = [[TDMiniCSSAssembler alloc] init];
     factory = [TDGrammarParserFactory factory];
     lp = [factory parserForGrammar:grammarString assembler:ass];
 }
