@@ -104,9 +104,8 @@
 
 - (void)consumeWhitespaceFrom:(TDAssembly *)a {
     NSMutableArray *whitespaceToks = nil;
-    TDToken *tok = nil;
     while (1) {
-        tok = [a pop];
+        TDToken *tok = [a pop];
         if (TDTokenTypeWhitespace == tok.tokenType) {
             if (!whitespaceToks) {
                 whitespaceToks = [NSMutableArray array];
