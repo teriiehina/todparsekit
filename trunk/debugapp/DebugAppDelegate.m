@@ -236,7 +236,7 @@
 
 
 - (void)doSimpleCSS {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     
@@ -253,7 +253,7 @@
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 
     // create CSS parser
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     NSString *grammarString = [NSString stringWithContentsOfFile:path];
     TDMiniCSSAssembler *cssAssembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *cssParser = [factory parserForGrammar:grammarString assembler:cssAssembler];

@@ -11,7 +11,7 @@
 @implementation TDMiniCSSAssemblerTest
 
 - (void)setUp {
-    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css" ofType:@"grammar"];
+    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     grammarString = [NSString stringWithContentsOfFile:path];
     ass = [[TDMiniCSSAssembler alloc] init];
     factory = [TDGrammarParserFactory factory];
