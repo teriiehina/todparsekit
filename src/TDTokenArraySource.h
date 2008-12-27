@@ -13,14 +13,14 @@
 
 /*!
     @class      TDTokenArraySource
-    @brief      A <tt>TokenStringSource</tt> enumerates over a specified reader, returning <tt>NSArray</tt>s of <tt>TDToken</tt>s delimited by a specified delimiter.
+    @brief      A <tt>TokenArraySource</tt> enumerates over a specified reader, returning <tt>NSArray</tt>s of <tt>TDToken</tt>s delimited by a specified delimiter.
     @details    For example,
  
 @code
     NSString *s = @"I came; I saw; I left in peace;";
 
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDTokenArraySource tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
+    TDTokenArraySource *tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"] autorelease];
  
     while ([tas hasMore]) {
         NSLog(@"%@", [tas nextTokenArray]);
