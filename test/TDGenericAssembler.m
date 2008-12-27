@@ -13,6 +13,7 @@
 @interface TDGenericAssembler ()
 - (void)workOnProductionNamed:(NSString *)name withAssembly:(TDAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
+- (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
 - (void)consumeWhitespaceFrom:(TDAssembly *)a;
 
 @property (nonatomic, retain) NSString *prefix;
@@ -51,32 +52,24 @@
 
 - (BOOL)respondsToSelector:(SEL)sel {
     return YES;
-//    NSString *selName = NSStringFromSelector(sel);
-//    if ([selName hasPrefix:@"workOn"]) {
-//        return YES; //!parsing;
-//    }
-//    return [super respondsToSelector:sel];
 }
 
 
 - (id)performSelector:(SEL)sel withObject:(id)obj {
     NSString *selName = NSStringFromSelector(sel);
     
-//    if ([selName hasPrefix:prefix] && [selName hasSuffix:suffix]) {
-        
-        NSString *productionName = [productionNames objectForKey:selName];
-        if (!productionName) {
-            NSUInteger prefixLen = prefix.length;
-            NSInteger c = ((NSInteger)[selName characterAtIndex:prefixLen]) + 32; // lowercase
-            NSRange r = NSMakeRange(prefixLen + 1, selName.length - (prefixLen + suffix.length + 1 /*:*/));
-            productionName = [NSString stringWithFormat:@"%C%@", c, [selName substringWithRange:r]];
-            [productionNames setObject:productionName forKey:selName];
-        }
-        
-        [self workOnProductionNamed:productionName withAssembly:obj];
-//    } else {
-//        [super performSelector:sel withObject:obj];
-//    }
+    NSString *productionName = [productionNames objectForKey:selName];
+    
+    if (!productionName) {
+        NSUInteger prefixLen = prefix.length;
+        NSInteger c = ((NSInteger)[selName characterAtIndex:prefixLen]) + 32; // lowercase
+        NSRange r = NSMakeRange(prefixLen + 1, selName.length - (prefixLen + suffix.length + 1 /*:*/));
+        productionName = [NSString stringWithFormat:@"%C%@", c, [selName substringWithRange:r]];
+        [productionNames setObject:productionName forKey:selName];
+    }
+    
+    [self workOnProductionNamed:productionName withAssembly:obj];
+    
     return nil;
 }
 
@@ -89,18 +82,23 @@
     if (!props) {
         props = defaultProperties;
     }
-
+    
     [self consumeWhitespaceFrom:a];
-    [self appendAttributedStringForObjects:[NSArray arrayWithObject:tok] withAttrs:props];
+    [self appendAttributedStringForObject:tok withAttrs:props];
 }
 
 
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs {
     for (id obj in objs) {
-        NSAttributedString *as = [[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs];
-        [displayString appendAttributedString:as];
-        [as release];
+        [self appendAttributedStringForObject:obj withAttrs:attrs];
     }
+}
+
+
+- (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs {
+    NSAttributedString *as = [[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs];
+    [displayString appendAttributedString:as];
+    [as release];
 }
 
 

@@ -9,6 +9,7 @@
 #import "TDGrammarParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
+#import <TDParseKit/TDParseKit.h>
 
 @interface TDGrammarParserFactory ()
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
