@@ -12,6 +12,7 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
+- (void)append:(NSInteger)c;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -26,17 +27,17 @@
     NSParameterAssert(r);
     [self reset];
     
-    [stringbuf appendFormat:@"%C", cin];
+    [self append:cin];
     NSInteger c;
     do {
         c = [r read];
         if (-1 == c) {
             c = cin;
             if (balancesEOFTerminatedQuotes) {
-                [stringbuf appendFormat:@"%C", c];
+                [self append:c];
             }
         } else {
-            [stringbuf appendFormat:@"%C", c];
+            [self append:c];
         }
         
     } while (c != cin);

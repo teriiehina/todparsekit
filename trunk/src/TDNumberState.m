@@ -14,6 +14,7 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
+- (void)append:(NSInteger)c;
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
@@ -49,10 +50,10 @@
     if ('-' == cin) {
         negative = YES;
         cin = [r read];
-        [stringbuf appendString:@"-"];
+        [self append:'-'];
     } else if ('+' == cin) {
         cin = [r read];
-        [stringbuf appendString:@"+"];
+        [self append:'+'];
     }
     
     [self reset:cin];
@@ -94,7 +95,7 @@
     
     while (1) {
         if (isdigit(c)) {
-            [stringbuf appendFormat:@"%C", c];
+            [self append:c];
             gotADigit = YES;
             v = v * 10.0 + (c - '0');
             c = [r read];
@@ -128,7 +129,7 @@
         }
 
         if (nextIsDigit || allowsTrailingDot) {
-            [stringbuf appendString:@"."];
+            [self append:'.'];
             if (nextIsDigit) {
                 c = [r read];
                 floatValue += [self absorbDigitsFromReader:r isFraction:YES];
