@@ -13,6 +13,7 @@
 
 - (void)setUp {
     quoteState = [[TDQuoteState alloc] init];
+    r = [[TDReader alloc] init];
 }
 
 
@@ -24,65 +25,80 @@
 
 - (void)testQuotedString {
     s = @"'stuff'";
-    r = [[TDReader alloc] initWithString:s];
-    // can't mock reader cuz it has to expect to return primitve values from methods
-    // that's not supported by OCMock
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
     
 }
 
+
+- (void)testQuotedStringEOFTerminated {
+    s = @"'stuff";
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+}
+
+
+- (void)testQuotedStringRepairEOFTerminated {
+    s = @"'stuff";
+    r.string = s;
+    quoteState.balancesEOFTerminatedQuotes = YES;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"'stuff'", [tok stringValue]);
+}
+
+
 - (void)testQuotedStringPlus {
     s = @"'a quote here' more";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"'a quote here'", [t stringValue]);
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"'a quote here'", [tok stringValue]);
 }
 
 
 - (void)test14CharQuotedString {
     s = @"'123456789abcef'";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
-    TDTrue(t.isQuotedString);    
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+    TDTrue(tok.isQuotedString);    
 }
 
 
 - (void)test15CharQuotedString {
     s = @"'123456789abcefg'";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
-    TDTrue(t.isQuotedString);    
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+    TDTrue(tok.isQuotedString);    
 }
 
 
 - (void)test16CharQuotedString {
     s = @"'123456789abcefgh'";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
-    TDTrue(t.isQuotedString);    
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+    TDTrue(tok.isQuotedString);    
 }
 
 
 - (void)test31CharQuotedString {
     s = @"'123456789abcefgh123456789abcefg'";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
-    TDTrue(t.isQuotedString);    
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+    TDTrue(tok.isQuotedString);    
 }
 
 
 - (void)test32CharQuotedString {
     s = @"'123456789abcefgh123456789abcefgh'";
-    r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [t stringValue]);
-    TDTrue(t.isQuotedString);    
+    r.string = s;
+    TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, [tok stringValue]);
+    TDTrue(tok.isQuotedString);    
 }
-
 
 @end

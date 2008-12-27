@@ -58,7 +58,7 @@
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
+    [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 

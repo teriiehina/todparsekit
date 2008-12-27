@@ -241,7 +241,7 @@
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    [a push:[tok.stringValue stringByRemovingFirstAndLastCharacters]];
+    [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
@@ -286,7 +286,7 @@
 - (void)workOnPropertyAssembly:(TDAssembly *)a {
     id value = [a pop];
     TDToken *tok = [a pop];
-    NSString *key = [tok.stringValue stringByRemovingFirstAndLastCharacters];
+    NSString *key = [tok.stringValue stringByTrimmingQuotes];
     
     [a push:key];
     [a push:value];

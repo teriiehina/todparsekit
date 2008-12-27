@@ -71,7 +71,7 @@
         } else {
             id value = nil;
             if (tok.isQuotedString) {
-                value = [sval stringByRemovingFirstAndLastCharacters];
+                value = [sval stringByTrimmingQuotes];
             } else if (tok.isNumber) {
                 value = [NSNumber numberWithFloat:tok.floatValue];
             } else { // if (tok.isWord) {

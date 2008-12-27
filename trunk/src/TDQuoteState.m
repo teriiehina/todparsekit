@@ -30,14 +30,19 @@
     NSInteger c;
     do {
         c = [r read];
-        if (c < 0) {
+        if (-1 == c) {
             c = cin;
+            if (balancesEOFTerminatedQuotes) {
+                [stringbuf appendFormat:@"%C", c];
+            }
+        } else {
+            [stringbuf appendFormat:@"%C", c];
         }
         
-        [stringbuf appendFormat:@"%C", c];
     } while (c != cin);
     
     return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
 }
 
+@synthesize balancesEOFTerminatedQuotes;
 @end

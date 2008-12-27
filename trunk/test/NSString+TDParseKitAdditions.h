@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (TDParseKitAdditions)
-- (NSString *)stringByRemovingFirstAndLastCharacters;
+- (NSString *)stringByTrimmingQuotes;
 @end

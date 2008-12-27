@@ -10,11 +10,28 @@
 
 @implementation NSString (TDParseKitAdditions)
 
-- (NSString *)stringByRemovingFirstAndLastCharacters {
-    if (self.length < 2) {
+- (NSString *)stringByTrimmingQuotes {
+    NSUInteger len = self.length;
+    
+    if (len < 2) {
         return self;
+    }
+    
+    NSRange r = NSMakeRange(0, len);
+    
+    unichar c = [self characterAtIndex:0];
+    if (c == '\'' || c == '"') {
+        unichar quoteChar = c;
+        r.location = 1;
+        r.length -= 1;
+
+        c = [self characterAtIndex:len - 1];
+        if (c == quoteChar) {
+            r.length -= 1;
+        }
+        return [self substringWithRange:r];
     } else {
-        return [self substringWithRange:NSMakeRange(1, self.length - 2)];
+        return self;
     }
 }
 
