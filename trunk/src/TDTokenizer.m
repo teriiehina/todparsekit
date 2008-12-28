@@ -42,6 +42,7 @@
         self.numberState = [[[TDNumberState alloc] init] autorelease];
         self.quoteState = [[[TDQuoteState alloc] init] autorelease];
         self.slashState = [[[TDSlashState alloc] init] autorelease];
+        self.commentState = [[[TDCommentState alloc] init] autorelease];
         self.symbolState = [[[TDSymbolState alloc] init] autorelease];
         self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
         self.wordState = [[[TDWordState alloc] init] autorelease];
@@ -80,6 +81,7 @@
     self.numberState = nil;
     self.quoteState = nil;
     self.slashState = nil;
+    self.commentState = nil;
     self.symbolState = nil;
     self.whitespaceState = nil;
     self.wordState = nil;
@@ -178,6 +180,7 @@
 @synthesize numberState;
 @synthesize quoteState;
 @synthesize slashState;
+@synthesize commentState;
 @synthesize symbolState;
 @synthesize whitespaceState;
 @synthesize wordState;

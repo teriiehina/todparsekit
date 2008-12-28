@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDCommentState.h"
+#import <TDParseKit/TDCommentState.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDSymbolRootNode.h>

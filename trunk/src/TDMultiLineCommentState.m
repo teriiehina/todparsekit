@@ -6,7 +6,11 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDMultiLineCommentState.h"
+#import <TDParseKit/TDMultiLineCommentState.h>
+#import <TDParseKit/TDCommentState.h>
+#import <TDParseKit/TDReader.h>
+#import <TDParseKit/TDTokenizer.h>
+#import <TDParseKit/TDToken.h>
 
 @interface TDMultiLineCommentState ()
 @end

@@ -13,6 +13,7 @@
 @class TDNumberState;
 @class TDQuoteState;
 @class TDSlashState;
+@class TDCommentState;
 @class TDSymbolState;
 @class TDWhitespaceState;
 @class TDWordState;
@@ -36,7 +37,7 @@
       '.'    '.'    numberState
       '"'    '"'    quoteState
      '\''   '\''    quoteState
-      '/'    '/'    slashState
+      '/'    '/'    commentState
 @endcode
                 <p>In addition to allowing modification of the state table, this class makes each of the states above available. Some of these states are customizable. For example, wordState allows customization of what characters can be part of a word, after the first character.</p>
 */
@@ -49,6 +50,7 @@
     TDNumberState *numberState;
     TDQuoteState *quoteState;
     TDSlashState *slashState;
+    TDCommentState *commentState;
     TDSymbolState *symbolState;
     TDWhitespaceState *whitespaceState;
     TDWordState *wordState;
@@ -96,7 +98,7 @@
 
 /*!
     @property    numberState
-    @brief        The state this tokenizer uses to build numbers.
+    @brief       The state this tokenizer uses to build numbers.
 */
 @property (nonatomic, retain) TDNumberState *numberState;
 
@@ -113,6 +115,12 @@
 @property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
+    @property   commentState
+    @brief      The state this tokenizer uses to recognize (and possibly ignore) comments.
+*/
+@property (nonatomic, retain) TDCommentState *commentState;
+
+/*!
     @property   symbolState
     @brief      The state this tokenizer uses to recognize symbols.
 */
@@ -120,7 +128,7 @@
 
 /*!
     @property   whitespaceState
-    @brief      The state this tokenizer uses to recognize (and ignore) whitespace.
+    @brief      The state this tokenizer uses to recognize (and possibly ignore) whitespace.
 */
 @property (nonatomic, retain) TDWhitespaceState *whitespaceState;
 
