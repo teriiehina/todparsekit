@@ -1,18 +1,18 @@
 //
-//  TDSyntaxHighlightController.m
+//  TDSyntaxHighlighter.m
 //  HTTPClient
 //
 //  Created by Todd Ditchendorf on 12/26/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDSyntaxHighlightController.h"
+#import "TDSyntaxHighlighter.h"
 #import <TDParseKit/TDParseKit.h>
 #import "TDGrammarParserFactory.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 
-@interface TDSyntaxHighlightController ()
+@interface TDSyntaxHighlighter ()
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName;
 
 // all of the ivars for these properties are lazy loaded in the getters.
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @end
 
-@implementation TDSyntaxHighlightController
+@implementation TDSyntaxHighlighter
 
 - (id)init {
     self = [super init];
