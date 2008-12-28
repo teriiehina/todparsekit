@@ -21,6 +21,7 @@
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
+#import "TDSyntaxHighlightController.h"
 
 @interface TDGrammarParserFactory ()
 - (TDSequence *)parserForExpression:(NSString *)s;
@@ -300,6 +301,15 @@
     
 }
 
+
+- (void)doHighlighting {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    
+    TDSyntaxHighlightController *shc = [[[TDSyntaxHighlightController alloc] init] autorelease];
+    self.displayString = [shc highlightedStringForString:s ofGrammar:@"json"];
+}
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -310,7 +320,7 @@
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
-    [self doSimpleCSS2];
+//    [self doSimpleCSS2];
     
 //    [self doSlash];
 
@@ -319,6 +329,7 @@
 //    NSString *s = @" start = foo; foo = 'bar';";
 //    TDParser *p = [factory parserForGrammar:s assembler:nil];
 
+    [self doHighlighting];
     
     [pool release];
 }

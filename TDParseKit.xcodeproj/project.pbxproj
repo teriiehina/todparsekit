@@ -256,6 +256,8 @@
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
+		D3FF42630F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */; };
+		D3FF42640F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -611,6 +613,8 @@
 		D3F741360EF8E5B000559B9F /* css-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "css-old.grammar"; path = "test/css-old.grammar"; sourceTree = "<group>"; };
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
 		D3F741BD0EF9F28D00559B9F /* css2_1.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css2_1.grammar; path = res/css2_1.grammar; sourceTree = "<group>"; };
+		D3FF42610F0725160016BAE7 /* TDSyntaxHighlightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlightController.h; path = test/TDSyntaxHighlightController.h; sourceTree = "<group>"; };
+		D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSyntaxHighlightController.m; path = test/TDSyntaxHighlightController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1005,6 +1009,8 @@
 				D385F9890F046FE900DB2946 /* TDGenericAssembler.m */,
 				D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */,
 				D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */,
+				D3FF42610F0725160016BAE7 /* TDSyntaxHighlightController.h */,
+				D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -1629,6 +1635,7 @@
 				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
+				D3FF42630F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1732,7 @@
 				D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */,
 				D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */,
 				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
+				D3FF42640F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

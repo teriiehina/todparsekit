@@ -30,6 +30,7 @@
 - (void)dealloc {
     self.attributes = nil;
     self.paren = nil;
+    self.curly = nil;
     [super dealloc];
 }
 
