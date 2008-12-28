@@ -7,10 +7,10 @@
 //
 
 #import <TDParseKit/TDSlashSlashState.h>
+#import <TDParseKit/TDSlashState.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDSlashState.h>
 
 @interface TDTokenizerState ()
 - (void)reset;
