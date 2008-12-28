@@ -56,6 +56,15 @@
 }
 
 
+- (void)unreadSymbol:(NSString *)s fromReader:(TDReader *)r {
+    NSInteger len = s.length;
+    NSInteger i = 0;
+    for ( ; i < len - 1; i++) {
+        [r unread];
+    }
+}
+
+
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
@@ -88,15 +97,10 @@
                 }
                 c = [r read];
                 break;
-//            } else if ('*' == peek) {
-//                [r unread];
+            } else if (e == [peek characterAtIndex:0]) {
+                [self unreadSymbol:peek fromReader:r];
             } else {
-                // unread the multi char symbol
-                NSInteger len = peek.length;
-                NSInteger i = 0;
-                for ( ; i < len - 1; i++) {
-                    [r unread];
-                }
+                [self unreadSymbol:peek fromReader:r];
                 
                 if (reportTokens) {
                     [self append:c];
