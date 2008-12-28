@@ -21,7 +21,7 @@
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import "TDSyntaxHighlightController.h"
+#import "TDSyntaxHighlighter.h"
 
 @interface TDGrammarParserFactory ()
 - (TDSequence *)parserFromExpression:(NSString *)s;
@@ -296,7 +296,7 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     NSString *s = [NSString stringWithContentsOfFile:path];
     
-    TDSyntaxHighlightController *shc = [[[TDSyntaxHighlightController alloc] init] autorelease];
+    TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"json"];
 }
 
