@@ -77,9 +77,9 @@
                 nil];
     id dict = [res pop];
     
-    s = [dict description];
+    p.tokenizer.string = [dict description];
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    res = [p.dictParser completeMatchFor:a];
+    res = [p.dictParser bestMatchFor:a];
     dict = [res pop];
     
     self.displayString = [[[NSAttributedString alloc] initWithString:[dict description] attributes:attrs] autorelease];
@@ -149,7 +149,7 @@
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     
     JSONAssembler *ass = [[[JSONAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserForGrammar:s assembler:ass];
+    TDParser *lp = [factory parserFromGrammar:s assembler:ass];
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path];
@@ -176,7 +176,7 @@
     
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
     NSDate *start = [NSDate date];
-    TDParser *lp = [factory parserForGrammar:s assembler:p];
+    TDParser *lp = [factory parserFromGrammar:s assembler:p];
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -242,7 +242,7 @@
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
     
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserForGrammar:s assembler:assembler];
+    TDParser *lp = [factory parserFromGrammar:s assembler:assembler];
     s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
@@ -257,7 +257,7 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     NSString *grammarString = [NSString stringWithContentsOfFile:path];
     TDMiniCSSAssembler *cssAssembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
-    TDParser *cssParser = [factory parserForGrammar:grammarString assembler:cssAssembler];
+    TDParser *cssParser = [factory parserFromGrammar:grammarString assembler:cssAssembler];
     
     // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
@@ -275,7 +275,7 @@
 
     // give it the attrs from CSS
     genericAssembler.attributes = attrs;
-    TDParser *jsonParser = [factory parserForGrammar:grammarString assembler:genericAssembler];
+    TDParser *jsonParser = [factory parserFromGrammar:grammarString assembler:genericAssembler];
     
     // parse JSON
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -292,16 +292,6 @@
 }
 
 
-- (void)doSlash {
-    NSString *s = @"/*a**/ a";
-    TDReader *r = [[[TDReader alloc] initWithString:s] autorelease];
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    t.slashState.reportsCommentTokens = YES;
-    TDToken *tok = [t.slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    
-}
-
-
 - (void)doHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     NSString *s = [NSString stringWithContentsOfFile:path];
@@ -309,6 +299,7 @@
     TDSyntaxHighlightController *shc = [[[TDSyntaxHighlightController alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"json"];
 }
+
 
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -322,13 +313,6 @@
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
     
-//    [self doSlash];
-
-//    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
-//    TDParser *p = [factory parserForExpression:s];
-//    NSString *s = @" start = foo; foo = 'bar';";
-//    TDParser *p = [factory parserForGrammar:s assembler:nil];
-
     [self doHighlighting];
     
     [pool release];

@@ -11,6 +11,20 @@
 #import "NSArray+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
 
+@interface TDCollectionParser ()
+@property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
+@end
+
+void TDReleaseSubparserTree(TDParser *p) {
+    if ([p isKindOfClass:[TDCollectionParser class]]) {
+        TDCollectionParser *c = (TDCollectionParser *)p;
+        for (TDParser *s in c.subparsers) {
+            TDReleaseSubparserTree(s);
+        }
+        c.subparsers = nil;
+    }
+}
+
 @interface TDGrammarParserFactory ()
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesForTokens;
@@ -101,7 +115,7 @@
 }
 
 
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)ass {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     self.assembler = ass;

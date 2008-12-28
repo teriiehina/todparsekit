@@ -44,7 +44,7 @@
 }
 
 
-+ (id)parserForGrammar:(NSString *)s {
++ (id)parserFromGrammar:(NSString *)s {
     TDRegularParser *p = [TDRegularParser parser];
     TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
     a = [p completeMatchFor:a];

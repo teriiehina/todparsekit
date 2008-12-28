@@ -21,7 +21,7 @@
     TDCollectionParser *phraseQuestionParser;
     TDCollectionParser *letterOrDigitParser;
 }
-+ (id)parserForGrammar:(NSString *)s;
++ (id)parserFromGrammar:(NSString *)s;
 
 @property (retain) TDCollectionParser *expressionParser;
 @property (retain) TDCollectionParser *termParser;
