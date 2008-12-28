@@ -10,7 +10,7 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDOldGrammarParserFactory ()
-- (TDSequence *)parserForExpression:(NSString *)s;
+- (TDSequence *)parserFromExpression:(NSString *)s;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
@@ -113,7 +113,7 @@
 }
 
 
-- (TDSequence *)parserForExpression:(NSString *)s {
+- (TDSequence *)parserFromExpression:(NSString *)s {
     TDOldGrammarParserFactory *p = [[[TDOldGrammarParserFactory alloc] init] autorelease];
     p.tokenizer.string = s;
     TDSequence *seq = [TDSequence sequence];

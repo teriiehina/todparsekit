@@ -24,7 +24,7 @@
 #import "TDSyntaxHighlightController.h"
 
 @interface TDGrammarParserFactory ()
-- (TDSequence *)parserForExpression:(NSString *)s;
+- (TDSequence *)parserFromExpression:(NSString *)s;
 @property (retain) TDCollectionParser *expressionParser;
 @end
 

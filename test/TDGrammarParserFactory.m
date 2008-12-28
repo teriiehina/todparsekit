@@ -27,13 +27,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 @interface TDGrammarParserFactory ()
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
-- (void)gatherParserClassNamesForTokens;
-- (NSString *)parserClassNameForTokenArray:(NSArray *)toks;
+- (void)gatherParserClassNamesFromTokens;
+- (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
-- (TDSequence *)parserForExpression:(NSString *)s;
+- (TDSequence *)parserFromExpression:(NSString *)s;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 @property (nonatomic, assign) id assembler;
@@ -123,7 +123,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
-    [self gatherParserClassNamesForTokens];
+    [self gatherParserClassNamesFromTokens];
 
     TDParser *start = [[self expandedParserForName:@"@start"] retain]; // retain to survive pool release
     
@@ -169,18 +169,18 @@ void TDReleaseSubparserTree(TDParser *p) {
     return [target autorelease]; // autorelease it to balance
 }
 
-- (void)gatherParserClassNamesForTokens {
+- (void)gatherParserClassNamesFromTokens {
     isGatheringClasses = YES;
     // discover the actual parser class types
     for (NSString *parserName in parserTokensTable) {
-        NSString *className = [self parserClassNameForTokenArray:[parserTokensTable objectForKey:parserName]];
+        NSString *className = [self parserClassNameFromTokenArray:[parserTokensTable objectForKey:parserName]];
         [parserClassTable setObject:className forKey:parserName];
     }
     isGatheringClasses = NO;
 }
 
 
-- (NSString *)parserClassNameForTokenArray:(NSArray *)toks {
+- (NSString *)parserClassNameFromTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
@@ -231,7 +231,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDSequence *)parserForExpression:(NSString *)s {
+- (TDSequence *)parserFromExpression:(NSString *)s {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
