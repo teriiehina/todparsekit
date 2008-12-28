@@ -9,7 +9,6 @@
 #import "TDSingleLineCommentState.h"
 
 @interface TDSingleLineCommentState ()
-@property (nonatomic, retain) NSMutableArray *startTokens;
 @end
 
 @implementation TDSingleLineCommentState
@@ -17,23 +16,23 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.startTokens = [NSMutableArray array];
+        self.startSymbols = [NSMutableArray array];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.startTokens = nil;
+    self.startSymbols = nil;
     [super dealloc];
 }
 
 
-- (void)addStartToken:(TDToken *)startTok {
-    NSParameterAssert(startTok);
+- (void)addStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
     
-    [startTokens addObject:startTok];
+    [startSymbols addObject:start];
 }
 
-@synthesize startTokens;
+@synthesize startSymbols;
 @end

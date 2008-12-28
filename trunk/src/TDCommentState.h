@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDTokenizerState.h>
 
+@class TDSymbolRootNode;
 @class TDSingleLineCommentState;
 @class TDMultiLineCommentState;
 
@@ -18,16 +19,17 @@
     @details    By default, C and C++ style comments. (<tt>//</tt> to end of line and <tt>/* *\/</tt>)
 */
 @interface TDCommentState : TDTokenizerState {
+    TDSymbolRootNode *rootNode;
     TDSingleLineCommentState *singleLineState;
     TDMultiLineCommentState *multiLineState;
     BOOL reportsCommentTokens;
     BOOL balancesEOFTerminatedComments;
 }
 
-- (void)addSingleLineStartToken:(TDToken *)startTok;
+- (void)addSingleLineStartSymbol:(NSString *)start;
 
 
-- (void)addMultiLineStartToken:(TDToken *)startTok endToken:(TDToken *)endTok;
+- (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end;
 
 /*!
     @property   reportsCommentTokens

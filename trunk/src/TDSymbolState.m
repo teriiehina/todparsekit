@@ -8,7 +8,6 @@
 
 #import <TDParseKit/TDSymbolState.h>
 #import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDSymbolNode.h>
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>

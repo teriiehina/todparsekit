@@ -9,8 +9,6 @@
 #import "TDMultiLineCommentState.h"
 
 @interface TDMultiLineCommentState ()
-@property (nonatomic, retain) NSMutableArray *startTokens;
-@property (nonatomic, retain) NSMutableArray *endTokens;
 @end
 
 @implementation TDMultiLineCommentState
@@ -18,28 +16,28 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.startTokens = [NSMutableArray array];
-        self.endTokens = [NSMutableArray array];
+        self.startSymbols = [NSMutableArray array];
+        self.endSymbols = [NSMutableArray array];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.startTokens = nil;
-    self.endTokens = nil;
+    self.startSymbols = nil;
+    self.endSymbols = nil;
     [super dealloc];
 }
 
 
-- (void)addStartToken:(TDToken *)startTok endToken:(TDToken *)endTok {
-    NSParameterAssert(startTok);
-    NSParameterAssert(endTok);
+- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end {
+    NSParameterAssert(start.length);
+    NSParameterAssert(end.length);
     
-    [startTokens addObject:startTok];
-    [endTokens addObject:endTok];
+    [startSymbols addObject:start];
+    [endSymbols addObject:end];
 }
 
-@synthesize startTokens;
-@synthesize endTokens;
+@synthesize startSymbols;
+@synthesize endSymbols;
 @end
