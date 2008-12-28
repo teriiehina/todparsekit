@@ -19,5 +19,9 @@
 @interface TDSlashState : TDTokenizerState {
     TDSlashSlashState *slashSlashState;
     TDSlashStarState *slashStarState;
+    BOOL reportsCommentTokens;
 }
+
+
+@property (nonatomic) BOOL reportsCommentTokens;
 @end

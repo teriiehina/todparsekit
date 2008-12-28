@@ -9,19 +9,44 @@
 #import <TDParseKit/TDSlashSlashState.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
+#import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDSlashState.h>
+
+@interface TDTokenizerState ()
+- (void)reset;
+- (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
+@end
 
 @implementation TDSlashSlashState
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
-    NSInteger c;
-    do {
-        c = [r read];
-        
-    // TODO should we be handling carriage returns??
-    } while (c != '\n' && c != '\r' && c != -1);
+    NSParameterAssert(t);
     
-    return [t nextToken];
+    BOOL reportTokens = t.slashState.reportsCommentTokens;
+    if (reportTokens) {
+        [self reset];
+        [self append:'/'];
+    }
+    
+    NSInteger c = cin;
+
+    while ('\n' != c && '\r' != c && -1 != c) {
+        if (reportTokens) {
+            [self append:c];
+        }
+        c = [r read];
+    }
+    if (-1 != c) {
+        [r unread];
+    }
+    
+    if (reportTokens) {
+        return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+    } else {
+        return [t nextToken];
+    }
 }
 
 @end

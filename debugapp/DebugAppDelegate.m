@@ -291,6 +291,15 @@
 }
 
 
+- (void)doSlash {
+    NSString *s = @"/*a**/ a";
+    TDReader *r = [[[TDReader alloc] initWithString:s] autorelease];
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    t.slashState.reportsCommentTokens = YES;
+    TDToken *tok = [t.slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    
+}
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -302,6 +311,8 @@
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
     [self doSimpleCSS2];
+    
+//    [self doSlash];
 
 //    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
 //    TDParser *p = [factory parserForExpression:s];

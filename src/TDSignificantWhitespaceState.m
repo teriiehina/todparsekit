@@ -13,7 +13,8 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
-@property (nonatomic, retain) NSMutableString *stringbuf;
+- (void)append:(NSInteger)c;
+- (NSString *)bufferedString;
 @end
 
 @implementation TDToken (TDSignificantWhitespaceStateAdditions)
@@ -54,14 +55,14 @@
     
     c = cin;
     while ([self isWhitespaceChar:c]) {
-        [stringbuf appendFormat:@"%C", c];
+        [self append:c];
         c = [r read];
     }
     if (c != -1) {
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[[stringbuf copy] autorelease] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
 }
 
 @end

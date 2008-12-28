@@ -14,7 +14,6 @@
 - (void)reset;
 - (void)append:(NSInteger)c;
 - (NSString *)bufferedString;
-@property (nonatomic, retain) NSMutableString *stringbuf;
 @end
 
 @implementation TDQuoteState

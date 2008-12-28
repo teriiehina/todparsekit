@@ -14,7 +14,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
-@property (nonatomic, retain) NSMutableString *stringbuf;
+- (NSString *)bufferedString;
 @end
 
 @interface TDXmlNameState ()
@@ -43,9 +43,10 @@
         [r unread];
     }
     
-    if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
+    NSString *s = [self bufferedString];
+    if (s.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
-    } else if (self.stringbuf.length == 1 && isdigit(cin)) {
+    } else if (s.length == 1 && isdigit(cin)) {
         return [t.numberState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
         return nil;
