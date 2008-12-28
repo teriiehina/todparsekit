@@ -11,6 +11,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 
 #if TD_USE_MUTABLE_STRING_BUF
@@ -63,6 +64,16 @@
 #else 
     [self checkBufLength];
     charbuf[index++] = c;
+#endif
+}
+
+
+- (void)appendString:(NSString *)s {
+#if TD_USE_MUTABLE_STRING_BUF
+    [stringbuf appendString:s];
+#else 
+    // TODO
+    NSAssert1(0, @"-[TDTokenizerState %s] not impl for charbuf", _cmd);
 #endif
 }
 

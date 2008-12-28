@@ -60,15 +60,18 @@
     NSParameterAssert(t);
 
     NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
-    
+    NSInteger len = symbol.length;
+
     if ([multiLineState.startSymbols containsObject:symbol]) {
+        multiLineState.currentStartSymbol = symbol;
         return [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else if ([singleLineState.startSymbols containsObject:symbol]) {
         return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
-//        if (-1 != c) {
-//            [r unread];
-//        }
+        NSInteger i = 0;
+        for ( ; i < len - 1; i++) {
+            [r unread];
+        }
         return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];        
     }
 }
