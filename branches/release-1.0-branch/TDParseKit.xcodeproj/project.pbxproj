@@ -1,0 +1,2110 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
+		D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
+		D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
+		D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
+		D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54B0E60E46100A0803E /* TDTestScaffold.m */; };
+		D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54E0E60E50800A0803E /* TDAlternationTest.m */; };
+		D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5500E60E50800A0803E /* TDLiteralTest.m */; };
+		D31FE5650E60E50800A0803E /* TDParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5520E60E50800A0803E /* TDParserTest.m */; };
+		D31FE5660E60E50800A0803E /* TDRepetitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5540E60E50800A0803E /* TDRepetitionTest.m */; };
+		D31FE5670E60E50800A0803E /* TDReservedWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5560E60E50800A0803E /* TDReservedWordTest.m */; };
+		D31FE5680E60E50800A0803E /* TDRobotCommandTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5580E60E50800A0803E /* TDRobotCommandTest.m */; };
+		D31FE5690E60E50800A0803E /* TDSequenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55A0E60E50800A0803E /* TDSequenceTest.m */; };
+		D31FE56A0E60E50800A0803E /* TDSymbolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55C0E60E50800A0803E /* TDSymbolTest.m */; };
+		D31FE56B0E60E50800A0803E /* TDTokenAssemblyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55E0E60E50800A0803E /* TDTokenAssemblyTest.m */; };
+		D31FE56C0E60E50800A0803E /* TDTrackTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5600E60E50800A0803E /* TDTrackTest.m */; };
+		D31FE56D0E60E50800A0803E /* TDUppercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */; };
+		D31FE5750E60E55700A0803E /* TDReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5720E60E55700A0803E /* TDReaderTest.m */; };
+		D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5740E60E55700A0803E /* TDTokenizerTest.m */; };
+		D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */; };
+		D31FE5860E60E58C00A0803E /* TDQuoteStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE57A0E60E58C00A0803E /* TDQuoteStateTest.m */; };
+		D31FE5880E60E58C00A0803E /* TDSlashStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */; };
+		D31FE5890E60E58C00A0803E /* TDSymbolStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5800E60E58C00A0803E /* TDSymbolStateTest.m */; };
+		D31FE58A0E60E58C00A0803E /* TDWhitespaceStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5820E60E58C00A0803E /* TDWhitespaceStateTest.m */; };
+		D31FE58B0E60E58C00A0803E /* TDWordStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5840E60E58C00A0803E /* TDWordStateTest.m */; };
+		D31FE5960E60E5AC00A0803E /* TDCharacterAssemblyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE58D0E60E5AC00A0803E /* TDCharacterAssemblyTest.m */; };
+		D31FE5970E60E5AC00A0803E /* TDCharTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE58F0E60E5AC00A0803E /* TDCharTest.m */; };
+		D31FE5980E60E5AC00A0803E /* TDDigitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5910E60E5AC00A0803E /* TDDigitTest.m */; };
+		D31FE5990E60E5AC00A0803E /* TDLetterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5930E60E5AC00A0803E /* TDLetterTest.m */; };
+		D31FE59A0E60E5AC00A0803E /* TDSpecificCharTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5950E60E5AC00A0803E /* TDSpecificCharTest.m */; };
+		D31FE59F0E60E5C000A0803E /* TDRegularParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE59C0E60E5C000A0803E /* TDRegularParser.m */; };
+		D31FE5A00E60E5C000A0803E /* TDRegularParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE59E0E60E5C000A0803E /* TDRegularParserTest.m */; };
+		D31FE5A90E60E5D500A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
+		D31FE5AA0E60E5D500A0803E /* TDFastJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */; };
+		D31FE5AB0E60E5D500A0803E /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A60E60E5D500A0803E /* TDJsonParser.m */; };
+		D31FE5AC0E60E5D500A0803E /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */; };
+		D31FE5B10E60E64900A0803E /* TDXmlTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */; };
+		D31FE5B20E60E64900A0803E /* TDXmlTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */; };
+		D31FE5B70E60E66600A0803E /* TDXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5B40E60E66600A0803E /* TDXmlToken.m */; };
+		D31FE5B80E60E66600A0803E /* TDXmlTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5B60E60E66600A0803E /* TDXmlTokenizer.m */; };
+		D31FE5DD0E60E69E00A0803E /* TDXmlAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5BA0E60E69E00A0803E /* TDXmlAttribute.m */; };
+		D31FE5DE0E60E69E00A0803E /* TDXmlCdata.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5BC0E60E69E00A0803E /* TDXmlCdata.m */; };
+		D31FE5DF0E60E69E00A0803E /* TDXmlComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5BE0E60E69E00A0803E /* TDXmlComment.m */; };
+		D31FE5E00E60E69E00A0803E /* TDXmlDecl.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5C00E60E69E00A0803E /* TDXmlDecl.m */; };
+		D31FE5E10E60E69E00A0803E /* TDXmlDoctype.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5C20E60E69E00A0803E /* TDXmlDoctype.m */; };
+		D31FE5E20E60E69E00A0803E /* TDXmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5C40E60E69E00A0803E /* TDXmlDocument.m */; };
+		D31FE5E30E60E69E00A0803E /* TDXmlEndEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5C60E60E69E00A0803E /* TDXmlEndEntity.m */; };
+		D31FE5E40E60E69E00A0803E /* TDXmlEndTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5C80E60E69E00A0803E /* TDXmlEndTag.m */; };
+		D31FE5E50E60E69E00A0803E /* TDXmlEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5CA0E60E69E00A0803E /* TDXmlEntity.m */; };
+		D31FE5E60E60E69E00A0803E /* TDXmlEntityRef.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5CC0E60E69E00A0803E /* TDXmlEntityRef.m */; };
+		D31FE5E70E60E69E00A0803E /* TDXmlFragment.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5CE0E60E69E00A0803E /* TDXmlFragment.m */; };
+		D31FE5E80E60E69E00A0803E /* TDXmlNotation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5D00E60E69E00A0803E /* TDXmlNotation.m */; };
+		D31FE5E90E60E69E00A0803E /* TDXmlProcessingInstruction.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5D20E60E69E00A0803E /* TDXmlProcessingInstruction.m */; };
+		D31FE5EA0E60E69E00A0803E /* TDXmlSignificantWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5D40E60E69E00A0803E /* TDXmlSignificantWhitespace.m */; };
+		D31FE5EB0E60E69E00A0803E /* TDXmlStartTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5D60E60E69E00A0803E /* TDXmlStartTag.m */; };
+		D31FE5EC0E60E69E00A0803E /* TDXmlTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5D80E60E69E00A0803E /* TDXmlTerminal.m */; };
+		D31FE5ED0E60E69E00A0803E /* TDXmlText.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5DA0E60E69E00A0803E /* TDXmlText.m */; };
+		D31FE5EE0E60E69E00A0803E /* TDXmlWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5DC0E60E69E00A0803E /* TDXmlWhitespace.m */; };
+		D31FE5FC0E60E6B500A0803E /* TDNCNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F10E60E6B500A0803E /* TDNCNameState.m */; };
+		D31FE5FD0E60E6B500A0803E /* TDXmlName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F30E60E6B500A0803E /* TDXmlName.m */; };
+		D31FE5FE0E60E6B500A0803E /* TDXmlNameState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F50E60E6B500A0803E /* TDXmlNameState.m */; };
+		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
+		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
+		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
+		D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE60A0E60E72500A0803E /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE60B0E60E72500A0803E /* TDReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6090E60E72500A0803E /* TDReader.m */; };
+		D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE60C0E60E73300A0803E /* TDAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE60F0E60E73300A0803E /* TDAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE60D0E60E73300A0803E /* TDAssembly.m */; };
+		D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6100E60E75300A0803E /* TDAlternation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6210E60E75300A0803E /* TDAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6110E60E75300A0803E /* TDAlternation.m */; };
+		D31FE6220E60E75300A0803E /* TDCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6120E60E75300A0803E /* TDCollectionParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6230E60E75300A0803E /* TDCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6130E60E75300A0803E /* TDCollectionParser.m */; };
+		D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6140E60E75300A0803E /* TDEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6250E60E75300A0803E /* TDEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6150E60E75300A0803E /* TDEmpty.m */; };
+		D31FE6260E60E75300A0803E /* TDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6160E60E75300A0803E /* TDParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6270E60E75300A0803E /* TDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6170E60E75300A0803E /* TDParser.m */; };
+		D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6180E60E75300A0803E /* TDRepetition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6290E60E75300A0803E /* TDRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6190E60E75300A0803E /* TDRepetition.m */; };
+		D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61A0E60E75300A0803E /* TDSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE62B0E60E75300A0803E /* TDSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61B0E60E75300A0803E /* TDSequence.m */; };
+		D31FE62C0E60E75300A0803E /* TDTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61C0E60E75300A0803E /* TDTerminal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE62D0E60E75300A0803E /* TDTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61D0E60E75300A0803E /* TDTerminal.m */; };
+		D31FE62E0E60E75300A0803E /* TDTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61E0E60E75300A0803E /* TDTrack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE62F0E60E75300A0803E /* TDTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61F0E60E75300A0803E /* TDTrack.m */; };
+		D31FE6320E60E76500A0803E /* TDTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6300E60E76500A0803E /* TDTokenAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6330E60E76500A0803E /* TDTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6310E60E76500A0803E /* TDTokenAssembly.m */; };
+		D31FE63A0E60E77600A0803E /* TDToken.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6340E60E77600A0803E /* TDToken.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE63B0E60E77600A0803E /* TDToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6350E60E77600A0803E /* TDToken.m */; };
+		D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6360E60E77600A0803E /* TDTokenizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6370E60E77600A0803E /* TDTokenizer.m */; };
+		D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6380E60E77600A0803E /* TDTokenizerState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6390E60E77600A0803E /* TDTokenizerState.m */; };
+		D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6490E60E7AF00A0803E /* TDNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64A0E60E7AF00A0803E /* TDNumberState.m */; };
+		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */; };
+		D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */; };
+		D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6640E60E7AF00A0803E /* TDSlashStarState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */; };
+		D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6510E60E7AF00A0803E /* TDSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6660E60E7AF00A0803E /* TDSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6520E60E7AF00A0803E /* TDSlashState.m */; };
+		D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6530E60E7AF00A0803E /* TDSymbolState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6680E60E7AF00A0803E /* TDSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6540E60E7AF00A0803E /* TDSymbolState.m */; };
+		D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE66A0E60E7AF00A0803E /* TDWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6560E60E7AF00A0803E /* TDWhitespaceState.m */; };
+		D31FE66B0E60E7AF00A0803E /* TDWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6570E60E7AF00A0803E /* TDWordState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE66C0E60E7AF00A0803E /* TDWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6580E60E7AF00A0803E /* TDWordState.m */; };
+		D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6720E60E7E100A0803E /* TDSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */; };
+		D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6740E60E7E100A0803E /* TDSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */; };
+		D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6780E60E80600A0803E /* TDLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6830E60E80600A0803E /* TDLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6790E60E80600A0803E /* TDLiteral.m */; };
+		D31FE6840E60E80600A0803E /* TDNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67A0E60E80600A0803E /* TDNum.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6850E60E80600A0803E /* TDNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67B0E60E80600A0803E /* TDNum.m */; };
+		D31FE6860E60E80600A0803E /* TDQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67C0E60E80600A0803E /* TDQuotedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6870E60E80600A0803E /* TDQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67D0E60E80600A0803E /* TDQuotedString.m */; };
+		D31FE6880E60E80600A0803E /* TDSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67E0E60E80600A0803E /* TDSymbol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6890E60E80600A0803E /* TDSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67F0E60E80600A0803E /* TDSymbol.m */; };
+		D31FE68A0E60E80600A0803E /* TDWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6800E60E80600A0803E /* TDWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE68B0E60E80600A0803E /* TDWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6810E60E80600A0803E /* TDWord.m */; };
+		D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE68F0E60E82300A0803E /* TDCaseInsensitiveLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */; };
+		D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6930E60E84400A0803E /* TDWordOrReservedState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */; };
+		D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6950E60E85800A0803E /* TDLowercaseWord.m */; };
+		D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6960E60E85800A0803E /* TDNonReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE69F0E60E85800A0803E /* TDNonReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6970E60E85800A0803E /* TDNonReservedWord.m */; };
+		D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6980E60E85800A0803E /* TDReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6A10E60E85800A0803E /* TDReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6990E60E85800A0803E /* TDReservedWord.m */; };
+		D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */; };
+		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
+		D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A90E60E87D00A0803E /* TDChar.m */; };
+		D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AB0E60E87D00A0803E /* TDDigit.m */; };
+		D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
+		D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
+		D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
+		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
+		D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
+		D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A60E60E5D500A0803E /* TDJsonParser.m */; };
+		D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
+		D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
+		D31FE7340E60F34600A0803E /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
+		D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
+		D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
+		D31FE7420E60F40900A0803E /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
+		D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D32365200E92F327008CB5C4 /* TDScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D32365210E92F327008CB5C4 /* TDScientificNumberState.m */; };
+		D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D331B5A10EA5293A0020BF01 /* TDTrackException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D331B5A20EA5293A0020BF01 /* TDTrackException.m */; };
+		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
+		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
+		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
+		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
+		D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DC70EF260FC00226554 /* TDTokenArraySource.m */; };
+		D3656DD60EF2614C00226554 /* TDTokenArraySource.h in Headers */ = {isa = PBXBuildFile; fileRef = D3656DC60EF260FC00226554 /* TDTokenArraySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */; };
+		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
+		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
+		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
+		D36E98220E58A3A800496BD3 /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
+		D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */; };
+		D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */; };
+		D36E98E20E58C12800496BD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98DF0E58C12800496BD3 /* main.m */; };
+		D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */; };
+		D36E98E80E58C14000496BD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98E50E58C14000496BD3 /* main.m */; };
+		D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */; };
+		D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
+		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
+		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
+		D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */ = {isa = PBXBuildFile; fileRef = D36EA0E20E5BE61D00496BD3 /* example-1.srgs */; };
+		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
+		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
+		D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
+		D385F98E0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
+		D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */; };
+		D385FA250F04993500DB2946 /* json.css in Resources */ = {isa = PBXBuildFile; fileRef = D385FA240F04993500DB2946 /* json.css */; };
+		D385FA260F04993500DB2946 /* json.css in Resources */ = {isa = PBXBuildFile; fileRef = D385FA240F04993500DB2946 /* json.css */; };
+		D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
+		D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */; };
+		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
+		D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
+		D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
+		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
+		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
+		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
+		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
+		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
+		D3B69D330E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
+		D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */; };
+		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
+		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
+		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
+		D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+		D3D01CAA0EFDB89900C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
+		D3D01CAB0EFDB8A000C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
+		D3D01CAC0EFDB8A100C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
+		D3D6E4E30EF625D700292EE6 /* TDAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D6E4E10EF625D700292EE6 /* TDAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3D6E4E40EF625D700292EE6 /* TDAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6E4E20EF625D700292EE6 /* TDAny.m */; };
+		D3D6E65D0EF654DE00292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
+		D3D6E65E0EF654E500292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
+		D3D6E65F0EF654E600292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
+		D3DCB2780EF4F77700DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
+		D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */; };
+		D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
+		D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
+		D3DCB3730EF5E5D600DE5110 /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
+		D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
+		D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
+		D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
+		D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
+		D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
+		D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
+		D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
+		D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */; };
+		D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
+		D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
+		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
+		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
+		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
+		D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
+		D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
+		D3E788930E567DFD008C7D61 /* SRGSParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E788920E567DFD008C7D61 /* SRGSParserTest.m */; };
+		D3E788960E567E0A008C7D61 /* SRGSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E788950E567E0A008C7D61 /* SRGSParser.m */; };
+		D3E78A190E574C99008C7D61 /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
+		D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A180E574C99008C7D61 /* EBNFParserTest.m */; };
+		D3EADD800E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
+		D3EADD810E75E9CC00F78584 /* nasty.html in Resources */ = {isa = PBXBuildFile; fileRef = D3EADD7F0E75E9CC00F78584 /* nasty.html */; };
+		D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
+		D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
+		D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
+		D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
+		D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741360EF8E5B000559B9F /* css-old.grammar */; };
+		D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
+		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
+		D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
+		D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D31FE7170E60F24700A0803E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TDParseKit;
+		};
+		D334949F0E296AA900406085 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TODParseKit;
+		};
+		D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
+			remoteInfo = TODParseKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D3DCB3880EF5E65100DE5110 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(BUILT_PRODUCTS_DIR)";
+			dstSubfolderSpec = 0;
+			files = (
+				D3DCB3730EF5E5D600DE5110 /* OCMock.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* TDParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
+		D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
+		D31FE54A0E60E46100A0803E /* TDTestScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTestScaffold.h; path = test/TDTestScaffold.h; sourceTree = "<group>"; };
+		D31FE54B0E60E46100A0803E /* TDTestScaffold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTestScaffold.m; path = test/TDTestScaffold.m; sourceTree = "<group>"; };
+		D31FE54D0E60E50800A0803E /* TDAlternationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAlternationTest.h; path = test/TDAlternationTest.h; sourceTree = "<group>"; };
+		D31FE54E0E60E50800A0803E /* TDAlternationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAlternationTest.m; path = test/TDAlternationTest.m; sourceTree = "<group>"; };
+		D31FE54F0E60E50800A0803E /* TDLiteralTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLiteralTest.h; path = test/TDLiteralTest.h; sourceTree = "<group>"; };
+		D31FE5500E60E50800A0803E /* TDLiteralTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLiteralTest.m; path = test/TDLiteralTest.m; sourceTree = "<group>"; };
+		D31FE5510E60E50800A0803E /* TDParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserTest.h; path = test/TDParserTest.h; sourceTree = "<group>"; };
+		D31FE5520E60E50800A0803E /* TDParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserTest.m; path = test/TDParserTest.m; sourceTree = "<group>"; };
+		D31FE5530E60E50800A0803E /* TDRepetitionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRepetitionTest.h; path = test/TDRepetitionTest.h; sourceTree = "<group>"; };
+		D31FE5540E60E50800A0803E /* TDRepetitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRepetitionTest.m; path = test/TDRepetitionTest.m; sourceTree = "<group>"; };
+		D31FE5550E60E50800A0803E /* TDReservedWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReservedWordTest.h; path = test/TDReservedWordTest.h; sourceTree = "<group>"; };
+		D31FE5560E60E50800A0803E /* TDReservedWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReservedWordTest.m; path = test/TDReservedWordTest.m; sourceTree = "<group>"; };
+		D31FE5570E60E50800A0803E /* TDRobotCommandTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRobotCommandTest.h; path = test/TDRobotCommandTest.h; sourceTree = "<group>"; };
+		D31FE5580E60E50800A0803E /* TDRobotCommandTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRobotCommandTest.m; path = test/TDRobotCommandTest.m; sourceTree = "<group>"; };
+		D31FE5590E60E50800A0803E /* TDSequenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSequenceTest.h; path = test/TDSequenceTest.h; sourceTree = "<group>"; };
+		D31FE55A0E60E50800A0803E /* TDSequenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSequenceTest.m; path = test/TDSequenceTest.m; sourceTree = "<group>"; };
+		D31FE55B0E60E50800A0803E /* TDSymbolTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolTest.h; path = test/TDSymbolTest.h; sourceTree = "<group>"; };
+		D31FE55C0E60E50800A0803E /* TDSymbolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolTest.m; path = test/TDSymbolTest.m; sourceTree = "<group>"; };
+		D31FE55D0E60E50800A0803E /* TDTokenAssemblyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenAssemblyTest.h; path = test/TDTokenAssemblyTest.h; sourceTree = "<group>"; };
+		D31FE55E0E60E50800A0803E /* TDTokenAssemblyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenAssemblyTest.m; path = test/TDTokenAssemblyTest.m; sourceTree = "<group>"; };
+		D31FE55F0E60E50800A0803E /* TDTrackTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTrackTest.h; path = test/TDTrackTest.h; sourceTree = "<group>"; };
+		D31FE5600E60E50800A0803E /* TDTrackTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrackTest.m; path = test/TDTrackTest.m; sourceTree = "<group>"; };
+		D31FE5610E60E50800A0803E /* TDUppercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDUppercaseWordTest.h; path = test/TDUppercaseWordTest.h; sourceTree = "<group>"; };
+		D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDUppercaseWordTest.m; path = test/TDUppercaseWordTest.m; sourceTree = "<group>"; };
+		D31FE5710E60E55700A0803E /* TDReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReaderTest.h; path = test/TDReaderTest.h; sourceTree = "<group>"; };
+		D31FE5720E60E55700A0803E /* TDReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReaderTest.m; path = test/TDReaderTest.m; sourceTree = "<group>"; };
+		D31FE5730E60E55700A0803E /* TDTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerTest.h; path = test/TDTokenizerTest.h; sourceTree = "<group>"; };
+		D31FE5740E60E55700A0803E /* TDTokenizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerTest.m; path = test/TDTokenizerTest.m; sourceTree = "<group>"; };
+		D31FE5770E60E58C00A0803E /* TDNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNumberStateTest.h; path = test/TDNumberStateTest.h; sourceTree = "<group>"; };
+		D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNumberStateTest.m; path = test/TDNumberStateTest.m; sourceTree = "<group>"; };
+		D31FE5790E60E58C00A0803E /* TDQuoteStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuoteStateTest.h; path = test/TDQuoteStateTest.h; sourceTree = "<group>"; };
+		D31FE57A0E60E58C00A0803E /* TDQuoteStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDQuoteStateTest.m; path = test/TDQuoteStateTest.m; sourceTree = "<group>"; };
+		D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceStateTest.h; path = test/TDSignificantWhitespaceStateTest.h; sourceTree = "<group>"; };
+		D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceStateTest.m; path = test/TDSignificantWhitespaceStateTest.m; sourceTree = "<group>"; };
+		D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashStateTest.h; path = test/TDSlashStateTest.h; sourceTree = "<group>"; };
+		D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashStateTest.m; path = test/TDSlashStateTest.m; sourceTree = "<group>"; };
+		D31FE57F0E60E58C00A0803E /* TDSymbolStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolStateTest.h; path = test/TDSymbolStateTest.h; sourceTree = "<group>"; };
+		D31FE5800E60E58C00A0803E /* TDSymbolStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolStateTest.m; path = test/TDSymbolStateTest.m; sourceTree = "<group>"; };
+		D31FE5810E60E58C00A0803E /* TDWhitespaceStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWhitespaceStateTest.h; path = test/TDWhitespaceStateTest.h; sourceTree = "<group>"; };
+		D31FE5820E60E58C00A0803E /* TDWhitespaceStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWhitespaceStateTest.m; path = test/TDWhitespaceStateTest.m; sourceTree = "<group>"; };
+		D31FE5830E60E58C00A0803E /* TDWordStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWordStateTest.h; path = test/TDWordStateTest.h; sourceTree = "<group>"; };
+		D31FE5840E60E58C00A0803E /* TDWordStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWordStateTest.m; path = test/TDWordStateTest.m; sourceTree = "<group>"; };
+		D31FE58C0E60E5AC00A0803E /* TDCharacterAssemblyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharacterAssemblyTest.h; path = test/TDCharacterAssemblyTest.h; sourceTree = "<group>"; };
+		D31FE58D0E60E5AC00A0803E /* TDCharacterAssemblyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharacterAssemblyTest.m; path = test/TDCharacterAssemblyTest.m; sourceTree = "<group>"; };
+		D31FE58E0E60E5AC00A0803E /* TDCharTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharTest.h; path = test/TDCharTest.h; sourceTree = "<group>"; };
+		D31FE58F0E60E5AC00A0803E /* TDCharTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharTest.m; path = test/TDCharTest.m; sourceTree = "<group>"; };
+		D31FE5900E60E5AC00A0803E /* TDDigitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDigitTest.h; path = test/TDDigitTest.h; sourceTree = "<group>"; };
+		D31FE5910E60E5AC00A0803E /* TDDigitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDigitTest.m; path = test/TDDigitTest.m; sourceTree = "<group>"; };
+		D31FE5920E60E5AC00A0803E /* TDLetterTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLetterTest.h; path = test/TDLetterTest.h; sourceTree = "<group>"; };
+		D31FE5930E60E5AC00A0803E /* TDLetterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLetterTest.m; path = test/TDLetterTest.m; sourceTree = "<group>"; };
+		D31FE5940E60E5AC00A0803E /* TDSpecificCharTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSpecificCharTest.h; path = test/TDSpecificCharTest.h; sourceTree = "<group>"; };
+		D31FE5950E60E5AC00A0803E /* TDSpecificCharTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSpecificCharTest.m; path = test/TDSpecificCharTest.m; sourceTree = "<group>"; };
+		D31FE59B0E60E5C000A0803E /* TDRegularParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRegularParser.h; path = test/TDRegularParser.h; sourceTree = "<group>"; };
+		D31FE59C0E60E5C000A0803E /* TDRegularParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRegularParser.m; path = test/TDRegularParser.m; sourceTree = "<group>"; };
+		D31FE59D0E60E5C000A0803E /* TDRegularParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRegularParserTest.h; path = test/TDRegularParserTest.h; sourceTree = "<group>"; };
+		D31FE59E0E60E5C000A0803E /* TDRegularParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRegularParserTest.m; path = test/TDRegularParserTest.m; sourceTree = "<group>"; };
+		D31FE5A10E60E5D500A0803E /* TDFastJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDFastJsonParser.h; path = test/TDFastJsonParser.h; sourceTree = "<group>"; };
+		D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDFastJsonParser.m; path = test/TDFastJsonParser.m; sourceTree = "<group>"; };
+		D31FE5A30E60E5D500A0803E /* TDFastJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDFastJsonParserTest.h; path = test/TDFastJsonParserTest.h; sourceTree = "<group>"; };
+		D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDFastJsonParserTest.m; path = test/TDFastJsonParserTest.m; sourceTree = "<group>"; };
+		D31FE5A50E60E5D500A0803E /* TDJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParser.h; path = test/TDJsonParser.h; sourceTree = "<group>"; };
+		D31FE5A60E60E5D500A0803E /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = test/TDJsonParser.m; sourceTree = "<group>"; };
+		D31FE5A70E60E5D500A0803E /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = test/TDJsonParserTest.h; sourceTree = "<group>"; };
+		D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = test/TDJsonParserTest.m; sourceTree = "<group>"; };
+		D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTokenAssembly.h; path = test/TDXmlTokenAssembly.h; sourceTree = "<group>"; };
+		D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlTokenAssembly.m; path = test/TDXmlTokenAssembly.m; sourceTree = "<group>"; };
+		D31FE5AF0E60E64900A0803E /* TDXmlTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTokenizerTest.h; path = test/TDXmlTokenizerTest.h; sourceTree = "<group>"; };
+		D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlTokenizerTest.m; path = test/TDXmlTokenizerTest.m; sourceTree = "<group>"; };
+		D31FE5B30E60E66600A0803E /* TDXmlToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlToken.h; path = test/TDXmlToken.h; sourceTree = "<group>"; };
+		D31FE5B40E60E66600A0803E /* TDXmlToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlToken.m; path = test/TDXmlToken.m; sourceTree = "<group>"; };
+		D31FE5B50E60E66600A0803E /* TDXmlTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTokenizer.h; path = test/TDXmlTokenizer.h; sourceTree = "<group>"; };
+		D31FE5B60E60E66600A0803E /* TDXmlTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlTokenizer.m; path = test/TDXmlTokenizer.m; sourceTree = "<group>"; };
+		D31FE5B90E60E69E00A0803E /* TDXmlAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlAttribute.h; path = test/TDXmlAttribute.h; sourceTree = "<group>"; };
+		D31FE5BA0E60E69E00A0803E /* TDXmlAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlAttribute.m; path = test/TDXmlAttribute.m; sourceTree = "<group>"; };
+		D31FE5BB0E60E69E00A0803E /* TDXmlCdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlCdata.h; path = test/TDXmlCdata.h; sourceTree = "<group>"; };
+		D31FE5BC0E60E69E00A0803E /* TDXmlCdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlCdata.m; path = test/TDXmlCdata.m; sourceTree = "<group>"; };
+		D31FE5BD0E60E69E00A0803E /* TDXmlComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlComment.h; path = test/TDXmlComment.h; sourceTree = "<group>"; };
+		D31FE5BE0E60E69E00A0803E /* TDXmlComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlComment.m; path = test/TDXmlComment.m; sourceTree = "<group>"; };
+		D31FE5BF0E60E69E00A0803E /* TDXmlDecl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlDecl.h; path = test/TDXmlDecl.h; sourceTree = "<group>"; };
+		D31FE5C00E60E69E00A0803E /* TDXmlDecl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlDecl.m; path = test/TDXmlDecl.m; sourceTree = "<group>"; };
+		D31FE5C10E60E69E00A0803E /* TDXmlDoctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlDoctype.h; path = test/TDXmlDoctype.h; sourceTree = "<group>"; };
+		D31FE5C20E60E69E00A0803E /* TDXmlDoctype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlDoctype.m; path = test/TDXmlDoctype.m; sourceTree = "<group>"; };
+		D31FE5C30E60E69E00A0803E /* TDXmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlDocument.h; path = test/TDXmlDocument.h; sourceTree = "<group>"; };
+		D31FE5C40E60E69E00A0803E /* TDXmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlDocument.m; path = test/TDXmlDocument.m; sourceTree = "<group>"; };
+		D31FE5C50E60E69E00A0803E /* TDXmlEndEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlEndEntity.h; path = test/TDXmlEndEntity.h; sourceTree = "<group>"; };
+		D31FE5C60E60E69E00A0803E /* TDXmlEndEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlEndEntity.m; path = test/TDXmlEndEntity.m; sourceTree = "<group>"; };
+		D31FE5C70E60E69E00A0803E /* TDXmlEndTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlEndTag.h; path = test/TDXmlEndTag.h; sourceTree = "<group>"; };
+		D31FE5C80E60E69E00A0803E /* TDXmlEndTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlEndTag.m; path = test/TDXmlEndTag.m; sourceTree = "<group>"; };
+		D31FE5C90E60E69E00A0803E /* TDXmlEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlEntity.h; path = test/TDXmlEntity.h; sourceTree = "<group>"; };
+		D31FE5CA0E60E69E00A0803E /* TDXmlEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlEntity.m; path = test/TDXmlEntity.m; sourceTree = "<group>"; };
+		D31FE5CB0E60E69E00A0803E /* TDXmlEntityRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlEntityRef.h; path = test/TDXmlEntityRef.h; sourceTree = "<group>"; };
+		D31FE5CC0E60E69E00A0803E /* TDXmlEntityRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlEntityRef.m; path = test/TDXmlEntityRef.m; sourceTree = "<group>"; };
+		D31FE5CD0E60E69E00A0803E /* TDXmlFragment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlFragment.h; path = test/TDXmlFragment.h; sourceTree = "<group>"; };
+		D31FE5CE0E60E69E00A0803E /* TDXmlFragment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlFragment.m; path = test/TDXmlFragment.m; sourceTree = "<group>"; };
+		D31FE5CF0E60E69E00A0803E /* TDXmlNotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNotation.h; path = test/TDXmlNotation.h; sourceTree = "<group>"; };
+		D31FE5D00E60E69E00A0803E /* TDXmlNotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNotation.m; path = test/TDXmlNotation.m; sourceTree = "<group>"; };
+		D31FE5D10E60E69E00A0803E /* TDXmlProcessingInstruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlProcessingInstruction.h; path = test/TDXmlProcessingInstruction.h; sourceTree = "<group>"; };
+		D31FE5D20E60E69E00A0803E /* TDXmlProcessingInstruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlProcessingInstruction.m; path = test/TDXmlProcessingInstruction.m; sourceTree = "<group>"; };
+		D31FE5D30E60E69E00A0803E /* TDXmlSignificantWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlSignificantWhitespace.h; path = test/TDXmlSignificantWhitespace.h; sourceTree = "<group>"; };
+		D31FE5D40E60E69E00A0803E /* TDXmlSignificantWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlSignificantWhitespace.m; path = test/TDXmlSignificantWhitespace.m; sourceTree = "<group>"; };
+		D31FE5D50E60E69E00A0803E /* TDXmlStartTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlStartTag.h; path = test/TDXmlStartTag.h; sourceTree = "<group>"; };
+		D31FE5D60E60E69E00A0803E /* TDXmlStartTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlStartTag.m; path = test/TDXmlStartTag.m; sourceTree = "<group>"; };
+		D31FE5D70E60E69E00A0803E /* TDXmlTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTerminal.h; path = test/TDXmlTerminal.h; sourceTree = "<group>"; };
+		D31FE5D80E60E69E00A0803E /* TDXmlTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlTerminal.m; path = test/TDXmlTerminal.m; sourceTree = "<group>"; };
+		D31FE5D90E60E69E00A0803E /* TDXmlText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlText.h; path = test/TDXmlText.h; sourceTree = "<group>"; };
+		D31FE5DA0E60E69E00A0803E /* TDXmlText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlText.m; path = test/TDXmlText.m; sourceTree = "<group>"; };
+		D31FE5DB0E60E69E00A0803E /* TDXmlWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlWhitespace.h; path = test/TDXmlWhitespace.h; sourceTree = "<group>"; };
+		D31FE5DC0E60E69E00A0803E /* TDXmlWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlWhitespace.m; path = test/TDXmlWhitespace.m; sourceTree = "<group>"; };
+		D31FE5EF0E60E6B500A0803E /* TDNCName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNCName.h; path = test/TDNCName.h; sourceTree = "<group>"; };
+		D31FE5F00E60E6B500A0803E /* TDNCNameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNCNameState.h; path = test/TDNCNameState.h; sourceTree = "<group>"; };
+		D31FE5F10E60E6B500A0803E /* TDNCNameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCNameState.m; path = test/TDNCNameState.m; sourceTree = "<group>"; };
+		D31FE5F20E60E6B500A0803E /* TDXmlName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlName.h; path = test/TDXmlName.h; sourceTree = "<group>"; };
+		D31FE5F30E60E6B500A0803E /* TDXmlName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlName.m; path = test/TDXmlName.m; sourceTree = "<group>"; };
+		D31FE5F40E60E6B500A0803E /* TDXmlNameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNameState.h; path = test/TDXmlNameState.h; sourceTree = "<group>"; };
+		D31FE5F50E60E6B500A0803E /* TDXmlNameState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNameState.m; path = test/TDXmlNameState.m; sourceTree = "<group>"; };
+		D31FE5F60E60E6B500A0803E /* TDXmlNameTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNameTest.h; path = test/TDXmlNameTest.h; sourceTree = "<group>"; };
+		D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNameTest.m; path = test/TDXmlNameTest.m; sourceTree = "<group>"; };
+		D31FE5F80E60E6B500A0803E /* TDXmlNmtoken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtoken.h; path = test/TDXmlNmtoken.h; sourceTree = "<group>"; };
+		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
+		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
+		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
+		D31FE6060E60E71900A0803E /* TDParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParseKit.h; path = src/TDParseKit.h; sourceTree = "<group>"; };
+		D31FE6080E60E72500A0803E /* TDReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReader.h; path = src/TDReader.h; sourceTree = "<group>"; };
+		D31FE6090E60E72500A0803E /* TDReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReader.m; path = src/TDReader.m; sourceTree = "<group>"; };
+		D31FE60C0E60E73300A0803E /* TDAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAssembly.h; path = src/TDAssembly.h; sourceTree = "<group>"; };
+		D31FE60D0E60E73300A0803E /* TDAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAssembly.m; path = src/TDAssembly.m; sourceTree = "<group>"; };
+		D31FE6100E60E75300A0803E /* TDAlternation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAlternation.h; path = src/TDAlternation.h; sourceTree = "<group>"; };
+		D31FE6110E60E75300A0803E /* TDAlternation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAlternation.m; path = src/TDAlternation.m; sourceTree = "<group>"; };
+		D31FE6120E60E75300A0803E /* TDCollectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCollectionParser.h; path = src/TDCollectionParser.h; sourceTree = "<group>"; };
+		D31FE6130E60E75300A0803E /* TDCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCollectionParser.m; path = src/TDCollectionParser.m; sourceTree = "<group>"; };
+		D31FE6140E60E75300A0803E /* TDEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDEmpty.h; path = src/TDEmpty.h; sourceTree = "<group>"; };
+		D31FE6150E60E75300A0803E /* TDEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDEmpty.m; path = src/TDEmpty.m; sourceTree = "<group>"; };
+		D31FE6160E60E75300A0803E /* TDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParser.h; path = src/TDParser.h; sourceTree = "<group>"; };
+		D31FE6170E60E75300A0803E /* TDParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParser.m; path = src/TDParser.m; sourceTree = "<group>"; };
+		D31FE6180E60E75300A0803E /* TDRepetition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRepetition.h; path = src/TDRepetition.h; sourceTree = "<group>"; };
+		D31FE6190E60E75300A0803E /* TDRepetition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRepetition.m; path = src/TDRepetition.m; sourceTree = "<group>"; };
+		D31FE61A0E60E75300A0803E /* TDSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSequence.h; path = src/TDSequence.h; sourceTree = "<group>"; };
+		D31FE61B0E60E75300A0803E /* TDSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSequence.m; path = src/TDSequence.m; sourceTree = "<group>"; };
+		D31FE61C0E60E75300A0803E /* TDTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTerminal.h; path = src/TDTerminal.h; sourceTree = "<group>"; };
+		D31FE61D0E60E75300A0803E /* TDTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTerminal.m; path = src/TDTerminal.m; sourceTree = "<group>"; };
+		D31FE61E0E60E75300A0803E /* TDTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTrack.h; path = src/TDTrack.h; sourceTree = "<group>"; };
+		D31FE61F0E60E75300A0803E /* TDTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrack.m; path = src/TDTrack.m; sourceTree = "<group>"; };
+		D31FE6300E60E76500A0803E /* TDTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenAssembly.h; path = src/TDTokenAssembly.h; sourceTree = "<group>"; };
+		D31FE6310E60E76500A0803E /* TDTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenAssembly.m; path = src/TDTokenAssembly.m; sourceTree = "<group>"; };
+		D31FE6340E60E77600A0803E /* TDToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDToken.h; path = src/TDToken.h; sourceTree = "<group>"; };
+		D31FE6350E60E77600A0803E /* TDToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDToken.m; path = src/TDToken.m; sourceTree = "<group>"; };
+		D31FE6360E60E77600A0803E /* TDTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizer.h; path = src/TDTokenizer.h; sourceTree = "<group>"; };
+		D31FE6370E60E77600A0803E /* TDTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizer.m; path = src/TDTokenizer.m; sourceTree = "<group>"; };
+		D31FE6380E60E77600A0803E /* TDTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerState.h; path = src/TDTokenizerState.h; sourceTree = "<group>"; };
+		D31FE6390E60E77600A0803E /* TDTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerState.m; path = src/TDTokenizerState.m; sourceTree = "<group>"; };
+		D31FE6490E60E7AF00A0803E /* TDNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNumberState.h; path = src/TDNumberState.h; sourceTree = "<group>"; };
+		D31FE64A0E60E7AF00A0803E /* TDNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNumberState.m; path = src/TDNumberState.m; sourceTree = "<group>"; };
+		D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuoteState.h; path = src/TDQuoteState.h; sourceTree = "<group>"; };
+		D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDQuoteState.m; path = src/TDQuoteState.m; sourceTree = "<group>"; };
+		D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashSlashState.h; path = src/TDSlashSlashState.h; sourceTree = "<group>"; };
+		D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashSlashState.m; path = src/TDSlashSlashState.m; sourceTree = "<group>"; };
+		D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashStarState.h; path = src/TDSlashStarState.h; sourceTree = "<group>"; };
+		D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashStarState.m; path = src/TDSlashStarState.m; sourceTree = "<group>"; };
+		D31FE6510E60E7AF00A0803E /* TDSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashState.h; path = src/TDSlashState.h; sourceTree = "<group>"; };
+		D31FE6520E60E7AF00A0803E /* TDSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashState.m; path = src/TDSlashState.m; sourceTree = "<group>"; };
+		D31FE6530E60E7AF00A0803E /* TDSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolState.h; path = src/TDSymbolState.h; sourceTree = "<group>"; };
+		D31FE6540E60E7AF00A0803E /* TDSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolState.m; path = src/TDSymbolState.m; sourceTree = "<group>"; };
+		D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWhitespaceState.h; path = src/TDWhitespaceState.h; sourceTree = "<group>"; };
+		D31FE6560E60E7AF00A0803E /* TDWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWhitespaceState.m; path = src/TDWhitespaceState.m; sourceTree = "<group>"; };
+		D31FE6570E60E7AF00A0803E /* TDWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWordState.h; path = src/TDWordState.h; sourceTree = "<group>"; };
+		D31FE6580E60E7AF00A0803E /* TDWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWordState.m; path = src/TDWordState.m; sourceTree = "<group>"; };
+		D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolNode.h; path = src/TDSymbolNode.h; sourceTree = "<group>"; };
+		D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolNode.m; path = src/TDSymbolNode.m; sourceTree = "<group>"; };
+		D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolRootNode.h; path = src/TDSymbolRootNode.h; sourceTree = "<group>"; };
+		D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolRootNode.m; path = src/TDSymbolRootNode.m; sourceTree = "<group>"; };
+		D31FE6780E60E80600A0803E /* TDLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLiteral.h; path = src/TDLiteral.h; sourceTree = "<group>"; };
+		D31FE6790E60E80600A0803E /* TDLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLiteral.m; path = src/TDLiteral.m; sourceTree = "<group>"; };
+		D31FE67A0E60E80600A0803E /* TDNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNum.h; path = src/TDNum.h; sourceTree = "<group>"; };
+		D31FE67B0E60E80600A0803E /* TDNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNum.m; path = src/TDNum.m; sourceTree = "<group>"; };
+		D31FE67C0E60E80600A0803E /* TDQuotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuotedString.h; path = src/TDQuotedString.h; sourceTree = "<group>"; };
+		D31FE67D0E60E80600A0803E /* TDQuotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDQuotedString.m; path = src/TDQuotedString.m; sourceTree = "<group>"; };
+		D31FE67E0E60E80600A0803E /* TDSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbol.h; path = src/TDSymbol.h; sourceTree = "<group>"; };
+		D31FE67F0E60E80600A0803E /* TDSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbol.m; path = src/TDSymbol.m; sourceTree = "<group>"; };
+		D31FE6800E60E80600A0803E /* TDWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWord.h; path = src/TDWord.h; sourceTree = "<group>"; };
+		D31FE6810E60E80600A0803E /* TDWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWord.m; path = src/TDWord.m; sourceTree = "<group>"; };
+		D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCaseInsensitiveLiteral.h; path = src/TDCaseInsensitiveLiteral.h; sourceTree = "<group>"; };
+		D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCaseInsensitiveLiteral.m; path = src/TDCaseInsensitiveLiteral.m; sourceTree = "<group>"; };
+		D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWordOrReservedState.h; path = src/TDWordOrReservedState.h; sourceTree = "<group>"; };
+		D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWordOrReservedState.m; path = src/TDWordOrReservedState.m; sourceTree = "<group>"; };
+		D31FE6940E60E85800A0803E /* TDLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWord.h; path = src/TDLowercaseWord.h; sourceTree = "<group>"; };
+		D31FE6950E60E85800A0803E /* TDLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWord.m; path = src/TDLowercaseWord.m; sourceTree = "<group>"; };
+		D31FE6960E60E85800A0803E /* TDNonReservedWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNonReservedWord.h; path = src/TDNonReservedWord.h; sourceTree = "<group>"; };
+		D31FE6970E60E85800A0803E /* TDNonReservedWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNonReservedWord.m; path = src/TDNonReservedWord.m; sourceTree = "<group>"; };
+		D31FE6980E60E85800A0803E /* TDReservedWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReservedWord.h; path = src/TDReservedWord.h; sourceTree = "<group>"; };
+		D31FE6990E60E85800A0803E /* TDReservedWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReservedWord.m; path = src/TDReservedWord.m; sourceTree = "<group>"; };
+		D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDUppercaseWord.h; path = src/TDUppercaseWord.h; sourceTree = "<group>"; };
+		D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDUppercaseWord.m; path = src/TDUppercaseWord.m; sourceTree = "<group>"; };
+		D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharacterAssembly.h; path = src/TDCharacterAssembly.h; sourceTree = "<group>"; };
+		D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharacterAssembly.m; path = src/TDCharacterAssembly.m; sourceTree = "<group>"; };
+		D31FE6A80E60E87D00A0803E /* TDChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDChar.h; path = src/TDChar.h; sourceTree = "<group>"; };
+		D31FE6A90E60E87D00A0803E /* TDChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDChar.m; path = src/TDChar.m; sourceTree = "<group>"; };
+		D31FE6AA0E60E87D00A0803E /* TDDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDigit.h; path = src/TDDigit.h; sourceTree = "<group>"; };
+		D31FE6AB0E60E87D00A0803E /* TDDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDigit.m; path = src/TDDigit.m; sourceTree = "<group>"; };
+		D31FE6AC0E60E87D00A0803E /* TDLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLetter.h; path = src/TDLetter.h; sourceTree = "<group>"; };
+		D31FE6AD0E60E87D00A0803E /* TDLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLetter.m; path = src/TDLetter.m; sourceTree = "<group>"; };
+		D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSpecificChar.h; path = src/TDSpecificChar.h; sourceTree = "<group>"; };
+		D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSpecificChar.m; path = src/TDSpecificChar.m; sourceTree = "<group>"; };
+		D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDParseKit_Prefix.pch; sourceTree = "<group>"; };
+		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
+		D32365200E92F327008CB5C4 /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = src/TDScientificNumberState.h; sourceTree = "<group>"; };
+		D32365210E92F327008CB5C4 /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = src/TDScientificNumberState.m; sourceTree = "<group>"; };
+		D331B5A10EA5293A0020BF01 /* TDTrackException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTrackException.h; path = src/TDTrackException.h; sourceTree = "<group>"; };
+		D331B5A20EA5293A0020BF01 /* TDTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrackException.m; path = src/TDTrackException.m; sourceTree = "<group>"; };
+		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
+		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
+		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
+		D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReaderTest.m; path = test/XMLReaderTest.m; sourceTree = "<group>"; };
+		D36568A50EEF9FE900226554 /* TDPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParser.h; path = test/TDPlistParser.h; sourceTree = "<group>"; };
+		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
+		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
+		D36568A90EEFA05300226554 /* TDPlistParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParserTest.m; path = test/TDPlistParserTest.m; sourceTree = "<group>"; };
+		D3656DC60EF260FC00226554 /* TDTokenArraySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenArraySource.h; path = src/TDTokenArraySource.h; sourceTree = "<group>"; };
+		D3656DC70EF260FC00226554 /* TDTokenArraySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenArraySource.m; path = src/TDTokenArraySource.m; sourceTree = "<group>"; };
+		D3656DFC0EF2620E00226554 /* TDTokenArraySourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenArraySourceTest.h; path = test/TDTokenArraySourceTest.h; sourceTree = "<group>"; };
+		D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenArraySourceTest.m; path = test/TDTokenArraySourceTest.m; sourceTree = "<group>"; };
+		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
+		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
+		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
+		D36E95D70E57B08400496BD3 /* XPathParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParserTest.m; path = test/XPathParserTest.m; sourceTree = "<group>"; };
+		D36E97AE0E589DAE00496BD3 /* XPathAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathAssembler.h; path = test/XPathAssembler.h; sourceTree = "<group>"; };
+		D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathAssembler.m; path = test/XPathAssembler.m; sourceTree = "<group>"; };
+		D36E98200E58A3A800496BD3 /* XPathContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathContext.h; path = test/XPathContext.h; sourceTree = "<group>"; };
+		D36E98210E58A3A800496BD3 /* XPathContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathContext.m; path = test/XPathContext.m; sourceTree = "<group>"; };
+		D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugAppDelegate.h; sourceTree = "<group>"; };
+		D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugAppDelegate.m; sourceTree = "<group>"; };
+		D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugAppMainMenu.xib; sourceTree = "<group>"; };
+		D36E98DF0E58C12800496BD3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoAppDelegate.h; path = demoapp/DemoAppDelegate.h; sourceTree = "<group>"; };
+		D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoAppDelegate.m; path = demoapp/DemoAppDelegate.m; sourceTree = "<group>"; };
+		D36E98E50E58C14000496BD3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = demoapp/main.m; sourceTree = "<group>"; };
+		D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoAppMainMenu.xib; path = demoapp/DemoAppMainMenu.xib; sourceTree = "<group>"; };
+		D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = SOURCE_ROOT; };
+		D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
+		D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		D36E9F860E5A795400496BD3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
+		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
+		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
+		D36EA0E20E5BE61D00496BD3 /* example-1.srgs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "example-1.srgs"; path = "res/example-1.srgs"; sourceTree = "<group>"; };
+		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
+		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
+		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
+		D385F9880F046FE900DB2946 /* TDGenericAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssembler.h; path = test/TDGenericAssembler.h; sourceTree = "<group>"; };
+		D385F9890F046FE900DB2946 /* TDGenericAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGenericAssembler.m; path = test/TDGenericAssembler.m; sourceTree = "<group>"; };
+		D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssemblerTest.h; path = test/TDGenericAssemblerTest.h; sourceTree = "<group>"; };
+		D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGenericAssemblerTest.m; path = test/TDGenericAssemblerTest.m; sourceTree = "<group>"; };
+		D385FA240F04993500DB2946 /* json.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = json.css; path = res/json.css; sourceTree = "<group>"; };
+		D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssembler.h; path = test/TDMiniCSSAssembler.h; sourceTree = "<group>"; };
+		D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssembler.m; path = test/TDMiniCSSAssembler.m; sourceTree = "<group>"; };
+		D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssemblerTest.h; path = test/TDMiniCSSAssemblerTest.h; sourceTree = "<group>"; };
+		D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssemblerTest.m; path = test/TDMiniCSSAssemblerTest.m; sourceTree = "<group>"; };
+		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
+		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
+		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
+		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
+		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
+		D3B69D310E80249900D70C41 /* nonascii.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nonascii.html; path = res/nonascii.html; sourceTree = "<group>"; };
+		D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWordTest.h; path = test/TDLowercaseWordTest.h; sourceTree = "<group>"; };
+		D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWordTest.m; path = test/TDLowercaseWordTest.m; sourceTree = "<group>"; };
+		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3C85C790E63B438000445FD /* TDArithmeticParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParser.h; path = test/TDArithmeticParser.h; sourceTree = "<group>"; };
+		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
+		D3C85C7E0E63B9E9000445FD /* TDArithmeticParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParserTest.h; path = test/TDArithmeticParserTest.h; sourceTree = "<group>"; };
+		D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParserTest.m; path = test/TDArithmeticParserTest.m; sourceTree = "<group>"; };
+		D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberStateTest.h; path = test/TDScientificNumberStateTest.h; sourceTree = "<group>"; };
+		D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberStateTest.m; path = test/TDScientificNumberStateTest.m; sourceTree = "<group>"; };
+		D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_with_discards.grammar; path = res/json_with_discards.grammar; sourceTree = "<group>"; };
+		D3D6E4E10EF625D700292EE6 /* TDAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAny.h; path = src/TDAny.h; sourceTree = "<group>"; };
+		D3D6E4E20EF625D700292EE6 /* TDAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAny.m; path = src/TDAny.m; sourceTree = "<group>"; };
+		D3D6E65C0EF654DE00292EE6 /* json-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "json-old.grammar"; path = "res/json-old.grammar"; sourceTree = "<group>"; };
+		D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserFactory.h; path = test/TDGrammarParserFactory.h; sourceTree = "<group>"; };
+		D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactory.m; path = test/TDGrammarParserFactory.m; sourceTree = "<group>"; };
+		D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserFactoryTest.h; path = test/TDGrammarParserFactoryTest.h; sourceTree = "<group>"; };
+		D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactoryTest.m; path = test/TDGrammarParserFactoryTest.m; sourceTree = "<group>"; };
+		D3DCB35C0EF5E52500DE5110 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = frameworks/OCMock.framework; sourceTree = "<group>"; };
+		D3DCB4C20EF6015300DE5110 /* json.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json.grammar; path = res/json.grammar; sourceTree = "<group>"; };
+		D3DCB51D0EF61F3000DE5110 /* TDOldGrammarParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDOldGrammarParserFactory.h; path = test/TDOldGrammarParserFactory.h; sourceTree = "<group>"; };
+		D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDOldGrammarParserFactory.m; path = test/TDOldGrammarParserFactory.m; sourceTree = "<group>"; };
+		D3DCB5230EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDOldGrammarParserFactoryTest.h; path = test/TDOldGrammarParserFactoryTest.h; sourceTree = "<group>"; };
+		D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDOldGrammarParserFactoryTest.m; path = test/TDOldGrammarParserFactoryTest.m; sourceTree = "<group>"; };
+		D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlighter.h; path = test/TDSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSyntaxHighlighter.m; path = test/TDSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
+		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
+		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
+		D3E788940E567E0A008C7D61 /* SRGSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParser.h; path = test/SRGSParser.h; sourceTree = "<group>"; };
+		D3E788950E567E0A008C7D61 /* SRGSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParser.m; path = test/SRGSParser.m; sourceTree = "<group>"; };
+		D3E78A150E574C99008C7D61 /* EBNFParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBNFParser.h; path = test/EBNFParser.h; sourceTree = "<group>"; };
+		D3E78A160E574C99008C7D61 /* EBNFParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParser.m; path = test/EBNFParser.m; sourceTree = "<group>"; };
+		D3E78A170E574C99008C7D61 /* EBNFParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EBNFParserTest.h; path = test/EBNFParserTest.h; sourceTree = "<group>"; };
+		D3E78A180E574C99008C7D61 /* EBNFParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EBNFParserTest.m; path = test/EBNFParserTest.m; sourceTree = "<group>"; };
+		D3EADD7F0E75E9CC00F78584 /* nasty.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nasty.html; path = res/nasty.html; sourceTree = "<group>"; };
+		D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHtmlSyntaxHighlighter.m; path = test/TDHtmlSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHtmlSyntaxHighlighter.h; path = test/TDHtmlSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D3F740B50EF8C38A00559B9F /* JSONAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAssembler.h; sourceTree = "<group>"; };
+		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
+		D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+TDParseKitAdditions.h"; path = "test/NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
+		D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TDParseKitAdditions.m"; path = "test/NSArray+TDParseKitAdditions.m"; sourceTree = "<group>"; };
+		D3F741360EF8E5B000559B9F /* css-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "css-old.grammar"; path = "test/css-old.grammar"; sourceTree = "<group>"; };
+		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
+		D3F741BD0EF9F28D00559B9F /* css2_1.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css2_1.grammar; path = res/css2_1.grammar; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E787A30E5661A9008C7D61 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940E0E2963FD00406085 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185020E520D3F0081B0DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
+				D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8770A411FBF005DD154 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */,
+				D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */,
+				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
+				D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* TDParseKit.framework */,
+				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
+				D33494100E2963FD00406085 /* DemoApp.app */,
+				D34185040E520D3F0081B0DC /* DebugApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* TODParseKit */ = {
+			isa = PBXGroup;
+			children = (
+				D36E98CB0E58C08F00496BD3 /* DebugApp */,
+				D334941B0E29641300406085 /* DemoApp */,
+				D3C7D8220A411F31005DD154 /* Tests */,
+				08FB77AEFE84172EC02AAC07 /* Framework */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = TODParseKit;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6060E60E71900A0803E /* TDParseKit.h */,
+				D3C7D8710A411F6B005DD154 /* io */,
+				D3C7D8720A411F81005DD154 /* parse */,
+				D3C7D8740A411F8E005DD154 /* tokens */,
+				D3E785F10E550F63008C7D61 /* chars */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D3DCB35C0EF5E52500DE5110 /* OCMock.framework */,
+				D36E9F860E5A795400496BD3 /* libxml2.dylib */,
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */,
+				D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */,
+				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
+				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
+				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		D318EAE30E2FD5B6009F47DF /* json */ = {
+			isa = PBXGroup;
+			children = (
+				D3E784BC0E53DA28008C7D61 /* apple-boss.json */,
+				D3B473840E48C9CF008AFBDD /* yahoo.json */,
+				D31FE5A10E60E5D500A0803E /* TDFastJsonParser.h */,
+				D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */,
+				D31FE5A30E60E5D500A0803E /* TDFastJsonParserTest.h */,
+				D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */,
+				D31FE5A50E60E5D500A0803E /* TDJsonParser.h */,
+				D31FE5A60E60E5D500A0803E /* TDJsonParser.m */,
+				D31FE5A70E60E5D500A0803E /* TDJsonParserTest.h */,
+				D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
+		D334941B0E29641300406085 /* DemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */,
+				D36E98E50E58C14000496BD3 /* main.m */,
+				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
+				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
+				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
+			);
+			name = DemoApp;
+			sourceTree = "<group>";
+		};
+		D341846A0E5209A60081B0DC /* tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6340E60E77600A0803E /* TDToken.h */,
+				D31FE6350E60E77600A0803E /* TDToken.m */,
+				D31FE6360E60E77600A0803E /* TDTokenizer.h */,
+				D31FE6370E60E77600A0803E /* TDTokenizer.m */,
+				D31FE6380E60E77600A0803E /* TDTokenizerState.h */,
+				D31FE6390E60E77600A0803E /* TDTokenizerState.m */,
+				D3656DC60EF260FC00226554 /* TDTokenArraySource.h */,
+				D3656DC70EF260FC00226554 /* TDTokenArraySource.m */,
+			);
+			name = tokenizer;
+			sourceTree = "<group>";
+		};
+		D34A1F400E54F6E800A4A0BF /* token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6940E60E85800A0803E /* TDLowercaseWord.h */,
+				D31FE6950E60E85800A0803E /* TDLowercaseWord.m */,
+				D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */,
+				D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */,
+				D31FE6980E60E85800A0803E /* TDReservedWord.h */,
+				D31FE6990E60E85800A0803E /* TDReservedWord.m */,
+				D31FE6960E60E85800A0803E /* TDNonReservedWord.h */,
+				D31FE6970E60E85800A0803E /* TDNonReservedWord.m */,
+			);
+			name = "token terminals";
+			sourceTree = "<group>";
+		};
+		D34A1F410E54F6F800A4A0BF /* states */ = {
+			isa = PBXGroup;
+			children = (
+				D32365200E92F327008CB5C4 /* TDScientificNumberState.h */,
+				D32365210E92F327008CB5C4 /* TDScientificNumberState.m */,
+				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
+				D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */,
+			);
+			name = states;
+			sourceTree = "<group>";
+		};
+		D34A20080E55FD5F00A4A0BF /* chars */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE58C0E60E5AC00A0803E /* TDCharacterAssemblyTest.h */,
+				D31FE58D0E60E5AC00A0803E /* TDCharacterAssemblyTest.m */,
+				D31FE58E0E60E5AC00A0803E /* TDCharTest.h */,
+				D31FE58F0E60E5AC00A0803E /* TDCharTest.m */,
+				D31FE5900E60E5AC00A0803E /* TDDigitTest.h */,
+				D31FE5910E60E5AC00A0803E /* TDDigitTest.m */,
+				D31FE5920E60E5AC00A0803E /* TDLetterTest.h */,
+				D31FE5930E60E5AC00A0803E /* TDLetterTest.m */,
+				D31FE5940E60E5AC00A0803E /* TDSpecificCharTest.h */,
+				D31FE5950E60E5AC00A0803E /* TDSpecificCharTest.m */,
+			);
+			name = chars;
+			sourceTree = "<group>";
+		};
+		D3541F870DFB105900429B4F /* states */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */,
+				D31FE6560E60E7AF00A0803E /* TDWhitespaceState.m */,
+				D31FE6570E60E7AF00A0803E /* TDWordState.h */,
+				D31FE6580E60E7AF00A0803E /* TDWordState.m */,
+				D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */,
+				D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */,
+				D31FE6490E60E7AF00A0803E /* TDNumberState.h */,
+				D31FE64A0E60E7AF00A0803E /* TDNumberState.m */,
+				D31FE6510E60E7AF00A0803E /* TDSlashState.h */,
+				D31FE6520E60E7AF00A0803E /* TDSlashState.m */,
+				D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */,
+				D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */,
+				D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */,
+				D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */,
+				D31FE6530E60E7AF00A0803E /* TDSymbolState.h */,
+				D31FE6540E60E7AF00A0803E /* TDSymbolState.m */,
+				D3541F890DFB108300429B4F /* symbol */,
+			);
+			name = states;
+			sourceTree = "<group>";
+		};
+		D3541F890DFB108300429B4F /* symbol */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */,
+				D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */,
+				D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */,
+				D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */,
+			);
+			name = symbol;
+			sourceTree = "<group>";
+		};
+		D35420EC0DFB275400429B4F /* tokenizer states */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE5770E60E58C00A0803E /* TDNumberStateTest.h */,
+				D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */,
+				D31FE5790E60E58C00A0803E /* TDQuoteStateTest.h */,
+				D31FE57A0E60E58C00A0803E /* TDQuoteStateTest.m */,
+				D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */,
+				D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */,
+				D31FE57F0E60E58C00A0803E /* TDSymbolStateTest.h */,
+				D31FE5800E60E58C00A0803E /* TDSymbolStateTest.m */,
+				D31FE5810E60E58C00A0803E /* TDWhitespaceStateTest.h */,
+				D31FE5820E60E58C00A0803E /* TDWhitespaceStateTest.m */,
+				D31FE5830E60E58C00A0803E /* TDWordStateTest.h */,
+				D31FE5840E60E58C00A0803E /* TDWordStateTest.m */,
+				D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */,
+				D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */,
+			);
+			name = "tokenizer states";
+			sourceTree = "<group>";
+		};
+		D36568A40EEF9FB600226554 /* plist */ = {
+			isa = PBXGroup;
+			children = (
+				D36568A50EEF9FE900226554 /* TDPlistParser.h */,
+				D36568A60EEF9FE900226554 /* TDPlistParser.m */,
+				D36568A80EEFA05300226554 /* TDPlistParserTest.h */,
+				D36568A90EEFA05300226554 /* TDPlistParserTest.m */,
+			);
+			name = plist;
+			sourceTree = "<group>";
+		};
+		D36E94F40E57865500496BD3 /* xpath */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE5EF0E60E6B500A0803E /* TDNCName.h */,
+				D31FE6DF0E60EE2500A0803E /* TDNCName.m */,
+				D31FE5F00E60E6B500A0803E /* TDNCNameState.h */,
+				D31FE5F10E60E6B500A0803E /* TDNCNameState.m */,
+				D36E95440E578ECC00496BD3 /* XPathParser.h */,
+				D36E95450E578ECC00496BD3 /* XPathParser.m */,
+				D36E97AE0E589DAE00496BD3 /* XPathAssembler.h */,
+				D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */,
+				D36E98200E58A3A800496BD3 /* XPathContext.h */,
+				D36E98210E58A3A800496BD3 /* XPathContext.m */,
+				D36E95D60E57B08400496BD3 /* XPathParserTest.h */,
+				D36E95D70E57B08400496BD3 /* XPathParserTest.m */,
+			);
+			name = xpath;
+			sourceTree = "<group>";
+		};
+		D36E98CB0E58C08F00496BD3 /* DebugApp */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */,
+				D36E98DF0E58C12800496BD3 /* main.m */,
+				D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */,
+				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
+				D3F740B50EF8C38A00559B9F /* JSONAssembler.h */,
+				D3F740B60EF8C38A00559B9F /* JSONAssembler.m */,
+				D36E98DE0E58C12800496BD3 /* DebugAppMainMenu.xib */,
+			);
+			name = DebugApp;
+			path = debugapp;
+			sourceTree = "<group>";
+		};
+		D36EA1400E5CF19F00496BD3 /* xml token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE5B90E60E69E00A0803E /* TDXmlAttribute.h */,
+				D31FE5BA0E60E69E00A0803E /* TDXmlAttribute.m */,
+				D31FE5BB0E60E69E00A0803E /* TDXmlCdata.h */,
+				D31FE5BC0E60E69E00A0803E /* TDXmlCdata.m */,
+				D31FE5BD0E60E69E00A0803E /* TDXmlComment.h */,
+				D31FE5BE0E60E69E00A0803E /* TDXmlComment.m */,
+				D31FE5BF0E60E69E00A0803E /* TDXmlDecl.h */,
+				D31FE5C00E60E69E00A0803E /* TDXmlDecl.m */,
+				D31FE5C10E60E69E00A0803E /* TDXmlDoctype.h */,
+				D31FE5C20E60E69E00A0803E /* TDXmlDoctype.m */,
+				D31FE5C30E60E69E00A0803E /* TDXmlDocument.h */,
+				D31FE5C40E60E69E00A0803E /* TDXmlDocument.m */,
+				D31FE5C50E60E69E00A0803E /* TDXmlEndEntity.h */,
+				D31FE5C60E60E69E00A0803E /* TDXmlEndEntity.m */,
+				D31FE5C70E60E69E00A0803E /* TDXmlEndTag.h */,
+				D31FE5C80E60E69E00A0803E /* TDXmlEndTag.m */,
+				D31FE5C90E60E69E00A0803E /* TDXmlEntity.h */,
+				D31FE5CA0E60E69E00A0803E /* TDXmlEntity.m */,
+				D31FE5CB0E60E69E00A0803E /* TDXmlEntityRef.h */,
+				D31FE5CC0E60E69E00A0803E /* TDXmlEntityRef.m */,
+				D31FE5CD0E60E69E00A0803E /* TDXmlFragment.h */,
+				D31FE5CE0E60E69E00A0803E /* TDXmlFragment.m */,
+				D31FE5CF0E60E69E00A0803E /* TDXmlNotation.h */,
+				D31FE5D00E60E69E00A0803E /* TDXmlNotation.m */,
+				D31FE5D10E60E69E00A0803E /* TDXmlProcessingInstruction.h */,
+				D31FE5D20E60E69E00A0803E /* TDXmlProcessingInstruction.m */,
+				D31FE5D30E60E69E00A0803E /* TDXmlSignificantWhitespace.h */,
+				D31FE5D40E60E69E00A0803E /* TDXmlSignificantWhitespace.m */,
+				D31FE5D50E60E69E00A0803E /* TDXmlStartTag.h */,
+				D31FE5D60E60E69E00A0803E /* TDXmlStartTag.m */,
+				D31FE5D70E60E69E00A0803E /* TDXmlTerminal.h */,
+				D31FE5D80E60E69E00A0803E /* TDXmlTerminal.m */,
+				D31FE5D90E60E69E00A0803E /* TDXmlText.h */,
+				D31FE5DA0E60E69E00A0803E /* TDXmlText.m */,
+				D31FE5DB0E60E69E00A0803E /* TDXmlWhitespace.h */,
+				D31FE5DC0E60E69E00A0803E /* TDXmlWhitespace.m */,
+			);
+			name = "xml token terminals";
+			sourceTree = "<group>";
+		};
+		D36EA1440E5CF38100496BD3 /* tokenizer */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE5B30E60E66600A0803E /* TDXmlToken.h */,
+				D31FE5B40E60E66600A0803E /* TDXmlToken.m */,
+				D31FE5B50E60E66600A0803E /* TDXmlTokenizer.h */,
+				D31FE5B60E60E66600A0803E /* TDXmlTokenizer.m */,
+			);
+			name = tokenizer;
+			sourceTree = "<group>";
+		};
+		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
+			isa = PBXGroup;
+			children = (
+				D3DCB5280EF61FCF00DE5110 /* old */,
+				D385FD6B0F05A99900DB2946 /* mini_css.grammar */,
+				D385FA240F04993500DB2946 /* json.css */,
+				D3DCB4C20EF6015300DE5110 /* json.grammar */,
+				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
+				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
+				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
+				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
+				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
+				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
+				D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */,
+				D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */,
+				D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */,
+				D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */,
+				D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */,
+				D385F9880F046FE900DB2946 /* TDGenericAssembler.h */,
+				D385F9890F046FE900DB2946 /* TDGenericAssembler.m */,
+				D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */,
+				D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */,
+				D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */,
+				D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */,
+			);
+			name = grammar;
+			sourceTree = "<group>";
+		};
+		D3C7D8220A411F31005DD154 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */,
+				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
+				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
+				D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */,
+				D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */,
+				D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */,
+				D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */,
+				D3D63F570E2A8548009BF5CD /* parse */,
+				D3D63F560E2A8538009BF5CD /* tokens */,
+				D34A20080E55FD5F00A4A0BF /* chars */,
+				D3C85C770E63B400000445FD /* arithmetic */,
+				D3E786030E5510AE008C7D61 /* regex */,
+				D3C0309C0EF34DD200C5ABEB /* grammar */,
+				D3E788890E567B6D008C7D61 /* ebnf */,
+				D36568A40EEF9FB600226554 /* plist */,
+				D318EAE30E2FD5B6009F47DF /* json */,
+				D3D647CE0E2C7569009BF5CD /* xml */,
+				D36E94F40E57865500496BD3 /* xpath */,
+				D3E788900E567DDA008C7D61 /* srgs */,
+				D3C863240E67C249000445FD /* syntax highlight */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		D3C7D8710A411F6B005DD154 /* io */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6080E60E72500A0803E /* TDReader.h */,
+				D31FE6090E60E72500A0803E /* TDReader.m */,
+			);
+			name = io;
+			sourceTree = "<group>";
+		};
+		D3C7D8720A411F81005DD154 /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE60C0E60E73300A0803E /* TDAssembly.h */,
+				D31FE60D0E60E73300A0803E /* TDAssembly.m */,
+				D3D63EA90E2A7A5C009BF5CD /* parsers */,
+			);
+			name = parse;
+			sourceTree = "<group>";
+		};
+		D3C7D8740A411F8E005DD154 /* tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6300E60E76500A0803E /* TDTokenAssembly.h */,
+				D31FE6310E60E76500A0803E /* TDTokenAssembly.m */,
+				D341846A0E5209A60081B0DC /* tokenizer */,
+				D3541F870DFB105900429B4F /* states */,
+				D3D642270E2AC426009BF5CD /* token terminals */,
+				D3E7842E0E53BE23008C7D61 /* ext */,
+			);
+			name = tokens;
+			sourceTree = "<group>";
+		};
+		D3C85C770E63B400000445FD /* arithmetic */ = {
+			isa = PBXGroup;
+			children = (
+				D3C85C790E63B438000445FD /* TDArithmeticParser.h */,
+				D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */,
+				D3C85C7E0E63B9E9000445FD /* TDArithmeticParserTest.h */,
+				D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */,
+			);
+			name = arithmetic;
+			sourceTree = "<group>";
+		};
+		D3C863240E67C249000445FD /* syntax highlight */ = {
+			isa = PBXGroup;
+			children = (
+				D3C863250E67C255000445FD /* html */,
+			);
+			name = "syntax highlight";
+			sourceTree = "<group>";
+		};
+		D3C863250E67C255000445FD /* html */ = {
+			isa = PBXGroup;
+			children = (
+				D38DD9E70EC29F260070BC4D /* nyt.html */,
+				D3B69D310E80249900D70C41 /* nonascii.html */,
+				D3EADD7F0E75E9CC00F78584 /* nasty.html */,
+				D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */,
+				D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */,
+			);
+			name = html;
+			sourceTree = "<group>";
+		};
+		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6160E60E75300A0803E /* TDParser.h */,
+				D31FE6170E60E75300A0803E /* TDParser.m */,
+				D31FE6120E60E75300A0803E /* TDCollectionParser.h */,
+				D31FE6130E60E75300A0803E /* TDCollectionParser.m */,
+				D31FE6100E60E75300A0803E /* TDAlternation.h */,
+				D31FE6110E60E75300A0803E /* TDAlternation.m */,
+				D31FE6180E60E75300A0803E /* TDRepetition.h */,
+				D31FE6190E60E75300A0803E /* TDRepetition.m */,
+				D31FE61A0E60E75300A0803E /* TDSequence.h */,
+				D31FE61B0E60E75300A0803E /* TDSequence.m */,
+				D31FE61E0E60E75300A0803E /* TDTrack.h */,
+				D31FE61F0E60E75300A0803E /* TDTrack.m */,
+				D331B5A10EA5293A0020BF01 /* TDTrackException.h */,
+				D331B5A20EA5293A0020BF01 /* TDTrackException.m */,
+				D31FE6140E60E75300A0803E /* TDEmpty.h */,
+				D31FE6150E60E75300A0803E /* TDEmpty.m */,
+				D31FE61C0E60E75300A0803E /* TDTerminal.h */,
+				D31FE61D0E60E75300A0803E /* TDTerminal.m */,
+			);
+			name = parsers;
+			sourceTree = "<group>";
+		};
+		D3D63F560E2A8538009BF5CD /* tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE5710E60E55700A0803E /* TDReaderTest.h */,
+				D31FE5720E60E55700A0803E /* TDReaderTest.m */,
+				D31FE5730E60E55700A0803E /* TDTokenizerTest.h */,
+				D31FE5740E60E55700A0803E /* TDTokenizerTest.m */,
+				D38205BC0EEE48EE004340DD /* TDTokenTest.h */,
+				D38205BD0EEE48EE004340DD /* TDTokenTest.m */,
+				D3656DFC0EF2620E00226554 /* TDTokenArraySourceTest.h */,
+				D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */,
+				D35420EC0DFB275400429B4F /* tokenizer states */,
+			);
+			name = tokens;
+			sourceTree = "<group>";
+		};
+		D3D63F570E2A8548009BF5CD /* parse */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE54D0E60E50800A0803E /* TDAlternationTest.h */,
+				D31FE54E0E60E50800A0803E /* TDAlternationTest.m */,
+				D31FE54F0E60E50800A0803E /* TDLiteralTest.h */,
+				D31FE5500E60E50800A0803E /* TDLiteralTest.m */,
+				D31FE5510E60E50800A0803E /* TDParserTest.h */,
+				D31FE5520E60E50800A0803E /* TDParserTest.m */,
+				D31FE5530E60E50800A0803E /* TDRepetitionTest.h */,
+				D31FE5540E60E50800A0803E /* TDRepetitionTest.m */,
+				D31FE5550E60E50800A0803E /* TDReservedWordTest.h */,
+				D31FE5560E60E50800A0803E /* TDReservedWordTest.m */,
+				D31FE5570E60E50800A0803E /* TDRobotCommandTest.h */,
+				D31FE5580E60E50800A0803E /* TDRobotCommandTest.m */,
+				D31FE5590E60E50800A0803E /* TDSequenceTest.h */,
+				D31FE55A0E60E50800A0803E /* TDSequenceTest.m */,
+				D31FE55B0E60E50800A0803E /* TDSymbolTest.h */,
+				D31FE55C0E60E50800A0803E /* TDSymbolTest.m */,
+				D31FE55D0E60E50800A0803E /* TDTokenAssemblyTest.h */,
+				D31FE55E0E60E50800A0803E /* TDTokenAssemblyTest.m */,
+				D31FE55F0E60E50800A0803E /* TDTrackTest.h */,
+				D31FE5600E60E50800A0803E /* TDTrackTest.m */,
+				D31FE5610E60E50800A0803E /* TDUppercaseWordTest.h */,
+				D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */,
+				D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */,
+				D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */,
+			);
+			name = parse;
+			sourceTree = "<group>";
+		};
+		D3D642270E2AC426009BF5CD /* token terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6800E60E80600A0803E /* TDWord.h */,
+				D31FE6810E60E80600A0803E /* TDWord.m */,
+				D31FE67C0E60E80600A0803E /* TDQuotedString.h */,
+				D31FE67D0E60E80600A0803E /* TDQuotedString.m */,
+				D31FE67A0E60E80600A0803E /* TDNum.h */,
+				D31FE67B0E60E80600A0803E /* TDNum.m */,
+				D31FE67E0E60E80600A0803E /* TDSymbol.h */,
+				D31FE67F0E60E80600A0803E /* TDSymbol.m */,
+				D31FE6780E60E80600A0803E /* TDLiteral.h */,
+				D31FE6790E60E80600A0803E /* TDLiteral.m */,
+				D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */,
+				D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */,
+				D3D6E4E10EF625D700292EE6 /* TDAny.h */,
+				D3D6E4E20EF625D700292EE6 /* TDAny.m */,
+			);
+			name = "token terminals";
+			sourceTree = "<group>";
+		};
+		D3D647CE0E2C7569009BF5CD /* xml */ = {
+			isa = PBXGroup;
+			children = (
+				D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */,
+				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
+				D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */,
+				D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */,
+				D31FE5AF0E60E64900A0803E /* TDXmlTokenizerTest.h */,
+				D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */,
+				D36EA1440E5CF38100496BD3 /* tokenizer */,
+				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
+				D3521F520E5FA1B0009681F9 /* XMLReader.h */,
+				D3521F530E5FA1B0009681F9 /* XMLReader.m */,
+				D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */,
+				D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */,
+				D31FE5F20E60E6B500A0803E /* TDXmlName.h */,
+				D31FE5F30E60E6B500A0803E /* TDXmlName.m */,
+				D31FE5F40E60E6B500A0803E /* TDXmlNameState.h */,
+				D31FE5F50E60E6B500A0803E /* TDXmlNameState.m */,
+				D31FE5F60E60E6B500A0803E /* TDXmlNameTest.h */,
+				D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */,
+				D31FE5F80E60E6B500A0803E /* TDXmlNmtoken.h */,
+				D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */,
+				D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */,
+				D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */,
+			);
+			name = xml;
+			sourceTree = "<group>";
+		};
+		D3DCB5280EF61FCF00DE5110 /* old */ = {
+			isa = PBXGroup;
+			children = (
+				D3D6E65C0EF654DE00292EE6 /* json-old.grammar */,
+				D3F741360EF8E5B000559B9F /* css-old.grammar */,
+				D3DCB51D0EF61F3000DE5110 /* TDOldGrammarParserFactory.h */,
+				D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */,
+				D3DCB5230EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.h */,
+				D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */,
+			);
+			name = old;
+			sourceTree = "<group>";
+		};
+		D3E7842E0E53BE23008C7D61 /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				D34A1F410E54F6F800A4A0BF /* states */,
+				D34A1F400E54F6E800A4A0BF /* token terminals */,
+			);
+			name = ext;
+			sourceTree = "<group>";
+		};
+		D3E785F10E550F63008C7D61 /* chars */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */,
+				D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */,
+				D3E7861F0E55363F008C7D61 /* char terminals */,
+			);
+			name = chars;
+			sourceTree = "<group>";
+		};
+		D3E786030E5510AE008C7D61 /* regex */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE59B0E60E5C000A0803E /* TDRegularParser.h */,
+				D31FE59C0E60E5C000A0803E /* TDRegularParser.m */,
+				D31FE59D0E60E5C000A0803E /* TDRegularParserTest.h */,
+				D31FE59E0E60E5C000A0803E /* TDRegularParserTest.m */,
+			);
+			name = regex;
+			sourceTree = "<group>";
+		};
+		D3E7861F0E55363F008C7D61 /* char terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D31FE6A80E60E87D00A0803E /* TDChar.h */,
+				D31FE6A90E60E87D00A0803E /* TDChar.m */,
+				D31FE6AA0E60E87D00A0803E /* TDDigit.h */,
+				D31FE6AB0E60E87D00A0803E /* TDDigit.m */,
+				D31FE6AC0E60E87D00A0803E /* TDLetter.h */,
+				D31FE6AD0E60E87D00A0803E /* TDLetter.m */,
+				D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */,
+				D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */,
+			);
+			name = "char terminals";
+			sourceTree = "<group>";
+		};
+		D3E788890E567B6D008C7D61 /* ebnf */ = {
+			isa = PBXGroup;
+			children = (
+				D3E78A150E574C99008C7D61 /* EBNFParser.h */,
+				D3E78A160E574C99008C7D61 /* EBNFParser.m */,
+				D3E78A170E574C99008C7D61 /* EBNFParserTest.h */,
+				D3E78A180E574C99008C7D61 /* EBNFParserTest.m */,
+			);
+			name = ebnf;
+			sourceTree = "<group>";
+		};
+		D3E788900E567DDA008C7D61 /* srgs */ = {
+			isa = PBXGroup;
+			children = (
+				D3E788940E567E0A008C7D61 /* SRGSParser.h */,
+				D3E788950E567E0A008C7D61 /* SRGSParser.m */,
+				D3E788910E567DFD008C7D61 /* SRGSParserTest.h */,
+				D3E788920E567DFD008C7D61 /* SRGSParserTest.m */,
+				D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */,
+				D36EA0E20E5BE61D00496BD3 /* example-1.srgs */,
+			);
+			name = srgs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */,
+				D31FE60A0E60E72500A0803E /* TDReader.h in Headers */,
+				D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */,
+				D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */,
+				D31FE6220E60E75300A0803E /* TDCollectionParser.h in Headers */,
+				D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */,
+				D31FE6260E60E75300A0803E /* TDParser.h in Headers */,
+				D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */,
+				D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */,
+				D31FE62C0E60E75300A0803E /* TDTerminal.h in Headers */,
+				D31FE62E0E60E75300A0803E /* TDTrack.h in Headers */,
+				D31FE6320E60E76500A0803E /* TDTokenAssembly.h in Headers */,
+				D31FE63A0E60E77600A0803E /* TDToken.h in Headers */,
+				D31FE63C0E60E77600A0803E /* TDTokenizer.h in Headers */,
+				D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */,
+				D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */,
+				D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */,
+				D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */,
+				D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */,
+				D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */,
+				D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */,
+				D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */,
+				D31FE66B0E60E7AF00A0803E /* TDWordState.h in Headers */,
+				D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */,
+				D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */,
+				D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */,
+				D31FE6840E60E80600A0803E /* TDNum.h in Headers */,
+				D31FE6860E60E80600A0803E /* TDQuotedString.h in Headers */,
+				D31FE6880E60E80600A0803E /* TDSymbol.h in Headers */,
+				D31FE68A0E60E80600A0803E /* TDWord.h in Headers */,
+				D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */,
+				D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */,
+				D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */,
+				D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */,
+				D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */,
+				D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */,
+				D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */,
+				D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */,
+				D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */,
+				D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */,
+				D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */,
+				D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */,
+				D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */,
+				D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */,
+				D3656DD60EF2614C00226554 /* TDTokenArraySource.h in Headers */,
+				D3D6E4E30EF625D700292EE6 /* TDAny.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* TDParseKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TDParseKit;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = TODParseKit;
+			productReference = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D334940F0E2963FD00406085 /* DemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D33494150E2963FE00406085 /* Build configuration list for PBXNativeTarget "DemoApp" */;
+			buildPhases = (
+				D334940C0E2963FD00406085 /* Resources */,
+				D334940D0E2963FD00406085 /* Sources */,
+				D334940E0E2963FD00406085 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D33494A00E296AA900406085 /* PBXTargetDependency */,
+			);
+			name = DemoApp;
+			productName = DemoApp;
+			productReference = D33494100E2963FD00406085 /* DemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D34185030E520D3F0081B0DC /* DebugApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D34185090E520D410081B0DC /* Build configuration list for PBXNativeTarget "DebugApp" */;
+			buildPhases = (
+				D34185000E520D3F0081B0DC /* Resources */,
+				D34185010E520D3F0081B0DC /* Sources */,
+				D34185020E520D3F0081B0DC /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D34185100E520D6F0081B0DC /* PBXTargetDependency */,
+			);
+			name = DebugApp;
+			productName = TestApp;
+			productReference = D34185040E520D3F0081B0DC /* DebugApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D3C7D8790A411FBF005DD154 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				D3C7D8750A411FBF005DD154 /* Resources */,
+				D3C7D8760A411FBF005DD154 /* Sources */,
+				D3DCB3880EF5E65100DE5110 /* Copy Frameworks */,
+				D3C7D8770A411FBF005DD154 /* Frameworks */,
+				D3C7D8780A411FBF005DD154 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D31FE7180E60F24700A0803E /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = D3C7D87A0A411FBF005DD154 /* Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TDParseKit" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* TODParseKit */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* TDParseKit */,
+				D3C7D8790A411FBF005DD154 /* Tests */,
+				D334940F0E2963FD00406085 /* DemoApp */,
+				D34185030E520D3F0081B0DC /* DebugApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940C0E2963FD00406085 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E98F80E58C1A000496BD3 /* DemoAppMainMenu.xib in Resources */,
+				D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */,
+				D3D6E65E0EF654E500292EE6 /* json-old.grammar in Resources */,
+				D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */,
+				D3D01CAB0EFDB8A000C24DDE /* json_with_discards.grammar in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185000E520D3F0081B0DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */,
+				D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */,
+				D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */,
+				D3E785560E53FB54008C7D61 /* apple-boss.json in Resources */,
+				D36E98E10E58C12800496BD3 /* DebugAppMainMenu.xib in Resources */,
+				D3EADD810E75E9CC00F78584 /* nasty.html in Resources */,
+				D3B69D320E80249900D70C41 /* nonascii.html in Resources */,
+				D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */,
+				D3D6E65F0EF654E600292EE6 /* json-old.grammar in Resources */,
+				D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */,
+				D3D01CAC0EFDB8A100C24DDE /* json_with_discards.grammar in Resources */,
+				D385FA260F04993500DB2946 /* json.css in Resources */,
+				D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8750A411FBF005DD154 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */,
+				D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */,
+				D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */,
+				D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */,
+				D36EA0E30E5BE61D00496BD3 /* example-1.srgs in Resources */,
+				D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */,
+				D3EADD800E75E9CC00F78584 /* nasty.html in Resources */,
+				D3B69D330E80249900D70C41 /* nonascii.html in Resources */,
+				D38DD9E80EC29F260070BC4D /* nyt.html in Resources */,
+				D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */,
+				D3D6E65D0EF654DE00292EE6 /* json-old.grammar in Resources */,
+				D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */,
+				D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */,
+				D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */,
+				D3D01CAA0EFDB89900C24DDE /* json_with_discards.grammar in Resources */,
+				D385FA250F04993500DB2946 /* json.css in Resources */,
+				D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3C7D8780A411FBF005DD154 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D31FE60B0E60E72500A0803E /* TDReader.m in Sources */,
+				D31FE60F0E60E73300A0803E /* TDAssembly.m in Sources */,
+				D31FE6210E60E75300A0803E /* TDAlternation.m in Sources */,
+				D31FE6230E60E75300A0803E /* TDCollectionParser.m in Sources */,
+				D31FE6250E60E75300A0803E /* TDEmpty.m in Sources */,
+				D31FE6270E60E75300A0803E /* TDParser.m in Sources */,
+				D31FE6290E60E75300A0803E /* TDRepetition.m in Sources */,
+				D31FE62B0E60E75300A0803E /* TDSequence.m in Sources */,
+				D31FE62D0E60E75300A0803E /* TDTerminal.m in Sources */,
+				D31FE62F0E60E75300A0803E /* TDTrack.m in Sources */,
+				D31FE6330E60E76500A0803E /* TDTokenAssembly.m in Sources */,
+				D31FE63B0E60E77600A0803E /* TDToken.m in Sources */,
+				D31FE63D0E60E77600A0803E /* TDTokenizer.m in Sources */,
+				D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */,
+				D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */,
+				D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */,
+				D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */,
+				D31FE6640E60E7AF00A0803E /* TDSlashStarState.m in Sources */,
+				D31FE6660E60E7AF00A0803E /* TDSlashState.m in Sources */,
+				D31FE6680E60E7AF00A0803E /* TDSymbolState.m in Sources */,
+				D31FE66A0E60E7AF00A0803E /* TDWhitespaceState.m in Sources */,
+				D31FE66C0E60E7AF00A0803E /* TDWordState.m in Sources */,
+				D31FE6720E60E7E100A0803E /* TDSymbolNode.m in Sources */,
+				D31FE6740E60E7E100A0803E /* TDSymbolRootNode.m in Sources */,
+				D31FE6830E60E80600A0803E /* TDLiteral.m in Sources */,
+				D31FE6850E60E80600A0803E /* TDNum.m in Sources */,
+				D31FE6870E60E80600A0803E /* TDQuotedString.m in Sources */,
+				D31FE6890E60E80600A0803E /* TDSymbol.m in Sources */,
+				D31FE68B0E60E80600A0803E /* TDWord.m in Sources */,
+				D31FE68F0E60E82300A0803E /* TDCaseInsensitiveLiteral.m in Sources */,
+				D31FE6930E60E84400A0803E /* TDWordOrReservedState.m in Sources */,
+				D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */,
+				D31FE69F0E60E85800A0803E /* TDNonReservedWord.m in Sources */,
+				D31FE6A10E60E85800A0803E /* TDReservedWord.m in Sources */,
+				D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */,
+				D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */,
+				D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */,
+				D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */,
+				D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */,
+				D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */,
+				D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */,
+				D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */,
+				D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */,
+				D3D6E4E40EF625D700292EE6 /* TDAny.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D334940D0E2963FD00406085 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */,
+				D36E98E80E58C14000496BD3 /* main.m in Sources */,
+				D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
+				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
+				D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */,
+				D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
+				D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D34185010E520D3F0081B0DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */,
+				D31FE7420E60F40900A0803E /* XPathContext.m in Sources */,
+				D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */,
+				D31FE7340E60F34600A0803E /* XPathParser.m in Sources */,
+				D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */,
+				D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */,
+				D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */,
+				D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */,
+				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
+				D36E98E20E58C12800496BD3 /* main.m in Sources */,
+				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
+				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
+				D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */,
+				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
+				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
+				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
+				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
+				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3C7D8760A411FBF005DD154 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3E788930E567DFD008C7D61 /* SRGSParserTest.m in Sources */,
+				D3E788960E567E0A008C7D61 /* SRGSParser.m in Sources */,
+				D3E78A190E574C99008C7D61 /* EBNFParser.m in Sources */,
+				D3E78A1A0E574C99008C7D61 /* EBNFParserTest.m in Sources */,
+				D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */,
+				D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */,
+				D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */,
+				D36E98220E58A3A800496BD3 /* XPathContext.m in Sources */,
+				D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */,
+				D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */,
+				D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */,
+				D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */,
+				D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */,
+				D31FE5650E60E50800A0803E /* TDParserTest.m in Sources */,
+				D31FE5660E60E50800A0803E /* TDRepetitionTest.m in Sources */,
+				D31FE5670E60E50800A0803E /* TDReservedWordTest.m in Sources */,
+				D31FE5680E60E50800A0803E /* TDRobotCommandTest.m in Sources */,
+				D31FE5690E60E50800A0803E /* TDSequenceTest.m in Sources */,
+				D31FE56A0E60E50800A0803E /* TDSymbolTest.m in Sources */,
+				D31FE56B0E60E50800A0803E /* TDTokenAssemblyTest.m in Sources */,
+				D31FE56C0E60E50800A0803E /* TDTrackTest.m in Sources */,
+				D31FE56D0E60E50800A0803E /* TDUppercaseWordTest.m in Sources */,
+				D31FE5750E60E55700A0803E /* TDReaderTest.m in Sources */,
+				D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */,
+				D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */,
+				D31FE5860E60E58C00A0803E /* TDQuoteStateTest.m in Sources */,
+				D31FE5880E60E58C00A0803E /* TDSlashStateTest.m in Sources */,
+				D31FE5890E60E58C00A0803E /* TDSymbolStateTest.m in Sources */,
+				D31FE58A0E60E58C00A0803E /* TDWhitespaceStateTest.m in Sources */,
+				D31FE58B0E60E58C00A0803E /* TDWordStateTest.m in Sources */,
+				D31FE5960E60E5AC00A0803E /* TDCharacterAssemblyTest.m in Sources */,
+				D31FE5970E60E5AC00A0803E /* TDCharTest.m in Sources */,
+				D31FE5980E60E5AC00A0803E /* TDDigitTest.m in Sources */,
+				D31FE5990E60E5AC00A0803E /* TDLetterTest.m in Sources */,
+				D31FE59A0E60E5AC00A0803E /* TDSpecificCharTest.m in Sources */,
+				D31FE59F0E60E5C000A0803E /* TDRegularParser.m in Sources */,
+				D31FE5A00E60E5C000A0803E /* TDRegularParserTest.m in Sources */,
+				D31FE5A90E60E5D500A0803E /* TDFastJsonParser.m in Sources */,
+				D31FE5AA0E60E5D500A0803E /* TDFastJsonParserTest.m in Sources */,
+				D31FE5AB0E60E5D500A0803E /* TDJsonParser.m in Sources */,
+				D31FE5AC0E60E5D500A0803E /* TDJsonParserTest.m in Sources */,
+				D31FE5B10E60E64900A0803E /* TDXmlTokenAssembly.m in Sources */,
+				D31FE5B20E60E64900A0803E /* TDXmlTokenizerTest.m in Sources */,
+				D31FE5B70E60E66600A0803E /* TDXmlToken.m in Sources */,
+				D31FE5B80E60E66600A0803E /* TDXmlTokenizer.m in Sources */,
+				D31FE5DD0E60E69E00A0803E /* TDXmlAttribute.m in Sources */,
+				D31FE5DE0E60E69E00A0803E /* TDXmlCdata.m in Sources */,
+				D31FE5DF0E60E69E00A0803E /* TDXmlComment.m in Sources */,
+				D31FE5E00E60E69E00A0803E /* TDXmlDecl.m in Sources */,
+				D31FE5E10E60E69E00A0803E /* TDXmlDoctype.m in Sources */,
+				D31FE5E20E60E69E00A0803E /* TDXmlDocument.m in Sources */,
+				D31FE5E30E60E69E00A0803E /* TDXmlEndEntity.m in Sources */,
+				D31FE5E40E60E69E00A0803E /* TDXmlEndTag.m in Sources */,
+				D31FE5E50E60E69E00A0803E /* TDXmlEntity.m in Sources */,
+				D31FE5E60E60E69E00A0803E /* TDXmlEntityRef.m in Sources */,
+				D31FE5E70E60E69E00A0803E /* TDXmlFragment.m in Sources */,
+				D31FE5E80E60E69E00A0803E /* TDXmlNotation.m in Sources */,
+				D31FE5E90E60E69E00A0803E /* TDXmlProcessingInstruction.m in Sources */,
+				D31FE5EA0E60E69E00A0803E /* TDXmlSignificantWhitespace.m in Sources */,
+				D31FE5EB0E60E69E00A0803E /* TDXmlStartTag.m in Sources */,
+				D31FE5EC0E60E69E00A0803E /* TDXmlTerminal.m in Sources */,
+				D31FE5ED0E60E69E00A0803E /* TDXmlText.m in Sources */,
+				D31FE5EE0E60E69E00A0803E /* TDXmlWhitespace.m in Sources */,
+				D31FE5FC0E60E6B500A0803E /* TDNCNameState.m in Sources */,
+				D31FE5FD0E60E6B500A0803E /* TDXmlName.m in Sources */,
+				D31FE5FE0E60E6B500A0803E /* TDXmlNameState.m in Sources */,
+				D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */,
+				D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */,
+				D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */,
+				D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */,
+				D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */,
+				D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */,
+				D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */,
+				D3EADD8E0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */,
+				D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */,
+				D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */,
+				D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */,
+				D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */,
+				D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */,
+				D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */,
+				D3DCB2780EF4F77700DE5110 /* TDGrammarParserFactory.m in Sources */,
+				D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */,
+				D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
+				D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */,
+				D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
+				D385F98E0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
+				D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */,
+				D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */,
+				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
+				D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D31FE7180E60F24700A0803E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			targetProxy = D31FE7170E60F24700A0803E /* PBXContainerItemProxy */;
+		};
+		D33494A00E296AA900406085 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			targetProxy = D334949F0E296AA900406085 /* PBXContainerItemProxy */;
+		};
+		D34185100E520D6F0081B0DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			targetProxy = D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GENERATE_PROFILING_CODE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LLVM_LTO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
+				PRODUCT_NAME = TDParseKit;
+				SDKROOT = "";
+				WARNING_CFLAGS = (
+					"-Wstrict-selector-match",
+					"-Wundeclared-selector",
+				);
+				WRAPPER_EXTENSION = framework;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "$(TDPARSEKIT_FRAMEWORK_TARGET_PATH)";
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				LLVM_LTO = YES;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+				);
+				PRODUCT_NAME = TDParseKit;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				TDPARSEKIT_FRAMEWORK_TARGET_PATH = "@executable_path/../Frameworks";
+				WARNING_CFLAGS = (
+					"-Wstrict-selector-match",
+					"-Wundeclared-selector",
+				);
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Release;
+		};
+		D33494130E2963FE00406085 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DemoApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		D33494140E2963FE00406085 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DemoApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		D34185070E520D410081B0DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
+				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DebugApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+			};
+			name = Debug;
+		};
+		D34185080E520D410081B0DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
+				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = DebugApp;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		D3C7D87D0A411FC0005DD154 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(NATIVE_ARCH)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/frameworks\"";
+				FRAMEWORK_SEARCH_PATH_DEBUG_BUILD = "\"$(SRCROOT)/build/Debug\"";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/src";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = "";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/src";
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		D3C7D87E0A411FC0005DD154 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+					"$(DEVELOPER_FRAMEWORKS_DIR_QUOTED)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"/Library/Frameworks\"";
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/frameworks\"";
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
+				INFOPLIST_FILE = "Tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				LIBXML_PATH = "\"/usr/include/libxml2/\"";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				WARNING_CFLAGS = "";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "TDParseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D33494150E2963FE00406085 /* Build configuration list for PBXNativeTarget "DemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D33494130E2963FE00406085 /* Debug */,
+				D33494140E2963FE00406085 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D34185090E520D410081B0DC /* Build configuration list for PBXNativeTarget "DebugApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D34185070E520D410081B0DC /* Debug */,
+				D34185080E520D410081B0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3C7D87D0A411FC0005DD154 /* Debug */,
+				D3C7D87E0A411FC0005DD154 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
