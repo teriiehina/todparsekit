@@ -15,13 +15,25 @@
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
+@interface TDRepetition ()
+@property (nonatomic, readwrite, retain) TDParser *subparser;
+@end
+
 void TDReleaseSubparserTree(TDParser *p) {
     if ([p isKindOfClass:[TDCollectionParser class]]) {
         TDCollectionParser *c = (TDCollectionParser *)p;
-        for (TDParser *s in c.subparsers) {
-            TDReleaseSubparserTree(s);
+        NSArray *subs = c.subparsers;
+        if (subs) {
+            [subs retain];
+            c.subparsers = nil;
+            for (TDParser *s in subs) {
+                TDReleaseSubparserTree(s);
+            }
+            [subs release];
         }
-        c.subparsers = nil;
+    } else if ([p isMemberOfClass:[TDRepetition class]]) {
+        TDRepetition *r = (TDRepetition *)p;
+        r.subparser = nil;
     }
 }
 
@@ -84,7 +96,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)dealloc {
     assembler = nil; // appease clang static analyzer
-
+    
+    TDReleaseSubparserTree(statementParser);
+    TDReleaseSubparserTree(expressionParser);
+    
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
     self.selectorTable = nil;
@@ -195,11 +210,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
-    if (![res isKindOfClass:[TDCollectionParser class]]) {
-        return res;
-    } else {
+    if ([res isKindOfClass:[TDCollectionParser class]]) {
         [p add:res];
         return p;
+    } else {
+        return res;
     }
 }
 

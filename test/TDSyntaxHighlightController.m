@@ -39,6 +39,10 @@
 
 - (void)dealloc {
     TDReleaseSubparserTree(miniCSSParser);
+    for (TDParser *p in parserCache) {
+        TDReleaseSubparserTree(p);
+    }
+    
     self.parserFactory = nil;
     self.miniCSSParser = nil;
     self.miniCSSAssembler = nil;
@@ -149,7 +153,7 @@
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
     
     if (!cacheParsers) {
-        //TDReleaseSubparserTree(parser);
+        TDReleaseSubparserTree(parser);
     }
     
     id result = [[genericAssembler.displayString copy] autorelease];
