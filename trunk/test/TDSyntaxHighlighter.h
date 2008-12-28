@@ -1,5 +1,5 @@
 //
-//  TDSyntaxHighlightController.h
+//  TDSyntaxHighlighter.h
 //  HTTPClient
 //
 //  Created by Todd Ditchendorf on 12/26/08.
@@ -14,7 +14,7 @@
 @class TDMiniCSSAssembler;
 @class TDGenericAssembler;
 
-@interface TDSyntaxHighlightController : NSObject {
+@interface TDSyntaxHighlighter : NSObject {
     TDGrammarParserFactory *parserFactory;
     TDParser *miniCSSParser;
     TDMiniCSSAssembler *miniCSSAssembler;

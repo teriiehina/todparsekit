@@ -234,6 +234,8 @@
 		D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
 		D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
 		D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */; };
+		D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
+		D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
@@ -256,8 +258,6 @@
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
-		D3FF42630F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */; };
-		D3FF42640F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -594,6 +594,8 @@
 		D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDOldGrammarParserFactory.m; path = test/TDOldGrammarParserFactory.m; sourceTree = "<group>"; };
 		D3DCB5230EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDOldGrammarParserFactoryTest.h; path = test/TDOldGrammarParserFactoryTest.h; sourceTree = "<group>"; };
 		D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDOldGrammarParserFactoryTest.m; path = test/TDOldGrammarParserFactoryTest.m; sourceTree = "<group>"; };
+		D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlighter.h; path = test/TDSyntaxHighlighter.h; sourceTree = "<group>"; };
+		D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSyntaxHighlighter.m; path = test/TDSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -613,8 +615,6 @@
 		D3F741360EF8E5B000559B9F /* css-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "css-old.grammar"; path = "test/css-old.grammar"; sourceTree = "<group>"; };
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
 		D3F741BD0EF9F28D00559B9F /* css2_1.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css2_1.grammar; path = res/css2_1.grammar; sourceTree = "<group>"; };
-		D3FF42610F0725160016BAE7 /* TDSyntaxHighlightController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlightController.h; path = test/TDSyntaxHighlightController.h; sourceTree = "<group>"; };
-		D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSyntaxHighlightController.m; path = test/TDSyntaxHighlightController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1009,8 +1009,8 @@
 				D385F9890F046FE900DB2946 /* TDGenericAssembler.m */,
 				D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */,
 				D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */,
-				D3FF42610F0725160016BAE7 /* TDSyntaxHighlightController.h */,
-				D3FF42620F0725160016BAE7 /* TDSyntaxHighlightController.m */,
+				D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */,
+				D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -1635,7 +1635,7 @@
 				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
-				D3FF42630F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */,
+				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1732,7 +1732,7 @@
 				D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */,
 				D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */,
 				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
-				D3FF42640F0725160016BAE7 /* TDSyntaxHighlightController.m in Sources */,
+				D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
