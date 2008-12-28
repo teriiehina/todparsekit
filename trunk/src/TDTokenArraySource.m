@@ -70,7 +70,8 @@
         [res addObject:tok];
     }
     
-    return [[res copy] autorelease];
+    //return [[res copy] autorelease];
+    return res; // optimization
 }
 
 @synthesize tokenizer;
