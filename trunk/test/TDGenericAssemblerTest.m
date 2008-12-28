@@ -15,7 +15,7 @@
     grammarString = [NSString stringWithContentsOfFile:path];
     cssAssember = [[TDMiniCSSAssembler alloc] init];
     factory = [TDGrammarParserFactory factory];
-    cssParser = [factory parserForGrammar:grammarString assembler:cssAssember];
+    cssParser = [factory parserFromGrammar:grammarString assembler:cssAssember];
 }
 
 

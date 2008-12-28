@@ -36,5 +36,5 @@
 }
 + (id)factory;
 
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)a;
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 @end

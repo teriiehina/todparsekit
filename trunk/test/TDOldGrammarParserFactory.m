@@ -85,7 +85,7 @@
 }
 
 
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)ass {
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)ass {
     self.tokenizer.string = s;
     self.assembler = ass;
     

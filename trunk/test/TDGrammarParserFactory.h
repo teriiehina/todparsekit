@@ -12,6 +12,8 @@
 @class TDParser;
 @class TDCollectionParser;
 
+void TDReleaseSubparserTree(TDParser *p);
+
 @interface TDGrammarParserFactory : NSObject {
     id assembler;
     NSMutableDictionary *parserTokensTable;
@@ -44,5 +46,5 @@
 }
 + (id)factory;
 
-- (TDParser *)parserForGrammar:(NSString *)s assembler:(id)a;
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 @end

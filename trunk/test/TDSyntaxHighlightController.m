@@ -38,6 +38,7 @@
 
 
 - (void)dealloc {
+    TDReleaseSubparserTree(miniCSSParser);
     self.parserFactory = nil;
     self.miniCSSParser = nil;
     self.miniCSSAssembler = nil;
@@ -70,7 +71,7 @@
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
         NSString *grammarString = [NSString stringWithContentsOfFile:path];
 
-        self.miniCSSParser = [self.parserFactory parserForGrammar:grammarString assembler:self.miniCSSAssembler];
+        self.miniCSSParser = [self.parserFactory parserFromGrammar:grammarString assembler:self.miniCSSAssembler];
     } 
     return miniCSSParser;
 }
@@ -125,7 +126,7 @@
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"grammar"];
         NSString *grammarString = [NSString stringWithContentsOfFile:path];
         
-        parser = [self.parserFactory parserForGrammar:grammarString assembler:self.genericAssembler];
+        parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler];
         
         if (cacheParsers) {
             [self.parserCache setObject:parser forKey:grammarName];
@@ -146,6 +147,10 @@
     a.preservesWhitespaceTokens = YES;
     
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
+    
+    if (!cacheParsers) {
+        //TDReleaseSubparserTree(parser);
+    }
     
     id result = [[genericAssembler.displayString copy] autorelease];
     genericAssembler.displayString = nil;

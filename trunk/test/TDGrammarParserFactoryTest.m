@@ -36,7 +36,7 @@
 - (void)testCSS2_1 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css2_1" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
@@ -50,7 +50,7 @@
 - (void)testCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
@@ -84,7 +84,7 @@
 - (void)testJSON {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
@@ -123,7 +123,7 @@
 - (void)testJSONWithDiscards {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path];
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
@@ -162,7 +162,7 @@
 - (void)testStartLiteral {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = 'bar';";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -181,7 +181,7 @@
 - (void)testStartLiteralNonReserved {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo*; foo = 'bar';";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -204,7 +204,7 @@
 - (void)testStartLiteralNonReserved2 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)*; foo = 'bar'; baz = 'bat'";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -227,7 +227,7 @@
 - (void)testStartLiteralNonReserved3 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -249,7 +249,7 @@
 - (void)testStartLiteralNonReserved4 {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -273,7 +273,7 @@
 - (void)testStartLiteralWithCallback {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start (workOnStart:) = 'bar';";
-    lp = [factory parserForGrammar:s assembler:mock];
+    lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     TDEqualObjects(lp.name, @"@start");
@@ -291,7 +291,7 @@
 
 - (void)testStartRefToLiteral {
     s = @" @start = foo; foo = 'bar';";
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
@@ -304,7 +304,7 @@
 
 - (void)testStartRefToLiteral3 {
     s = @" @start = foo|baz; baz = 'bat'; foo = 'bar';";
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
@@ -317,7 +317,7 @@
 
 - (void)testStartRefToLiteral2 {
     s = @"foo = 'bar'; baz = 'bat'; @start = (foo | baz)*;";
-    lp = [factory parserForGrammar:s assembler:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
 
@@ -340,10 +340,10 @@
 
 - (void)testStmtTrackException {
     s = @"@start = ";
-    STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 
     s = @"@start";
-    STAssertThrowsSpecificNamed([factory parserForGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 }
 
 
