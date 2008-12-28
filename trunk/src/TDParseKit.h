@@ -54,6 +54,9 @@
 #import <TDParseKit/TDSlashSlashState.h>
 #import <TDParseKit/TDSlashStarState.h>
 #import <TDParseKit/TDSlashState.h>
+#import <TDParseKit/TDCommentState.h>
+#import <TDParseKit/TDSingleLineCommentState.h>
+#import <TDParseKit/TDMultiLineCommentState.h>
 #import <TDParseKit/TDSymbolNode.h>
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDSymbolState.h>

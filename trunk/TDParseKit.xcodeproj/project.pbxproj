@@ -236,6 +236,12 @@
 		D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */; };
 		D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
 		D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
+		D3DDDA990F0815A800A58000 /* TDCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA970F0815A800A58000 /* TDCommentState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3DDDA9A0F0815A800A58000 /* TDCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA980F0815A800A58000 /* TDCommentState.m */; };
+		D3DDDA9D0F081B3E00A58000 /* TDSingleLineCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA9B0F081B3E00A58000 /* TDSingleLineCommentState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3DDDA9E0F081B3E00A58000 /* TDSingleLineCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */; };
+		D3DDDAA10F081B4A00A58000 /* TDMultiLineCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3DDDAA20F081B4A00A58000 /* TDMultiLineCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
@@ -596,6 +602,12 @@
 		D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDOldGrammarParserFactoryTest.m; path = test/TDOldGrammarParserFactoryTest.m; sourceTree = "<group>"; };
 		D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlighter.h; path = test/TDSyntaxHighlighter.h; sourceTree = "<group>"; };
 		D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSyntaxHighlighter.m; path = test/TDSyntaxHighlighter.m; sourceTree = "<group>"; };
+		D3DDDA970F0815A800A58000 /* TDCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCommentState.h; path = src/TDCommentState.h; sourceTree = "<group>"; };
+		D3DDDA980F0815A800A58000 /* TDCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCommentState.m; path = src/TDCommentState.m; sourceTree = "<group>"; };
+		D3DDDA9B0F081B3E00A58000 /* TDSingleLineCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSingleLineCommentState.h; path = src/TDSingleLineCommentState.h; sourceTree = "<group>"; };
+		D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSingleLineCommentState.m; path = src/TDSingleLineCommentState.m; sourceTree = "<group>"; };
+		D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMultiLineCommentState.h; path = src/TDMultiLineCommentState.h; sourceTree = "<group>"; };
+		D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMultiLineCommentState.m; path = src/TDMultiLineCommentState.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -852,6 +864,12 @@
 				D31FE6530E60E7AF00A0803E /* TDSymbolState.h */,
 				D31FE6540E60E7AF00A0803E /* TDSymbolState.m */,
 				D3541F890DFB108300429B4F /* symbol */,
+				D3DDDA970F0815A800A58000 /* TDCommentState.h */,
+				D3DDDA980F0815A800A58000 /* TDCommentState.m */,
+				D3DDDA9B0F081B3E00A58000 /* TDSingleLineCommentState.h */,
+				D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */,
+				D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */,
+				D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -1362,6 +1380,9 @@
 				D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */,
 				D3656DD60EF2614C00226554 /* TDTokenArraySource.h in Headers */,
 				D3D6E4E30EF625D700292EE6 /* TDAny.h in Headers */,
+				D3DDDA990F0815A800A58000 /* TDCommentState.h in Headers */,
+				D3DDDA9D0F081B3E00A58000 /* TDSingleLineCommentState.h in Headers */,
+				D3DDDAA10F081B4A00A58000 /* TDMultiLineCommentState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1596,6 +1617,9 @@
 				D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */,
 				D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */,
 				D3D6E4E40EF625D700292EE6 /* TDAny.m in Sources */,
+				D3DDDA9A0F0815A800A58000 /* TDCommentState.m in Sources */,
+				D3DDDA9E0F081B3E00A58000 /* TDSingleLineCommentState.m in Sources */,
+				D3DDDAA20F081B4A00A58000 /* TDMultiLineCommentState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
