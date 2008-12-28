@@ -24,7 +24,7 @@
 - (id)init {
     self = [super init];
     if (self) {
-        self.rootNode = [[[TDSymbolRootNode alloc] initWithParent:nil character:-1] autorelease];
+        self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
         self.singleLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
         self.multiLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
     }
@@ -41,11 +41,16 @@
 
 
 - (void)addSingleLineStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
+    [rootNode add:start];
     [singleLineState addStartSymbol:start];
 }
 
 
 - (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end {
+    NSParameterAssert(start.length);
+    NSParameterAssert(end.length);
+    [rootNode add:start];
     [multiLineState addStartSymbol:start endSymbol:end];
 }
 
