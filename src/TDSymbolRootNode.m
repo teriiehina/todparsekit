@@ -21,6 +21,15 @@
 
 @implementation TDSymbolRootNode
 
+- (id)init {
+    self = [super initWithParent:nil character:-1];
+    if (self) {
+        
+    }
+    return self;
+}
+
+
 - (void)add:(NSString *)s {
     NSParameterAssert(s);
     if (s.length < 2) return;
