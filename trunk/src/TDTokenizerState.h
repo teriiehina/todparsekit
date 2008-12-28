@@ -37,5 +37,4 @@
     @result     a token that represents a logical piece of the reader
 */
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t;
-
 @end
