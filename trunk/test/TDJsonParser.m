@@ -47,8 +47,15 @@
 
 - (void)dealloc {
     // yikes. this is necessary to prevent a very nasty retain cycle leak.
-    // its a retain cycle cuz object and array reference value and value references object and array!
+    // to be safe, release the subparsers of all collection parsers (as they may have retain cycles in complex grammars like this one)
+    // technically i only need to release the valueParser.subparers in this case, but better to be paranoid than to leak.
+    booleanParser.subparsers = nil;
+    arrayParser.subparsers = nil;
+    objectParser.subparsers = nil;
     valueParser.subparsers = nil;
+    commaValueParser.subparsers = nil;
+    propertyParser.subparsers = nil;
+    commaPropertyParser.subparsers = nil;
     
     self.tokenizer = nil;
     self.stringParser = nil;
