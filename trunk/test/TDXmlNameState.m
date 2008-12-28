@@ -14,7 +14,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
-@property (nonatomic, retain) NSMutableString *stringbuf;
+- (NSString *)bufferedString;
 @end
 
 @interface TDXmlNameState ()
@@ -68,7 +68,7 @@
         [r unread];
     }
 
-    if (self.stringbuf.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
+    if ([self bufferedString] == 1 && [[self class] isValidStartSymbolChar:cin]) {
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
 //        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 
