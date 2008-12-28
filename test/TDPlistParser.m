@@ -49,6 +49,10 @@
 
 static NSString *kTDPlistNullString = @"<null>";
 
+@interface TDCollectionParser ()
+@property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
+@end
+
 @interface TDPlistParser ()
 @property (nonatomic, readwrite, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDToken *curly;
@@ -61,7 +65,7 @@ static NSString *kTDPlistNullString = @"<null>";
     self = [super init];
     if (self != nil) {
 
-        self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+        self.tokenizer = [TDTokenizer tokenizer];
         // add '<null>' as a multichar symbol
         [tokenizer.symbolState add:kTDPlistNullString];
         
@@ -76,6 +80,15 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (void)dealloc {
+    // avoid retain cycle leaks by releasing the subparsers of all collection parsers
+    dictParser.subparsers = nil;
+    keyValuePairParser.subparsers = nil;
+    arrayParser.subparsers = nil;
+    commaValueParser.subparsers = nil;
+    keyParser.subparsers = nil;
+    valueParser.subparsers = nil;
+    stringParser.subparsers = nil;
+    
     self.tokenizer = nil;
     self.dictParser = nil;
     self.keyValuePairParser = nil;
