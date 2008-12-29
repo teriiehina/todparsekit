@@ -55,7 +55,6 @@
 - (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end {
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
-    
     [startSymbols addObject:start];
     [endSymbols addObject:end];
 }
