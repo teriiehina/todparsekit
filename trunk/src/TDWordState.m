@@ -103,7 +103,7 @@
         c = [r read];
     } while ([self isWordChar:c]);
     
-    if (c != -1) {
+    if (-1 != c) {
         [r unread];
     }
     

@@ -39,7 +39,7 @@
         c = [r read];
     } while ([[self class] isNameChar:c]);
     
-    if (c != -1) {
+    if (-1 != c) {
         [r unread];
     }
     
