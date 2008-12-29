@@ -55,14 +55,14 @@
 
 - (void)add:(NSString *)s {
     NSParameterAssert(s);
-    [self.rootNode add:s];
+    [rootNode add:s];
     [addedSymbols addObject:s];
 }
 
 
 - (void)remove:(NSString *)s {
     NSParameterAssert(s);
-    [self.rootNode remove:s];
+    [rootNode remove:s];
     [addedSymbols removeObject:s];
 }
 

@@ -57,7 +57,7 @@
 
 /*!
     @property   reportsCommentTokens
-    @brief      if true, return comment tokens, otherwise silently consume comments
+    @brief      if true, the tokenizer associated with this state will report comment tokens, otherwise it silently consumes comments
     @details    if true, this state will return <tt>TDToken</tt>s of type <tt>TDTokenTypeComment</tt>.
                 Otherwise, it will silently consume comment text and return the next token from another of the tokenizer's states
 */
