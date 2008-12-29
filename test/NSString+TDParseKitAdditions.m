@@ -20,7 +20,7 @@
     NSRange r = NSMakeRange(0, len);
     
     unichar c = [self characterAtIndex:0];
-    if (c == '\'' || c == '"') {
+    if (!isalnum(c)) {
         unichar quoteChar = c;
         r.location = 1;
         r.length -= 1;
