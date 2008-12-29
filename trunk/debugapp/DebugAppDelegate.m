@@ -318,7 +318,7 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-//    [self doProf];
+    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
@@ -326,7 +326,7 @@
     
 //    [self doHighlighting];
     
-    [self doMultiLineComment];
+//    [self doMultiLineComment];
     
     [pool release];
 }
