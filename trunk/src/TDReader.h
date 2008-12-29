@@ -42,5 +42,5 @@
     @property   string
     @brief      This reader's string.
 */
-@property (nonatomic, copy) NSString *string;
+@property (nonatomic, retain) NSString *string;
 @end
