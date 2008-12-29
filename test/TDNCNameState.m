@@ -62,7 +62,7 @@
         c = [r read];
     } while ([TDNCNameState isNameChar:c]);
     
-    if (c != -1) {
+    if (-1 != c) {
         [r unread];
     }
     

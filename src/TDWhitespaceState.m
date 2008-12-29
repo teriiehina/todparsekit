@@ -63,7 +63,7 @@
 
 
 - (BOOL)isWhitespaceChar:(NSInteger)cin {
-    if (-1 == cin || cin > whitespaceChars.count - 1) {
+    if (cin < 0 || cin > whitespaceChars.count - 1) {
         return NO;
     }
     return TDTRUE == [whitespaceChars objectAtIndex:cin];
@@ -83,7 +83,7 @@
         }
         c = [r read];
     }
-    if (c != -1) {
+    if (-1 != c) {
         [r unread];
     }
     
