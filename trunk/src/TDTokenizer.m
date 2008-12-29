@@ -41,7 +41,6 @@
         
         self.numberState = [[[TDNumberState alloc] init] autorelease];
         self.quoteState = [[[TDQuoteState alloc] init] autorelease];
-        self.slashState = [[[TDSlashState alloc] init] autorelease];
         self.commentState = [[[TDCommentState alloc] init] autorelease];
         self.symbolState = [[[TDSymbolState alloc] init] autorelease];
         self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
@@ -51,6 +50,9 @@
         [symbolState add:@">="];
         [symbolState add:@"!="];
         [symbolState add:@"=="];
+
+        [commentState addSingleLineStartSymbol:@"//"];
+        [commentState addMultiLineStartSymbol:@"/*" endSymbol:@"*/"];
         
         self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
         NSInteger i = 0;
@@ -68,7 +70,7 @@
         [self setTokenizerState:numberState     from: '.' to: '.']; // 
         [self setTokenizerState:quoteState      from: '"' to: '"']; // From: 34 to: 34    From:0x22 to:0x22
         [self setTokenizerState:quoteState      from:'\'' to:'\'']; // From: 39 to: 39    From:0x27 to:0x27
-        [self setTokenizerState:slashState      from: '/' to: '/']; // From: 47 to: 47    From:0x2F to:0x2F
+        [self setTokenizerState:commentState    from: '/' to: '/']; // From: 47 to: 47    From:0x2F to:0x2F
     }
     return self;
 }
@@ -80,7 +82,6 @@
     self.tokenizerStates = nil;
     self.numberState = nil;
     self.quoteState = nil;
-    self.slashState = nil;
     self.commentState = nil;
     self.symbolState = nil;
     self.whitespaceState = nil;
@@ -179,7 +180,6 @@
 
 @synthesize numberState;
 @synthesize quoteState;
-@synthesize slashState;
 @synthesize commentState;
 @synthesize symbolState;
 @synthesize whitespaceState;

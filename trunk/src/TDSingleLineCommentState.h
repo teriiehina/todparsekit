@@ -11,9 +11,12 @@
 
 @interface TDSingleLineCommentState : TDTokenizerState {
     NSMutableArray *startSymbols;
+    NSString *currentStartSymbol;
 }
 
 - (void)addStartSymbol:(NSString *)start;
+- (void)removeStartSymbol:(NSString *)start;
 
 @property (nonatomic, retain) NSMutableArray *startSymbols;
+@property (nonatomic, retain) NSString *currentStartSymbol;
 @end

@@ -51,9 +51,6 @@
 #import <TDParseKit/TDTokenizerState.h>
 #import <TDParseKit/TDNumberState.h>
 #import <TDParseKit/TDQuoteState.h>
-#import <TDParseKit/TDSlashSlashState.h>
-#import <TDParseKit/TDSlashStarState.h>
-#import <TDParseKit/TDSlashState.h>
 #import <TDParseKit/TDCommentState.h>
 #import <TDParseKit/TDSingleLineCommentState.h>
 #import <TDParseKit/TDMultiLineCommentState.h>

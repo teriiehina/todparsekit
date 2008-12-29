@@ -34,6 +34,7 @@
 
 - (void)dealloc {
     self.startSymbols = nil;
+    self.currentStartSymbol = nil;
     [super dealloc];
 }
 
@@ -44,6 +45,12 @@
 }
 
 
+- (void)removeStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
+    [startSymbols removeObject:start];
+}
+
+
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
@@ -51,19 +58,28 @@
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
         [self reset];
+        if (currentStartSymbol.length > 1) {
+            [self append:cin];
+        }
     }
     
     NSInteger c = cin;
     
-    while ('\n' != c && '\r' != c && -1 != c) {
+    while (1) {
+        c = [r read];
+        if ('\n' == c || '\r' == c || -1 == c) {
+            break;
+        }
         if (reportTokens) {
             [self append:c];
         }
-        c = [r read];
     }
+    
     if (-1 != c) {
         [r unread];
     }
+    
+    self.currentStartSymbol = nil;
     
     if (reportTokens) {
         return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
@@ -73,4 +89,5 @@
 }
 
 @synthesize startSymbols;
+@synthesize currentStartSymbol;
 @end

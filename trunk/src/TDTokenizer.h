@@ -49,7 +49,6 @@
     
     TDNumberState *numberState;
     TDQuoteState *quoteState;
-    TDSlashState *slashState;
     TDCommentState *commentState;
     TDSymbolState *symbolState;
     TDWhitespaceState *whitespaceState;
@@ -107,12 +106,6 @@
     @brief      The state this tokenizer uses to build quoted strings.
 */
 @property (nonatomic, retain) TDQuoteState *quoteState;
-
-/*!
-    @property   slashState
-    @brief      The state this tokenizer uses to recognize (and ignore) comments.
-*/
-@property (nonatomic, retain) TDSlashState *slashState;
 
 /*!
     @property   commentState

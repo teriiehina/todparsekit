@@ -68,7 +68,7 @@
         [r unread];
     }
 
-    if ([self bufferedString] == 1 && [[self class] isValidStartSymbolChar:cin]) {
+    if ([[self bufferedString] length] == 1 && [[self class] isValidStartSymbolChar:cin]) {
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
 //        return [[[TDXmlToken alloc] initWithTokenType:TDTT_NAME 

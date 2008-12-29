@@ -56,6 +56,15 @@
 }
 
 
+- (void)removeStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
+    NSInteger i = [startSymbols indexOfObject:start];
+    NSAssert2(NSNotFound != i, @"-[TDMultiLineCommentState %s] called with argument '%@' which is not contained in startSymbols.", _cmd, start);
+    [startSymbols removeObject:start];
+    [endSymbols removeObjectAtIndex:i];
+}
+
+
 - (void)unreadSymbol:(NSString *)s fromReader:(TDReader *)r {
     NSInteger len = s.length;
     NSInteger i = 0;
@@ -82,12 +91,12 @@
     // get the definitions of all multi-char symbols from the commentState
     TDSymbolRootNode *rootNode = t.commentState.rootNode;
         
-    NSInteger c = cin;
-    while (-1 != c) {
-        if (reportTokens) {
-            [self append:c];
-        }
+    NSInteger c;
+    while (1) {
         c = [r read];
+        if (-1 == c) {
+            break;
+        }
         
         if (e == c) {
             NSString *peek = [rootNode nextSymbol:r startingWith:e];
@@ -97,16 +106,18 @@
                 }
                 c = [r read];
                 break;
-            } else if (e == [peek characterAtIndex:0]) {
-                [self unreadSymbol:peek fromReader:r];
             } else {
                 [self unreadSymbol:peek fromReader:r];
-                
-                if (reportTokens) {
-                    [self append:c];
+                if (e != [peek characterAtIndex:0]) {
+                    if (reportTokens) {
+                        [self append:c];
+                    }
+                    c = [r read];
                 }
-                c = [r read];
             }
+        }
+        if (reportTokens) {
+            [self append:c];
         }
     }
     
@@ -114,6 +125,8 @@
         [r unread];
     }
     
+    self.currentStartSymbol = nil;
+
     if (reportTokens) {
         return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
     } else {

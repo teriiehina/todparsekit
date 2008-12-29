@@ -27,9 +27,10 @@
 }
 
 - (void)addSingleLineStartSymbol:(NSString *)start;
-
+- (void)removeSingleLineStartSymbol:(NSString *)start;
 
 - (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end;
+- (void)removeMultiLineStartSymbol:(NSString *)start;
 
 /*!
     @property   reportsCommentTokens
