@@ -301,6 +301,17 @@
 }
 
 
+- (void)doMultiLineComment {
+    NSString *s = @"/* foo */ ";
+    TDReader *r = [[[TDReader alloc] initWithString:s] autorelease];
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    t.commentState.reportsCommentTokens = YES;
+    TDToken *tok = [t nextToken];
+    
+    
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -313,7 +324,9 @@
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
     
-    [self doHighlighting];
+//    [self doHighlighting];
+    
+    [self doMultiLineComment];
     
     [pool release];
 }

@@ -26,7 +26,7 @@
     if (self) {
         self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
         self.singleLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
-        self.multiLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
+        self.multiLineState = [[[TDMultiLineCommentState alloc] init] autorelease];
     }
     return self;
 }
@@ -47,11 +47,26 @@
 }
 
 
+- (void)removeSingleLineStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
+    [rootNode remove:start];
+    [singleLineState removeStartSymbol:start];
+}
+
+
 - (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end {
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
     [rootNode add:start];
+    [rootNode add:end];
     [multiLineState addStartSymbol:start endSymbol:end];
+}
+
+
+- (void)removeMultiLineStartSymbol:(NSString *)start {
+    NSParameterAssert(start.length);
+    [rootNode remove:start];
+    [multiLineState removeStartSymbol:start];
 }
 
 
@@ -66,13 +81,15 @@
         multiLineState.currentStartSymbol = symbol;
         return [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else if ([singleLineState.startSymbols containsObject:symbol]) {
+        singleLineState.currentStartSymbol = symbol;
         return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
         NSInteger i = 0;
         for ( ; i < len - 1; i++) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];        
+        NSString *s = [NSString stringWithFormat:@"%C", cin];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0];        
     }
 }
 

@@ -28,7 +28,6 @@
 		D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5740E60E55700A0803E /* TDTokenizerTest.m */; };
 		D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */; };
 		D31FE5860E60E58C00A0803E /* TDQuoteStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE57A0E60E58C00A0803E /* TDQuoteStateTest.m */; };
-		D31FE5880E60E58C00A0803E /* TDSlashStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */; };
 		D31FE5890E60E58C00A0803E /* TDSymbolStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5800E60E58C00A0803E /* TDSymbolStateTest.m */; };
 		D31FE58A0E60E58C00A0803E /* TDWhitespaceStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5820E60E58C00A0803E /* TDWhitespaceStateTest.m */; };
 		D31FE58B0E60E58C00A0803E /* TDWordStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5840E60E58C00A0803E /* TDWordStateTest.m */; };
@@ -104,12 +103,6 @@
 		D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64A0E60E7AF00A0803E /* TDNumberState.m */; };
 		D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */; };
-		D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */; };
-		D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6640E60E7AF00A0803E /* TDSlashStarState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */; };
-		D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6510E60E7AF00A0803E /* TDSlashState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6660E60E7AF00A0803E /* TDSlashState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6520E60E7AF00A0803E /* TDSlashState.m */; };
 		D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6530E60E7AF00A0803E /* TDSymbolState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6680E60E7AF00A0803E /* TDSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6540E60E7AF00A0803E /* TDSymbolState.m */; };
 		D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -242,6 +235,7 @@
 		D3DDDA9E0F081B3E00A58000 /* TDSingleLineCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */; };
 		D3DDDAA10F081B4A00A58000 /* TDMultiLineCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3DDDAA20F081B4A00A58000 /* TDMultiLineCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */; };
+		D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDAFD0F083C9700A58000 /* TDCommentStateTest.m */; };
 		D3E27A320E741DD20078CC2C /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D3E27A330E741DD20078CC2C /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D3E784BD0E53DA28008C7D61 /* apple-boss.json in Resources */ = {isa = PBXBuildFile; fileRef = D3E784BC0E53DA28008C7D61 /* apple-boss.json */; };
@@ -468,12 +462,6 @@
 		D31FE64A0E60E7AF00A0803E /* TDNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNumberState.m; path = src/TDNumberState.m; sourceTree = "<group>"; };
 		D31FE64B0E60E7AF00A0803E /* TDQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDQuoteState.h; path = src/TDQuoteState.h; sourceTree = "<group>"; };
 		D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDQuoteState.m; path = src/TDQuoteState.m; sourceTree = "<group>"; };
-		D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashSlashState.h; path = src/TDSlashSlashState.h; sourceTree = "<group>"; };
-		D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashSlashState.m; path = src/TDSlashSlashState.m; sourceTree = "<group>"; };
-		D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashStarState.h; path = src/TDSlashStarState.h; sourceTree = "<group>"; };
-		D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashStarState.m; path = src/TDSlashStarState.m; sourceTree = "<group>"; };
-		D31FE6510E60E7AF00A0803E /* TDSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashState.h; path = src/TDSlashState.h; sourceTree = "<group>"; };
-		D31FE6520E60E7AF00A0803E /* TDSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashState.m; path = src/TDSlashState.m; sourceTree = "<group>"; };
 		D31FE6530E60E7AF00A0803E /* TDSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolState.h; path = src/TDSymbolState.h; sourceTree = "<group>"; };
 		D31FE6540E60E7AF00A0803E /* TDSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolState.m; path = src/TDSymbolState.m; sourceTree = "<group>"; };
 		D31FE6550E60E7AF00A0803E /* TDWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWhitespaceState.h; path = src/TDWhitespaceState.h; sourceTree = "<group>"; };
@@ -608,6 +596,14 @@
 		D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSingleLineCommentState.m; path = src/TDSingleLineCommentState.m; sourceTree = "<group>"; };
 		D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMultiLineCommentState.h; path = src/TDMultiLineCommentState.h; sourceTree = "<group>"; };
 		D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMultiLineCommentState.m; path = src/TDMultiLineCommentState.m; sourceTree = "<group>"; };
+		D3DDDAFC0F083C9700A58000 /* TDCommentStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCommentStateTest.h; path = test/TDCommentStateTest.h; sourceTree = "<group>"; };
+		D3DDDAFD0F083C9700A58000 /* TDCommentStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCommentStateTest.m; path = test/TDCommentStateTest.m; sourceTree = "<group>"; };
+		D3DDDC230F085C5400A58000 /* TDSlashSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashSlashState.h; path = test/TDSlashSlashState.h; sourceTree = "<group>"; };
+		D3DDDC240F085C5400A58000 /* TDSlashSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashSlashState.m; path = test/TDSlashSlashState.m; sourceTree = "<group>"; };
+		D3DDDC250F085C5400A58000 /* TDSlashStarState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashStarState.h; path = test/TDSlashStarState.h; sourceTree = "<group>"; };
+		D3DDDC260F085C5400A58000 /* TDSlashStarState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashStarState.m; path = test/TDSlashStarState.m; sourceTree = "<group>"; };
+		D3DDDC270F085C5400A58000 /* TDSlashState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSlashState.h; path = test/TDSlashState.h; sourceTree = "<group>"; };
+		D3DDDC280F085C5400A58000 /* TDSlashState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSlashState.m; path = test/TDSlashState.m; sourceTree = "<group>"; };
 		D3E784BC0E53DA28008C7D61 /* apple-boss.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "apple-boss.json"; path = "res/apple-boss.json"; sourceTree = "<group>"; };
 		D3E788910E567DFD008C7D61 /* SRGSParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRGSParserTest.h; path = test/SRGSParserTest.h; sourceTree = "<group>"; };
 		D3E788920E567DFD008C7D61 /* SRGSParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRGSParserTest.m; path = test/SRGSParserTest.m; sourceTree = "<group>"; };
@@ -687,7 +683,7 @@
 				D334941B0E29641300406085 /* DemoApp */,
 				D3C7D8220A411F31005DD154 /* Tests */,
 				08FB77AEFE84172EC02AAC07 /* Framework */,
-				32C88DFF0371C24200C91783 /* Other Sources */,
+				32C88DFF0371C24200C91783 /* Other Sources (not used) */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
@@ -745,16 +741,24 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		32C88DFF0371C24200C91783 /* Other Sources */ = {
+		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
+				D3DDDC230F085C5400A58000 /* TDSlashSlashState.h */,
+				D3DDDC240F085C5400A58000 /* TDSlashSlashState.m */,
+				D3DDDC250F085C5400A58000 /* TDSlashStarState.h */,
+				D3DDDC260F085C5400A58000 /* TDSlashStarState.m */,
+				D3DDDC270F085C5400A58000 /* TDSlashState.h */,
+				D3DDDC280F085C5400A58000 /* TDSlashState.m */,
+				D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */,
+				D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */,
 				D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */,
 				D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */,
 				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
 				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
 				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
 			);
-			name = "Other Sources";
+			name = "Other Sources (not used)";
 			sourceTree = "<group>";
 		};
 		D318EAE30E2FD5B6009F47DF /* json */ = {
@@ -855,21 +859,15 @@
 				D31FE64C0E60E7AF00A0803E /* TDQuoteState.m */,
 				D31FE6490E60E7AF00A0803E /* TDNumberState.h */,
 				D31FE64A0E60E7AF00A0803E /* TDNumberState.m */,
-				D31FE6510E60E7AF00A0803E /* TDSlashState.h */,
-				D31FE6520E60E7AF00A0803E /* TDSlashState.m */,
-				D31FE64D0E60E7AF00A0803E /* TDSlashSlashState.h */,
-				D31FE64E0E60E7AF00A0803E /* TDSlashSlashState.m */,
-				D31FE64F0E60E7AF00A0803E /* TDSlashStarState.h */,
-				D31FE6500E60E7AF00A0803E /* TDSlashStarState.m */,
-				D31FE6530E60E7AF00A0803E /* TDSymbolState.h */,
-				D31FE6540E60E7AF00A0803E /* TDSymbolState.m */,
-				D3541F890DFB108300429B4F /* symbol */,
 				D3DDDA970F0815A800A58000 /* TDCommentState.h */,
 				D3DDDA980F0815A800A58000 /* TDCommentState.m */,
 				D3DDDA9B0F081B3E00A58000 /* TDSingleLineCommentState.h */,
 				D3DDDA9C0F081B3E00A58000 /* TDSingleLineCommentState.m */,
 				D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */,
 				D3DDDAA00F081B4A00A58000 /* TDMultiLineCommentState.m */,
+				D31FE6530E60E7AF00A0803E /* TDSymbolState.h */,
+				D31FE6540E60E7AF00A0803E /* TDSymbolState.m */,
+				D3541F890DFB108300429B4F /* symbol */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -892,8 +890,6 @@
 				D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */,
 				D31FE5790E60E58C00A0803E /* TDQuoteStateTest.h */,
 				D31FE57A0E60E58C00A0803E /* TDQuoteStateTest.m */,
-				D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */,
-				D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */,
 				D31FE57F0E60E58C00A0803E /* TDSymbolStateTest.h */,
 				D31FE5800E60E58C00A0803E /* TDSymbolStateTest.m */,
 				D31FE5810E60E58C00A0803E /* TDWhitespaceStateTest.h */,
@@ -902,6 +898,8 @@
 				D31FE5840E60E58C00A0803E /* TDWordStateTest.m */,
 				D3C85D430E63D1BF000445FD /* TDScientificNumberStateTest.h */,
 				D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */,
+				D3DDDAFC0F083C9700A58000 /* TDCommentStateTest.h */,
+				D3DDDAFD0F083C9700A58000 /* TDCommentStateTest.m */,
 			);
 			name = "tokenizer states";
 			sourceTree = "<group>";
@@ -1351,9 +1349,6 @@
 				D31FE63E0E60E77600A0803E /* TDTokenizerState.h in Headers */,
 				D31FE65D0E60E7AF00A0803E /* TDNumberState.h in Headers */,
 				D31FE65F0E60E7AF00A0803E /* TDQuoteState.h in Headers */,
-				D31FE6610E60E7AF00A0803E /* TDSlashSlashState.h in Headers */,
-				D31FE6630E60E7AF00A0803E /* TDSlashStarState.h in Headers */,
-				D31FE6650E60E7AF00A0803E /* TDSlashState.h in Headers */,
 				D31FE6670E60E7AF00A0803E /* TDSymbolState.h in Headers */,
 				D31FE6690E60E7AF00A0803E /* TDWhitespaceState.h in Headers */,
 				D31FE66B0E60E7AF00A0803E /* TDWordState.h in Headers */,
@@ -1589,9 +1584,6 @@
 				D31FE63F0E60E77600A0803E /* TDTokenizerState.m in Sources */,
 				D31FE65E0E60E7AF00A0803E /* TDNumberState.m in Sources */,
 				D31FE6600E60E7AF00A0803E /* TDQuoteState.m in Sources */,
-				D31FE6620E60E7AF00A0803E /* TDSlashSlashState.m in Sources */,
-				D31FE6640E60E7AF00A0803E /* TDSlashStarState.m in Sources */,
-				D31FE6660E60E7AF00A0803E /* TDSlashState.m in Sources */,
 				D31FE6680E60E7AF00A0803E /* TDSymbolState.m in Sources */,
 				D31FE66A0E60E7AF00A0803E /* TDWhitespaceState.m in Sources */,
 				D31FE66C0E60E7AF00A0803E /* TDWordState.m in Sources */,
@@ -1693,7 +1685,6 @@
 				D31FE5760E60E55700A0803E /* TDTokenizerTest.m in Sources */,
 				D31FE5850E60E58C00A0803E /* TDNumberStateTest.m in Sources */,
 				D31FE5860E60E58C00A0803E /* TDQuoteStateTest.m in Sources */,
-				D31FE5880E60E58C00A0803E /* TDSlashStateTest.m in Sources */,
 				D31FE5890E60E58C00A0803E /* TDSymbolStateTest.m in Sources */,
 				D31FE58A0E60E58C00A0803E /* TDWhitespaceStateTest.m in Sources */,
 				D31FE58B0E60E58C00A0803E /* TDWordStateTest.m in Sources */,
@@ -1757,6 +1748,7 @@
 				D385FD460F05A89100DB2946 /* TDMiniCSSAssemblerTest.m in Sources */,
 				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
+				D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
