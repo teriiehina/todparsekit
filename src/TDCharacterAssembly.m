@@ -11,7 +11,7 @@
 @interface TDAssembly ()
 - (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a;
 
-@property (nonatomic, readwrite, copy) NSString *defaultDelimiter;
+@property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 
 @implementation TDCharacterAssembly
@@ -22,7 +22,7 @@
 
 
 - (id)initWithString:(NSString *)s {
-    self = [super initWithString:s defaultDelimiter:@"" stack:[NSMutableArray array]];
+    self = [super initWithString:s];
     if (self) {
     }
     return self;

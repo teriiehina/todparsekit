@@ -122,7 +122,7 @@
     @property   defaultDelimiter
     @brief      The default string to show between elements
 */
-@property (nonatomic, readonly, copy) NSString *defaultDelimiter;
+@property (nonatomic, readonly, retain) NSString *defaultDelimiter;
 
 /*!
     @property   stack

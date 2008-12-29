@@ -9,12 +9,10 @@
 #import <TDParseKit/TDAssembly.h>
 
 @interface TDAssembly ()
-- (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a;
-
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, copy) NSString *string;
-@property (nonatomic, readwrite, copy) NSString *defaultDelimiter;
+@property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 
 @implementation TDAssembly
@@ -30,21 +28,21 @@
 
 
 - (id)initWithString:(NSString *)s {
-    return [self initWithString:s defaultDelimiter:@"/" stack:[NSMutableArray array]];
+    self = [super init];
+    if (self) {
+        self.stack = [NSMutableArray array];
+        self.string = s;
+        self.defaultDelimiter = @"/";
+    }
+    return self;
 }
 
 
-// designated initializer. 
-// this exists simply to improve the performance of the -copyWithZone: method.
-// this is private so as not to complicate the public API with a not-particularly-useful constructor
-- (id)initWithString:(NSString *)s defaultDelimiter:(NSString *)d stack:(NSMutableArray *)a {
-    self = [super init];
-    if (self) {
-        self.stack = a;
-        self.string = s;
-        self.defaultDelimiter = d;
-    }
-    return self;
+// this private intializer exists simply to improve the performance of the -copyWithZone: method.
+// note flow *does not* go thru the designated initializer above. however, that ugliness is worth it cuz
+// the perf of -copyWithZone: in this class is *vital* to the framework's performance
+- (id)_init {
+    return [super init];
 }
 
 
@@ -58,7 +56,10 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    TDAssembly *a = [[[self class] allocWithZone:zone] initWithString:string defaultDelimiter:defaultDelimiter stack:[[stack mutableCopyWithZone:zone] autorelease]];
+    TDAssembly *a = [[[self class] allocWithZone:zone] _init];
+    a->stack = [stack mutableCopyWithZone:zone];
+    a->string = [string retain];
+    a->defaultDelimiter = [defaultDelimiter retain];
     a->target = [target mutableCopyWithZone:zone];
     a->index = index;
     return a;
