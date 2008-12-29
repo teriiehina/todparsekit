@@ -19,6 +19,21 @@
 @property (nonatomic, retain) TDMultiLineCommentState *multiLineState;
 @end
 
+@interface TDSingleLineCommentState ()
+- (void)addStartSymbol:(NSString *)start;
+- (void)removeStartSymbol:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startSymbols;
+@property (nonatomic, retain) NSString *currentStartSymbol;
+@end
+
+@interface TDMultiLineCommentState ()
+- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end;
+- (void)removeStartSymbol:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startSymbols;
+@property (nonatomic, retain) NSMutableArray *endSymbols;
+@property (nonatomic, copy) NSString *currentStartSymbol;
+@end
+
 @implementation TDCommentState
 
 - (id)init {
