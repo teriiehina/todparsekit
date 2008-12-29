@@ -67,8 +67,7 @@
         }
     }
     
-    NSInteger c = cin;
-    
+    NSInteger c;
     while (1) {
         c = [r read];
         if ('\n' == c || '\r' == c || -1 == c) {
