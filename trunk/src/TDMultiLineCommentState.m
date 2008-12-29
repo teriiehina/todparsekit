@@ -83,6 +83,7 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
     
+    BOOL balanceEOF = t.commentState.balancesEOFTerminatedComments;
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
         [self reset];
@@ -100,6 +101,9 @@
     while (1) {
         c = [r read];
         if (-1 == c) {
+            if (balanceEOF) {
+                [self appendString:currentEndSymbol];
+            }
             break;
         }
         
