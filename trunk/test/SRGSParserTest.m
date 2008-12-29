@@ -183,11 +183,11 @@
 
 
 - (void)testRepeatOperator {
-    s = @"<0-1 /0.6/>";
+    s = @"<0-2 /0.6/>";
     a = [p assemblyWithString:s];
     result = [p.repeatOperator bestMatchFor:a];
     TDNotNil(result);
-    TDEqualObjects(@"[<, 0, -, 1, /, 0.6, /, >]</0/-/1///0.6///>^", [result description]);
+    TDEqualObjects(@"[<, 0, -, 2, /, 0.6, /, >]</0/-/2///0.6///>^", [result description]);
 }
 
 
