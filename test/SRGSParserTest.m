@@ -16,7 +16,7 @@
 
 
 - (void)test {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example-1" ofType:@"srgs"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example1" ofType:@"srgs"];
     s = [NSString stringWithContentsOfFile:path];
     
     a = [p assemblyWithString:s];
