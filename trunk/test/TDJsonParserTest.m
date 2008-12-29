@@ -274,7 +274,7 @@
     s = @"{\"image\":"
         @"    {\"available_sizes\":"
         @"        [[[150, 37],"
-        @"        \"assets/images/resized/0001/0836/10836v1-max-150x150.png\"],"
+        @"        \"assets/images/resized/0001/0836/10836v1-max-250x150.png\"],"
         @"        [[200, 50],"
         @"        \"assets/images/resized/0001/0836/10836v1-max-250x250.png\"],"
         @"        [[200, 50],"
