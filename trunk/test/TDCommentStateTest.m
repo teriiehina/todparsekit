@@ -307,4 +307,50 @@
     TDEqualObjects(tok.stringValue, @"/* foo */");
 }
 
+
+- (void)testXMLFooStarXMLA {
+    s = @"<!-- foo --> a";
+    r.string = s;
+    t.string = s;
+    [commentState addMultiLineStartSymbol:@"<!--" endSymbol:@"-->"];
+    [t setTokenizerState:commentState from:'<' to:'<'];
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"a");
+    
+    r.string = s;
+    t.string = s;
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isWhitespace);
+    TDEqualObjects(tok.stringValue, @" ");
+}
+
+
+- (void)testReportXMLFooStarXMLA {
+    s = @"<!-- foo --> a";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    [commentState addMultiLineStartSymbol:@"<!--" endSymbol:@"-->"];
+    [t setTokenizerState:commentState from:'<' to:'<'];
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"<!-- foo -->");
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"a");
+    
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"<!-- foo -->");
+    tok = [t nextToken];
+    TDTrue(tok.isWhitespace);
+    TDEqualObjects(tok.stringValue, @" ");
+}
+
 @end
