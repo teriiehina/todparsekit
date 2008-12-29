@@ -10,6 +10,7 @@
 
 @interface TDNumberStateTest : SenTestCase {
     TDNumberState *numberState;
+    TDTokenizer *t;
     TDReader *r;
     NSString *s;
 }

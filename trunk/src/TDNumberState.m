@@ -35,6 +35,8 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
+    NSParameterAssert(t);
+
     [self reset];
     negative = NO;
     NSInteger originalCin = cin;
