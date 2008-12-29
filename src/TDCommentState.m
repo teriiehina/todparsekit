@@ -89,7 +89,7 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
 
-    NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
+    NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
 
     if ([multiLineState.startSymbols containsObject:symbol]) {
         multiLineState.currentStartSymbol = symbol;
