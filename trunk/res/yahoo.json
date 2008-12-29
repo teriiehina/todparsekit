@@ -20,7 +20,7 @@
   {"available_sizes":
     [[[150,
        37],
-      "assets/images/resized/0001/0836/10836v1-max-150x150.png"],
+      "assets/images/resized/0001/0836/10836v1-max-250x150.png"],
      [[200,
        50],
       "assets/images/resized/0001/0836/10836v1-max-250x250.png"],
@@ -171,7 +171,7 @@
         "permalink": "vlingo"}}},
    {"funding_round":
      {"round_code": "b",
-      "source_url": "http://www.paidcontent.org/entry/419-india-deals-ebay-sells-stake-in-indian-ops-bharatmatrimony-gets-1175-mi/",
+      "source_url": "http://www.paidcontent.org/entry/419-india-deals-ebay-sells-stake-in-indian-ops-bharatmatrimony-gets-2175-mi/",
       "source_description": "India Deals: eBay Sells Stake In Indian Ops; Bharatmatrimony Gets $11.75 Million From Yahoo \u0026 Others",
       "raised_amount": 11750000.0,
       "raised_currency_code": "USD",
