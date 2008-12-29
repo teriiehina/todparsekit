@@ -63,9 +63,10 @@
 - (void)removeStartSymbol:(NSString *)start {
     NSParameterAssert(start.length);
     NSInteger i = [startSymbols indexOfObject:start];
-    NSAssert2(NSNotFound != i, @"-[TDMultiLineCommentState %s] called with argument '%@' which is not contained in startSymbols.", _cmd, start);
-    [startSymbols removeObject:start];
-    [endSymbols removeObjectAtIndex:i];
+    if (NSNotFound != i) {
+        [startSymbols removeObject:start];
+        [endSymbols removeObjectAtIndex:i]; // this should always be in range.
+    }
 }
 
 
