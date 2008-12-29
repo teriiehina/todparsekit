@@ -90,7 +90,6 @@
     NSParameterAssert(t);
 
     NSString *symbol = [self.rootNode nextSymbol:r startingWith:cin];
-    NSInteger len = symbol.length;
 
     if ([multiLineState.startSymbols containsObject:symbol]) {
         multiLineState.currentStartSymbol = symbol;
@@ -100,7 +99,7 @@
         return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
         NSInteger i = 0;
-        for ( ; i < len - 1; i++) {
+        for ( ; i < symbol.length - 1; i++) {
             [r unread];
         }
         return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
