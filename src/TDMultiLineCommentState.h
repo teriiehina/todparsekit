@@ -15,10 +15,4 @@
     NSString *currentStartSymbol;
 }
 
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end;
-- (void)removeStartSymbol:(NSString *)start;
-
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSMutableArray *endSymbols;
-@property (nonatomic, copy) NSString *currentStartSymbol;
 @end
