@@ -11,6 +11,7 @@
 
 @interface TDScientificNumberStateTest : SenTestCase {
     TDScientificNumberState *numberState;
+    TDTokenizer *t;
     TDReader *r;
     NSString *s;
 }
