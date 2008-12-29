@@ -93,7 +93,7 @@
     @property   string
     @brief      The string to read from.
 */
-@property (nonatomic, copy) NSString *string;
+@property (nonatomic, retain) NSString *string;
 
 /*!
     @property    numberState

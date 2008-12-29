@@ -31,17 +31,15 @@
 
 
 - (NSString *)string {
-    return [[string retain] autorelease];
+    return string;
 }
 
 
 - (void)setString:(NSString *)s {
     if (string != s) {
-        [self willChangeValueForKey:@"string"];
-        [string autorelease];
-        string = [s copy];
+        [string release];
+        string = [s retain];
         length = string.length;
-        [self didChangeValueForKey:@"string"];
     }
     // reset cursor
     cursor = 0;

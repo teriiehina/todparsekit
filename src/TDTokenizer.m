@@ -120,32 +120,28 @@
 
 
 - (TDReader *)reader {
-    return [[reader retain] autorelease];
+    return reader;
 }
 
 
 - (void)setReader:(TDReader *)r {
     if (reader != r) {
-        [self willChangeValueForKey:@"reader"];
-        [reader autorelease];
+        [reader release];
         reader = [r retain];
-        [self didChangeValueForKey:@"reader"];
         reader.string = string;
     }
 }
 
 
 - (NSString *)string {
-    return [[string retain] autorelease];
+    return string;
 }
 
 
 - (void)setString:(NSString *)s {
     if (string != s) {
-        [self willChangeValueForKey:@"string"];
-        [string autorelease];
-        string = [s copy];
-        [self didChangeValueForKey:@"string"];
+        [string retain];
+        string = [s retain];
     }
     reader.string = string;
 }
@@ -154,7 +150,7 @@
 #pragma mark -
 
 - (TDTokenizerState *)tokenizerStateFor:(NSInteger)c {
-    if (c < 0 || c > tokenizerStates.count - 1) {
+    if (c < 0 || c > 255) {
         if (c >= 0x19E0 && c <= 0x19FF) { // khmer symbols
             return symbolState;
         } else if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
