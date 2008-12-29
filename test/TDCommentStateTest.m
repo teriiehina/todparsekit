@@ -273,6 +273,38 @@
 }
 
 
+- (void)testReportSlashStarFooStar {
+    s = @"/* foo *";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, s);
+}
 
+
+- (void)testReportBalancedSlashStarFooStar {
+    s = @"/* foo *";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    commentState.balancesEOFTerminatedComments = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"/* foo **/");
+}
+
+
+- (void)testReportBalancedSlashStarFoo {
+    s = @"/* foo ";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    commentState.balancesEOFTerminatedComments = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"/* foo */");
+}
 
 @end
