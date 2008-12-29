@@ -94,7 +94,7 @@
     NSString *currentEndSymbol = [endSymbols objectAtIndex:i];
     NSInteger e = [currentEndSymbol characterAtIndex:0];
     
-    // get the definitions of all multi-char symbols from the commentState
+    // get the definitions of all multi-char comment start and end symbols from the commentState
     TDSymbolRootNode *rootNode = t.commentState.rootNode;
         
     NSInteger c;
