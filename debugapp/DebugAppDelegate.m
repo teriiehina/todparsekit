@@ -318,13 +318,13 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doProf];
+//    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
     
-//    [self doHighlighting];
+    [self doHighlighting];
     
 //    [self doMultiLineComment];
     
