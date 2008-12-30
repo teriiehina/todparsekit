@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TDToken;
+@class TDTokenizer;
 @class TDParser;
 @class TDCollectionParser;
 
@@ -47,4 +48,5 @@ void TDReleaseSubparserTree(TDParser *p);
 + (id)factory;
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t;
 @end

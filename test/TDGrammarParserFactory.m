@@ -42,6 +42,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
 
+- (TDTokenizer *)tokenizerFromGrammarSettings;
+
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 
@@ -130,16 +132,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)ass {
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
+    return [self parserFromGrammar:s assembler:a getTokenizer:nil];
+}    
+
+
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    self.assembler = ass;
+    self.assembler = a;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
     [self gatherParserClassNamesFromTokens];
-
+    //(*t) = [self tokenizerFromGrammarSettings];
+    
     TDParser *start = [[self expandedParserForName:@"@start"] retain]; // retain to survive pool release
     
     [pool release];
@@ -205,17 +213,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-    a.target = parserTokensTable;
-    a = [self.expressionParser completeMatchFor:a];
-    TDParser *res = [a pop];
-    if ([res isKindOfClass:[TDCollectionParser class]]) {
-        [p add:res];
-        return p;
-    } else {
-        return res;
-    }
+- (TDTokenizer *)tokenizerFromGrammarSettings {
+    //    id obj = [parserTokensTable objectForKey:@"@singleLineComments"];
+    //    id obj = [parserTokensTable objectForKey:@"@multiLineComments"];
+    return nil;
 }
 
 
@@ -246,6 +247,21 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
+- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    a.target = parserTokensTable;
+    a = [self.expressionParser completeMatchFor:a];
+    TDParser *res = [a pop];
+    if ([res isKindOfClass:[TDCollectionParser class]]) {
+        [p add:res];
+        return p;
+    } else {
+        return res;
+    }
+}
+
+
+// this is just a utility for unit-testing
 - (TDSequence *)parserFromExpression:(NSString *)s {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
