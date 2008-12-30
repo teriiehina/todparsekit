@@ -214,9 +214,34 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (TDTokenizer *)tokenizerFromGrammarSettings {
-    //    id obj = [parserTokensTable objectForKey:@"@singleLineComments"];
-    //    id obj = [parserTokensTable objectForKey:@"@multiLineComments"];
-    return nil;
+    TDTokenizer *t = [TDTokenizer tokenizer];
+    
+    // single line comments
+    NSString *s = [parserTokensTable objectForKey:@"@singleLineComments"];
+    if (s.length) {
+        NSArray *a = [s componentsSeparatedByString:@" "];
+        for (s in a) {
+            s = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            [t.commentState addSingleLineStartSymbol:s];
+        }
+    }
+    
+    // multi line comments
+    s = [parserTokensTable objectForKey:@"@multiLineComments"];
+    if (s.length) {
+        NSArray *a = [s componentsSeparatedByString:@" "];
+        if (a.count % 2 != 0) {
+            [NSException raise:@"InvalidGrammar" format:@"@multiLineComments directive requires an even number of arguments. Provided: %@", s];
+        }
+        NSInteger i = 0;
+        for ( ; i < a.count - 2; i++) {
+            NSString *start = [[a objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            NSString *end = [[a objectAtIndex:++i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            [t.commentState addMultiLineStartSymbol:start endSymbol:end];
+        }
+    }
+    
+    return t;
 }
 
 
