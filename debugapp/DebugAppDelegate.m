@@ -293,11 +293,12 @@
 
 
 - (void)doHighlighting {
-    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo_with_comments" ofType:@"json"];
     NSString *s = [NSString stringWithContentsOfFile:path];
+    s = @"{/*foo*/'foo':/*bar*/null/*baz*/,/*wee*/'bar':[/*noo*/1,/*ooh*/2]/*yes*/}/*bat*/";
     
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
-    self.displayString = [shc highlightedStringForString:s ofGrammar:@"json"];
+    self.displayString = [shc highlightedStringForString:s ofGrammar:@"json_with_comments"];
 }
 
 

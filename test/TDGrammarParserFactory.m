@@ -713,6 +713,10 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [TDQuotedString quotedString];
     } else if ([s isEqualToString:@"Symbol"]) {
         p = [TDSymbol symbol];
+    } else if ([s isEqualToString:@"Comment"]) {
+        p = [TDComment comment];
+    } else if ([s isEqualToString:@"Any"]) {
+        p = [TDAny any];
     } else if ([s isEqualToString:@"Empty"]) {
         p = [TDEmpty empty];
     } else {

@@ -75,6 +75,7 @@
 
 
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
+    [self consumeWhitespaceFrom:a];
     TDToken *tok = [a pop];
     if (!tok) return;
     

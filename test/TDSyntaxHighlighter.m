@@ -139,9 +139,10 @@
     TDTokenizer *t = nil;
     TDParser *parser = [self parserForGrammarNamed:grammarName getTokenizer:&t];
     
-    // parse the string. take care to preseve the whitespace in the string
+    // parse the string. take care to preseve the whitespace and comments in the string
     t.string = s;
     t.whitespaceState.reportsWhitespaceTokens = YES;
+    t.commentState.reportsCommentTokens = YES;
 
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.preservesWhitespaceTokens = YES;
