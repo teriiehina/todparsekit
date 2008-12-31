@@ -217,26 +217,22 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTokenizer *t = [TDTokenizer tokenizer];
     
     // single line comments
-    NSString *s = [parserTokensTable objectForKey:@"@singleLineComments"];
-    if (s.length) {
-        NSArray *a = [s componentsSeparatedByString:@" "];
-        for (s in a) {
-            s = [s stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            [t.commentState addSingleLineStartSymbol:s];
+    NSArray *toks = [parserTokensTable objectForKey:@"@singleLineComments"];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+            [t.commentState addSingleLineStartSymbol:[tok.stringValue stringByTrimmingQuotes]];
         }
     }
     
     // multi line comments
-    s = [parserTokensTable objectForKey:@"@multiLineComments"];
-    if (s.length) {
-        NSArray *a = [s componentsSeparatedByString:@" "];
-        if (a.count % 2 != 0) {
-            [NSException raise:@"InvalidGrammar" format:@"@multiLineComments directive requires an even number of arguments. Provided: %@", s];
-        }
-        NSInteger i = 0;
-        for ( ; i < a.count - 2; i++) {
-            NSString *start = [[a objectAtIndex:i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-            NSString *end = [[a objectAtIndex:++i] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    toks = [parserTokensTable objectForKey:@"@multiLineComments"];
+    NSInteger i = 0;
+    for ( ; i < toks.count - 1; i++) {
+        TDToken *startTok = [toks objectAtIndex:i];
+        TDToken *endTok = [toks objectAtIndex:++i];
+        if (startTok.isQuotedString && endTok.isQuotedString) {
+            NSString *start = [startTok.stringValue stringByTrimmingQuotes];
+            NSString *end = [endTok.stringValue stringByTrimmingQuotes];
             [t.commentState addMultiLineStartSymbol:start endSymbol:end];
         }
     }
