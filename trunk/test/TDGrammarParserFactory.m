@@ -42,6 +42,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
 
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t wantsTokenizer:(BOOL)wantsTokenizer;
 - (TDTokenizer *)tokenizerFromGrammarSettings;
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
@@ -133,25 +134,27 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
-    return [self parserFromGrammar:s assembler:a getTokenizer:nil];
+    return [self parserFromGrammar:s assembler:a getTokenizer:nil wantsTokenizer:NO];
 }    
 
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
+    return [self parserFromGrammar:s assembler:a getTokenizer:t wantsTokenizer:YES];
+}
+
+
+- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t wantsTokenizer:(BOOL)wantsTokenizer {
     self.assembler = a;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
     [self gatherParserClassNamesFromTokens];
-    //(*t) = [self tokenizerFromGrammarSettings];
-    
-    TDParser *start = [[self expandedParserForName:@"@start"] retain]; // retain to survive pool release
-    
-    [pool release];
-    [start autorelease]; // autorelease to balance
+    if (wantsTokenizer) {
+        (*t) = [self tokenizerFromGrammarSettings];
+    }
+        
+    TDParser *start = [self expandedParserForName:@"@start"]; // retain to survive pool release
     
     assembler = nil;
     self.selectorTable = nil;
@@ -215,6 +218,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (TDTokenizer *)tokenizerFromGrammarSettings {
     TDTokenizer *t = [TDTokenizer tokenizer];
+    [t.commentState removeSingleLineStartSymbol:@"//"];
+    [t.commentState removeMultiLineStartSymbol:@"/*"];
     
     // single line comments
     NSArray *toks = [parserTokensTable objectForKey:@"@singleLineComments"];
@@ -226,14 +231,16 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     // multi line comments
     toks = [parserTokensTable objectForKey:@"@multiLineComments"];
-    NSInteger i = 0;
-    for ( ; i < toks.count - 1; i++) {
-        TDToken *startTok = [toks objectAtIndex:i];
-        TDToken *endTok = [toks objectAtIndex:++i];
-        if (startTok.isQuotedString && endTok.isQuotedString) {
-            NSString *start = [startTok.stringValue stringByTrimmingQuotes];
-            NSString *end = [endTok.stringValue stringByTrimmingQuotes];
-            [t.commentState addMultiLineStartSymbol:start endSymbol:end];
+    if (toks.count > 1) {
+        NSInteger i = 0;
+        for ( ; i < toks.count - 1; i++) {
+            TDToken *startTok = [toks objectAtIndex:i];
+            TDToken *endTok = [toks objectAtIndex:++i];
+            if (startTok.isQuotedString && endTok.isQuotedString) {
+                NSString *start = [startTok.stringValue stringByTrimmingQuotes];
+                NSString *end = [endTok.stringValue stringByTrimmingQuotes];
+                [t.commentState addMultiLineStartSymbol:start endSymbol:end];
+            }
         }
     }
     

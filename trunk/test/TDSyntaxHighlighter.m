@@ -14,6 +14,7 @@
 
 @interface TDSyntaxHighlighter ()
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName;
+- (TDParser *)parserForGrammarNamed:(NSString *)grammarName getTokenizer:(TDTokenizer **)t;
 
 // all of the ivars for these properties are lazy loaded in the getters.
 // thats so that if an application has syntax highlighting turned off, this class will
@@ -23,7 +24,7 @@
 @property (nonatomic, retain) TDMiniCSSAssembler *miniCSSAssembler;
 @property (nonatomic, retain) TDGenericAssembler *genericAssembler;
 @property (nonatomic, retain) NSMutableDictionary *parserCache;
-@property (nonatomic, retain) TDTokenizer *tokenizer;
+@property (nonatomic, retain) NSMutableDictionary *tokenizerCache;
 @end
 
 @implementation TDSyntaxHighlighter
@@ -48,7 +49,7 @@
     self.miniCSSAssembler = nil;
     self.genericAssembler = nil;
     self.parserCache = nil;
-    self.tokenizer = nil;
+    self.tokenizerCache = nil;
     [super dealloc];
 }
 
@@ -97,15 +98,6 @@
 }
 
 
-- (TDTokenizer *)tokenizer {
-    if (!tokenizer) {
-        self.tokenizer = [TDTokenizer tokenizer];
-        tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
-    }
-    return tokenizer;
-}
-
-
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName {
     // parse CSS
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"css"];
@@ -116,7 +108,7 @@
 }
 
 
-- (TDParser *)parserForGrammarNamed:(NSString *)grammarName {
+- (TDParser *)parserForGrammarNamed:(NSString *)grammarName getTokenizer:(TDTokenizer **)t {
     // create parser or the grammar requested or fetch parser from cache
     TDParser *parser = nil;
     if (cacheParsers) {
@@ -130,24 +122,28 @@
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"grammar"];
         NSString *grammarString = [NSString stringWithContentsOfFile:path];
         
-        parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler];
+        parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler getTokenizer:t];
         
         if (cacheParsers) {
             [self.parserCache setObject:parser forKey:grammarName];
+            [self.tokenizerCache setObject:(*t) forKey:grammarName];
         }
     }
 
-    return parser;    
+    return parser;
 }
 
 
 - (NSAttributedString *)highlightedStringForString:(NSString *)s ofGrammar:(NSString *)grammarName {    
-    // create or fetch the parser for this grammar
-    TDParser *parser = [self parserForGrammarNamed:grammarName];
+    // create or fetch the parser & tokenizer for this grammar
+    TDTokenizer *t = nil;
+    TDParser *parser = [self parserForGrammarNamed:grammarName getTokenizer:&t];
     
     // parse the string. take care to preseve the whitespace in the string
-    self.tokenizer.string = s;
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
+    t.string = s;
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.preservesWhitespaceTokens = YES;
     
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
@@ -167,5 +163,5 @@
 @synthesize genericAssembler;
 @synthesize cacheParsers;
 @synthesize parserCache;
-@synthesize tokenizer;
+@synthesize tokenizerCache;
 @end
