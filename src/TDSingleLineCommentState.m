@@ -15,6 +15,7 @@
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(NSInteger)c;
+- (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 @end
 
@@ -63,7 +64,7 @@
     if (reportTokens) {
         [self reset];
         if (currentStartSymbol.length > 1) {
-            [self append:cin];
+            [self appendString:currentStartSymbol];
         }
     }
     

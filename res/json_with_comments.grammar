@@ -1,8 +1,9 @@
 /**
-    A Grammar for JSON.
+    A Fake Grammar for JSON with comments (JSON does not have comments).
     
  */
- 
+
+@singleLineComments = '//';
 @multiLineComments = '/*' '*/';
 
 @start        = (Empty | array | object) comment?;
