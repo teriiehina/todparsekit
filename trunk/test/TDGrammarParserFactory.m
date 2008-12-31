@@ -190,7 +190,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     [src release];
     
     [target retain]; // retain to survive the pool releaase
-    [pool release];
+    [pool drain];
     
     return [target autorelease]; // autorelease it to balance
 }
