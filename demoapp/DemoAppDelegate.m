@@ -90,7 +90,7 @@
     //[self done:toks];
     [self performSelectorOnMainThread:@selector(done:) withObject:toks waitUntilDone:NO];
     
-    [pool release];
+    [pool drain];
 }
 
 

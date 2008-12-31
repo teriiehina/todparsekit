@@ -3,7 +3,7 @@
     
  */
 
-@singleLineComments = '//';
+@singleLineComments = '#';
 @multiLineComments = '/*' '*/';
 
 @start        = (Empty | array | object) comment?;

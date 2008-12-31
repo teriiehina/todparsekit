@@ -295,7 +295,7 @@
 - (void)doHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo_with_comments" ofType:@"json"];
     NSString *s = [NSString stringWithContentsOfFile:path];
-    s = @"{/*foo*/'foo':/*bar*/null/*baz*/,/*wee*/'bar'\n: //oh hai \n[/*noo*/1,/*ooh*/2]/*yes*/}/*bat*/";
+    s = @"{/*foo*/'foo':/*bar*/null/*baz\n\n*/,/*wee*/'bar'\n: # oh hai \n[/*noo*/1,/*ooh*/2]/*yes*/}/*bat*/";
     
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"json_with_comments"];
@@ -329,7 +329,7 @@
     
 //    [self doMultiLineComment];
     
-    [pool release];
+    [pool drain];
 }
 
 @synthesize displayString;
