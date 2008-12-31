@@ -21,7 +21,7 @@
     TDGenericAssembler *genericAssembler;
     BOOL cacheParsers;
     NSMutableDictionary *parserCache;
-    TDTokenizer *tokenizer;
+    NSMutableDictionary *tokenizerCache;
 }
 - (NSAttributedString *)highlightedStringForString:(NSString *)s ofGrammar:(NSString *)grammarName;
 
