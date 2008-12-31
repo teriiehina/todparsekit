@@ -63,6 +63,7 @@
 #import <TDParseKit/TDNum.h>
 #import <TDParseKit/TDQuotedString.h>
 #import <TDParseKit/TDSymbol.h>
+#import <TDParseKit/TDComment.h>
 #import <TDParseKit/TDLiteral.h>
 #import <TDParseKit/TDCaseInsensitiveLiteral.h>
 #import <TDParseKit/TDAny.h>

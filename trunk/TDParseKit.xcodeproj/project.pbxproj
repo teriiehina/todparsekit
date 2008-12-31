@@ -184,6 +184,14 @@
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
+		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
+		D383498B0F0C0CF30055E4E0 /* json_with_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */; };
+		D383498C0F0C0CF30055E4E0 /* json_with_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */; };
+		D38349BC0F0C0D910055E4E0 /* json_with_comments.css in Resources */ = {isa = PBXBuildFile; fileRef = D38349BB0F0C0D910055E4E0 /* json_with_comments.css */; };
+		D38349BD0F0C0D910055E4E0 /* json_with_comments.css in Resources */ = {isa = PBXBuildFile; fileRef = D38349BB0F0C0D910055E4E0 /* json_with_comments.css */; };
+		D3834A480F0C14B60055E4E0 /* yahoo_with_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */; };
+		D3834A490F0C14C00055E4E0 /* yahoo_with_comments.json in Resources */ = {isa = PBXBuildFile; fileRef = D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */; };
 		D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
 		D385F98E0F046FE900DB2946 /* TDGenericAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385F9890F046FE900DB2946 /* TDGenericAssembler.m */; };
 		D385FA230F04971400DB2946 /* TDGenericAssemblerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */; };
@@ -552,6 +560,11 @@
 		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
+		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
+		D38349540F0C09740055E4E0 /* TDComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDComment.m; path = src/TDComment.m; sourceTree = "<group>"; };
+		D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_with_comments.grammar; path = res/json_with_comments.grammar; sourceTree = "<group>"; };
+		D38349BB0F0C0D910055E4E0 /* json_with_comments.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = json_with_comments.css; path = res/json_with_comments.css; sourceTree = "<group>"; };
+		D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo_with_comments.json; path = res/yahoo_with_comments.json; sourceTree = "<group>"; };
 		D385F9880F046FE900DB2946 /* TDGenericAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssembler.h; path = test/TDGenericAssembler.h; sourceTree = "<group>"; };
 		D385F9890F046FE900DB2946 /* TDGenericAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGenericAssembler.m; path = test/TDGenericAssembler.m; sourceTree = "<group>"; };
 		D385FA210F04971400DB2946 /* TDGenericAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGenericAssemblerTest.h; path = test/TDGenericAssemblerTest.h; sourceTree = "<group>"; };
@@ -1011,8 +1024,11 @@
 			children = (
 				D3DCB5280EF61FCF00DE5110 /* old */,
 				D385FD6B0F05A99900DB2946 /* mini_css.grammar */,
-				D385FA240F04993500DB2946 /* json.css */,
 				D3DCB4C20EF6015300DE5110 /* json.grammar */,
+				D385FA240F04993500DB2946 /* json.css */,
+				D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */,
+				D38349BB0F0C0D910055E4E0 /* json_with_comments.css */,
+				D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
@@ -1208,6 +1224,8 @@
 				D31FE67B0E60E80600A0803E /* TDNum.m */,
 				D31FE67E0E60E80600A0803E /* TDSymbol.h */,
 				D31FE67F0E60E80600A0803E /* TDSymbol.m */,
+				D38349530F0C09740055E4E0 /* TDComment.h */,
+				D38349540F0C09740055E4E0 /* TDComment.m */,
 				D31FE6780E60E80600A0803E /* TDLiteral.h */,
 				D31FE6790E60E80600A0803E /* TDLiteral.m */,
 				D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */,
@@ -1382,6 +1400,7 @@
 				D3DDDA990F0815A800A58000 /* TDCommentState.h in Headers */,
 				D3DDDA9D0F081B3E00A58000 /* TDSingleLineCommentState.h in Headers */,
 				D3DDDAA10F081B4A00A58000 /* TDMultiLineCommentState.h in Headers */,
+				D38349550F0C09740055E4E0 /* TDComment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,6 +1542,9 @@
 				D385FA260F04993500DB2946 /* json.css in Resources */,
 				D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */,
 				D3DDDCAE0F0880D800A58000 /* example1.srgs in Resources */,
+				D383498C0F0C0CF30055E4E0 /* json_with_comments.grammar in Resources */,
+				D38349BD0F0C0D910055E4E0 /* json_with_comments.css in Resources */,
+				D3834A490F0C14C00055E4E0 /* yahoo_with_comments.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1548,6 +1570,9 @@
 				D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */,
 				D3DDDCAD0F0880D800A58000 /* example1.srgs in Resources */,
 				D317A5300F0A06EE000AFB62 /* javascript.grammar in Resources */,
+				D383498B0F0C0CF30055E4E0 /* json_with_comments.grammar in Resources */,
+				D38349BC0F0C0D910055E4E0 /* json_with_comments.css in Resources */,
+				D3834A480F0C14B60055E4E0 /* yahoo_with_comments.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1618,6 +1643,7 @@
 				D3DDDA9A0F0815A800A58000 /* TDCommentState.m in Sources */,
 				D3DDDA9E0F081B3E00A58000 /* TDSingleLineCommentState.m in Sources */,
 				D3DDDAA20F081B4A00A58000 /* TDMultiLineCommentState.m in Sources */,
+				D38349560F0C09740055E4E0 /* TDComment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
