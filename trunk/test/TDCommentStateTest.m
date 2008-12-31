@@ -38,10 +38,11 @@
     r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
-    tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
+    tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals([r read], -1);
+    TDEqualObjects([t nextToken], [TDToken EOFToken]);
+//    TDEquals([r read], -1);
 }
 
 
@@ -131,10 +132,10 @@
     r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
-    tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
+    tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
-    TDEquals([r read], -1);
+    TDEquals([t nextToken], [TDToken EOFToken]);
 }
 
 
