@@ -10,8 +10,8 @@
 
 @start          = elements;
 elements        = (startTag elementContent endTag)+;
-elementContent  = (Empty | elementChildren);
-elementChildren = (text | elements | comment)+;
+elementContent  = (elementChildren);
+elementChildren = (text | elements | comment)*;
 
 text            = (word | num)+;
 word            = Word;
