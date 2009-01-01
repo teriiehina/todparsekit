@@ -99,10 +99,10 @@
         [self consumeWhitespaceFrom:a];
         [self appendAttributedStringForObjects:toks withAttrs:props];
         [self consumeWhitespaceTokens:whitespaceToks];
-    } else if (whitespaceToks.count) {
-//        [self consumeWhitespaceFrom:a];
-        [self consumeWhitespaceTokens:whitespaceToks];
+    } else {
+        [self consumeWhitespaceFrom:a];
 //        [self appendAttributedStringForObjects:toks withAttrs:props];
+        [self consumeWhitespaceTokens:whitespaceToks];
     }
 }
 
