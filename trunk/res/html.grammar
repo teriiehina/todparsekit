@@ -8,10 +8,9 @@
 @multiLineComments = '<!--' '-->';
 @symbols = '</';
 
-@start          = elements;
-elements        = (startTag elementContent endTag)+;
-elementContent  = (elementChildren);
-elementChildren = (text | elements | comment)*;
+@start          = element;
+element         = startTag elementContent endTag;
+elementContent  = (text | element | comment)*;
 
 text            = (word | num)+;
 word            = Word;
