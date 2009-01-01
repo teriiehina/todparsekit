@@ -14,8 +14,10 @@
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
+- (NSMutableArray *)popWhitespaceTokensFrom:(TDAssembly *)a;
+- (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks;
 - (void)consumeWhitespaceFrom:(TDAssembly *)a;
-
+    
 @property (nonatomic, retain) NSString *prefix;
 @property (nonatomic, retain) NSString *suffix;
 @end
@@ -75,17 +77,28 @@
 
 
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
-    [self consumeWhitespaceFrom:a];
-    TDToken *tok = [a pop];
-    if (!tok) return;
-    
+    NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
+
     id props = [attributes objectForKey:name];
-    if (!props) {
-        props = defaultProperties;
+    if (!props) props = defaultProperties;
+    
+    NSMutableArray *toks = nil;
+    TDToken *tok = nil;
+    while (tok = [a pop]) {
+        if (TDTokenTypeWhitespace != tok.tokenType) {
+            if (!toks) toks = [NSMutableArray array];
+            [toks addObject:tok];
+        } else {
+            [a push:tok];
+            break;
+        }
     }
     
+    if (!toks.count) return;
+
+    [self consumeWhitespaceTokens:whitespaceToks];
     [self consumeWhitespaceFrom:a];
-    [self appendAttributedStringForObject:tok withAttrs:props];
+    [self appendAttributedStringForObjects:toks withAttrs:props];
 }
 
 
@@ -103,10 +116,10 @@
 }
 
 
-- (void)consumeWhitespaceFrom:(TDAssembly *)a {
+- (NSMutableArray *)popWhitespaceTokensFrom:(TDAssembly *)a {
     NSMutableArray *whitespaceToks = nil;
-    while (1) {
-        TDToken *tok = [a pop];
+    TDToken *tok = nil;
+    while (tok = [a pop]) {
         if (TDTokenTypeWhitespace == tok.tokenType) {
             if (!whitespaceToks) {
                 whitespaceToks = [NSMutableArray array];
@@ -117,10 +130,22 @@
             break;
         }
     }
-    
     if (whitespaceToks) {
         whitespaceToks = [whitespaceToks reversedMutableArray];
-        [self appendAttributedStringForObjects:whitespaceToks withAttrs:nil];
+    }
+    return whitespaceToks;
+}
+
+
+- (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks {
+    [self appendAttributedStringForObjects:whitespaceToks withAttrs:nil];
+}
+
+
+- (void)consumeWhitespaceFrom:(TDAssembly *)a {
+    NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
+    if (whitespaceToks) {
+        [self consumeWhitespaceTokens:whitespaceToks];
     }
 }
 
