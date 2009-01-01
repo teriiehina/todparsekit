@@ -1,0 +1,29 @@
+/**
+    An HTML grammar for use with TDParseKit
+
+    this grammar is intentionally very forgiving (non-strict)
+    the point here is to highlight, not validate, HTML.
+*/
+
+@multiLineComments = '<!--' '-->';
+
+@start          = element;
+element         = startTag elementContent endTag;
+elementContent  = element | text;
+
+text            = (word | num)+;
+word            = Word;
+num             = Num;
+
+startTag        = lt elementName attribute* gt;
+elementName     = Word;
+endTag          = lt fwdSlash elementName gt;
+
+lt              = '<';
+gt              = '>';
+fwdSlash        = '/';
+
+attribute       = attrName eq? attrValue?;
+attrName        = Word;
+eq              = '=';
+attrValue       = Word | QuotedString;
