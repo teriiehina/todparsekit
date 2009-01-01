@@ -77,6 +77,7 @@
 
 
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
+    NSLog(@"%@ : %@", name, a);
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
 
     id props = [attributes objectForKey:name];
@@ -94,11 +95,15 @@
         }
     }
     
-    if (!toks.count) return;
-
-    [self consumeWhitespaceTokens:whitespaceToks];
-    [self consumeWhitespaceFrom:a];
-    [self appendAttributedStringForObjects:toks withAttrs:props];
+    if (toks.count) {
+        [self consumeWhitespaceFrom:a];
+        [self appendAttributedStringForObjects:toks withAttrs:props];
+        [self consumeWhitespaceTokens:whitespaceToks];
+    } else if (whitespaceToks.count) {
+//        [self consumeWhitespaceFrom:a];
+        [self consumeWhitespaceTokens:whitespaceToks];
+//        [self appendAttributedStringForObjects:toks withAttrs:props];
+    }
 }
 
 

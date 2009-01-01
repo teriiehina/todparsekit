@@ -6,10 +6,12 @@
 */
 
 @multiLineComments = '<!--' '-->';
+@symbols = '</';
 
-@start          = element;
-element         = startTag elementContent endTag;
-elementContent  = element | text;
+@start          = elements;
+elements        = (startTag elementContent endTag)+;
+elementContent  = (Empty | elementChildren);
+elementChildren = (text | elements | comment)+;
 
 text            = (word | num)+;
 word            = Word;
@@ -17,11 +19,14 @@ num             = Num;
 
 startTag        = lt elementName attribute* gt;
 elementName     = Word;
-endTag          = lt fwdSlash elementName gt;
+endTag          = endTagStart elementName gt;
 
 lt              = '<';
 gt              = '>';
 fwdSlash        = '/';
+endTagStart     = '</';
+
+comment         = Comment;
 
 attribute       = attrName eq? attrValue?;
 attrName        = Word;
