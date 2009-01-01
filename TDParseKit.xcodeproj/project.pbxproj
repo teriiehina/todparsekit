@@ -189,6 +189,7 @@
 		D380AFC00F0C54B60009EC13 /* html.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D380AFBC0F0C54B60009EC13 /* html.grammar */; };
 		D380AFC30F0C56000009EC13 /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = D380AFC20F0C56000009EC13 /* example.html */; };
 		D380AFC40F0C56000009EC13 /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = D380AFC20F0C56000009EC13 /* example.html */; };
+		D380B3230F0CC0800009EC13 /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -1560,6 +1561,7 @@
 				D380AFBF0F0C54B60009EC13 /* html.css in Resources */,
 				D380AFC00F0C54B60009EC13 /* html.grammar in Resources */,
 				D380AFC30F0C56000009EC13 /* example.html in Resources */,
+				D380B3230F0CC0800009EC13 /* nyt.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

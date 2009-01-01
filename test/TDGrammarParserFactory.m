@@ -222,10 +222,20 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t.commentState removeMultiLineStartSymbol:@"/*"];
     
     // single line comments
-    NSArray *toks = [parserTokensTable objectForKey:@"@singleLineComments"];
+    NSArray *toks = [parserTokensTable objectForKey:@"@symbols"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
-            [t.commentState addSingleLineStartSymbol:[tok.stringValue stringByTrimmingQuotes]];
+            [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
+        }
+    }
+    
+    // single line comments
+    toks = [parserTokensTable objectForKey:@"@singleLineComments"];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+            NSString *s = [tok.stringValue stringByTrimmingQuotes];
+            [t.commentState addSingleLineStartSymbol:s];
+            [t.symbolState add:s];
         }
     }
     
@@ -240,6 +250,8 @@ void TDReleaseSubparserTree(TDParser *p) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
                 [t.commentState addMultiLineStartSymbol:start endSymbol:end];
+                [t.symbolState add:start];
+                [t.symbolState add:end];
             }
         }
     }
