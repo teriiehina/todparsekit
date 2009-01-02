@@ -9,25 +9,26 @@
 @symbols = '</';
 
 @start          = element;
-element         = startTag elementContent endTag;
+element         = startTag elementContent endTag?;
 elementContent  = (text | element | comment)*;
 
 text            = (word | num)+;
 word            = Word;
 num             = Num;
 
-startTag        = lt elementName attribute* gt;
-elementName     = Word;
-endTag          = endTagStart elementName gt;
+startTag        = lt tagContent gt;
+endTag          = lt fwdSlash tagContent gt;
+tagContent      = tagName attribute;
+attribute       = (tagWord | eq | tagQuotedString)*;
+tagName         = Word;
+tagWord         = Word;
+tagQuotedString = QuotedString;
+endTag          = endTagStart tagWord gt;
 
+eq              = '=';
 lt              = '<';
 gt              = '>';
 fwdSlash        = '/';
 endTagStart     = '</';
 
 comment         = Comment;
-
-attribute       = attrName eq? attrValue?;
-attrName        = Word;
-eq              = '=';
-attrValue       = Word | QuotedString;

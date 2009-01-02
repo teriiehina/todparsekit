@@ -1056,6 +1056,7 @@
 				D380AFC20F0C56000009EC13 /* example.html */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
+				D317A52F0F0A06EE000AFB62 /* javascript.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
 				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
 				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
@@ -1071,7 +1072,6 @@
 				D385FA220F04971400DB2946 /* TDGenericAssemblerTest.m */,
 				D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */,
 				D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */,
-				D317A52F0F0A06EE000AFB62 /* javascript.grammar */,
 			);
 			name = grammar;
 			sourceTree = "<group>";

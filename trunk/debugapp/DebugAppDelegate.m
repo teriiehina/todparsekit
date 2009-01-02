@@ -303,7 +303,6 @@
 - (void)doCSSHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example" ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path];
-//    s = @"foo{font-size:11px;}";
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"css"];
 }
@@ -341,8 +340,8 @@
 //    [self doSimpleCSS2];
     
 //    [self doJSONHighlighting];
-    [self doCSSHighlighting];
-//    [self doHTMLHighlighting];
+//    [self doCSSHighlighting];
+    [self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
     
