@@ -16,6 +16,7 @@
 void TDReleaseSubparserTree(TDParser *p);
 
 @interface TDGrammarParserFactory : NSObject {
+    BOOL setsAssemblersOnlyOnTerminals;
     id assembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
@@ -49,4 +50,6 @@ void TDReleaseSubparserTree(TDParser *p);
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t;
+
+@property (nonatomic) BOOL setsAssemblersOnlyOnTerminals;
 @end
