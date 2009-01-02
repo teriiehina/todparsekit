@@ -10,7 +10,10 @@ openParen,
 closeParen,
 gt,
 tilde,
-pipe {
+pipe,
+fwdSlash,
+hash,
+dot {
     color:rgb(178.5, 35.7, 135.15);
     background-color:rgb(30, 30, 36);
     font-family:'Monaco';
