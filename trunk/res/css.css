@@ -1,18 +1,37 @@
-openCurly, closeCurly, comma, colon, openParen, closeParen, px, rgb {
+openCurly,
+closeCurly,
+openBracket,
+closeBracket,
+eq,
+comma,
+colon,
+semi,
+openParen,
+closeParen,
+gt,
+tilde,
+pipe {
     color:rgb(178.5, 35.7, 135.15);
     background-color:rgb(30, 30, 36);
     font-family:'Monaco';
     font-size:11px;
 }
 
-selector {
+selectorWord {
     color:rgb(255, 255, 255);
     background-color:rgb(20, 20, 26);
-    font-family:'Monaco';
-    font-size:11px;
+    font-family:'Georgia';
+    font-size:15px;
 }
 
-constants, string, semi {
+selectorQuotedString {
+    color:rgb(196.35, 45.9, 51.0);
+    background-color:rgb(20, 20, 26);
+    font-family:'Georgia';
+    font-size:15px;
+}
+
+constant, string, semi {
     color:rgb(196.35, 45.9, 51.0);
     background-color:rgb(20, 20, 26);
     font-family:'Monaco';
@@ -22,6 +41,13 @@ constants, string, semi {
 property {
     color:rgb(84.15, 114.75, 122.4);
     background-color:rgb(20, 20, 26);
+    font-family:'Monaco';
+    font-size:11px;
+}
+
+num {
+    color:rgb(22.95, 158.1, 188.7);
+    background-color:rgb(30, 30, 36);
     font-family:'Monaco';
     font-size:11px;
 }
@@ -40,9 +66,3 @@ word {
     font-size:11px;
 }
 
-num {
-    color:rgb(22.95, 158.1, 188.7);
-    background-color:rgb(30, 30, 36);
-    font-family:'Monaco';
-    font-size:11px;
-}

@@ -47,9 +47,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
-
-- (TDSequence *)parserFromExpression:(NSString *)s;
+- (void)setAssemblerForParser:(TDParser *)p;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
+
+// this is only for unit tests? can it go away?
+- (TDSequence *)parserFromExpression:(NSString *)s;
 
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
@@ -221,8 +223,22 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t.commentState removeSingleLineStartSymbol:@"//"];
     [t.commentState removeMultiLineStartSymbol:@"/*"];
     
+    NSArray *toks = nil;
+    
+    // tokenizer states
+    toks = [parserTokensTable objectForKey:@"@wordState"];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+            NSString *s = [tok.stringValue stringByTrimmingQuotes];
+            if (1 == s.length) {
+                NSInteger c = [s characterAtIndex:0];
+                [t setTokenizerState:t.wordState from:c to:c];
+            }
+        }
+    }
+    
     // single line comments
-    NSArray *toks = [parserTokensTable objectForKey:@"@symbols"];
+    toks = [parserTokensTable objectForKey:@"@symbols"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
@@ -274,15 +290,27 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [self expandParser:p fromTokenArray:obj];
         p.name = parserName;
 
-        NSString *selName = [selectorTable objectForKey:parserName];
+        [self setAssemblerForParser:p];
 
+        [parserTokensTable setObject:p forKey:parserName];
+        return p;
+    }
+}
+
+
+- (void)setAssemblerForParser:(TDParser *)p {
+    if (setsAssemblersOnlyOnTerminals) {
+        if (![p isKindOfClass:[TDTerminal class]]) return;
+    }
+    
+    NSString *parserName = p.name;
+    
+    NSString *selName = [selectorTable objectForKey:parserName];
+    if (selName) {
         SEL sel = NSSelectorFromString(selName);
         if (assembler && [assembler respondsToSelector:sel]) {
             [p setAssembler:assembler selector:sel];
         }
-
-        [parserTokensTable setObject:p forKey:parserName];
-        return p;
     }
 }
 
@@ -830,4 +858,5 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize variableParser;
 @synthesize constantParser;
 @synthesize numParser;
+@synthesize setsAssemblersOnlyOnTerminals;
 @end
