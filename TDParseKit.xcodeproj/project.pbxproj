@@ -190,6 +190,12 @@
 		D380AFC30F0C56000009EC13 /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = D380AFC20F0C56000009EC13 /* example.html */; };
 		D380AFC40F0C56000009EC13 /* example.html in Resources */ = {isa = PBXBuildFile; fileRef = D380AFC20F0C56000009EC13 /* example.html */; };
 		D380B3230F0CC0800009EC13 /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
+		D380B5090F0D71A90009EC13 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D380B5080F0D71A90009EC13 /* css.grammar */; };
+		D380B50A0F0D71B00009EC13 /* css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D380B5080F0D71A90009EC13 /* css.grammar */; };
+		D380B5380F0D7DDE0009EC13 /* css.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5370F0D7DDE0009EC13 /* css.css */; };
+		D380B5390F0D7DE30009EC13 /* css.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5370F0D7DDE0009EC13 /* css.css */; };
+		D380B5940F0D82F60009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
+		D380B5950F0D82F90009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -568,6 +574,9 @@
 		D380AFBB0F0C54B60009EC13 /* html.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = html.css; path = res/html.css; sourceTree = "<group>"; };
 		D380AFBC0F0C54B60009EC13 /* html.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = html.grammar; path = res/html.grammar; sourceTree = "<group>"; };
 		D380AFC20F0C56000009EC13 /* example.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = example.html; path = res/example.html; sourceTree = "<group>"; };
+		D380B5080F0D71A90009EC13 /* css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css.grammar; path = res/css.grammar; sourceTree = "<group>"; };
+		D380B5370F0D7DDE0009EC13 /* css.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = css.css; path = res/css.css; sourceTree = "<group>"; };
+		D380B5930F0D82F60009EC13 /* example.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = example.css; path = res/example.css; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
@@ -1033,6 +1042,9 @@
 			isa = PBXGroup;
 			children = (
 				D3DCB5280EF61FCF00DE5110 /* old */,
+				D380B5370F0D7DDE0009EC13 /* css.css */,
+				D380B5080F0D71A90009EC13 /* css.grammar */,
+				D380B5930F0D82F60009EC13 /* example.css */,
 				D380AFBB0F0C54B60009EC13 /* html.css */,
 				D380AFBC0F0C54B60009EC13 /* html.grammar */,
 				D385FD6B0F05A99900DB2946 /* mini_css.grammar */,
@@ -1041,6 +1053,7 @@
 				D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */,
 				D38349BB0F0C0D910055E4E0 /* json_with_comments.css */,
 				D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */,
+				D380AFC20F0C56000009EC13 /* example.html */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
@@ -1059,7 +1072,6 @@
 				D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */,
 				D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */,
 				D317A52F0F0A06EE000AFB62 /* javascript.grammar */,
-				D380AFC20F0C56000009EC13 /* example.html */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -1562,6 +1574,9 @@
 				D380AFC00F0C54B60009EC13 /* html.grammar in Resources */,
 				D380AFC30F0C56000009EC13 /* example.html in Resources */,
 				D380B3230F0CC0800009EC13 /* nyt.html in Resources */,
+				D380B50A0F0D71B00009EC13 /* css.grammar in Resources */,
+				D380B5390F0D7DE30009EC13 /* css.css in Resources */,
+				D380B5950F0D82F90009EC13 /* example.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1593,6 +1608,9 @@
 				D380AFBD0F0C54B60009EC13 /* html.css in Resources */,
 				D380AFBE0F0C54B60009EC13 /* html.grammar in Resources */,
 				D380AFC40F0C56000009EC13 /* example.html in Resources */,
+				D380B5090F0D71A90009EC13 /* css.grammar in Resources */,
+				D380B5380F0D7DDE0009EC13 /* css.css in Resources */,
+				D380B5940F0D82F60009EC13 /* example.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

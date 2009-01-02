@@ -16,6 +16,7 @@
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
 - (NSMutableArray *)popWhitespaceTokensFrom:(TDAssembly *)a;
 - (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks;
+- (void)consumeWhitespaceToken:(TDToken *)whitespaceTok;
 - (void)consumeWhitespaceFrom:(TDAssembly *)a;
     
 @property (nonatomic, retain) NSString *prefix;
@@ -77,7 +78,7 @@
 
 
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
-    NSLog(@"%@ : %@", name, a);
+    //NSLog(@"%@ : %@", name, a);
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
 
     id props = [attributes objectForKey:name];
@@ -90,20 +91,14 @@
             if (!toks) toks = [NSMutableArray array];
             [toks addObject:tok];
         } else {
-            [a push:tok];
+            [self consumeWhitespaceToken:tok];
             break;
         }
     }
     
-    if (toks.count) {
-        [self consumeWhitespaceFrom:a];
-        [self appendAttributedStringForObjects:toks withAttrs:props];
-        [self consumeWhitespaceTokens:whitespaceToks];
-    } else {
-        [self consumeWhitespaceFrom:a];
-//        [self appendAttributedStringForObjects:toks withAttrs:props];
-        [self consumeWhitespaceTokens:whitespaceToks];
-    }
+    [self consumeWhitespaceFrom:a];
+    [self appendAttributedStringForObjects:toks withAttrs:props];
+    [self consumeWhitespaceTokens:whitespaceToks];
 }
 
 
@@ -144,6 +139,11 @@
 
 - (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks {
     [self appendAttributedStringForObjects:whitespaceToks withAttrs:nil];
+}
+
+
+- (void)consumeWhitespaceToken:(TDToken *)whitespaceTok {
+    [self appendAttributedStringForObject:whitespaceTok withAttrs:nil];
 }
 
 

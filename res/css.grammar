@@ -1,0 +1,36 @@
+/**
+    A Grammar for CSS
+    
+    This grammar is intentionally lenient/incorrect. 
+    The purpose is to highlight, not validate CSS
+    
+*/
+
+@multiLineComments = '/*' '*/';
+
+@start        = ruleset*;
+ruleset       = selectors openCurly decls closeCurly;
+selectors     = selector commaSelector*;
+selector      = Word;
+commaSelector = comma selector;
+decls         = Empty | actualDecls;
+actualDecls   = decl decl*;
+decl          = property colon expr semi?;
+property      = Word;
+expr          = pixelValue+ | rgbValue | string | constants;
+pixelValue    = num px;
+rgbValue      = rgb openParen num comma num comma num closeParen;
+string        = QuotedString;
+constants     = 'bold' | 'normal' | 'italic';
+
+openCurly       = '{';
+closeCurly      = '}';
+comma           = ',';
+colon           = ':';
+semi            = ';';
+openParen       = '(';
+closeParen      = ')';
+px              = 'px';
+rgb             = 'rgb';
+
+num = Num;
