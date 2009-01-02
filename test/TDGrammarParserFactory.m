@@ -44,6 +44,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t wantsTokenizer:(BOOL)wantsTokenizer;
 - (TDTokenizer *)tokenizerFromGrammarSettings;
+- (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
@@ -223,19 +224,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t.commentState removeSingleLineStartSymbol:@"//"];
     [t.commentState removeMultiLineStartSymbol:@"/*"];
     
+    [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
+    [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
+    [self setTokenizerState:t.quoteState onTokenizer:t forTokensForKey:@"@quoteState"];
+    [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
+    [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
+
     NSArray *toks = nil;
-    
-    // tokenizer states
-    toks = [parserTokensTable objectForKey:@"@wordState"];
-    for (TDToken *tok in toks) {
-        if (tok.isQuotedString) {
-            NSString *s = [tok.stringValue stringByTrimmingQuotes];
-            if (1 == s.length) {
-                NSInteger c = [s characterAtIndex:0];
-                [t setTokenizerState:t.wordState from:c to:c];
-            }
-        }
-    }
     
     // single line comments
     toks = [parserTokensTable objectForKey:@"@symbols"];
@@ -273,6 +268,20 @@ void TDReleaseSubparserTree(TDParser *p) {
     }
     
     return t;
+}
+
+
+- (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key {
+    NSArray *toks = [parserTokensTable objectForKey:key];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+            NSString *s = [tok.stringValue stringByTrimmingQuotes];
+            if (1 == s.length) {
+                NSInteger c = [s characterAtIndex:0];
+                [t setTokenizerState:state from:c to:c];
+            }
+        }
+    }
 }
 
 
