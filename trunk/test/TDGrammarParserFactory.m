@@ -311,7 +311,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)setAssemblerForParser:(TDParser *)p {
     NSString *parserName = p.name;
     NSString *selName = [selectorTable objectForKey:parserName];
-//    if (!selName) return;
 
     BOOL setOnAll = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnAll);
 
