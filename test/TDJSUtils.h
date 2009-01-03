@@ -10,10 +10,14 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value);
+JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr);
+JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr);
 JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray);
 JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict);
 
 CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value);
+CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value);
+NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value);
 CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj);
 CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj);
 

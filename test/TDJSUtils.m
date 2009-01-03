@@ -20,9 +20,7 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
         Boolean b = CFBooleanGetValue(value);
         result = JSValueMakeBoolean(ctx, b);
     } else if (CFStringGetTypeID() == typeID) {
-        JSStringRef str = JSStringCreateWithCFString(value);
-        result = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        result = TDCFStringToJSValue(ctx, value);
     } else if (CFArrayGetTypeID() == typeID) {
         result = TDCFArrayToJSObject(ctx, value);
     } else if (CFDictionaryGetTypeID() == typeID) {
@@ -32,6 +30,17 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
     }
     
     return result;
+}
+
+JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr) {
+    JSStringRef str = JSStringCreateWithCFString(cfStr);
+    JSValueRef result = JSValueMakeString(ctx, str);
+    JSStringRelease(str);
+    return result;
+}
+
+JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr) {
+    return TDCFStringToJSValue(ctx, (CFStringRef)nsStr);
 }
 
 JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray) {
@@ -98,9 +107,7 @@ CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value) {
         CGFloat d = JSValueToNumber(ctx, value, NULL);
         result = CFNumberCreate(NULL, kCFNumberCGFloatType, &d);
     } else if (JSValueIsString(ctx, value)) {
-        JSStringRef str = JSValueToStringCopy(ctx, value, NULL);
-        result = JSStringCopyCFString(NULL, str);
-        JSStringRelease(str);
+        result = TDJSValueCopyCFString(ctx, value);
     } else if (JSValueIsObject(ctx, value)) {
         if (TDJSValueIsInstanceOfClass(ctx, value, "Array", NULL)) {
             result = TDJSObjectCopyCFArray(ctx, (JSObjectRef)value);
@@ -110,6 +117,17 @@ CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value) {
     }
     
     return result;
+}
+
+CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value) {
+    JSStringRef str = JSValueToStringCopy(ctx, value, NULL);
+    CFStringRef result = JSStringCopyCFString(NULL, str);
+    JSStringRelease(str);
+    return result;
+}
+
+NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value) {
+    return [(id)TDJSValueCopyCFString(ctx, value) autorelease];
 }
 
 CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj) {
