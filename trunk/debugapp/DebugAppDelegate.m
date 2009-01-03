@@ -336,13 +336,14 @@
 
 - (void)doFactory {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-    NSString *s = @"@start = foo|baz; foo = 'bar'; baz (workOnBazAssembly:) = 'bat'";
     TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    NSString *s = nil;
+    s = @"@start = foo|baz; foo (workOnFooAssembly:) = 'bar'; baz (workOnBazAssembly:) = 'bat'";
     factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
     TDParser *lp = [factory parserFromGrammar:s assembler:mock];
     
-    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
-    NSString *s = @"bar bat";
+//    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+//    NSString *s = @"bar bat";
 //    a = [TDTokenAssembly assemblyWithString:s];
 //    res = [lp completeMatchFor:a];
 //    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
