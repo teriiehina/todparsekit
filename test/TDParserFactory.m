@@ -1,12 +1,12 @@
 //
-//  TDGrammarParserFactory.m
+//  TDParserFactory.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "TDGrammarParserFactory.h"
+#import "TDParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
@@ -37,7 +37,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     }
 }
 
-@interface TDGrammarParserFactory ()
+@interface TDParserFactory ()
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
@@ -83,10 +83,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *numParser;
 @end
 
-@implementation TDGrammarParserFactory
+@implementation TDParserFactory
 
 + (id)factory {
-    return [[[TDGrammarParserFactory alloc] init] autorelease];
+    return [[[TDParserFactory alloc] init] autorelease];
 }
 
 

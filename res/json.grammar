@@ -43,7 +43,7 @@ colon         = ':';
     
     closeCurly = '}'.discard;
     
-    Feed this grammar to -[TDGrammarParserFactory parserFromGrammar:assembler:] along with a reference
+    Feed this grammar to -[TDParserFactory parserFromGrammar:assembler:] along with a reference
     to an assembler (a call back delegate), and it will return a TDParser object which can 
     parse strings conforming to this language/grammar.
         

@@ -1,5 +1,5 @@
 //
-//  TDGrammarParserFactory.h
+//  TDParserFactory.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
@@ -22,7 +22,7 @@ enum {
 };
 typedef NSUInteger TDParserFactoryAssemblerSettingBehavior;
 
-@interface TDGrammarParserFactory : NSObject {
+@interface TDParserFactory : NSObject {
     TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
     id assembler;
     NSMutableDictionary *parserTokensTable;

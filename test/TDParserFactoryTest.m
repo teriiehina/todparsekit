@@ -1,16 +1,16 @@
 //
-//  TDGrammarParserFactoryTest.m
+//  TDParserFactoryTest.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "TDGrammarParserFactoryTest.h"
+#import "TDParserFactoryTest.h"
 #import <TDParseKit/TDParseKit.h>
 #import <OCMock/OCMock.h>
 
-@interface TDGrammarParserFactory ()
+@interface TDParserFactory ()
 - (TDSequence *)parserFromExpression:(NSString *)s;
 @property (retain) TDCollectionParser *expressionParser;
 @end
@@ -23,10 +23,10 @@
 - (void)workOn_StartAssembly:(TDAssembly *)a;
 @end
 
-@implementation TDGrammarParserFactoryTest
+@implementation TDParserFactoryTest
 
 - (void)setUp {
-    factory = [TDGrammarParserFactory factory];
+    factory = [TDParserFactory factory];
     TDSequence *seq = [TDSequence sequence];
     [seq add:factory.expressionParser];
     exprSeq = seq;

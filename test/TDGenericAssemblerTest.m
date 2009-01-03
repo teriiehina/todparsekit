@@ -14,7 +14,7 @@
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     grammarString = [NSString stringWithContentsOfFile:path];
     cssAssember = [[TDMiniCSSAssembler alloc] init];
-    factory = [TDGrammarParserFactory factory];
+    factory = [TDParserFactory factory];
     cssParser = [factory parserFromGrammar:grammarString assembler:cssAssember];
 }
 
