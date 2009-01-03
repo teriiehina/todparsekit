@@ -16,9 +16,10 @@
 void TDReleaseSubparserTree(TDParser *p);
 
 enum {
-    TDParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 0,
-    TDParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 1,
-    TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 2
+    TDParserFactoryAssemblerSettingBehaviorOnNone       = 0,
+    TDParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 1, // Default
+    TDParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 2,
+    TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 3
 };
 typedef NSUInteger TDParserFactoryAssemblerSettingBehavior;
 

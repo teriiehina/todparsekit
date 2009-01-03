@@ -14,7 +14,8 @@
 #pragma mark Methods
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    JSStringRef resStr = JSStringCreateWithUTF8CString("[object TDToken]");
+    TDToken *data = JSObjectGetPrivate(this);
+    JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
     JSValueRef res = JSValueMakeString(ctx, resStr);
     JSStringRelease(resStr);
     return res;
@@ -104,7 +105,7 @@ static JSStaticValue TDToken_staticValues[] = {
 #pragma mark -
 #pragma mark ClassMethods
 
-//JSObjectCallAsFunctionCallback
+// JSObjectCallAsFunctionCallback
 JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     static JSValueRef eof = NULL;
     if (!eof) {
