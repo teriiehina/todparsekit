@@ -311,11 +311,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)setAssemblerForParser:(TDParser *)p {
     NSString *parserName = p.name;
     NSString *selName = [selectorTable objectForKey:parserName];
-    if (!selName) return;
+//    if (!selName) return;
 
     BOOL setOnAll = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnAll);
 
-    if (!setOnAll) {
+    if (setOnAll) {
+        // continue
+    } else {
         BOOL setOnExplicit = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnExplicit);
         if (setOnExplicit && selName) {
             // continue
@@ -324,10 +326,18 @@ void TDReleaseSubparserTree(TDParser *p) {
             if (!isTerminal && !setOnExplicit) return;
             
             BOOL setOnTerminals = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnTerminals);
-            if (!setOnTerminals && isTerminal) return;
+            if (setOnTerminals && isTerminal) {
+                // continue
+            } else {
+                return;
+            }
         }
     }
-
+    
+    if (!selName) {
+        selName = [self defaultAssemblerSelectorNameForParserName:parserName];
+    }
+                
     SEL sel = NSSelectorFromString(selName);
     if (assembler && [assembler respondsToSelector:sel]) {
         [p setAssembler:assembler selector:sel];
@@ -683,10 +693,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         parserName = [[a pop] stringValue];
     } else {
         parserName = [obj stringValue];
-        BOOL setOnExplicit = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnExplicit);
-        if (!setOnExplicit) {
-            selName = [self defaultAssemblerSelectorNameForParserName:parserName];
-        }
     }
     
     if (selName) {
