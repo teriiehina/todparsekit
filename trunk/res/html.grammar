@@ -6,29 +6,30 @@
 */
 
 @multiLineComments = '<!--' '-->';
-@symbols = '</';
 
 @start          = element;
-element         = startTag elementContent endTag?;
-elementContent  = (text | element | comment)*;
+element         = tag elementContent tag;
+elementContent  = (text | comment)*;
 
 text            = (word | num)+;
 word            = Word;
 num             = Num;
 
-startTag        = lt tagContent gt;
-endTag          = lt fwdSlash tagContent gt;
-tagContent      = tagName attribute;
-attribute       = (tagWord | eq | tagQuotedString)*;
-tagName         = Word;
+tag             = lt tagContent gt;
+tagContent      = (tagWord | fwdSlash | eq | tagQuotedString)+;
+
+
+//startTag        = lt tagContent gt;
+//endTag          = endTagStart tagContent gt;
+//tagContent      = tagName attribute;
+//attribute       = (tagWord | eq | tagQuotedString)*;
+//tagName         = Word;
 tagWord         = Word;
 tagQuotedString = QuotedString;
-endTag          = endTagStart tagWord gt;
 
 eq              = '=';
 lt              = '<';
 gt              = '>';
 fwdSlash        = '/';
-endTagStart     = '</';
 
 comment         = Comment;

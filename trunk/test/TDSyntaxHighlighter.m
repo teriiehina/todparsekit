@@ -116,14 +116,15 @@
     }
     
     if (!parser) {
-        parserFactory.setsAssemblersOnlyOnTerminals = NO;
         // get attributes from css && give to the generic assembler
+        parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
         self.genericAssembler.attributes = [self attributesForGrammarNamed:grammarName];
         
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"grammar"];
         NSString *grammarString = [NSString stringWithContentsOfFile:path];
 
-        parserFactory.setsAssemblersOnlyOnTerminals = YES;
+        // generate a parser for the requested grammar
+        parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
         parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler getTokenizer:t];
         
         if (cacheParsers) {

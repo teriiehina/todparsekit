@@ -95,6 +95,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (self) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
 }
@@ -308,18 +309,28 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)setAssemblerForParser:(TDParser *)p {
-    if (setsAssemblersOnlyOnTerminals) {
-        if (![p isKindOfClass:[TDTerminal class]]) return;
-    }
-    
     NSString *parserName = p.name;
-    
     NSString *selName = [selectorTable objectForKey:parserName];
-    if (selName) {
-        SEL sel = NSSelectorFromString(selName);
-        if (assembler && [assembler respondsToSelector:sel]) {
-            [p setAssembler:assembler selector:sel];
+    if (!selName) return;
+
+    BOOL setOnAll = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnAll);
+
+    if (!setOnAll) {
+        BOOL setOnExplicit = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnExplicit);
+        if (setOnExplicit && selName) {
+            // continue
+        } else {
+            BOOL isTerminal = [p isKindOfClass:[TDTerminal class]];
+            if (!isTerminal && !setOnExplicit) return;
+            
+            BOOL setOnTerminals = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnTerminals);
+            if (!setOnTerminals && isTerminal) return;
         }
+    }
+
+    SEL sel = NSSelectorFromString(selName);
+    if (assembler && [assembler respondsToSelector:sel]) {
+        [p setAssembler:assembler selector:sel];
     }
 }
 
@@ -672,10 +683,15 @@ void TDReleaseSubparserTree(TDParser *p) {
         parserName = [[a pop] stringValue];
     } else {
         parserName = [obj stringValue];
-        selName = [self defaultAssemblerSelectorNameForParserName:parserName];
+        BOOL setOnExplicit = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnExplicit);
+        if (!setOnExplicit) {
+            selName = [self defaultAssemblerSelectorNameForParserName:parserName];
+        }
     }
     
-    [selectorTable setObject:selName forKey:parserName];
+    if (selName) {
+        [selectorTable setObject:selName forKey:parserName];
+    }
     [a.target setObject:toks forKey:parserName];
 }
 
@@ -867,5 +883,5 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize variableParser;
 @synthesize constantParser;
 @synthesize numParser;
-@synthesize setsAssemblersOnlyOnTerminals;
+@synthesize assemblerSettingBehavior;
 @end
