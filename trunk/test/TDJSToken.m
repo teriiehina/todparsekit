@@ -7,6 +7,7 @@
 //
 
 #import "TDJSToken.h"
+#import "TDJSUtils.h"
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDToken.h>
 
@@ -15,10 +16,7 @@
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDToken *data = JSObjectGetPrivate(this);
-    JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
-    JSValueRef res = JSValueMakeString(ctx, resStr);
-    JSStringRelease(resStr);
-    return res;
+    return TDNSStringToJSValue(ctx, [data description]);
 }
 
 #pragma mark -
@@ -31,10 +29,7 @@ static JSValueRef TDToken_getTokenType(JSContextRef ctx, JSObjectRef this, JSStr
 
 static JSValueRef TDToken_getStringValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDToken *data = JSObjectGetPrivate(this);
-    JSStringRef str = JSStringCreateWithCFString((CFStringRef)data.stringValue);
-    JSValueRef res = JSValueMakeString(ctx, str);
-    JSStringRelease(str);
-    return res;
+    return TDNSStringToJSValue(ctx, data.stringValue);
 }
 
 static JSValueRef TDToken_getFloatValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
@@ -110,6 +105,7 @@ JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef 
     static JSValueRef eof = NULL;
     if (!eof) {
         eof = TDToken_new(ctx, [TDToken EOFToken]);
+        JSValueProtect(ctx, eof); // is this necessary/appropriate?
     }
     return eof;
 }
@@ -146,11 +142,8 @@ JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t 
     JSValueRef s = argv[1];
     JSValueRef n = argv[2];
 
-    JSStringRef stringValueStr = JSValueToStringCopy(ctx, s, NULL);
-    NSString *stringValue = [(id)JSStringCopyCFString(kCFAllocatorDefault, stringValueStr) autorelease];
-    JSStringRelease(stringValueStr);
-
     CGFloat tokenType = JSValueToNumber(ctx, t, NULL);
+    NSString *stringValue = TDJSValueGetNSString(ctx, s);
     CGFloat floatValue = JSValueToNumber(ctx, n, NULL);
 
     TDToken *data = [[TDToken alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
