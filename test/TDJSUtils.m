@@ -10,21 +10,22 @@
 
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
     JSValueRef result = NULL;
-    
-    if (CFNumberGetTypeID() == CFGetTypeID(value)) {
+    CFTypeID typeID = CFGetTypeID(value);
+
+    if (CFNumberGetTypeID() == typeID) {
         double d;
         CFNumberGetValue(value, kCFNumberDoubleType, &d);
         result = JSValueMakeNumber(ctx, d);
-    } else if (CFBooleanGetTypeID() == CFGetTypeID(value)) {
+    } else if (CFBooleanGetTypeID() == typeID) {
         Boolean b = CFBooleanGetValue(value);
         result = JSValueMakeBoolean(ctx, b);
-    } else if (CFStringGetTypeID() == CFGetTypeID(value)) {
+    } else if (CFStringGetTypeID() == typeID) {
         JSStringRef str = JSStringCreateWithCFString(value);
         result = JSValueMakeString(ctx, str);
         JSStringRelease(str);
-    } else if (CFArrayGetTypeID() == CFGetTypeID(value)) {
+    } else if (CFArrayGetTypeID() == typeID) {
         result = TDCFArrayToJSObject(ctx, value);
-    } else if (CFDictionaryGetTypeID() == CFGetTypeID(value)) {
+    } else if (CFDictionaryGetTypeID() == typeID) {
         result = TDCFDictionaryToJSObject(ctx, value);
     } else {
         result = JSValueMakeNull(ctx);
