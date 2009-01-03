@@ -208,6 +208,8 @@
 		D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
 		D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
 		D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
+		D380BB430F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
+		D380BB440F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -606,6 +608,8 @@
 		D380BAB20F0F1E590009EC13 /* TDJSToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSToken.m; path = test/TDJSToken.m; sourceTree = "<group>"; };
 		D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSValueHolder.h; path = test/TDJSValueHolder.h; sourceTree = "<group>"; };
 		D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSValueHolder.m; path = test/TDJSValueHolder.m; sourceTree = "<group>"; };
+		D380BB410F0F66400009EC13 /* TDJSTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenAssembly.h; path = test/TDJSTokenAssembly.h; sourceTree = "<group>"; };
+		D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenAssembly.m; path = test/TDJSTokenAssembly.m; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
@@ -1076,6 +1080,8 @@
 				D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */,
 				D380BAB10F0F1E590009EC13 /* TDJSToken.h */,
 				D380BAB20F0F1E590009EC13 /* TDJSToken.m */,
+				D380BB410F0F66400009EC13 /* TDJSTokenAssembly.h */,
+				D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */,
 			);
 			name = JSC;
 			sourceTree = "<group>";
@@ -1768,6 +1774,7 @@
 				D380BA9E0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
 				D380BAB30F0F1E590009EC13 /* TDJSToken.m in Sources */,
 				D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
+				D380BB430F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1868,6 +1875,7 @@
 				D380BA9F0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
 				D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */,
 				D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
+				D380BB440F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
