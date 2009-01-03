@@ -121,24 +121,19 @@ JSObjectRef TDTokenAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    if (argc < 3) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDJSTokenAssembly constructor requires 3 arguments: tokenType, stringValue, numberValue");
+    if (argc < 1) {
+        JSStringRef str = JSStringCreateWithUTF8CString("TDTokenAssembly constructor requires 1 argument: string");
         (*ex) = JSValueMakeString(ctx, str);
         JSStringRelease(str);
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     
-    JSValueRef t = argv[0];
-    JSValueRef s = argv[1];
-    JSValueRef n = argv[2];
+    JSValueRef s = argv[0];
     
-    JSStringRef stringValueStr = JSValueToStringCopy(ctx, s, NULL);
-    NSString *stringValue = [(id)JSStringCopyCFString(kCFAllocatorDefault, stringValueStr) autorelease];
-    JSStringRelease(stringValueStr);
+    JSStringRef stringStr = JSValueToStringCopy(ctx, s, NULL);
+    NSString *string = [(id)JSStringCopyCFString(kCFAllocatorDefault, stringStr) autorelease];
+    JSStringRelease(stringStr);
     
-    CGFloat tokenType = JSValueToNumber(ctx, t, NULL);
-    CGFloat floatValue = JSValueToNumber(ctx, n, NULL);
-    
-    TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
+    TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:string];
     return TDTokenAssembly_new(ctx, data);
 }
