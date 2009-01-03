@@ -15,8 +15,15 @@
 
 void TDReleaseSubparserTree(TDParser *p);
 
+enum {
+    TDParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 0,
+    TDParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 1,
+    TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 2
+};
+typedef NSUInteger TDParserFactoryAssemblerSettingBehavior;
+
 @interface TDGrammarParserFactory : NSObject {
-    BOOL setsAssemblersOnlyOnTerminals;
+    TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
     id assembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
@@ -51,5 +58,5 @@ void TDReleaseSubparserTree(TDParser *p);
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t;
 
-@property (nonatomic) BOOL setsAssemblersOnlyOnTerminals;
+@property (nonatomic) TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
 @end

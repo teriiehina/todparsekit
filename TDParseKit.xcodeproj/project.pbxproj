@@ -196,6 +196,7 @@
 		D380B5390F0D7DE30009EC13 /* css.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5370F0D7DDE0009EC13 /* css.css */; };
 		D380B5940F0D82F60009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
 		D380B5950F0D82F90009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
+		D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -308,6 +309,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D380B9A10F0EF3DC0009EC13 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(BUILT_PRODUCTS_DIR)";
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3DCB3880EF5E65100DE5110 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -683,6 +694,7 @@
 			files = (
 				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
 				D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */,
+				D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1475,6 +1487,7 @@
 			buildPhases = (
 				D34185000E520D3F0081B0DC /* Resources */,
 				D34185010E520D3F0081B0DC /* Sources */,
+				D380B9A10F0EF3DC0009EC13 /* Copy Frameworks */,
 				D34185020E520D3F0081B0DC /* Frameworks */,
 			);
 			buildRules = (
@@ -2002,6 +2015,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_GC = NO;
@@ -2032,6 +2050,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
+				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/frameworks\"";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
