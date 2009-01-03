@@ -200,6 +200,14 @@
 		D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
 		D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */; };
 		D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
+		D380BA9E0F0F1CC10009EC13 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
+		D380BA9F0F0F1CC10009EC13 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
+		D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
+		D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
+		D380BAB30F0F1E590009EC13 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
+		D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
+		D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
+		D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -591,6 +599,13 @@
 		D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactory.m; path = test/TDParserFactory.m; sourceTree = "<group>"; };
 		D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest.h; path = test/TDParserFactoryTest.h; sourceTree = "<group>"; };
 		D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest.m; path = test/TDParserFactoryTest.m; sourceTree = "<group>"; };
+		D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUtils.h; path = test/TDJSUtils.h; sourceTree = "<group>"; };
+		D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUtils.m; path = test/TDJSUtils.m; sourceTree = "<group>"; };
+		D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
+		D380BAB10F0F1E590009EC13 /* TDJSToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSToken.h; path = test/TDJSToken.h; sourceTree = "<group>"; };
+		D380BAB20F0F1E590009EC13 /* TDJSToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSToken.m; path = test/TDJSToken.m; sourceTree = "<group>"; };
+		D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSValueHolder.h; path = test/TDJSValueHolder.h; sourceTree = "<group>"; };
+		D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSValueHolder.m; path = test/TDJSValueHolder.m; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
@@ -694,6 +709,7 @@
 				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
 				D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */,
 				D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */,
+				D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +721,7 @@
 				D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */,
 				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
 				D3C8632E0E67C778000445FD /* Cocoa.framework in Frameworks */,
+				D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -770,6 +787,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */,
 				D3DCB35C0EF5E52500DE5110 /* OCMock.framework */,
 				D36E9F860E5A795400496BD3 /* libxml2.dylib */,
 				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
@@ -1049,9 +1067,23 @@
 			name = tokenizer;
 			sourceTree = "<group>";
 		};
+		D380BA950F0F1C450009EC13 /* JSC */ = {
+			isa = PBXGroup;
+			children = (
+				D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */,
+				D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */,
+				D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */,
+				D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */,
+				D380BAB10F0F1E590009EC13 /* TDJSToken.h */,
+				D380BAB20F0F1E590009EC13 /* TDJSToken.m */,
+			);
+			name = JSC;
+			sourceTree = "<group>";
+		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
 			isa = PBXGroup;
 			children = (
+				D380BA950F0F1C450009EC13 /* JSC */,
 				D3DCB5280EF61FCF00DE5110 /* old */,
 				D380B5370F0D7DDE0009EC13 /* css.css */,
 				D380B5080F0D71A90009EC13 /* css.grammar */,
@@ -1733,6 +1765,9 @@
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
+				D380BA9E0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
+				D380BAB30F0F1E590009EC13 /* TDJSToken.m in Sources */,
+				D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,6 +1865,9 @@
 				D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */,
 				D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
 				D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
+				D380BA9F0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
+				D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */,
+				D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
