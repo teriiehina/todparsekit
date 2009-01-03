@@ -197,6 +197,10 @@
 		D380B5940F0D82F60009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
 		D380B5950F0D82F90009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
 		D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
+		D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
+		D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */; };
+		D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
+		D380BA640F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -236,10 +240,6 @@
 		D3D6E65D0EF654DE00292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
 		D3D6E65E0EF654E500292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
 		D3D6E65F0EF654E600292EE6 /* json-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D6E65C0EF654DE00292EE6 /* json-old.grammar */; };
-		D3DCB2780EF4F77700DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
-		D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */; };
-		D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
-		D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */; };
 		D3DCB3730EF5E5D600DE5110 /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
@@ -588,6 +588,10 @@
 		D380B5080F0D71A90009EC13 /* css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css.grammar; path = res/css.grammar; sourceTree = "<group>"; };
 		D380B5370F0D7DDE0009EC13 /* css.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = css.css; path = res/css.css; sourceTree = "<group>"; };
 		D380B5930F0D82F60009EC13 /* example.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = example.css; path = res/example.css; sourceTree = "<group>"; };
+		D380BA5D0F0F06CD0009EC13 /* TDParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactory.h; path = test/TDParserFactory.h; sourceTree = "<group>"; };
+		D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactory.m; path = test/TDParserFactory.m; sourceTree = "<group>"; };
+		D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest.h; path = test/TDParserFactoryTest.h; sourceTree = "<group>"; };
+		D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest.m; path = test/TDParserFactoryTest.m; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
@@ -623,10 +627,6 @@
 		D3D6E4E10EF625D700292EE6 /* TDAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAny.h; path = src/TDAny.h; sourceTree = "<group>"; };
 		D3D6E4E20EF625D700292EE6 /* TDAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAny.m; path = src/TDAny.m; sourceTree = "<group>"; };
 		D3D6E65C0EF654DE00292EE6 /* json-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "json-old.grammar"; path = "res/json-old.grammar"; sourceTree = "<group>"; };
-		D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserFactory.h; path = test/TDGrammarParserFactory.h; sourceTree = "<group>"; };
-		D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactory.m; path = test/TDGrammarParserFactory.m; sourceTree = "<group>"; };
-		D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGrammarParserFactoryTest.h; path = test/TDGrammarParserFactoryTest.h; sourceTree = "<group>"; };
-		D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGrammarParserFactoryTest.m; path = test/TDGrammarParserFactoryTest.m; sourceTree = "<group>"; };
 		D3DCB35C0EF5E52500DE5110 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = frameworks/OCMock.framework; sourceTree = "<group>"; };
 		D3DCB4C20EF6015300DE5110 /* json.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json.grammar; path = res/json.grammar; sourceTree = "<group>"; };
 		D3DCB51D0EF61F3000DE5110 /* TDOldGrammarParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDOldGrammarParserFactory.h; path = test/TDOldGrammarParserFactory.h; sourceTree = "<group>"; };
@@ -1070,10 +1070,10 @@
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
 				D317A52F0F0A06EE000AFB62 /* javascript.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
-				D3DCB2740EF4F77700DE5110 /* TDGrammarParserFactory.h */,
-				D3DCB2750EF4F77700DE5110 /* TDGrammarParserFactory.m */,
-				D3DCB2760EF4F77700DE5110 /* TDGrammarParserFactoryTest.h */,
-				D3DCB2770EF4F77700DE5110 /* TDGrammarParserFactoryTest.m */,
+				D380BA5D0F0F06CD0009EC13 /* TDParserFactory.h */,
+				D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */,
+				D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */,
+				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
 				D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */,
 				D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */,
 				D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */,
@@ -1706,7 +1706,6 @@
 				D36E98E80E58C14000496BD3 /* main.m in Sources */,
 				D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
-				D3DCB27A0EF4F77E00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 			);
@@ -1728,13 +1727,14 @@
 				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
-				D3DCB27B0EF4F77F00DE5110 /* TDGrammarParserFactory.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
 				D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
+				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
+				D380BA640F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1821,8 +1821,6 @@
 				D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */,
 				D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */,
 				D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */,
-				D3DCB2780EF4F77700DE5110 /* TDGrammarParserFactory.m in Sources */,
-				D3DCB2790EF4F77700DE5110 /* TDGrammarParserFactoryTest.m in Sources */,
 				D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */,
 				D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
@@ -1832,6 +1830,8 @@
 				D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA880F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */,
+				D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
+				D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

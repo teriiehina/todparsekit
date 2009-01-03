@@ -10,12 +10,12 @@
 
 @class TDParser;
 @class TDTokenizer;
-@class TDGrammarParserFactory;
+@class TDParserFactory;
 @class TDMiniCSSAssembler;
 @class TDGenericAssembler;
 
 @interface TDSyntaxHighlighter : NSObject {
-    TDGrammarParserFactory *parserFactory;
+    TDParserFactory *parserFactory;
     TDParser *miniCSSParser;
     TDMiniCSSAssembler *miniCSSAssembler;
     TDGenericAssembler *genericAssembler;

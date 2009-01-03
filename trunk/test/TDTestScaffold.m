@@ -107,7 +107,7 @@
                            @"TDArithmeticParserTest",
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
-                           @"TDGrammarParserFactoryTest",
+                           @"TDParserFactoryTest",
                            @"TDMiniCSSAssemblerTest",
                            nil];
     

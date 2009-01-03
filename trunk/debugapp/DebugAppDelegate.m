@@ -16,7 +16,7 @@
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
-#import "TDGrammarParserFactory.h"
+#import "TDParserFactory.h"
 #import "JSONAssembler.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
@@ -32,7 +32,7 @@
 - (void)workOn_StartAssembly:(TDAssembly *)a;
 @end
 
-@interface TDGrammarParserFactory ()
+@interface TDParserFactory ()
 - (TDSequence *)parserFromExpression:(NSString *)s;
 @property (retain) TDCollectionParser *expressionParser;
 @end
@@ -155,7 +155,7 @@
 //    s = @"@start = openCurly closeCurly; openCurly = '{'; closeCurly = '}';";
 //    s = @"@start = start*; start = 'bar';";
     
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDParserFactory *factory = [TDParserFactory factory];
     
     JSONAssembler *ass = [[[JSONAssembler alloc] init] autorelease];
     TDParser *lp = [factory parserFromGrammar:s assembler:ass];
@@ -178,7 +178,7 @@
 - (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDParserFactory *factory = [TDParserFactory factory];
     TDJsonParser *p = nil;
     
     p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
@@ -248,7 +248,7 @@
 - (void)doSimpleCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDParserFactory *factory = [TDParserFactory factory];
     
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *lp = [factory parserFromGrammar:s assembler:assembler];
@@ -260,7 +260,7 @@
 
 
 - (void)doSimpleCSS2 {
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDParserFactory *factory = [TDParserFactory factory];
 
     // create CSS parser
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
@@ -336,7 +336,7 @@
 
 - (void)doFactory {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-    TDGrammarParserFactory *factory = [TDGrammarParserFactory factory];
+    TDParserFactory *factory = [TDParserFactory factory];
     NSString *s = nil;
     s = @"@start = foo|baz; foo (workOnFooAssembly:) = 'bar'; baz (workOnBazAssembly:) = 'bat'";
     factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;

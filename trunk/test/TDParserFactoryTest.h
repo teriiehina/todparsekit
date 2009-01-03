@@ -1,5 +1,5 @@
 //
-//  TDGrammarParserFactoryTest.h
+//  TDParserFactoryTest.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
@@ -7,13 +7,13 @@
 //
 
 #import "TDTestScaffold.h"
-#import "TDGrammarParserFactory.h"
+#import "TDParserFactory.h"
 
-@interface TDGrammarParserFactoryTest : SenTestCase {
+@interface TDParserFactoryTest : SenTestCase {
     NSString *s;
     TDTokenizer *t;
     TDTokenAssembly *a;
-    TDGrammarParserFactory *factory;
+    TDParserFactory *factory;
     TDAssembly *res;
 
     TDSequence *exprSeq;
