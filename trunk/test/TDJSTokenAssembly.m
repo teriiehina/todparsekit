@@ -41,7 +41,7 @@ static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, J
     JSValueRef v = argv[0];
 
     TDTokenAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v) autorelease];
+    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
@@ -58,10 +58,10 @@ static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef fun
     JSValueRef v = argv[0];
     
     TDTokenAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v) autorelease];
+    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
     id array = [data objectsAbove:obj];
     
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)array);
+    return TDCFArrayToJSObject(ctx, (CFArrayRef)array, ex);
 }
 
 //- (id)peek {
@@ -141,7 +141,7 @@ JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor,
     }
     
     JSValueRef s = argv[0];
-    NSString *string = TDJSValueGetNSString(ctx, s);
+    NSString *string = TDJSValueGetNSString(ctx, s, ex);
 
     TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:string];
     return TDTokenAssembly_new(ctx, data);
