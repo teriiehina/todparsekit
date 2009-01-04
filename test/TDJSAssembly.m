@@ -29,16 +29,14 @@ static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjec
 
 static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDAssembly.push() requires 1 argument");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly.push() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
     }
     
     JSValueRef v = argv[0];
     
     TDAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
+    id obj = TDJSValueGetId(ctx, v, ex);
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
@@ -46,19 +44,17 @@ static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObje
 
 static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDAssembly.objectsAbove() requires 1 argument");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly.objectsAbove() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
     }
     
     JSValueRef v = argv[0];
     
     TDAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
+    id obj = TDJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)array, ex);
+    return TDNSArrayToJSObject(ctx, array, ex);
 }
 
 #pragma mark -
@@ -71,7 +67,7 @@ static JSValueRef TDAssembly_getDefaultDelimiter(JSContextRef ctx, JSObjectRef t
 
 static JSValueRef TDAssembly_getStack(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)data.stack, ex);
+    return TDNSArrayToJSObject(ctx, data.stack, ex);
 }
 
 static JSValueRef TDAssembly_getTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
@@ -81,9 +77,7 @@ static JSValueRef TDAssembly_getTarget(JSContextRef ctx, JSObjectRef this, JSStr
 
 static bool TDAssembly_setTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    id target = (id)TDJSValueCopyCFType(ctx, value, ex);
-    data.target = target;
-    [target release];
+    data.target = TDJSValueGetId(ctx, value, ex);
     return true;
 }
 
@@ -145,9 +139,7 @@ JSObjectRef TDAssembly_new(JSContextRef ctx, void *data) {
 
 JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDAssembly constructor requires 1 argument: string");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly constructor requires 1 argument: string", ex);
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     

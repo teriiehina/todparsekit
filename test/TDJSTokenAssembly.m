@@ -32,16 +32,14 @@ static JSValueRef TDTokenAssembly_pop(JSContextRef ctx, JSObjectRef function, JS
 
 static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDTokenAssembly.push() requires 1 argument");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly.push() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
     }
     
     JSValueRef v = argv[0];
 
     TDTokenAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
+    id obj = TDJSValueGetId(ctx, v, ex);
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
@@ -49,19 +47,17 @@ static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, J
 
 static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDTokenAssembly.objectsAbove() requires 1 argument");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly.objectsAbove() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
     }
     
     JSValueRef v = argv[0];
     
     TDTokenAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
+    id obj = TDJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)array, ex);
+    return TDNSArrayToJSObject(ctx, array, ex);
 }
 
 //- (id)peek {
@@ -134,9 +130,7 @@ JSObjectRef TDTokenAssembly_new(JSContextRef ctx, void *data) {
 
 JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDTokenAssembly constructor requires 1 argument: string");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly constructor requires 1 argument: string", ex);
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     
