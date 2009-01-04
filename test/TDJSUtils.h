@@ -9,17 +9,17 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value);
-JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr);
-JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr);
-JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray);
-JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict);
+JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex);
+JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex);
+JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr, JSValueRef *ex);
+JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef *ex);
+JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, JSValueRef *ex);
 
-CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value);
-CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value);
-NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value);
-CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj);
-CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj);
+CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex);
+CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value, JSValueRef *ex);
+NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value, JSValueRef *ex);
+CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex);
+CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex);
 
-JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr);
+JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex);
 bool TDJSValueIsInstanceOfClass(JSContextRef ctx, JSValueRef value, char *className, JSValueRef* ex);

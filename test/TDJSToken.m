@@ -16,7 +16,7 @@
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDToken *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, [data description]);
+    return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 #pragma mark -
@@ -29,7 +29,7 @@ static JSValueRef TDToken_getTokenType(JSContextRef ctx, JSObjectRef this, JSStr
 
 static JSValueRef TDToken_getStringValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDToken *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, data.stringValue);
+    return TDNSStringToJSValue(ctx, data.stringValue, ex);
 }
 
 static JSValueRef TDToken_getFloatValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
@@ -143,7 +143,7 @@ JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t 
     JSValueRef n = argv[2];
 
     CGFloat tokenType = JSValueToNumber(ctx, t, NULL);
-    NSString *stringValue = TDJSValueGetNSString(ctx, s);
+    NSString *stringValue = TDJSValueGetNSString(ctx, s, ex);
     CGFloat floatValue = JSValueToNumber(ctx, n, NULL);
 
     TDToken *data = [[TDToken alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
