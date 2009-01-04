@@ -136,13 +136,9 @@ JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t 
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     
-    JSValueRef t = argv[0];
-    JSValueRef s = argv[1];
-    JSValueRef n = argv[2];
-
-    CGFloat tokenType = JSValueToNumber(ctx, t, NULL);
-    NSString *stringValue = TDJSValueGetNSString(ctx, s, ex);
-    CGFloat floatValue = JSValueToNumber(ctx, n, NULL);
+    CGFloat tokenType = JSValueToNumber(ctx, argv[0], NULL);
+    NSString *stringValue = TDJSValueGetNSString(ctx, argv[1], ex);
+    CGFloat floatValue = JSValueToNumber(ctx, argv[2], NULL);
 
     TDToken *data = [[TDToken alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
     return TDToken_new(ctx, data);
