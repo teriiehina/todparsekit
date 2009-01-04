@@ -15,7 +15,7 @@
 #pragma mark Methods
 
 static JSValueRef TDTokenizer_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    return TDNSStringToJSValue(ctx, @"[object TDTokenizer]");
+    return TDNSStringToJSValue(ctx, @"[object TDTokenizer]", ex);
 }
 
 #pragma mark -
@@ -23,12 +23,12 @@ static JSValueRef TDTokenizer_toString(JSContextRef ctx, JSObjectRef function, J
 
 static JSValueRef TDTokenizer_getString(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDTokenizer *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, data.string);
+    return TDNSStringToJSValue(ctx, data.string, ex);
 }
 
-static bool TDTokenizer_setString(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef* exception) {
+static bool TDTokenizer_setString(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     TDTokenizer *data = JSObjectGetPrivate(this);
-    data.string = TDJSValueGetNSString(ctx, value);
+    data.string = TDJSValueGetNSString(ctx, value, ex);
     return true;
 }
 
@@ -77,14 +77,12 @@ JSObjectRef TDTokenizer_new(JSContextRef ctx, void *data) {
 
 JSObjectRef TDTokenizer_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 1) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDTokenizer constructor requires 1 argument: string");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizer constructor requires 1 argument: string", ex);
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     
     JSValueRef s = argv[0];
-    NSString *string = TDJSValueGetNSString(ctx, s);
+    NSString *string = TDJSValueGetNSString(ctx, s, ex);
     
     TDTokenizer *data = [[TDTokenizer alloc] initWithString:string];
     return TDTokenizer_new(ctx, data);

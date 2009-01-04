@@ -132,9 +132,7 @@ JSObjectRef TDToken_new(JSContextRef ctx, void *data) {
 
 JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     if (argc < 3) {
-        JSStringRef str = JSStringCreateWithUTF8CString("TDToken constructor requires 3 arguments: tokenType, stringValue, numberValue");
-        (*ex) = JSValueMakeString(ctx, str);
-        JSStringRelease(str);
+        (*ex) = TDNSStringToJSValue(ctx, @"TDToken constructor requires 3 arguments: tokenType, stringValue, numberValue", ex);
         return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
     }
     

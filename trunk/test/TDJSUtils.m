@@ -66,6 +66,10 @@ JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef
     return obj;
 }
 
+JSObjectRef TDNSArrayToJSObject(JSContextRef ctx, NSArray *nsArray, JSValueRef *ex) {
+    return TDCFArrayToJSObject(ctx, (CFArrayRef)nsArray, ex);
+}
+
 JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Object");
@@ -95,6 +99,10 @@ JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, J
     return obj;
 }
 
+JSObjectRef TDNSDictionaryToJSObject(JSContextRef ctx, NSDictionary *nsDict, JSValueRef *ex) {
+    return TDCFDictionaryToJSObject(ctx, (CFDictionaryRef)nsDict, ex);
+}
+
 CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
     CFTypeRef result = NULL;
     
@@ -117,6 +125,10 @@ CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex
     }
     
     return result;
+}
+
+id TDJSValueGetId(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+    return [(id)TDJSValueCopyCFType(ctx, value, ex) autorelease];
 }
 
 CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
