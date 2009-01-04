@@ -18,7 +18,7 @@
 
 static JSValueRef TDAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, [data description]);
+    return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
@@ -38,7 +38,7 @@ static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObje
     JSValueRef v = argv[0];
     
     TDAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v) autorelease];
+    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
@@ -55,10 +55,10 @@ static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function
     JSValueRef v = argv[0];
     
     TDAssembly *data = JSObjectGetPrivate(this);
-    id obj = [(id)TDJSValueCopyCFType(ctx, v) autorelease];
+    id obj = [(id)TDJSValueCopyCFType(ctx, v, ex) autorelease];
     id array = [data objectsAbove:obj];
     
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)array);
+    return TDCFArrayToJSObject(ctx, (CFArrayRef)array, ex);
 }
 
 #pragma mark -
@@ -66,22 +66,22 @@ static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function
 
 static JSValueRef TDAssembly_getDefaultDelimiter(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, data.defaultDelimiter);
+    return TDNSStringToJSValue(ctx, data.defaultDelimiter, ex);
 }
 
 static JSValueRef TDAssembly_getStack(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)data.stack);
+    return TDCFArrayToJSObject(ctx, (CFArrayRef)data.stack, ex);
 }
 
 static JSValueRef TDAssembly_getTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    return TDCFTypeToJSValue(ctx, (CFTypeRef)data.target);
+    return TDCFTypeToJSValue(ctx, (CFTypeRef)data.target, ex);
 }
 
-static bool TDAssembly_setTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef* exception) {
+static bool TDAssembly_setTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     TDAssembly *data = JSObjectGetPrivate(this);
-    id target = (id)TDJSValueCopyCFType(ctx, value);
+    id target = (id)TDJSValueCopyCFType(ctx, value, ex);
     data.target = target;
     [target release];
     return true;
@@ -115,7 +115,7 @@ static JSStaticFunction TDAssembly_staticFunctions[] = {
 static JSStaticValue TDAssembly_staticValues[] = {        
 { "defaulDelimiter", TDAssembly_getDefaultDelimiter, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // String
 { "stack", TDAssembly_getStack, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Array
-{ "target", TDAssembly_getTarget, TDAssembly_setTarget, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Object
+{ "target", TDAssembly_getTarget, TDAssembly_setTarget, kJSPropertyAttributeDontDelete }, // Object
 { "isStackEmpty", TDAssembly_getIsStackEmpty, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Boolean
 { 0, 0, 0, 0 }
 };
@@ -153,7 +153,7 @@ JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size
     
     JSValueRef s = argv[0];
     
-    NSString *string = TDJSValueGetNSString(ctx, s);
+    NSString *string = TDJSValueGetNSString(ctx, s, ex);
     TDAssembly *data = [[TDAssembly alloc] initWithString:string];
     return TDAssembly_new(ctx, data);
 }

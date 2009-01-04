@@ -8,7 +8,7 @@
 
 #import "TDJSUtils.h"
 
-JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
+JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) {
     JSValueRef result = NULL;
     CFTypeID typeID = CFGetTypeID(value);
 
@@ -20,11 +20,11 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
         Boolean b = CFBooleanGetValue(value);
         result = JSValueMakeBoolean(ctx, b);
     } else if (CFStringGetTypeID() == typeID) {
-        result = TDCFStringToJSValue(ctx, value);
+        result = TDCFStringToJSValue(ctx, value, ex);
     } else if (CFArrayGetTypeID() == typeID) {
-        result = TDCFArrayToJSObject(ctx, value);
+        result = TDCFArrayToJSObject(ctx, value, ex);
     } else if (CFDictionaryGetTypeID() == typeID) {
-        result = TDCFDictionaryToJSObject(ctx, value);
+        result = TDCFDictionaryToJSObject(ctx, value, ex);
     } else {
         result = JSValueMakeNull(ctx);
     }
@@ -32,18 +32,18 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value) {
     return result;
 }
 
-JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr) {
+JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex) {
     JSStringRef str = JSStringCreateWithCFString(cfStr);
     JSValueRef result = JSValueMakeString(ctx, str);
     JSStringRelease(str);
     return result;
 }
 
-JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr) {
-    return TDCFStringToJSValue(ctx, (CFStringRef)nsStr);
+JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr, JSValueRef *ex) {
+    return TDCFStringToJSValue(ctx, (CFStringRef)nsStr, ex);
 }
 
-JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray) {
+JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Array");
     JSObjectRef arrayConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, NULL);
@@ -59,14 +59,14 @@ JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray) {
     CFIndex i = 0;
     for ( ; i < len; i++) {
         CFTypeRef value = CFArrayGetValueAtIndex(cfArray, i);
-        JSValueRef propVal = TDCFTypeToJSValue(ctx, value);
+        JSValueRef propVal = TDCFTypeToJSValue(ctx, value, ex);
         JSObjectSetPropertyAtIndex(ctx, obj, i, propVal, NULL);
     }
     
     return obj;
 }
 
-JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict) {
+JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Object");
     JSObjectRef objConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, NULL);
@@ -86,7 +86,7 @@ JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict) {
             CFTypeRef value = values[i];
             
             JSStringRef propName = JSStringCreateWithCFString(key);
-            JSValueRef propVal = TDCFTypeToJSValue(ctx, value);
+            JSValueRef propVal = TDCFTypeToJSValue(ctx, value, ex);
             JSObjectSetProperty(ctx, obj, propName, propVal, kJSPropertyAttributeNone, NULL);
             JSStringRelease(propName);
         }
@@ -95,7 +95,7 @@ JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict) {
     return obj;
 }
 
-CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value) {
+CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
     CFTypeRef result = NULL;
     
     if (JSValueIsBoolean(ctx, value)) {
@@ -107,30 +107,30 @@ CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value) {
         CGFloat d = JSValueToNumber(ctx, value, NULL);
         result = CFNumberCreate(NULL, kCFNumberCGFloatType, &d);
     } else if (JSValueIsString(ctx, value)) {
-        result = TDJSValueCopyCFString(ctx, value);
+        result = TDJSValueCopyCFString(ctx, value, ex);
     } else if (JSValueIsObject(ctx, value)) {
         if (TDJSValueIsInstanceOfClass(ctx, value, "Array", NULL)) {
-            result = TDJSObjectCopyCFArray(ctx, (JSObjectRef)value);
+            result = TDJSObjectCopyCFArray(ctx, (JSObjectRef)value, ex);
         } else {
-            result = TDJSObjectCopyCFDictionary(ctx, (JSObjectRef)value);
+            result = TDJSObjectCopyCFDictionary(ctx, (JSObjectRef)value, ex);
         }
     }
     
     return result;
 }
 
-CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value) {
-    JSStringRef str = JSValueToStringCopy(ctx, value, NULL);
+CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+    JSStringRef str = JSValueToStringCopy(ctx, value, ex);
     CFStringRef result = JSStringCopyCFString(NULL, str);
     JSStringRelease(str);
     return result;
 }
 
-NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value) {
-    return [(id)TDJSValueCopyCFString(ctx, value) autorelease];
+NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+    return [(id)TDJSValueCopyCFString(ctx, value, ex) autorelease];
 }
 
-CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj) {
+CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
     JSStringRef propName = JSStringCreateWithUTF8CString("length");
     JSValueRef propVal = JSObjectGetProperty(ctx, obj, propName, NULL);
     JSStringRelease(propName);
@@ -141,7 +141,7 @@ CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj) {
     CFIndex i = 0;
     for ( ; i < len; i++) {
         JSValueRef val = JSObjectGetPropertyAtIndex(ctx, obj, i, NULL);
-        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val);
+        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val, ex);
         CFArraySetValueAtIndex(cfArray, i, cfType);
         
         // TODO HUH????
@@ -154,7 +154,7 @@ CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj) {
     return result;
 }
 
-CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj) {
+CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
     JSPropertyNameArrayRef propNames = JSObjectCopyPropertyNames(ctx, obj);
     CFIndex len = JSPropertyNameArrayGetCount(propNames);
     
@@ -164,7 +164,7 @@ CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj) {
     for ( ; i < len; i++) {
         JSStringRef propName = JSPropertyNameArrayGetNameAtIndex(propNames, i);
         JSValueRef val = JSObjectGetProperty(ctx, obj, propName, NULL);
-        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val);
+        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val, ex);
         
         CFStringRef key = JSStringCopyCFString(NULL, propName);
         CFDictionarySetValue(cfDict, (const void *)key, (const void *)cfType);
@@ -181,13 +181,13 @@ CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj) {
     return result;
 }
 
-JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr) {
+JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Error");
-    JSObjectRef errConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, NULL);
+    JSObjectRef errConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, ex);
     JSStringRelease(className);
     
-    JSObjectRef obj = (JSObjectRef)JSObjectCallAsConstructor(ctx, errConstr, 0, NULL, NULL);
+    JSObjectRef obj = (JSObjectRef)JSObjectCallAsConstructor(ctx, errConstr, 0, NULL, ex);
     
     if (nsErr) {
         JSStringRef nameStr = JSStringCreateWithUTF8CString("TDParseKitError");
@@ -201,15 +201,15 @@ JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr) {
         JSValueRef code = JSValueMakeNumber(ctx, [nsErr code]);
         
         JSStringRef propName = JSStringCreateWithUTF8CString("name");
-        JSObjectSetProperty(ctx, obj, propName, name, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, NULL);
+        JSObjectSetProperty(ctx, obj, propName, name, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, ex);
         JSStringRelease(propName);
         
         propName = JSStringCreateWithUTF8CString("message");
-        JSObjectSetProperty(ctx, obj, propName, msg, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, NULL);
+        JSObjectSetProperty(ctx, obj, propName, msg, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, ex);
         JSStringRelease(propName);
         
         propName = JSStringCreateWithUTF8CString("code");
-        JSObjectSetProperty(ctx, obj, propName, code, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, NULL);
+        JSObjectSetProperty(ctx, obj, propName, code, kJSPropertyAttributeReadOnly|kJSPropertyAttributeDontDelete, ex);
         JSStringRelease(propName);
     }
     

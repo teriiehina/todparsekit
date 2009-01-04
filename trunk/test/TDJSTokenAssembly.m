@@ -141,11 +141,8 @@ JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor,
     }
     
     JSValueRef s = argv[0];
-    
-    JSStringRef stringStr = JSValueToStringCopy(ctx, s, NULL);
-    NSString *string = [(id)JSStringCopyCFString(kCFAllocatorDefault, stringStr) autorelease];
-    JSStringRelease(stringStr);
-    
+    NSString *string = TDJSValueGetNSString(ctx, s);
+
     TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:string];
     return TDTokenAssembly_new(ctx, data);
 }
