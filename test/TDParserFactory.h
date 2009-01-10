@@ -15,13 +15,12 @@
 
 void TDReleaseSubparserTree(TDParser *p);
 
-enum {
+typedef enum {
     TDParserFactoryAssemblerSettingBehaviorOnNone       = 0,
     TDParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 1, // Default
     TDParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 2,
     TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 3
-};
-typedef NSUInteger TDParserFactoryAssemblerSettingBehavior;
+} TDParserFactoryAssemblerSettingBehavior;
 
 @interface TDParserFactory : NSObject {
     TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
