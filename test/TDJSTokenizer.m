@@ -14,7 +14,7 @@
 #import "TDJSQuoteState.h"
 #import "TDJSWhitespaceState.h"
 #import "TDJSCommentState.h"
-#import "TDJSymbolState.h"
+#import "TDJSSymbolState.h"
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizerState.h>

@@ -239,14 +239,14 @@
 		D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
 		D389F11C0F184B0F00558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
 		D389F11D0F184B0F00558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
-		D389F1230F184CD300558235 /* TDJSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1220F184CD300558235 /* TDJSymbolState.m */; };
-		D389F1240F184CD300558235 /* TDJSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1220F184CD300558235 /* TDJSymbolState.m */; };
 		D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
 		D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
 		D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
 		D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
 		D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
 		D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
+		D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
+		D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -655,14 +655,14 @@
 		D389F1070F183C4100558235 /* TDJSTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizerState.m; path = test/TDJSTokenizerState.m; sourceTree = "<group>"; };
 		D389F11A0F184B0F00558235 /* TDJSNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSNumberState.h; path = test/TDJSNumberState.h; sourceTree = "<group>"; };
 		D389F11B0F184B0F00558235 /* TDJSNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSNumberState.m; path = test/TDJSNumberState.m; sourceTree = "<group>"; };
-		D389F1210F184CD300558235 /* TDJSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSymbolState.h; path = test/TDJSymbolState.h; sourceTree = "<group>"; };
-		D389F1220F184CD300558235 /* TDJSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSymbolState.m; path = test/TDJSymbolState.m; sourceTree = "<group>"; };
 		D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWhitespaceState.h; path = test/TDJSWhitespaceState.h; sourceTree = "<group>"; };
 		D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWhitespaceState.m; path = test/TDJSWhitespaceState.m; sourceTree = "<group>"; };
 		D389F1350F18510A00558235 /* TDJSCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCommentState.h; path = test/TDJSCommentState.h; sourceTree = "<group>"; };
 		D389F1360F18510A00558235 /* TDJSCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCommentState.m; path = test/TDJSCommentState.m; sourceTree = "<group>"; };
 		D389F13C0F185FAF00558235 /* TDJSQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSQuoteState.h; path = test/TDJSQuoteState.h; sourceTree = "<group>"; };
 		D389F13D0F185FAF00558235 /* TDJSQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSQuoteState.m; path = test/TDJSQuoteState.m; sourceTree = "<group>"; };
+		D389F1470F18673700558235 /* TDJSSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSymbolState.h; path = test/TDJSSymbolState.h; sourceTree = "<group>"; };
+		D389F1480F18673700558235 /* TDJSSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbolState.m; path = test/TDJSSymbolState.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1110,6 +1110,8 @@
 		D380BA950F0F1C450009EC13 /* JSC */ = {
 			isa = PBXGroup;
 			children = (
+				D389F1470F18673700558235 /* TDJSSymbolState.h */,
+				D389F1480F18673700558235 /* TDJSSymbolState.m */,
 				D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */,
 				D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */,
 				D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */,
@@ -1128,8 +1130,6 @@
 				D389F0FF0F183A7900558235 /* TDJSWordState.m */,
 				D389F11A0F184B0F00558235 /* TDJSNumberState.h */,
 				D389F11B0F184B0F00558235 /* TDJSNumberState.m */,
-				D389F1210F184CD300558235 /* TDJSymbolState.h */,
-				D389F1220F184CD300558235 /* TDJSymbolState.m */,
 				D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */,
 				D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */,
 				D389F1350F18510A00558235 /* TDJSCommentState.h */,
@@ -1834,10 +1834,10 @@
 				D389F1000F183A7900558235 /* TDJSWordState.m in Sources */,
 				D389F1080F183C4100558235 /* TDJSTokenizerState.m in Sources */,
 				D389F11C0F184B0F00558235 /* TDJSNumberState.m in Sources */,
-				D389F1230F184CD300558235 /* TDJSymbolState.m in Sources */,
 				D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
 				D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
+				D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1944,10 +1944,10 @@
 				D389F1010F183A7900558235 /* TDJSWordState.m in Sources */,
 				D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */,
 				D389F11D0F184B0F00558235 /* TDJSNumberState.m in Sources */,
-				D389F1240F184CD300558235 /* TDJSymbolState.m in Sources */,
 				D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
 				D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
+				D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
