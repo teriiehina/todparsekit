@@ -63,8 +63,6 @@ static void TDSymbolState_finalize(JSObjectRef this) {
     [data release];
 }
 
-//- (void)add:(NSString *)s;
-//- (void)remove:(NSString *)s;
 static JSStaticFunction TDSymbolState_staticFunctions[] = {
 { "toString", TDSymbolState_toString, kJSPropertyAttributeDontDelete },
 { "add", TDSymbolState_add, kJSPropertyAttributeDontDelete },
