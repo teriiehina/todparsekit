@@ -9,4 +9,4 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-void TDJSParseKitSetUpContext();
+void TDJSParseKitSetUpContext(JSContextRef ctx);
