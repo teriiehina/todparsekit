@@ -49,7 +49,6 @@ static JSStaticFunction TDNumberState_staticFunctions[] = {
 { 0, 0, 0 }
 };
 
-//@property (nonatomic) BOOL allowsTrailingDot;
 static JSStaticValue TDNumberState_staticValues[] = {        
 { "allowsTrailingDot", TDNumberState_getAllowsTrailingDot, TDNumberState_setAllowsTrailingDot, kJSPropertyAttributeDontDelete }, // Boolean
 { 0, 0, 0, 0 }
