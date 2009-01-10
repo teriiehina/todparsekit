@@ -247,6 +247,8 @@
 		D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
 		D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
+		D389F1530F19547C00558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
+		D389F1540F19547C00558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -663,6 +665,8 @@
 		D389F13D0F185FAF00558235 /* TDJSQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSQuoteState.m; path = test/TDJSQuoteState.m; sourceTree = "<group>"; };
 		D389F1470F18673700558235 /* TDJSSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSymbolState.h; path = test/TDJSSymbolState.h; sourceTree = "<group>"; };
 		D389F1480F18673700558235 /* TDJSSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbolState.m; path = test/TDJSSymbolState.m; sourceTree = "<group>"; };
+		D389F1510F19547C00558235 /* TDJSParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParseKit.h; path = test/TDJSParseKit.h; sourceTree = "<group>"; };
+		D389F1520F19547C00558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = test/TDJSParseKit.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1136,6 +1140,8 @@
 				D389F1360F18510A00558235 /* TDJSCommentState.m */,
 				D389F13C0F185FAF00558235 /* TDJSQuoteState.h */,
 				D389F13D0F185FAF00558235 /* TDJSQuoteState.m */,
+				D389F1510F19547C00558235 /* TDJSParseKit.h */,
+				D389F1520F19547C00558235 /* TDJSParseKit.m */,
 			);
 			name = JSC;
 			sourceTree = "<group>";
@@ -1838,6 +1844,7 @@
 				D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
 				D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */,
+				D389F1530F19547C00558235 /* TDJSParseKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1948,6 +1955,7 @@
 				D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
 				D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */,
+				D389F1540F19547C00558235 /* TDJSParseKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
