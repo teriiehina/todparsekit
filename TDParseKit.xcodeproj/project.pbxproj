@@ -233,6 +233,10 @@
 		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
 		D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
 		D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
+		D389F1000F183A7900558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
+		D389F1010F183A7900558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
+		D389F1080F183C4100558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
+		D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -635,6 +639,10 @@
 		D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssemblerTest.h; path = test/TDMiniCSSAssemblerTest.h; sourceTree = "<group>"; };
 		D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssemblerTest.m; path = test/TDMiniCSSAssemblerTest.m; sourceTree = "<group>"; };
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
+		D389F0FE0F183A7900558235 /* TDJSWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWordState.h; path = test/TDJSWordState.h; sourceTree = "<group>"; };
+		D389F0FF0F183A7900558235 /* TDJSWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWordState.m; path = test/TDJSWordState.m; sourceTree = "<group>"; };
+		D389F1060F183C4100558235 /* TDJSTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenizerState.h; path = test/TDJSTokenizerState.h; sourceTree = "<group>"; };
+		D389F1070F183C4100558235 /* TDJSTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizerState.m; path = test/TDJSTokenizerState.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1094,6 +1102,10 @@
 				D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */,
 				D380BBE30F1044E80009EC13 /* TDJSTokenizer.h */,
 				D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */,
+				D389F1060F183C4100558235 /* TDJSTokenizerState.h */,
+				D389F1070F183C4100558235 /* TDJSTokenizerState.m */,
+				D389F0FE0F183A7900558235 /* TDJSWordState.h */,
+				D389F0FF0F183A7900558235 /* TDJSWordState.m */,
 			);
 			name = JSC;
 			sourceTree = "<group>";
@@ -1789,6 +1801,8 @@
 				D380BB430F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
 				D380BBA60F1009560009EC13 /* TDJSAssembly.m in Sources */,
 				D380BBE50F1044E80009EC13 /* TDJSTokenizer.m in Sources */,
+				D389F1000F183A7900558235 /* TDJSWordState.m in Sources */,
+				D389F1080F183C4100558235 /* TDJSTokenizerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1892,6 +1906,8 @@
 				D380BB440F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
 				D380BBA70F1009560009EC13 /* TDJSAssembly.m in Sources */,
 				D380BBE60F1044E90009EC13 /* TDJSTokenizer.m in Sources */,
+				D389F1010F183A7900558235 /* TDJSWordState.m in Sources */,
+				D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

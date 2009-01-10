@@ -8,7 +8,6 @@
 
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
-#import <Foundation/Foundation.h>
 #import <TDParseKit/TDToken.h>
 
 #pragma mark -
