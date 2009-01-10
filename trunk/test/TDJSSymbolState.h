@@ -1,5 +1,5 @@
 //
-//  TDJSymbolState.h
+//  TDJSSymbolState.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/9/09.
