@@ -243,6 +243,8 @@
 		D389F1240F184CD300558235 /* TDJSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1220F184CD300558235 /* TDJSymbolState.m */; };
 		D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
 		D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
+		D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
+		D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -655,6 +657,8 @@
 		D389F1220F184CD300558235 /* TDJSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSymbolState.m; path = test/TDJSymbolState.m; sourceTree = "<group>"; };
 		D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWhitespaceState.h; path = test/TDJSWhitespaceState.h; sourceTree = "<group>"; };
 		D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWhitespaceState.m; path = test/TDJSWhitespaceState.m; sourceTree = "<group>"; };
+		D389F1350F18510A00558235 /* TDJSCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCommentState.h; path = test/TDJSCommentState.h; sourceTree = "<group>"; };
+		D389F1360F18510A00558235 /* TDJSCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCommentState.m; path = test/TDJSCommentState.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1124,6 +1128,8 @@
 				D389F1220F184CD300558235 /* TDJSymbolState.m */,
 				D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */,
 				D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */,
+				D389F1350F18510A00558235 /* TDJSCommentState.h */,
+				D389F1360F18510A00558235 /* TDJSCommentState.m */,
 			);
 			name = JSC;
 			sourceTree = "<group>";
@@ -1824,6 +1830,7 @@
 				D389F11C0F184B0F00558235 /* TDJSNumberState.m in Sources */,
 				D389F1230F184CD300558235 /* TDJSymbolState.m in Sources */,
 				D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
+				D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1932,6 +1939,7 @@
 				D389F11D0F184B0F00558235 /* TDJSNumberState.m in Sources */,
 				D389F1240F184CD300558235 /* TDJSymbolState.m in Sources */,
 				D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
+				D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
