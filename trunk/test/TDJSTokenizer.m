@@ -9,7 +9,6 @@
 #import "TDJSTokenizer.h"
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
-#import <Foundation/Foundation.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizerState.h>

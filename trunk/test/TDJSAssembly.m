@@ -9,7 +9,6 @@
 #import "TDJSAssembly.h"
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
-#import <Foundation/Foundation.h>
 #import <TDParseKit/TDAssembly.h>
 #import <TDParseKit/TDToken.h>
 
