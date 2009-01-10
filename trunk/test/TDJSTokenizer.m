@@ -9,6 +9,12 @@
 #import "TDJSTokenizer.h"
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
+#import "TDJSWordState.h"
+#import "TDJSNumberState.h"
+#import "TDJSQuoteState.h"
+#import "TDJSWhitespaceState.h"
+#import "TDJSCommentState.h"
+#import "TDJSymbolState.h"
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizerState.h>
@@ -64,9 +70,23 @@ static bool TDTokenizer_setString(JSContextRef ctx, JSObjectRef this, JSStringRe
     return true;
 }
 
+static JSValueRef TDTokenizer_getWordState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDWordState_new(ctx, data.wordState);
+    return NULL;
+}
+
+static bool TDTokenizer_setWordState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
+    TDWordState *state = JSObjectGetPrivate(stateObj);
+    data.wordState = state;
+    return true;
+}
+
 static JSValueRef TDTokenizer_getNumberState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-//    TDTokenizer *data = JSObjectGetPrivate(this);
-//    return TDNumberState_new(ctx, data.numberState);
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDNumberState_new(ctx, data.numberState);
     return NULL;
 }
 
@@ -75,6 +95,62 @@ static bool TDTokenizer_setNumberState(JSContextRef ctx, JSObjectRef this, JSStr
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
     TDNumberState *state = JSObjectGetPrivate(stateObj);
     data.numberState = state;
+    return true;
+}
+
+static JSValueRef TDTokenizer_getQuoteState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDQuoteState_new(ctx, data.quoteState);
+    return NULL;
+}
+
+static bool TDTokenizer_setQuoteState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
+    TDQuoteState *state = JSObjectGetPrivate(stateObj);
+    data.quoteState = state;
+    return true;
+}
+
+static JSValueRef TDTokenizer_getSymbolState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDSymbolState_new(ctx, data.symbolState);
+    return NULL;
+}
+
+static bool TDTokenizer_setSymbolState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
+    TDSymbolState *state = JSObjectGetPrivate(stateObj);
+    data.symbolState = state;
+    return true;
+}
+
+static JSValueRef TDTokenizer_getWhitespaceState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDWhitespaceState_new(ctx, data.whitespaceState);
+    return NULL;
+}
+
+static bool TDTokenizer_setWhitespaceState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
+    TDWhitespaceState *state = JSObjectGetPrivate(stateObj);
+    data.whitespaceState = state;
+    return true;
+}
+
+static JSValueRef TDTokenizer_getCommentState(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    return TDCommentState_new(ctx, data.commentState);
+    return NULL;
+}
+
+static bool TDTokenizer_setCommentState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDTokenizer *data = JSObjectGetPrivate(this);
+    JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
+    TDCommentState *state = JSObjectGetPrivate(stateObj);
+    data.commentState = state;
     return true;
 }
 
@@ -101,11 +177,11 @@ static JSStaticFunction TDTokenizer_staticFunctions[] = {
 static JSStaticValue TDTokenizer_staticValues[] = {        
 { "string", TDTokenizer_getString, TDTokenizer_setString, kJSPropertyAttributeDontDelete }, // String
 { "numberState", TDTokenizer_getNumberState, TDTokenizer_setNumberState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
-//{ "quoteState", TDTokenizer_getQuoteState, TDTokenizer_setQuoteState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
-//{ "commentState", TDTokenizer_getCommentState, TDTokenizer_setCommentState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
-//{ "symbolState", TDTokenizer_getSymbolState, TDTokenizer_setSymbolState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
-//{ "whitespaceState", TDTokenizer_getWhitespaceState, TDTokenizer_setWhitespaceState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
-//{ "wordState", TDTokenizer_getWordState, TDTokenizer_setWordState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
+{ "quoteState", TDTokenizer_getQuoteState, TDTokenizer_setQuoteState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
+{ "commentState", TDTokenizer_getCommentState, TDTokenizer_setCommentState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
+{ "symbolState", TDTokenizer_getSymbolState, TDTokenizer_setSymbolState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
+{ "whitespaceState", TDTokenizer_getWhitespaceState, TDTokenizer_setWhitespaceState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
+{ "wordState", TDTokenizer_getWordState, TDTokenizer_setWordState, kJSPropertyAttributeDontDelete }, // TDTokenizerState
 { 0, 0, 0, 0 }
 };
 
