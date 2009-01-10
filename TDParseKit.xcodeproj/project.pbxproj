@@ -247,8 +247,23 @@
 		D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
 		D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
-		D389F1530F19547C00558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
-		D389F1540F19547C00558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
+		D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D389F1D90F19667A00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1D80F19667A00558235 /* JavaScriptCore.framework */; };
+		D389F1DC0F19669700558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
+		D389F1DD0F19669700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
+		D389F1DE0F19669700558235 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
+		D389F1DF0F19669700558235 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
+		D389F1E00F19669700558235 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
+		D389F1E10F19669700558235 /* TDJSAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBA50F1009560009EC13 /* TDJSAssembly.m */; };
+		D389F1E20F19669700558235 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
+		D389F1E30F19669700558235 /* TDJSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */; };
+		D389F1E40F19669700558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
+		D389F1E50F19669700558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
+		D389F1E60F19669700558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
+		D389F1E70F19669700558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
+		D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
+		D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
+		D389F1EA0F1966A500558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F1510F19547C00558235 /* TDJSParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -334,6 +349,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = TODParseKit;
+		};
+		D389F1D30F19665C00558235 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			remoteInfo = TDParseKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -667,6 +689,9 @@
 		D389F1480F18673700558235 /* TDJSSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbolState.m; path = test/TDJSSymbolState.m; sourceTree = "<group>"; };
 		D389F1510F19547C00558235 /* TDJSParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParseKit.h; path = test/TDJSParseKit.h; sourceTree = "<group>"; };
 		D389F1520F19547C00558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = test/TDJSParseKit.m; sourceTree = "<group>"; };
+		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
+		D389F1D80F19667A00558235 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -757,6 +782,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D389F1CC0F1965E600558235 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */,
+				D389F1D90F19667A00558235 /* JavaScriptCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D3C7D8770A411FBF005DD154 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -779,6 +813,7 @@
 				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
+				D389F1CE0F1965E600558235 /* TDJSParseKit.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -794,6 +829,8 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */,
+				D389F1D80F19667A00558235 /* JavaScriptCore.framework */,
 			);
 			name = TODParseKit;
 			sourceTree = "<group>";
@@ -1538,6 +1575,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D389F1C90F1965E600558235 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F1EA0F1966A500558235 /* TDJSParseKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -1597,6 +1642,25 @@
 			productReference = D34185040E520D3F0081B0DC /* DebugApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D389F1CD0F1965E600558235 /* TDJSParseKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "TDJSParseKit" */;
+			buildPhases = (
+				D389F1C90F1965E600558235 /* Headers */,
+				D389F1CA0F1965E600558235 /* Resources */,
+				D389F1CB0F1965E600558235 /* Sources */,
+				D389F1CC0F1965E600558235 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D389F1D40F19665C00558235 /* PBXTargetDependency */,
+			);
+			name = TDJSParseKit;
+			productName = TDJSParseKit;
+			productReference = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		D3C7D8790A411FBF005DD154 /* Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */;
@@ -1634,6 +1698,7 @@
 				D3C7D8790A411FBF005DD154 /* Tests */,
 				D334940F0E2963FD00406085 /* DemoApp */,
 				D34185030E520D3F0081B0DC /* DebugApp */,
+				D389F1CD0F1965E600558235 /* TDJSParseKit */,
 			);
 		};
 /* End PBXProject section */
@@ -1687,6 +1752,13 @@
 				D380B50A0F0D71B00009EC13 /* css.grammar in Resources */,
 				D380B5390F0D7DE30009EC13 /* css.css in Resources */,
 				D380B5950F0D82F90009EC13 /* example.css in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D389F1CA0F1965E600558235 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1844,7 +1916,27 @@
 				D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
 				D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */,
-				D389F1530F19547C00558235 /* TDJSParseKit.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D389F1CB0F1965E600558235 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F1DC0F19669700558235 /* TDJSParseKit.m in Sources */,
+				D389F1DD0F19669700558235 /* TDJSSymbolState.m in Sources */,
+				D389F1DE0F19669700558235 /* TDJSUtils.m in Sources */,
+				D389F1DF0F19669700558235 /* TDJSValueHolder.m in Sources */,
+				D389F1E00F19669700558235 /* TDJSToken.m in Sources */,
+				D389F1E10F19669700558235 /* TDJSAssembly.m in Sources */,
+				D389F1E20F19669700558235 /* TDJSTokenAssembly.m in Sources */,
+				D389F1E30F19669700558235 /* TDJSTokenizer.m in Sources */,
+				D389F1E40F19669700558235 /* TDJSTokenizerState.m in Sources */,
+				D389F1E50F19669700558235 /* TDJSWordState.m in Sources */,
+				D389F1E60F19669700558235 /* TDJSNumberState.m in Sources */,
+				D389F1E70F19669700558235 /* TDJSWhitespaceState.m in Sources */,
+				D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */,
+				D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1955,7 +2047,6 @@
 				D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */,
 				D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
 				D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */,
-				D389F1540F19547C00558235 /* TDJSParseKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1976,6 +2067,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
 			targetProxy = D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */;
+		};
+		D389F1D40F19665C00558235 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			targetProxy = D389F1D30F19665C00558235 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2200,6 +2296,62 @@
 			};
 			name = Release;
 		};
+		D389F1D00F1965E800558235 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "TDJSParseKit-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TDJSParseKit;
+			};
+			name = Debug;
+		};
+		D389F1D10F1965E800558235 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "TDJSParseKit-Info.plist";
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = TDJSParseKit;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		D3C7D87D0A411FC0005DD154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2324,6 +2476,15 @@
 			buildConfigurations = (
 				D34185070E520D410081B0DC /* Debug */,
 				D34185080E520D410081B0DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "TDJSParseKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D389F1D00F1965E800558235 /* Debug */,
+				D389F1D10F1965E800558235 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

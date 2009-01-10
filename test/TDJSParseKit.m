@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDJSParseKit.h"
+#import <TDJSParseKit/TDJSParseKit.h>
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
 #import "TDJSTokenizer.h"
