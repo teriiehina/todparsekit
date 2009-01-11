@@ -46,7 +46,7 @@ static void setupTDTokenClass(JSContextRef ctx, JSValueRef *ex) {
     JSStringRelease(className);
 
     JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
-    JSValueRef classProp = TDToken_new(ctx, [TDToken EOFToken]);
+    JSValueRef classProp = TDToken_getEOFToken(ctx);
     JSObjectSetProperty(ctx, constr, propName, classProp, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
     JSStringRelease(propName);
     

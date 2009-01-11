@@ -13,4 +13,7 @@ JSClassRef TDToken_class(JSContextRef ctx);
 JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef* ex);
 
 // a JS Class method
-JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef* ex);
+//JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef* ex);
+
+// a JS Class property
+JSValueRef TDToken_getEOFToken(JSContextRef ctx);
