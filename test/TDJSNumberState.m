@@ -41,7 +41,7 @@ static void TDNumberState_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDNumberState_finalize(JSObjectRef this) {
     TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 static JSStaticFunction TDNumberState_staticFunctions[] = {

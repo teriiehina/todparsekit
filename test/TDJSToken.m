@@ -15,7 +15,7 @@
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDToken *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, [data description], ex);
+    return TDNSStringToJSValue(ctx, [data debugDescription], ex);
 }
 
 #pragma mark -
@@ -75,7 +75,7 @@ static void TDToken_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDToken_finalize(JSObjectRef this) {
     TDToken *data = (TDToken *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 static JSStaticFunction TDToken_staticFunctions[] = {
