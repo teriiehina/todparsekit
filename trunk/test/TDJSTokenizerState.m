@@ -65,7 +65,7 @@ static void TDTokenizerState_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDTokenizerState_finalize(JSObjectRef this) {
     TDTokenizerState *data = (TDTokenizerState *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 static JSStaticFunction TDTokenizerState_staticFunctions[] = {

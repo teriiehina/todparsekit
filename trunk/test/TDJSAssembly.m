@@ -94,7 +94,7 @@ static void TDAssembly_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDAssembly_finalize(JSObjectRef this) {
     TDAssembly *data = (TDAssembly *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 static JSStaticFunction TDAssembly_staticFunctions[] = {

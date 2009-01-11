@@ -163,7 +163,7 @@ static void TDTokenizer_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDTokenizer_finalize(JSObjectRef this) {
     TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 //- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;

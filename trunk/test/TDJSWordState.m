@@ -62,7 +62,7 @@ static void TDWordState_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDWordState_finalize(JSObjectRef this) {
     TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 //- (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;

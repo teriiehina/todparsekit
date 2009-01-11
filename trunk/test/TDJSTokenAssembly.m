@@ -88,7 +88,7 @@ static void TDTokenAssembly_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDTokenAssembly_finalize(JSObjectRef this) {
     TDTokenAssembly *data = (TDTokenAssembly *)JSObjectGetPrivate(this);
-    [data release];
+    [data autorelease];
 }
 
 static JSStaticFunction TDTokenAssembly_staticFunctions[] = {

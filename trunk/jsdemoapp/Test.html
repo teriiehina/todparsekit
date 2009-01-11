@@ -1,15 +1,13 @@
 <script>
 try {
-	document.write('foo' + TDTokenizer);
-	var s = "oh 123 !";
-	print(TDTokenizer);
+	var s = "\"It's 123 blast-off!\", she said, // watch out!\n and <= 3.5 'ticks' later /* wince */, it's blast-off!";
+	var eof = TDToken.EOFToken();
 	var t = new TDTokenizer(s);
-	print(t);
-	print(t.nextToken());
-	
+	var tok = null;
+	while ((tok = t.nextToken()) != eof) {
+		print(tok);
+	}
 } catch (e) {
 	print(e);
-	
 }
-	
 </script>
