@@ -7,6 +7,7 @@
 //
 
 #import <TDJSParseKit/TDJSParseKit.h>
+#import <TDParseKit/TDToken.h>
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
 #import "TDJSTokenizer.h"
@@ -45,9 +46,14 @@ static void setupTDTokenClass(JSContextRef ctx, JSValueRef *ex) {
     JSStringRelease(className);
 
     JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
-    JSValueRef classMethod = JSObjectMakeFunctionWithCallback(ctx, propName, TDToken_EOFToken);
-    JSObjectSetProperty(ctx, constr, propName, classMethod, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
+    JSValueRef classProp = TDToken_new(ctx, [TDToken EOFToken]);
+    JSObjectSetProperty(ctx, constr, propName, classProp, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
     JSStringRelease(propName);
+    
+//    JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
+//    JSValueRef classMethod = JSObjectMakeFunctionWithCallback(ctx, propName, TDToken_EOFToken);
+//    JSObjectSetProperty(ctx, constr, propName, classMethod, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
+//    JSStringRelease(propName);
 }
 
 static void setupTDAssemblyClass(JSContextRef ctx, JSValueRef *ex) {

@@ -40,7 +40,7 @@ static void TDQuoteState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDQuoteState_finalize(JSObjectRef this) {
-    TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
+    TDQuoteState *data = (TDQuoteState *)JSObjectGetPrivate(this);
     [data autorelease];
 }
 
