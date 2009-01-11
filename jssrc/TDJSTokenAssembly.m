@@ -16,6 +16,7 @@
 #pragma mark Methods
 
 static JSValueRef TDTokenAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenAssembly_class, @"toString", @"TDTokenAssembly");
     TDTokenAssembly *data = JSObjectGetPrivate(this);
     JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
     JSValueRef res = JSValueMakeString(ctx, resStr);
@@ -24,12 +25,14 @@ static JSValueRef TDTokenAssembly_toString(JSContextRef ctx, JSObjectRef functio
 }
 
 static JSValueRef TDTokenAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenAssembly_class, @"pop", @"TDTokenAssembly");
     TDTokenAssembly *data = JSObjectGetPrivate(this);
     TDToken *tok = [data pop];
     return TDToken_new(ctx, tok);
 }
 
 static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenAssembly_class, @"push", @"TDTokenAssembly");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly.push() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
@@ -45,6 +48,7 @@ static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, J
 }
 
 static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenAssembly_class, @"objectsAbove", @"TDTokenAssembly");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly.objectsAbove() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);

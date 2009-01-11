@@ -14,6 +14,7 @@
 #pragma mark Methods
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDToken_class, @"toString", @"TDToken");
     TDToken *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data debugDescription], ex);
 }

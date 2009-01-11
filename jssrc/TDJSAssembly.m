@@ -16,17 +16,25 @@
 #pragma mark Methods
 
 static JSValueRef TDAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDAssembly_class, @"toString", @"TDAssemlby");
     TDAssembly *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDAssembly_class, @"pop", @"TDAssemlby");
+    if (!JSValueIsObjectOfClass(ctx, this, TDAssembly_class(ctx))) {
+        (*ex) = TDNSStringToJSValue(ctx, @"'this' argument of wrong type", ex);
+        return JSValueMakeUndefined(ctx);
+    }
+    
     TDAssembly *data = JSObjectGetPrivate(this);
     TDToken *tok = [data pop];
     return TDToken_new(ctx, tok);
 }
 
 static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDAssembly_class, @"push", @"TDAssemlby");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly.push() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);
@@ -42,6 +50,7 @@ static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObje
 }
 
 static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDAssembly_class, @"objectsAbove", @"TDAssemlby");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly.objectsAbove() requires 1 argument", ex);
         return JSValueMakeUndefined(ctx);

@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+//#define TDPreconditionInstaceOf(cls, methStr, clsStr)
+
+#define TDPreconditionInstaceOf(cls, methStr, clsStr) \
+if (!JSValueIsObjectOfClass(ctx, this, (cls)(ctx))) { \
+NSString *s = [NSString stringWithFormat:@"calling method '%@' on an object that is not an instance of '%@'", (methStr), (clsStr)]; \
+(*ex) = TDNSStringToJSValue(ctx, s, ex); \
+return JSValueMakeUndefined(ctx); \
+}
+
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex);
 JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex);
 JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr, JSValueRef *ex);
