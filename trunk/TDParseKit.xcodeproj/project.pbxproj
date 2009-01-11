@@ -350,14 +350,14 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			remoteGlobalIDString = 8DC2EF4F0486A6940098B216;
 			remoteInfo = TDParseKit;
 		};
 		D389F2090F196A8000558235 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D389F1CD0F1965E600558235 /* TDJSParseKit */;
+			remoteGlobalIDString = D389F1CD0F1965E600558235;
 			remoteInfo = TDJSParseKit;
 		};
 /* End PBXContainerItemProxy section */
@@ -662,7 +662,7 @@
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
 		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
-		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = JSDemoApp.app; path = build/Debug/JSDemoApp.app; sourceTree = "<group>"; };
+		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		D389F20D0F196A9200558235 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D389F2E30F196CAE00558235 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jsdemoapp/main.m; sourceTree = "<group>"; };
