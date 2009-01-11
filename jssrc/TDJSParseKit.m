@@ -45,15 +45,18 @@ static void setupTDTokenClass(JSContextRef ctx, JSValueRef *ex) {
     JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
     JSStringRelease(className);
 
+    // JS Class method
+//    JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
+//    JSValueRef classMethod = JSObjectMakeFunctionWithCallback(ctx, propName, TDToken_EOFToken);
+//    JSObjectSetProperty(ctx, constr, propName, classMethod, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
+//    JSStringRelease(propName);
+
+    // JS Class property
     JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
     JSValueRef classProp = TDToken_getEOFToken(ctx);
     JSObjectSetProperty(ctx, constr, propName, classProp, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
     JSStringRelease(propName);
     
-//    JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
-//    JSValueRef classMethod = JSObjectMakeFunctionWithCallback(ctx, propName, TDToken_EOFToken);
-//    JSObjectSetProperty(ctx, constr, propName, classMethod, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
-//    JSStringRelease(propName);
 }
 
 static void setupTDAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
