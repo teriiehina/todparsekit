@@ -262,7 +262,6 @@
 		D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
 		D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
 		D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
-		D389F5B90F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -2006,7 +2005,6 @@
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
 				D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */,
-				D389F5B90F19C76A00558235 /* TDJsonParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
