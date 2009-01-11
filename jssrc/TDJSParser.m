@@ -51,7 +51,6 @@ static void TDParser_finalize(JSObjectRef this) {
 
 static JSStaticFunction TDParser_staticFunctions[] = {
 { "toString", TDParser_toString, kJSPropertyAttributeDontDelete },
-//{ "setWordChars", TDParser_setWordChars, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 

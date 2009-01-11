@@ -15,13 +15,13 @@
 #pragma mark Methods
 
 static JSValueRef TDCommentState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCommentState_class, @"toString", @"TDCommentState");
+    TDPreconditionInstaceOf(TDCommentState_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDCommentState]", ex);
 }
 
 static JSValueRef TDCommentState_addSingleLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCommentState_class, @"addSingleLine", @"TDCommentState");
-    TDPreconditionMethodArgc(1, @"TDCommentState.addSingleLine");
+    TDPreconditionInstaceOf(TDCommentState_class, "addSingleLine");
+    TDPreconditionMethodArgc(1, "TDCommentState.addSingleLine");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
@@ -32,8 +32,8 @@ static JSValueRef TDCommentState_addSingleLine(JSContextRef ctx, JSObjectRef fun
 }
 
 static JSValueRef TDCommentState_removeSingleLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCommentState_class, @"removeSingleLine", @"TDCommentState");
-    TDPreconditionMethodArgc(1, @"TDCommentState.removeSingleLine");
+    TDPreconditionInstaceOf(TDCommentState_class, "removeSingleLine");
+    TDPreconditionMethodArgc(1, "TDCommentState.removeSingleLine");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
@@ -44,8 +44,8 @@ static JSValueRef TDCommentState_removeSingleLine(JSContextRef ctx, JSObjectRef 
 }
 
 static JSValueRef TDCommentState_addMultiLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCommentState_class, @"addMultiLine", @"TDCommentState");
-    TDPreconditionMethodArgc(2, @"TDCommentState.addMultiLine");
+    TDPreconditionInstaceOf(TDCommentState_class, "addMultiLine");
+    TDPreconditionMethodArgc(2, "TDCommentState.addMultiLine");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     NSString *end = TDJSValueGetNSString(ctx, argv[1], ex);
@@ -57,8 +57,8 @@ static JSValueRef TDCommentState_addMultiLine(JSContextRef ctx, JSObjectRef func
 }
 
 static JSValueRef TDCommentState_removeMultiLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCommentState_class, @"removeSingleLine", @"TDCommentState");
-    TDPreconditionMethodArgc(1, @"TDCommentState.removeMultiLine");
+    TDPreconditionInstaceOf(TDCommentState_class, "removeSingleLine");
+    TDPreconditionMethodArgc(1, "TDCommentState.removeMultiLine");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     

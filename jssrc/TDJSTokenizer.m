@@ -23,12 +23,12 @@
 #pragma mark Methods
 
 static JSValueRef TDTokenizer_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDTokenizer_class, @"toString", @"TDTokenizer");
+    TDPreconditionInstaceOf(TDTokenizer_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDTokenizer]", ex);
 }
 
 static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDTokenizer_class, @"nextToken", @"TDTokenizer");
+    TDPreconditionInstaceOf(TDTokenizer_class, "nextToken");
     TDTokenizer *data = JSObjectGetPrivate(this);
 
     TDToken *eof = [TDToken EOFToken];
@@ -42,8 +42,8 @@ static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, 
 }
 
 static JSValueRef TDTokenizer_setTokenizerState(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDTokenizer_class, @"setTokenizerState", @"TDTokenizer");
-    TDPreconditionMethodArgc(3, @"TDTokenizer.setTokenizerState");
+    TDPreconditionInstaceOf(TDTokenizer_class, "setTokenizerState");
+    TDPreconditionMethodArgc(3, "TDTokenizer.setTokenizerState");
     
     JSObjectRef stateObj = (JSObjectRef)argv[0];
     TDTokenizerState *state = JSObjectGetPrivate(stateObj);
@@ -206,7 +206,7 @@ JSObjectRef TDTokenizer_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTokenizer_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, @"TDTokenizer");
+    TDPreconditionConstructorArgc(1, "TDTokenizer");
     
     JSValueRef s = argv[0];
     NSString *string = TDJSValueGetNSString(ctx, s, ex);

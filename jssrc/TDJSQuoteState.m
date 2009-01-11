@@ -15,7 +15,7 @@
 #pragma mark Methods
 
 static JSValueRef TDQuoteState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDQuoteState_class, @"toString", @"TDQuoteState");
+    TDPreconditionInstaceOf(TDQuoteState_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDQuoteState]", ex);
 }
 

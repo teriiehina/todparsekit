@@ -11,23 +11,23 @@
 
 //#define TDPreconditionInstaceOf(cls, methStr, clsStr)
 
-#define TDPreconditionInstaceOf(cls, methStr, clsStr) \
+#define TDPreconditionInstaceOf(cls, meth) \
     if (!JSValueIsObjectOfClass(ctx, this, (cls)(ctx))) { \
-        NSString *s = [NSString stringWithFormat:@"calling method '%@' on an object that is not an instance of '%@'", (methStr), (clsStr)]; \
+        NSString *s = [NSString stringWithFormat:@"calling method '%s' on an object that is not an instance of '%s'", (meth), #cls]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return JSValueMakeUndefined(ctx); \
     }
 
 #define TDPreconditionMethodArgc(n, meth) \
     if (argc != (n)) { \
-        NSString *s = [NSString stringWithFormat:@"%@() requires %d arguments", (meth), (n)]; \
+        NSString *s = [NSString stringWithFormat:@"%s() requires %d arguments", (meth), (n)]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return JSValueMakeUndefined(ctx); \
     }
 
 #define TDPreconditionConstructorArgc(n, meth) \
     if (argc != (n)) { \
-        NSString *s = [NSString stringWithFormat:@"%@ constructor requires %d arguments", (meth), (n)]; \
+        NSString *s = [NSString stringWithFormat:@"%s constructor requires %d arguments", (meth), (n)]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return NULL; \
     }
