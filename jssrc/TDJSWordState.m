@@ -21,7 +21,7 @@ static JSValueRef TDWordState_toString(JSContextRef ctx, JSObjectRef function, J
 
 static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, @"setWordChars", @"TDWordState");
-    TDPreconditionArgc(3, @"TDWordState.setWordChars");
+    TDPreconditionMethodArgc(3, @"TDWordState.setWordChars");
 
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
@@ -35,7 +35,7 @@ static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef functio
 
 static JSValueRef TDWordState_isWordChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, @"isWordChar", @"TDWordState");
-    TDPreconditionArgc(1, @"TDWordState.isWordChar");
+    TDPreconditionMethodArgc(1, @"TDWordState.isWordChar");
     
     NSInteger c = (NSInteger)JSValueToNumber(ctx, argv[0], ex);
     
@@ -60,8 +60,6 @@ static void TDWordState_finalize(JSObjectRef this) {
     [data autorelease];
 }
 
-//- (void)setWordChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
-//- (BOOL)isWordChar:(NSInteger)c;
 static JSStaticFunction TDWordState_staticFunctions[] = {
 { "toString", TDWordState_toString, kJSPropertyAttributeDontDelete },
 { "setWordChars", TDWordState_setWordChars, kJSPropertyAttributeDontDelete },

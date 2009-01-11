@@ -21,7 +21,7 @@ static JSValueRef TDWhitespaceState_toString(JSContextRef ctx, JSObjectRef funct
 
 static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWhitespaceState_class, @"setWhitespaceChars", @"TDWhitespaceState");
-    TDPreconditionArgc(3, @"TDWhitespaceState.setWhitespaceChars");
+    TDPreconditionMethodArgc(3, @"TDWhitespaceState.setWhitespaceChars");
     
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
@@ -35,7 +35,7 @@ static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjec
 
 static JSValueRef TDWhitespaceState_isWhitespaceChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWhitespaceState_class, @"isWhitespaceChar", @"TDWhitespaceState");
-    TDPreconditionArgc(1, @"TDWhitespaceState.add");
+    TDPreconditionMethodArgc(1, @"TDWhitespaceState.add");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     

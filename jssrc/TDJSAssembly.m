@@ -31,7 +31,7 @@ static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjec
 
 static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDAssembly_class, @"push", @"TDAssemlby");
-    TDPreconditionArgc(1, @"TDAssembly.push");
+    TDPreconditionMethodArgc(1, @"TDAssembly.push");
     
     JSValueRef v = argv[0];
     
@@ -44,7 +44,7 @@ static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObje
 
 static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDAssembly_class, @"objectsAbove", @"TDAssemlby");
-    TDPreconditionArgc(1, @"TDAssembly.objectsAbove");
+    TDPreconditionMethodArgc(1, @"TDAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
@@ -136,10 +136,7 @@ JSObjectRef TDAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDAssembly constructor requires 1 argument: string", ex);
-        return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
-    }
+    TDPreconditionConstructorArgc(1, @"TDAssembly");
     
     JSValueRef s = argv[0];
     

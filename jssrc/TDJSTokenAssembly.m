@@ -132,11 +132,8 @@ JSObjectRef TDTokenAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenAssembly constructor requires 1 argument: string", ex);
-        return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
-    }
-    
+    TDPreconditionConstructorArgc(1, @"TDTokenAssembly");
+
     JSValueRef s = argv[0];
     NSString *string = TDJSValueGetNSString(ctx, s, ex);
 

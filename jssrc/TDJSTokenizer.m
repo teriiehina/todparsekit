@@ -43,7 +43,7 @@ static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, 
 
 static JSValueRef TDTokenizer_setTokenizerState(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenizer_class, @"setTokenizerState", @"TDTokenizer");
-    TDPreconditionArgc(3, @"TDTokenizer.setTokenizerState");
+    TDPreconditionMethodArgc(3, @"TDTokenizer.setTokenizerState");
     
     JSObjectRef stateObj = (JSObjectRef)argv[0];
     TDTokenizerState *state = JSObjectGetPrivate(stateObj);
@@ -206,10 +206,7 @@ JSObjectRef TDTokenizer_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTokenizer_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizer constructor requires 1 argument: string", ex);
-        return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
-    }
+    TDPreconditionConstructorArgc(1, @"TDTokenizer");
     
     JSValueRef s = argv[0];
     NSString *string = TDJSValueGetNSString(ctx, s, ex);
