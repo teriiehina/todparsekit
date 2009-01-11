@@ -100,11 +100,19 @@ static JSStaticValue TDToken_staticValues[] = {
 #pragma mark ClassMethods
 
 // JSObjectCallAsFunctionCallback
-JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    static JSValueRef eof = NULL;
+//JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+//    static JSValueRef eof = NULL;
+//    if (!eof) {
+//        eof = TDToken_new(ctx, [TDToken EOFToken]);
+//        JSValueProtect(ctx, eof); // is this necessary/appropriate?
+//    }
+//    return eof;
+//}
+
+JSValueRef TDToken_getEOFToken(JSContextRef ctx) {
+    static JSObjectRef eof = NULL;
     if (!eof) {
         eof = TDToken_new(ctx, [TDToken EOFToken]);
-        JSValueProtect(ctx, eof); // is this necessary/appropriate?
     }
     return eof;
 }

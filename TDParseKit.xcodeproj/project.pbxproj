@@ -233,7 +233,7 @@
 		D389F57D0F19B7E200558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55D0F19B7E200558235 /* TDJSCommentState.m */; };
 		D389F57E0F19B7E200558235 /* TDJSNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F55E0F19B7E200558235 /* TDJSNumberState.h */; };
 		D389F57F0F19B7E200558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55F0F19B7E200558235 /* TDJSNumberState.m */; };
-		D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5640F19B7E200558235 /* TDJSParseKit.h */; };
+		D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5640F19B7E200558235 /* TDJSParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D389F5850F19B7E200558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5650F19B7E200558235 /* TDJSParseKit.m */; };
 		D389F5860F19B7E200558235 /* TDJSQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5660F19B7E200558235 /* TDJSQuoteState.h */; };
 		D389F5870F19B7E200558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5670F19B7E200558235 /* TDJSQuoteState.m */; };
@@ -811,9 +811,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */,
-				D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */,
-				D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */,
 				D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */,
+				D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */,
+				D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,7 +47,7 @@ static JSValueRef TDTokenizerState_toString(JSContextRef ctx, JSObjectRef functi
 //    TDToken *tok = [data nextTokenFromReader:r startingWith:cin tokenizer:t];
 //    
 //    if (eof == tok) {
-//        return TDToken_EOFToken(ctx, NULL, NULL, 0, NULL, ex);
+//        return TDToken_getEOFToken(ctx);
 //    }
 //    
 //    return TDToken_new(ctx, tok);

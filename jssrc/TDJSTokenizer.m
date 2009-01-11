@@ -33,7 +33,7 @@ static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, 
     TDToken *tok = [data nextToken];
     
     if (eof == tok) {
-        return TDToken_EOFToken(ctx, NULL, NULL, 0, NULL, ex);
+        return TDToken_getEOFToken(ctx);
     }
     
     return TDToken_new(ctx, tok);
