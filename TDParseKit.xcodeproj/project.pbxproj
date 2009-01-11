@@ -269,6 +269,8 @@
 		D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D389F37A0F197E8000558235 /* JSDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */; };
+		D389F38F0F19800400558235 /* DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = D389F38E0F19800400558235 /* DefaultValues.plist */; };
+		D389F4620F198A8800558235 /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = D389F4610F198A8800558235 /* Test.html */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -708,6 +710,8 @@
 		D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JSDemoAppMainMenu.xib; sourceTree = "<group>"; };
 		D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDemoAppDelegate.h; path = jsdemoapp/JSDemoAppDelegate.h; sourceTree = "<group>"; };
 		D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDemoAppDelegate.m; path = jsdemoapp/JSDemoAppDelegate.m; sourceTree = "<group>"; };
+		D389F38E0F19800400558235 /* DefaultValues.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultValues.plist; path = jsdemoapp/DefaultValues.plist; sourceTree = "<group>"; };
+		D389F4610F198A8800558235 /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Test.html; path = jsdemoapp/Test.html; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1221,6 +1225,8 @@
 				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
 				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
 				D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */,
+				D389F38E0F19800400558235 /* DefaultValues.plist */,
+				D389F4610F198A8800558235 /* Test.html */,
 			);
 			name = JSDemoApp;
 			sourceTree = "<group>";
@@ -1827,6 +1833,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D389F2E60F196D9200558235 /* JSDemoAppMainMenu.xib in Resources */,
+				D389F38F0F19800400558235 /* DefaultValues.plist in Resources */,
+				D389F4620F198A8800558235 /* Test.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

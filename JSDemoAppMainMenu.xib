@@ -1124,7 +1124,7 @@
 			<object class="NSWindowTemplate" id="183407328">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{133, 87}, {748, 561}}</string>
+				<string key="NSWindowRect">{{17, 285}, {748, 561}}</string>
 				<int key="NSWTFlags">1886912512</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -2041,6 +2041,30 @@
 						</object>
 					</object>
 					<int key="connectionID">489</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">frameLoadDelegate</string>
+						<reference key="source" ref="981086206"/>
+						<reference key="destination" ref="937998860"/>
+					</object>
+					<int key="connectionID">490</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">UIDelegate</string>
+						<reference key="source" ref="981086206"/>
+						<reference key="destination" ref="937998860"/>
+					</object>
+					<int key="connectionID">491</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">policyDelegate</string>
+						<reference key="source" ref="981086206"/>
+						<reference key="destination" ref="937998860"/>
+					</object>
+					<int key="connectionID">492</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3524,8 +3548,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{35, -62}, {748, 561}}</string>
-					<string>{{35, -62}, {748, 561}}</string>
+					<string>{{21, 289}, {748, 561}}</string>
+					<string>{{21, 289}, {748, 561}}</string>
 					<reference ref="9"/>
 					<boolean value="YES"/>
 					<string>{{201, 387}, {507, 413}}</string>
@@ -3614,7 +3638,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">489</int>
+			<int key="maxID">492</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

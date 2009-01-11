@@ -8,27 +8,30 @@
 
 #import "JSDemoAppDelegate.h"
 #import <WebKit/WebKit.h>
+#import <TDJSParseKit/TDJSParseKit.h>
 
 @interface JSDemoAppDelegate ()
-//+ (void)setUpDefaults;
++ (void)setUpDefaults;
 @end
 
 @implementation JSDemoAppDelegate
 
-//+ (void)load {
-//    if ([JSDemoAppDelegate class] == self) {
-//        [self setUpDefaults];
-//    }
-//}
-//
-//
-//+ (void)setUpDefaults {
-//	NSString *path = [[NSBundle mainBundle] pathForResource:@"DefaultValues" ofType:@"plist"];
-//    id defaultValues = [NSMutableDictionary dictionaryWithContentsOfFile:path];
-//	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaultValues];
-//	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
-//	[[NSUserDefaults standardUserDefaults] synchronize];
-//}
++ (void)load {
+    if ([JSDemoAppDelegate class] == self) {
+        [self setUpDefaults];
+    }
+}
+
+
++ (void)setUpDefaults {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+	NSString *path = [[NSBundle mainBundle] pathForResource:@"DefaultValues" ofType:@"plist"];
+    id defaultValues = [NSMutableDictionary dictionaryWithContentsOfFile:path];
+	[[NSUserDefaultsController sharedUserDefaultsController] setInitialValues:defaultValues];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+    [pool release];
+}
 
 
 - (id)init {
@@ -46,6 +49,13 @@
 }
 
 
+- (void)awakeFromNib {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"html"];
+    [comboBox setStringValue:[[NSURL fileURLWithPath:path] absoluteString]];
+    [self goToLocation:self];
+}
+
+
 - (IBAction)openLocation:(id)sender {
     [window makeFirstResponder:comboBox];
 }
@@ -59,7 +69,7 @@
         return;
     }
     
-    if (![URLString hasPrefix:@"http://"] && ![URLString hasPrefix:@"https://"]) {
+    if (![URLString hasPrefix:@"file://"] && ![URLString hasPrefix:@"http://"] && ![URLString hasPrefix:@"https://"]) {
         URLString = [NSString stringWithFormat:@"http://%@", URLString];
         [comboBox setStringValue:URLString];
     }
@@ -93,6 +103,11 @@
 
 - (void)webView:(WebView *)sender willPerformClientRedirectToURL:(NSURL *)URL delay:(NSTimeInterval)seconds fireDate:(NSDate *)date forFrame:(WebFrame *)frame {
     [comboBox setStringValue:[URL absoluteString]];
+}
+
+
+- (void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame {
+    TDJSParseKitSetUpContext([[sender mainFrame] globalContext]);
 }
 
 @synthesize webView;
