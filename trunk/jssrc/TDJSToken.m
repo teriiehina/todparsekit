@@ -14,7 +14,7 @@
 #pragma mark Methods
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDToken_class, @"toString", @"TDToken");
+    TDPreconditionInstaceOf(TDToken_class, "toString");
     TDToken *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data debugDescription], ex);
 }
@@ -98,7 +98,7 @@ static JSStaticValue TDToken_staticValues[] = {
 };
 
 #pragma mark -
-#pragma mark ClassMethods
+#pragma mark Class Methods
 
 // JSObjectCallAsFunctionCallback
 //JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
@@ -109,6 +109,9 @@ static JSStaticValue TDToken_staticValues[] = {
 //    }
 //    return eof;
 //}
+
+#pragma mark -
+#pragma mark Class Properties
 
 JSValueRef TDToken_getEOFToken(JSContextRef ctx) {
     static JSObjectRef eof = NULL;
@@ -139,7 +142,7 @@ JSObjectRef TDToken_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(3, @"TDToken");
+    TDPreconditionConstructorArgc(3, "TDToken");
     
     CGFloat tokenType = JSValueToNumber(ctx, argv[0], NULL);
     NSString *stringValue = TDJSValueGetNSString(ctx, argv[1], ex);

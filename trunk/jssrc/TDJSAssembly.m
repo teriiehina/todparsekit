@@ -16,13 +16,13 @@
 #pragma mark Methods
 
 static JSValueRef TDAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDAssembly_class, @"toString", @"TDAssemlby");
+    TDPreconditionInstaceOf(TDAssembly_class, "toString");
     TDAssembly *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDAssembly_class, @"pop", @"TDAssemlby");
+    TDPreconditionInstaceOf(TDAssembly_class, "pop");
     
     TDAssembly *data = JSObjectGetPrivate(this);
     TDToken *tok = [data pop];
@@ -30,8 +30,8 @@ static JSValueRef TDAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjec
 }
 
 static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDAssembly_class, @"push", @"TDAssemlby");
-    TDPreconditionMethodArgc(1, @"TDAssembly.push");
+    TDPreconditionInstaceOf(TDAssembly_class, "push");
+    TDPreconditionMethodArgc(1, "TDAssembly.push");
     
     JSValueRef v = argv[0];
     
@@ -43,8 +43,8 @@ static JSValueRef TDAssembly_push(JSContextRef ctx, JSObjectRef function, JSObje
 }
 
 static JSValueRef TDAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDAssembly_class, @"objectsAbove", @"TDAssemlby");
-    TDPreconditionMethodArgc(1, @"TDAssembly.objectsAbove");
+    TDPreconditionInstaceOf(TDAssembly_class, "objectsAbove");
+    TDPreconditionMethodArgc(1, "TDAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
@@ -136,7 +136,7 @@ JSObjectRef TDAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, @"TDAssembly");
+    TDPreconditionConstructorArgc(1, "TDAssembly");
     
     JSValueRef s = argv[0];
     

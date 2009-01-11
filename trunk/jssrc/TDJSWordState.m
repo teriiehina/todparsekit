@@ -15,13 +15,13 @@
 #pragma mark Methods
 
 static JSValueRef TDWordState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDWordState_class, @"toString", @"TDWordState");
+    TDPreconditionInstaceOf(TDWordState_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDWordState]", ex);
 }
 
 static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDWordState_class, @"setWordChars", @"TDWordState");
-    TDPreconditionMethodArgc(3, @"TDWordState.setWordChars");
+    TDPreconditionInstaceOf(TDWordState_class, "setWordChars");
+    TDPreconditionMethodArgc(3, "TDWordState.setWordChars");
 
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
@@ -34,8 +34,8 @@ static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef functio
 }
 
 static JSValueRef TDWordState_isWordChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDWordState_class, @"isWordChar", @"TDWordState");
-    TDPreconditionMethodArgc(1, @"TDWordState.isWordChar");
+    TDPreconditionInstaceOf(TDWordState_class, "isWordChar");
+    TDPreconditionMethodArgc(1, "TDWordState.isWordChar");
     
     NSInteger c = (NSInteger)JSValueToNumber(ctx, argv[0], ex);
     
