@@ -5,7 +5,7 @@ try {
     var t = new TDTokenizer(s);
     var eof = TDToken.EOFToken;
     
-    t.wordState.setWordChars(true, "!", "!");
+    //t.wordState.setWordChars(true, "!", "!");
     
     var tok = null;
     while ((tok = t.nextToken()) != eof) {
