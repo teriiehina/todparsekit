@@ -198,20 +198,8 @@
 		D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
 		D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */; };
 		D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
-		D380BA9E0F0F1CC10009EC13 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
-		D380BA9F0F0F1CC10009EC13 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
 		D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
-		D380BAB30F0F1E590009EC13 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
-		D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
-		D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
-		D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
-		D380BB430F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
-		D380BB440F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
-		D380BBA60F1009560009EC13 /* TDJSAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBA50F1009560009EC13 /* TDJSAssembly.m */; };
-		D380BBA70F1009560009EC13 /* TDJSAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBA50F1009560009EC13 /* TDJSAssembly.m */; };
-		D380BBE50F1044E80009EC13 /* TDJSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */; };
-		D380BBE60F1044E90009EC13 /* TDJSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
 		D38349550F0C09740055E4E0 /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D38349560F0C09740055E4E0 /* TDComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D38349540F0C09740055E4E0 /* TDComment.m */; };
@@ -231,46 +219,49 @@
 		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
 		D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
 		D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
-		D389F1000F183A7900558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
-		D389F1010F183A7900558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
-		D389F1080F183C4100558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
-		D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
-		D389F11C0F184B0F00558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
-		D389F11D0F184B0F00558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
-		D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
-		D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
-		D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
-		D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
-		D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
-		D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
-		D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
-		D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
-		D389F1DC0F19669700558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
-		D389F1DD0F19669700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
-		D389F1DE0F19669700558235 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
-		D389F1DF0F19669700558235 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */; };
-		D389F1E00F19669700558235 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BAB20F0F1E590009EC13 /* TDJSToken.m */; };
-		D389F1E10F19669700558235 /* TDJSAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBA50F1009560009EC13 /* TDJSAssembly.m */; };
-		D389F1E20F19669700558235 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */; };
-		D389F1E30F19669700558235 /* TDJSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */; };
-		D389F1E40F19669700558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1070F183C4100558235 /* TDJSTokenizerState.m */; };
-		D389F1E50F19669700558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F0FF0F183A7900558235 /* TDJSWordState.m */; };
-		D389F1E60F19669700558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F11B0F184B0F00558235 /* TDJSNumberState.m */; };
-		D389F1E70F19669700558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */; };
-		D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
-		D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
-		D389F1EA0F1966A500558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F1510F19547C00558235 /* TDJSParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */; };
 		D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F20D0F196A9200558235 /* WebKit.framework */; };
 		D389F2E40F196CAE00558235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E30F196CAE00558235 /* main.m */; };
-		D389F2E60F196D9200558235 /* JSDemoAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */; };
 		D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D389F37A0F197E8000558235 /* JSDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */; };
 		D389F38F0F19800400558235 /* DefaultValues.plist in Resources */ = {isa = PBXBuildFile; fileRef = D389F38E0F19800400558235 /* DefaultValues.plist */; };
 		D389F4620F198A8800558235 /* Test.html in Resources */ = {isa = PBXBuildFile; fileRef = D389F4610F198A8800558235 /* Test.html */; };
+		D389F5590F19B7BC00558235 /* JSDemoAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */; };
+		D389F57A0F19B7E200558235 /* TDJSAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F55A0F19B7E200558235 /* TDJSAssembly.h */; };
+		D389F57B0F19B7E200558235 /* TDJSAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55B0F19B7E200558235 /* TDJSAssembly.m */; };
+		D389F57C0F19B7E200558235 /* TDJSCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F55C0F19B7E200558235 /* TDJSCommentState.h */; };
+		D389F57D0F19B7E200558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55D0F19B7E200558235 /* TDJSCommentState.m */; };
+		D389F57E0F19B7E200558235 /* TDJSNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F55E0F19B7E200558235 /* TDJSNumberState.h */; };
+		D389F57F0F19B7E200558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55F0F19B7E200558235 /* TDJSNumberState.m */; };
+		D389F5800F19B7E200558235 /* TDJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5600F19B7E200558235 /* TDJsonParser.h */; };
+		D389F5810F19B7E200558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5610F19B7E200558235 /* TDJsonParser.m */; };
+		D389F5820F19B7E200558235 /* TDJsonParserTest.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5620F19B7E200558235 /* TDJsonParserTest.h */; };
+		D389F5830F19B7E200558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5630F19B7E200558235 /* TDJsonParserTest.m */; };
+		D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5640F19B7E200558235 /* TDJSParseKit.h */; };
+		D389F5850F19B7E200558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5650F19B7E200558235 /* TDJSParseKit.m */; };
+		D389F5860F19B7E200558235 /* TDJSQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5660F19B7E200558235 /* TDJSQuoteState.h */; };
+		D389F5870F19B7E200558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5670F19B7E200558235 /* TDJSQuoteState.m */; };
+		D389F5880F19B7E200558235 /* TDJSSymbolState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5680F19B7E200558235 /* TDJSSymbolState.h */; };
+		D389F5890F19B7E200558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5690F19B7E200558235 /* TDJSSymbolState.m */; };
+		D389F58A0F19B7E200558235 /* TDJSToken.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F56A0F19B7E200558235 /* TDJSToken.h */; };
+		D389F58B0F19B7E200558235 /* TDJSToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F56B0F19B7E200558235 /* TDJSToken.m */; };
+		D389F58C0F19B7E200558235 /* TDJSTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F56C0F19B7E200558235 /* TDJSTokenAssembly.h */; };
+		D389F58D0F19B7E200558235 /* TDJSTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F56D0F19B7E200558235 /* TDJSTokenAssembly.m */; };
+		D389F58E0F19B7E200558235 /* TDJSTokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F56E0F19B7E200558235 /* TDJSTokenizer.h */; };
+		D389F58F0F19B7E200558235 /* TDJSTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F56F0F19B7E200558235 /* TDJSTokenizer.m */; };
+		D389F5900F19B7E200558235 /* TDJSTokenizerState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5700F19B7E200558235 /* TDJSTokenizerState.h */; };
+		D389F5910F19B7E200558235 /* TDJSTokenizerState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5710F19B7E200558235 /* TDJSTokenizerState.m */; };
+		D389F5920F19B7E200558235 /* TDJSUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5720F19B7E200558235 /* TDJSUtils.h */; };
+		D389F5930F19B7E200558235 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5730F19B7E200558235 /* TDJSUtils.m */; };
+		D389F5940F19B7E200558235 /* TDJSValueHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5740F19B7E200558235 /* TDJSValueHolder.h */; };
+		D389F5950F19B7E200558235 /* TDJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5750F19B7E200558235 /* TDJSValueHolder.m */; };
+		D389F5960F19B7E200558235 /* TDJSWhitespaceState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5760F19B7E200558235 /* TDJSWhitespaceState.h */; };
+		D389F5970F19B7E200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */; };
+		D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5780F19B7E200558235 /* TDJSWordState.h */; };
+		D389F5990F19B7E200558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5790F19B7E200558235 /* TDJSWordState.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -655,19 +646,7 @@
 		D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactory.m; path = test/TDParserFactory.m; sourceTree = "<group>"; };
 		D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest.h; path = test/TDParserFactoryTest.h; sourceTree = "<group>"; };
 		D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest.m; path = test/TDParserFactoryTest.m; sourceTree = "<group>"; };
-		D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUtils.h; path = test/TDJSUtils.h; sourceTree = "<group>"; };
-		D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUtils.m; path = test/TDJSUtils.m; sourceTree = "<group>"; };
 		D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = /System/Library/Frameworks/JavaScriptCore.framework; sourceTree = "<absolute>"; };
-		D380BAB10F0F1E590009EC13 /* TDJSToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSToken.h; path = test/TDJSToken.h; sourceTree = "<group>"; };
-		D380BAB20F0F1E590009EC13 /* TDJSToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSToken.m; path = test/TDJSToken.m; sourceTree = "<group>"; };
-		D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSValueHolder.h; path = test/TDJSValueHolder.h; sourceTree = "<group>"; };
-		D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSValueHolder.m; path = test/TDJSValueHolder.m; sourceTree = "<group>"; };
-		D380BB410F0F66400009EC13 /* TDJSTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenAssembly.h; path = test/TDJSTokenAssembly.h; sourceTree = "<group>"; };
-		D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenAssembly.m; path = test/TDJSTokenAssembly.m; sourceTree = "<group>"; };
-		D380BBA40F1009560009EC13 /* TDJSAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAssembly.h; path = test/TDJSAssembly.h; sourceTree = "<group>"; };
-		D380BBA50F1009560009EC13 /* TDJSAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAssembly.m; path = test/TDJSAssembly.m; sourceTree = "<group>"; };
-		D380BBE30F1044E80009EC13 /* TDJSTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenizer.h; path = test/TDJSTokenizer.h; sourceTree = "<group>"; };
-		D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizer.m; path = test/TDJSTokenizer.m; sourceTree = "<group>"; };
 		D38205BC0EEE48EE004340DD /* TDTokenTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenTest.h; path = test/TDTokenTest.h; sourceTree = "<group>"; };
 		D38205BD0EEE48EE004340DD /* TDTokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenTest.m; path = test/TDTokenTest.m; sourceTree = "<group>"; };
 		D38349530F0C09740055E4E0 /* TDComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDComment.h; path = src/TDComment.h; sourceTree = "<group>"; };
@@ -685,33 +664,49 @@
 		D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssemblerTest.h; path = test/TDMiniCSSAssemblerTest.h; sourceTree = "<group>"; };
 		D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssemblerTest.m; path = test/TDMiniCSSAssemblerTest.m; sourceTree = "<group>"; };
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
-		D389F0FE0F183A7900558235 /* TDJSWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWordState.h; path = test/TDJSWordState.h; sourceTree = "<group>"; };
-		D389F0FF0F183A7900558235 /* TDJSWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWordState.m; path = test/TDJSWordState.m; sourceTree = "<group>"; };
-		D389F1060F183C4100558235 /* TDJSTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenizerState.h; path = test/TDJSTokenizerState.h; sourceTree = "<group>"; };
-		D389F1070F183C4100558235 /* TDJSTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizerState.m; path = test/TDJSTokenizerState.m; sourceTree = "<group>"; };
-		D389F11A0F184B0F00558235 /* TDJSNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSNumberState.h; path = test/TDJSNumberState.h; sourceTree = "<group>"; };
-		D389F11B0F184B0F00558235 /* TDJSNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSNumberState.m; path = test/TDJSNumberState.m; sourceTree = "<group>"; };
-		D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWhitespaceState.h; path = test/TDJSWhitespaceState.h; sourceTree = "<group>"; };
-		D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWhitespaceState.m; path = test/TDJSWhitespaceState.m; sourceTree = "<group>"; };
-		D389F1350F18510A00558235 /* TDJSCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCommentState.h; path = test/TDJSCommentState.h; sourceTree = "<group>"; };
-		D389F1360F18510A00558235 /* TDJSCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCommentState.m; path = test/TDJSCommentState.m; sourceTree = "<group>"; };
-		D389F13C0F185FAF00558235 /* TDJSQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSQuoteState.h; path = test/TDJSQuoteState.h; sourceTree = "<group>"; };
-		D389F13D0F185FAF00558235 /* TDJSQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSQuoteState.m; path = test/TDJSQuoteState.m; sourceTree = "<group>"; };
-		D389F1470F18673700558235 /* TDJSSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSymbolState.h; path = test/TDJSSymbolState.h; sourceTree = "<group>"; };
-		D389F1480F18673700558235 /* TDJSSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbolState.m; path = test/TDJSSymbolState.m; sourceTree = "<group>"; };
-		D389F1510F19547C00558235 /* TDJSParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParseKit.h; path = test/TDJSParseKit.h; sourceTree = "<group>"; };
-		D389F1520F19547C00558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = test/TDJSParseKit.m; sourceTree = "<group>"; };
 		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
 		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = JSDemoApp.app; path = build/Debug/JSDemoApp.app; sourceTree = "<group>"; };
 		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		D389F20D0F196A9200558235 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D389F2E30F196CAE00558235 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jsdemoapp/main.m; sourceTree = "<group>"; };
-		D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JSDemoAppMainMenu.xib; sourceTree = "<group>"; };
 		D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDemoAppDelegate.h; path = jsdemoapp/JSDemoAppDelegate.h; sourceTree = "<group>"; };
 		D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDemoAppDelegate.m; path = jsdemoapp/JSDemoAppDelegate.m; sourceTree = "<group>"; };
 		D389F38E0F19800400558235 /* DefaultValues.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = DefaultValues.plist; path = jsdemoapp/DefaultValues.plist; sourceTree = "<group>"; };
 		D389F4610F198A8800558235 /* Test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Test.html; path = jsdemoapp/Test.html; sourceTree = "<group>"; };
+		D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = JSDemoAppMainMenu.xib; path = jsdemoapp/JSDemoAppMainMenu.xib; sourceTree = "<group>"; };
+		D389F55A0F19B7E200558235 /* TDJSAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAssembly.h; path = jssrc/TDJSAssembly.h; sourceTree = "<group>"; };
+		D389F55B0F19B7E200558235 /* TDJSAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAssembly.m; path = jssrc/TDJSAssembly.m; sourceTree = "<group>"; };
+		D389F55C0F19B7E200558235 /* TDJSCommentState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCommentState.h; path = jssrc/TDJSCommentState.h; sourceTree = "<group>"; };
+		D389F55D0F19B7E200558235 /* TDJSCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCommentState.m; path = jssrc/TDJSCommentState.m; sourceTree = "<group>"; };
+		D389F55E0F19B7E200558235 /* TDJSNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSNumberState.h; path = jssrc/TDJSNumberState.h; sourceTree = "<group>"; };
+		D389F55F0F19B7E200558235 /* TDJSNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSNumberState.m; path = jssrc/TDJSNumberState.m; sourceTree = "<group>"; };
+		D389F5600F19B7E200558235 /* TDJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParser.h; path = jssrc/TDJsonParser.h; sourceTree = "<group>"; };
+		D389F5610F19B7E200558235 /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = jssrc/TDJsonParser.m; sourceTree = "<group>"; };
+		D389F5620F19B7E200558235 /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = jssrc/TDJsonParserTest.h; sourceTree = "<group>"; };
+		D389F5630F19B7E200558235 /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = jssrc/TDJsonParserTest.m; sourceTree = "<group>"; };
+		D389F5640F19B7E200558235 /* TDJSParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParseKit.h; path = jssrc/TDJSParseKit.h; sourceTree = "<group>"; };
+		D389F5650F19B7E200558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = jssrc/TDJSParseKit.m; sourceTree = "<group>"; };
+		D389F5660F19B7E200558235 /* TDJSQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSQuoteState.h; path = jssrc/TDJSQuoteState.h; sourceTree = "<group>"; };
+		D389F5670F19B7E200558235 /* TDJSQuoteState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSQuoteState.m; path = jssrc/TDJSQuoteState.m; sourceTree = "<group>"; };
+		D389F5680F19B7E200558235 /* TDJSSymbolState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSymbolState.h; path = jssrc/TDJSSymbolState.h; sourceTree = "<group>"; };
+		D389F5690F19B7E200558235 /* TDJSSymbolState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbolState.m; path = jssrc/TDJSSymbolState.m; sourceTree = "<group>"; };
+		D389F56A0F19B7E200558235 /* TDJSToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSToken.h; path = jssrc/TDJSToken.h; sourceTree = "<group>"; };
+		D389F56B0F19B7E200558235 /* TDJSToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSToken.m; path = jssrc/TDJSToken.m; sourceTree = "<group>"; };
+		D389F56C0F19B7E200558235 /* TDJSTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenAssembly.h; path = jssrc/TDJSTokenAssembly.h; sourceTree = "<group>"; };
+		D389F56D0F19B7E200558235 /* TDJSTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenAssembly.m; path = jssrc/TDJSTokenAssembly.m; sourceTree = "<group>"; };
+		D389F56E0F19B7E200558235 /* TDJSTokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenizer.h; path = jssrc/TDJSTokenizer.h; sourceTree = "<group>"; };
+		D389F56F0F19B7E200558235 /* TDJSTokenizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizer.m; path = jssrc/TDJSTokenizer.m; sourceTree = "<group>"; };
+		D389F5700F19B7E200558235 /* TDJSTokenizerState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTokenizerState.h; path = jssrc/TDJSTokenizerState.h; sourceTree = "<group>"; };
+		D389F5710F19B7E200558235 /* TDJSTokenizerState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTokenizerState.m; path = jssrc/TDJSTokenizerState.m; sourceTree = "<group>"; };
+		D389F5720F19B7E200558235 /* TDJSUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUtils.h; path = jssrc/TDJSUtils.h; sourceTree = "<group>"; };
+		D389F5730F19B7E200558235 /* TDJSUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUtils.m; path = jssrc/TDJSUtils.m; sourceTree = "<group>"; };
+		D389F5740F19B7E200558235 /* TDJSValueHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSValueHolder.h; path = jssrc/TDJSValueHolder.h; sourceTree = "<group>"; };
+		D389F5750F19B7E200558235 /* TDJSValueHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSValueHolder.m; path = jssrc/TDJSValueHolder.m; sourceTree = "<group>"; };
+		D389F5760F19B7E200558235 /* TDJSWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWhitespaceState.h; path = jssrc/TDJSWhitespaceState.h; sourceTree = "<group>"; };
+		D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWhitespaceState.m; path = jssrc/TDJSWhitespaceState.m; sourceTree = "<group>"; };
+		D389F5780F19B7E200558235 /* TDJSWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWordState.h; path = jssrc/TDJSWordState.h; sourceTree = "<group>"; };
+		D389F5790F19B7E200558235 /* TDJSWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWordState.m; path = jssrc/TDJSWordState.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1185,34 +1180,38 @@
 			isa = PBXGroup;
 			children = (
 				D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */,
-				D389F1510F19547C00558235 /* TDJSParseKit.h */,
-				D389F1520F19547C00558235 /* TDJSParseKit.m */,
-				D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */,
-				D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */,
-				D389F1470F18673700558235 /* TDJSSymbolState.h */,
-				D389F1480F18673700558235 /* TDJSSymbolState.m */,
-				D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */,
-				D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */,
-				D380BAB10F0F1E590009EC13 /* TDJSToken.h */,
-				D380BAB20F0F1E590009EC13 /* TDJSToken.m */,
-				D380BBA40F1009560009EC13 /* TDJSAssembly.h */,
-				D380BBA50F1009560009EC13 /* TDJSAssembly.m */,
-				D380BB410F0F66400009EC13 /* TDJSTokenAssembly.h */,
-				D380BB420F0F66400009EC13 /* TDJSTokenAssembly.m */,
-				D380BBE30F1044E80009EC13 /* TDJSTokenizer.h */,
-				D380BBE40F1044E80009EC13 /* TDJSTokenizer.m */,
-				D389F1060F183C4100558235 /* TDJSTokenizerState.h */,
-				D389F1070F183C4100558235 /* TDJSTokenizerState.m */,
-				D389F0FE0F183A7900558235 /* TDJSWordState.h */,
-				D389F0FF0F183A7900558235 /* TDJSWordState.m */,
-				D389F11A0F184B0F00558235 /* TDJSNumberState.h */,
-				D389F11B0F184B0F00558235 /* TDJSNumberState.m */,
-				D389F12C0F184EA200558235 /* TDJSWhitespaceState.h */,
-				D389F12D0F184EA200558235 /* TDJSWhitespaceState.m */,
-				D389F1350F18510A00558235 /* TDJSCommentState.h */,
-				D389F1360F18510A00558235 /* TDJSCommentState.m */,
-				D389F13C0F185FAF00558235 /* TDJSQuoteState.h */,
-				D389F13D0F185FAF00558235 /* TDJSQuoteState.m */,
+				D389F5640F19B7E200558235 /* TDJSParseKit.h */,
+				D389F5650F19B7E200558235 /* TDJSParseKit.m */,
+				D389F5720F19B7E200558235 /* TDJSUtils.h */,
+				D389F5730F19B7E200558235 /* TDJSUtils.m */,
+				D389F5740F19B7E200558235 /* TDJSValueHolder.h */,
+				D389F5750F19B7E200558235 /* TDJSValueHolder.m */,
+				D389F55A0F19B7E200558235 /* TDJSAssembly.h */,
+				D389F55B0F19B7E200558235 /* TDJSAssembly.m */,
+				D389F55C0F19B7E200558235 /* TDJSCommentState.h */,
+				D389F55D0F19B7E200558235 /* TDJSCommentState.m */,
+				D389F55E0F19B7E200558235 /* TDJSNumberState.h */,
+				D389F55F0F19B7E200558235 /* TDJSNumberState.m */,
+				D389F5600F19B7E200558235 /* TDJsonParser.h */,
+				D389F5610F19B7E200558235 /* TDJsonParser.m */,
+				D389F5620F19B7E200558235 /* TDJsonParserTest.h */,
+				D389F5630F19B7E200558235 /* TDJsonParserTest.m */,
+				D389F5660F19B7E200558235 /* TDJSQuoteState.h */,
+				D389F5670F19B7E200558235 /* TDJSQuoteState.m */,
+				D389F5680F19B7E200558235 /* TDJSSymbolState.h */,
+				D389F5690F19B7E200558235 /* TDJSSymbolState.m */,
+				D389F56A0F19B7E200558235 /* TDJSToken.h */,
+				D389F56B0F19B7E200558235 /* TDJSToken.m */,
+				D389F56C0F19B7E200558235 /* TDJSTokenAssembly.h */,
+				D389F56D0F19B7E200558235 /* TDJSTokenAssembly.m */,
+				D389F56E0F19B7E200558235 /* TDJSTokenizer.h */,
+				D389F56F0F19B7E200558235 /* TDJSTokenizer.m */,
+				D389F5700F19B7E200558235 /* TDJSTokenizerState.h */,
+				D389F5710F19B7E200558235 /* TDJSTokenizerState.m */,
+				D389F5760F19B7E200558235 /* TDJSWhitespaceState.h */,
+				D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */,
+				D389F5780F19B7E200558235 /* TDJSWordState.h */,
+				D389F5790F19B7E200558235 /* TDJSWordState.m */,
 			);
 			name = "JS Framework";
 			sourceTree = "<group>";
@@ -1224,9 +1223,9 @@
 				D389F2E30F196CAE00558235 /* main.m */,
 				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
 				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
-				D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */,
 				D389F38E0F19800400558235 /* DefaultValues.plist */,
 				D389F4610F198A8800558235 /* Test.html */,
+				D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */,
 			);
 			name = JSDemoApp;
 			sourceTree = "<group>";
@@ -1626,7 +1625,22 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D389F1EA0F1966A500558235 /* TDJSParseKit.h in Headers */,
+				D389F57A0F19B7E200558235 /* TDJSAssembly.h in Headers */,
+				D389F57C0F19B7E200558235 /* TDJSCommentState.h in Headers */,
+				D389F57E0F19B7E200558235 /* TDJSNumberState.h in Headers */,
+				D389F5800F19B7E200558235 /* TDJsonParser.h in Headers */,
+				D389F5820F19B7E200558235 /* TDJsonParserTest.h in Headers */,
+				D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */,
+				D389F5860F19B7E200558235 /* TDJSQuoteState.h in Headers */,
+				D389F5880F19B7E200558235 /* TDJSSymbolState.h in Headers */,
+				D389F58A0F19B7E200558235 /* TDJSToken.h in Headers */,
+				D389F58C0F19B7E200558235 /* TDJSTokenAssembly.h in Headers */,
+				D389F58E0F19B7E200558235 /* TDJSTokenizer.h in Headers */,
+				D389F5900F19B7E200558235 /* TDJSTokenizerState.h in Headers */,
+				D389F5920F19B7E200558235 /* TDJSUtils.h in Headers */,
+				D389F5940F19B7E200558235 /* TDJSValueHolder.h in Headers */,
+				D389F5960F19B7E200558235 /* TDJSWhitespaceState.h in Headers */,
+				D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1832,9 +1846,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D389F2E60F196D9200558235 /* JSDemoAppMainMenu.xib in Resources */,
 				D389F38F0F19800400558235 /* DefaultValues.plist in Resources */,
 				D389F4620F198A8800558235 /* Test.html in Resources */,
+				D389F5590F19B7BC00558235 /* JSDemoAppMainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,19 +1989,6 @@
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
-				D380BA9E0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
-				D380BAB30F0F1E590009EC13 /* TDJSToken.m in Sources */,
-				D380BAB70F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
-				D380BB430F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
-				D380BBA60F1009560009EC13 /* TDJSAssembly.m in Sources */,
-				D380BBE50F1044E80009EC13 /* TDJSTokenizer.m in Sources */,
-				D389F1000F183A7900558235 /* TDJSWordState.m in Sources */,
-				D389F1080F183C4100558235 /* TDJSTokenizerState.m in Sources */,
-				D389F11C0F184B0F00558235 /* TDJSNumberState.m in Sources */,
-				D389F12E0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
-				D389F1370F18510A00558235 /* TDJSCommentState.m in Sources */,
-				D389F13E0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
-				D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1995,20 +1996,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D389F1DC0F19669700558235 /* TDJSParseKit.m in Sources */,
-				D389F1DD0F19669700558235 /* TDJSSymbolState.m in Sources */,
-				D389F1DE0F19669700558235 /* TDJSUtils.m in Sources */,
-				D389F1DF0F19669700558235 /* TDJSValueHolder.m in Sources */,
-				D389F1E00F19669700558235 /* TDJSToken.m in Sources */,
-				D389F1E10F19669700558235 /* TDJSAssembly.m in Sources */,
-				D389F1E20F19669700558235 /* TDJSTokenAssembly.m in Sources */,
-				D389F1E30F19669700558235 /* TDJSTokenizer.m in Sources */,
-				D389F1E40F19669700558235 /* TDJSTokenizerState.m in Sources */,
-				D389F1E50F19669700558235 /* TDJSWordState.m in Sources */,
-				D389F1E60F19669700558235 /* TDJSNumberState.m in Sources */,
-				D389F1E70F19669700558235 /* TDJSWhitespaceState.m in Sources */,
-				D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */,
-				D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */,
+				D389F57B0F19B7E200558235 /* TDJSAssembly.m in Sources */,
+				D389F57D0F19B7E200558235 /* TDJSCommentState.m in Sources */,
+				D389F57F0F19B7E200558235 /* TDJSNumberState.m in Sources */,
+				D389F5810F19B7E200558235 /* TDJsonParser.m in Sources */,
+				D389F5830F19B7E200558235 /* TDJsonParserTest.m in Sources */,
+				D389F5850F19B7E200558235 /* TDJSParseKit.m in Sources */,
+				D389F5870F19B7E200558235 /* TDJSQuoteState.m in Sources */,
+				D389F5890F19B7E200558235 /* TDJSSymbolState.m in Sources */,
+				D389F58B0F19B7E200558235 /* TDJSToken.m in Sources */,
+				D389F58D0F19B7E200558235 /* TDJSTokenAssembly.m in Sources */,
+				D389F58F0F19B7E200558235 /* TDJSTokenizer.m in Sources */,
+				D389F5910F19B7E200558235 /* TDJSTokenizerState.m in Sources */,
+				D389F5930F19B7E200558235 /* TDJSUtils.m in Sources */,
+				D389F5950F19B7E200558235 /* TDJSValueHolder.m in Sources */,
+				D389F5970F19B7E200558235 /* TDJSWhitespaceState.m in Sources */,
+				D389F5990F19B7E200558235 /* TDJSWordState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2115,19 +2118,6 @@
 				D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */,
 				D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
 				D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
-				D380BA9F0F0F1CC10009EC13 /* TDJSUtils.m in Sources */,
-				D380BAB40F0F1E590009EC13 /* TDJSToken.m in Sources */,
-				D380BAB80F0F1F220009EC13 /* TDJSValueHolder.m in Sources */,
-				D380BB440F0F66400009EC13 /* TDJSTokenAssembly.m in Sources */,
-				D380BBA70F1009560009EC13 /* TDJSAssembly.m in Sources */,
-				D380BBE60F1044E90009EC13 /* TDJSTokenizer.m in Sources */,
-				D389F1010F183A7900558235 /* TDJSWordState.m in Sources */,
-				D389F1090F183C4100558235 /* TDJSTokenizerState.m in Sources */,
-				D389F11D0F184B0F00558235 /* TDJSNumberState.m in Sources */,
-				D389F12F0F184EA200558235 /* TDJSWhitespaceState.m in Sources */,
-				D389F1380F18510A00558235 /* TDJSCommentState.m in Sources */,
-				D389F13F0F185FAF00558235 /* TDJSQuoteState.m in Sources */,
-				D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
