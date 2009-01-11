@@ -18,12 +18,19 @@
         return JSValueMakeUndefined(ctx); \
     }
 
-#define TDPreconditionArgc(n, meth) \
+#define TDPreconditionMethodArgc(n, meth) \
     if (argc != (n)) { \
         NSString *s = [NSString stringWithFormat:@"%@() requires %d arguments", (meth), (n)]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return JSValueMakeUndefined(ctx); \
-}
+    }
+
+#define TDPreconditionConstructorArgc(n, meth) \
+    if (argc != (n)) { \
+        NSString *s = [NSString stringWithFormat:@"%@ constructor requires %d arguments", (meth), (n)]; \
+        (*ex) = TDNSStringToJSValue(ctx, s, ex); \
+        return NULL; \
+    }
 
 
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex);
