@@ -9,9 +9,7 @@
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
-		D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D317A5300F0A06EE000AFB62 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D317A52F0F0A06EE000AFB62 /* javascript.grammar */; };
-		D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54B0E60E46100A0803E /* TDTestScaffold.m */; };
 		D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54E0E60E50800A0803E /* TDAlternationTest.m */; };
@@ -248,7 +246,6 @@
 		D389F1490F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F14A0F18673700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
-		D389F1D90F19667A00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1D80F19667A00558235 /* JavaScriptCore.framework */; };
 		D389F1DC0F19669700558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1520F19547C00558235 /* TDJSParseKit.m */; };
 		D389F1DD0F19669700558235 /* TDJSSymbolState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1480F18673700558235 /* TDJSSymbolState.m */; };
 		D389F1DE0F19669700558235 /* TDJSUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */; };
@@ -264,6 +261,14 @@
 		D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F1360F18510A00558235 /* TDJSCommentState.m */; };
 		D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F13D0F185FAF00558235 /* TDJSQuoteState.m */; };
 		D389F1EA0F1966A500558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F1510F19547C00558235 /* TDJSParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */; };
+		D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F20D0F196A9200558235 /* WebKit.framework */; };
+		D389F2E40F196CAE00558235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E30F196CAE00558235 /* main.m */; };
+		D389F2E60F196D9200558235 /* JSDemoAppMainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */; };
+		D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
+		D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
+		D389F37A0F197E8000558235 /* JSDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -290,7 +295,6 @@
 		D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
 		D3DCB4C50EF6015C00DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
 		D3DCB51F0EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
-		D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
 		D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB51E0EF61F3000DE5110 /* TDOldGrammarParserFactory.m */; };
 		D3DCB5250EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DCB5240EF61F8F00DE5110 /* TDOldGrammarParserFactoryTest.m */; };
 		D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */; };
@@ -319,7 +323,6 @@
 		D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */; };
 		D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 		D3F740BB0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
-		D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F740BD0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F741370EF8E5B000559B9F /* css-old.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741360EF8E5B000559B9F /* css-old.grammar */; };
 		D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
@@ -356,6 +359,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
 			remoteInfo = TDParseKit;
+		};
+		D389F2090F196A8000558235 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D389F1CD0F1965E600558235 /* TDJSParseKit */;
+			remoteInfo = TDJSParseKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -691,7 +701,13 @@
 		D389F1520F19547C00558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = test/TDJSParseKit.m; sourceTree = "<group>"; };
 		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
-		D389F1D80F19667A00558235 /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = JSDemoApp.app; path = build/Debug/JSDemoApp.app; sourceTree = "<group>"; };
+		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
+		D389F20D0F196A9200558235 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D389F2E30F196CAE00558235 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jsdemoapp/main.m; sourceTree = "<group>"; };
+		D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JSDemoAppMainMenu.xib; sourceTree = "<group>"; };
+		D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDemoAppDelegate.h; path = jsdemoapp/JSDemoAppDelegate.h; sourceTree = "<group>"; };
+		D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSDemoAppDelegate.m; path = jsdemoapp/JSDemoAppDelegate.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -786,8 +802,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */,
 				D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */,
-				D389F1D90F19667A00558235 /* JavaScriptCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D389F2010F196A7500558235 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */,
+				D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */,
+				D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */,
+				D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -814,6 +841,7 @@
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
 				D389F1CE0F1965E600558235 /* TDJSParseKit.framework */,
+				D389F2030F196A7500558235 /* JSDemoApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -823,14 +851,14 @@
 			children = (
 				D36E98CB0E58C08F00496BD3 /* DebugApp */,
 				D334941B0E29641300406085 /* DemoApp */,
+				D389F2CA0F196ACF00558235 /* JSDemoApp */,
 				D3C7D8220A411F31005DD154 /* Tests */,
+				D380BA950F0F1C450009EC13 /* JS Framework */,
 				08FB77AEFE84172EC02AAC07 /* Framework */,
 				32C88DFF0371C24200C91783 /* Other Sources (not used) */,
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
-				D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */,
-				D389F1D80F19667A00558235 /* JavaScriptCore.framework */,
 			);
 			name = TODParseKit;
 			sourceTree = "<group>";
@@ -868,6 +896,7 @@
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D389F20D0F196A9200558235 /* WebKit.framework */,
 				D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */,
 				D3DCB35C0EF5E52500DE5110 /* OCMock.framework */,
 				D36E9F860E5A795400496BD3 /* libxml2.dylib */,
@@ -1148,15 +1177,16 @@
 			name = tokenizer;
 			sourceTree = "<group>";
 		};
-		D380BA950F0F1C450009EC13 /* JSC */ = {
+		D380BA950F0F1C450009EC13 /* JS Framework */ = {
 			isa = PBXGroup;
 			children = (
+				D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */,
 				D389F1510F19547C00558235 /* TDJSParseKit.h */,
 				D389F1520F19547C00558235 /* TDJSParseKit.m */,
-				D389F1470F18673700558235 /* TDJSSymbolState.h */,
-				D389F1480F18673700558235 /* TDJSSymbolState.m */,
 				D380BA9C0F0F1CC10009EC13 /* TDJSUtils.h */,
 				D380BA9D0F0F1CC10009EC13 /* TDJSUtils.m */,
+				D389F1470F18673700558235 /* TDJSSymbolState.h */,
+				D389F1480F18673700558235 /* TDJSSymbolState.m */,
 				D380BAB50F0F1F220009EC13 /* TDJSValueHolder.h */,
 				D380BAB60F0F1F220009EC13 /* TDJSValueHolder.m */,
 				D380BAB10F0F1E590009EC13 /* TDJSToken.h */,
@@ -1180,13 +1210,24 @@
 				D389F13C0F185FAF00558235 /* TDJSQuoteState.h */,
 				D389F13D0F185FAF00558235 /* TDJSQuoteState.m */,
 			);
-			name = JSC;
+			name = "JS Framework";
+			sourceTree = "<group>";
+		};
+		D389F2CA0F196ACF00558235 /* JSDemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				D389F2050F196A7500558235 /* JSDemoApp-Info.plist */,
+				D389F2E30F196CAE00558235 /* main.m */,
+				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
+				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
+				D389F2E50F196D9200558235 /* JSDemoAppMainMenu.xib */,
+			);
+			name = JSDemoApp;
 			sourceTree = "<group>";
 		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
 			isa = PBXGroup;
 			children = (
-				D380BA950F0F1C450009EC13 /* JSC */,
 				D3DCB5280EF61FCF00DE5110 /* old */,
 				D380B5370F0D7DDE0009EC13 /* css.css */,
 				D380B5080F0D71A90009EC13 /* css.grammar */,
@@ -1661,6 +1702,24 @@
 			productReference = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D389F2020F196A7500558235 /* JSDemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D389F2080F196A7600558235 /* Build configuration list for PBXNativeTarget "JSDemoApp" */;
+			buildPhases = (
+				D389F1FF0F196A7500558235 /* Resources */,
+				D389F2000F196A7500558235 /* Sources */,
+				D389F2010F196A7500558235 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D389F20A0F196A8000558235 /* PBXTargetDependency */,
+			);
+			name = JSDemoApp;
+			productName = JSDemoApp;
+			productReference = D389F2030F196A7500558235 /* JSDemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D3C7D8790A411FBF005DD154 /* Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */;
@@ -1699,6 +1758,7 @@
 				D334940F0E2963FD00406085 /* DemoApp */,
 				D34185030E520D3F0081B0DC /* DebugApp */,
 				D389F1CD0F1965E600558235 /* TDJSParseKit */,
+				D389F2020F196A7500558235 /* JSDemoApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1759,6 +1819,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D389F1FF0F196A7500558235 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F2E60F196D9200558235 /* JSDemoAppMainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1873,10 +1941,6 @@
 			files = (
 				D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */,
 				D36E98E80E58C14000496BD3 /* main.m in Sources */,
-				D31907D60ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
-				D302C69E0EF044830090E714 /* TDPlistParser.m in Sources */,
-				D3DCB5200EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
-				D3F740BC0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1884,6 +1948,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D36E98E20E58C12800496BD3 /* main.m in Sources */,
+				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
 				D3EADD8F0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m in Sources */,
 				D31FE7420E60F40900A0803E /* XPathContext.m in Sources */,
 				D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */,
@@ -1892,8 +1958,6 @@
 				D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */,
 				D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */,
 				D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */,
-				D36E98E00E58C12800496BD3 /* DebugAppDelegate.m in Sources */,
-				D36E98E20E58C12800496BD3 /* main.m in Sources */,
 				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
@@ -1937,6 +2001,15 @@
 				D389F1E70F19669700558235 /* TDJSWhitespaceState.m in Sources */,
 				D389F1E80F19669700558235 /* TDJSCommentState.m in Sources */,
 				D389F1E90F19669700558235 /* TDJSQuoteState.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D389F2000F196A7500558235 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D389F2E40F196CAE00558235 /* main.m in Sources */,
+				D389F37A0F197E8000558235 /* JSDemoAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2072,6 +2145,11 @@
 			isa = PBXTargetDependency;
 			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
 			targetProxy = D389F1D30F19665C00558235 /* PBXContainerItemProxy */;
+		};
+		D389F20A0F196A8000558235 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D389F1CD0F1965E600558235 /* TDJSParseKit */;
+			targetProxy = D389F2090F196A8000558235 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -2352,6 +2430,54 @@
 			};
 			name = Release;
 		};
+		D389F2060F196A7600558235 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "JSDemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = JSDemoApp;
+			};
+			name = Debug;
+		};
+		D389F2070F196A7600558235 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INFOPLIST_FILE = "JSDemoApp-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = JSDemoApp;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		D3C7D87D0A411FC0005DD154 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2485,6 +2611,15 @@
 			buildConfigurations = (
 				D389F1D00F1965E800558235 /* Debug */,
 				D389F1D10F1965E800558235 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D389F2080F196A7600558235 /* Build configuration list for PBXNativeTarget "JSDemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D389F2060F196A7600558235 /* Debug */,
+				D389F2070F196A7600558235 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
