@@ -15,11 +15,12 @@
 #pragma mark Methods
 
 static JSValueRef TDCommentState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDCommentState_class, @"toString", @"TDCommentState");
     return TDNSStringToJSValue(ctx, @"[object TDCommentState]", ex);
 }
 
-//- (void)addSingleLineStartSymbol:(NSString *)start;
 static JSValueRef TDCommentState_addSingleLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDCommentState_class, @"addSingleLine", @"TDCommentState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDCommentState.addSingleLine() requires 1 argument: startSymbol", ex);
         return JSValueMakeUndefined(ctx);
@@ -33,8 +34,8 @@ static JSValueRef TDCommentState_addSingleLine(JSContextRef ctx, JSObjectRef fun
     return JSValueMakeUndefined(ctx);
 }
 
-//- (void)removeSingleLineStartSymbol:(NSString *)start;
 static JSValueRef TDCommentState_removeSingleLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDCommentState_class, @"removeSingleLine", @"TDCommentState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDCommentState.removeSingleLine() requires 1 argument: startSymbol", ex);
         return JSValueMakeUndefined(ctx);
@@ -48,8 +49,8 @@ static JSValueRef TDCommentState_removeSingleLine(JSContextRef ctx, JSObjectRef 
     return JSValueMakeUndefined(ctx);
 }
 
-//- (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end;
 static JSValueRef TDCommentState_addMultiLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDCommentState_class, @"addMultiLine", @"TDCommentState");
     if (argc < 2) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDCommentState.addMultiLine() requires 2 arguments: startSymbol, endSymbol", ex);
         return JSValueMakeUndefined(ctx);
@@ -64,8 +65,8 @@ static JSValueRef TDCommentState_addMultiLine(JSContextRef ctx, JSObjectRef func
     return JSValueMakeUndefined(ctx);
 }
 
-//- (void)removeMultiLineStartSymbol:(NSString *)start;
 static JSValueRef TDCommentState_removeMultiLine(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDCommentState_class, @"removeSingleLine", @"TDCommentState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDCommentState.removeMultiLine() requires 1 arguments: startSymbol", ex);
         return JSValueMakeUndefined(ctx);

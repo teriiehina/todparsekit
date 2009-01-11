@@ -15,6 +15,7 @@
 #pragma mark Methods
 
 static JSValueRef TDNumberState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDNumberState_class, @"toString", @"TDNumberState");
     return TDNSStringToJSValue(ctx, @"[object TDNumberState]", ex);
 }
 

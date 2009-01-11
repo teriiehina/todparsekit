@@ -15,11 +15,12 @@
 #pragma mark Methods
 
 static JSValueRef TDWhitespaceState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDWhitespaceState_class, @"toString", @"TDWhitespaceState");
     return TDNSStringToJSValue(ctx, @"[object TDWhitespaceState]", ex);
 }
 
-//- (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
 static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDWhitespaceState_class, @"setWhitespaceChars", @"TDWhitespaceState");
     if (argc < 3) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDWhitespaceState.setWhitespaceChars() requires 3 arguments: yn, start, end", ex);
         return JSValueMakeUndefined(ctx);
@@ -35,8 +36,8 @@ static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjec
     return JSValueMakeUndefined(ctx);
 }
 
-//- (BOOL)isWhitespaceChar:(NSInteger)cin;
 static JSValueRef TDWhitespaceState_isWhitespaceChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDWhitespaceState_class, @"isWhitespaceChar", @"TDWhitespaceState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDWhitespaceState.add() requires 1 arguments: symbolString", ex);
         return JSValueMakeUndefined(ctx);

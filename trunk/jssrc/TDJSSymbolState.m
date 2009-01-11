@@ -15,11 +15,12 @@
 #pragma mark Methods
 
 static JSValueRef TDSymbolState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDSymbolState_class, @"toString", @"TDSymbolState");
     return TDNSStringToJSValue(ctx, @"[object TDSymbolState]", ex);
 }
 
-//- (void)add:(NSString *)s;
 static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDSymbolState_class, @"add", @"TDSymbolState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDSymbolState.add() requires 1 arguments: symbolString", ex);
         return JSValueMakeUndefined(ctx);
@@ -33,8 +34,8 @@ static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSOb
     return JSValueMakeUndefined(ctx);
 }
 
-//- (void)remove:(NSString *)s;
 static JSValueRef TDSymbolState_remove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDSymbolState_class, @"remove", @"TDSymbolState");
     if (argc < 1) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDSymbolState.remove() requires 1 arguments: symbolString", ex);
         return JSValueMakeUndefined(ctx);

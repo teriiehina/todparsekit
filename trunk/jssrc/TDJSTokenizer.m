@@ -23,10 +23,12 @@
 #pragma mark Methods
 
 static JSValueRef TDTokenizer_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenizer_class, @"toString", @"TDTokenizer");
     return TDNSStringToJSValue(ctx, @"[object TDTokenizer]", ex);
 }
 
 static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenizer_class, @"nextToken", @"TDTokenizer");
     TDTokenizer *data = JSObjectGetPrivate(this);
 
     TDToken *eof = [TDToken EOFToken];
@@ -40,6 +42,12 @@ static JSValueRef TDTokenizer_nextToken(JSContextRef ctx, JSObjectRef function, 
 }
 
 static JSValueRef TDTokenizer_setTokenizerState(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDTokenizer_class, @"setTokenizerState", @"TDTokenizer");
+    if (!JSValueIsObjectOfClass(ctx, this, TDTokenizer_class(ctx))) {
+        (*ex) = TDNSStringToJSValue(ctx, @"'this' argument of wrong type", ex);
+        return JSValueMakeUndefined(ctx);
+    }
+    
     if (argc < 3) {
         (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizer.setTokenizerState() requires 3 arguments: state, from, to", ex);
         return JSValueMakeUndefined(ctx);
