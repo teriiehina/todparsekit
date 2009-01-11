@@ -39,8 +39,6 @@
 		D31FE5A00E60E5C000A0803E /* TDRegularParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE59E0E60E5C000A0803E /* TDRegularParserTest.m */; };
 		D31FE5A90E60E5D500A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
 		D31FE5AA0E60E5D500A0803E /* TDFastJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */; };
-		D31FE5AB0E60E5D500A0803E /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A60E60E5D500A0803E /* TDJsonParser.m */; };
-		D31FE5AC0E60E5D500A0803E /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */; };
 		D31FE5B10E60E64900A0803E /* TDXmlTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */; };
 		D31FE5B20E60E64900A0803E /* TDXmlTokenizerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */; };
 		D31FE5B70E60E66600A0803E /* TDXmlToken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5B40E60E66600A0803E /* TDXmlToken.m */; };
@@ -147,7 +145,6 @@
 		D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
 		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
 		D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
-		D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A60E60E5D500A0803E /* TDJsonParser.m */; };
 		D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
 		D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D31FE7340E60F34600A0803E /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
@@ -236,10 +233,6 @@
 		D389F57D0F19B7E200558235 /* TDJSCommentState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55D0F19B7E200558235 /* TDJSCommentState.m */; };
 		D389F57E0F19B7E200558235 /* TDJSNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F55E0F19B7E200558235 /* TDJSNumberState.h */; };
 		D389F57F0F19B7E200558235 /* TDJSNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F55F0F19B7E200558235 /* TDJSNumberState.m */; };
-		D389F5800F19B7E200558235 /* TDJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5600F19B7E200558235 /* TDJsonParser.h */; };
-		D389F5810F19B7E200558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5610F19B7E200558235 /* TDJsonParser.m */; };
-		D389F5820F19B7E200558235 /* TDJsonParserTest.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5620F19B7E200558235 /* TDJsonParserTest.h */; };
-		D389F5830F19B7E200558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5630F19B7E200558235 /* TDJsonParserTest.m */; };
 		D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5640F19B7E200558235 /* TDJSParseKit.h */; };
 		D389F5850F19B7E200558235 /* TDJSParseKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5650F19B7E200558235 /* TDJSParseKit.m */; };
 		D389F5860F19B7E200558235 /* TDJSQuoteState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5660F19B7E200558235 /* TDJSQuoteState.h */; };
@@ -262,6 +255,14 @@
 		D389F5970F19B7E200558235 /* TDJSWhitespaceState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */; };
 		D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5780F19B7E200558235 /* TDJSWordState.h */; };
 		D389F5990F19B7E200558235 /* TDJSWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5790F19B7E200558235 /* TDJSWordState.m */; };
+		D389F59E0F19BCC500558235 /* TDJSParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F59C0F19BCC500558235 /* TDJSParser.h */; };
+		D389F59F0F19BCC500558235 /* TDJSParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F59D0F19BCC500558235 /* TDJSParser.m */; };
+		D389F5A20F19BF9200558235 /* TDJSAssemblerAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F5A00F19BF9200558235 /* TDJSAssemblerAdapter.h */; };
+		D389F5A30F19BF9200558235 /* TDJSAssemblerAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5A10F19BF9200558235 /* TDJSAssemblerAdapter.m */; };
+		D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
+		D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
+		D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
+		D389F5B90F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -457,10 +458,6 @@
 		D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDFastJsonParser.m; path = test/TDFastJsonParser.m; sourceTree = "<group>"; };
 		D31FE5A30E60E5D500A0803E /* TDFastJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDFastJsonParserTest.h; path = test/TDFastJsonParserTest.h; sourceTree = "<group>"; };
 		D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDFastJsonParserTest.m; path = test/TDFastJsonParserTest.m; sourceTree = "<group>"; };
-		D31FE5A50E60E5D500A0803E /* TDJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParser.h; path = test/TDJsonParser.h; sourceTree = "<group>"; };
-		D31FE5A60E60E5D500A0803E /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = test/TDJsonParser.m; sourceTree = "<group>"; };
-		D31FE5A70E60E5D500A0803E /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = test/TDJsonParserTest.h; sourceTree = "<group>"; };
-		D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = test/TDJsonParserTest.m; sourceTree = "<group>"; };
 		D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTokenAssembly.h; path = test/TDXmlTokenAssembly.h; sourceTree = "<group>"; };
 		D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlTokenAssembly.m; path = test/TDXmlTokenAssembly.m; sourceTree = "<group>"; };
 		D31FE5AF0E60E64900A0803E /* TDXmlTokenizerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlTokenizerTest.h; path = test/TDXmlTokenizerTest.h; sourceTree = "<group>"; };
@@ -681,10 +678,6 @@
 		D389F55D0F19B7E200558235 /* TDJSCommentState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCommentState.m; path = jssrc/TDJSCommentState.m; sourceTree = "<group>"; };
 		D389F55E0F19B7E200558235 /* TDJSNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSNumberState.h; path = jssrc/TDJSNumberState.h; sourceTree = "<group>"; };
 		D389F55F0F19B7E200558235 /* TDJSNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSNumberState.m; path = jssrc/TDJSNumberState.m; sourceTree = "<group>"; };
-		D389F5600F19B7E200558235 /* TDJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParser.h; path = jssrc/TDJsonParser.h; sourceTree = "<group>"; };
-		D389F5610F19B7E200558235 /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = jssrc/TDJsonParser.m; sourceTree = "<group>"; };
-		D389F5620F19B7E200558235 /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = jssrc/TDJsonParserTest.h; sourceTree = "<group>"; };
-		D389F5630F19B7E200558235 /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = jssrc/TDJsonParserTest.m; sourceTree = "<group>"; };
 		D389F5640F19B7E200558235 /* TDJSParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParseKit.h; path = jssrc/TDJSParseKit.h; sourceTree = "<group>"; };
 		D389F5650F19B7E200558235 /* TDJSParseKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParseKit.m; path = jssrc/TDJSParseKit.m; sourceTree = "<group>"; };
 		D389F5660F19B7E200558235 /* TDJSQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSQuoteState.h; path = jssrc/TDJSQuoteState.h; sourceTree = "<group>"; };
@@ -707,6 +700,14 @@
 		D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWhitespaceState.m; path = jssrc/TDJSWhitespaceState.m; sourceTree = "<group>"; };
 		D389F5780F19B7E200558235 /* TDJSWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWordState.h; path = jssrc/TDJSWordState.h; sourceTree = "<group>"; };
 		D389F5790F19B7E200558235 /* TDJSWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWordState.m; path = jssrc/TDJSWordState.m; sourceTree = "<group>"; };
+		D389F59C0F19BCC500558235 /* TDJSParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSParser.h; path = jssrc/TDJSParser.h; sourceTree = "<group>"; };
+		D389F59D0F19BCC500558235 /* TDJSParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSParser.m; path = jssrc/TDJSParser.m; sourceTree = "<group>"; };
+		D389F5A00F19BF9200558235 /* TDJSAssemblerAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAssemblerAdapter.h; path = jssrc/TDJSAssemblerAdapter.h; sourceTree = "<group>"; };
+		D389F5A10F19BF9200558235 /* TDJSAssemblerAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAssemblerAdapter.m; path = jssrc/TDJSAssemblerAdapter.m; sourceTree = "<group>"; };
+		D389F5B20F19C76A00558235 /* TDJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParser.h; path = test/TDJsonParser.h; sourceTree = "<group>"; };
+		D389F5B30F19C76A00558235 /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = test/TDJsonParser.m; sourceTree = "<group>"; };
+		D389F5B40F19C76A00558235 /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = test/TDJsonParserTest.h; sourceTree = "<group>"; };
+		D389F5B50F19C76A00558235 /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = test/TDJsonParserTest.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -939,14 +940,14 @@
 			children = (
 				D3E784BC0E53DA28008C7D61 /* apple-boss.json */,
 				D3B473840E48C9CF008AFBDD /* yahoo.json */,
+				D389F5B20F19C76A00558235 /* TDJsonParser.h */,
+				D389F5B30F19C76A00558235 /* TDJsonParser.m */,
+				D389F5B40F19C76A00558235 /* TDJsonParserTest.h */,
+				D389F5B50F19C76A00558235 /* TDJsonParserTest.m */,
 				D31FE5A10E60E5D500A0803E /* TDFastJsonParser.h */,
 				D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */,
 				D31FE5A30E60E5D500A0803E /* TDFastJsonParserTest.h */,
 				D31FE5A40E60E5D500A0803E /* TDFastJsonParserTest.m */,
-				D31FE5A50E60E5D500A0803E /* TDJsonParser.h */,
-				D31FE5A60E60E5D500A0803E /* TDJsonParser.m */,
-				D31FE5A70E60E5D500A0803E /* TDJsonParserTest.h */,
-				D31FE5A80E60E5D500A0803E /* TDJsonParserTest.m */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -1186,16 +1187,35 @@
 				D389F5730F19B7E200558235 /* TDJSUtils.m */,
 				D389F5740F19B7E200558235 /* TDJSValueHolder.h */,
 				D389F5750F19B7E200558235 /* TDJSValueHolder.m */,
+				D389F59A0F19BBAE00558235 /* Tokens */,
+				D389F59B0F19BBD300558235 /* Parse */,
+			);
+			name = "JS Framework";
+			sourceTree = "<group>";
+		};
+		D389F2CA0F196ACF00558235 /* JSDemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				D389F2050F196A7500558235 /* JSDemoApp-Info.plist */,
+				D389F2E30F196CAE00558235 /* main.m */,
+				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
+				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
+				D389F38E0F19800400558235 /* DefaultValues.plist */,
+				D389F4610F198A8800558235 /* Test.html */,
+				D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */,
+			);
+			name = JSDemoApp;
+			sourceTree = "<group>";
+		};
+		D389F59A0F19BBAE00558235 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
 				D389F55A0F19B7E200558235 /* TDJSAssembly.h */,
 				D389F55B0F19B7E200558235 /* TDJSAssembly.m */,
 				D389F55C0F19B7E200558235 /* TDJSCommentState.h */,
 				D389F55D0F19B7E200558235 /* TDJSCommentState.m */,
 				D389F55E0F19B7E200558235 /* TDJSNumberState.h */,
 				D389F55F0F19B7E200558235 /* TDJSNumberState.m */,
-				D389F5600F19B7E200558235 /* TDJsonParser.h */,
-				D389F5610F19B7E200558235 /* TDJsonParser.m */,
-				D389F5620F19B7E200558235 /* TDJsonParserTest.h */,
-				D389F5630F19B7E200558235 /* TDJsonParserTest.m */,
 				D389F5660F19B7E200558235 /* TDJSQuoteState.h */,
 				D389F5670F19B7E200558235 /* TDJSQuoteState.m */,
 				D389F5680F19B7E200558235 /* TDJSSymbolState.h */,
@@ -1213,21 +1233,18 @@
 				D389F5780F19B7E200558235 /* TDJSWordState.h */,
 				D389F5790F19B7E200558235 /* TDJSWordState.m */,
 			);
-			name = "JS Framework";
+			name = Tokens;
 			sourceTree = "<group>";
 		};
-		D389F2CA0F196ACF00558235 /* JSDemoApp */ = {
+		D389F59B0F19BBD300558235 /* Parse */ = {
 			isa = PBXGroup;
 			children = (
-				D389F2050F196A7500558235 /* JSDemoApp-Info.plist */,
-				D389F2E30F196CAE00558235 /* main.m */,
-				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
-				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
-				D389F38E0F19800400558235 /* DefaultValues.plist */,
-				D389F4610F198A8800558235 /* Test.html */,
-				D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */,
+				D389F59C0F19BCC500558235 /* TDJSParser.h */,
+				D389F59D0F19BCC500558235 /* TDJSParser.m */,
+				D389F5A00F19BF9200558235 /* TDJSAssemblerAdapter.h */,
+				D389F5A10F19BF9200558235 /* TDJSAssemblerAdapter.m */,
 			);
-			name = JSDemoApp;
+			name = Parse;
 			sourceTree = "<group>";
 		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
@@ -1628,8 +1645,6 @@
 				D389F57A0F19B7E200558235 /* TDJSAssembly.h in Headers */,
 				D389F57C0F19B7E200558235 /* TDJSCommentState.h in Headers */,
 				D389F57E0F19B7E200558235 /* TDJSNumberState.h in Headers */,
-				D389F5800F19B7E200558235 /* TDJsonParser.h in Headers */,
-				D389F5820F19B7E200558235 /* TDJsonParserTest.h in Headers */,
 				D389F5840F19B7E200558235 /* TDJSParseKit.h in Headers */,
 				D389F5860F19B7E200558235 /* TDJSQuoteState.h in Headers */,
 				D389F5880F19B7E200558235 /* TDJSSymbolState.h in Headers */,
@@ -1641,6 +1656,8 @@
 				D389F5940F19B7E200558235 /* TDJSValueHolder.h in Headers */,
 				D389F5960F19B7E200558235 /* TDJSWhitespaceState.h in Headers */,
 				D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */,
+				D389F59E0F19BCC500558235 /* TDJSParser.h in Headers */,
+				D389F5A20F19BF9200558235 /* TDJSAssemblerAdapter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1979,7 +1996,6 @@
 				D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */,
 				D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */,
 				D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */,
-				D31FE7310E60F31E00A0803E /* TDJsonParser.m in Sources */,
 				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
@@ -1989,6 +2005,8 @@
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
+				D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */,
+				D389F5B90F19C76A00558235 /* TDJsonParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1999,8 +2017,6 @@
 				D389F57B0F19B7E200558235 /* TDJSAssembly.m in Sources */,
 				D389F57D0F19B7E200558235 /* TDJSCommentState.m in Sources */,
 				D389F57F0F19B7E200558235 /* TDJSNumberState.m in Sources */,
-				D389F5810F19B7E200558235 /* TDJsonParser.m in Sources */,
-				D389F5830F19B7E200558235 /* TDJsonParserTest.m in Sources */,
 				D389F5850F19B7E200558235 /* TDJSParseKit.m in Sources */,
 				D389F5870F19B7E200558235 /* TDJSQuoteState.m in Sources */,
 				D389F5890F19B7E200558235 /* TDJSSymbolState.m in Sources */,
@@ -2012,6 +2028,8 @@
 				D389F5950F19B7E200558235 /* TDJSValueHolder.m in Sources */,
 				D389F5970F19B7E200558235 /* TDJSWhitespaceState.m in Sources */,
 				D389F5990F19B7E200558235 /* TDJSWordState.m in Sources */,
+				D389F59F0F19BCC500558235 /* TDJSParser.m in Sources */,
+				D389F5A30F19BF9200558235 /* TDJSAssemblerAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2066,8 +2084,6 @@
 				D31FE5A00E60E5C000A0803E /* TDRegularParserTest.m in Sources */,
 				D31FE5A90E60E5D500A0803E /* TDFastJsonParser.m in Sources */,
 				D31FE5AA0E60E5D500A0803E /* TDFastJsonParserTest.m in Sources */,
-				D31FE5AB0E60E5D500A0803E /* TDJsonParser.m in Sources */,
-				D31FE5AC0E60E5D500A0803E /* TDJsonParserTest.m in Sources */,
 				D31FE5B10E60E64900A0803E /* TDXmlTokenAssembly.m in Sources */,
 				D31FE5B20E60E64900A0803E /* TDXmlTokenizerTest.m in Sources */,
 				D31FE5B70E60E66600A0803E /* TDXmlToken.m in Sources */,
@@ -2118,6 +2134,8 @@
 				D3DDDAFE0F083C9700A58000 /* TDCommentStateTest.m in Sources */,
 				D380BA610F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
 				D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
+				D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */,
+				D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
