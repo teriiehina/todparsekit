@@ -72,7 +72,7 @@ static void TDWhitespaceState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDWhitespaceState_finalize(JSObjectRef this) {
-    TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
+    TDWhitespaceState *data = (TDWhitespaceState *)JSObjectGetPrivate(this);
     [data autorelease];
 }
 

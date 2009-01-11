@@ -59,7 +59,7 @@ static void TDSymbolState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDSymbolState_finalize(JSObjectRef this) {
-    TDTokenizer *data = (TDTokenizer *)JSObjectGetPrivate(this);
+    TDSymbolState *data = (TDSymbolState *)JSObjectGetPrivate(this);
     [data autorelease];
 }
 
