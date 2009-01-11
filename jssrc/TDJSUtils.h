@@ -12,11 +12,19 @@
 //#define TDPreconditionInstaceOf(cls, methStr, clsStr)
 
 #define TDPreconditionInstaceOf(cls, methStr, clsStr) \
-if (!JSValueIsObjectOfClass(ctx, this, (cls)(ctx))) { \
-NSString *s = [NSString stringWithFormat:@"calling method '%@' on an object that is not an instance of '%@'", (methStr), (clsStr)]; \
-(*ex) = TDNSStringToJSValue(ctx, s, ex); \
-return JSValueMakeUndefined(ctx); \
+    if (!JSValueIsObjectOfClass(ctx, this, (cls)(ctx))) { \
+        NSString *s = [NSString stringWithFormat:@"calling method '%@' on an object that is not an instance of '%@'", (methStr), (clsStr)]; \
+        (*ex) = TDNSStringToJSValue(ctx, s, ex); \
+        return JSValueMakeUndefined(ctx); \
+    }
+
+#define TDPreconditionArgc(n, meth) \
+    if (argc != (n)) { \
+        NSString *s = [NSString stringWithFormat:@"%@() requires %d arguments", (meth), (n)]; \
+        (*ex) = TDNSStringToJSValue(ctx, s, ex); \
+        return JSValueMakeUndefined(ctx); \
 }
+
 
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex);
 JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex);

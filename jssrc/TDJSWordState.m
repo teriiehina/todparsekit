@@ -21,10 +21,7 @@ static JSValueRef TDWordState_toString(JSContextRef ctx, JSObjectRef function, J
 
 static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, @"setWordChars", @"TDWordState");
-    if (argc < 3) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDWordState.setWordChars() requires 3 arguments: yn, start, end", ex);
-        return JSValueMakeUndefined(ctx);
-    }
+    TDPreconditionArgc(3, @"TDWordState.setWordChars");
 
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
@@ -38,10 +35,7 @@ static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef functio
 
 static JSValueRef TDWordState_isWordChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, @"isWordChar", @"TDWordState");
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizer.isWordChar() requires 1 argument: c", ex);
-        return JSValueMakeUndefined(ctx);
-    }
+    TDPreconditionArgc(1, @"TDWordState.isWordChar");
     
     NSInteger c = (NSInteger)JSValueToNumber(ctx, argv[0], ex);
     

@@ -21,10 +21,7 @@ static JSValueRef TDSymbolState_toString(JSContextRef ctx, JSObjectRef function,
 
 static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDSymbolState_class, @"add", @"TDSymbolState");
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDSymbolState.add() requires 1 arguments: symbolString", ex);
-        return JSValueMakeUndefined(ctx);
-    }
+    TDPreconditionArgc(1, @"TDSymbolState.add");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
@@ -36,10 +33,7 @@ static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSOb
 
 static JSValueRef TDSymbolState_remove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDSymbolState_class, @"remove", @"TDSymbolState");
-    if (argc < 1) {
-        (*ex) = TDNSStringToJSValue(ctx, @"TDSymbolState.remove() requires 1 arguments: symbolString", ex);
-        return JSValueMakeUndefined(ctx);
-    }
+    TDPreconditionArgc(1, @"TDSymbolState.remove");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     

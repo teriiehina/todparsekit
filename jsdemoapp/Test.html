@@ -3,6 +3,9 @@ try {
 	var s = "\"It's 123 blast-off!\", she said, // watch out!\n"
 		  + "and <= 3.5 'ticks' later /* wince */, it's blast-off!";
 	var t = new TDTokenizer(s);
+    
+    t.wordState.setWordChars(true, "!", "!");
+    
 	var tok = null;
 	while ((tok = t.nextToken()) != TDToken.EOFToken) {
 		print(tok);
