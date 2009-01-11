@@ -21,7 +21,8 @@
 #import "TDJSSymbolState.h"
 
 static void printValue(JSContextRef ctx, JSValueRef val) {
-    NSLog(@"%@", TDJSValueGetNSString(ctx, val, NULL));
+    NSString *s = TDJSValueGetNSString(ctx, val, NULL);
+    NSLog(@"%@", s);
 }
 
 static JSValueRef print(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef* ex) {
