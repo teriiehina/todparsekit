@@ -58,7 +58,12 @@ JSObjectRef TDSymbol_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDSymbol_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    NSString *s = nil;
     
-    TDSymbol *data = [[TDSymbol alloc] init];
+    if (argc > 0) {
+        s = TDJSValueGetNSString(ctx, argv[0], ex);
+    }
+    
+    TDSymbol *data = [[TDSymbol alloc] initWithString:s];
     return TDSymbol_new(ctx, data);
 }
