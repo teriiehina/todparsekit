@@ -78,6 +78,12 @@
 }
 
 
+- (IBAction)collect:(id)sender {
+    JSGlobalContextRef ctx = [[webView mainFrame] globalContext];
+    JSGarbageCollect(ctx);
+}
+
+
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame {    
     if (frame != [sender mainFrame]) return;
     

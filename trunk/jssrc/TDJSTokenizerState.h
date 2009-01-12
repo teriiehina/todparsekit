@@ -10,4 +10,3 @@
 
 JSObjectRef TDTokenizerState_new(JSContextRef ctx, void *data);
 JSClassRef TDTokenizerState_class(JSContextRef ctx);
-JSObjectRef TDTokenizerState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef* ex);

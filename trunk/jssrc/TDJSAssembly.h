@@ -10,4 +10,3 @@
 
 JSObjectRef TDAssembly_new(JSContextRef ctx, void *data);
 JSClassRef TDAssembly_class(JSContextRef ctx);
-JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef* ex);

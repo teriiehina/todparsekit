@@ -14,12 +14,6 @@
 #pragma mark -
 #pragma mark Methods
 
-static JSValueRef TDCollectionParser_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDCollectionParser_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDCollectionParser]", ex);
-}
-
-
 static JSValueRef TDCollectionParser_add(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDCollectionParser_class, "add");
     TDPreconditionMethodArgc(1, "add");
@@ -43,11 +37,10 @@ static void TDCollectionParser_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDCollectionParser_finalize(JSObjectRef this) {
-
+    // released in TDParser_finalize
 }
 
 static JSStaticFunction TDCollectionParser_staticFunctions[] = {
-{ "toString", TDCollectionParser_toString, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
@@ -74,12 +67,4 @@ JSClassRef TDCollectionParser_class(JSContextRef ctx) {
 
 JSObjectRef TDCollectionParser_new(JSContextRef ctx, void *data) {
     return JSObjectMake(ctx, TDCollectionParser_class(ctx), data);
-}
-
-JSObjectRef TDCollectionParser_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-//    TDCollectionParser *data = [[TDCollectionParser alloc] init];
-//    return TDCollectionParser_new(ctx, data);
-
-    (*ex) = TDNSStringToJSValue(ctx, @"TDCollecitonParser is an abstract class and may not be instantiated directly", ex);
-    return NULL;
 }

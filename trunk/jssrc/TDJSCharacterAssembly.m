@@ -8,6 +8,7 @@
 
 #import "TDJSCharacterAssembly.h"
 #import "TDJSUtils.h"
+#import "TDJSAssembly.h"
 #import <TDParseKit/TDCharacterAssembly.h>
 
 #pragma mark -
@@ -71,8 +72,7 @@ static void TDCharacterAssembly_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDCharacterAssembly_finalize(JSObjectRef this) {
-    TDCharacterAssembly *data = (TDCharacterAssembly *)JSObjectGetPrivate(this);
-    [data autorelease];
+    // released in TDAssembly_finalize
 }
 
 static JSStaticFunction TDCharacterAssembly_staticFunctions[] = {
@@ -98,6 +98,7 @@ JSClassRef TDCharacterAssembly_class(JSContextRef ctx) {
     static JSClassRef jsClass = NULL;
     if (!jsClass) {                
         JSClassDefinition def = kJSClassDefinitionEmpty;
+        def.parentClass = TDAssembly_class(ctx);
         def.staticFunctions = TDCharacterAssembly_staticFunctions;
         def.staticValues = TDCharacterAssembly_staticValues;
         def.initialize = TDCharacterAssembly_initialize;

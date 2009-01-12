@@ -56,8 +56,7 @@ static void TDWordState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDWordState_finalize(JSObjectRef this) {
-    TDWordState *data = (TDWordState *)JSObjectGetPrivate(this);
-    [data autorelease];
+    // released in TDTokenizerState_finalize
 }
 
 static JSStaticFunction TDWordState_staticFunctions[] = {
