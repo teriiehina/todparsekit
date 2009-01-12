@@ -1,6 +1,8 @@
 <script>
 try {
+    // a parser for this grammar:
     // 'hot'* 'coffee'
+    
     var parser = new TDSequence();
     parser.add(new TDRepetition(new TDLiteral("hot")));
     parser.add(new TDLiteral("coffee"));
@@ -14,19 +16,6 @@ try {
 }
 
 // prints:
-// <Quoted String «"It's 123 blast-off!"»>
-// <Symbol «,»>
-// <Word «she»>
-// <Word «said»>
-// <Symbol «,»>
-// <Word «and»>
-// <Symbol «<=»>
-// <Number «3.5»>
-// <Quoted String «'ticks'»>
-// <Word «later»>
-// <Symbol «,»>
-// <Word «it's»>
-// <Word «blast-off»>
-// <Symbol «!»>
+// [hot, hot, hot, coffee]hot/hot/hot/coffee^
 
 </script>
