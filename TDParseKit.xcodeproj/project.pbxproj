@@ -1273,8 +1273,8 @@
 				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
 				D389F38E0F19800400558235 /* DefaultValues.plist */,
 				D389F4610F198A8800558235 /* Test.html */,
-				D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */,
 				D389FBCC0F1B25E200558235 /* ParserTest.html */,
+				D389F5580F19B7BC00558235 /* JSDemoAppMainMenu.xib */,
 			);
 			name = JSDemoApp;
 			sourceTree = "<group>";
