@@ -9,14 +9,61 @@
 #import "TDJSParser.h"
 #import "TDJSUtils.h"
 #import "TDJSAssemblerAdapter.h"
+#import "TDJSAssembly.h"
+#import "TDJSTokenAssembly.h"
+#import "TDJSCharacterAssembly.h"
 #import <TDParseKit/TDParser.h>
+#import <TDParseKit/TDAssembly.h>
+#import <TDParseKit/TDTokenAssembly.h>
+#import <TDParseKit/TDCharacterAssembly.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDParser_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(TDWordState_class, "toString");
+    TDPreconditionInstaceOf(TDParser_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDParser]", ex);
+}
+
+
+static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDParser_class, "bestMatch");
+    TDPreconditionMethodArgc(1, "bestMatch");
+    
+    TDParser *data = JSObjectGetPrivate(this);
+
+    JSObjectRef arg = (JSObjectRef)argv[0];
+    TDAssembly *a = (TDAssembly *)JSObjectGetPrivate(arg);
+    a = [data bestMatchFor:a];
+    
+    JSObjectRef result = NULL;
+    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+        result = TDTokenAssembly_new(ctx, a);
+    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+        result = TDCharacterAssembly_new(ctx, a);
+    }
+
+    return result;
+}
+
+static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDParser_class, "completeMatch");
+    TDPreconditionMethodArgc(1, "completeMatch");
+    
+    TDParser *data = JSObjectGetPrivate(this);
+    
+    JSObjectRef arg = (JSObjectRef)argv[0];
+    TDAssembly *a = (TDAssembly *)JSObjectGetPrivate(arg);
+    a = [data completeMatchFor:a];
+    
+    JSObjectRef result = NULL;
+    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+        result = TDTokenAssembly_new(ctx, a);
+    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+        result = TDCharacterAssembly_new(ctx, a);
+    }
+    
+    return result;
 }
 
 //static JSValueRef TDParser_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
@@ -57,6 +104,17 @@ static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRe
     return true;
 }
 
+static JSValueRef TDParser_getName(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDParser *data = JSObjectGetPrivate(this);
+    return TDNSStringToJSValue(ctx, data.name, ex);
+}
+
+static bool TDParser_setName(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    TDParser *data = JSObjectGetPrivate(this);
+    data.name = TDJSValueGetNSString(ctx, value, ex);
+    return true;
+}
+
 #pragma mark -
 #pragma mark Initializer/Finalizer
 
@@ -71,11 +129,14 @@ static void TDParser_finalize(JSObjectRef this) {
 
 static JSStaticFunction TDParser_staticFunctions[] = {
 { "toString", TDParser_toString, kJSPropertyAttributeDontDelete },
+{ "bestMatch", TDParser_bestMatch, kJSPropertyAttributeDontDelete },
+{ "completeMatch", TDParser_completeMatch, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
 static JSStaticValue TDParser_staticValues[] = {        
 { "assembler", TDParser_getAssembler, TDParser_setAssembler, kJSPropertyAttributeDontDelete }, // Function
+{ "name", TDParser_getName, TDParser_setName, kJSPropertyAttributeDontDelete }, // String
 { 0, 0, 0, 0 }
 };
 
