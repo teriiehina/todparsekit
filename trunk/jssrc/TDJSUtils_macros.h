@@ -17,7 +17,7 @@
 
 #undef TDPreconditionMethodArgc
 #define TDPreconditionMethodArgc(n, meth) \
-    if (argc != (n)) { \
+    if (argc < (n)) { \
         NSString *s = [NSString stringWithFormat:@"%s() requires %d arguments", (meth), (n)]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return JSValueMakeUndefined(ctx); \
@@ -25,7 +25,7 @@
 
 #undef TDPreconditionConstructorArgc
 #define TDPreconditionConstructorArgc(n, meth) \
-    if (argc != (n)) { \
+    if (argc < (n)) { \
         NSString *s = [NSString stringWithFormat:@"%s constructor requires %d arguments", (meth), (n)]; \
         (*ex) = TDNSStringToJSValue(ctx, s, ex); \
         return NULL; \
