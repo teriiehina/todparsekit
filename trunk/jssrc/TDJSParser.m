@@ -66,28 +66,17 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
     return result;
 }
 
-//static JSValueRef TDParser_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-//    if (argc < 3) {
-//        (*ex) = TDNSStringToJSValue(ctx, @"TDWordState.setWordChars() requires 3 arguments: yn, start, end", ex);
-//        return JSValueMakeUndefined(ctx);
-//    }
-//    
-//    BOOL yn = JSValueToBoolean(ctx, argv[0]);
-//    NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
-//    NSString *end = TDJSValueGetNSString(ctx, argv[2], ex);
-//    
-//    TDWordState *data = JSObjectGetPrivate(this);
-//    [data setWordChars:yn from:[start characterAtIndex:0] to:[end characterAtIndex:0]];
-//    
-//    return JSValueMakeUndefined(ctx);
-//}
-
 #pragma mark -
 #pragma mark Properties
 
 static JSValueRef TDParser_getAssembler(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDParser *data = JSObjectGetPrivate(this);
-    return [[data JSAdapter] assemblerFunction];
+    id assembler = data.assembler;
+    if ([assembler isMemberOfClass:[TDJSAssemblerAdapter class]]) {
+        return [assembler assemblerFunction];
+    } else {
+        return NULL;
+    }
 }
 
 static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
@@ -97,10 +86,9 @@ static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRe
     }
     
     TDParser *data = JSObjectGetPrivate(this);
-    TDJSAssemblerAdapter *adapter = [[TDJSAssemblerAdapter alloc] init];
+    TDJSAssemblerAdapter *adapter = [[TDJSAssemblerAdapter alloc] init]; // retained. released in TDParser_finalize
     [adapter setAssemblerFunction:(JSObjectRef)value fromContext:ctx];
-    data.JSAdapter = adapter;
-    [adapter release];
+    [data setAssembler:adapter selector:@selector(workOnAssembly:)];
     return true;
 }
 
@@ -124,6 +112,11 @@ static void TDParser_initialize(JSContextRef ctx, JSObjectRef this) {
 
 static void TDParser_finalize(JSObjectRef this) {
     TDParser *data = (TDParser *)JSObjectGetPrivate(this);
+    id assembler = data.assembler;
+    data.assembler = nil;
+    if ([assembler isMemberOfClass:[TDJSAssemblerAdapter class]]) {
+        [assembler release];
+    }
     [data autorelease];
 }
 

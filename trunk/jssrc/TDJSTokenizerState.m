@@ -19,40 +19,6 @@ static JSValueRef TDTokenizerState_toString(JSContextRef ctx, JSObjectRef functi
     return TDNSStringToJSValue(ctx, @"[object TDTokenizerState]", ex);
 }
 
-//- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t;
-//static JSValueRef TDTokenizerState_nextToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-//    if (argc < 3) {
-//        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizerState.nextToken() requires 3 arguments: reader, cin, tokenizer", ex);
-//        return JSValueToObject(ctx, JSValueMakeUndefined(ctx), ex);
-//    }
-//
-//    JSValueRef v = argv[0];
-//    if (!JSValueIsObjectOfClass(ctx, v, TDJSReader_class()) {
-//        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizerState.nextToken() requires a TDReader as the 1st argument", ex);
-//    }
-//    TDReader *r = JSObjectGetPrivate((JSObjectRef)v);
-//
-//    v = argv[1];
-//
-//    if (!TDJSValueIsInstanceOfClass(ctx, v, "String", ex)) {
-//        (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizerState.nextToken() requires a string as the 2st argument", ex);
-//    }
-//                                                             
-//    NSInteger cin = TDJSValueGetNSString(ctx, argv[1], ex)
-//    TDTokenizer *t = JSObjectGetPrivate(argv[2]);
-//    
-//    TDTokenizerState *data = JSObjectGetPrivate(this);
-//    
-//    TDToken *eof = [TDToken EOFToken];
-//    TDToken *tok = [data nextTokenFromReader:r startingWith:cin tokenizer:t];
-//    
-//    if (eof == tok) {
-//        return TDToken_getEOFToken(ctx);
-//    }
-//    
-//    return TDToken_new(ctx, tok);
-//}
-
 #pragma mark -
 #pragma mark Properties
 
@@ -70,7 +36,6 @@ static void TDTokenizerState_finalize(JSObjectRef this) {
 
 static JSStaticFunction TDTokenizerState_staticFunctions[] = {
 { "toString", TDTokenizerState_toString, kJSPropertyAttributeDontDelete },
-//{ "nextToken", TDTokenizerState_nextToken, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
