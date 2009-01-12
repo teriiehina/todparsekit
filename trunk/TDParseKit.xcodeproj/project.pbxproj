@@ -262,6 +262,7 @@
 		D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
 		D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
 		D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
+		D389F8970F1AC0BC00558235 /* TDJSUtils_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F8960F1AC0BC00558235 /* TDJSUtils_macros.h */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -707,6 +708,7 @@
 		D389F5B30F19C76A00558235 /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = test/TDJsonParser.m; sourceTree = "<group>"; };
 		D389F5B40F19C76A00558235 /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = test/TDJsonParserTest.h; sourceTree = "<group>"; };
 		D389F5B50F19C76A00558235 /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = test/TDJsonParserTest.m; sourceTree = "<group>"; };
+		D389F8960F1AC0BC00558235 /* TDJSUtils_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUtils_macros.h; path = jssrc/TDJSUtils_macros.h; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1184,6 +1186,7 @@
 				D389F5650F19B7E200558235 /* TDJSParseKit.m */,
 				D389F5720F19B7E200558235 /* TDJSUtils.h */,
 				D389F5730F19B7E200558235 /* TDJSUtils.m */,
+				D389F8960F1AC0BC00558235 /* TDJSUtils_macros.h */,
 				D389F5740F19B7E200558235 /* TDJSValueHolder.h */,
 				D389F5750F19B7E200558235 /* TDJSValueHolder.m */,
 				D389F59A0F19BBAE00558235 /* Tokens */,
@@ -1657,6 +1660,7 @@
 				D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */,
 				D389F59E0F19BCC500558235 /* TDJSParser.h in Headers */,
 				D389F5A20F19BF9200558235 /* TDJSAssemblerAdapter.h in Headers */,
+				D389F8970F1AC0BC00558235 /* TDJSUtils_macros.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
