@@ -57,18 +57,6 @@ static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef fun
     return TDNSArrayToJSObject(ctx, array, ex);
 }
 
-//- (id)peek {
-//- (id)next {
-//- (BOOL)hasMore {
-//- (NSUInteger)length {
-//- (NSUInteger)objectsConsumed {
-//- (NSUInteger)objectsRemaining {
-//- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
-//- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
-//@property (nonatomic, readonly) NSUInteger length;
-//@property (nonatomic, readonly) NSUInteger objectsConsumed;
-//@property (nonatomic, readonly) NSUInteger objectsRemaining;
-
 #pragma mark -
 #pragma mark Properties
 

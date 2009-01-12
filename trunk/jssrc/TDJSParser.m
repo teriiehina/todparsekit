@@ -8,7 +8,7 @@
 
 #import "TDJSParser.h"
 #import "TDJSUtils.h"
-#import "TDJSTokenizerState.h"
+#import "TDJSAssemblerAdapter.h"
 #import <TDParseKit/TDParser.h>
 
 #pragma mark -
@@ -38,6 +38,25 @@ static JSValueRef TDParser_toString(JSContextRef ctx, JSObjectRef function, JSOb
 #pragma mark -
 #pragma mark Properties
 
+static JSValueRef TDParser_getAssembler(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDParser *data = JSObjectGetPrivate(this);
+    return [[data JSAdapter] assemblerFunction];
+}
+
+static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
+    if (!JSValueIsObject(ctx, value) || !JSObjectIsFunction(ctx, (JSObjectRef)value)) {
+        (*ex) = TDNSStringToJSValue(ctx, @"only a function object can be set as a parser's assembler property", ex);
+        return false;
+    }
+    
+    TDParser *data = JSObjectGetPrivate(this);
+    TDJSAssemblerAdapter *adapter = [[TDJSAssemblerAdapter alloc] init];
+    [adapter setAssemblerFunction:(JSObjectRef)value fromContext:ctx];
+    data.JSAdapter = adapter;
+    [adapter release];
+    return true;
+}
+
 #pragma mark -
 #pragma mark Initializer/Finalizer
 
@@ -56,6 +75,7 @@ static JSStaticFunction TDParser_staticFunctions[] = {
 };
 
 static JSStaticValue TDParser_staticValues[] = {        
+{ "assembler", TDParser_getAssembler, TDParser_setAssembler, kJSPropertyAttributeDontDelete }, // Function
 { 0, 0, 0, 0 }
 };
 
@@ -66,7 +86,7 @@ JSClassRef TDParser_class(JSContextRef ctx) {
     static JSClassRef jsClass = NULL;
     if (!jsClass) {                
         JSClassDefinition def = kJSClassDefinitionEmpty;
-        def.parentClass = TDTokenizerState_class(ctx);
+//        def.parentClass = TDTokenizerState_class(ctx);
         def.staticFunctions = TDParser_staticFunctions;
         def.staticValues = TDParser_staticValues;
         def.initialize = TDParser_initialize;

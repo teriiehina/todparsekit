@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TDAssembly;
+@class TDJSAssemblerAdapter;
 
 /*!
     @class      TDParser 
@@ -37,6 +38,7 @@
     id assembler;
     SEL selector;
     NSString *name;
+    TDJSAssemblerAdapter *JSAdapter;
 }
 
 /*!
@@ -96,4 +98,11 @@
     @discussion Use this property to help in identifying a parser or for debugging purposes.
 */
 @property (nonatomic, copy) NSString *name;
+
+/*!
+    @property   JSAdapter
+    @brief      A helper object to assist in calling a JavaScript assembler function when using the JavaScriptCore scripting interface to TDParseKit
+    @discussion For normal (non-JavaScript) usage of TDParseKit, this should completely ignored.
+*/
+@property (nonatomic, retain) TDJSAssemblerAdapter *JSAdapter;
 @end
