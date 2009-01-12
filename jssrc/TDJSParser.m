@@ -15,6 +15,7 @@
 #pragma mark Methods
 
 static JSValueRef TDParser_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+    TDPreconditionInstaceOf(TDWordState_class, "toString");
     return TDNSStringToJSValue(ctx, @"[object TDParser]", ex);
 }
 
