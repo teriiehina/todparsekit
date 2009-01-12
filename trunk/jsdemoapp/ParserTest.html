@@ -3,12 +3,12 @@ try {
     // a parser for this grammar:
     // 'hot'* 'coffee'
     
-    var parser = new TDSequence();
-    parser.add(new TDRepetition(new TDLiteral("hot")));
-    parser.add(new TDLiteral("coffee"));
+    var parser = new Sequence();
+    parser.add(new Repetition(new Literal("hot")));
+    parser.add(new Literal("coffee"));
     
     var s = "hot hot hot coffee";
-    var a = new TDTokenAssembly(s);
+    var a = new TokenAssembly(s);
     a = parser.completeMatch(a);
     print(a);
 } catch (e) {
@@ -18,7 +18,7 @@ try {
 // prints:
 // [hot, hot, hot, coffee]hot/hot/hot/coffee^
 
-// the line above is the string representation of a TDTokenAssembly
+// the line above is the string representation of a TokenAssembly
 // the first half of the string shows that the assembly's stack currently contains four literal tokens [hot, hot, hot, coffee]
 // the second half shows what has been consumed from the string, and the current cursor position (at the end)
 
