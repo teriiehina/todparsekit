@@ -271,6 +271,30 @@
 		D389FAB00F1AFEE900558235 /* TDJSCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */; };
 		D389FAB50F1AFF1000558235 /* TDJSSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAB30F1AFF1000558235 /* TDJSSequence.h */; };
 		D389FAB60F1AFF1000558235 /* TDJSSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAB40F1AFF1000558235 /* TDJSSequence.m */; };
+		D389FABA0F1B160000558235 /* TDJSRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAB80F1B160000558235 /* TDJSRepetition.h */; };
+		D389FABB0F1B160000558235 /* TDJSRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAB90F1B160000558235 /* TDJSRepetition.m */; };
+		D389FABE0F1B178600558235 /* TDJSTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FABC0F1B178600558235 /* TDJSTerminal.h */; };
+		D389FABF0F1B178600558235 /* TDJSTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FABD0F1B178600558235 /* TDJSTerminal.m */; };
+		D389FAC30F1B18CF00558235 /* TDJSWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAC10F1B18CF00558235 /* TDJSWord.h */; };
+		D389FAC40F1B18CF00558235 /* TDJSWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAC20F1B18CF00558235 /* TDJSWord.m */; };
+		D389FACA0F1B197D00558235 /* TDJSNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAC80F1B197D00558235 /* TDJSNum.h */; };
+		D389FACB0F1B197D00558235 /* TDJSNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAC90F1B197D00558235 /* TDJSNum.m */; };
+		D389FACE0F1B19AC00558235 /* TDJSLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FACC0F1B19AC00558235 /* TDJSLiteral.h */; };
+		D389FACF0F1B19AC00558235 /* TDJSLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FACD0F1B19AC00558235 /* TDJSLiteral.m */; };
+		D389FAD40F1B19FC00558235 /* TDJSQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAD20F1B19FC00558235 /* TDJSQuotedString.h */; };
+		D389FAD50F1B19FC00558235 /* TDJSQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAD30F1B19FC00558235 /* TDJSQuotedString.m */; };
+		D389FAD80F1B1A3A00558235 /* TDJSComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAD60F1B1A3A00558235 /* TDJSComment.h */; };
+		D389FAD90F1B1A3A00558235 /* TDJSComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAD70F1B1A3A00558235 /* TDJSComment.m */; };
+		D389FADC0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FADA0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h */; };
+		D389FADD0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FADB0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m */; };
+		D389FAE00F1B1B3600558235 /* TDJSAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FADE0F1B1B3600558235 /* TDJSAny.h */; };
+		D389FAE10F1B1B3600558235 /* TDJSAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FADF0F1B1B3600558235 /* TDJSAny.m */; };
+		D389FAE90F1B1CCD00558235 /* TDJSEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAE70F1B1CCD00558235 /* TDJSEmpty.h */; };
+		D389FAEA0F1B1CCD00558235 /* TDJSEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAE80F1B1CCD00558235 /* TDJSEmpty.m */; };
+		D389FAED0F1B1D3500558235 /* TDJSTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAEB0F1B1D3500558235 /* TDJSTrack.h */; };
+		D389FAEE0F1B1D3500558235 /* TDJSTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAEC0F1B1D3500558235 /* TDJSTrack.m */; };
+		D389FAF60F1B202000558235 /* TDJSSymbol.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAF40F1B202000558235 /* TDJSSymbol.h */; };
+		D389FAF70F1B202000558235 /* TDJSSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAF50F1B202000558235 /* TDJSSymbol.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -725,6 +749,30 @@
 		D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCollectionParser.m; path = jssrc/TDJSCollectionParser.m; sourceTree = "<group>"; };
 		D389FAB30F1AFF1000558235 /* TDJSSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSequence.h; path = jssrc/TDJSSequence.h; sourceTree = "<group>"; };
 		D389FAB40F1AFF1000558235 /* TDJSSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSequence.m; path = jssrc/TDJSSequence.m; sourceTree = "<group>"; };
+		D389FAB80F1B160000558235 /* TDJSRepetition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSRepetition.h; path = jssrc/TDJSRepetition.h; sourceTree = "<group>"; };
+		D389FAB90F1B160000558235 /* TDJSRepetition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSRepetition.m; path = jssrc/TDJSRepetition.m; sourceTree = "<group>"; };
+		D389FABC0F1B178600558235 /* TDJSTerminal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTerminal.h; path = jssrc/TDJSTerminal.h; sourceTree = "<group>"; };
+		D389FABD0F1B178600558235 /* TDJSTerminal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTerminal.m; path = jssrc/TDJSTerminal.m; sourceTree = "<group>"; };
+		D389FAC10F1B18CF00558235 /* TDJSWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSWord.h; path = jssrc/TDJSWord.h; sourceTree = "<group>"; };
+		D389FAC20F1B18CF00558235 /* TDJSWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSWord.m; path = jssrc/TDJSWord.m; sourceTree = "<group>"; };
+		D389FAC80F1B197D00558235 /* TDJSNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSNum.h; path = jssrc/TDJSNum.h; sourceTree = "<group>"; };
+		D389FAC90F1B197D00558235 /* TDJSNum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSNum.m; path = jssrc/TDJSNum.m; sourceTree = "<group>"; };
+		D389FACC0F1B19AC00558235 /* TDJSLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSLiteral.h; path = jssrc/TDJSLiteral.h; sourceTree = "<group>"; };
+		D389FACD0F1B19AC00558235 /* TDJSLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSLiteral.m; path = jssrc/TDJSLiteral.m; sourceTree = "<group>"; };
+		D389FAD20F1B19FC00558235 /* TDJSQuotedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSQuotedString.h; path = jssrc/TDJSQuotedString.h; sourceTree = "<group>"; };
+		D389FAD30F1B19FC00558235 /* TDJSQuotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSQuotedString.m; path = jssrc/TDJSQuotedString.m; sourceTree = "<group>"; };
+		D389FAD60F1B1A3A00558235 /* TDJSComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSComment.h; path = jssrc/TDJSComment.h; sourceTree = "<group>"; };
+		D389FAD70F1B1A3A00558235 /* TDJSComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSComment.m; path = jssrc/TDJSComment.m; sourceTree = "<group>"; };
+		D389FADA0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCaseInsensitiveLiteral.h; path = jssrc/TDJSCaseInsensitiveLiteral.h; sourceTree = "<group>"; };
+		D389FADB0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCaseInsensitiveLiteral.m; path = jssrc/TDJSCaseInsensitiveLiteral.m; sourceTree = "<group>"; };
+		D389FADE0F1B1B3600558235 /* TDJSAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAny.h; path = jssrc/TDJSAny.h; sourceTree = "<group>"; };
+		D389FADF0F1B1B3600558235 /* TDJSAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAny.m; path = jssrc/TDJSAny.m; sourceTree = "<group>"; };
+		D389FAE70F1B1CCD00558235 /* TDJSEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSEmpty.h; path = jssrc/TDJSEmpty.h; sourceTree = "<group>"; };
+		D389FAE80F1B1CCD00558235 /* TDJSEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSEmpty.m; path = jssrc/TDJSEmpty.m; sourceTree = "<group>"; };
+		D389FAEB0F1B1D3500558235 /* TDJSTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSTrack.h; path = jssrc/TDJSTrack.h; sourceTree = "<group>"; };
+		D389FAEC0F1B1D3500558235 /* TDJSTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSTrack.m; path = jssrc/TDJSTrack.m; sourceTree = "<group>"; };
+		D389FAF40F1B202000558235 /* TDJSSymbol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSymbol.h; path = jssrc/TDJSSymbol.h; sourceTree = "<group>"; };
+		D389FAF50F1B202000558235 /* TDJSSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSymbol.m; path = jssrc/TDJSSymbol.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1264,10 +1312,22 @@
 				D389F59D0F19BCC500558235 /* TDJSParser.m */,
 				D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */,
 				D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */,
+				D389FAB80F1B160000558235 /* TDJSRepetition.h */,
+				D389FAB90F1B160000558235 /* TDJSRepetition.m */,
 				D389FAA70F1AFDD900558235 /* TDJSAlternation.h */,
 				D389FAA80F1AFDD900558235 /* TDJSAlternation.m */,
 				D389FAB30F1AFF1000558235 /* TDJSSequence.h */,
 				D389FAB40F1AFF1000558235 /* TDJSSequence.m */,
+				D389FAEB0F1B1D3500558235 /* TDJSTrack.h */,
+				D389FAEC0F1B1D3500558235 /* TDJSTrack.m */,
+				D389FABC0F1B178600558235 /* TDJSTerminal.h */,
+				D389FABD0F1B178600558235 /* TDJSTerminal.m */,
+				D389FAE70F1B1CCD00558235 /* TDJSEmpty.h */,
+				D389FAE80F1B1CCD00558235 /* TDJSEmpty.m */,
+				D389FADE0F1B1B3600558235 /* TDJSAny.h */,
+				D389FADF0F1B1B3600558235 /* TDJSAny.m */,
+				D389FAE30F1B1B8F00558235 /* Char Terminals */,
+				D389FAE20F1B1B7200558235 /* Token Terminals */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -1279,6 +1339,34 @@
 				D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */,
 			);
 			name = Chars;
+			sourceTree = "<group>";
+		};
+		D389FAE20F1B1B7200558235 /* Token Terminals */ = {
+			isa = PBXGroup;
+			children = (
+				D389FAC10F1B18CF00558235 /* TDJSWord.h */,
+				D389FAC20F1B18CF00558235 /* TDJSWord.m */,
+				D389FAC80F1B197D00558235 /* TDJSNum.h */,
+				D389FAC90F1B197D00558235 /* TDJSNum.m */,
+				D389FAF40F1B202000558235 /* TDJSSymbol.h */,
+				D389FAF50F1B202000558235 /* TDJSSymbol.m */,
+				D389FAD20F1B19FC00558235 /* TDJSQuotedString.h */,
+				D389FAD30F1B19FC00558235 /* TDJSQuotedString.m */,
+				D389FAD60F1B1A3A00558235 /* TDJSComment.h */,
+				D389FAD70F1B1A3A00558235 /* TDJSComment.m */,
+				D389FACC0F1B19AC00558235 /* TDJSLiteral.h */,
+				D389FACD0F1B19AC00558235 /* TDJSLiteral.m */,
+				D389FADA0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h */,
+				D389FADB0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m */,
+			);
+			name = "Token Terminals";
+			sourceTree = "<group>";
+		};
+		D389FAE30F1B1B8F00558235 /* Char Terminals */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Char Terminals";
 			sourceTree = "<group>";
 		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
@@ -1697,6 +1785,18 @@
 				D389FAA90F1AFDD900558235 /* TDJSAlternation.h in Headers */,
 				D389FAAF0F1AFEE900558235 /* TDJSCollectionParser.h in Headers */,
 				D389FAB50F1AFF1000558235 /* TDJSSequence.h in Headers */,
+				D389FABA0F1B160000558235 /* TDJSRepetition.h in Headers */,
+				D389FABE0F1B178600558235 /* TDJSTerminal.h in Headers */,
+				D389FAC30F1B18CF00558235 /* TDJSWord.h in Headers */,
+				D389FACA0F1B197D00558235 /* TDJSNum.h in Headers */,
+				D389FACE0F1B19AC00558235 /* TDJSLiteral.h in Headers */,
+				D389FAD40F1B19FC00558235 /* TDJSQuotedString.h in Headers */,
+				D389FAD80F1B1A3A00558235 /* TDJSComment.h in Headers */,
+				D389FADC0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h in Headers */,
+				D389FAE00F1B1B3600558235 /* TDJSAny.h in Headers */,
+				D389FAE90F1B1CCD00558235 /* TDJSEmpty.h in Headers */,
+				D389FAED0F1B1D3500558235 /* TDJSTrack.h in Headers */,
+				D389FAF60F1B202000558235 /* TDJSSymbol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2072,6 +2172,18 @@
 				D389FAAA0F1AFDD900558235 /* TDJSAlternation.m in Sources */,
 				D389FAB00F1AFEE900558235 /* TDJSCollectionParser.m in Sources */,
 				D389FAB60F1AFF1000558235 /* TDJSSequence.m in Sources */,
+				D389FABB0F1B160000558235 /* TDJSRepetition.m in Sources */,
+				D389FABF0F1B178600558235 /* TDJSTerminal.m in Sources */,
+				D389FAC40F1B18CF00558235 /* TDJSWord.m in Sources */,
+				D389FACB0F1B197D00558235 /* TDJSNum.m in Sources */,
+				D389FACF0F1B19AC00558235 /* TDJSLiteral.m in Sources */,
+				D389FAD50F1B19FC00558235 /* TDJSQuotedString.m in Sources */,
+				D389FAD90F1B1A3A00558235 /* TDJSComment.m in Sources */,
+				D389FADD0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m in Sources */,
+				D389FAE10F1B1B3600558235 /* TDJSAny.m in Sources */,
+				D389FAEA0F1B1CCD00558235 /* TDJSEmpty.m in Sources */,
+				D389FAEE0F1B1D3500558235 /* TDJSTrack.m in Sources */,
+				D389FAF70F1B202000558235 /* TDJSSymbol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
