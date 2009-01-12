@@ -9,13 +9,14 @@
 #import <Cocoa/Cocoa.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+@class TDAssembly;
+
 @interface TDJSAssemblerAdapter : NSObject {
     JSContextRef ctx;
-    JSObjectRef jsAssembler;
-    NSString *selectorString;
+    JSObjectRef assemblerFunction;
 }
-- (JSObjectRef)jsAssembler;
-- (void)setJsAssembler:(JSObjectRef)a fromContext:(JSContextRef)c;
+- (void)workOnAssembly:(TDAssembly *)a;
 
-@property (nonatomic, copy) NSString *selectorString;
+- (JSObjectRef)assemblerFunction;
+- (void)setAssemblerFunction:(JSObjectRef)f fromContext:(JSContextRef)c;
 @end

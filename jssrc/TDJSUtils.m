@@ -8,14 +8,6 @@
 
 #import "TDJSUtils.h"
 
-//#undef TDPreconditionInstaceOf
-//#define TDPreconditionInstaceOf(cls, methStr, clsStr) \
-//    if (!JSValueIsObjectOfClass(ctx, this, (cls)(ctx))) { \
-//        NSString *s = [NSString stringWithFormat:@"calling method '%@' on an object that is not an instance of '%@'", (methStr), (clsStr)]; \
-//        (*ex) = TDNSStringToJSValue(ctx, s, ex); \
-//        return JSValueMakeUndefined(ctx); \
-//    }
-//
 JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) {
     JSValueRef result = NULL;
     CFTypeID typeID = CFGetTypeID(value);

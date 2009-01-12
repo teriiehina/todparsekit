@@ -8,6 +8,9 @@
 
 #import "TDJSAssemblerAdapter.h"
 #import "TDJSUtils.h"
+#import <TDParseKit/TDAssembly.h>
+#import <TDParseKit/TDTokenAssembly.h>
+#import <TDParseKit/TDCharacterAssembly.h>
 
 @implementation TDJSAssemblerAdapter
 
@@ -21,53 +24,50 @@
 
 
 - (void)dealloc {
-    [self setJsAssembler:NULL fromContext:NULL];
-    self.selectorString = nil;
+    [self setAssemblerFunction:NULL fromContext:NULL];
     [super dealloc];
 }
 
 
-- (BOOL)respondsToSelector:(SEL)sel {
-    NSString *s = NSStringFromSelector(sel);
-    if ([s isEqualToString:selectorString]) {
-        return YES;
+- (void)workOnAssembly:(TDAssembly *)a {
+    JSValueRef arg = NULL;
+    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+        arg = (JSValueRef)TDTokenAssembly_new(ctx, a);
+    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+        arg = (JSValueRef)TDCharacterAssembly_new(ctx, a);
+    } else {
+        NSAssert(0, @"Should not reach here.");
     }
-    return [super respondsToSelector:sel];
-}
-
-
-- (id)performSelector:(SEL)sel withObject:(id)obj {
-    NSString *s = NSStringFromSelector(sel);
-    if ([s isEqualToString:selectorString]) {
-        JSStringRef funcName = JSStringCreateWithCFString((CFStringRef)selectorString);
-        JSObjectRef func = (JSObjectRef)JSObjectGetProperty(ctx, jsAssembler, funcName, NULL);
-        JSStringRelease(funcName);
-        JSValueRef argv[] = { (JSValueRef)TDTokenAssembly_new(ctx, obj) };
-        JSObjectCallAsFunction(ctx, func, jsAssembler, 1, argv, NULL);
+    
+    JSValueRef argv[] = { arg };
+    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
+    JSValueRef ex = NULL;
+    JSObjectCallAsFunction(ctx, assemblerFunction, globalObj, 1, argv, &ex);
+    if (ex) {
+        NSString *s = TDJSValueGetNSString(ctx, ex, NULL);
+        [NSException raise:@"TDJSException" format:s];
     }
-    return nil;
 }
 
 
-- (JSObjectRef)jsAssembler {
-    return jsAssembler;
+- (JSObjectRef)assemblerFunction {
+    return assemblerFunction;
 }
 
 
-- (void)setJsAssembler:(JSObjectRef)a fromContext:(JSContextRef)c {
-    if (jsAssembler != a) {
-        if (ctx && jsAssembler) {
-            JSValueUnprotect(ctx, jsAssembler);
+- (void)setAssemblerFunction:(JSObjectRef)f fromContext:(JSContextRef)c {
+    if (assemblerFunction != f) {
+        if (ctx && assemblerFunction) {
+            JSValueUnprotect(ctx, assemblerFunction);
             JSGarbageCollect(ctx);
         }
         
         ctx = c;
-        jsAssembler = a;
-        if (ctx && jsAssembler) {
-            JSValueProtect(ctx, jsAssembler);
+        assemblerFunction = f;
+        if (ctx && assemblerFunction) {
+            JSValueProtect(ctx, assemblerFunction);
         }
     }
 }
 
-@synthesize selectorString;
 @end
