@@ -10,6 +10,11 @@
 #import <WebKit/WebKit.h>
 #import <TDJSParseKit/TDJSParseKit.h>
 
+@interface NSObject (JSDemoAppExtras)
+- (id)inspector;
+- (void)showConsole:(id)sender;
+@end
+
 @interface JSDemoAppDelegate ()
 + (void)setUpDefaults;
 @end
@@ -52,9 +57,12 @@
 - (void)awakeFromNib {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"html"];
     [comboBox setStringValue:[[NSURL fileURLWithPath:path] absoluteString]];
-    [self goToLocation:self];
+    //[self goToLocation:self];
 }
 
+
+#pragma mark -
+#pragma mark Actions
 
 - (IBAction)openLocation:(id)sender {
     [window makeFirstResponder:comboBox];
@@ -83,6 +91,14 @@
     JSGarbageCollect(ctx);
 }
 
+
+- (IBAction)showConsole:(id)sender {
+    [[webView inspector] showConsole:sender];
+}
+
+
+#pragma mark -
+#pragma mark WebFrameLoadDelegate
 
 - (void)webView:(WebView *)sender didReceiveTitle:(NSString *)title forFrame:(WebFrame *)frame {    
     if (frame != [sender mainFrame]) return;

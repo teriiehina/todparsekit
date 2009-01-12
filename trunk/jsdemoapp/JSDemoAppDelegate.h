@@ -18,6 +18,7 @@
 - (IBAction)goToLocation:(id)sender;
 - (IBAction)openLocation:(id)sender;
 - (IBAction)collect:(id)sender;
+- (IBAction)showConsole:(id)sender;
 
 @property (nonatomic, retain) WebView *webView;
 @end
