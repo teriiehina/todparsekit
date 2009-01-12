@@ -136,11 +136,14 @@ JSObjectRef TDAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDAssembly");
-    
-    JSValueRef s = argv[0];
-    
-    NSString *string = TDJSValueGetNSString(ctx, s, ex);
-    TDAssembly *data = [[TDAssembly alloc] initWithString:string];
-    return TDAssembly_new(ctx, data);
+//    TDPreconditionConstructorArgc(1, "TDAssembly");
+//    
+//    JSValueRef s = argv[0];
+//    
+//    NSString *string = TDJSValueGetNSString(ctx, s, ex);
+//    TDAssembly *data = [[TDAssembly alloc] initWithString:string];
+//    return TDAssembly_new(ctx, data);
+
+    (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizerState is an abstract class and may not be instantiated directly", ex);
+    return NULL;
 }
