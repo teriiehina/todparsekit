@@ -140,7 +140,6 @@ JSClassRef TDParser_class(JSContextRef ctx) {
     static JSClassRef jsClass = NULL;
     if (!jsClass) {                
         JSClassDefinition def = kJSClassDefinitionEmpty;
-//        def.parentClass = TDTokenizerState_class(ctx);
         def.staticFunctions = TDParser_staticFunctions;
         def.staticValues = TDParser_staticValues;
         def.initialize = TDParser_initialize;
@@ -155,6 +154,9 @@ JSObjectRef TDParser_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDParser_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDParser *data = [[TDParser alloc] init];
-    return TDParser_new(ctx, data);
+//    TDParser *data = [[TDParser alloc] init];
+//    return TDParser_new(ctx, data);
+
+    (*ex) = TDNSStringToJSValue(ctx, @"TDParser is an abstract class and may not be instantiated directly", ex);
+    return NULL;
 }
