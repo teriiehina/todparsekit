@@ -41,6 +41,7 @@ static void TDCollectionParser_finalize(JSObjectRef this) {
 }
 
 static JSStaticFunction TDCollectionParser_staticFunctions[] = {
+{ "add", TDCollectionParser_add, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
