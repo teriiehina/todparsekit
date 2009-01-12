@@ -41,8 +41,7 @@ static void TDQuoteState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDQuoteState_finalize(JSObjectRef this) {
-    TDQuoteState *data = (TDQuoteState *)JSObjectGetPrivate(this);
-    [data autorelease];
+    // released in TDTokenizerState_finalize
 }
 
 static JSStaticFunction TDQuoteState_staticFunctions[] = {

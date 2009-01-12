@@ -22,9 +22,9 @@
 
 static JSValueRef TDParser_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDParser_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDParser]", ex);
+    TDParser *data = JSObjectGetPrivate(this);
+    return TDNSStringToJSValue(ctx, [data description], ex);
 }
-
 
 static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDParser_class, "bestMatch");
@@ -115,7 +115,7 @@ static void TDParser_finalize(JSObjectRef this) {
     id assembler = data.assembler;
     data.assembler = nil;
     if ([assembler isMemberOfClass:[TDJSAssemblerAdapter class]]) {
-        [assembler release];
+        [assembler autorelease];
     }
     [data autorelease];
 }
@@ -151,12 +151,4 @@ JSClassRef TDParser_class(JSContextRef ctx) {
 
 JSObjectRef TDParser_new(JSContextRef ctx, void *data) {
     return JSObjectMake(ctx, TDParser_class(ctx), data);
-}
-
-JSObjectRef TDParser_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-//    TDParser *data = [[TDParser alloc] init];
-//    return TDParser_new(ctx, data);
-
-    (*ex) = TDNSStringToJSValue(ctx, @"TDParser is an abstract class and may not be instantiated directly", ex);
-    return NULL;
 }

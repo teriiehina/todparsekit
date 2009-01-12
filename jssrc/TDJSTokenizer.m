@@ -166,7 +166,6 @@ static void TDTokenizer_finalize(JSObjectRef this) {
     [data autorelease];
 }
 
-//- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
 static JSStaticFunction TDTokenizer_staticFunctions[] = {
 { "toString", TDTokenizer_toString, kJSPropertyAttributeDontDelete },
 { "setTokenizerState", TDTokenizer_setTokenizerState, kJSPropertyAttributeDontDelete },

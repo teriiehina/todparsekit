@@ -9,6 +9,7 @@
 #import "TDJSTokenAssembly.h"
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
+#import "TDJSAssembly.h"
 #import <TDParseKit/TDTokenAssembly.h>
 #import <TDParseKit/TDToken.h>
 
@@ -18,10 +19,7 @@
 static JSValueRef TDTokenAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenAssembly_class, "toString");
     TDTokenAssembly *data = JSObjectGetPrivate(this);
-    JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
-    JSValueRef res = JSValueMakeString(ctx, resStr);
-    JSStringRelease(resStr);
-    return res;
+    return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef TDTokenAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
@@ -73,8 +71,7 @@ static void TDTokenAssembly_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDTokenAssembly_finalize(JSObjectRef this) {
-    TDTokenAssembly *data = (TDTokenAssembly *)JSObjectGetPrivate(this);
-    [data autorelease];
+    // released in TDAssembly_finalize
 }
 
 static JSStaticFunction TDTokenAssembly_staticFunctions[] = {
@@ -100,6 +97,7 @@ JSClassRef TDTokenAssembly_class(JSContextRef ctx) {
     static JSClassRef jsClass = NULL;
     if (!jsClass) {                
         JSClassDefinition def = kJSClassDefinitionEmpty;
+        def.parentClass = TDAssembly_class(ctx);
         def.staticFunctions = TDTokenAssembly_staticFunctions;
         def.staticValues = TDTokenAssembly_staticValues;
         def.initialize = TDTokenAssembly_initialize;
@@ -116,9 +114,8 @@ JSObjectRef TDTokenAssembly_new(JSContextRef ctx, void *data) {
 JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionConstructorArgc(1, "TDTokenAssembly");
 
-    JSValueRef s = argv[0];
-    NSString *string = TDJSValueGetNSString(ctx, s, ex);
+    NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
 
-    TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:string];
+    TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:s];
     return TDTokenAssembly_new(ctx, data);
 }

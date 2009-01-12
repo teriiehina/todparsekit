@@ -15,10 +15,6 @@
 #pragma mark -
 #pragma mark Methods
 
-static JSValueRef TDTokenizerState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    return TDNSStringToJSValue(ctx, @"[object TDTokenizerState]", ex);
-}
-
 #pragma mark -
 #pragma mark Properties
 
@@ -35,7 +31,6 @@ static void TDTokenizerState_finalize(JSObjectRef this) {
 }
 
 static JSStaticFunction TDTokenizerState_staticFunctions[] = {
-{ "toString", TDTokenizerState_toString, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
@@ -61,9 +56,4 @@ JSClassRef TDTokenizerState_class(JSContextRef ctx) {
 
 JSObjectRef TDTokenizerState_new(JSContextRef ctx, void *data) {
     return JSObjectMake(ctx, TDTokenizerState_class(ctx), data);
-}
-
-JSObjectRef TDTokenizerState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    (*ex) = TDNSStringToJSValue(ctx, @"TDTokenizerState is an abstract class and may not be instantiated directly", ex);
-    return NULL;
 }

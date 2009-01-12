@@ -14,6 +14,7 @@
 #import "TDJSTokenizerState.h"
 #import "TDJSAssembly.h"
 #import "TDJSTokenAssembly.h"
+#import "TDJSCharacterAssembly.h"
 #import "TDJSWordState.h"
 #import "TDJSNumberState.h"
 #import "TDJSWhitespaceState.h"
@@ -59,14 +60,6 @@ static void setupTDTokenClass(JSContextRef ctx, JSValueRef *ex) {
     
 }
 
-static void setupTDAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("TDAssembly");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDAssembly_class(ctx), TDAssembly_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
 static void setupTDTokenAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("TDTokenAssembly");
@@ -75,18 +68,18 @@ static void setupTDTokenAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
     JSStringRelease(className);
 }
 
-static void setupTDTokenizerClass(JSContextRef ctx, JSValueRef *ex) {
+static void setupTDCharacterAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("TDTokenizer");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTokenizer_class(ctx), TDTokenizer_construct);
+    JSStringRef className = JSStringCreateWithUTF8CString("TDCharacterAssembly");
+    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct);
     JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
     JSStringRelease(className);
 }
 
-static void setupTDTokenizerStateClass(JSContextRef ctx, JSValueRef *ex) {
+static void setupTDTokenizerClass(JSContextRef ctx, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("TDTokenizerState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTokenizerState_class(ctx), TDTokenizerState_construct);
+    JSStringRef className = JSStringCreateWithUTF8CString("TDTokenizer");
+    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTokenizer_class(ctx), TDTokenizer_construct);
     JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
     JSStringRelease(className);
 }
@@ -141,11 +134,10 @@ static void setupTDSymbolStateClass(JSContextRef ctx, JSValueRef *ex) {
 
 void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setupPrintFunction(ctx, NULL);
-    setupTDTokenClass(ctx, NULL);
-    setupTDAssemblyClass(ctx, NULL);
     setupTDTokenAssemblyClass(ctx, NULL);
+    setupTDCharacterAssemblyClass(ctx, NULL);
+    setupTDTokenClass(ctx, NULL);
     setupTDTokenizerClass(ctx, NULL);
-    setupTDTokenizerStateClass(ctx, NULL);
     setupTDWordStateClass(ctx, NULL);
     setupTDNumberStateClass(ctx, NULL);
     setupTDSymbolStateClass(ctx, NULL);

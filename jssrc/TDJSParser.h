@@ -10,4 +10,3 @@
 
 JSObjectRef TDParser_new(JSContextRef ctx, void *data);
 JSClassRef TDParser_class(JSContextRef ctx);
-JSObjectRef TDParser_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex);

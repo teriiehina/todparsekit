@@ -101,8 +101,7 @@ static void TDCommentState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDCommentState_finalize(JSObjectRef this) {
-    TDCommentState *data = (TDCommentState *)JSObjectGetPrivate(this);
-    [data autorelease];
+    // released in TDTokenizerState_finalize
 }
 
 static JSStaticFunction TDCommentState_staticFunctions[] = {
