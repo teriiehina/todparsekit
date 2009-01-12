@@ -1,17 +1,14 @@
 <script>
 try {
-    var s = "\"It's 123 blast-off!\", she said, // watch out!\n"
-            + "and <= 3.5 'ticks' later /* wince */, it's blast-off!";
-
-    var t = new TDTokenizer(s);
-    var eof = TDToken.EOFToken;
+    // 'hot'* 'coffee'
+    var parser = new TDSequence();
+    parser.add(new TDRepetition(new TDLiteral("hot")));
+    parser.add(new TDLiteral("coffee"));
     
-    //t.wordState.setWordChars(true, "!", "!");
-    
-    var tok = null;
-    while ((tok = t.nextToken()) != eof) {
-        print(tok);
-    }
+    var s = "hot hot hot coffee";
+    var a = new TDTokenAssembly(s);
+    a = parser.completeMatch(a);
+    print(a);
 } catch (e) {
     print(e);
 }
