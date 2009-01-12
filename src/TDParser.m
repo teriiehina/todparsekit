@@ -33,7 +33,6 @@
     assembler = nil;
     self.selector = nil;
     self.name = nil;
-    self.JSAdapter = nil;
     [super dealloc];
 }
 
@@ -111,5 +110,4 @@
 @synthesize assembler;
 @synthesize selector;
 @synthesize name;
-@synthesize JSAdapter;
 @end
