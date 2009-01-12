@@ -265,8 +265,12 @@
 		D389F8970F1AC0BC00558235 /* TDJSUtils_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F8960F1AC0BC00558235 /* TDJSUtils_macros.h */; };
 		D389F8C70F1AC8B200558235 /* TDJSCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F8C50F1AC8B200558235 /* TDJSCharacterAssembly.h */; };
 		D389F8C80F1AC8B200558235 /* TDJSCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */; };
-		D389F94B0F1AE52600558235 /* TDCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F9490F1AE52600558235 /* TDCollectionParser.h */; };
-		D389F94C0F1AE52600558235 /* TDCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F94A0F1AE52600558235 /* TDCollectionParser.m */; };
+		D389FAA90F1AFDD900558235 /* TDJSAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAA70F1AFDD900558235 /* TDJSAlternation.h */; };
+		D389FAAA0F1AFDD900558235 /* TDJSAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAA80F1AFDD900558235 /* TDJSAlternation.m */; };
+		D389FAAF0F1AFEE900558235 /* TDJSCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */; };
+		D389FAB00F1AFEE900558235 /* TDJSCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */; };
+		D389FAB50F1AFF1000558235 /* TDJSSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAB30F1AFF1000558235 /* TDJSSequence.h */; };
+		D389FAB60F1AFF1000558235 /* TDJSSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAB40F1AFF1000558235 /* TDJSSequence.m */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D39834150EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
@@ -715,8 +719,12 @@
 		D389F8960F1AC0BC00558235 /* TDJSUtils_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUtils_macros.h; path = jssrc/TDJSUtils_macros.h; sourceTree = "<group>"; };
 		D389F8C50F1AC8B200558235 /* TDJSCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCharacterAssembly.h; path = jssrc/TDJSCharacterAssembly.h; sourceTree = "<group>"; };
 		D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCharacterAssembly.m; path = jssrc/TDJSCharacterAssembly.m; sourceTree = "<group>"; };
-		D389F9490F1AE52600558235 /* TDCollectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCollectionParser.h; path = jssrc/TDCollectionParser.h; sourceTree = "<group>"; };
-		D389F94A0F1AE52600558235 /* TDCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCollectionParser.m; path = jssrc/TDCollectionParser.m; sourceTree = "<group>"; };
+		D389FAA70F1AFDD900558235 /* TDJSAlternation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAlternation.h; path = jssrc/TDJSAlternation.h; sourceTree = "<group>"; };
+		D389FAA80F1AFDD900558235 /* TDJSAlternation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAlternation.m; path = jssrc/TDJSAlternation.m; sourceTree = "<group>"; };
+		D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCollectionParser.h; path = jssrc/TDJSCollectionParser.h; sourceTree = "<group>"; };
+		D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCollectionParser.m; path = jssrc/TDJSCollectionParser.m; sourceTree = "<group>"; };
+		D389FAB30F1AFF1000558235 /* TDJSSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSSequence.h; path = jssrc/TDJSSequence.h; sourceTree = "<group>"; };
+		D389FAB40F1AFF1000558235 /* TDJSSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSSequence.m; path = jssrc/TDJSSequence.m; sourceTree = "<group>"; };
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "test/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
 		D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "test/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
@@ -1254,8 +1262,12 @@
 				D389F5A10F19BF9200558235 /* TDJSAssemblerAdapter.m */,
 				D389F59C0F19BCC500558235 /* TDJSParser.h */,
 				D389F59D0F19BCC500558235 /* TDJSParser.m */,
-				D389F9490F1AE52600558235 /* TDCollectionParser.h */,
-				D389F94A0F1AE52600558235 /* TDCollectionParser.m */,
+				D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */,
+				D389FAAE0F1AFEE900558235 /* TDJSCollectionParser.m */,
+				D389FAA70F1AFDD900558235 /* TDJSAlternation.h */,
+				D389FAA80F1AFDD900558235 /* TDJSAlternation.m */,
+				D389FAB30F1AFF1000558235 /* TDJSSequence.h */,
+				D389FAB40F1AFF1000558235 /* TDJSSequence.m */,
 			);
 			name = Parse;
 			sourceTree = "<group>";
@@ -1682,7 +1694,9 @@
 				D389F5A20F19BF9200558235 /* TDJSAssemblerAdapter.h in Headers */,
 				D389F8970F1AC0BC00558235 /* TDJSUtils_macros.h in Headers */,
 				D389F8C70F1AC8B200558235 /* TDJSCharacterAssembly.h in Headers */,
-				D389F94B0F1AE52600558235 /* TDCollectionParser.h in Headers */,
+				D389FAA90F1AFDD900558235 /* TDJSAlternation.h in Headers */,
+				D389FAAF0F1AFEE900558235 /* TDJSCollectionParser.h in Headers */,
+				D389FAB50F1AFF1000558235 /* TDJSSequence.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2055,7 +2069,9 @@
 				D389F59F0F19BCC500558235 /* TDJSParser.m in Sources */,
 				D389F5A30F19BF9200558235 /* TDJSAssemblerAdapter.m in Sources */,
 				D389F8C80F1AC8B200558235 /* TDJSCharacterAssembly.m in Sources */,
-				D389F94C0F1AE52600558235 /* TDCollectionParser.m in Sources */,
+				D389FAAA0F1AFDD900558235 /* TDJSAlternation.m in Sources */,
+				D389FAB00F1AFEE900558235 /* TDJSCollectionParser.m in Sources */,
+				D389FAB60F1AFF1000558235 /* TDJSSequence.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
