@@ -78,7 +78,6 @@ static JSStaticFunction TDWhitespaceState_staticFunctions[] = {
 { 0, 0, 0 }
 };
 
-//@property (nonatomic) BOOL reportsWhitespaceTokens;
 static JSStaticValue TDWhitespaceState_staticValues[] = {        
 { "reportsWhitespaceTokens", TDWhitespaceState_getReportsWhitespaceTokens, TDWhitespaceState_setReportsWhitespaceTokens, kJSPropertyAttributeDontDelete }, // Boolean
 { 0, 0, 0, 0 }
