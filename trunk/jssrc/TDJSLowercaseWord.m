@@ -8,7 +8,7 @@
 
 #import "TDJSLowercaseWord.h"
 #import "TDJSUtils.h"
-#import "TDJSTerminal.h"
+#import "TDJSWord.h"
 #import <TDParseKit/TDLowercaseWord.h>
 
 #pragma mark -
