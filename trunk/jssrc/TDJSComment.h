@@ -8,6 +8,6 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-JSObjectRef TDNum_new(JSContextRef ctx, void *data);
-JSClassRef TDNum_class(JSContextRef ctx);
-JSObjectRef TDNum_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef* ex);
+JSObjectRef TDComment_new(JSContextRef ctx, void *data);
+JSClassRef TDComment_class(JSContextRef ctx);
+JSObjectRef TDComment_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef* ex);
