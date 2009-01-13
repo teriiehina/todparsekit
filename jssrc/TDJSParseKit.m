@@ -108,6 +108,7 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "Num", TDNum_class(ctx), TDNum_construct, &ex);
     setUpConstructor(ctx, "QuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
     setUpConstructor(ctx, "Symbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
+    setUpConstructor(ctx, "Comment", TDComment_class(ctx), TDComment_construct, &ex);
     setUpConstructor(ctx, "Literal", TDLiteral_class(ctx), TDLiteral_construct, &ex);
     setUpConstructor(ctx, "CaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
     setUpConstructor(ctx, "UppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
