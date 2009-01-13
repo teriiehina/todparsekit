@@ -40,239 +40,72 @@ static void printValue(JSContextRef ctx, JSValueRef val) {
     NSLog(@"%@", s);
 }
 
-static JSValueRef print(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef* ex) {
+static JSValueRef print(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     printValue(ctx, argv[0]); // TODO check args
     return JSValueMakeUndefined(ctx);
 }
 
-static void setUpPrintFunction(JSContextRef ctx, JSValueRef *ex) {
+static JSObjectRef setUpFunction(JSContextRef ctx, char *funcName, JSObjectCallAsFunctionCallback funcCallback, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef printFuncName = JSStringCreateWithUTF8CString("print");
-    JSObjectRef printFunc = JSObjectMakeFunctionWithCallback(ctx, printFuncName, print);
-    JSObjectSetProperty(ctx, globalObj, printFuncName, printFunc, kJSPropertyAttributeNone, ex);
+    JSStringRef funcNameStr = JSStringCreateWithUTF8CString(funcName);
+    JSObjectRef func = JSObjectMakeFunctionWithCallback(ctx, funcNameStr, funcCallback);
+    JSObjectSetProperty(ctx, globalObj, funcNameStr, func, kJSPropertyAttributeNone, ex);
+    JSStringRelease(funcNameStr);
+    return func;
 }
 
-static void setUpTDTokenClass(JSContextRef ctx, JSValueRef *ex) {
+static JSObjectRef setUpConstructor(JSContextRef ctx, char *className, JSClassRef jsClass, JSObjectCallAsConstructorCallback constrCallback, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Token");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDToken_class(ctx), TDToken_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-
-    // JS Class method
-//    JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
-//    JSValueRef classMethod = JSObjectMakeFunctionWithCallback(ctx, propName, TDToken_EOFToken);
-//    JSObjectSetProperty(ctx, constr, propName, classMethod, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
-//    JSStringRelease(propName);
-
-    // JS Class property
-    JSStringRef propName = JSStringCreateWithUTF8CString("EOFToken");
-    JSValueRef classProp = TDToken_getEOFToken(ctx);
-    JSObjectSetProperty(ctx, constr, propName, classProp, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
-    JSStringRelease(propName);
-    
+    JSStringRef classNameStr = JSStringCreateWithUTF8CString(className);
+    JSObjectRef constr = JSObjectMakeConstructor(ctx, jsClass, constrCallback);
+    JSObjectSetProperty(ctx, globalObj, classNameStr, constr, kJSPropertyAttributeNone, ex);
+    JSStringRelease(classNameStr);
+    return constr;
 }
 
-static void setUpTDTokenAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("TokenAssembly");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTokenAssembly_class(ctx), TDTokenAssembly_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDCharacterAssemblyClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("CharacterAssembly");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDTokenizerClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Tokenizer");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTokenizer_class(ctx), TDTokenizer_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDWordStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("WordState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDWordState_class(ctx), TDWordState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDNumberStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("NumberState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDNumberState_class(ctx), TDNumberState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDWhitespaceStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("WhitespaceState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDWhitespaceState_class(ctx), TDWhitespaceState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDCommentStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("CommentState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDCommentState_class(ctx), TDCommentState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDQuoteStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("QuoteState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDQuoteState_class(ctx), TDQuoteState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDSymbolStateClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("SymbolState");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDSymbolState_class(ctx), TDSymbolState_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDRepetitionClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Repetition");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDRepetition_class(ctx), TDRepetition_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDAlternationClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Alternation");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDAlternation_class(ctx), TDAlternation_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDSequenceClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Sequence");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDSequence_class(ctx), TDSequence_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDTrackClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Track");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDTrack_class(ctx), TDTrack_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDEmptyClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Empty");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDEmpty_class(ctx), TDEmpty_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDAnyClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Any");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDAny_class(ctx), TDAny_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDWordClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Word");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDWord_class(ctx), TDWord_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDNumClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Num");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDNum_class(ctx), TDNum_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDQuotedStringClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("QuotedString");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDQuotedString_class(ctx), TDQuotedString_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDSymbolClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Symbol");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDSymbol_class(ctx), TDSymbol_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDLiteralClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("Literal");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDLiteral_class(ctx), TDLiteral_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
-}
-
-static void setUpTDCaseInsensitiveLiteralClass(JSContextRef ctx, JSValueRef *ex) {
-    JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
-    JSStringRef className = JSStringCreateWithUTF8CString("CaseInsensitiveLiteral");
-    JSObjectRef constr = JSObjectMakeConstructor(ctx, TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct);
-    JSObjectSetProperty(ctx, globalObj, className, constr, kJSPropertyAttributeNone, ex);
-    JSStringRelease(className);
+static void setUpClassProperty(JSContextRef ctx, char *propName, JSValueRef prop, JSObjectRef constr, JSValueRef *ex) {
+    JSStringRef propNameStr = JSStringCreateWithUTF8CString(propName);
+    JSObjectSetProperty(ctx, constr, propNameStr, prop, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly, NULL);
+    JSStringRelease(propNameStr);
 }
 
 void TDJSParseKitSetUpContext(JSContextRef ctx) {
-    setUpPrintFunction(ctx, NULL);
+    JSValueRef ex = NULL;
+
+    setUpFunction(ctx, "print", print, &ex);
     
     // Assemblies
-    setUpTDTokenAssemblyClass(ctx, NULL);
-    setUpTDCharacterAssemblyClass(ctx, NULL);
+    setUpConstructor(ctx, "TokenAssembly", TDTokenAssembly_class(ctx), TDTokenAssembly_construct, &ex);
+    setUpConstructor(ctx, "CharacterAssembly", TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct, &ex);
     
     // Tokenization
-    setUpTDTokenClass(ctx, NULL);
-    setUpTDTokenizerClass(ctx, NULL);
-    setUpTDWordStateClass(ctx, NULL);
-    setUpTDNumberStateClass(ctx, NULL);
-    setUpTDSymbolStateClass(ctx, NULL);
-    setUpTDCommentStateClass(ctx, NULL);
-    setUpTDQuoteStateClass(ctx, NULL);
+    JSObjectRef constr = setUpConstructor(ctx, "Token", TDToken_class(ctx), TDToken_construct, &ex);
+    setUpClassProperty(ctx, "EOFToken", TDToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
+    
+    setUpConstructor(ctx, "Tokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
+    setUpConstructor(ctx, "WordState", TDWordState_class(ctx), TDWordState_construct, &ex);
+    setUpConstructor(ctx, "QuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
+    setUpConstructor(ctx, "NumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
+    setUpConstructor(ctx, "SymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
+    setUpConstructor(ctx, "CommentState", TDCommentState_class(ctx), TDCommentState_construct, &ex);
+    setUpConstructor(ctx, "WhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
 
     // Parsers
-    setUpTDRepetitionClass(ctx, NULL);
+    setUpConstructor(ctx, "Repetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
 
     // Collection Parsers
-    setUpTDAlternationClass(ctx, NULL);
-    setUpTDSequenceClass(ctx, NULL);
+    setUpConstructor(ctx, "Alternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
+    setUpConstructor(ctx, "Sequence", TDSequence_class(ctx), TDSequence_construct, &ex);
     
     // Terminal Parsers
-    setUpTDAnyClass(ctx, NULL);
-    setUpTDEmptyClass(ctx, NULL);
+    setUpConstructor(ctx, "Empty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
+    setUpConstructor(ctx, "Any", TDAny_class(ctx), TDAny_construct, &ex);
     
     // Token Terminals
-    setUpTDWordClass(ctx, NULL);
-    setUpTDNumClass(ctx, NULL);
-    setUpTDQuotedStringClass(ctx, NULL);
-    setUpTDSymbolClass(ctx, NULL);
-    setUpTDLiteralClass(ctx, NULL);
-    setUpTDCaseInsensitiveLiteralClass(ctx, NULL);
+    setUpConstructor(ctx, "Word", TDWord_class(ctx), TDWord_construct, &ex);
+    setUpConstructor(ctx, "Num", TDNum_class(ctx), TDNum_construct, &ex);
+    setUpConstructor(ctx, "QuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
+    setUpConstructor(ctx, "Symbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
+    setUpConstructor(ctx, "Literal", TDLiteral_class(ctx), TDLiteral_construct, &ex);
+    setUpConstructor(ctx, "CaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
 }
