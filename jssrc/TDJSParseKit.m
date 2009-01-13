@@ -34,6 +34,8 @@
 #import "TDJSComment.h"
 #import "TDJSLiteral.h"
 #import "TDJSCaseInsensitiveLiteral.h"
+#import "TDJSUppercaseWord.h"
+#import "TDJSLowercaseWord.h"
 
 static void printValue(JSContextRef ctx, JSValueRef val) {
     NSString *s = TDJSValueGetNSString(ctx, val, NULL);
@@ -108,4 +110,6 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "Symbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
     setUpConstructor(ctx, "Literal", TDLiteral_class(ctx), TDLiteral_construct, &ex);
     setUpConstructor(ctx, "CaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
+    setUpConstructor(ctx, "UppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
+    setUpConstructor(ctx, "LowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
 }
