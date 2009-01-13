@@ -159,6 +159,10 @@
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
+		D354A67E0F1D304C00B3F04F /* TDJSUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A67C0F1D304C00B3F04F /* TDJSUppercaseWord.h */; };
+		D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */; };
+		D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */; };
+		D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */; };
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
 		D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DC70EF260FC00226554 /* TDTokenArraySource.m */; };
@@ -635,6 +639,10 @@
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
 		D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReaderTest.m; path = test/XMLReaderTest.m; sourceTree = "<group>"; };
+		D354A67C0F1D304C00B3F04F /* TDJSUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUppercaseWord.h; path = jssrc/TDJSUppercaseWord.h; sourceTree = "<group>"; };
+		D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUppercaseWord.m; path = jssrc/TDJSUppercaseWord.m; sourceTree = "<group>"; };
+		D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSLowercaseWord.h; path = jssrc/TDJSLowercaseWord.h; sourceTree = "<group>"; };
+		D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSLowercaseWord.m; path = jssrc/TDJSLowercaseWord.m; sourceTree = "<group>"; };
 		D36568A50EEF9FE900226554 /* TDPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParser.h; path = test/TDPlistParser.h; sourceTree = "<group>"; };
 		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
 		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
@@ -1361,6 +1369,10 @@
 				D389FACD0F1B19AC00558235 /* TDJSLiteral.m */,
 				D389FADA0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.h */,
 				D389FADB0F1B1AB800558235 /* TDJSCaseInsensitiveLiteral.m */,
+				D354A67C0F1D304C00B3F04F /* TDJSUppercaseWord.h */,
+				D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */,
+				D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */,
+				D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */,
 			);
 			name = "Token Terminals";
 			sourceTree = "<group>";
@@ -1800,6 +1812,8 @@
 				D389FAE90F1B1CCD00558235 /* TDJSEmpty.h in Headers */,
 				D389FAED0F1B1D3500558235 /* TDJSTrack.h in Headers */,
 				D389FAF60F1B202000558235 /* TDJSSymbol.h in Headers */,
+				D354A67E0F1D304C00B3F04F /* TDJSUppercaseWord.h in Headers */,
+				D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2188,6 +2202,8 @@
 				D389FAEA0F1B1CCD00558235 /* TDJSEmpty.m in Sources */,
 				D389FAEE0F1B1D3500558235 /* TDJSTrack.m in Sources */,
 				D389FAF70F1B202000558235 /* TDJSSymbol.m in Sources */,
+				D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */,
+				D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
