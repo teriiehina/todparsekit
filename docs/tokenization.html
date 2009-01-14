@@ -79,7 +79,18 @@ while ((tok = [t nextToken]) != eof) {
 </pre>
 </div>
 
-<p>Each <tt>TDToken</tt> object returned has a <tt>stringValue</tt>, a <tt>floatValue</tt> and a <tt>tokenType</tt>. The <tt>tokenType</tt> is and enum value type called <tt>TDTokenType</tt> with possible values of <tt>TDTokenTypeNumber</tt>, <tt>TDTokenTypeQuotedString</tt>, <tt>TDTokenTypeSymbol</tt>, <tt>TDTokenTypeWord</tt>, or<tt>TDTokenTypeWhitespace</tt>. <tt>TDTokens</tt> also have corresponding <tt>BOOL</tt> properties for convenience: <tt>isNumber</tt>, <tt>isQuotedString</tt>, <tt>isSymbol</tt>, <tt>isWord</tt> and <tt>isWhitespace</tt>.</p>
+<p>Each <tt>TDToken</tt> object returned has a <tt>stringValue</tt>, a <tt>floatValue</tt> and a <tt>tokenType</tt>. The <tt>tokenType</tt> is and enum value type called <tt>TDTokenType</tt> with possible values of:</p>
+
+<ul>
+	<li><tt>TDTokenTypeWord</tt></li>
+	<li><tt>TDTokenTypeNumber</tt></li>
+	<li><tt>TDTokenTypeQuotedString</tt></li>
+	<li><tt>TDTokenTypeSymbol</tt></li>
+	<li><tt>TDTokenTypeWhitespace</tt></li>
+	<li><tt>TDTokenTypeComment</tt></li>
+</ul>
+	
+<p><tt>TDTokens</tt> also have corresponding <tt>BOOL</tt> properties for convenience (<tt>isWord</tt>, <tt>isNumber</tt>, etc.)</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -92,6 +103,8 @@ while ((tok = [t nextToken]) != eof) {
 			</p>
 			<p>
 				<tt>@property (readonly) TDTokenType tokenType;</tt><br/>
+			</p>
+			<p>
 				<tt>@property (readonly) CGFloat floatValue;</tt><br/>
 				<tt>@property (readonly, copy) NSString *stringValue;</tt><br/>
 			</p>
@@ -101,6 +114,7 @@ while ((tok = [t nextToken]) != eof) {
 				<tt>@property (readonly) BOOL isWord;</tt><br/>
 				<tt>@property (readonly) BOOL isQuotedString;</tt><br/>
 				<tt>@property (readonly) BOOL isWhitespace;</tt><br/>
+				<tt>@property (readonly) BOOL isComment;</tt><br/>
 			</p>
 			<p>
 				<tt>...</tt><br/>
@@ -116,24 +130,23 @@ while ((tok = [t nextToken]) != eof) {
 
 <h4>Number</h4>
 
-<p>Sequences of digits (<tt>&laquo;2&raquo;</tt> <tt>&laquo;42&raquo;</tt> <tt>&laquo;1054&raquo;</tt>) are recognized as <tt>Number</tt> tokens. Floating point numbers containing a dot (<tt>&laquo;3.14&raquo;</tt>) are recognized as single <tt>Number</tt> tokens as you'd expect (rather than two <tt>Number</tt> tokens separated by a <tt>&laquo;.&raquo;</tt> <tt>Symbol</tt> token). By default, <tt>TDTokenizer</tt> will recognize a <tt>&laquo;-&raquo;</tt> symbol followed immediately by digits (<tt>&laquo;-47&raquo;</tt>) as a number token with a negative value. However, <tt>&laquo;+&raquo;</tt> characters are always seen as the beginning of a <tt>Symbol</tt> token by default, even when followed immediately by digits, so "explicitly-positive" <tt>Number</tt> tokens are not supported by default (this behavior can be configured, see below).</p>
+<p>Sequences of digits (<tt>&laquo;2&raquo;</tt> <tt>&laquo;42&raquo;</tt> <tt>&laquo;1054&raquo;</tt>) are recognized as <tt>Number</tt> tokens. Floating point numbers containing a dot (<tt>&laquo;3.14&raquo;</tt>) are recognized as single <tt>Number</tt> tokens as you'd expect (rather than two <tt>Number</tt> tokens separated by a <tt>&laquo;.&raquo;</tt> <tt>Symbol</tt> token). By default, <tt>TDTokenizer</tt> will recognize a <tt>&laquo;-&raquo;</tt> symbol followed immediately by digits (<tt>&laquo;-47&raquo;</tt>) as a number token with a negative value. However, <tt>&laquo;+&raquo;</tt> characters are always seen as the beginning of a <tt>Symbol</tt> token by default, even when followed immediately by digits, so "explicitly-positive" <tt>Number</tt> tokens are not recognized by default (this behavior can be configured, see below).</p>
 	
 <h4>Symbol</h4>
 	
 <p>Most symbol characters (<tt>&laquo;.&raquo;</tt> <tt>&laquo;!&raquo;</tt>) are recognized as single-character <tt>Symbol</tt> tokens (even when sequential such as <tt>&laquo;!&raquo;&laquo;!&raquo;</tt>). However, notice that <tt>TDTokenizer</tt> recognizes common multi-character symbols (<tt>&laquo;!=&raquo;</tt>) as a single <tt>Symbol</tt> token by default. In fact, <tt>TDTokenizer</tt> can be configured to recognize any given string as a multi-character symbol. Alternatively, it can be configured to always recognize each symbol character as an individual <tt>Symbol</tt> token (no mulit-character symbols). The default multi-character symbols recognized by <tt>TDTokenizer</tt> are: <tt>&laquo;&lt;=&raquo;</tt>, <tt>&laquo;&gt;=&raquo;</tt>, <tt>&laquo;!=&raquo;</tt>, <tt>&laquo;==&raquo;</tt>.</p>
 
-<p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>//</tt>) and C++-style (<tt>/* */</tt>) comments and removes the associated comments from the output rather than producing <tt>Symbol</tt> tokens. See below for steps to turn off recognition of comments.</p>
-
-
 <h4>Word</h4>
 <p><tt>&laquo;Blast-off&raquo;</tt> is recognized as a single <tt>Word</tt> token despite containing a symbol character (<tt>&laquo;-&raquo;</tt>) that would normally signal the start of a new <tt>Symbol</tt> token. By default, <tt>TDTokenzier</tt> allows <tt>Word</tt> tokens to <b>contain</b> (but <b>not start with</b>) several symbol and number characters: <tt>&laquo;-&raquo;</tt>, <tt>&laquo;_&raquo;</tt>, <tt>&laquo;'&raquo;</tt>, <tt>&laquo;0&raquo;</tt>-<tt>&laquo;9&raquo;</tt>. The consequence of this behavior is that <tt>TDTokenizer</tt> will recognize the follwing strings as individual <tt>Word</tt> tokens by default: <tt>&laquo;it's&raquo;</tt>, <tt>&laquo;first_name&raquo;</tt>, <tt>&laquo;sat-yr-9&raquo;</tt> <tt>&laquo;Rodham-Clinton&raquo;</tt>. Again, you can configure <tt>TDTokenizer</tt> to alter this default behavior.</p>
 
 <h4>Quoted String</h4>
-<p><tt>TDTokenizer</tt> produces <tt>Quoted String</tt> tokens for substrings enclosed in quote delimiter characters. The default delimiters are single- or double-quotes (<tt>&laquo;'&raquo;</tt> or <tt>&laquo;"&raquo;</tt>). The delimiter characters are configurable (see below). Note that the <tt>stringValue</tt> of <tt>Quoted String</tt> tokens include the quote delimiter characters (&laquo;'Woo-hoo!'&raquo;).</p>
+<p><tt>TDTokenizer</tt> produces <tt>Quoted String</tt> tokens for substrings enclosed in quote delimiter characters. The default delimiters are single- or double-quotes (<tt>&laquo;'&raquo;</tt> or <tt>&laquo;"&raquo;</tt>). The quote delimiter characters are configurable (see below). Note that the <tt>stringValue</tt> of <tt>Quoted String</tt> tokens include the quote delimiter characters (&laquo;'Woo-hoo!'&raquo;).</p>
 
 <h4>Whitespace</h4>
 <p>By default, whitespace characters are silently consumed by <tt>TDTokenizer</tt>, and <tt>Whitespace</tt> tokens are never emitted. However, you can configure which characters are considered <tt>Whitespace</tt> characters or even ask <tt>TDTokenizer</tt> to return <tt>Whitespace</tt> tokens containing the literal whitespace <tt>stringValue</tt>s by setting: <tt>t.whitespaceState.reportsWhitespaceTokens = YES</tt>.</p>
 
+<h4>Comment</h4>
+<p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>//</tt>) and C++-style (<tt>/* */</tt>) comments and silently removes the associated comments from the output rather than producing <tt>Comment</tt> tokens. See below for steps to either report <tt>Comment</tt> tokens or to turn off comments recognition altogether.</p>
 
 <a name="custom-behavior"></a>
 <h3>Customizing <tt>TDTokenizer</tt> behavior</h3>
@@ -151,7 +164,7 @@ while ((tok = [t nextToken]) != eof) {
 
 <h4>Changing which characters are allowed within a token of a particular type</h4>
 
-<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character (see below), it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the <tt>TDTokenizerState</tt> class: <tt>TDNumberState</tt>, <tt>TDSymbolState</tt>, <tt>TDSlashState</tt>, <tt>TDWordState</tt>, <tt>TDWhitespaceState</tt> and <tt>TDQuoteState</tt>. The state objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
+<p>Once <tt>TDTokenizer</tt> has decided which token type to create for a given start character (see below), it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the abstract <tt>TDTokenizerState</tt> class: <tt>TDWordState</tt>, <tt>TDNumberState</tt>, <tt>TDQuoteState</tt>, <tt>TDSymbolState</tt>, <tt>TDWhitespaceState</tt>, and  <tt>TDCommentState</tt>. The state objects are accessible via properties of the <tt>TDTokenizer</tt> object.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -161,18 +174,18 @@ while ((tok = [t nextToken]) != eof) {
 		<td>
 			<p>
 				<tt>...</tt><br/>
-				<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
+				<tt>@property (readonly, retain) TDWordState *wordState;</tt><br/>
 				<tt>@property (readonly, retain) TDNumberState *numberState;</tt><br/>
 				<tt>@property (readonly, retain) TDQuoteState *quoteState;</tt><br/>
-				<tt>@property (readonly, retain) TDSlashState *slashState;</tt><br/>
 				<tt>@property (readonly, retain) TDSymbolState *symbolState;</tt><br/>
-				<tt>@property (readonly, retain) TDWordState *wordState;</tt><br/>
+				<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
+				<tt>@property (readonly, retain) TDCommentState *commentState;</tt><br/>
 			</p>
 		</td>
 	</tr>
 </table>
 
-<p>Some of the <tt>TDTokenizerState</tt> subclasses have methods that alter what characters are allowed within tokens of their associated token type.</p>
+<p>Some of the <tt>TDTokenizerState</tt> subclasses have methods that alter which characters are allowed within tokens of their associated token type.</p>
 
 <p>For example, if you want to add a new multiple-character symbol like <tt>&laquo;===&raquo;</tt>:</p>
 
@@ -205,7 +218,7 @@ t.numberState.allowsTrailingDot = YES;
 </div>
 
 
-<p>You can also configure which characters are recognized as whitespace within a whitespace token:</p>
+<p>You can also configure which characters are recognized as whitespace within a whitespace token. To treat digits as whitespace characters within whitespace tokens:</p>
 
 <div class="code">
 <pre>
@@ -223,10 +236,19 @@ t.whitespaceState.reportsWhitespaceTokens = YES;
 ...</pre>
 </div>
 
+<p>Similarly, comments are also silently consumed by default. To report <tt>Comment</tt> tokens instead:</p>
+
+<div class="code">
+<pre>
+...
+t.commentState.reportsCommentTokens = YES;
+...</pre>
+</div>
+
 
 <h4>Changing which token type is created for a given start character</h4>
 
-<p><tt>TDTokenizer</tt> controls the logic for deciding which token type should be created for a given start character before passing the responsibility for completing tokens off to its "state" helper objects. So to change which token type is created for a given start character, you must call a method of the <tt>TDTokenizer</tt> object itself: <tt>-[TDTokenizer setTokenizerState:from:to:]</tt>.</p>
+<p><tt>TDTokenizer</tt> controls the logic for deciding which token type should be created for a given start character before passing the responsibility for completing tokens to its "state" helper objects. To change which token type is created for a given start character, you must call a method of the <tt>TDTokenizer</tt> object itself: <tt>-[TDTokenizer setTokenizerState:from:to:]</tt>.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -245,7 +267,7 @@ t.whitespaceState.reportsWhitespaceTokens = YES;
 	</tr>
 </table>
 
-<p>For example, suppose you want to turn off support for <tt>Number</tt> tokens altogether. Instead, you'd like digits to be recognized as signaling the start of <tt>Word</tt> tokens:</p>
+<p>For example, suppose you want to turn off support for <tt>Number</tt> tokens altogether. To recognize digits as signaling the start of <tt>Word</tt> tokens:</p>
 
 <div class="code">
 <pre>
@@ -266,6 +288,8 @@ TDTokenizer *t = [TDTokenizerWithString:s];
 ...</pre>
 </div>
 
+<p>Note that if the <tt>from:</tt> and <tt>to:</tt> arguments are the same char, only behavior for that single char is affected.</p>
+
 <p>Alternatively, say you want to recognize <tt>&laquo;+&raquo;</tt> characters followed immediately by digits as explicitly positive <tt>Number</tt> tokens rather than as a <tt>Symbol</tt> token followed by a <tt>Number</tt> token:</p>
 
 <div class="code">
@@ -275,7 +299,38 @@ TDTokenizer *t = [TDTokenizerWithString:s];
 ...</pre>
 </div>
 
-<p>Finally, you may want to turn off recognition of source code comments. By default, TDTokenizer passes control to its <tt>slashState</tt> object which silently consumes the comment text found after <tt>&laquo;//&raquo;</tt> or between <tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>. To disable comments recognition, tell <tt>TDTokenizer</tt> to pass control to its <tt>symbolState</tt> instead of its <tt>slashState</tt>.</p>
+<p>Finally, customization of commetns recognition may be necessary. By default, TDTokenizer passes control to its <tt>commentState</tt> object which silently consumes the comment text found after <tt>&laquo;//&raquo;</tt> or between <tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>. This default behavior is achieved with the sequence:</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.commentState from:'/' to:'/'];
+[t.commentState addSingleLineStartSymbol:@"//"];
+[t.commentState addMultiLineStartSymbol:@"/*" endSymbol:@"*/"];
+...</pre>
+</div>
+
+<p>To recognize single-line comments starting with <tt>#</tt>:</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.commentState from:'#' to:'#'];
+[t.commentState addSingleLineStartSymbol:@"#"];
+...</pre>
+</div>
+
+<p>To recognize multi-line "XML"- or "HTML"-style comments:</p>
+
+<div class="code">
+<pre>
+...
+[t setTokenizerState:t.commentState from:'&lt;' to:'&lt;'];
+[t.commentState addMultiLineStartSymbol:@"&lt;!--" endSymbol:@"-->"];
+...</pre>
+</div>
+
+<p>To disable comments recognition altogether, tell <tt>TDTokenizer</tt> to pass control to its <tt>symbolState</tt> instead of its <tt>commentState</tt>.</p>
 
 <div class="code">
 <pre>
@@ -284,8 +339,7 @@ TDTokenizer *t = [TDTokenizerWithString:s];
 ...</pre>
 </div>
 
-<p>Now <tt>TDTokenizer</tt> will return individual <tt>Symbol</tt> tokens for all <tt>&laquo;/&raquo;</tt> and <tt>&laquo;*&raquo;</tt> characters.</p>
-
+<p>Now <tt>TDTokenizer</tt> will return individual <tt>Symbol</tt> tokens for all <tt>&laquo;/&raquo;</tt> and <tt>&laquo;*&raquo;</tt> characters, as well as any other characters set as part of a comment start or end symbol.</p>
 
 </div>
 </body>
