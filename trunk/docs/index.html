@@ -131,6 +131,7 @@ NSLog(@" (%@)", [tok debugDescription]);
 <li>common multiple character symbols (<tt>&lt;=</tt>)</li>
 <li>apostrophes, dashes and other symbol chars that should not signal the start of a new Symbol token, but rather be included in the current Word or Num token (<tt>it's</tt>, <tt>blast-off</tt>, <tt>3.5</tt>)</li>	
 <li>silently ignoring C- and C++-style comments</li>
+<li>silently ignoring whitespace</li>
 </ul>
 
 
@@ -142,24 +143,62 @@ NSLog(@" (%@)", [tok debugDescription]);
 </li>
 
 <li>add new internal symbol chars to be included in the current <tt>Word</tt> token OR recognize internal symbols like apostrophe and dash to actually signal a new <tt>Symbol</tt> token rather than being part of the current Word token. ex: 
-	<div class="code"><pre>[t.wordState setWordChar:'_'];</pre></div>
+<div class="code"><pre>[t.wordState setWordChars:YES from:'_' to:'_'];</pre></div>
 <p><small>allows Word tokens to contain internal underscores</small></p>	
+<div class="code"><pre>[t.wordState setWordChars:NO from:'-' to:'-'];</pre></div>
+<p><small>disallows Word tokens from containing internal dashes.</small></p>	
 </li>
 	
 	
-<li>change which chars singnal the start of a token of any given type. ex: <div class="code"><pre>[t setTokenizerState:t.wordState from:'_' to:'_'];</pre></div>
+<li>change which chars singnal the start of a token of any given type. ex: 
+<div class="code"><pre>[t setTokenizerState:t.wordState from:'_' to:'_'];</pre></div>
 <p><small>allows Word tokens to start with underscore</small></p>
+<div class="code"><pre>[t setTokenizerState:t.quoteState from:'*' to:'*'];</pre></div>
+<p><small>allows Quoted String tokens to start with an asterisk, effectively making <tt>*</tt> a new quote symbol (like <tt>"</tt> or <tt>'</tt>)</small></p>
 </li>
 
-<li>turn off recognition of "slash-slash" (<tt>//</tt>) comments. ex: 
+<li>turn off recognition of single-line "slash-slash" (<tt>//</tt>) comments. ex: 
 <div class="code"><pre>[t setTokenizerState:t.symbolState from:'/' to:'/'];</pre></div>
-<p><small>slash chars now produce a Symbol token rather than causing the tokenizer to strip text until the next newline char or begin striping for a multiline comment if appropriate (<tt>/*</tt>)</small></p>
+<p><small>slash chars now produce individual Symbol tokens rather than causing the tokenizer to strip text until the next newline char or begin striping for a multiline comment if appropriate (<tt>/*</tt>)</small></p>
 </li>
 
-<li>turn on recognition of "hash" (<tt>#</tt>) comments. ex: 
-<div class="code"><pre>[t setTokenizerState:t.commentState from:'#' to:'#'];</pre></div>
+<li>turn on recognition of "hash" (<tt>#</tt>) single-line comments. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.commentState from:'#' to:'#'];
+[t.commentState addSingleLineStartSymbol:@"#"];</pre>
+</div>
 </p>
 </li>
+
+<li>turn on recognition of "XML/HTML" (<tt>&lt;!-- --></tt>) multi-line comments. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.commentState from:'&lt;' to:'&lt;'];
+[t.commentState addMultiLineStartSymbol:@"&lt;!--" endSymbol:@"-->"];</pre>
+</div>
+</p>
+</li>
+
+<li>report (rather than silently consume) Comment tokens. ex: 
+<div class="code">
+<pre>t.commentState.reportsCommentTokens = YES; // default is NO</pre>
+</div>
+</p>
+</li>
+
+<li>report (rather than silently consume) Whitespace tokens. ex: 
+<div class="code">
+<pre>t.whitespaceState.reportsWhitespaceTokens = YES; // default is NO</pre>
+</div>
+</p>
+</li>
+
+<li>turn on recognition of any characters (say, digits) as whitespace to be silently ignored. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.whitespaceState from:'0' to:'9'];</pre>
+</div>
+</p>
+</li>
+
 </ul>
 
 <hr/>
