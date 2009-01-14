@@ -59,8 +59,13 @@ JSObjectRef TDRepetition_new(JSContextRef ctx, void *data) {
 
 JSObjectRef TDRepetition_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionConstructorArgc(1, "TDRepetition");
+	
+	JSValueRef v = argv[0];
+	if (!TDJSValueIsInstanceOfClass(ctx, v, "TDParser", ex)) {
+		*ex = TDNSStringToJSValue(ctx, @"argument to TDRepeition constructor must be and instance of a TDParser subclass", ex);
+	}
     
-    TDParser *p = JSObjectGetPrivate(argv[0]);
+    TDParser *p = JSObjectGetPrivate((JSObjectRef)v);
 
     TDRepetition *data = [[TDRepetition alloc] initWithSubparser:p];
     return TDRepetition_new(ctx, data);
