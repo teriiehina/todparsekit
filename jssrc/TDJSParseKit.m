@@ -81,7 +81,7 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "TDCharacterAssembly", TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct, &ex);
     
     // Tokenization
-    JSObjectRef constr = setUpConstructor(ctx, "Token", TDToken_class(ctx), TDToken_construct, &ex);
+    JSObjectRef constr = setUpConstructor(ctx, "TDToken", TDToken_class(ctx), TDToken_construct, &ex);
     setUpClassProperty(ctx, "EOFToken", TDToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
     
     setUpConstructor(ctx, "TDTokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
