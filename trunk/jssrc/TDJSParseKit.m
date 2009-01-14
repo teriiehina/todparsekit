@@ -77,40 +77,40 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpFunction(ctx, "print", print, &ex);
     
     // Assemblies
-    setUpConstructor(ctx, "TokenAssembly", TDTokenAssembly_class(ctx), TDTokenAssembly_construct, &ex);
-    setUpConstructor(ctx, "CharacterAssembly", TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct, &ex);
+    setUpConstructor(ctx, "TDTokenAssembly", TDTokenAssembly_class(ctx), TDTokenAssembly_construct, &ex);
+    setUpConstructor(ctx, "TDCharacterAssembly", TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct, &ex);
     
     // Tokenization
     JSObjectRef constr = setUpConstructor(ctx, "Token", TDToken_class(ctx), TDToken_construct, &ex);
     setUpClassProperty(ctx, "EOFToken", TDToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
     
-    setUpConstructor(ctx, "Tokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
-    setUpConstructor(ctx, "WordState", TDWordState_class(ctx), TDWordState_construct, &ex);
-    setUpConstructor(ctx, "QuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
-    setUpConstructor(ctx, "NumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
-    setUpConstructor(ctx, "SymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
-    setUpConstructor(ctx, "CommentState", TDCommentState_class(ctx), TDCommentState_construct, &ex);
-    setUpConstructor(ctx, "WhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
+    setUpConstructor(ctx, "TDTokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
+    setUpConstructor(ctx, "TDWordState", TDWordState_class(ctx), TDWordState_construct, &ex);
+    setUpConstructor(ctx, "TDQuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
+    setUpConstructor(ctx, "TDNumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
+    setUpConstructor(ctx, "TDSymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
+    setUpConstructor(ctx, "TDCommentState", TDCommentState_class(ctx), TDCommentState_construct, &ex);
+    setUpConstructor(ctx, "TDWhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
 
     // Parsers
-    setUpConstructor(ctx, "Repetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
+    setUpConstructor(ctx, "TDRepetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
 
     // Collection Parsers
-    setUpConstructor(ctx, "Alternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
-    setUpConstructor(ctx, "Sequence", TDSequence_class(ctx), TDSequence_construct, &ex);
+    setUpConstructor(ctx, "TDAlternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
+    setUpConstructor(ctx, "TDSequence", TDSequence_class(ctx), TDSequence_construct, &ex);
     
     // Terminal Parsers
-    setUpConstructor(ctx, "Empty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
-    setUpConstructor(ctx, "Any", TDAny_class(ctx), TDAny_construct, &ex);
+    setUpConstructor(ctx, "TDEmpty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
+    setUpConstructor(ctx, "TDAny", TDAny_class(ctx), TDAny_construct, &ex);
     
     // Token Terminals
-    setUpConstructor(ctx, "Word", TDWord_class(ctx), TDWord_construct, &ex);
-    setUpConstructor(ctx, "Num", TDNum_class(ctx), TDNum_construct, &ex);
-    setUpConstructor(ctx, "QuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
-    setUpConstructor(ctx, "Symbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
-    setUpConstructor(ctx, "Comment", TDComment_class(ctx), TDComment_construct, &ex);
-    setUpConstructor(ctx, "Literal", TDLiteral_class(ctx), TDLiteral_construct, &ex);
-    setUpConstructor(ctx, "CaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
-    setUpConstructor(ctx, "UppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
-    setUpConstructor(ctx, "LowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
+    setUpConstructor(ctx, "TDWord", TDWord_class(ctx), TDWord_construct, &ex);
+    setUpConstructor(ctx, "TDNum", TDNum_class(ctx), TDNum_construct, &ex);
+    setUpConstructor(ctx, "TDQuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
+    setUpConstructor(ctx, "TDSymbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
+    setUpConstructor(ctx, "TDComment", TDComment_class(ctx), TDComment_construct, &ex);
+    setUpConstructor(ctx, "TDLiteral", TDLiteral_class(ctx), TDLiteral_construct, &ex);
+    setUpConstructor(ctx, "TDCaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
+    setUpConstructor(ctx, "TDUppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
+    setUpConstructor(ctx, "TDLowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
 }
