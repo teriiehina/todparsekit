@@ -702,6 +702,8 @@
 		D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDMiniCSSAssemblerTest.h; path = test/TDMiniCSSAssemblerTest.h; sourceTree = "<group>"; };
 		D385FD430F05A88C00DB2946 /* TDMiniCSSAssemblerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDMiniCSSAssemblerTest.m; path = test/TDMiniCSSAssemblerTest.m; sourceTree = "<group>"; };
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
+		D389A0B00F1FCC99003B43BD /* RelaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelaxParser.h; path = test/RelaxParser.h; sourceTree = "<group>"; };
+		D389A0B10F1FCC99003B43BD /* RelaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelaxParser.m; path = test/RelaxParser.m; sourceTree = "<group>"; };
 		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
 		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1272,6 +1274,15 @@
 			name = "JS Framework";
 			sourceTree = "<group>";
 		};
+		D389A0AE0F1FCC7A003B43BD /* relaxng */ = {
+			isa = PBXGroup;
+			children = (
+				D389A0B00F1FCC99003B43BD /* RelaxParser.h */,
+				D389A0B10F1FCC99003B43BD /* RelaxParser.m */,
+			);
+			name = relaxng;
+			sourceTree = "<group>";
+		};
 		D389F2CA0F196ACF00558235 /* JSDemoApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,6 +1455,7 @@
 				D3D647CE0E2C7569009BF5CD /* xml */,
 				D36E94F40E57865500496BD3 /* xpath */,
 				D3E788900E567DDA008C7D61 /* srgs */,
+				D389A0AE0F1FCC7A003B43BD /* relaxng */,
 				D3C863240E67C249000445FD /* syntax highlight */,
 			);
 			name = Tests;
