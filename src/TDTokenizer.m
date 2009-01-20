@@ -115,18 +115,28 @@
 
 - (void)addTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
     NSParameterAssert(state);
+    
+    //void (*addObject)(id, SEL, id);
+    //addObject = (void (*)(id, SEL, id))[tokenizerStates methodForSelector:@selector(addObject:)];
+    
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [tokenizerStates addObject:state];
+        //addObject(tokenizerStates, @selector(addObject:), state);
     }
 }
 
 
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
     NSParameterAssert(state);
+
+    //void (*relaceObject)(id, SEL, NSUInteger, id);
+    //relaceObject = (void (*)(id, SEL, NSUInteger, id))[tokenizerStates methodForSelector:@selector(replaceObjectAtIndex:withObject:)];
+
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [tokenizerStates replaceObjectAtIndex:i withObject:state];
+        //relaceObject(tokenizerStates, @selector(replaceObjectAtIndex:withObject:), i, state);
     }
 }
 
