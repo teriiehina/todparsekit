@@ -47,10 +47,14 @@
 
 
 - (void)dealloc {
-    self.stack = nil;
-    self.target = nil;
-    self.string = nil;
-    self.defaultDelimiter = nil;
+    [stack release]; 
+    [target release];
+    [string release];
+    [defaultDelimiter release];
+    //self.stack = nil;
+    //self.target = nil;
+    //self.string = nil;
+    //self.defaultDelimiter = nil;
     [super dealloc];
 }
 
