@@ -47,6 +47,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 }
 
 
+// this method diverges from coding standards cuz it is vital to the entire framework's performance
 - (void)dealloc {
     [stack release]; 
     [string release];
@@ -56,6 +57,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 }
 
 
+// this method diverges from coding standards cuz it is vital to the entire framework's performance
 - (id)copyWithZone:(NSZone *)zone {
     TDAssembly *a = [[[self class] allocWithZone:zone] _init];
     a->stack = [stack mutableCopyWithZone:zone];
