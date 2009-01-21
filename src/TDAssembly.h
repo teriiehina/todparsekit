@@ -65,7 +65,6 @@
 - (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter;
 
 /*!
-    @fn         remainingObjectsSeparatedBy:
     @brief      Returns the elements of this assembly that remain to be consumed, separated by the specified delimiter.
     @param      delimiter string with which to separate elements of this assembly
     @result     string representing the elements of this assembly that remain to be consumed, separated by the specified delimiter
