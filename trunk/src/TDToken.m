@@ -116,22 +116,6 @@ static TDTokenEOF *EOFToken = nil;
         self.word = (TDTokenTypeWord == t);
         self.whitespace = (TDTokenTypeWhitespace == t);
         self.comment = (TDTokenTypeComment == t);
-        
-        id v = nil;
-        if (self.isNumber) {
-            v = [NSNumber numberWithFloat:floatValue];
-        } else if (self.isQuotedString) {
-            v = stringValue;
-        } else if (self.isSymbol) {
-            v = stringValue;
-        } else if (self.isWord) {
-            v = stringValue;
-        } else if (self.isWhitespace) {
-            v = stringValue;
-        } else { // support for token type extensions
-            v = stringValue;
-        }
-        self.value = v;
     }
     return self;
 }
@@ -178,6 +162,28 @@ static TDTokenEOF *EOFToken = nil;
             return [stringValue isEqualToString:tok.stringValue];
         }
     }
+}
+
+
+- (id)value {
+    if (!value) {
+        id v = nil;
+        if (self.isNumber) {
+            v = [NSNumber numberWithFloat:floatValue];
+        } else if (self.isQuotedString) {
+            v = stringValue;
+        } else if (self.isSymbol) {
+            v = stringValue;
+        } else if (self.isWord) {
+            v = stringValue;
+        } else if (self.isWhitespace) {
+            v = stringValue;
+        } else { // support for token type extensions
+            v = stringValue;
+        }
+        self.value = v;
+    }
+    return value;
 }
 
 
