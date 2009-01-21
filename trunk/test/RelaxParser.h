@@ -9,7 +9,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface RelaxParser : TDSequence {
-
+	TDTokenizer *tokenizer;
 }
 
 @end

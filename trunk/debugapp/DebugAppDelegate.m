@@ -86,12 +86,15 @@
                 nil];
     id dict = [res pop];
     
-    p.tokenizer.string = [dict description];
+    p.tokenizer.string = [[[dict description] copy] autorelease];
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser bestMatchFor:a];
     dict = [res pop];
+
+	p.tokenizer.string = nil; // prevent retain cycle leak
+	s = [[[dict description] copy] autorelease];
     
-    self.displayString = [[[NSAttributedString alloc] initWithString:[dict description] attributes:attrs] autorelease];
+    self.displayString = [[[NSAttributedString alloc] initWithString:s attributes:attrs] autorelease];
 }
 
 
@@ -354,10 +357,10 @@
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-//    [self doPlistParser];
+    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doProf];
+//    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];

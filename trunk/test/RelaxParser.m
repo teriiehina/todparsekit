@@ -10,6 +10,15 @@
 
 @implementation RelaxParser
 
+- (TDTokenizer *)tokenizer {
+	if (!tokenizer) {
+		self.tokenizer = [TDTokenizer tokenizer];
+		[tokenizer.symbolState add:@"|="];
+		[tokenizer.symbolState add:@"&="];
+	}
+	return tokenizer;
+}
+
 // topLevel ::= decl* (pattern | grammarContent*)
 - (TDCollectionParser *)topLevelParser {
 	if (!topLevelParser) {
@@ -268,13 +277,70 @@
 
 //    grammarContent ::= start | define | "element" "{" grammarContent* "}" | "include" anyURILiteral [inherit] ["{" includeContent* "}"]
 //
-//    includeContent ::= define | start | "element" "{" includeContent* "}"
+//    includeContent ::= define | start | elementIncludeContent
+- (TDCollectionParser *)includeContentParser {
+	if (!includeContentParser) {
+		self.includeContentParser = [TDAlternation alternation];
+		[includeContentParser add:self.defineParser];
+		[includeContentParser add:self.startParser];
+		[includeContentParser add:self.elementIncludeContentParser];
+	}
+	return includeContentParser;
+}
+
+// elementIncludeContent ::= "element" "{" includeContent* "}"
+- (TDCollectionParser *)elementIncludeContentParser {
+	if (!elementIncludeContentParser) {
+		self.elementIncludeContentParser = [TDSequence sequence];
+		[s add:self.elementKeywordParser];
+		[s add:[TDSymbol symbolWithString:@"{"]];
+		[s add:[TDRepetition repetitionWithSubparser:self.includeContentParser]]
+		[s add:[TDSymbol symbolWithString:@"}"]];
+		
+		[elementIncludeContentParser add:s];
+	}
+	return elementIncludeContentParser;
+}
+
+
 //
 //    start ::= "start" assignMethod pattern
+- (TDCollectionParser *)startParser {
+	if (!startParser) {
+		self.startParser = [TDSequence sequence];
+		[startParser add:self.startKeywordParser];
+		[startParser add:self.assignMethodParser];
+		[startParser add:self.patternParser];
+	}
+	return startParser;
+}
+
+
 //
 //    define ::= identifier assignMethod pattern
+- (TDCollectionParser *)defineParser {
+	if (!defineParser) {
+		self.defineParser = [TDSequence sequence];
+		[defineParser add:self.identifierParser];
+		[defineParser add:self.assignMethodParser];
+		[defineParser add:self.patternParser];
+	}
+	return defineParser;
+}
+
+
 //
 //    assignMethod ::= "=" | "|=" | "&="
+- (TDCollectionParser *)assignMethodParser {
+	if (!assignMethodParser) {
+		self.assignMethodParser = [TDAlternation alternation];
+		[assignMethodParser add:[TDSymbol symbolWithString:@"="]];
+		[assignMethodParser add:[TDSymbol symbolWithString:@"|="]];
+		[assignMethodParser add:[TDSymbol symbolWithString:@"&="]];
+	}
+	return assignMethodParser;
+}
+
 //
 //    nameClass ::= name
 //    | nsName [exceptNameClass]
@@ -283,14 +349,59 @@
 //    | "(" nameClass ")"
 //
 //    name ::= identifierOrKeyword | CName
+- (TDCollectionParser *)nameParser {
+	if (!nameParser) {
+		self.nameParser = [TDAlternation alternation];
+		[nameParser add:self.identifierOrKeywordParser];
+		[nameParser add:self.CNameParser];
+	}
+	return nameParser;
+}
+
 //
 //    exceptNameClass ::= "-" nameClass
+- (TDCollectionParser *)exceptNameClassParser {
+	if (!exceptNameClassParser) {
+		self.exceptNameClassParser = [TDSequence sequence];
+		[nameParser add:[TDSymbol symbolWithString:@"-"]];
+		[nameParser add:self.nameClassParser];
+	}
+	return nameParser;
+}
+
 //
 //    datatypeName ::= CName | "string" | "token"
+- (TDCollectionParser *)datatypeNameParser {
+	if (!datatypeNameParser) {
+		self.datatypeNameParser = [TDAlternation alternation];
+		[datatypeNameParser add:self.CNameParser];
+		[datatypeNameParser add:self.stringKeywordParser];
+		[datatypeNameParser add:self.tokenKeywordParser];
+	}
+	return datatypeNameParser;
+}
+
+
 //
 //    datatypeValue ::= literal
+- (TDCollectionParser *)datatypeValueParser {
+	if (!datatypeValueParser) {
+		self.datatypeValueParser = self.literalParser;
+	}
+	return datatypeValueParser;
+}
+
+
 //
 //    anyURILiteral ::= literal
+- (TDCollectionParser *)anyURILiteralParser {
+	if (!anyURILiteralParser) {
+		self.anyURILiteralParser = self.literalParser;
+	}
+	return anyURILiteralParser;
+}
+
+
 //
 //    namespaceURILiteral ::= literal | "inherit"
 //
