@@ -51,7 +51,7 @@
 - (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(TDParser *)p {
     TDAssembly *best = [self best:inAssemblies];
 
-    NSString *after = [best consumedObjectsSeparatedBy:@" "];
+    NSString *after = [best consumedObjectsJoinedByString:@" "];
     if (!after.length) {
         after = @"-nothing-";
     }

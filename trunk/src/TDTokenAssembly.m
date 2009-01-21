@@ -139,13 +139,13 @@
 }
 
 
-- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
+- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter {
     NSParameterAssert(delimiter);
     return [self objectsFrom:0 to:self.objectsConsumed separatedBy:delimiter];
 }
 
 
-- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
+- (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter {
     NSParameterAssert(delimiter);
     return [self objectsFrom:self.objectsConsumed to:self.length separatedBy:delimiter];
 }
