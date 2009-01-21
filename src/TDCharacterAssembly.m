@@ -78,13 +78,13 @@
 }
 
 
-- (NSString *)consumedObjectsSeparatedBy:(NSString *)delimiter {
+- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter {
     NSParameterAssert(delimiter);
     return [string substringToIndex:self.objectsConsumed];
 }
 
 
-- (NSString *)remainingObjectsSeparatedBy:(NSString *)delimiter {
+- (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter {
     NSParameterAssert(delimiter);
     return [string substringFromIndex:self.objectsConsumed];
 }
@@ -111,9 +111,9 @@
     
     [s appendString:@"]"];
     
-    [s appendString:[self consumedObjectsSeparatedBy:self.defaultDelimiter]];
+    [s appendString:[self consumedObjectsJoinedByString:self.defaultDelimiter]];
     [s appendString:@"^"];
-    [s appendString:[self remainingObjectsSeparatedBy:self.defaultDelimiter]];
+    [s appendString:[self remainingObjectsJoinedByString:self.defaultDelimiter]];
     
     return [[s copy] autorelease];
 }
