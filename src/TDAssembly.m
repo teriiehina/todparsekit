@@ -8,6 +8,8 @@
 
 #import <TDParseKit/TDAssembly.h>
 
+static NSString * const TDAssemblyDefaultDelimiter = @"/";
+
 @interface TDAssembly ()
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
@@ -32,7 +34,6 @@
     if (self) {
         self.stack = [NSMutableArray array];
         self.string = s;
-        self.defaultDelimiter = @"/";
     }
     return self;
 }
@@ -48,9 +49,9 @@
 
 - (void)dealloc {
     [stack release]; 
-    [target release];
     [string release];
-    [defaultDelimiter release];
+    if (target) [target release];
+    if (defaultDelimiter) [defaultDelimiter release];
     //self.stack = nil;
     //self.target = nil;
     //self.string = nil;
@@ -63,8 +64,8 @@
     TDAssembly *a = [[[self class] allocWithZone:zone] _init];
     a->stack = [stack mutableCopyWithZone:zone];
     a->string = [string retain];
-    a->defaultDelimiter = [defaultDelimiter retain];
-    a->target = [target mutableCopyWithZone:zone];
+    if (defaultDelimiter) a->defaultDelimiter = [defaultDelimiter retain];
+    if (target) a->target = [target mutableCopyWithZone:zone];
     a->index = index;
     return a;
 }
@@ -174,9 +175,10 @@
     
     [s appendString:@"]"];
     
-    [s appendString:[self consumedObjectsJoinedByString:self.defaultDelimiter]];
+    NSString *d = defaultDelimiter ? defaultDelimiter : TDAssemblyDefaultDelimiter;
+    [s appendString:[self consumedObjectsJoinedByString:d]];
     [s appendString:@"^"];
-    [s appendString:[self remainingObjectsJoinedByString:self.defaultDelimiter]];
+    [s appendString:[self remainingObjectsJoinedByString:d]];
     
     return [[s copy] autorelease];
 }
