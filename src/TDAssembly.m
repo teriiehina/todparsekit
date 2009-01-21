@@ -52,10 +52,6 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
     [string release];
     if (target) [target release];
     if (defaultDelimiter) [defaultDelimiter release];
-    //self.stack = nil;
-    //self.target = nil;
-    //self.string = nil;
-    //self.defaultDelimiter = nil;
     [super dealloc];
 }
 
