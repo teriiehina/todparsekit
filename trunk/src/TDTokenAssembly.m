@@ -11,7 +11,6 @@
 #import <TDParseKit/TDToken.h>
 
 @interface TDTokenAssembly ()
-- (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a;
 - (void)tokenize;
 - (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
 
