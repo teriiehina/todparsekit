@@ -181,13 +181,20 @@
 - (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path];
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+    NSDate *start = [NSDate date];
+    while ((tok = [t nextToken]) != eof) ;
+    CGFloat ms4tok = -([start timeIntervalSinceNow]);
+    
     TDParserFactory *factory = [TDParserFactory factory];
     TDJsonParser *p = nil;
     
     p = [[[TDJsonParser alloc] initWithIntentToAssemble:NO] autorelease];
     
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
-    NSDate *start = [NSDate date];
+    start = [NSDate date];
     TDParser *lp = [factory parserFromGrammar:s assembler:p];
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
@@ -221,7 +228,7 @@
                 [NSColor whiteColor], NSForegroundColorAttributeName,
                 nil];
 
-    s = [NSString stringWithFormat:@"grammar parse: %f sec\n\nlp json parse: %f sec\n\np json parse (not assembled): %f sec\n\np json parse (assembled): %f sec\n\nfast json parse (assembled): %f sec\n\n %f", ms4grammar, ms4json, ms4json2, ms4json3, ms4json4, (ms4json3/ms4json4)];
+    s = [NSString stringWithFormat:@"tokenization: %f \n\ngrammar parse: %f sec\n\nlp json parse: %f sec\n\np json parse (not assembled): %f sec\n\np json parse (assembled): %f sec\n\nfast json parse (assembled): %f sec\n\n %f", ms4tok, ms4grammar, ms4json, ms4json2, ms4json3, ms4json4, (ms4json3/ms4json4)];
     self.displayString = [[[NSMutableAttributedString alloc] initWithString:s attributes:attrs] autorelease];
 }
 
