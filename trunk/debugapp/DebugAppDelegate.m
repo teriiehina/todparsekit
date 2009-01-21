@@ -357,10 +357,10 @@
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    [self doPlistParser];
+//    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-//    [self doProf];
+    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
