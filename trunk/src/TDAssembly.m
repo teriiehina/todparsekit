@@ -13,7 +13,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 @interface TDAssembly ()
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
-@property (nonatomic, copy) NSString *string;
+@property (nonatomic, retain) NSString *string;
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 
