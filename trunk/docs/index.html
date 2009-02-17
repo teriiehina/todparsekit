@@ -106,8 +106,8 @@ while ((tok = [t nextToken]) != eof) {
 
 <p>More information about a token can be easily discovered using the <tt>-debugDescription</tt> method instead of the default <tt>-description</tt>. Replace the line containing <tt>NSLog</tt> above with this line:</p>
 
-<pre>
 <div class="code">
+<pre>
 NSLog(@" (%@)", [tok debugDescription]);
 </pre>
 </div>
@@ -176,7 +176,6 @@ NSLog(@" (%@)", [tok debugDescription]);
 <pre>[t setTokenizerState:t.commentState from:'#' to:'#'];
 [t.commentState addSingleLineStartSymbol:@"#"];</pre>
 </div>
-</p>
 </li>
 
 <li>turn on recognition of "XML/HTML" (<tt>&lt;!-- --></tt>) multi-line comments. ex: 
@@ -184,28 +183,24 @@ NSLog(@" (%@)", [tok debugDescription]);
 <pre>[t setTokenizerState:t.commentState from:'&lt;' to:'&lt;'];
 [t.commentState addMultiLineStartSymbol:@"&lt;!--" endSymbol:@"-->"];</pre>
 </div>
-</p>
 </li>
 
 <li>report (rather than silently consume) Comment tokens. ex: 
 <div class="code">
 <pre>t.commentState.reportsCommentTokens = YES; // default is NO</pre>
 </div>
-</p>
 </li>
 
 <li>report (rather than silently consume) Whitespace tokens. ex: 
 <div class="code">
 <pre>t.whitespaceState.reportsWhitespaceTokens = YES; // default is NO</pre>
 </div>
-</p>
 </li>
 
 <li>turn on recognition of any characters (say, digits) as whitespace to be silently ignored. ex: 
 <div class="code">
 <pre>[t setTokenizerState:t.whitespaceState from:'0' to:'9'];</pre>
 </div>
-</p>
 </li>
 
 </ul>
