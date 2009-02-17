@@ -19,18 +19,27 @@
 <h1>TDParseKit</h1>
 
 <h2>About</h2>
-<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C port of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. Some changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, the changes are relatively superficial, and the Metsker's book is the best documentation available for this framework.</p>
+<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. TDParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
 
 <p>The TDParseKit Source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
 
 <p>More documentation:</p>
 <ul>
+	<li><a href="doxygen/">Doxygen-generated Header Docs</a></li>
 	<li><a href="tokenization.html">Tokenization</a></li>
-	<li>Parsing (coming soon)</li>
+	<li>Parsing (documentation coming soon)</li>
+</ul>
+
+<p>Projects using TDParseKit:</p>
+<ul>
+	<li><a href="http://lucidmac.com/products/spike">Spike</a>: A Rails log file viewer/analyzer by Matt Mower</li>
+	<li><a href="http://tr.im/http">HTTP Client</a>: HTTP debugging/testing tool</li>
+	<li><a href="http://fluidapp.com">Fluid</a>: Site-Specific Browser for Mac OS X</li>
+	<li><a href="http://cruzapp.com">Cruz</a>: Social Browser for Mac OS X</li>
 </ul>
 
 <h2>Xcode Project</h2>
-<p>The TDParseKit Xcode project consists of 4 targets:</p>
+<p>The TDParseKit Xcode project consists of 6 targets:</p>
 
 <ol>
 <li><b>TDParseKit</b> : the TDParseKit Objective-C framework. The central feature/codebase of this project.</li>
@@ -38,7 +47,7 @@
 <li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TDTokenizer class.</li>
 <li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle).</li>
 <li><b>TDJSParseKit</b> : A JavaScriptCore-based scripting interface to TDParseKit which can be used to expose the entire framework to JavaScript environments.</li>
-<li><b>JSDmeoApp</b>: A simple Cocoa application used for exercising the JavaScript interface provided by TDJSParseKit.</li>
+<li><b>JSDmeoApp</b>: A simple Cocoa application used for exercising the JavaScript interface provided by TDJSParseKit. Note that this is the only target which links to the WebKit framework. Neither TDParseKit nor TDJSParseKit requires WebKit.</li>
 </ol>
 
 
