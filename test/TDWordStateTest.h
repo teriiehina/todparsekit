@@ -11,6 +11,6 @@
 @interface TDWordStateTest : SenTestCase {
     TDWordState *wordState;
     TDReader *r;
-    NSString *s;    
+    NSString *s;
 }
 @end

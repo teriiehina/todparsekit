@@ -618,7 +618,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         a = [TDAlternation alternation];
         [a add:[TDEmpty empty]];
         [a add:self.discardParser];
-        [atomicValueParser add:a];        
+        [atomicValueParser add:a];
     }
     return atomicValueParser;
 }

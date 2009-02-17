@@ -62,7 +62,7 @@
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, [tok stringValue]);
-    TDTrue(tok.isQuotedString);    
+    TDTrue(tok.isQuotedString);
 }
 
 
@@ -71,7 +71,7 @@
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, [tok stringValue]);
-    TDTrue(tok.isQuotedString);    
+    TDTrue(tok.isQuotedString);
 }
 
 
@@ -80,7 +80,7 @@
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, [tok stringValue]);
-    TDTrue(tok.isQuotedString);    
+    TDTrue(tok.isQuotedString);
 }
 
 
@@ -89,7 +89,7 @@
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, [tok stringValue]);
-    TDTrue(tok.isQuotedString);    
+    TDTrue(tok.isQuotedString);
 }
 
 
@@ -98,7 +98,7 @@
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, [tok stringValue]);
-    TDTrue(tok.isQuotedString);    
+    TDTrue(tok.isQuotedString);
 }
 
 @end

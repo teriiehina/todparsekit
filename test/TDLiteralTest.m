@@ -11,7 +11,7 @@
 @implementation TDLiteralTest
 
 - (void)tearDown {
-    [a release];    
+    [a release];
 }
 
 - (void)testTrueCompleteMatchForLiteral123 {

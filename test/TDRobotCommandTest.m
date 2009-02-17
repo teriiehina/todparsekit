@@ -111,7 +111,7 @@
     TDAssembly *result = [p bestMatchFor:a];
 
     TDNotNil(result);
-    TDEqualObjects(@"[]pick/carrier/from/LINE_IN^", [result description]);    
+    TDEqualObjects(@"[]pick/carrier/from/LINE_IN^", [result description]);
 
     id target = result.target;
     TDNotNil(target);
@@ -127,7 +127,7 @@
     TDAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
-    TDEqualObjects(@"[]place/carrier/at/LINE_OUT^", [result description]);    
+    TDEqualObjects(@"[]place/carrier/at/LINE_OUT^", [result description]);
 
     id target = result.target;
     TDNotNil(target);

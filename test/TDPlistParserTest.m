@@ -151,7 +151,7 @@
     TDTrue([obj isKindOfClass:[NSDictionary class]]);
     TDEquals((NSUInteger)2, [obj count]);
     
-    TDEqualObjects(@"bar", [obj objectForKey:@"foo foo"]);    
+    TDEqualObjects(@"bar", [obj objectForKey:@"foo foo"]);
     TDEqualObjects([NSNumber numberWithFloat:2.2], [obj objectForKey:[NSNumber numberWithInteger:1]]);
 }
 

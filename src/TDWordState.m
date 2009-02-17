@@ -84,7 +84,7 @@
     } else if (c >= 0xFF00 && c <= 0xFF65) { // symbols within Hiragana & Katakana
         return NO;            
     } else if (c >= 0xFFF0 && c <= 0xFFFF) { // specials
-        return NO;            
+        return NO;        
     } else if (c < 0) {
         return NO;
     } else {

@@ -88,7 +88,7 @@
 
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
-    return a;    
+    return a;
 }
 
 
@@ -530,7 +530,7 @@
         
         s = [TDSequence sequence];
         [s add:[TDSymbol symbolWithString:@"("]];
-        [s add:self.ruleExpansion];        
+        [s add:self.ruleExpansion];    
         [s add:[TDSymbol symbolWithString:@")"]];
         a = [TDAlternation alternation];
         [a add:[TDEmpty empty]];
@@ -540,7 +540,7 @@
         
         s = [TDSequence sequence];
         [s add:[TDSymbol symbolWithString:@"["]];
-        [s add:self.ruleExpansion];        
+        [s add:self.ruleExpansion];    
         [s add:[TDSymbol symbolWithString:@"]"]];
         a = [TDAlternation alternation];
         [a add:[TDEmpty empty]];

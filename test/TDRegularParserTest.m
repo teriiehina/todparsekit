@@ -24,7 +24,7 @@
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
-    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);    
+    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);
 }
 
 
@@ -37,7 +37,7 @@
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
-    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);    
+    TDEqualObjects(@"[a, a, b, b, b, b]aabbbb^", [res description]);
 }
 
 
@@ -50,7 +50,7 @@
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
-    TDEqualObjects(@"[a, a, b]aab^bbb", [res description]);    
+    TDEqualObjects(@"[a, a, b]aab^bbb", [res description]);
 }
 
 

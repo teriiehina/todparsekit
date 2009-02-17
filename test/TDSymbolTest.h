@@ -11,7 +11,7 @@
 @interface TDSymbolTest : SenTestCase {
     TDParser *p;
     TDAssembly *a;
-    NSString *s;    
+    NSString *s;
 }
 
 @end

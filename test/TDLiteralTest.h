@@ -11,7 +11,7 @@
 @interface TDLiteralTest : SenTestCase {
     TDParser *p;
     TDAssembly *a;
-    NSString *s;    
+    NSString *s;
 }
 
 @end
