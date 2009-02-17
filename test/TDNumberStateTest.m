@@ -627,10 +627,36 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+	TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"-");    
     TDEquals((CGFloat)0.0, tok.floatValue);
 }
 
 
+- (void)testInitSig2 {
+    s = @"-(id)init {";
+    t.string = s;
+    r.string = s;
+    TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+	TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"-");    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff {
+    s = @"-(ab+5)";
+    t.string = s;
+    r.string = s;
+    TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"-");    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+
+    tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"(");
+    TDEquals((CGFloat)0.0, tok.floatValue);
+}
 
 @end
