@@ -48,7 +48,7 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     
-    TDAssembly *result = [p bestMatchFor:a];    
+    TDAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
@@ -60,7 +60,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
 
-    TDAssembly *result = [p bestMatchFor:a];    
+    TDAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar]foo/bar^123", [result description]);
 }

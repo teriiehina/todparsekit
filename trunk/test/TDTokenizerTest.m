@@ -182,7 +182,7 @@
     
     TDToken *tok = [t nextToken];
     STAssertEqualsWithAccuracy((CGFloat)0.999, tok.floatValue, 0.01, @"");
-    TDTrue(tok.isNumber);    
+    TDTrue(tok.isNumber);
 
 //    if ([TDToken EOFToken] == token) break;
     
@@ -195,7 +195,7 @@
     
     TDToken *tok = [t nextToken];
     TDEqualObjects(@".", tok.stringValue);
-    TDTrue(tok.isSymbol);    
+    TDTrue(tok.isSymbol);
     
     //    if ([TDToken EOFToken] == token) break;
     
@@ -207,14 +207,14 @@
     t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *tok = [t nextToken];
-    TDEqualObjects(@"-", tok.stringValue);    
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isSymbol);    
+    TDEqualObjects(@"-", tok.stringValue);
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isSymbol);
 
     tok = [t nextToken];
-    TDEqualObjects(@"(", tok.stringValue);    
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isSymbol);    
+    TDEqualObjects(@"(", tok.stringValue);
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isSymbol);
 }
 
 
@@ -223,14 +223,14 @@
     t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *tok = [t nextToken];
-    TDEqualObjects(@"-", tok.stringValue);    
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isSymbol);    
+    TDEqualObjects(@"-", tok.stringValue);
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isSymbol);
 	
     tok = [t nextToken];
-    TDEqualObjects(@"(", tok.stringValue);    
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isSymbol);    
+    TDEqualObjects(@"(", tok.stringValue);
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isSymbol);
 }
 
 
@@ -239,14 +239,14 @@
     t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *tok = [t nextToken];
-    TDEqualObjects(@"-", tok.stringValue);    
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isSymbol);    
+    TDEqualObjects(@"-", tok.stringValue);
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isSymbol);
     
     tok = [t nextToken];
-    TDEqualObjects(@"2", tok.stringValue);    
-    TDEquals((CGFloat)2.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
+    TDEqualObjects(@"2", tok.stringValue);
+    TDEquals((CGFloat)2.0, tok.floatValue);
+    TDTrue(tok.isNumber);
 }
 
 
@@ -255,13 +255,13 @@
     t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *tok = [t nextToken];
-    TDEqualObjects(@"+", tok.stringValue);    
+    TDEqualObjects(@"+", tok.stringValue);
     TDTrue(tok.isSymbol);
 
     tok = [t nextToken];
-    TDEquals((CGFloat)2.0, tok.floatValue);    
+    TDEquals((CGFloat)2.0, tok.floatValue);
     TDTrue(tok.isNumber);
-    TDEqualObjects(@"2", tok.stringValue);    
+    TDEqualObjects(@"2", tok.stringValue);
 
     TDEquals([TDToken EOFToken], [t nextToken]);
 }
@@ -273,9 +273,9 @@
     [t setTokenizerState:t.numberState from:'+' to:'+'];
     
     TDToken *tok = [t nextToken];
-    TDEquals((CGFloat)2.0, tok.floatValue);    
+    TDEquals((CGFloat)2.0, tok.floatValue);
     TDTrue(tok.isNumber);
-    TDEqualObjects(@"+2", tok.stringValue);    
+    TDEqualObjects(@"+2", tok.stringValue);
     
     TDEquals([TDToken EOFToken], [t nextToken]);
 }
@@ -358,7 +358,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @"-");    
+	TDEqualObjects(tok.stringValue, @"-");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];
@@ -395,7 +395,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @"-");    
+	TDEqualObjects(tok.stringValue, @"-");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];
@@ -421,7 +421,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @"+");    
+	TDEqualObjects(tok.stringValue, @"+");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];
@@ -458,7 +458,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @"+");    
+	TDEqualObjects(tok.stringValue, @"+");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];
@@ -484,7 +484,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @".");    
+	TDEqualObjects(tok.stringValue, @".");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];
@@ -521,7 +521,7 @@
 	
 	TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-	TDEqualObjects(tok.stringValue, @".");    
+	TDEqualObjects(tok.stringValue, @".");
 	TDEquals((CGFloat)0.0, tok.floatValue);
 	
 	tok = [t nextToken];

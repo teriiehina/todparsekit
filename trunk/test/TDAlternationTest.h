@@ -11,7 +11,7 @@
 @interface TDAlternationTest : SenTestCase {
     TDCollectionParser *p;
     TDAssembly *a;
-    NSString *s;    
+    NSString *s;
 }
 
 @end

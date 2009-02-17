@@ -28,9 +28,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)3.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"3", tok.stringValue);    
+    TDEquals((CGFloat)3.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"3", tok.stringValue);
 }
 
 
@@ -39,9 +39,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)47.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"47", tok.stringValue);    
+    TDEquals((CGFloat)47.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"47", tok.stringValue);
 }
 
 
@@ -50,9 +50,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)654.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"654", tok.stringValue);    
+    TDEquals((CGFloat)654.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"654", tok.stringValue);
 }
 
 
@@ -61,9 +61,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)3.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+3", tok.stringValue);    
+    TDEquals((CGFloat)3.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+3", tok.stringValue);
 }
 
 
@@ -72,8 +72,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)22.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
+    TDEquals((CGFloat)22.0, tok.floatValue);
+    TDTrue(tok.isNumber);
 }
 
 
@@ -82,8 +82,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)22.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
+    TDEquals((CGFloat)22.0, tok.floatValue);
+    TDTrue(tok.isNumber);
 }
 
 
@@ -93,13 +93,13 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"1.1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"1.1", tok.stringValue);
 
     tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@".1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".1", tok.stringValue);
 }
 
 
@@ -109,8 +109,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"1", tok.stringValue);
 }
 
 
@@ -121,8 +121,8 @@
     numberState.allowsTrailingDot = YES;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"1.", tok.stringValue);        
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"1.", tok.stringValue);    
 }
 
 
@@ -132,7 +132,7 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
+    TDTrue(tok.isNumber);
     TDEqualObjects(@"1.0", tok.stringValue);
 }
 
@@ -143,7 +143,7 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
+    TDTrue(tok.isNumber);
     TDEqualObjects(@"+1", tok.stringValue);
 }
 
@@ -155,7 +155,7 @@
     numberState.allowsTrailingDot = YES;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
+    TDTrue(tok.isNumber);
     TDEqualObjects(@"+1.", tok.stringValue);
 }
 
@@ -166,8 +166,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+1.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+1.0", tok.stringValue);
 }
 
 
@@ -177,8 +177,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+1.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+1.0", tok.stringValue);
 }
 
 
@@ -188,7 +188,7 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
+    TDTrue(tok.isNumber);
     TDEqualObjects(@"-1", tok.stringValue);
 }
 
@@ -200,8 +200,8 @@
     numberState.allowsTrailingDot = YES;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-1.", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-1.", tok.stringValue);
 }
 
 
@@ -211,8 +211,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-1", tok.stringValue);
 }
 
 
@@ -222,8 +222,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-1.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-1.0", tok.stringValue);
 }
 
 
@@ -233,8 +233,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-1.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-1.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-1.0", tok.stringValue);
 }
 
 
@@ -244,8 +244,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)1.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"1.1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"1.1", tok.stringValue);
 }
 
 
@@ -255,8 +255,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"0.1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0.1", tok.stringValue);
 }
 
 
@@ -266,8 +266,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@".1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".1", tok.stringValue);
 }
 
 
@@ -277,8 +277,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@".0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
 }
 
 
@@ -288,8 +288,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.0", tok.stringValue);
 }
 
 
@@ -299,8 +299,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+.0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+.0", tok.stringValue);
 }
 
 
@@ -310,8 +310,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+.1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+.1", tok.stringValue);
 }
 
 
@@ -321,8 +321,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.1, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.1", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.1", tok.stringValue);
 }
 
 
@@ -332,8 +332,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.11, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.11", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.11", tok.stringValue);
 }
 
 
@@ -343,8 +343,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.111, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.111", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.111", tok.stringValue);
 }
 
 
@@ -354,8 +354,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.111, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.1110", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.1110", tok.stringValue);
 }
 
 
@@ -365,8 +365,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.111, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.11100", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.11100", tok.stringValue);
 }
 
 
@@ -376,8 +376,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.111, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-.1110", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-.1110", tok.stringValue);
 }
 
 
@@ -387,8 +387,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)0.365, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"0.365", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0.365", tok.stringValue);
 }
 
 
@@ -398,8 +398,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.365, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-0.365", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-0.365", tok.stringValue);
 }
 
 
@@ -409,8 +409,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-24.365, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-24.365", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-24.365", tok.stringValue);
 }
 
 
@@ -420,8 +420,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)24.365, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"24.365", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"24.365", tok.stringValue);
 }
 
 
@@ -430,9 +430,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"0", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0", tok.stringValue);
 }
 
 
@@ -441,9 +441,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)-1.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-1", tok.stringValue);    
+    TDEquals((CGFloat)-1.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-1", tok.stringValue);
 }
 
 
@@ -452,9 +452,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)1.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"1", tok.stringValue);    
+    TDEquals((CGFloat)1.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"1", tok.stringValue);
 }
 
 
@@ -463,9 +463,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)1.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+1", tok.stringValue);    
+    TDEquals((CGFloat)1.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+1", tok.stringValue);
 }
 
 
@@ -474,9 +474,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+0", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+0", tok.stringValue);
 }
 
 
@@ -485,9 +485,9 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"+0", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+0", tok.stringValue);
 }
 
 
@@ -497,8 +497,8 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEquals((CGFloat)-0.0, tok.floatValue);
-    TDTrue(tok.isNumber);    
-    TDEqualObjects(@"-0", tok.stringValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-0", tok.stringValue);
 }
 
 
@@ -507,8 +507,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -517,8 +517,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -527,8 +527,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -537,8 +537,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -547,8 +547,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -557,8 +557,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -567,8 +567,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -577,8 +577,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -587,8 +587,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -597,8 +597,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -607,8 +607,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -617,8 +617,8 @@
     t.string = s;
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEquals((CGFloat)0.0, tok.floatValue);    
-    TDFalse(tok.isNumber);    
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDFalse(tok.isNumber);
 }
 
 
@@ -628,7 +628,7 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
 	TDTrue(tok.isSymbol);
-    TDEqualObjects(tok.stringValue, @"-");    
+    TDEqualObjects(tok.stringValue, @"-");
     TDEquals((CGFloat)0.0, tok.floatValue);
 }
 
@@ -639,7 +639,7 @@
     r.string = s;
     TDToken *tok = [numberState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
 	TDTrue(tok.isSymbol);
-    TDEqualObjects(tok.stringValue, @"-");    
+    TDEqualObjects(tok.stringValue, @"-");
     TDEquals((CGFloat)0.0, tok.floatValue);
 }
 
@@ -650,7 +650,7 @@
     r.string = s;
     TDToken *tok = [t nextToken];
 	TDTrue(tok.isSymbol);
-    TDEqualObjects(tok.stringValue, @"-");    
+    TDEqualObjects(tok.stringValue, @"-");
     TDEquals((CGFloat)0.0, tok.floatValue);
 
     tok = [t nextToken];

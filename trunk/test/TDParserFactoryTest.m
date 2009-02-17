@@ -486,7 +486,7 @@
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);    
+    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
 }
 
 
@@ -500,7 +500,7 @@
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);    
+    TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);
 }
 
 
@@ -514,7 +514,7 @@
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[hello]hello^hello/hello", [res description]);    
+    TDEqualObjects(@"[hello]hello^hello/hello", [res description]);
 }
 
 
@@ -527,7 +527,7 @@
     s = @"there";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[there]there^", [res description]);    
+    TDEqualObjects(@"[there]there^", [res description]);
 }
 
 
@@ -900,7 +900,7 @@
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[hello]hello^hello", [res description]);    
+    TDEqualObjects(@"[hello]hello^hello", [res description]);
 }
 
 
@@ -912,7 +912,7 @@
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);    
+    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
 }
 
 
@@ -933,7 +933,7 @@
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[333]333^444", [res description]);    
+    TDEqualObjects(@"[333]333^444", [res description]);
     
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -966,12 +966,12 @@
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[333, 444]333/444^", [res description]);    
+    TDEqualObjects(@"[333, 444]333/444^", [res description]);
     
     s = @"1.1 2.2 3.3";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[1.1, 2.2]1.1/2.2^3.3", [res description]);    
+    TDEqualObjects(@"[1.1, 2.2]1.1/2.2^3.3", [res description]);
     
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -988,7 +988,7 @@
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[333, 444]333/444^", [res description]);    
+    TDEqualObjects(@"[333, 444]333/444^", [res description]);
 }
 
 
@@ -1009,7 +1009,7 @@
     s = @"? #";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[?]?^#", [res description]);    
+    TDEqualObjects(@"[?]?^#", [res description]);
     
     s = @"hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -1026,7 +1026,7 @@
     s = @"% *";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[%, *]%/*^", [res description]);    
+    TDEqualObjects(@"[%, *]%/*^", [res description]);
 }
 
 
@@ -1046,7 +1046,7 @@
     s = @"'hello' 'hello'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"['hello']'hello'^'hello'", [res description]);    
+    TDEqualObjects(@"['hello']'hello'^'hello'", [res description]);
 }
 
 
@@ -1058,7 +1058,7 @@
     s = @"'hello' 'hello'";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);    
+    TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);
 }
 
 @end

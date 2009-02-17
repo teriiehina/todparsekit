@@ -85,10 +85,10 @@
 //    [t setTokenizerState:NCNameState from: 'A' to: 'Z'];
 //    [t setTokenizerState:NCNameState from:0xc0 to:0xff];
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];    
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
 //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
     
-    return a;    
+    return a;
 }
 
 
@@ -249,7 +249,7 @@
         [s add:[TDSymbol symbolWithString:@"("]];
         [s add:self.literal];
         [s add:[TDSymbol symbolWithString:@")"]];
-        [nodeTest add:s];        
+        [nodeTest add:s];    
     }
     return nodeTest;
 }

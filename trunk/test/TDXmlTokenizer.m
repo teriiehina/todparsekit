@@ -47,7 +47,7 @@
     NSInteger nodeType = -1;
     
     do {
-        ret = [reader read];        
+        ret = [reader read];    
         nodeType = reader.nodeType;
     } while (nodeType == TDTT_XML_SIGNIFICANT_WHITESPACE || nodeType == TDTT_XML_WHITESPACE);
 
