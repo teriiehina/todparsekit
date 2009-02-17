@@ -9,8 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDCommentStateTest"
-//#define NS_BLOCK_ASSERTIONS 0
+#define SOLO_TEST_CASE @"TDNumberStateTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;

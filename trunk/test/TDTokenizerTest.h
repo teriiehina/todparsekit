@@ -11,9 +11,7 @@
 @class TDTokenizer;
 
 @interface TDTokenizerTest : SenTestCase {
-    TDTokenizer *tokenizer;
-    NSString *string;
+    TDTokenizer *t;
+    NSString *s;
 }
-@property (retain) TDTokenizer *tokenizer;
-@property (copy) NSString *string;
 @end

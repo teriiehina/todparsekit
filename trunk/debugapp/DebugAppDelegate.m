@@ -91,8 +91,8 @@
     res = [p.dictParser bestMatchFor:a];
     dict = [res pop];
 
-	p.tokenizer.string = nil; // prevent retain cycle leak
-	s = [[[dict description] copy] autorelease];
+    p.tokenizer.string = nil; // prevent retain cycle leak
+    s = [[[dict description] copy] autorelease];
     
     self.displayString = [[[NSAttributedString alloc] initWithString:s attributes:attrs] autorelease];
 }
@@ -361,6 +361,23 @@
 }
 
 
+- (void)doParenStuff {
+    NSString *s = @"-(ab+5)";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+
+    TDToken *tok = [t nextToken];
+    
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"-");    
+//    TDEquals((CGFloat)0.0, tok.floatValue);
+    
+    tok = [t nextToken];
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"(");
+//    TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -372,6 +389,7 @@
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
+//    [self doParenStuff];
     
 //    [self doJSONHighlighting];
 //    [self doCSSHighlighting];

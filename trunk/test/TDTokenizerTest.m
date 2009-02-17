@@ -11,26 +11,18 @@
 
 @implementation TDTokenizerTest
 
-@synthesize tokenizer;
-@synthesize string;
-
 - (void)setUp {
-//    self.string = @"oh hai";
-//    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
 }
 
 
 - (void)tearDown {
-    self.tokenizer = nil;
-    self.string = nil;
 }
 
-#pragma mark -
 
 - (void)testBlastOff {
-    NSString *s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
+    s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
                     @"and <= 3 'ticks' later /* wince */, it's blast-off!";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -44,8 +36,8 @@
 }
 
 - (void)testStuff {
-    NSString *s = @"2 != 47. Blast-off!! 'Woo-hoo!'";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    s = @"2 != 47. Blast-off!! 'Woo-hoo!'";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -57,8 +49,8 @@
 
 
 - (void)testStuff2 {
-    NSString *s = @"2 != 47. Blast-off!! 'Woo-hoo!'";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    s = @"2 != 47. Blast-off!! 'Woo-hoo!'";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -126,8 +118,8 @@
 
 
 - (void)testFortySevenDot {
-    NSString *s = @"47.";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    s = @"47.";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -152,8 +144,8 @@
 
 
 - (void)testFortySevenDotSpaceFoo {
-    NSString *s = @"47. foo";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    s = @"47. foo";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -185,12 +177,12 @@
 
 
 - (void)testDotOne {
-    self.string = @"   .999";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"   .999";
+    t = [TDTokenizer tokenizerWithString:s];
     
-    TDToken *t = [tokenizer nextToken];
-    STAssertEqualsWithAccuracy((CGFloat)0.999, t.floatValue, 0.01, @"");
-    TDTrue(t.isNumber);    
+    TDToken *tok = [t nextToken];
+    STAssertEqualsWithAccuracy((CGFloat)0.999, tok.floatValue, 0.01, @"");
+    TDTrue(tok.isNumber);    
 
 //    if ([TDToken EOFToken] == token) break;
     
@@ -198,12 +190,12 @@
 
 
 - (void)testSpaceDotSpace {
-    self.string = @" . ";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @" . ";
+    t = [TDTokenizer tokenizerWithString:s];
     
-    TDToken *t = [tokenizer nextToken];
-    TDEqualObjects(@".", t.stringValue);
-    TDTrue(t.isSymbol);    
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@".", tok.stringValue);
+    TDTrue(tok.isSymbol);    
     
     //    if ([TDToken EOFToken] == token) break;
     
@@ -211,76 +203,97 @@
 
 
 - (void)testInitSig {
-    self.string = @"- (id)init {";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"- (id)init {";
+    t = [TDTokenizer tokenizerWithString:s];
     
-    TDToken *t = [tokenizer nextToken];
-    TDEqualObjects(@"-", t.stringValue);    
-    TDEquals((CGFloat)0.0, t.floatValue);    
-    TDTrue(t.isSymbol);    
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@"-", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);    
+    TDTrue(tok.isSymbol);    
+
+    tok = [t nextToken];
+    TDEqualObjects(@"(", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);    
+    TDTrue(tok.isSymbol);    
+}
+
+
+- (void)testInitSig2 {
+    s = @"-(id)init {";
+    t = [TDTokenizer tokenizerWithString:s];
+    
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@"-", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);    
+    TDTrue(tok.isSymbol);    
+	
+    tok = [t nextToken];
+    TDEqualObjects(@"(", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);    
+    TDTrue(tok.isSymbol);    
 }
 
 
 - (void)testMinusSpaceTwo {
-    self.string = @"- 2";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"- 2";
+    t = [TDTokenizer tokenizerWithString:s];
     
-    TDToken *t = [tokenizer nextToken];
-    TDEqualObjects(@"-", t.stringValue);    
-    TDEquals((CGFloat)0.0, t.floatValue);    
-    TDTrue(t.isSymbol);    
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@"-", tok.stringValue);    
+    TDEquals((CGFloat)0.0, tok.floatValue);    
+    TDTrue(tok.isSymbol);    
     
-    t = [tokenizer nextToken];
-    TDEqualObjects(@"2", t.stringValue);    
-    TDEquals((CGFloat)2.0, t.floatValue);    
-    TDTrue(t.isNumber);    
+    tok = [t nextToken];
+    TDEqualObjects(@"2", tok.stringValue);    
+    TDEquals((CGFloat)2.0, tok.floatValue);    
+    TDTrue(tok.isNumber);    
 }
 
 
 - (void)testMinusPlusTwo {
-    self.string = @"+2";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"+2";
+    t = [TDTokenizer tokenizerWithString:s];
     
-    TDToken *t = [tokenizer nextToken];
-    TDEqualObjects(@"+", t.stringValue);    
-    TDTrue(t.isSymbol);
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@"+", tok.stringValue);    
+    TDTrue(tok.isSymbol);
 
-    t = [tokenizer nextToken];
-    TDEquals((CGFloat)2.0, t.floatValue);    
-    TDTrue(t.isNumber);
-    TDEqualObjects(@"2", t.stringValue);    
+    tok = [t nextToken];
+    TDEquals((CGFloat)2.0, tok.floatValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"2", tok.stringValue);    
 
-    TDEquals([TDToken EOFToken], [tokenizer nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
 - (void)testMinusPlusTwoCustom {
-    self.string = @"+2";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
-    [tokenizer setTokenizerState:tokenizer.numberState from:'+' to:'+'];
+    s = @"+2";
+    t = [TDTokenizer tokenizerWithString:s];
+    [t setTokenizerState:t.numberState from:'+' to:'+'];
     
-    TDToken *t = [tokenizer nextToken];
-    TDEquals((CGFloat)2.0, t.floatValue);    
-    TDTrue(t.isNumber);
-    TDEqualObjects(@"+2", t.stringValue);    
+    TDToken *tok = [t nextToken];
+    TDEquals((CGFloat)2.0, tok.floatValue);    
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"+2", tok.stringValue);    
     
-    TDEquals([TDToken EOFToken], [tokenizer nextToken]);
+    TDEquals([TDToken EOFToken], [t nextToken]);
 }
 
 
 - (void)testSimpleAPIUsage {
-    self.string = @".    ,    ()  12.33333 .:= .456\n\n>=<     'boooo'fasa  this should /*     not*/ appear \r /*but  */this should >=<//n't";
+    s = @".    ,    ()  12.33333 .:= .456\n\n>=<     'boooo'fasa  this should /*     not*/ appear \r /*but  */this should >=<//n't";
 
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    t = [TDTokenizer tokenizerWithString:s];
     
-    [tokenizer.symbolState add:@":="];
-    [tokenizer.symbolState add:@">=<"];
+    [t.symbolState add:@":="];
+    [t.symbolState add:@">=<"];
     
     NSMutableArray *toks = [NSMutableArray array];
     
     TDToken *eof = [TDToken EOFToken];
     TDToken *token = nil;
-    while (token = [tokenizer nextToken]) {
+    while (token = [t nextToken]) {
         if (eof == token) break;
         
         [toks addObject:token];
@@ -292,50 +305,257 @@
 
 
 - (void)testKatakana1 {
-    self.string = @"ア";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"ア";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = [tokenizer nextToken];
+    TDToken *tok = [t nextToken];
     
     TDNotNil(tok);
     TDTrue(tok.isWord);
-    TDEqualObjects(string, tok.stringValue);
+    TDEqualObjects(s, tok.stringValue);
     
-    tok = [tokenizer nextToken];
+    tok = [t nextToken];
     TDEqualObjects(eof, tok);
 }
 
 
 - (void)testKatakana2 {
-    self.string = @"アア";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"アア";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = [tokenizer nextToken];
+    TDToken *tok = [t nextToken];
     
     TDNotNil(tok);
     TDTrue(tok.isWord);
-    TDEqualObjects(string, tok.stringValue);
+    TDEqualObjects(s, tok.stringValue);
     
-    tok = [tokenizer nextToken];
+    tok = [t nextToken];
     TDEqualObjects(eof, tok);
 }
 
 
 - (void)testKatakana3 {
-    self.string = @"アェ";
-    self.tokenizer = [[[TDTokenizer alloc] initWithString:string] autorelease];
+    s = @"アェ";
+    t = [TDTokenizer tokenizerWithString:s];
     
     TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = [tokenizer nextToken];
+    TDToken *tok = [t nextToken];
     
     TDNotNil(tok);
     TDTrue(tok.isWord);
-    TDEqualObjects(string, tok.stringValue);
+    TDEqualObjects(s, tok.stringValue);
     
-    tok = [tokenizer nextToken];
+    tok = [t nextToken];
     TDEqualObjects(eof, tok);
+}
+
+
+- (void)testParenStuff {
+    s = @"-(ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"-");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"+");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isNumber);
+	TDEqualObjects(tok.stringValue, @"5");
+	TDEquals((CGFloat)5.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @")");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff2 {
+    s = @"- (ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	t.whitespaceState.reportsWhitespaceTokens = YES;
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"-");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWhitespace);
+	TDEqualObjects(tok.stringValue, @" ");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff3 {
+    s = @"+(ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"+");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"+");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isNumber);
+	TDEqualObjects(tok.stringValue, @"5");
+	TDEquals((CGFloat)5.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @")");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff4 {
+    s = @"+ (ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	t.whitespaceState.reportsWhitespaceTokens = YES;
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"+");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWhitespace);
+	TDEqualObjects(tok.stringValue, @" ");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff5 {
+    s = @".(ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @".");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"+");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isNumber);
+	TDEqualObjects(tok.stringValue, @"5");
+	TDEquals((CGFloat)5.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @")");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff6 {
+    s = @". (ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+	t.whitespaceState.reportsWhitespaceTokens = YES;
+	
+	TDToken *tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @".");    
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWhitespace);
+	TDEqualObjects(tok.stringValue, @" ");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isSymbol);
+	TDEqualObjects(tok.stringValue, @"(");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+	
+	tok = [t nextToken];
+	TDTrue(tok.isWord);
+	TDEqualObjects(tok.stringValue, @"ab");
+	TDEquals((CGFloat)0.0, tok.floatValue);
+}
+
+
+- (void)testParenStuff7 {
+    s = @"-(ab+5)";
+    t = [TDTokenizer tokenizerWithString:s];
+    
+    NSMutableString *final = [NSMutableString string];
+    
+    TDToken *eof = [TDToken EOFToken];
+    TDToken *tok = nil;
+    while ((tok = [t nextToken]) != eof) {
+        [final appendString:[tok stringValue]];
+    }
+    
+    TDNotNil(tok);
+    TDEqualObjects(final, s);
+    TDEqualObjects(eof, [t nextToken]);
 }
 
 @end
