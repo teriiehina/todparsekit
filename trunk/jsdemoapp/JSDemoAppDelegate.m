@@ -57,7 +57,7 @@
 - (void)awakeFromNib {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"Test" ofType:@"html"];
     [comboBox setStringValue:[[NSURL fileURLWithPath:path] absoluteString]];
-    //[self goToLocation:self];
+    [self goToLocation:self];
 }
 
 
