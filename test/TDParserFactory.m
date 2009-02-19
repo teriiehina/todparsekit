@@ -229,11 +229,12 @@ void TDReleaseSubparserTree(TDParser *p) {
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
     [self setTokenizerState:t.quoteState onTokenizer:t forTokensForKey:@"@quoteState"];
     [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
+    [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
 
     NSArray *toks = nil;
     
-    // single line comments
+    // muli-char symbols
     toks = [parserTokensTable objectForKey:@"@symbols"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {

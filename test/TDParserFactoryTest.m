@@ -1061,4 +1061,28 @@
     TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);
 }
 
+
+- (void)testRubyHash {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path];
+    t = nil;
+    lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
+    
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+  
+//    s = @"{\"brand\"=>{\"name\"=>\"something\","
+//    @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
+//    @"\"summary\"=>\"wee\", \"content\"=>\"woopy doo\"}, \"commit\"=>\"Save\","
+//    @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
+//    @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
+
+    t.string = @"{'foo'=>'bar'}";
+    t.commentState.reportsCommentTokens = YES;
+    
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', =>, 'bar', }]{/'foo'/=>/'bar'/}^", [res description]);
+}
+
 @end

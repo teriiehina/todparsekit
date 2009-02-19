@@ -344,6 +344,28 @@
 }
 
 
+- (void)doRubyHashParser {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
+    NSString *s = [NSString stringWithContentsOfFile:path];
+    TDTokenizer *t = nil;
+    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
+    
+    s = @"{\"brand\"=>{\"name\"=>\"something\","
+    @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
+    @"\"summary\"=>\"wee\", \"content\"=>\"woopy doo\"}, \"commit\"=>\"Save\","
+    @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
+    @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
+    
+    t.string = s; //@"{\"foo\"=>\"bar\"}";
+    t.commentState.reportsCommentTokens = YES;
+
+    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    TDAssembly *res = [lp bestMatchFor:a];
+    NSLog(@"%@", res);
+}
+
+
+
 - (void)doFactory {
 //    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
 //    TDParserFactory *factory = [TDParserFactory factory];
@@ -384,7 +406,8 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doProf];
+    [self doRubyHashParser];
+//    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
