@@ -361,6 +361,8 @@
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
+		D3FD79200F4CC86800BAD816 /* rubyhash.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3FD791F0F4CC86800BAD816 /* rubyhash.grammar */; };
+		D3FD79210F4CC87900BAD816 /* rubyhash.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3FD791F0F4CC86800BAD816 /* rubyhash.grammar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -847,6 +849,7 @@
 		D3F741360EF8E5B000559B9F /* css-old.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "css-old.grammar"; path = "test/css-old.grammar"; sourceTree = "<group>"; };
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
 		D3F741BD0EF9F28D00559B9F /* css2_1.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css2_1.grammar; path = res/css2_1.grammar; sourceTree = "<group>"; };
+		D3FD791F0F4CC86800BAD816 /* rubyhash.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rubyhash.grammar; path = res/rubyhash.grammar; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1412,6 +1415,7 @@
 				D383498A0F0C0CF30055E4E0 /* json_with_comments.grammar */,
 				D38349BB0F0C0D910055E4E0 /* json_with_comments.css */,
 				D3834A470F0C14B60055E4E0 /* yahoo_with_comments.json */,
+				D3FD791F0F4CC86800BAD816 /* rubyhash.grammar */,
 				D380AFC20F0C56000009EC13 /* example.html */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
@@ -2019,6 +2023,7 @@
 				D380B50A0F0D71B00009EC13 /* css.grammar in Resources */,
 				D380B5390F0D7DE30009EC13 /* css.css in Resources */,
 				D380B5950F0D82F90009EC13 /* example.css in Resources */,
+				D3FD79210F4CC87900BAD816 /* rubyhash.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2071,6 +2076,7 @@
 				D380B5090F0D71A90009EC13 /* css.grammar in Resources */,
 				D380B5380F0D7DDE0009EC13 /* css.css in Resources */,
 				D380B5940F0D82F60009EC13 /* example.css in Resources */,
+				D3FD79200F4CC86800BAD816 /* rubyhash.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
