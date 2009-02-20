@@ -74,7 +74,7 @@
     if (!miniCSSParser) {
         // create mini-css parser
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-        NSString *grammarString = [NSString stringWithContentsOfFile:path];
+        NSString *grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
         self.miniCSSParser = [self.parserFactory parserFromGrammar:grammarString assembler:self.miniCSSAssembler];
     } 
@@ -101,7 +101,7 @@
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName {
     // parse CSS
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"css"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     [self.miniCSSParser bestMatchFor:a]; // produce dict of attributes from the CSS
     return self.miniCSSAssembler.attributes;
@@ -121,7 +121,7 @@
         self.genericAssembler.attributes = [self attributesForGrammarNamed:grammarName];
         
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"grammar"];
-        NSString *grammarString = [NSString stringWithContentsOfFile:path];
+        NSString *grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
         // generate a parser for the requested grammar
         parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;

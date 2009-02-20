@@ -23,7 +23,7 @@
 
 - (void)testCrunchBaseJsonParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDFastJsonParser *parser = [[[TDFastJsonParser alloc] init] autorelease];
     [parser parse:s];
     //    id res = [parser parse:s];

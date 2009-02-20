@@ -32,7 +32,7 @@
 
 - (void)testCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css-old" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -57,7 +57,7 @@
 - (void)testJSON {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json-old" ofType:@"grammar"];
     NSLog(@"path: %@", path);
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);

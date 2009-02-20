@@ -12,7 +12,7 @@
 
 - (void)setUp {
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-    grammarString = [NSString stringWithContentsOfFile:path];
+    grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     cssAssember = [[TDMiniCSSAssembler alloc] init];
     factory = [TDParserFactory factory];
     cssParser = [factory parserFromGrammar:grammarString assembler:cssAssember];
@@ -28,7 +28,7 @@
     TDNotNil(cssParser);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     a = [TDTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     

@@ -19,7 +19,7 @@
 
 - (void)testForAppleBossResultTokenization {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     
     TDToken *eof = [TDToken EOFToken];
@@ -32,7 +32,7 @@
 
 - (void)testForAppleBossResult {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     @try {
         result = [p parse:s];
@@ -192,7 +192,7 @@
 
 - (void)testCrunchBaseJsonParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDJsonParser *parser = [[[TDJsonParser alloc] init] autorelease];
     [parser parse:s];
 //    id res = [parser parse:s];
@@ -202,7 +202,7 @@
 
 - (void)testCrunchBaseJsonParserTokenization {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     
     TDToken *eof = [TDToken EOFToken];
@@ -215,7 +215,7 @@
 
 - (void)testCrunchBaseJsonTokenParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDFastJsonParser *parser = [[[TDFastJsonParser alloc] init] autorelease];
     [parser parse:s];
     //    id res = [parser parse:s];

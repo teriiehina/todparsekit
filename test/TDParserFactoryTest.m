@@ -35,7 +35,7 @@
 
 - (void)testCSS2_1 {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css2_1" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -49,7 +49,7 @@
 
 - (void)testCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -83,7 +83,7 @@
 
 - (void)testJSON {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -122,7 +122,7 @@
 
 - (void)testJSONWithDiscards {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     lp = [factory parserFromGrammar:s assembler:nil];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -1064,7 +1064,7 @@
 
 - (void)testRubyHash {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     t = nil;
     lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
     
