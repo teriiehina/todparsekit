@@ -173,8 +173,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.wordState from:'@' to:'@'];
     
@@ -191,10 +189,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     [src release];
     
-    [target retain]; // retain to survive the pool releaase
-    [pool drain];
-    
-    return [target autorelease]; // autorelease it to balance
+    return target;
 }
 
 
