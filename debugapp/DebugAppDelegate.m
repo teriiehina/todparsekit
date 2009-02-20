@@ -405,7 +405,7 @@
 //    [self doPlistParser];
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
-    [self doRubyHashParser];
+//    [self doRubyHashParser];
 //    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
@@ -413,7 +413,7 @@
 //    [self doSimpleCSS2];
 //    [self doParenStuff];
     
-//    [self doJSONHighlighting];
+    [self doJSONHighlighting];
 //    [self doCSSHighlighting];
 //    [self doHTMLHighlighting];
     
