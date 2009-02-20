@@ -45,8 +45,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
 
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t wantsTokenizer:(BOOL)wantsTokenizer;
 - (TDTokenizer *)tokenizerFromGrammarSettings;
+- (BOOL)boolForTokenForKey:(NSString *)key;
 - (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 
 - (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
@@ -141,27 +141,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
-    return [self parserFromGrammar:s assembler:a getTokenizer:nil wantsTokenizer:NO];
+    return [self parserFromGrammar:s assembler:a getTokenizer:nil];
 }    
 
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t {
-    return [self parserFromGrammar:s assembler:a getTokenizer:t wantsTokenizer:YES];
-}
-
-
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t wantsTokenizer:(BOOL)wantsTokenizer {
     self.assembler = a;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
     [self gatherParserClassNamesFromTokens];
-    if (wantsTokenizer) {
-        (*t) = [self tokenizerFromGrammarSettings];
+    if (t) {
+        *t = [self tokenizerFromGrammarSettings];
     }
         
-    TDParser *start = [self expandedParserForName:@"@start"]; // retain to survive pool release
+    TDParser *start = [self expandedParserForName:@"@start"];
     
     assembler = nil;
     self.selectorTable = nil;
@@ -202,6 +197,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     return [target autorelease]; // autorelease it to balance
 }
 
+
 - (void)gatherParserClassNamesFromTokens {
     isGatheringClasses = YES;
     // discover the actual parser class types
@@ -227,6 +223,9 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTokenizer *t = [TDTokenizer tokenizer];
     [t.commentState removeSingleLineStartSymbol:@"//"];
     [t.commentState removeMultiLineStartSymbol:@"/*"];
+
+    t.whitespaceState.reportsWhitespaceTokens = [self boolForTokenForKey:@"@reportsWhitespaceTokens"];
+    t.commentState.reportsCommentTokens = [self boolForTokenForKey:@"@reportsCommentTokens"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
@@ -245,31 +244,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     }
     
-    // comments stuff
-    toks = [parserTokensTable objectForKey:@"@reportsWhitespaceTokens"];
-    for (TDToken *tok in toks) {
-        if (tok.isWord) {
-			BOOL report = NO;
-			if ([tok.stringValue isEqualToString:@"YES"]) {
-				report = YES;
-			}
-			t.whitespaceState.reportsWhitespaceTokens = report;
-        }
-    }
-
-    // comments stuff
-    toks = [parserTokensTable objectForKey:@"@reportsCommentTokens"];
-    for (TDToken *tok in toks) {
-        if (tok.isWord) {
-			BOOL report = NO;
-			if ([tok.stringValue isEqualToString:@"YES"]) {
-				report = YES;
-			}
-			t.commentState.reportsCommentTokens = report;
-        }
-    }
-
-    // single line comments
+    // single-line comments
     toks = [parserTokensTable objectForKey:@"@singleLineComments"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
@@ -279,7 +254,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     }
     
-    // multi line comments
+    // multi-line comments
     toks = [parserTokensTable objectForKey:@"@multiLineComments"];
     if (toks.count > 1) {
         NSInteger i = 0;
@@ -297,6 +272,19 @@ void TDReleaseSubparserTree(TDParser *p) {
     }
     
     return t;
+}
+
+
+- (BOOL)boolForTokenForKey:(NSString *)key {
+    BOOL result = NO;
+    NSArray *toks = [parserTokensTable objectForKey:key];
+    if (toks.count) {
+        TDToken *tok = [toks objectAtIndex:0];
+        if (tok.isWord && [tok.stringValue isEqualToString:@"YES"]) {
+            result = YES;
+        }
+    }
+    return result;
 }
 
 
