@@ -12,7 +12,7 @@
 
 - (void)setUp {
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-    grammarString = [NSString stringWithContentsOfFile:path];
+    grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     ass = [[TDMiniCSSAssembler alloc] init];
     factory = [TDParserFactory factory];
     lp = [factory parserFromGrammar:grammarString assembler:ass];

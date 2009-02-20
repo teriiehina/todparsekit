@@ -100,7 +100,7 @@
 
 - (void)doHtmlSyntaxHighlighter {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nyt" ofType:@"html"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     //NSString *s = @"ア";
     
     TDHtmlSyntaxHighlighter *highlighter = [[TDHtmlSyntaxHighlighter alloc] initWithAttributesForDarkBackground:YES];
@@ -113,7 +113,7 @@
 
 - (void)doJsonParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     TDJsonParser *p = [[[TDJsonParser alloc] init] autorelease];
 //    TDFastJsonParser *p = [[[TDFastJsonParser alloc] init] autorelease];
@@ -154,7 +154,7 @@
 
 - (void)doGrammarParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 //    s = @"@start = openCurly closeCurly; openCurly = '{'; closeCurly = '}';";
 //    s = @"@start = start*; start = 'bar';";
     
@@ -164,7 +164,7 @@
     TDParser *lp = [factory parserFromGrammar:s assembler:ass];
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
    
 //    s = @"bar bar";
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
@@ -180,7 +180,7 @@
 
 - (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDToken *eof = [TDToken EOFToken];
     TDToken *tok = nil;
@@ -199,7 +199,7 @@
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     start = [NSDate date];
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
@@ -235,7 +235,7 @@
 
 - (void)doTokenize {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDToken *eof = [TDToken EOFToken];
@@ -257,7 +257,7 @@
 
 - (void)doSimpleCSS {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDParserFactory *factory = [TDParserFactory factory];
     
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
@@ -274,13 +274,13 @@
 
     // create CSS parser
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-    NSString *grammarString = [NSString stringWithContentsOfFile:path];
+    NSString *grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDMiniCSSAssembler *cssAssembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *cssParser = [factory parserFromGrammar:grammarString assembler:cssAssembler];
     
     // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     
@@ -289,7 +289,7 @@
     
     // create JSON Parser
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
-    grammarString = [NSString stringWithContentsOfFile:path];
+    grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDGenericAssembler *genericAssembler = [[[TDGenericAssembler alloc] init] autorelease];
 
     // give it the attrs from CSS
@@ -298,7 +298,7 @@
     
     // parse JSON
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
     // take care to preseve the whitespace in the JSON
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
@@ -313,7 +313,7 @@
 
 - (void)doJSONHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"json"];
 }
@@ -321,7 +321,7 @@
 
 - (void)doCSSHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example" ofType:@"css"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"css"];
 }
@@ -329,7 +329,7 @@
 
 - (void)doHTMLHighlighting {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example" ofType:@"html"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDSyntaxHighlighter *shc = [[[TDSyntaxHighlighter alloc] init] autorelease];
     self.displayString = [shc highlightedStringForString:s ofGrammar:@"html"];
 }
@@ -346,7 +346,7 @@
 
 - (void)doRubyHashParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
-    NSString *s = [NSString stringWithContentsOfFile:path];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDTokenizer *t = nil;
     TDParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
     

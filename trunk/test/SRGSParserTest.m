@@ -17,7 +17,7 @@
 
 - (void)test {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"example1" ofType:@"srgs"];
-    s = [NSString stringWithContentsOfFile:path];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     a = [p assemblyWithString:s];
     result = [p bestMatchFor:a];
