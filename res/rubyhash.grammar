@@ -6,6 +6,7 @@
     "action"=>"create", "controller"=>"admin/brands"}
 */
 
+@reportsCommentTokens = YES;
 @commentState = '#';
 @multiLineComments = '#<' '>';
 @symbols = '=>';

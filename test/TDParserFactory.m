@@ -242,6 +242,30 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     }
     
+    // comments stuff
+    toks = [parserTokensTable objectForKey:@"@reportsWhitespaceTokens"];
+    for (TDToken *tok in toks) {
+        if (tok.isWord) {
+			BOOL report = NO;
+			if ([tok.stringValue isEqualToString:@"YES"]) {
+				report = YES;
+			}
+			t.whitespaceState.reportsWhitespaceTokens = report;
+        }
+    }
+
+    // comments stuff
+    toks = [parserTokensTable objectForKey:@"@reportsCommentTokens"];
+    for (TDToken *tok in toks) {
+        if (tok.isWord) {
+			BOOL report = NO;
+			if ([tok.stringValue isEqualToString:@"YES"]) {
+				report = YES;
+			}
+			t.commentState.reportsCommentTokens = report;
+        }
+    }
+
     // single line comments
     toks = [parserTokensTable objectForKey:@"@singleLineComments"];
     for (TDToken *tok in toks) {
@@ -345,7 +369,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {
+- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {	
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
@@ -771,7 +795,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnConstantAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSString *s = tok.stringValue;
-    TDParser *p = nil;
+    id p = nil;
     if ([s isEqualToString:@"Word"]) {
         p = [TDWord word];
     } else if ([s isEqualToString:@"LowercaseWord"]) {
@@ -790,6 +814,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [TDAny any];
     } else if ([s isEqualToString:@"Empty"]) {
         p = [TDEmpty empty];
+    } else if ([s isEqualToString:@"YES"] || [s isEqualToString:@"NO"]) {
+        p = tok;
     } else {
         [NSException raise:@"Grammar Exception" format:
          @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Num, Symbol, Empty.", s];
