@@ -1077,12 +1077,11 @@
 //    @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
 //    @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
 
-    t.string = @"{'foo'=>'bar'}";
-    t.commentState.reportsCommentTokens = YES;
+    t.string = @"{'foo'=> {'logo' => #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4> } }";
     
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [lp bestMatchFor:a];
-    TDEqualObjects(@"[{, 'foo', =>, 'bar', }]{/'foo'/=>/'bar'/}^", [res description]);
+    TDEqualObjects(@"[{, 'foo', =>, {, 'logo', =>, #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>, }, }]{/'foo'/=>/{/'logo'/=>/#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>/}/}^", [res description]);
 }
 
 @end
