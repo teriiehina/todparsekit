@@ -357,7 +357,6 @@
     @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
     
     t.string = s; //@"{\"foo\"=>\"bar\"}";
-    t.commentState.reportsCommentTokens = YES;
 
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     TDAssembly *res = [lp bestMatchFor:a];
