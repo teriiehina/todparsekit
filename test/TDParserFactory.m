@@ -33,7 +33,10 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     } else if ([p isMemberOfClass:[TDRepetition class]]) {
         TDRepetition *r = (TDRepetition *)p;
+//		TDParser *subparser = [r.subparser retain];
         r.subparser = nil;
+//		TDReleaseSubparserTree(subparser);
+//		[subparser release];
     }
 }
 
