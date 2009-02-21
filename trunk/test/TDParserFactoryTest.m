@@ -1066,7 +1066,7 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     t = nil;
-    lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
+    lp = [factory parserFromGrammar:s assembler:nil getTokenizer:&t];
     
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
@@ -1082,6 +1082,26 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', =>, {, 'logo', =>, #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>, }, }]{/'foo'/=>/{/'logo'/=>/#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>/}/}^", [res description]);
+}
+
+
+- (void)testSymbolState {
+	s = @"@symbolState = 'b'; @start = ('b'|'ar')*;";
+	t = nil;
+	lp = [factory parserFromGrammar:s assembler:nil getTokenizer:&t];
+	
+	TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+
+	t.string = @"bar";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[b, ar]b/ar^", [res description]);
+	[res pop]; // discar 'ar'
+	TDToken *tok = [res pop];
+	TDEqualObjects([tok class], [TDToken class]);
+	TDEqualObjects(tok.stringValue, @"b");
+	TDTrue(tok.isSymbol);
 }
 
 @end

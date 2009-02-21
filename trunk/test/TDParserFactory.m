@@ -224,6 +224,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     t.whitespaceState.reportsWhitespaceTokens = [self boolForTokenForKey:@"@reportsWhitespaceTokens"];
     t.commentState.reportsCommentTokens = [self boolForTokenForKey:@"@reportsCommentTokens"];
+	t.commentState.balancesEOFTerminatedComments = [self boolForTokenForKey:@"balancesEOFTerminatedComments"];
+	t.quoteState.balancesEOFTerminatedQuotes = [self boolForTokenForKey:@"@balancesEOFTerminatedQuotes"];
+	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
@@ -239,6 +242,30 @@ void TDReleaseSubparserTree(TDParser *p) {
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
+        }
+    }
+    
+    // wordChars
+    toks = [parserTokensTable objectForKey:@"@wordChars"];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+			NSString *s = [tok.stringValue stringByTrimmingQuotes];
+			if (s.length) {
+				NSInteger c = [s characterAtIndex:0];
+				[t.wordState setWordChars:YES from:c to:c];
+			}
+        }
+    }
+    
+    // whitespaceChars
+    toks = [parserTokensTable objectForKey:@"@whitespaceChars"];
+    for (TDToken *tok in toks) {
+        if (tok.isQuotedString) {
+			NSString *s = [tok.stringValue stringByTrimmingQuotes];
+			if (s.length) {
+				NSInteger c = [s characterAtIndex:0];
+				[t.whitespaceState setWhitespaceChars:YES from:c to:c];
+			}
         }
     }
     
