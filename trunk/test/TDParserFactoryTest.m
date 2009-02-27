@@ -7,7 +7,6 @@
 //
 
 #import "TDParserFactoryTest.h"
-#import <TDParseKit/TDParseKit.h>
 #import <OCMock/OCMock.h>
 
 @interface TDParserFactory ()
