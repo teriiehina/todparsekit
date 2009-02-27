@@ -60,6 +60,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 // this is only for unit tests? can it go away?
 - (TDSequence *)parserFromExpression:(NSString *)s;
 
+- (void)workOnStatementAssembly:(TDAssembly *)a;
+- (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
+- (void)workOnCallbackAssembly:(TDAssembly *)a;
+- (void)workOnExpressionAssembly:(TDAssembly *)a;
+- (void)workOnDiscardAssembly:(TDAssembly *)a;
+- (void)workOnLiteralAssembly:(TDAssembly *)a;
+- (void)workOnVariableAssembly:(TDAssembly *)a;
+- (void)workOnConstantAssembly:(TDAssembly *)a;
+- (void)workOnNumAssembly:(TDAssembly *)a;
+- (void)workOnStarAssembly:(TDAssembly *)a;
+- (void)workOnPlusAssembly:(TDAssembly *)a;
+- (void)workOnQuestionAssembly:(TDAssembly *)a;
+- (void)workOnPhraseCardinalityAssembly:(TDAssembly *)a;
+- (void)workOnCardinalityAssembly:(TDAssembly *)a;
+- (void)workOnOrAssembly:(TDAssembly *)a;
+
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
@@ -738,7 +754,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (selName) {
         [selectorTable setObject:selName forKey:parserName];
     }
-    [a.target setObject:toks forKey:parserName];
+	NSMutableDictionary *d = a.target;
+    [d setObject:toks forKey:parserName];
 }
 
 
@@ -797,7 +814,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (isGatheringClasses) {
         // lookup the actual possible parser. 
         // if its not there, or still a token array, just spoof it with a sequence
-        p = [a.target objectForKey:parserName];
+		NSMutableDictionary *d = a.target;
+        p = [d objectForKey:parserName];
         if (![p isKindOfClass:[TDParser parser]]) {
             p = [TDSequence sequence];
         }

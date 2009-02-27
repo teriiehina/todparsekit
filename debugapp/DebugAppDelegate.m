@@ -16,7 +16,6 @@
 #import "TDXmlNameState.h"
 #import "TDXmlToken.h"
 #import "TDHtmlSyntaxHighlighter.h"
-#import "TDParserFactory.h"
 #import "JSONAssembler.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
@@ -406,14 +405,14 @@
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
 //    [self doRubyHashParser];
-//    [self doProf];
+    [self doProf];
 //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
 //    [self doParenStuff];
     
-    [self doJSONHighlighting];
+//    [self doJSONHighlighting];
 //    [self doCSSHighlighting];
 //    [self doHTMLHighlighting];
     
