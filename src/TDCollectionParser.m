@@ -34,5 +34,20 @@
     [subparsers addObject:p];
 }
 
+
+- (TDParser *)parserNamed:(NSString *)s {
+    if ([name isEqualToString:s]) {
+        return self;
+    } else {
+        for (TDParser *p in subparsers) {
+            TDParser *sub = [p parserNamed:s];
+            if (sub) {
+                return sub;
+            }
+        }
+    }
+    return nil;
+}
+
 @synthesize subparsers;
 @end
