@@ -43,6 +43,14 @@
 }
 
 
+- (TDParser *)parserNamed:(NSString *)s {
+    if ([name isEqualToString:s]) {
+        return self;
+    }
+    return nil;
+}
+
+
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSAssert1(0, @"-[TDParser %s] must be overriden", _cmd);
     return nil;

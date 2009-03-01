@@ -53,6 +53,15 @@
 }
 
 
+- (TDParser *)parserNamed:(NSString *)s {
+    if ([name isEqualToString:s]) {
+        return self;
+    } else {
+        return [subparser parserNamed:s];
+    }
+}
+
+
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
     if (preassembler) {
