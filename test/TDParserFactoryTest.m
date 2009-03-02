@@ -53,6 +53,28 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
+    TDParser *selectorParser = [lp parserNamed:@"selector"];
+    TDNotNil(selectorParser);
+    TDEqualObjects(selectorParser.name, @"selector");
+    TDEqualObjects([selectorParser class], [TDLowercaseWord class]);
+
+    TDParser *declParser = [lp parserNamed:@"decl"];
+    TDNotNil(declParser);
+    TDEqualObjects(declParser.name, @"decl");
+    TDEqualObjects([declParser class], [TDSequence class]);
+
+    TDParser *rulesetParser = [lp parserNamed:@"ruleset"];
+    TDNotNil(rulesetParser);
+    TDEqualObjects(rulesetParser, [(TDRepetition *)lp subparser]);
+    TDEqualObjects(rulesetParser.name, @"ruleset");
+    TDEqualObjects([rulesetParser class], [TDSequence class]);
+    
+    TDParser *startParser = [lp parserNamed:@"@start"];
+    TDNotNil(startParser);
+    TDEqualObjects(startParser, lp);
+    TDEqualObjects(startParser.name, @"@start");
+    TDEqualObjects([startParser class], [TDRepetition class]);
+    
     s = @"foo {font-family:'helvetica';}";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
