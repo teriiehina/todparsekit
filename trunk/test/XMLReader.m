@@ -11,6 +11,9 @@
 @implementation NSString (libxml2Support)
 
 + (id)stringWithXmlChar:(xmlChar *)xc {
+    if (!xc) {
+        return nil;
+    }
     return [NSString stringWithUTF8String:(char *)xc];
 }
 
@@ -95,7 +98,7 @@ static void structErr(XMLReader *self, xmlErrorPtr error) {
     if (self) {
         self.path = newPath;
 
-        _reader = xmlNewTextReaderFilename(path.UTF8String);
+        _reader = xmlNewTextReaderFilename([path UTF8String]);
         xmlTextReaderSetParserProp(_reader, XML_PARSE_RECOVER, 1);
         xmlTextReaderSetParserProp(_reader, XML_PARSE_XINCLUDE, 1);
         xmlTextReaderSetErrorHandler(_reader, (xmlTextReaderErrorFunc)readerErr, (void *)self);
