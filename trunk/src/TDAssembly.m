@@ -41,23 +41,21 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 
 // this private intializer exists simply to improve the performance of the -copyWithZone: method.
 // note flow *does not* go thru the designated initializer above. however, that ugliness is worth it cuz
-// the perf of -copyWithZone: in this class is *vital* to the framework's performance
+// the perf of -copyWithZone: in this class is *vital* to the entire framework's performance
 - (id)_init {
     return [super init];
 }
 
 
-// this method diverges from coding standards cuz it is vital to the entire framework's performance
 - (void)dealloc {
-    [stack release]; 
-    [string release];
-    if (target) [target release];
-    if (defaultDelimiter) [defaultDelimiter release];
+    self.stack = nil;
+    self.string = nil;
+    self.target = nil;
+    self.defaultDelimiter = nil;
     [super dealloc];
 }
 
 
-// this method diverges from coding standards cuz it is vital to the entire framework's performance
 - (id)copyWithZone:(NSZone *)zone {
     TDAssembly *a = [[[self class] allocWithZone:zone] _init];
     a->stack = [stack mutableCopyWithZone:zone];

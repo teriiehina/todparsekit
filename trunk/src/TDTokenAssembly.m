@@ -61,10 +61,8 @@
 
 
 - (void)dealloc {
-    [tokenizer release];
-    [tokens release];
-    //self.tokenizer = nil;
-    //self.tokens = nil;
+    self.tokenizer = nil;
+    self.tokens = nil;
     [super dealloc];
 }
 
