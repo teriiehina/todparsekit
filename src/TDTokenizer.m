@@ -39,12 +39,12 @@
         self.string = s;
         self.reader = [[[TDReader alloc] init] autorelease];
         
-        numberState = [[TDNumberState alloc] init];
-        quoteState = [[TDQuoteState alloc] init];
-        commentState = [[TDCommentState alloc] init];
-        symbolState = [[TDSymbolState alloc] init];
-        whitespaceState = [[TDWhitespaceState alloc] init];
-        wordState = [[TDWordState alloc] init];
+        self.numberState     = [[[TDNumberState alloc] init] autorelease];
+        self.quoteState      = [[[TDQuoteState alloc] init] autorelease];
+        self.commentState    = [[[TDCommentState alloc] init] autorelease];
+        self.symbolState     = [[[TDSymbolState alloc] init] autorelease];
+        self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
+        self.wordState       = [[[TDWordState alloc] init] autorelease];
         
         [symbolState add:@"<="];
         [symbolState add:@">="];
@@ -54,7 +54,7 @@
         [commentState addSingleLineStartSymbol:@"//"];
         [commentState addMultiLineStartSymbol:@"/*" endSymbol:@"*/"];
         
-        tokenizerStates = [[NSMutableArray alloc] initWithCapacity:256];
+        self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
         
         [self addTokenizerState:whitespaceState from:   0 to: ' ']; // From:  0 to: 32    From:0x00 to:0x20
         [self addTokenizerState:symbolState     from:  33 to:  33];
@@ -113,30 +113,12 @@
 }
 
 
-- (void)addTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
-    NSParameterAssert(state);
-    
-    //void (*addObject)(id, SEL, id);
-    //addObject = (void (*)(id, SEL, id))[tokenizerStates methodForSelector:@selector(addObject:)];
-    
-    NSInteger i = start;
-    for ( ; i <= end; i++) {
-        [tokenizerStates addObject:state];
-        //addObject(tokenizerStates, @selector(addObject:), state);
-    }
-}
-
-
 - (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
     NSParameterAssert(state);
-
-    //void (*relaceObject)(id, SEL, NSUInteger, id);
-    //relaceObject = (void (*)(id, SEL, NSUInteger, id))[tokenizerStates methodForSelector:@selector(replaceObjectAtIndex:withObject:)];
 
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [tokenizerStates replaceObjectAtIndex:i withObject:state];
-        //relaceObject(tokenizerStates, @selector(replaceObjectAtIndex:withObject:), i, state);
     }
 }
 
@@ -170,6 +152,16 @@
 
 
 #pragma mark -
+
+- (void)addTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
+    NSParameterAssert(state);
+    
+    NSInteger i = start;
+    for ( ; i <= end; i++) {
+        [tokenizerStates addObject:state];
+    }
+}
+
 
 - (TDTokenizerState *)tokenizerStateFor:(NSInteger)c {
     if (c < 0 || c > 255) {

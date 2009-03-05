@@ -197,7 +197,6 @@
 		D380B5950F0D82F90009EC13 /* example.css in Resources */ = {isa = PBXBuildFile; fileRef = D380B5930F0D82F60009EC13 /* example.css */; };
 		D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */; };
-		D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
 		D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
 		D38205BE0EEE48EE004340DD /* TDTokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38205BD0EEE48EE004340DD /* TDTokenTest.m */; };
@@ -2198,7 +2197,6 @@
 				D385F98C0F046FE900DB2946 /* TDGenericAssembler.m in Sources */,
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
-				D380BA630F0F06CD0009EC13 /* TDParserFactory.m in Sources */,
 				D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
