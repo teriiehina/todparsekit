@@ -2626,6 +2626,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TDJSParseKit;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -2654,6 +2655,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = TDJSParseKit;
+				SDKROOT = "";
 				ZERO_LINK = NO;
 			};
 			name = Release;
