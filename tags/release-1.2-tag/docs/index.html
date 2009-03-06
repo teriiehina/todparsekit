@@ -1,0 +1,268 @@
+<html>
+<head>
+	<title>TDParseKit - Cocoa Objective-C Framework for parsing and tokenzing</title>
+	<style>
+		#content {width:675px; margin:60px auto 30px; text-align:justify;}
+		body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
+		tt, pre {font:12px Monaco;}
+		table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
+		th, td {border:1px solid silver;}
+		.code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
+		h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
+		a[name] {display:block; margin-bottom:60px;}
+		a:hover {text-decoration:none;}
+	</style>
+</head>
+<body>
+<div id="content">
+	
+<h1>TDParseKit</h1>
+
+<h2>About</h2>
+<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. TDParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
+
+<p>The TDParseKit Source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
+
+<p>More documentation:</p>
+<ul>
+	<li><a href="doxygen/">Doxygen-generated Header Docs</a></li>
+	<li><a href="tokenization.html">Tokenization</a></li>
+	<li>Parsing via ObjC (documentation coming soon)</li>
+	<li>Parsing via Grammars (documentation coming soon)</li>
+</ul>
+
+<p>Projects using TDParseKit:</p>
+<ul>
+	<li><a href="http://lucidmac.com/products/spike">Spike</a>: A Rails log file viewer/analyzer by Matt Mower</li>
+	<li><a href="http://tr.im/http">HTTP Client</a>: HTTP debugging/testing tool</li>
+	<li><a href="http://fluidapp.com">Fluid</a>: Site-Specific Browser for Mac OS X</li>
+	<li><a href="http://cruzapp.com">Cruz</a>: Social Browser for Mac OS X</li>
+</ul>
+
+<h2>Xcode Project</h2>
+<p>The TDParseKit Xcode project consists of 6 targets:</p>
+
+<ol>
+<li><b>TDParseKit</b> : the TDParseKit Objective-C framework. The central feature/codebase of this project.</li>
+<li><b>Tests</b> : a UnitTest Bundle containing hundreds of unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world usages of the framework.</li>
+<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TDTokenizer class.</li>
+<li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle).</li>
+<li><b>TDJSParseKit</b> : A JavaScriptCore-based scripting interface to TDParseKit which can be used to expose the entire framework to JavaScript environments.</li>
+<li><b>JSDmeoApp</b>: A simple Cocoa application used for exercising the JavaScript interface provided by TDJSParseKit. Note that this is the only target which links to the WebKit framework. Neither TDParseKit nor TDJSParseKit requires WebKit.</li>
+</ol>
+
+
+
+<h2>TDParseKit Framework</h2>
+
+<p>The Objective-C classes in the TDParseKit Framework offer 2 basic services of general use to Cocoa developers:</p>
+
+<ol>
+<li><b>Tokenization</b> via the <tt>TDTokenizer</tt> and <tt>TDToken</tt> classes.</li>
+<li><b>Parsing</b> via a high-level parser-building toolkit consisting of <tt>TDParser</tt> subclasses.</li>
+<li><b>Declarative Parsing via Grammars</b> an ObjC API for creating language parsers from simple declarative grammars.</li>
+</ol>
+
+<hr/>
+<h3>Tokenization</h3>
+
+<p>The API for tokenization is provided by the <tt>TDTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TDTokenizer</tt> class is simpler and more powerful for many use cases.</p>
+
+<p>Example usage:</p>
+
+<div class="code">
+<pre>
+NSString *s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
+              @"and &lt;= 3.5 'ticks' later /* wince */, it's blast-off!";
+TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+
+TDToken *eof = [TDToken EOFToken];
+TDToken *tok = nil;
+
+while ((tok = [t nextToken]) != eof) {
+    NSLog(@" (%@)", tok);
+}
+</pre>
+</div>
+
+<p>outputs:</p>
+<div class="code">
+<pre> ("It's 123 blast-off!")
+ (,)
+ (she)
+ (said)
+ (,)
+ (and)
+ (&lt;=)
+ (3.5)
+ ('ticks')
+ (later)
+ (,)
+ (it's)
+ (blast-off)
+ (!)
+</pre>
+</div>
+
+<p>Each token produced is an object of class <tt>TDToken</tt>. <tt>TDToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
+
+<p>More information about a token can be easily discovered using the <tt>-debugDescription</tt> method instead of the default <tt>-description</tt>. Replace the line containing <tt>NSLog</tt> above with this line:</p>
+
+<div class="code">
+<pre>
+NSLog(@" (%@)", [tok debugDescription]);
+</pre>
+</div>
+
+<p>and each token's type will be printed as well:</p>
+
+<div class="code">
+<pre> &lt;Quoted String «"It's 123 blast-off!"»>
+ &lt;Symbol «,»>
+ &lt;Word «she»>
+ &lt;Word «said»>
+ &lt;Symbol «,»>
+ &lt;Word «and»>
+ &lt;Symbol «&lt;=»>
+ &lt;Number «3.5»>
+ &lt;Quoted String «'ticks'»>
+ &lt;Word «later»>
+ &lt;Symbol «,»>
+ &lt;Word «it's»>
+ &lt;Word «blast-off»>
+ &lt;Symbol «!»>
+</pre>
+</div>
+
+
+<p>As you can see from the output, <tt>TDTokenzier</tt> is configured by default to properly group characters into tokens including:</p>
+
+<ul>
+<li>single- and double-quoted string tokens</li>
+<li>common multiple character symbols (<tt>&lt;=</tt>)</li>
+<li>apostrophes, dashes and other symbol chars that should not signal the start of a new Symbol token, but rather be included in the current Word or Num token (<tt>it's</tt>, <tt>blast-off</tt>, <tt>3.5</tt>)</li>	
+<li>silently ignoring C- and C++-style comments</li>
+<li>silently ignoring whitespace</li>
+</ul>
+
+
+<p>The TDTokenizer class is very flexible, and <b>all</b> of those features are configurable. TDTokenizer may be configured to:</p>
+
+<ul>
+<li>recognize more (or fewer) multi-char symbols. ex: <div class="code"><pre>[t.symbolState add:@"!="];</pre></div>
+<p><small>allows <tt>!=</tt> to be recognized as a single <tt>Symbol</tt> token rather than two adjacent <tt>Symbol</tt> tokens</small></p>
+</li>
+
+<li>add new internal symbol chars to be included in the current <tt>Word</tt> token OR recognize internal symbols like apostrophe and dash to actually signal a new <tt>Symbol</tt> token rather than being part of the current Word token. ex: 
+<div class="code"><pre>[t.wordState setWordChars:YES from:'_' to:'_'];</pre></div>
+<p><small>allows Word tokens to contain internal underscores</small></p>	
+<div class="code"><pre>[t.wordState setWordChars:NO from:'-' to:'-'];</pre></div>
+<p><small>disallows Word tokens from containing internal dashes.</small></p>	
+</li>
+	
+	
+<li>change which chars singnal the start of a token of any given type. ex: 
+<div class="code"><pre>[t setTokenizerState:t.wordState from:'_' to:'_'];</pre></div>
+<p><small>allows Word tokens to start with underscore</small></p>
+<div class="code"><pre>[t setTokenizerState:t.quoteState from:'*' to:'*'];</pre></div>
+<p><small>allows Quoted String tokens to start with an asterisk, effectively making <tt>*</tt> a new quote symbol (like <tt>"</tt> or <tt>'</tt>)</small></p>
+</li>
+
+<li>turn off recognition of single-line "slash-slash" (<tt>//</tt>) comments. ex: 
+<div class="code"><pre>[t setTokenizerState:t.symbolState from:'/' to:'/'];</pre></div>
+<p><small>slash chars now produce individual Symbol tokens rather than causing the tokenizer to strip text until the next newline char or begin striping for a multiline comment if appropriate (<tt>/*</tt>)</small></p>
+</li>
+
+<li>turn on recognition of "hash" (<tt>#</tt>) single-line comments. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.commentState from:'#' to:'#'];
+[t.commentState addSingleLineStartSymbol:@"#"];</pre>
+</div>
+</li>
+
+<li>turn on recognition of "XML/HTML" (<tt>&lt;!-- --></tt>) multi-line comments. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.commentState from:'&lt;' to:'&lt;'];
+[t.commentState addMultiLineStartSymbol:@"&lt;!--" endSymbol:@"-->"];</pre>
+</div>
+</li>
+
+<li>report (rather than silently consume) Comment tokens. ex: 
+<div class="code">
+<pre>t.commentState.reportsCommentTokens = YES; // default is NO</pre>
+</div>
+</li>
+
+<li>report (rather than silently consume) Whitespace tokens. ex: 
+<div class="code">
+<pre>t.whitespaceState.reportsWhitespaceTokens = YES; // default is NO</pre>
+</div>
+</li>
+
+<li>turn on recognition of any characters (say, digits) as whitespace to be silently ignored. ex: 
+<div class="code">
+<pre>[t setTokenizerState:t.whitespaceState from:'0' to:'9'];</pre>
+</div>
+</li>
+
+</ul>
+
+<hr/>
+<h3>Parsing</h3>
+
+<p>TDParseKit also includes a collection of token parser subclasses (of the abstract <tt>TDParser</tt> class) including collection parsers such as <tt>TDAlternation</tt>, <tt>TDSequence</tt>, and <tt>TDRepetition</tt> as well as terminal parsers including <tt>TDWord</tt>, <tt>TDNum</tt>, <tt>TDSymbol</tt>, <tt>TDQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>TDChar</tt>, <tt>TDDigit</tt>, and <tt>TDSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
+
+<p>The parser classes represent a <b>Composite</b> pattern. Programs can build a composite parser, in <b>Objective-C</b> (rather than a separate language like with lex&amp;yacc), from a collection of terminal parsers composed into alternations, sequences, and repetitions to represent an infinite number of languages.</p>
+
+<p>Parsers built from TDParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
+
+<p>Here is an example of how one might build a parser for a simple voice-search command language (note: TDParseKit does not include any kind of speech recognition technology). The language consists of:</p>
+
+<div class="code">
+<pre>search google for? &lt;search-term&gt;</pre>
+</div>
+
+<div class="code">
+<pre>
+...
+
+	[self parseString:@"search google 'iphone'"];
+...
+	
+- (void)parseString:(NSString *)s {
+	TDSequence *parser = [TDSequence sequence];
+
+	[parser add:[[TDLiteral literalWithString:@"search"] discard]];
+	[parser add:[[TDLiteral literalWithString:@"google"] discard]];
+
+	TDAlternation *optionalFor = [TDAlternation alternation];
+	[optionalFor add:[TDEmpty empty]];
+	[optionalFor add:[TDLiteral literalWithString:@"for"]];
+
+	[parser add:[optionalFor discard]];
+
+	TDParser *searchTerm = [TDQuotedString quotedString];
+	[searchTerm setAssembler:self selector:@selector(workOnSearchTermAssembly:)];
+	[parser add:searchTerm];
+
+	TDAssembly *result = [parser bestMatchFor:[TDTokenAssembly assmeblyWithString:s]];
+	
+	NSLog(@" %@", result);
+
+	// output:
+	//  ['iphone']search/google/'iphone'^
+}
+
+...
+
+- (void)workOnSearchTermAssembly:(TDAssembly *)a {
+	TDToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
+	[self doGoogleSearchForTerm:t.stringValue];
+}
+
+</pre>
+</div>
+
+</div>
+</body>
+</html>
