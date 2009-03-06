@@ -10,7 +10,6 @@
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D317A5300F0A06EE000AFB62 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D317A52F0F0A06EE000AFB62 /* javascript.grammar */; };
-		D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
 		D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54B0E60E46100A0803E /* TDTestScaffold.m */; };
 		D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54E0E60E50800A0803E /* TDAlternationTest.m */; };
 		D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5500E60E50800A0803E /* TDLiteralTest.m */; };
@@ -182,6 +181,11 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
+		D37F877F0F61B62300C1F429 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
+		D37F87800F61B62400C1F429 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
+		D37F87810F61B62D00C1F429 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
+		D37F87820F61B62E00C1F429 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
+		D37F87830F61B63600C1F429 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D380AFBD0F0C54B60009EC13 /* html.css in Resources */ = {isa = PBXBuildFile; fileRef = D380AFBB0F0C54B60009EC13 /* html.css */; };
 		D380AFBE0F0C54B60009EC13 /* html.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D380AFBC0F0C54B60009EC13 /* html.grammar */; };
 		D380AFBF0F0C54B60009EC13 /* html.css in Resources */ = {isa = PBXBuildFile; fileRef = D380AFBB0F0C54B60009EC13 /* html.css */; };
@@ -357,9 +361,6 @@
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
 		D3F741C00EF9F29500559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
-		D3F8233D0F57854800B7DC48 /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */; };
-		D3F8233E0F57855F00B7DC48 /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */; };
-		D3F8233F0F57856B00B7DC48 /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */; };
 		D3F823590F57865100B7DC48 /* TDParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D380BA5D0F0F06CD0009EC13 /* TDParserFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F8235A0F57865D00B7DC48 /* NSString+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */; };
 		D3F8235B0F57865D00B7DC48 /* NSArray+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */; };
@@ -971,7 +972,6 @@
 				D31FE6060E60E71900A0803E /* TDParseKit.h */,
 				D3C7D8710A411F6B005DD154 /* io */,
 				D3C7D8720A411F81005DD154 /* parse */,
-				D3F823560F57859900B7DC48 /* factory */,
 				D3C7D8740A411F8E005DD154 /* tokens */,
 				D3E785F10E550F63008C7D61 /* chars */,
 			);
@@ -1407,6 +1407,7 @@
 			isa = PBXGroup;
 			children = (
 				D3DCB5280EF61FCF00DE5110 /* old */,
+				D3F823560F57859900B7DC48 /* factory */,
 				D380B5370F0D7DDE0009EC13 /* css.css */,
 				D380B5080F0D71A90009EC13 /* css.grammar */,
 				D380B5930F0D82F60009EC13 /* example.css */,
@@ -2161,9 +2162,6 @@
 				D3DDDA9E0F081B3E00A58000 /* TDSingleLineCommentState.m in Sources */,
 				D3DDDAA20F081B4A00A58000 /* TDMultiLineCommentState.m in Sources */,
 				D38349560F0C09740055E4E0 /* TDComment.m in Sources */,
-				D3F8233D0F57854800B7DC48 /* TDParserFactory.m in Sources */,
-				D3F8233E0F57855F00B7DC48 /* NSString+TDParseKitAdditions.m in Sources */,
-				D3F8233F0F57856B00B7DC48 /* NSArray+TDParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2189,7 +2187,6 @@
 				D31FE7330E60F33C00A0803E /* XMLReader.m in Sources */,
 				D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */,
 				D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */,
-				D31907D70ECB5B19009891A1 /* NSString+TDParseKitAdditions.m in Sources */,
 				D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */,
 				D3DCB5210EF61F3000DE5110 /* TDOldGrammarParserFactory.m in Sources */,
 				D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */,
@@ -2198,6 +2195,8 @@
 				D385FD440F05A88C00DB2946 /* TDMiniCSSAssembler.m in Sources */,
 				D3DDDA870F0779FD00A58000 /* TDSyntaxHighlighter.m in Sources */,
 				D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */,
+				D37F87800F61B62400C1F429 /* TDParserFactory.m in Sources */,
+				D37F87810F61B62D00C1F429 /* NSString+TDParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2342,6 +2341,9 @@
 				D380BA620F0F06CD0009EC13 /* TDParserFactoryTest.m in Sources */,
 				D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */,
 				D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */,
+				D37F877F0F61B62300C1F429 /* TDParserFactory.m in Sources */,
+				D37F87820F61B62E00C1F429 /* NSString+TDParseKitAdditions.m in Sources */,
+				D37F87830F61B63600C1F429 /* NSArray+TDParseKitAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

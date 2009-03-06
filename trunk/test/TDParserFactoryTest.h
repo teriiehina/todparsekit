@@ -7,6 +7,7 @@
 //
 
 #import "TDTestScaffold.h"
+#import "TDParserFactory.h"
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDParserFactoryTest : SenTestCase {

@@ -36,9 +36,6 @@
 #import <TDParseKit/TDTrack.h>
 #import <TDParseKit/TDTrackException.h>
 
-// factory
-#import <TDParseKit/TDParserFactory.h>
-
 //chars
 #import <TDParseKit/TDCharacterAssembly.h>
 #import <TDParseKit/TDChar.h>
