@@ -156,8 +156,7 @@ CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *
         CFTypeRef cfType = TDJSValueCopyCFType(ctx, val, ex);
         CFArraySetValueAtIndex(cfArray, i, cfType);
         
-        // TODO HUH????
-        //CFRelease(cfType);
+        CFRelease(cfType);
     }
     
     CFArrayRef result = CFArrayCreateCopy(NULL, cfArray);
@@ -181,9 +180,8 @@ CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JS
         CFStringRef key = JSStringCopyCFString(NULL, propName);
         CFDictionarySetValue(cfDict, (const void *)key, (const void *)cfType);
 
-        // TODO huh????
-        //CFRelease(key);
-        //CFRelease(cfType);
+        CFRelease(key);
+        CFRelease(cfType);
     }
     
     JSPropertyNameArrayRelease(propNames);
