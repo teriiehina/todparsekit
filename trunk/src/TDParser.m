@@ -8,6 +8,8 @@
 
 #import <TDParseKit/TDParser.h>
 #import <TDParseKit/TDAssembly.h>
+#import <TDParseKit/TDTokenAssembly.h>
+#import <TDParseKit/TDTokenizer.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
@@ -118,4 +120,35 @@
 @synthesize assembler;
 @synthesize selector;
 @synthesize name;
+@end
+
+@interface TDParser (TDParserFactoryAdditionsFriend)
+- (void)setTokenizer:(TDTokenizer *)t;
+@end
+
+@implementation TDParser (TDParserFactoryAdditions)
+
+- (id)parse:(NSString *)s {
+    TDTokenizer *t = self.tokenizer;
+    if (!t) {
+        t = [TDTokenizer tokenizer];
+    }
+    t.string = s;
+    TDAssembly *a = [self completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    return [a pop];
+}
+
+
+- (TDTokenizer *)tokenizer {
+    return tokenizer;
+}
+
+
+- (void)setTokenizer:(TDTokenizer *)t {
+    if (tokenizer != t) {
+        [tokenizer autorelease];
+        tokenizer = [t retain];
+    }
+}
+
 @end

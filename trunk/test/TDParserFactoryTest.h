@@ -12,7 +12,6 @@
 
 @interface TDParserFactoryTest : SenTestCase {
     NSString *s;
-    TDTokenizer *t;
     TDTokenAssembly *a;
     TDParserFactory *factory;
     TDAssembly *res;

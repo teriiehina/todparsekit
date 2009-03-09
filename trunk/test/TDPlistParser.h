@@ -9,7 +9,6 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDPlistParser : TDAlternation {
-    TDTokenizer *tokenizer;
     TDCollectionParser *dictParser;
     TDCollectionParser *keyValuePairParser;
     TDCollectionParser *arrayParser;

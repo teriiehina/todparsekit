@@ -56,7 +56,6 @@ typedef enum {
 + (id)factory;
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t;
 
 @property (nonatomic) TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
 @end
