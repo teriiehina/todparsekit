@@ -11,6 +11,10 @@
 #import "NSArray+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
 
+@interface TDParser (TDParserFactoryAdditionsFriend)
+- (void)setTokenizer:(TDTokenizer *)t;
+@end
+
 @interface TDCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
@@ -160,20 +164,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
-    return [self parserFromGrammar:s assembler:a getTokenizer:nil];
-}    
-
-
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a getTokenizer:(TDTokenizer **)t {
     self.assembler = a;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
     [self gatherParserClassNamesFromTokens];
-    if (t) {
-        *t = [self tokenizerFromGrammarSettings];
-    }
+
+    TDTokenizer *t = [self tokenizerFromGrammarSettings];
         
     TDParser *start = [self expandedParserForName:@"@start"];
     
@@ -183,6 +181,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.parserTokensTable = nil;
     
     if (start && [start isKindOfClass:[TDParser class]]) {
+        start.tokenizer = t;
         return start;
     } else {
         [NSException raise:@"GrammarException" format:@"The provided language grammar was invalid"];

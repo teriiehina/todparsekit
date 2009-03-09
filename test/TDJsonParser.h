@@ -10,7 +10,6 @@
 
 @interface TDJsonParser : TDAlternation {
     BOOL shouldAssemble;
-    TDTokenizer *tokenizer;
     TDParser *stringParser;
     TDParser *numberParser;
     TDParser *nullParser;

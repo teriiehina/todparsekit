@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class TDAssembly;
+@class TDTokenizer;
 
 /*!
     @class      TDParser 
@@ -37,6 +38,7 @@
     id assembler;
     SEL selector;
     NSString *name;
+    TDTokenizer *tokenizer; // TDParserFactoryAdditions ivar
 }
 
 /*!
@@ -105,3 +107,11 @@
 */
 @property (nonatomic, copy) NSString *name;
 @end
+
+@interface TDParser (TDParserFactoryAdditions)
+
+- (id)parse:(NSString *)s;
+
+- (TDTokenizer *)tokenizer;
+@end
+

@@ -9,7 +9,6 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface EBNFParser : TDRepetition {
-    TDTokenizer *tokenizer;
     TDCollectionParser *statementParser;
     TDCollectionParser *exprOrAssignmentParser;
     TDCollectionParser *assignmentParser;

@@ -8,6 +8,7 @@
 
 #import "DebugAppDelegate.h"
 #import <TDParseKit/TDParseKit.h>
+#import "TDParserFactory.h"
 #import "TDJsonParser.h"
 #import "TDFastJsonParser.h"
 #import "TDRegularParser.h"
@@ -346,8 +347,7 @@
 - (void)doRubyHashParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDTokenizer *t = nil;
-    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil getTokenizer:&t];
+    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
     
     s = @"{\"brand\"=>{\"name\"=>\"something\","
     @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
@@ -355,11 +355,7 @@
     @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
     @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
     
-    t.string = s; //@"{\"foo\"=>\"bar\"}";
-
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
-    TDAssembly *res = [lp bestMatchFor:a];
-    NSLog(@"%@", res);
+    NSLog(@"%@", [lp parse:s]);
 }
 
 

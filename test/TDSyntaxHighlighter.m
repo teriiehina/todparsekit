@@ -14,7 +14,7 @@
 
 @interface TDSyntaxHighlighter ()
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName;
-- (TDParser *)parserForGrammarNamed:(NSString *)grammarName getTokenizer:(TDTokenizer **)t;
+- (TDParser *)parserForGrammarNamed:(NSString *)grammarName;
 
 // all of the ivars for these properties are lazy loaded in the getters.
 // thats so that if an application has syntax highlighting turned off, this class will
@@ -108,7 +108,7 @@
 }
 
 
-- (TDParser *)parserForGrammarNamed:(NSString *)grammarName getTokenizer:(TDTokenizer **)t {
+- (TDParser *)parserForGrammarNamed:(NSString *)grammarName {
     // create parser or the grammar requested or fetch parser from cache
     TDParser *parser = nil;
     if (cacheParsers) {
@@ -125,11 +125,11 @@
 
         // generate a parser for the requested grammar
         parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
-        parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler getTokenizer:t];
+        parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler];
         
         if (cacheParsers) {
             [self.parserCache setObject:parser forKey:grammarName];
-            [self.tokenizerCache setObject:(*t) forKey:grammarName];
+            [self.tokenizerCache setObject:parser.tokenizer forKey:grammarName];
         }
     }
 
@@ -139,15 +139,14 @@
 
 - (NSAttributedString *)highlightedStringForString:(NSString *)s ofGrammar:(NSString *)grammarName {    
     // create or fetch the parser & tokenizer for this grammar
-    TDTokenizer *t = nil;
-    TDParser *parser = [self parserForGrammarNamed:grammarName getTokenizer:&t];
+    TDParser *parser = [self parserForGrammarNamed:grammarName];
     
     // parse the string. take care to preseve the whitespace and comments in the string
-    t.string = s;
-    t.whitespaceState.reportsWhitespaceTokens = YES;
-    t.commentState.reportsCommentTokens = YES;
+    parser.tokenizer.string = s;
+    parser.tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
+    parser.tokenizer.commentState.reportsCommentTokens = YES;
 
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:parser.tokenizer];
     a.preservesWhitespaceTokens = YES;
     
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
