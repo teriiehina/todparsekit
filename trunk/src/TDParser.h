@@ -76,6 +76,12 @@
 */
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 
+/*!
+    @brief      Find a parser with the given name
+    @details    Performs a depth-first recursive search (starting with this parser) for a parser or subparser with the given name. If this parser's name is name, it will be returned.
+    @param      name of the parser to be found
+    @result     the parser with the given name or <tt>nil</tt> if not found
+ */
 - (TDParser *)parserNamed:(NSString *)name;
 
 /*!
