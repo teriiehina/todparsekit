@@ -36,10 +36,10 @@
 + (id)assemblyWithTokenArray:(NSArray *)a;
 
 /*!
- @brief      Initializes an assembly with the tokenizer <tt>t</tt> and its string
- @param      t tokenizer whose string will be worked on
- @result     an initialized assembly
- */
+    @brief      Initializes an assembly with the tokenizer <tt>t</tt> and its string
+    @param      t tokenizer whose string will be worked on
+    @result     an initialized assembly
+*/
 - (id)initWithTokenzier:(TDTokenizer *)t;
 
 /*!
