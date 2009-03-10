@@ -59,7 +59,8 @@
             n = n.parent;
         }
         
-        self.ancestry = [[result copy] autorelease]; // assign an immutable copy
+        //self.ancestry = [[result copy] autorelease]; // assign an immutable copy
+        self.ancestry = result; // optimization
     }
 }
 
