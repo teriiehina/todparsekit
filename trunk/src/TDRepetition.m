@@ -71,7 +71,7 @@
         }
     }
     
-    //NSMutableSet *outAssemblies = [[[NSSet alloc] initWithSet:inAssemblies copyItems:YES] autorelease];
+    //NSMutableSet *outAssemblies = [[[NSMutableSet alloc] initWithSet:inAssemblies copyItems:YES] autorelease];
     NSMutableSet *outAssemblies = [[inAssemblies mutableCopy] autorelease];
     
     NSSet *s = inAssemblies;
