@@ -1,5 +1,5 @@
 //
-//  TDSymbolStateTest.m
+//  TDSymbolStateTestok.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/12/08.
@@ -24,10 +24,10 @@
 - (void)testDot {
     s = @".";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@".", t.stringValue);
-    TDEqualObjects(@".", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -35,10 +35,10 @@
 - (void)testDotA {
     s = @".a";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@".", t.stringValue);
-    TDEqualObjects(@".", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -46,10 +46,10 @@
 - (void)testDotSpace {
     s = @". ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@".", t.stringValue);
-    TDEqualObjects(@".", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)' ', [r read]);
 }
 
@@ -57,10 +57,10 @@
 - (void)testDotDot {
     s = @"..";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@".", t.stringValue);
-    TDEqualObjects(@".", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@".", tok.stringValue);
+    TDEqualObjects(@".", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)'.', [r read]);
 }
 
@@ -70,10 +70,10 @@
     s = @"..";
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"..", t.stringValue);
-    TDEqualObjects(@"..", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"..", tok.stringValue);
+    TDEqualObjects(@"..", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -82,10 +82,10 @@
     s = @".. ";
     [symbolState add:@".."];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"..", t.stringValue);
-    TDEqualObjects(@"..", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"..", tok.stringValue);
+    TDEqualObjects(@"..", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)' ', [r read]);
 }
 
@@ -94,10 +94,10 @@
     s = @":=";
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@":=", t.stringValue);
-    TDEqualObjects(@":=", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@":=", tok.stringValue);
+    TDEqualObjects(@":=", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -106,10 +106,10 @@
     s = @":= ";
     [symbolState add:@":="];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@":=", t.stringValue);
-    TDEqualObjects(@":=", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@":=", tok.stringValue);
+    TDEqualObjects(@":=", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)' ', [r read]);
 }
 
@@ -118,10 +118,10 @@
     s = @">=< ";
     [symbolState add:@">=<"];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@">=<", t.stringValue);
-    TDEqualObjects(@">=<", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)' ', [r read]);
 }
 
@@ -130,10 +130,10 @@
     s = @">=<";
     [symbolState add:s];
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@">=<", t.stringValue);
-    TDEqualObjects(@">=<", t.value);
-    TDTrue(t.isSymbol);
+    TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@">=<", tok.stringValue);
+    TDEqualObjects(@">=<", tok.value);
+    TDTrue(tok.isSymbol);
     TDEquals((NSInteger)-1, [r read]);
 }
 
