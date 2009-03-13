@@ -25,8 +25,8 @@
 - (void)testSpace {
     s = @" ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -34,8 +34,8 @@
 - (void)testTwoSpaces {
     s = @"  ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -43,8 +43,8 @@
 - (void)testNil {
     s = nil;
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -52,8 +52,8 @@
 - (void)testNull {
     s = NULL;
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -61,8 +61,8 @@
 - (void)testEmptyString {
     s = @"";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -70,8 +70,8 @@
 - (void)testTab {
     s = @"\t";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -79,8 +79,8 @@
 - (void)testNewLine {
     s = @"\n";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -88,8 +88,8 @@
 - (void)testCarriageReturn {
     s = @"\r";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -97,8 +97,8 @@
 - (void)testSpaceCarriageReturn {
     s = @" \r";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -106,8 +106,8 @@
 - (void)testSpaceTabNewLineSpace {
     s = @" \t\n ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -115,16 +115,16 @@
 - (void)testSpaceA {
     s = @" a";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
 - (void)testSpaceASpace {
     s = @" a ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -132,8 +132,8 @@
 - (void)testTabA {
     s = @"\ta";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -141,8 +141,8 @@
 - (void)testNewLineA {
     s = @"\na";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -150,8 +150,8 @@
 - (void)testCarriageReturnA {
     s = @"\ra";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -159,8 +159,8 @@
 - (void)testNewLineSpaceCarriageReturnA {
     s = @"\n \ra";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNil(t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNil(tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -172,9 +172,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -183,9 +183,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"  ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -194,9 +194,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -205,9 +205,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\t";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -216,9 +216,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -227,9 +227,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\r";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -238,9 +238,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \r";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -249,9 +249,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \t\n ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(s, t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(s, tok.stringValue);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -260,9 +260,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@" ", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@" ", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -271,9 +271,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@" ", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@" ", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -282,9 +282,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ta";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@"\t", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@"\t", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -293,9 +293,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\na";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@"\n", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@"\n", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -304,9 +304,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ra";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@"\r", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@"\r", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
@@ -315,9 +315,9 @@
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n \ra";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDNotNil(t);
-    TDEqualObjects(@"\n \r", t.stringValue);
+    TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDNotNil(tok);
+    TDEqualObjects(@"\n \r", tok.stringValue);
     TDEquals((NSInteger)'a', [r read]);
 }
 
