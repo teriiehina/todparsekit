@@ -128,35 +128,33 @@
 }
 
 
-//- (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz1 {
-//    s = @"foo bar baz";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    
-//    p = [TDSequence sequence];
-//    [p add:[TDLiteral literalWithString:@"foo"]];
-//    [p add:[TDLiteral literalWithString:@"baz"]];
-//    [p add:[TDLiteral literalWithString:@"bar"]];
-//    
-//    TDAssembly *result = [p bestMatchFor:a];
-//    
-//    TDNotNil(result);
-//    TDEqualObjects(@"[foo]foo^bar/baz", [result description]);
-//}
+- (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz1 {
+    s = @"foo bar baz";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSequence sequence];
+    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[TDLiteral literalWithString:@"bar"]];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    
+    TDNil(result);
+}
 
 
-//- (void)testFalseLiteralBestMatchForFooSpaceBarSpaceBaz {
-//    s = @"foo bar baz";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    
-//    p = [TDSequence sequence];
-//    [p add:[TDLiteral literalWithString:@"foo"]];
-//    [p add:[TDLiteral literalWithString:@"foo"]];
-//    [p add:[TDLiteral literalWithString:@"baz"]];
-//    
-//    TDAssembly *result = [p bestMatchFor:a];
-//    TDNotNil(result);
-//    TDEqualObjects(@"[foo]foo^bar/baz", [result description]);
-//}
+- (void)testFalseLiteralBestMatchForFooSpaceBarSpaceBaz {
+    s = @"foo bar baz";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSequence sequence];
+    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[TDLiteral literalWithString:@"baz"]];
+    
+    TDAssembly *result = [p bestMatchFor:a];
+    TDNil(result);
+}
 
 
 - (void)testTrueLiteralCompleteMatchForFooSpaceBarSpaceBaz {
@@ -234,20 +232,20 @@
 }
 
 
-//- (void)testFalseLiteralAllMatchsForFooSpaceBarSpaceBaz {
-//    s = @"foo bar baz";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    
-//    p = [TDSequence sequence];
-//    [p add:[TDLiteral literalWithString:@"foo"]];
-//    [p add:[TDLiteral literalWithString:@"123"]];
-//    [p add:[TDLiteral literalWithString:@"baz"]];
-//    
-//    NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
-//    
-//    TDNotNil(result);
-//    NSInteger c = result.count;
-//    TDEquals(1, c);
-//}
-//
+- (void)testFalseLiteralAllMatchsForFooSpaceBarSpaceBaz {
+    s = @"foo bar baz";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    p = [TDSequence sequence];
+    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[TDLiteral literalWithString:@"123"]];
+    [p add:[TDLiteral literalWithString:@"baz"]];
+    
+    NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
+    
+    TDNotNil(result);
+    NSInteger c = result.count;
+    TDEquals(0, c);
+}
+
 @end
