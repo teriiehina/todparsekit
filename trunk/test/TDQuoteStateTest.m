@@ -27,7 +27,7 @@
     s = @"'stuff'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     
 }
 
@@ -36,7 +36,7 @@
     s = @"'stuff";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
 }
 
 
@@ -45,7 +45,7 @@
     r.string = s;
     quoteState.balancesEOFTerminatedQuotes = YES;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"'stuff'", [tok stringValue]);
+    TDEqualObjects(@"'stuff'", tok.stringValue);
 }
 
 
@@ -53,7 +53,7 @@
     s = @"'a quote here' more";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"'a quote here'", [tok stringValue]);
+    TDEqualObjects(@"'a quote here'", tok.stringValue);
 }
 
 
@@ -61,7 +61,7 @@
     s = @"'123456789abcef'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     TDTrue(tok.isQuotedString);
 }
 
@@ -70,7 +70,7 @@
     s = @"'123456789abcefg'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     TDTrue(tok.isQuotedString);
 }
 
@@ -79,7 +79,7 @@
     s = @"'123456789abcefgh'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     TDTrue(tok.isQuotedString);
 }
 
@@ -88,7 +88,7 @@
     s = @"'123456789abcefgh123456789abcefg'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     TDTrue(tok.isQuotedString);
 }
 
@@ -97,7 +97,7 @@
     s = @"'123456789abcefgh123456789abcefgh'";
     r.string = s;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, [tok stringValue]);
+    TDEqualObjects(s, tok.stringValue);
     TDTrue(tok.isQuotedString);
 }
 
