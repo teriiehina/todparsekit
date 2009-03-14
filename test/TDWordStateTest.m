@@ -25,10 +25,10 @@
 - (void)testA {
     s = @"a";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"a", t.stringValue);
-    TDEqualObjects(@"a", t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"a", tok.stringValue);
+    TDEqualObjects(@"a", tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -36,10 +36,10 @@
 - (void)testASpace {
     s = @"a ";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(@"a", t.stringValue);
-    TDEqualObjects(@"a", t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(@"a", tok.stringValue);
+    TDEqualObjects(@"a", tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)' ', [r read]);
 }
 
@@ -47,10 +47,10 @@
 - (void)testAb {
     s = @"ab";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -58,10 +58,10 @@
 - (void)testAbc {
     s = @"abc";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -69,10 +69,10 @@
 - (void)testItApostropheS {
     s = @"it's";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -80,10 +80,10 @@
 - (void)testTwentyDashFive {
     s = @"twenty-five";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -91,10 +91,10 @@
 - (void)testTwentyUnderscoreFive {
     s = @"twenty_five";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
@@ -102,10 +102,10 @@
 - (void)testNumber1 {
     s = @"number1";
     r = [[TDReader alloc] initWithString:s];
-    TDToken *t = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
-    TDEqualObjects(s, t.stringValue);
-    TDEqualObjects(s, t.value);
-    TDTrue(t.isWord);
+    TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
+    TDEqualObjects(s, tok.stringValue);
+    TDEqualObjects(s, tok.value);
+    TDTrue(tok.isWord);
     TDEquals((NSInteger)-1, [r read]);
 }
 
