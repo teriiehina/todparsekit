@@ -669,7 +669,6 @@
 }
 
 
-
 - (void)test2dot0e2 {
     s = @"2.0e2";
     t.string = s;
@@ -681,7 +680,6 @@
 }
 
 
-
 - (void)test2dot0E2 {
     s = @"2.0E2";
     t.string = s;
@@ -691,7 +689,6 @@
     TDTrue(tok.isNumber);
     TDEqualObjects(s, tok.stringValue);
 }
-
 
 
 - (void)test2e2 {
@@ -720,7 +717,6 @@
 }
 
 
-
 - (void)test2e2Tok {
     s = @"2e2";
     t.string = s;
@@ -734,7 +730,6 @@
     tok = [t nextToken];
     TDTrue([TDToken EOFToken] == tok);
 }
-
 
 
 - (void)test2e2fooTok {
