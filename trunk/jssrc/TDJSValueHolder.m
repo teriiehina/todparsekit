@@ -11,8 +11,7 @@
 @implementation JSValueHolder
 
 - (id)initWithContext:(JSContextRef)c heldValue:(JSValueRef)v {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.context = c;
         self.heldValue = v;
     }

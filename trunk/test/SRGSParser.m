@@ -24,8 +24,7 @@
 @implementation SRGSParser
 
 - (id)init {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         [self add:self.grammar];
     }
     return self;

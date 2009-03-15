@@ -15,8 +15,7 @@
 @implementation TDCollectionParser
 
 - (id)init {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.subparsers = [NSMutableArray array];
     }
     return self;

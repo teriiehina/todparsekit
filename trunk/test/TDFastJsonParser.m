@@ -24,8 +24,7 @@
 @implementation TDFastJsonParser
 
 - (id)init {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.tokenizer = [TDTokenizer tokenizer];
 
         // configure tokenizer
