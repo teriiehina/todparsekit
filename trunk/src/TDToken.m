@@ -175,15 +175,7 @@ static TDTokenEOF *EOFToken = nil;
         id v = nil;
         if (self.isNumber) {
             v = [NSNumber numberWithFloat:floatValue];
-        } else if (self.isQuotedString) {
-            v = stringValue;
-        } else if (self.isSymbol) {
-            v = stringValue;
-        } else if (self.isWord) {
-            v = stringValue;
-        } else if (self.isWhitespace) {
-            v = stringValue;
-        } else { // support for token type extensions
+        } else {
             v = stringValue;
         }
         self.value = v;
