@@ -22,6 +22,7 @@
 #import <Foundation/Foundation.h>
 
 // io
+#import <TDParseKit/TDTypes.h>
 #import <TDParseKit/TDReader.h>
 
 // parse

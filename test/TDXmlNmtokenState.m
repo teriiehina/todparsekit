@@ -13,24 +13,24 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDXmlNameState ()
-+ (BOOL)isNameChar:(NSInteger)c;
-+ (BOOL)isValidStartSymbolChar:(NSInteger)c;
++ (BOOL)isNameChar:(TDUniChar)c;
++ (BOOL)isValidStartSymbolChar:(TDUniChar)c;
 @end
 
 // NameChar       ::=        Letter | Digit | '.' | '-' | '_' | ':' | CombiningChar | Extender
 @implementation TDXmlNmtokenState
 
-+ (BOOL)isValidStartSymbolChar:(NSInteger)c {
++ (BOOL)isValidStartSymbolChar:(TDUniChar)c {
     return ('_' == c || ':' == c || '-' == c || '.' == c);
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     [self reset];
     
     NSInteger c = cin;

@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDTerminal.h>
+#import <TDParseKit/TDTypes.h>
 
 /*!
     @class      TDSpecificChar 
@@ -21,12 +22,12 @@
     @param      c the character this object should match
     @result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
 */
-+ (id)specificCharWithChar:(NSInteger)c;
++ (id)specificCharWithChar:(TDUniChar)c;
 
 /*!
     @brief      Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
     @param      c the character this object should match
     @result     an initialized <tt>TDSpecificChar</tt> parser.
 */
-- (id)initWithSpecificChar:(NSInteger)c;
+- (id)initWithSpecificChar:(TDUniChar)c;
 @end

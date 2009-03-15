@@ -7,15 +7,16 @@
 //
 
 #import <TDParseKit/TDSpecificChar.h>
+#import <TDParseKit/TDTypes.h>
 
 @implementation TDSpecificChar
 
-+ (id)specificCharWithChar:(NSInteger)c {
++ (id)specificCharWithChar:(TDUniChar)c {
     return [[[self alloc] initWithSpecificChar:c] autorelease];
 }
 
 
-- (id)initWithSpecificChar:(NSInteger)c {
+- (id)initWithSpecificChar:(TDUniChar)c {
     self = [super initWithString:[NSString stringWithFormat:@"%C", c]];
     if (self) {
     }

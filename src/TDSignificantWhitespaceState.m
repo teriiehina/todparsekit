@@ -10,10 +10,11 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
@@ -49,7 +50,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     [self reset];
     

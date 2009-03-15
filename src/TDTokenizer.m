@@ -10,8 +10,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDTokenizer ()
-- (void)addTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end;
-- (TDTokenizerState *)tokenizerStateFor:(NSInteger)c;
+- (void)addTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end;
+- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
 @property (nonatomic, retain) TDReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 @end
@@ -112,7 +112,7 @@
 }
 
 
-- (void)setTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
+- (void)setTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end {
     NSParameterAssert(state);
 
     NSInteger i = start;
@@ -152,7 +152,7 @@
 
 #pragma mark -
 
-- (void)addTokenizerState:(TDTokenizerState *)state from:(NSInteger)start to:(NSInteger)end {
+- (void)addTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end {
     NSParameterAssert(state);
     
     NSInteger i = start;
@@ -162,7 +162,7 @@
 }
 
 
-- (TDTokenizerState *)tokenizerStateFor:(NSInteger)c {
+- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c {
     if (c < 0 || c > 255) {
         if (c >= 0x19E0 && c <= 0x19FF) { // khmer symbols
             return symbolState;

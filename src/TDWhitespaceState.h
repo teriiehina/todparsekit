@@ -24,7 +24,7 @@
     @param      cin the character to check
     @result     true if the given chracter is recognized as whitespace
 */
-- (BOOL)isWhitespaceChar:(NSInteger)cin;
+- (BOOL)isWhitespaceChar:(TDUniChar)cin;
 
 /*!
     @brief      Establish the given character range as whitespace to ignore.
@@ -32,7 +32,7 @@
     @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
     @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
-- (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end;
+- (void)setWhitespaceChars:(BOOL)yn from:(TDUniChar)start to:(TDUniChar)end;
 
 /*!
     @property   reportsWhitespaceTokens

@@ -8,15 +8,16 @@
 
 #import "TDScientificNumberState.h"
 #import <TDParseKit/TDReader.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 @end
 
 @interface TDNumberState ()
 - (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction;
 - (void)parseRightSideFromReader:(TDReader *)r;
-- (void)reset:(NSInteger)cin;
+- (void)reset:(TDUniChar)cin;
 - (CGFloat)value;
 @end
 
@@ -54,7 +55,7 @@
 }
 
 
-- (void)reset:(NSInteger)cin {
+- (void)reset:(TDUniChar)cin {
     [super reset:cin];
     exp = (CGFloat)0.0;
     negativeExp = NO;
