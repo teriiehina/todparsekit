@@ -11,10 +11,11 @@
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDSymbolState.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
@@ -23,7 +24,7 @@
 - (CGFloat)value;
 - (void)parseLeftSideFromReader:(TDReader *)r;
 - (void)parseRightSideFromReader:(TDReader *)r;
-- (void)reset:(NSInteger)cin;
+- (void)reset:(TDUniChar)cin;
 @end
 
 @implementation TDNumberState
@@ -33,7 +34,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
@@ -133,7 +134,7 @@
 }
 
 
-- (void)reset:(NSInteger)cin {
+- (void)reset:(TDUniChar)cin {
     gotADigit = NO;
     floatValue = 0.0;
     c = cin;

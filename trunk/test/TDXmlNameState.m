@@ -13,26 +13,26 @@
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDXmlNameState ()
-+ (BOOL)isNameChar:(NSInteger)c;
-+ (BOOL)isValidStartSymbolChar:(NSInteger)c;
-+ (BOOL)isValidNonStartSymbolChar:(NSInteger)c;
++ (BOOL)isNameChar:(TDUniChar)c;
++ (BOOL)isValidStartSymbolChar:(TDUniChar)c;
++ (BOOL)isValidNonStartSymbolChar:(TDUniChar)c;
 @end
 
 //Name       ::=       (Letter | '_' | ':') (NameChar)*
 @implementation TDXmlNameState
 
-//- (BOOL)isWhitespace:(NSInteger)c {
+//- (BOOL)isWhitespace:(TDUniChar)c {
 //    return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
 //}
 
 
 //    NameChar       ::=        Letter | Digit | '.' | '-' | '_' | ':' | CombiningChar | Extender
-+ (BOOL)isNameChar:(NSInteger)c {
++ (BOOL)isNameChar:(TDUniChar)c {
     if (isalpha(c)) {
         return YES;
     } else if (isdigit(c)) {
@@ -45,17 +45,17 @@
 }
 
 
-+ (BOOL)isValidStartSymbolChar:(NSInteger)c {
++ (BOOL)isValidStartSymbolChar:(TDUniChar)c {
     return ('_' == c || ':' == c);
 }
 
 
-+ (BOOL)isValidNonStartSymbolChar:(NSInteger)c {
++ (BOOL)isValidNonStartSymbolChar:(TDUniChar)c {
     return ('_' == c || '.' == c || '-' == c || ':' == c);
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     [self reset];
     
     NSInteger c = cin;

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TDParseKit/TDTypes.h>
 
 @class TDToken;
 @class TDTokenizer;
@@ -28,5 +29,5 @@
     @param      t the tokenizer currently powering the tokenization
     @result     a token that represents a logical piece of the reader
 */
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t;
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t;
 @end

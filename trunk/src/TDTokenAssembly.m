@@ -13,7 +13,7 @@
 @interface TDTokenAssembly ()
 - (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a;
 - (void)tokenize;
-- (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter;
+- (NSString *)objectsFrom:(TDUniChar)start to:(TDUniChar)end separatedBy:(NSString *)delimiter;
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, copy) NSArray *tokens;
@@ -172,7 +172,7 @@
 }
 
 
-- (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter {
+- (NSString *)objectsFrom:(TDUniChar)start to:(TDUniChar)end separatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
     NSArray *toks = self.tokens;
 

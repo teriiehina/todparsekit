@@ -10,13 +10,14 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDTypes.h>
 
 #define TDTRUE (id)kCFBooleanTrue
 #define TDFALSE (id)kCFBooleanFalse
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
@@ -47,7 +48,7 @@
 }
 
 
-- (void)setWhitespaceChars:(BOOL)yn from:(NSInteger)start to:(NSInteger)end {
+- (void)setWhitespaceChars:(BOOL)yn from:(TDUniChar)start to:(TDUniChar)end {
     NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
@@ -61,7 +62,7 @@
 }
 
 
-- (BOOL)isWhitespaceChar:(NSInteger)cin {
+- (BOOL)isWhitespaceChar:(TDUniChar)cin {
     if (cin < 0 || cin > whitespaceChars.count - 1) {
         return NO;
     }
@@ -69,7 +70,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     if (reportsWhitespaceTokens) {
         [self reset];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TDParseKit/TDTypes.h>
 
 /*!
     @class      TDReader 
@@ -14,7 +15,7 @@
 */
 @interface TDReader : NSObject {
     NSString *string;
-    NSUInteger cursor;
+    CFIndex cursor;
     NSUInteger length;
 }
 
@@ -27,10 +28,10 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
-    @brief      Read a single character
+    @brief      Read a single UTF-16 unicode character
     @result     The character read, or -1 if the end of the stream has been reached
 */
-- (NSInteger)read;
+- (TDUniChar)read;
 
 /*!
     @brief      Push back a single character

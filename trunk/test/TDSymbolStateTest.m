@@ -28,7 +28,7 @@
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -39,7 +39,7 @@
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)'a', [r read]);
+    TDEquals((TDUniChar)'a', [r read]);
 }
 
 
@@ -50,7 +50,7 @@
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)' ', [r read]);
+    TDEquals((TDUniChar)' ', [r read]);
 }
 
 
@@ -61,7 +61,7 @@
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)'.', [r read]);
+    TDEquals((TDUniChar)'.', [r read]);
 }
 
 
@@ -74,7 +74,7 @@
     TDEqualObjects(@"..", tok.stringValue);
     TDEqualObjects(@"..", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -86,7 +86,7 @@
     TDEqualObjects(@"..", tok.stringValue);
     TDEqualObjects(@"..", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)' ', [r read]);
+    TDEquals((TDUniChar)' ', [r read]);
 }
 
 
@@ -98,7 +98,7 @@
     TDEqualObjects(@":=", tok.stringValue);
     TDEqualObjects(@":=", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -110,7 +110,7 @@
     TDEqualObjects(@":=", tok.stringValue);
     TDEqualObjects(@":=", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)' ', [r read]);
+    TDEquals((TDUniChar)' ', [r read]);
 }
 
 
@@ -122,7 +122,7 @@
     TDEqualObjects(@">=<", tok.stringValue);
     TDEqualObjects(@">=<", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)' ', [r read]);
+    TDEquals((TDUniChar)' ', [r read]);
 }
 
 
@@ -134,7 +134,7 @@
     TDEqualObjects(@">=<", tok.stringValue);
     TDEqualObjects(@">=<", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 

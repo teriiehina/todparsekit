@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TDParseKit/TDTypes.h>
 
 /*!
     @class      TDSymbolNode 
@@ -27,7 +28,7 @@
     @param      c the character for this node
     @result     An initialized <tt>TDSymbolNode</tt>
 */
-- (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c;
+- (id)initWithParent:(TDSymbolNode *)p character:(TDUniChar)c;
 
 /*!
     @property   ancestry

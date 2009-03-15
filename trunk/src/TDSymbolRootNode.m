@@ -14,9 +14,9 @@
 @end
 
 @interface TDSymbolRootNode ()
-- (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (void)removeWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p;
+- (void)addWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
+- (void)removeWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
+- (NSString *)nextWithFirst:(TDUniChar)c rest:(TDReader *)r parent:(TDSymbolNode *)p;
 @end
 
 @implementation TDSymbolRootNode
@@ -46,7 +46,7 @@
 }
 
 
-- (void)addWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)addWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
@@ -68,7 +68,7 @@
 }
 
 
-- (void)removeWithFirst:(NSInteger)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)removeWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
@@ -87,13 +87,13 @@
 }
 
 
-- (NSString *)nextSymbol:(TDReader *)r startingWith:(NSInteger)cin {
+- (NSString *)nextSymbol:(TDReader *)r startingWith:(TDUniChar)cin {
     NSParameterAssert(r);
     return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
-- (NSString *)nextWithFirst:(NSInteger)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
+- (NSString *)nextWithFirst:(TDUniChar)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSString *result = [NSString stringWithFormat:@"%C", c];
 

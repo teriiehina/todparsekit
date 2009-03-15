@@ -29,7 +29,7 @@
     TDEqualObjects(@"a", tok.stringValue);
     TDEqualObjects(@"a", tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -40,7 +40,7 @@
     TDEqualObjects(@"a", tok.stringValue);
     TDEqualObjects(@"a", tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)' ', [r read]);
+    TDEquals((TDUniChar)' ', [r read]);
 }
 
 
@@ -51,7 +51,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -62,7 +62,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -73,7 +73,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -84,7 +84,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -95,7 +95,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 
@@ -106,7 +106,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((NSInteger)-1, [r read]);
+    TDEquals((TDUniChar)-1, [r read]);
 }
 
 @end

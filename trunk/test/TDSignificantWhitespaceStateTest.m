@@ -28,7 +28,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -38,7 +38,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -48,7 +48,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -58,7 +58,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -68,7 +68,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -78,7 +78,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -88,7 +88,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -98,7 +98,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((NSInteger)-1, [r read], @"");
+    STAssertEquals((TDUniChar)-1, [r read], @"");
 }
 
 
@@ -108,7 +108,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@" ", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 - (void)testSpaceASpace {
@@ -117,7 +117,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@" ", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 
@@ -127,7 +127,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\t", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 
@@ -137,7 +137,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\n", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 
@@ -147,7 +147,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\r", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 
@@ -157,7 +157,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\n \r", t.stringValue, @"");
-    STAssertEquals((NSInteger)'a', [r read], @"");
+    STAssertEquals((TDUniChar)'a', [r read], @"");
 }
 
 

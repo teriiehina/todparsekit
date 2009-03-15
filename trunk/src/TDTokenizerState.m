@@ -7,10 +7,11 @@
 //
 
 #import <TDParseKit/TDTokenizerState.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
 - (void)reset;
-- (void)append:(NSInteger)c;
+- (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 
@@ -25,7 +26,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(NSInteger)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSAssert(0, @"TDTokenizerState is an Abstract Classs. nextTokenFromStream:at:tokenizer: must be overriden");
     return nil;
 }
@@ -36,8 +37,9 @@
 }
 
 
-- (void)append:(NSInteger)c {
-    [stringbuf appendFormat:@"%C", c];
+- (void)append:(TDUniChar)c {
+    NSParameterAssert(c > 0);
+    CFStringAppendCharacters((CFMutableStringRef)stringbuf, (const UniChar *)&c, 1);
 }
 
 
