@@ -38,12 +38,12 @@
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
-    NSInteger len = symbol.length;
+    NSUInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
         return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0];
     } else {
-        NSInteger i = 0;
+        NSUInteger i = 0;
         for ( ; i < len - 1; i++) {
             [r unread];
         }

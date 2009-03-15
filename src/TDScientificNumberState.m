@@ -27,7 +27,7 @@
     NSParameterAssert(r);
     [super parseRightSideFromReader:r];
     if ('e' == c || 'E' == c) {
-        NSInteger e = c;
+        TDUniChar e = c;
         c = [r read];
         
         BOOL hasExp = isdigit(c);

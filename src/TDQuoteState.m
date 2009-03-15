@@ -29,7 +29,7 @@
     [self reset];
     
     [self append:cin];
-    NSInteger c;
+    TDUniChar c;
     do {
         c = [r read];
         if (TDEOF == c) {

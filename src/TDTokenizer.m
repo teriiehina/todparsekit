@@ -93,7 +93,7 @@
 
 
 - (TDToken *)nextToken {
-    NSInteger c = [reader read];
+    TDUniChar c = [reader read];
     
     TDToken *result = nil;
     

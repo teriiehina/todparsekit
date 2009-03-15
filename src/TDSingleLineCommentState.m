@@ -68,7 +68,7 @@
         }
     }
     
-    NSInteger c;
+    TDUniChar c;
     while (1) {
         c = [r read];
         if ('\n' == c || '\r' == c || TDEOF == c) {

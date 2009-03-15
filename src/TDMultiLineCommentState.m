@@ -62,7 +62,7 @@
 
 - (void)removeStartSymbol:(NSString *)start {
     NSParameterAssert(start.length);
-    NSInteger i = [startSymbols indexOfObject:start];
+    NSUInteger i = [startSymbols indexOfObject:start];
     if (NSNotFound != i) {
         [startSymbols removeObject:start];
         [endSymbols removeObjectAtIndex:i]; // this should always be in range.
@@ -71,8 +71,8 @@
 
 
 - (void)unreadSymbol:(NSString *)s fromReader:(TDReader *)r {
-    NSInteger len = s.length;
-    NSInteger i = 0;
+    NSUInteger len = s.length;
+    NSUInteger i = 0;
     for ( ; i < len - 1; i++) {
         [r unread];
     }
@@ -90,14 +90,14 @@
         [self appendString:currentStartSymbol];
     }
     
-    NSInteger i = [startSymbols indexOfObject:currentStartSymbol];
+    NSUInteger i = [startSymbols indexOfObject:currentStartSymbol];
     NSString *currentEndSymbol = [endSymbols objectAtIndex:i];
-    NSInteger e = [currentEndSymbol characterAtIndex:0];
+    TDUniChar e = [currentEndSymbol characterAtIndex:0];
     
     // get the definitions of all multi-char comment start and end symbols from the commentState
     TDSymbolRootNode *rootNode = t.commentState.rootNode;
         
-    NSInteger c;
+    TDUniChar c;
     while (1) {
         c = [r read];
         if (TDEOF == c) {

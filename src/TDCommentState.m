@@ -97,7 +97,7 @@
         singleLineState.currentStartSymbol = symbol;
         return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
-        NSInteger i = 0;
+        NSUInteger i = 0;
         for ( ; i < symbol.length - 1; i++) {
             [r unread];
         }

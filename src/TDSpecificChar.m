@@ -25,7 +25,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    NSInteger c = [obj integerValue];
+    TDUniChar c = [obj intValue];
     return c == [string characterAtIndex:0];
 }
 

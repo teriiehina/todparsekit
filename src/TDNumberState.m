@@ -40,7 +40,7 @@
 
     [self reset];
     negative = NO;
-    NSInteger originalCin = cin;
+    TDUniChar originalCin = cin;
     
     if ('-' == cin) {
         negative = YES;
@@ -117,7 +117,7 @@
 
 - (void)parseRightSideFromReader:(TDReader *)r {
     if ('.' == c) {
-        NSInteger n = [r read];
+        TDUniChar n = [r read];
         BOOL nextIsDigit = isdigit(n);
         if (TDEOF != n) {
             [r unread];

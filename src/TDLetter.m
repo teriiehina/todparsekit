@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDLetter.h>
+#import <TDParseKit/TDTypes.h>
 
 @implementation TDLetter
 
@@ -16,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    NSInteger c = [obj integerValue];
+    TDUniChar c = [obj intValue];
     return isalpha(c);
 }
 
