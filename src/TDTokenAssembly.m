@@ -69,7 +69,9 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
-    a->tokens = [self.tokens copyWithZone:zone];
+    if (tokens) {
+        a->tokens = [tokens copyWithZone:zone];
+    }
     a->preservesWhitespaceTokens = preservesWhitespaceTokens;
     return a;
 }
@@ -85,14 +87,15 @@
 
 - (id)peek {
     TDToken *tok = nil;
+    NSArray *toks = self.tokens;
     
     while (1) {
-        if (index >= self.tokens.count) {
+        if (index >= toks.count) {
             tok = nil;
             break;
         }
         
-        tok = [self.tokens objectAtIndex:index];
+        tok = [toks objectAtIndex:index];
         if (!preservesWhitespaceTokens) {
             break;
         }
@@ -154,7 +157,7 @@
 
 - (void)tokenize {
     if (!tokenizer) {
-        return;
+        self.tokenizer = [TDTokenizer tokenizerWithString:string];
     }
     
     NSMutableArray *a = [NSMutableArray array];
@@ -171,10 +174,11 @@
 
 - (NSString *)objectsFrom:(NSInteger)start to:(NSInteger)end separatedBy:(NSString *)delimiter {
     NSMutableString *s = [NSMutableString string];
+    NSArray *toks = self.tokens;
 
     NSInteger i = start;
     for ( ; i < end; i++) {
-        TDToken *tok = [self.tokens objectAtIndex:i];
+        TDToken *tok = [toks objectAtIndex:i];
         [s appendString:tok.stringValue];
         if (end - 1 != i) {
             [s appendString:delimiter];
