@@ -15,7 +15,7 @@
 */
 @interface TDReader : NSObject {
     NSString *string;
-    CFIndex cursor;
+    NSUInteger cursor;
     NSUInteger length;
 }
 
