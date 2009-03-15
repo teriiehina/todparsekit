@@ -30,7 +30,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -41,7 +41,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -54,7 +54,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -67,7 +67,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, s);
     TDTrue(tok.isComment);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -80,7 +80,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, s);
     TDTrue(tok.isComment);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -136,7 +136,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -148,7 +148,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -158,7 +158,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -170,7 +170,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -180,7 +180,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -192,7 +192,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -204,7 +204,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -240,7 +240,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -252,7 +252,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -286,7 +286,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -298,7 +298,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -308,7 +308,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -318,7 +318,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -330,7 +330,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -340,7 +340,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -350,7 +350,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -362,7 +362,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -372,7 +372,7 @@
     t.string = s;
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -384,7 +384,7 @@
     TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 @end

@@ -29,7 +29,7 @@
     TDEqualObjects(@"a", tok.stringValue);
     TDEqualObjects(@"a", tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -51,7 +51,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -62,7 +62,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -73,7 +73,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -84,7 +84,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -95,7 +95,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -106,7 +106,7 @@
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
     TDTrue(tok.isWord);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 @end

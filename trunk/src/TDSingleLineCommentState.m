@@ -71,7 +71,7 @@
     NSInteger c;
     while (1) {
         c = [r read];
-        if ('\n' == c || '\r' == c || -1 == c) {
+        if ('\n' == c || '\r' == c || TDEOF == c) {
             break;
         }
         if (reportTokens) {
@@ -79,7 +79,7 @@
         }
     }
     
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
     

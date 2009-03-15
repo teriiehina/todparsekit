@@ -22,7 +22,7 @@
 @implementation TDSymbolRootNode
 
 - (id)init {
-    self = [super initWithParent:nil character:-1];
+    self = [super initWithParent:nil character:TDEOF];
     if (self) {
         
     }
@@ -132,7 +132,7 @@
     } 
     
     c = [r read];
-    if (-1 == c) {
+    if (TDEOF == c) {
         return result;
     }
     

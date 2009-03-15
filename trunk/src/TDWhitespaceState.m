@@ -83,7 +83,7 @@
         }
         c = [r read];
     }
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
     

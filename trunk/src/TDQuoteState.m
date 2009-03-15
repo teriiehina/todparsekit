@@ -32,7 +32,7 @@
     NSInteger c;
     do {
         c = [r read];
-        if (-1 == c) {
+        if (TDEOF == c) {
             c = cin;
             if (balancesEOFTerminatedQuotes) {
                 [self append:c];

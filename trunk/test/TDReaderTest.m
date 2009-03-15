@@ -44,7 +44,7 @@
     for ( ; i < len; i++) {
         [reader read];
     }
-    TDEquals((TDUniChar)-1, [reader read]);
+    TDEquals(TDEOF, [reader read]);
 }
 
 

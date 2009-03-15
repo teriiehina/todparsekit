@@ -97,7 +97,7 @@
     
     TDToken *result = nil;
     
-    if (-1 == c) {
+    if (TDEOF == c) {
         result = [TDToken EOFToken];
     } else {
         TDTokenizerState *state = [self tokenizerStateFor:c];

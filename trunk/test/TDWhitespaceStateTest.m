@@ -27,7 +27,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -36,7 +36,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -45,7 +45,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -54,7 +54,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -63,7 +63,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -72,7 +72,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -81,7 +81,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -90,7 +90,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -99,7 +99,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -108,7 +108,7 @@
     r = [[TDReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -175,7 +175,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -186,7 +186,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -197,7 +197,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -208,7 +208,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -219,7 +219,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -230,7 +230,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -241,7 +241,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -252,7 +252,7 @@
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 

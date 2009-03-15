@@ -100,7 +100,7 @@
     NSInteger c;
     while (1) {
         c = [r read];
-        if (-1 == c) {
+        if (TDEOF == c) {
             if (balanceEOF) {
                 [self appendString:currentEndSymbol];
             }
@@ -130,7 +130,7 @@
         }
     }
     
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
     
