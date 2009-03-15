@@ -128,6 +128,11 @@ static TDTokenEOF *EOFToken = nil;
 }
 
 
+- (id)copyWithZone:(NSZone *)zone {
+    return [self retain]; // tokens are immutable
+}
+
+
 - (NSUInteger)hash {
     return [stringValue hash];
 }
