@@ -45,6 +45,7 @@
 
 
 - (void)appendString:(NSString *)s {
+    NSParameterAssert(s);
     [stringbuf appendString:s];
 }
 
