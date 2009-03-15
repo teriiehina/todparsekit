@@ -48,8 +48,8 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    // use of NSAllocateObject is a *massive* optimization over calling the designated initializer -initWithString:
-    // this line (and this methodin general) is *vital* to the overall performance of the framework. dont fuck with it
+    // use of NSAllocateObject() below is a *massive* optimization over calling the designated initializer -initWithString: here.
+    // this line (and this method in general) is *vital* to the overall performance of the framework. dont fuck with it.
     TDAssembly *a = NSAllocateObject([self class], 0, zone);
     a->stack = [stack mutableCopyWithZone:zone];
     a->string = [string retain];
