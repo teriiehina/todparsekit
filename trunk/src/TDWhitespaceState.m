@@ -76,7 +76,7 @@
         [self reset];
     }
     
-    NSInteger c = cin;
+    TDUniChar c = cin;
     while ([self isWhitespaceChar:c]) {
         if (reportsWhitespaceTokens) {
             [self append:c];

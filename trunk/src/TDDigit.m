@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDDigit.h>
+#import <TDParseKit/TDTypes.h>
 
 @implementation TDDigit
 
@@ -16,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    NSInteger c = [obj integerValue];
+    TDUniChar c = [obj intValue];
     return isdigit(c);
 }
 

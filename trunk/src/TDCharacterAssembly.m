@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDCharacterAssembly.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDAssembly ()
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
@@ -43,8 +44,8 @@
     if (index >= string.length) {
         return nil;
     }
-    NSInteger c = [string characterAtIndex:index];
-    return [NSNumber numberWithInteger:c];
+    TDUniChar c = [string characterAtIndex:index];
+    return [NSNumber numberWithInt:c];
 }
 
 
@@ -94,8 +95,8 @@
     NSMutableString *s = [NSMutableString string];
     [s appendString:@"["];
     
-    NSInteger i = 0;
-    NSInteger len = stack.count;
+    NSUInteger i = 0;
+    NSUInteger len = stack.count;
     
     for (id obj in self.stack) {
         if ([obj isKindOfClass:[NSNumber class]]) { // ***this is needed for Char Assemblies
