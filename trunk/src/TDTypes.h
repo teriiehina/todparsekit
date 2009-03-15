@@ -8,4 +8,5 @@
  */
 
 // a UTF-16 character. signed so that it may represent -1 as well
-typedef SInt32  TDUniChar;
+//typedef SInt32  TDUniChar;
+typedef NSInteger  TDUniChar;

@@ -49,7 +49,8 @@
     if (0 == length || cursor > length - 1) {
         return -1;
     }
-    return CFStringGetCharacterAtIndex((CFStringRef)string, cursor++);
+    //return CFStringGetCharacterAtIndex((CFStringRef)string, cursor++);
+    return [string characterAtIndex:cursor++];
 }
 
 
