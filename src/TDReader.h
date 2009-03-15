@@ -29,7 +29,7 @@
 
 /*!
     @brief      Read a single UTF-16 unicode character
-    @result     The character read, or -1 if the end of the stream has been reached
+    @result     The character read, or TDEOF (-1) if the end of the stream has been reached
 */
 - (TDUniChar)read;
 

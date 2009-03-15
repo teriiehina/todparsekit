@@ -29,7 +29,7 @@
     t.string = s;
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], (TDUniChar)-1);
+    TDEquals([r read], TDEOF);
 }
 
 
@@ -42,7 +42,7 @@
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEqualObjects([t nextToken], [TDToken EOFToken]);
-//    TDEquals([r read], (TDUniChar)-1);
+//    TDEquals([r read], TDEOF);
 }
 
 
@@ -89,7 +89,7 @@
     [t setTokenizerState:commentState from:'#' to:'#'];
     tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], (TDUniChar)-1);
+    TDEquals([r read], TDEOF);
 }
 
 
@@ -103,7 +103,7 @@
     tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals([r read], (TDUniChar)-1);
+    TDEquals([r read], TDEOF);
 }
 
 
@@ -113,7 +113,7 @@
     t.string = s;
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], (TDUniChar)-1);
+    TDEquals([r read], TDEOF);
 }
 
 
@@ -123,7 +123,7 @@
     t.string = s;
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], (TDUniChar)-1);
+    TDEquals([r read], TDEOF);
 }
 
 

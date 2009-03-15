@@ -71,7 +71,7 @@
 
 
 - (BOOL)isWordChar:(TDUniChar)c {    
-    if (c > -1 && c < wordChars.count - 1) {
+    if (c > TDEOF && c < wordChars.count - 1) {
         return (TDTRUE == [wordChars objectAtIndex:c]);
     }
 
@@ -103,7 +103,7 @@
         c = [r read];
     } while ([self isWordChar:c]);
     
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
     

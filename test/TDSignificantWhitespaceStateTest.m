@@ -28,7 +28,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -38,7 +38,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -48,7 +48,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -58,7 +58,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -68,7 +68,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -78,7 +78,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -88,7 +88,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 
@@ -98,7 +98,7 @@
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
-    STAssertEquals((TDUniChar)-1, [r read], @"");
+    STAssertEquals(TDEOF, [r read], @"");
 }
 
 

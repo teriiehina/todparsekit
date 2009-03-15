@@ -38,7 +38,7 @@
             c = [r read];
             hasExp = isdigit(c);
         }
-        if (-1 != c) {
+        if (TDEOF != c) {
             [r unread];
         }
         if (hasExp) {

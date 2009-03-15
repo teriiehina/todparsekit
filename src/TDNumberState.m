@@ -61,13 +61,13 @@
     
     // erroneous ., +, or -
     if (!gotADigit) {
-        if (negative && -1 != c) { // ??
+        if (negative && TDEOF != c) { // ??
             [r unread];
         }
         return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
     }
     
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
 
@@ -119,7 +119,7 @@
     if ('.' == c) {
         NSInteger n = [r read];
         BOOL nextIsDigit = isdigit(n);
-        if (-1 != n) {
+        if (TDEOF != n) {
             [r unread];
         }
 

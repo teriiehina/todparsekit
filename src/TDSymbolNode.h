@@ -18,7 +18,7 @@
     NSString *ancestry;
     TDSymbolNode *parent;
     NSMutableDictionary *children;
-    NSInteger character;
+    TDUniChar character;
     NSString *string;
 }
 

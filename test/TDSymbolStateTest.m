@@ -28,7 +28,7 @@
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -74,7 +74,7 @@
     TDEqualObjects(@"..", tok.stringValue);
     TDEqualObjects(@"..", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -98,7 +98,7 @@
     TDEqualObjects(@":=", tok.stringValue);
     TDEqualObjects(@":=", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 
@@ -134,7 +134,7 @@
     TDEqualObjects(@">=<", tok.stringValue);
     TDEqualObjects(@">=<", tok.value);
     TDTrue(tok.isSymbol);
-    TDEquals((TDUniChar)-1, [r read]);
+    TDEquals(TDEOF, [r read]);
 }
 
 

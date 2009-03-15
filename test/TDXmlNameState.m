@@ -64,7 +64,7 @@
         c = [r read];
     } while ([[self class] isNameChar:c]);
     
-    if (-1 != c) {
+    if (TDEOF != c) {
         [r unread];
     }
 
