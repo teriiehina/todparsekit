@@ -32,7 +32,7 @@ typedef enum {
     @brief      A token represents a logical chunk of a string.
     @details    For example, a typical tokenizer would break the string <tt>"1.23 &lt;= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
 */
-@interface TDToken : NSObject {
+@interface TDToken : NSObject <NSCopying> {
     CGFloat floatValue;
     NSString *stringValue;
     TDTokenType tokenType;
