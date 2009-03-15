@@ -39,7 +39,8 @@
 
 - (void)append:(TDUniChar)c {
     NSParameterAssert(c > 0);
-    CFStringAppendCharacters((CFMutableStringRef)stringbuf, (const UniChar *)&c, 1);
+    //CFStringAppendCharacters((CFMutableStringRef)stringbuf, (const UniChar *)&c, 1);
+    [stringbuf appendFormat:@"%C", c];
 }
 
 
