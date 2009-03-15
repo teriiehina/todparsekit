@@ -47,8 +47,7 @@
 
 
 - (id)init {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
     }

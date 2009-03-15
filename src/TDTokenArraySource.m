@@ -26,8 +26,7 @@
 - (id)initWithTokenizer:(TDTokenizer *)t delimiter:(NSString *)s {
     NSParameterAssert(t);
     NSParameterAssert(s);
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.tokenizer = t;
         self.delimiter = s;
     }

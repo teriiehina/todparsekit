@@ -22,8 +22,7 @@
 @implementation TDSymbolNode
 
 - (id)initWithParent:(TDSymbolNode *)p character:(NSInteger)c {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.parent = p;
         self.character = c;
         self.children = [NSMutableDictionary dictionary];

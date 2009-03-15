@@ -28,8 +28,7 @@
 
 
 - (id)initWithIntentToAssemble:(BOOL)yn {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         shouldAssemble = yn;
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];

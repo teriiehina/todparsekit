@@ -20,8 +20,7 @@
 @implementation TDSymbolState
 
 - (id)init {
-    self = [super init];
-    if (self) {
+        if (self = [super init]) {
         self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
         self.addedSymbols = [NSMutableArray array];
     }
