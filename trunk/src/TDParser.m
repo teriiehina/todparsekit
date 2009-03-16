@@ -16,6 +16,10 @@
 - (TDAssembly *)best:(NSSet *)inAssemblies;
 @end
 
+@interface TDParser (TDParserFactoryAdditionsFriend)
+- (void)setTokenizer:(TDTokenizer *)t;
+@end
+
 @implementation TDParser
 
 + (id)parser {
@@ -122,10 +126,6 @@
 @synthesize assembler;
 @synthesize selector;
 @synthesize name;
-@end
-
-@interface TDParser (TDParserFactoryAdditionsFriend)
-- (void)setTokenizer:(TDTokenizer *)t;
 @end
 
 @implementation TDParser (TDParserFactoryAdditions)
