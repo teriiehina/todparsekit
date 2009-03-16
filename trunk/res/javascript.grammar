@@ -1,9 +1,29 @@
-@symbols            = '||' '&&' '!=' '!==' '==' '===' '<=' '>=';
+@symbols            = '||' '&&' '!=' '!==' '==' '===' '<=' '>=' '++' '--' '+=' '-=' '*=' '/=' '%=' '<<' '>>' '>>>' '<<=' '>>=' '>>>=' '&=' '^=' '|=';
 @singleLineComments = '//';
 @multiLineComments  = '/*' '*/';
 
 @start              = program;
 
+if                  = 'if';
+else                = 'else';
+while               = 'while';
+for                 = 'for';
+in                  = 'in';
+break               = 'break';
+continue            = 'continue';
+with                = 'with';
+return              = 'return';
+var                 = 'var';
+delete              = 'delete';
+new                 = 'new';
+this                = 'this';
+false               = 'false';
+true                = 'true';
+null                = 'null';
+undefined           = 'undefined';
+void                = 'void';
+typeof              = 'typeof';
+instanceof          = 'instanceof';
 
 openCurly           = '{';
 closeCurly          = '}';
@@ -22,35 +42,50 @@ gt                  = '>';
 amp                 = '&';
 pipe                = '|';
 caret               = '^';
+tilde               = '~';
 question            = '?';
 plus                = '+';
 minus               = '-';
+times               = '*';
+div                 = '/';
+mod                 = '%';
 
 or                  = '||';
 and                 = '&&';
 ne                  = '!=';
-nee                 = '!==';
+isnot               = '!==';
 eq                  = '==';
 is                  = '===';
 le                  = '<=';
 ge                  = '>=';
+plusPlus            = '++';
+minusMinus          = '--';
+plusEq              = '+=';
+minusEq             = '-=';
+timesEq             = '*=';
+divEq               = '/=';
+modEq               = '%=';
+shiftLeft           = '<<';
+shiftRight          = '>>';
+shiftRightExt       = '>>>';
+shiftLeftEq         = '<<=';
+shiftRightEq        = '>>=';
+shiftRightExtEq     = '>>>=';
+andEq               = '&=';
+xorEq               = '^=';
+orEq                = '|=';
 
-if                  = 'if';
-else                = 'else';
-while               = 'while';
-for                 = 'for';
-in                  = 'in';
-break               = 'break';
-continue            = 'continue';
-with                = 'with';
-return              = 'return';
-var                 = 'var';
-delete              = 'delete';
-new                 = 'new';
-this                = 'this';
-false               = 'false';
-true                = 'true';
-null                = 'null';
+assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
+
+relationalOperator  = lt | gt | ge | le | instanceof;
+equalityOperator    = eq | ne | is | isnot;
+
+shiftOperator       = shiftLeft | shiftRight | shiftRightExt;
+incrementOperator   = plusPlus | minusMinus;
+unaryOperator       = tilde | delete | typeof | void;
+
+multiplicativeOperator = times | div;
+
 
 
 // Program:
@@ -74,7 +109,7 @@ function            = 'function' identifier openParen paramListOpt closeParen co
 //           empty
 //           ParameterList
 
-parameterListOpt    = Empty | paramList;
+paramListOpt        = Empty | paramList;
 
 
 
@@ -82,7 +117,7 @@ parameterListOpt    = Empty | paramList;
 //           Identifier
 //           Identifier , ParameterList
 
-parameterList       = identifier commaIdentifier*;
+paramList           = identifier commaIdentifier*;
 commaIdentifier     = comma identifier;
 
 
@@ -128,14 +163,14 @@ breakStmt           = break semi;
 continueStmt        = continue semi;
 withStmt            = with openParen expr closeParen stmt;
 returnStmt          = return exprOpt semi;
-variablesOrExprStmt = variablessOrExpr semi;
+variablesOrExprStmt = variablesOrExpr semi;
 
 
 
 //  Condition:
 //           ( Expression )
 
-condition           = openParent expr closeParen;
+condition           = openParen expr closeParen;
 
 
 
@@ -149,7 +184,7 @@ forParen            = for openParen;
 //  ForBegin:
 //           ForParen VariablesOrExpression
 
-forBegin            = forParen variablessOrExpr;
+forBegin            = forParen variablesOrExpr;
 
 
 
@@ -267,7 +302,6 @@ equalityExpr        = relationalExpr (equalityOperator equalityExpr)?;
 //           RelationalExpression RelationalationalOperator ShiftExpression
 
 relationalExpr      = shiftExpr | relationalExpr relationalOperator shiftExpr;
-relationalOperator  = is ne nee lt gt ge le 
 
 
 //  ShiftExpression:
@@ -348,7 +382,7 @@ argListOpt          = argList?;
 //           AssignmentExpression , ArgumentList
 
 argList             = assignmentExpr commaAssignmentExpr*;
-commaAssignmentExpr = comma AssignmentExpression;
+commaAssignmentExpr = comma assignmentExpr;
 
 
 
@@ -363,4 +397,6 @@ commaAssignmentExpr = comma AssignmentExpression;
 //           null
 //           this
 
-primaryExpr         = openParen expr closeParen | identifier | Num | QuotedString | false | true | null | this;
+primaryExpr         = openParen expr closeParen | identifier | Num | QuotedString | false | true | null | undefined | this;
+
+identifier          = Word;
