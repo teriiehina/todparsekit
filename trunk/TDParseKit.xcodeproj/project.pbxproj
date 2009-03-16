@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
-		D317A5300F0A06EE000AFB62 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D317A52F0F0A06EE000AFB62 /* javascript.grammar */; };
 		D31A13360F6D8513002AFDF1 /* TDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D31A13350F6D8513002AFDF1 /* TDTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54B0E60E46100A0803E /* TDTestScaffold.m */; };
 		D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54E0E60E50800A0803E /* TDAlternationTest.m */; };
@@ -442,7 +441,6 @@
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		D301D6250EDE1EA00097CE86 /* TDSignificantWhitespaceState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSignificantWhitespaceState.h; path = src/TDSignificantWhitespaceState.h; sourceTree = "<group>"; };
 		D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
-		D317A52F0F0A06EE000AFB62 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A13350F6D8513002AFDF1 /* TDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTypes.h; path = src/TDTypes.h; sourceTree = "<group>"; };
 		D31FE54A0E60E46100A0803E /* TDTestScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTestScaffold.h; path = test/TDTestScaffold.h; sourceTree = "<group>"; };
 		D31FE54B0E60E46100A0803E /* TDTestScaffold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTestScaffold.m; path = test/TDTestScaffold.m; sourceTree = "<group>"; };
@@ -1425,7 +1423,6 @@
 				D380AFC20F0C56000009EC13 /* example.html */,
 				D3F741BD0EF9F28D00559B9F /* css2_1.grammar */,
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
-				D317A52F0F0A06EE000AFB62 /* javascript.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
 				D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */,
 				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
@@ -2084,7 +2081,6 @@
 				D385FA250F04993500DB2946 /* json.css in Resources */,
 				D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */,
 				D3DDDCAD0F0880D800A58000 /* example1.srgs in Resources */,
-				D317A5300F0A06EE000AFB62 /* javascript.grammar in Resources */,
 				D383498B0F0C0CF30055E4E0 /* json_with_comments.grammar in Resources */,
 				D38349BC0F0C0D910055E4E0 /* json_with_comments.css in Resources */,
 				D3834A480F0C14B60055E4E0 /* yahoo_with_comments.json in Resources */,
