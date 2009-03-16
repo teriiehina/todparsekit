@@ -39,8 +39,9 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[TDParser class]]);
     
-//    s = @"var foo = 'bar';";
-//    a = [TDTokenAssembly assemblyWithString:s];
+    s = @"var foo = 'bar';";
+    lp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
 //    res = [lp bestMatchFor:a];
 //    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
 }

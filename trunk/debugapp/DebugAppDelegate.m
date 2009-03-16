@@ -178,6 +178,20 @@
 }
 
 
+- (void)doJavaScriptGrammarParser {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"javascript" ofType:@"grammar"];
+    NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    TDParser *p = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
+    //TDParser *plus = [p parserNamed:@"plus"];
+    
+    s = @";";
+    p.tokenizer.string = s;
+    //TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    //TDAssembly *res = [p bestMatchFor:a];
+    //    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
+}
+
+
 - (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
@@ -401,8 +415,13 @@
 //    [self doHtmlSyntaxHighlighter];
 //    [self doJsonParser];
 //    [self doRubyHashParser];
+
+    
     [self doProf];
-//    [self doTokenize];
+
+    //[self doJavaScriptGrammarParser];
+    
+    //    [self doTokenize];
 //    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
