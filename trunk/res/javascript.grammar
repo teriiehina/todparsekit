@@ -1,0 +1,366 @@
+@symbols            = '||' '&&' '!=' '!==' '==' '===' '<=' '>=';
+@singleLineComments = '//';
+@multiLineComments  = '/*' '*/';
+
+@start              = program;
+
+
+openCurly           = '{';
+closeCurly          = '}';
+openParen           = '(';
+closeParen          = ')';
+openBracket         = '[';
+closeBracket        = ']';
+comma               = ',';
+dot                 = '.';
+semi                = ';';
+colon               = ':';
+equals              = '=';
+not                 = '!';
+lt                  = '<';
+gt                  = '>';
+amp                 = '&';
+pipe                = '|';
+caret               = '^';
+question            = '?';
+plus                = '+';
+minus               = '-';
+
+or                  = '||';
+and                 = '&&';
+ne                  = '!=';
+nee                 = '!==';
+eq                  = '==';
+is                  = '===';
+le                  = '<=';
+ge                  = '>=';
+
+if                  = 'if';
+else                = 'else';
+while               = 'while';
+for                 = 'for';
+in                  = 'in';
+break               = 'break';
+continue            = 'continue';
+with                = 'with';
+return              = 'return';
+var                 = 'var';
+delete              = 'delete';
+new                 = 'new';
+this                = 'this';
+false               = 'false';
+true                = 'true';
+null                = 'null';
+
+
+// Program:
+//           empty
+//           Element Program
+
+program             = element*;
+
+
+
+//  Element:
+//           function Identifier ( ParameterListOpt ) CompoundStatement
+//           Statement
+
+element             = function | stmt;
+function            = 'function' identifier openParen paramListOpt closeParen compoundStmt;
+
+
+
+//  ParameterListOpt:
+//           empty
+//           ParameterList
+
+parameterListOpt    = Empty | paramList;
+
+
+
+//  ParameterList:
+//           Identifier
+//           Identifier , ParameterList
+
+parameterList       = identifier commaIdentifier*;
+commaIdentifier     = comma identifier;
+
+
+
+//  CompoundStatement:
+//           { Statements }
+
+compoundStmt        = openCurly stmts closeCurly;
+
+
+
+//  Statements:
+//           empty
+//           Statement Statements
+
+stmts               = stmt*;
+
+
+
+//  Statement:
+//           ;
+//           if Condition Statement
+//           if Condition Statement else Statement
+//           while Condition Statement
+//           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin in Expression ) Statement
+//           break ;
+//           continue ;
+//           with ( Expression ) Statement
+//           return ExpressionOpt ;
+//           CompoundStatement
+//           VariablesOrExpression ;
+
+stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
+ifStmt              = if condition stmt;
+ifElseStmt          = if condition stmt else stmt;
+whileStmt           = while condition stmt;
+forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
+forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
+forInStmt           = forBegin in expr closeParen stmt;
+breakStmt           = break semi;
+continueStmt        = continue semi;
+withStmt            = with openParen expr closeParen stmt;
+returnStmt          = return exprOpt semi;
+variablesOrExprStmt = variablessOrExpr semi;
+
+
+
+//  Condition:
+//           ( Expression )
+
+condition           = openParent expr closeParen;
+
+
+
+//  ForParen:
+//           for (
+
+forParen            = for openParen;
+
+
+
+//  ForBegin:
+//           ForParen VariablesOrExpression
+
+forBegin            = forParen variablessOrExpr;
+
+
+
+//  VariablesOrExpression:
+//           var Variables
+//           Expression
+
+variablesOrExpr     = variable variables | expr;
+
+
+
+//  Variables:
+//           Variable
+//           Variable , Variables
+
+variables           = variable commaVariable*;
+commaVariable       = comma variable;
+
+
+
+//  Variable:
+//           Identifier
+//           Identifier = AssignmentExpression
+
+variable            = identifier assignment?;
+assignment          = equals assignmentExpr;
+
+
+
+//  ExpressionOpt:
+//           empty
+//           Expression
+
+exprOpt             = expr?; // TODO -- Empty | expr;
+
+
+
+//  Expression:
+//           AssignmentExpression
+//           AssignmentExpression , Expression
+
+expr                = assignmentExpr commaExpr?;
+commaExpr           = comma expr;
+
+
+
+//  AssignmentExpression:
+//           ConditionalExpression
+//           ConditionalExpression AssignmentOperator AssignmentExpression
+
+assignmentExpr      = conditionalExpr extraAssignment?;
+extraAssignment     = assignmentOperator assignmentExpr;
+
+
+
+//  ConditionalExpression:
+//           OrExpression
+//           OrExpression ? AssignmentExpression : AssignmentExpression
+
+conditionalExpr     = orExpr ternaryExpr?;
+ternaryExpr         = question assignmentExpr colon assignmentExpr;
+
+
+
+//  OrExpression:
+//           AndExpression
+//           AndExpression || OrExpression
+
+orExpr              = andExpr (or orExpr)?;
+
+
+
+//  AndExpression:
+//           BitwiseOrExpression
+//           BitwiseOrExpression && AndExpression
+
+andExpr             = bitwiseOrExpr (and andExpr)?;
+
+
+
+//  BitwiseOrExpression:
+//           BitwiseXorExpression
+//           BitwiseXorExpression | BitwiseOrExpression
+
+bitwiseOrExpr       = bitwiseXorExpr (pipe bitwiseOrExpr)?;
+
+
+
+//  BitwiseXorExpression:
+//           BitwiseAndExpression
+//           BitwiseAndExpression ^ BitwiseXorExpression
+
+bitwiseXorExpr      = bitwiseAndExpr (caret bitwiseXorExpr)?;
+
+
+
+//  BitwiseAndExpression:
+//           EqualityExpression
+//           EqualityExpression & BitwiseAndExpression
+
+bitwiseAndExpr      = equalityExpr (amp bitwiseAndExpr)?;
+
+
+
+//  EqualityExpression:
+//           RelationalExpression
+//           RelationalExpression EqualityualityOperator EqualityExpression
+
+equalityExpr        = relationalExpr (equalityOperator equalityExpr)?;
+
+
+
+//  RelationalExpression:
+//           ShiftExpression
+//           RelationalExpression RelationalationalOperator ShiftExpression
+
+relationalExpr      = shiftExpr | relationalExpr relationalOperator shiftExpr;
+relationalOperator  = is ne nee lt gt ge le 
+
+
+//  ShiftExpression:
+//           AdditiveExpression
+//           AdditiveExpression ShiftOperator ShiftExpression
+
+shiftExpr           = additiveExpr (shiftOperator shiftExpr)?;
+
+
+
+//  AdditiveExpression:
+//           MultiplicativeExpression
+//           MultiplicativeExpression + AdditiveExpression
+//           MultiplicativeExpression - AdditiveExpression
+
+additiveExpr        = multiplicativeExpr (plus additiveExpr | minus additiveExpr)?;
+
+
+
+//  MultiplicativeExpression:
+//           UnaryExpression
+//           UnaryExpression MultiplicativeOperator MultiplicativeExpression
+
+multiplicativeExpr  = unaryExpr (multiplicativeOperator multiplicativeExpr)?;
+
+
+
+//  UnaryExpression:
+//           MemberExpression
+//           UnaryOperator UnaryExpression
+//           - UnaryExpression
+//           IncrementOperator MemberExpression
+//           MemberExpression IncrementOperator
+//           new Constructor
+//           delete MemberExpression
+
+unaryExpr           = memberExpr | unaryOperator unaryExpr | minus unaryExpr | incrementOperator memberExpr | memberExpr incrementOperator | new constructor | delete memberExpr;
+
+
+
+//  Constructor:
+//           this . ConstructorCall
+//           ConstructorCall
+
+constructor         = this dot constructorCall | constructorCall; // TODO ???
+
+
+
+//  ConstructorCall:
+//           Identifier
+//           Identifier ( ArgumentListOpt )
+//           Identifier . ConstructorCall
+
+constructorCall     = identifier (openParen argListOpt closeParen)?;  // TODO
+
+
+
+//  MemberExpression:
+//           PrimaryExpression
+//           PrimaryExpression . MemberExpression
+//           PrimaryExpression [ Expression ]
+//           PrimaryExpression ( ArgumentListOpt )
+
+memberExpr          = primaryExpr (dot memberExpr | openBracket expr closeBracket | openParen argListOpt closeParen)?;
+
+
+
+//  ArgumentListOpt:
+//           empty
+//           ArgumentList
+
+argListOpt          = argList?;
+
+
+
+//  ArgumentList:
+//           AssignmentExpression
+//           AssignmentExpression , ArgumentList
+
+argList             = assignmentExpr commaAssignmentExpr*;
+commaAssignmentExpr = comma AssignmentExpression;
+
+
+
+//  PrimaryExpression:
+//           ( Expression )
+//           Identifier
+//           IntegerLiteral
+//           FloatingPointLiteral
+//           StringLiteral
+//           false
+//           true
+//           null
+//           this
+
+primaryExpr         = openParen expr closeParen | identifier | Num | QuotedString | false | true | null | this;
