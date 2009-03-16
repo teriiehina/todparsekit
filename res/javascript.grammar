@@ -1,4 +1,7 @@
 @symbols            = '||' '&&' '!=' '!==' '==' '===' '<=' '>=' '++' '--' '+=' '-=' '*=' '/=' '%=' '<<' '>>' '>>>' '<<=' '>>=' '>>>=' '&=' '^=' '|=';
+
+@reportsCommentTokens = YES;
+@commentState       = '/';
 @singleLineComments = '//';
 @multiLineComments  = '/*' '*/';
 
@@ -84,7 +87,7 @@ shiftOperator       = shiftLeft | shiftRight | shiftRightExt;
 incrementOperator   = plusPlus | minusMinus;
 unaryOperator       = tilde | delete | typeof | void;
 
-multiplicativeOperator = times | div;
+multiplicativeOperator = times | div | mod;
 
 
 
