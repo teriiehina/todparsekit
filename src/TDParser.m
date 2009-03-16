@@ -34,6 +34,9 @@
     assembler = nil;
     self.selector = nil;
     self.name = nil;
+    if (tokenizer) {
+        self.tokenizer = nil;
+    }
     [super dealloc];
 }
 
