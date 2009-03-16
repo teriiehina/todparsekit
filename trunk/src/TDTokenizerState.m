@@ -1,5 +1,5 @@
 //
-//  TDParseKitState.m
+//  TDTokenizerState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
@@ -27,7 +27,7 @@
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
-    NSAssert(0, @"TDTokenizerState is an Abstract Classs. nextTokenFromStream:at:tokenizer: must be overriden");
+    NSAssert1(0, @"TDTokenizerState is an abstract classs. %s must be overriden", _cmd);
     return nil;
 }
 
