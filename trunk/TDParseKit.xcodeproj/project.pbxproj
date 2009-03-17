@@ -1862,8 +1862,8 @@
 			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
-				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF520486A6940098B216 /* Resources */,
 				8DC2EF560486A6940098B216 /* Frameworks */,
 			);
 			buildRules = (
@@ -1880,8 +1880,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D33494150E2963FE00406085 /* Build configuration list for PBXNativeTarget "DemoApp" */;
 			buildPhases = (
-				D334940C0E2963FD00406085 /* Resources */,
 				D334940D0E2963FD00406085 /* Sources */,
+				D334940C0E2963FD00406085 /* Resources */,
 				D334940E0E2963FD00406085 /* Frameworks */,
 			);
 			buildRules = (
@@ -1898,8 +1898,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D34185090E520D410081B0DC /* Build configuration list for PBXNativeTarget "DebugApp" */;
 			buildPhases = (
-				D34185000E520D3F0081B0DC /* Resources */,
 				D34185010E520D3F0081B0DC /* Sources */,
+				D34185000E520D3F0081B0DC /* Resources */,
 				D380B9A10F0EF3DC0009EC13 /* Copy Frameworks */,
 				D34185020E520D3F0081B0DC /* Frameworks */,
 			);
@@ -1918,8 +1918,8 @@
 			buildConfigurationList = D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "TDJSParseKit" */;
 			buildPhases = (
 				D389F1C90F1965E600558235 /* Headers */,
-				D389F1CA0F1965E600558235 /* Resources */,
 				D389F1CB0F1965E600558235 /* Sources */,
+				D389F1CA0F1965E600558235 /* Resources */,
 				D389F1CC0F1965E600558235 /* Frameworks */,
 			);
 			buildRules = (
@@ -1936,8 +1936,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D389F2080F196A7600558235 /* Build configuration list for PBXNativeTarget "JSDemoApp" */;
 			buildPhases = (
-				D389F1FF0F196A7500558235 /* Resources */,
 				D389F2000F196A7500558235 /* Sources */,
+				D389F1FF0F196A7500558235 /* Resources */,
 				D389F2010F196A7500558235 /* Frameworks */,
 			);
 			buildRules = (
@@ -1954,8 +1954,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3C7D87C0A411FC0005DD154 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
-				D3C7D8750A411FBF005DD154 /* Resources */,
 				D3C7D8760A411FBF005DD154 /* Sources */,
+				D3C7D8750A411FBF005DD154 /* Resources */,
 				D3DCB3880EF5E65100DE5110 /* Copy Frameworks */,
 				D3C7D8770A411FBF005DD154 /* Frameworks */,
 				D3C7D8780A411FBF005DD154 /* ShellScript */,
