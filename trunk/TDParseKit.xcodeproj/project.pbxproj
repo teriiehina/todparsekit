@@ -12,6 +12,8 @@
 		D31A13360F6D8513002AFDF1 /* TDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D31A13350F6D8513002AFDF1 /* TDTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
 		D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
+		D31A16520F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */; };
+		D31A16530F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */; };
 		D31FE54C0E60E46100A0803E /* TDTestScaffold.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54B0E60E46100A0803E /* TDTestScaffold.m */; };
 		D31FE5630E60E50800A0803E /* TDAlternationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE54E0E60E50800A0803E /* TDAlternationTest.m */; };
 		D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5500E60E50800A0803E /* TDLiteralTest.m */; };
@@ -445,6 +447,8 @@
 		D301D6260EDE1EA00097CE86 /* TDSignificantWhitespaceState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSignificantWhitespaceState.m; path = src/TDSignificantWhitespaceState.m; sourceTree = "<group>"; };
 		D31A13350F6D8513002AFDF1 /* TDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTypes.h; path = src/TDTypes.h; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
+		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
+		D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJavaScriptParser.m; path = test/TDJavaScriptParser.m; sourceTree = "<group>"; };
 		D31FE54A0E60E46100A0803E /* TDTestScaffold.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTestScaffold.h; path = test/TDTestScaffold.h; sourceTree = "<group>"; };
 		D31FE54B0E60E46100A0803E /* TDTestScaffold.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTestScaffold.m; path = test/TDTestScaffold.m; sourceTree = "<group>"; };
 		D31FE54D0E60E50800A0803E /* TDAlternationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAlternationTest.h; path = test/TDAlternationTest.h; sourceTree = "<group>"; };
@@ -1040,6 +1044,15 @@
 			name = json;
 			sourceTree = "<group>";
 		};
+		D31A164F0F703899002AFDF1 /* javascript */ = {
+			isa = PBXGroup;
+			children = (
+				D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */,
+				D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */,
+			);
+			name = javascript;
+			sourceTree = "<group>";
+		};
 		D334941B0E29641300406085 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -1447,6 +1460,7 @@
 		D3C7D8220A411F31005DD154 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D31A164F0F703899002AFDF1 /* javascript */,
 				D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */,
 				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
@@ -2203,6 +2217,7 @@
 				D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */,
 				D37F87800F61B62400C1F429 /* TDParserFactory.m in Sources */,
 				D37F87810F61B62D00C1F429 /* NSString+TDParseKitAdditions.m in Sources */,
+				D31A16530F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2350,6 +2365,7 @@
 				D37F877F0F61B62300C1F429 /* TDParserFactory.m in Sources */,
 				D37F87820F61B62E00C1F429 /* NSString+TDParseKitAdditions.m in Sources */,
 				D37F87830F61B63600C1F429 /* NSArray+TDParseKitAdditions.m in Sources */,
+				D31A16520F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
