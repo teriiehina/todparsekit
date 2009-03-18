@@ -13,6 +13,9 @@
 
     TDCollectionParser *primaryExprParser;
     
+    TDCollectionParser *argListOptParser;
+    TDCollectionParser *argListParser;
+
     // keywords
     TDParser *ifParser;
     TDParser *elseParser;
@@ -93,6 +96,10 @@
 
 @property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDCollectionParser *primaryExprParser;
+
+@property (nonatomic, retain) TDCollectionParser *argListOptParser;
+@property (nonatomic, retain) TDCollectionParser *argListParser;
+
 @property (nonatomic, retain) TDParser *ifParser;
 @property (nonatomic, retain) TDParser *elseParser;
 @property (nonatomic, retain) TDParser *whileParser;
