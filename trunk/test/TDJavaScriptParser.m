@@ -328,22 +328,6 @@ parenMemberExpr     = openParen argListOpt closeParen;
 
 
 
-//  ArgumentListOpt:
-//           empty
-//           ArgumentList
-
-argListOpt          = argList?;
-
-
-
-//  ArgumentList:
-//           AssignmentExpression
-//           AssignmentExpression , ArgumentList
-
-argList             = assignmentExpr commaAssignmentExpr*;
-commaAssignmentExpr = comma assignmentExpr;
-
-
 */
  
  
@@ -387,7 +371,12 @@ commaAssignmentExpr = comma assignmentExpr;
 
 
 - (void)dealloc {
+    self.tokenizer = nil;
+    
     self.primaryExprParser = nil;
+    
+    self.argListOptParser = nil;
+    self.argListParser = nil;
     
     self.ifParser = nil;
     self.elseParser = nil;
@@ -492,17 +481,55 @@ commaAssignmentExpr = comma assignmentExpr;
         [s add:[TDLiteral literalWithString:@")"]];
         [primaryExprParser add:s];
         
-        [primaryExpr add:self.identifierParser];
-        [primaryExpr add:self.numberParser];
-        [primaryExpr add:self.stringParser];
-        [primaryExpr add:self.trueParser];
-        [primaryExpr add:self.falseParser];
-        [primaryExpr add:self.nullParser];
-        [primaryExpr add:self.undefinedParser];
-        [primaryExpr add:self.thisParser];
+        [primaryExprParser add:self.identifierParser];
+        [primaryExprParser add:self.numberParser];
+        [primaryExprParser add:self.stringParser];
+        [primaryExprParser add:self.trueParser];
+        [primaryExprParser add:self.falseParser];
+        [primaryExprParser add:self.nullParser];
+        [primaryExprParser add:self.undefinedParser];
+        [primaryExprParser add:self.thisParser];
     }
     return primaryExprParser;
 }
+
+
+//  ArgumentListOpt:
+//           empty
+//           ArgumentList
+//
+// argListOpt          = argList?;
+- (TDCollectionParser *)argListOptParser {
+    if (!argListOptParser) {
+        argListOptParser = [TDAlternation alternation];
+        [argListOptParser add:[TDEmpty empty]];
+        [argListOptParser add:self.argListParser];
+    }
+    return argListOptParser;
+}
+
+
+//  ArgumentList:
+//           AssignmentExpression
+//           AssignmentExpression , ArgumentList
+//
+// argList             = assignmentExpr commaAssignmentExpr*;
+// commaAssignmentExpr = comma assignmentExpr;
+- (TDCollectionParser *)argListParser {
+    if (!argListParser) {
+        argListParser = [TDSequence sequence];
+        [argListParser add:self.assignmentExprParser];
+
+        TDSequence *s = [TDSequence sequence];
+        [s add:self.commaParser];
+        [s add:self.assignmentParser];
+        
+        [argListParser add:[TDRepetition repetitionWithSubparser:s]];
+    }
+    return argListParser;
+}
+
+
 
 
 #pragma mark -
