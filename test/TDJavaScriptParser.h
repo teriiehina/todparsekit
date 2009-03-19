@@ -9,13 +9,19 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDJavaScriptParser : TDRepetition {
-    TDTokenizer *tokenizer;
-
     TDCollectionParser *primaryExprParser;
     
     TDCollectionParser *argListOptParser;
     TDCollectionParser *argListParser;
 
+    TDCollectionParser *exprParser;
+    TDCollectionParser *identifierParser;
+    TDCollectionParser *assignmentExprParser;
+    TDCollectionParser *assignmentParser;
+    
+    TDParser *stringParser;
+    TDParser *numberParser;
+        
     // keywords
     TDParser *ifParser;
     TDParser *elseParser;
@@ -94,11 +100,18 @@
     
 }
 
-@property (nonatomic, retain) TDTokenizer *tokenizer;
 @property (nonatomic, retain) TDCollectionParser *primaryExprParser;
+
+@property (nonatomic, retain) TDCollectionParser *exprParser;
+@property (nonatomic, retain) TDCollectionParser *identifierParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentExprParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentParser;
 
 @property (nonatomic, retain) TDCollectionParser *argListOptParser;
 @property (nonatomic, retain) TDCollectionParser *argListParser;
+
+@property (nonatomic, retain) TDParser *stringParser;
+@property (nonatomic, retain) TDParser *numberParser;
 
 @property (nonatomic, retain) TDParser *ifParser;
 @property (nonatomic, retain) TDParser *elseParser;

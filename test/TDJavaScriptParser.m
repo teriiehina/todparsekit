@@ -330,7 +330,10 @@ parenMemberExpr     = openParen argListOpt closeParen;
 
 */
  
- 
+@interface TDParser ()
+- (void)setTokenizer:(TDTokenizer *)t;
+@end
+
 @implementation TDJavaScriptParser
 
 - (id)init {
@@ -375,9 +378,17 @@ parenMemberExpr     = openParen argListOpt closeParen;
     
     self.primaryExprParser = nil;
     
+    self.exprParser = nil;
+    self.identifierParser = nil;
+    self.assignmentExprParser = nil;
+    self.assignmentParser = nil;
+
     self.argListOptParser = nil;
     self.argListParser = nil;
     
+    self.stringParser = nil;
+    self.numberParser = nil;
+
     self.ifParser = nil;
     self.elseParser = nil;
     self.whileParser = nil;
@@ -530,6 +541,54 @@ parenMemberExpr     = openParen argListOpt closeParen;
 }
 
 
+- (TDCollectionParser *)exprParser {
+    if (!exprParser) {
+        exprParser = [TDSequence sequence];
+    }
+    return exprParser;
+}
+
+
+- (TDCollectionParser *)identifierParser {
+    if (!identifierParser) {
+        identifierParser = [TDSequence sequence];
+    }
+    return identifierParser;
+}
+
+
+- (TDCollectionParser *)assignmentExprParser {
+    if (!assignmentExprParser) {
+        assignmentExprParser = [TDSequence sequence];
+    }
+    return assignmentExprParser;
+}
+
+
+- (TDCollectionParser *)assignmentParser {
+    if (!assignmentParser) {
+        assignmentParser = [TDSequence sequence];
+    }
+    return assignmentParser;
+}
+
+
+
+
+- (TDParser *)stringParser {
+    if (!stringParser) {
+        stringParser = [TDQuotedString quotedString];
+    }
+    return stringParser;
+}
+
+
+- (TDParser *)numberParser {
+    if (!numberParser) {
+        numberParser = [TDNum num];
+    }
+    return numberParser;
+}
 
 
 #pragma mark -
@@ -1092,4 +1151,88 @@ parenMemberExpr     = openParen argListOpt closeParen;
     return modParser;
 }
 
+@synthesize primaryExprParser;
+            
+@synthesize exprParser;
+@synthesize identifierParser;
+@synthesize assignmentExprParser;
+@synthesize assignmentParser;
+
+@synthesize argListOptParser;
+@synthesize argListParser;
+            
+@synthesize stringParser;
+@synthesize numberParser;
+
+@synthesize ifParser;
+@synthesize elseParser;
+@synthesize whileParser;
+@synthesize forParser;
+@synthesize inParser;
+@synthesize breakParser;
+@synthesize continueParser;
+@synthesize withParser;
+@synthesize returnParser;
+@synthesize varParser;
+@synthesize deleteParser;
+@synthesize newParser;
+@synthesize thisParser;
+@synthesize falseParser;
+@synthesize trueParser;
+@synthesize nullParser;
+@synthesize undefinedParser;
+@synthesize voidParser;
+@synthesize typeofParser;
+@synthesize instanceofParser;
+@synthesize functionParser;
+            
+@synthesize orParser;
+@synthesize andParser;
+@synthesize neParser;
+@synthesize isNotParser;
+@synthesize eqParser;
+@synthesize isParser;
+@synthesize leParser;
+@synthesize geParser;
+@synthesize plusPlusParser;
+@synthesize minusMinusParser;
+@synthesize plusEqParser;
+@synthesize minusEqParser;
+@synthesize timesEqParser;
+@synthesize divEqParser;
+@synthesize modEqParser;
+@synthesize shiftLeftParser;
+@synthesize shiftRightParser;
+@synthesize shiftRightExtParser;
+@synthesize shiftLeftEqParser;
+@synthesize shiftRightEqParser;
+@synthesize shiftRightExtEqParser;
+@synthesize andEqParser;
+@synthesize xorEqParser;
+@synthesize orEqParser;
+            
+@synthesize openCurlyParser;
+@synthesize closeCurlyParser;
+@synthesize openParenParser;
+@synthesize closeParenParser;
+@synthesize openBracketParser;
+@synthesize closeBracketParser;
+@synthesize commaParser;
+@synthesize dotParser;
+@synthesize semiParser;
+@synthesize colonParser;
+@synthesize equalsParser;
+@synthesize notParser;
+@synthesize ltParser;
+@synthesize gtParser;
+@synthesize ampParser;
+@synthesize pipeParser;
+@synthesize caretParser;
+@synthesize tildeParser;
+@synthesize questionParser;
+@synthesize plusParser;
+@synthesize minusParser;
+@synthesize timesParser;
+@synthesize divParser;
+@synthesize modParser;
 @end
