@@ -373,9 +373,7 @@ parenMemberExpr     = openParen argListOpt closeParen;
 }
 
 
-- (void)dealloc {
-    self.tokenizer = nil;
-    
+- (void)dealloc {    
     self.primaryExprParser = nil;
     
     self.exprParser = nil;
