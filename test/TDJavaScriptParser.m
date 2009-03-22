@@ -96,7 +96,8 @@
 @end
 
 @interface TDJavaScriptParser ()
-- (TDAlternation *)optionalParser:(TDParser *)p;
+- (TDAlternation *)zeroOrOne:(TDParser *)p;
+- (TDAlternation *)oneOrMore:(TDParser *)p;
 @end
 
 @implementation TDJavaScriptParser
@@ -303,11 +304,19 @@
 }
 
 
-- (TDAlternation *)optionalParser:(TDParser *)p {
+- (TDAlternation *)zeroOrOne:(TDParser *)p {
     TDAlternation *a = [TDAlternation alternation];
     [a add:[TDEmpty empty]];
     [a add:p];
     return a;
+}
+
+
+- (TDAlternation *)oneOrMore:(TDParser *)p {
+    TDAlternation *s = [TDSequence sequence];
+    [s add:p];
+    [s add:[TDRepetition repetitionWithSubparser:p]];
+    return s;
 }
 
 
@@ -423,7 +432,13 @@
 //           empty
 //           Element Program
 //
-//program             = element+;
+//program             = element*;
+- (TDCollectionParser *)programParser {
+    if (!programParser) {
+        programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
+    }
+    return programParser;
+}
 
 
 
@@ -432,7 +447,29 @@
 //           Statement
 //
 //element             = func | stmt;
+- (TDCollectionParser *)elementParser {
+    if (!elementParser) {
+        elementParser = [TDAlternation alternation];
+        [elementParser add:self.funcParser];
+        [elementParser add:self.stmtParser];
+    }
+    return elementParser;
+}
+
+
 //func                = function identifier openParen paramListOpt closeParen compoundStmt;
+- (TDCollectionParser *)funcParser {
+    if (!funcParser) {
+        funcParser = [TDSequence sequence];
+        [funcParser add:self.functionParser];
+        [funcParser add:self.identifierParser];
+        [funcParser add:self.openParenParser];
+        [funcParser add:self.paramListOptParser];
+        [funcParser add:self.closeParenParser];
+        [funcParser add:self.compoundStmtParser];
+    }
+    return funcParser;
+}
 
 
 
@@ -441,6 +478,13 @@
 //           ParameterList
 //
 //paramListOpt        = Empty | paramList;
+- (TDCollectionParser *)paramListOptParser {
+    if (!paramListOptParser) {
+        paramListOptParser = [TDAlternation alternation];
+        [paramListOptParser add:[self zeroOrOne:self.paramListParser]];
+    }
+    return paramListOptParser;
+}
 
 
 
@@ -449,7 +493,25 @@
 //           Identifier , ParameterList
 //
 //paramList           = identifier commaIdentifier*;
+- (TDCollectionParser *)paramListParser {
+    if (!paramListParser) {
+        paramListParser = [TDSequence sequence];
+        [paramListParser add:self.identifierParser];
+        [paramListParser add:[TDRepetition repetitionWithSubparser:self.commaIdentifierParser]];
+    }
+    return paramListParser;
+}
+
+
 //commaIdentifier     = comma identifier;
+- (TDCollectionParser *)commaIdentifierParser {
+    if (!commaIdentifierParser) {
+        commaIdentifierParser = [TDSequence sequence];
+        [commaIdentifierParser add:self.commaParser];
+        [commaIdentifierParser add:self.identifierParser];
+    }
+    return commaIdentifierParser;
+}
 
 
 
@@ -457,7 +519,15 @@
 //           { Statements }
 //
 //compoundStmt        = openCurly stmts closeCurly;
-
+- (TDCollectionParser *)compoundStmtParser {
+    if (!compoundStmtParser) {
+        compoundStmtParser = [TDSequence sequence];
+        [compoundStmtParser add:self.openCurlyParser];
+        [compoundStmtParser add:self.stmtsParser];
+        [compoundStmtParser add:self.closeCurlyParser];
+    }
+    return compoundStmtParser;
+}
 
 
 //  Statements:
@@ -465,7 +535,12 @@
 //           Statement Statements
 //
 //stmts               = stmt*;
-
+- (TDCollectionParser *)stmtsParser {
+    if (!stmtsParser) {
+        stmtsParser = [TDRepetition repetitionWithSubparser:self.stmtParser];
+    }
+    return stmtsParser;
+}
 
 
 //  Statement:
@@ -484,24 +559,183 @@
 //           VariablesOrExpression ;
 //
 //stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
-//ifStmt              = if condition stmt;
-//ifElseStmt          = if condition stmt else stmt;
-//whileStmt           = while condition stmt;
-//forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
-//forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
-//forInStmt           = forBegin in expr closeParen stmt;
-//breakStmt           = break semi;
-//continueStmt        = continue semi;
-//withStmt            = with openParen expr closeParen stmt;
-//returnStmt          = return exprOpt semi;
-//variablesOrExprStmt = variablesOrExpr semi;
+- (TDCollectionParser *)stmtParser {
+    if (!stmtParser) {
+        stmtParser = [TDAlternation alternation];
+        [stmtParser add:self.semiParser];
+        [stmtParser add:self.ifStmtParser];
+        [stmtParser add:self.ifElseStmtParser];
+        [stmtParser add:self.whileStmtParser];
+        [stmtParser add:self.forParenStmtParser];
+        [stmtParser add:self.forBeginStmtParser];
+        [stmtParser add:self.forInStmtParser];
+        [stmtParser add:self.breakStmtParser];
+        [stmtParser add:self.continueStmtParser];
+        [stmtParser add:self.withStmtParser];
+        [stmtParser add:self.returnStmtParser];
+        [stmtParser add:self.compoundStmtParser];
+        [stmtParser add:self.variablesOrExprStmtParser];        
+    }
+    return stmtParser;
+}
 
+
+//ifStmt              = if condition stmt;
+- (TDCollectionParser *)ifStmtParser {
+    if (!ifStmtParser) {
+        ifStmtParser = [TDSequence sequence];
+        [ifStmtParser add:self.ifParser];
+        [ifStmtParser add:self.conditionParser];
+        [ifStmtParser add:self.stmtParser];
+    }
+    return ifStmtParser;
+}
+
+
+//ifElseStmt          = if condition stmt else stmt;
+- (TDCollectionParser *)ifElseStmtParser {
+    if (!ifElseStmtParser) {
+        ifElseStmtParser = [TDSequence sequence];
+        [ifElseStmtParser add:self.ifParser];
+        [ifElseStmtParser add:self.conditionParser];
+        [ifElseStmtParser add:self.stmtParser];
+        [ifElseStmtParser add:self.elseParser];
+        [ifElseStmtParser add:self.stmtParser];
+    }
+    return ifElseStmtParser;
+}
+
+
+//whileStmt           = while condition stmt;
+- (TDCollectionParser *)whileStmtParser {
+    if (!whileStmtParser) {
+        whileStmtParser = [TDSequence sequence];
+        [whileStmtParser add:self.whileParser];
+        [whileStmtParser add:self.conditionParser];
+        [whileStmtParser add:self.stmtParser];
+    }
+    return whileStmtParser;
+}
+
+
+//forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
+- (TDCollectionParser *)forParenStmtParser {
+    if (!forParenStmtParser) {
+        forParenStmtParser = [TDSequence sequence];
+        [forParenStmtParser add:self.forParenParser];
+        [forParenStmtParser add:self.semiParser];
+        [forParenStmtParser add:self.exprOptParser];
+        [forParenStmtParser add:self.semiParser];
+        [forParenStmtParser add:self.exprOptParser];
+        [forParenStmtParser add:self.closeParenParser];
+        [forParenStmtParser add:self.stmtParser];
+    }
+    return forParenStmtParser;
+}
+
+
+//forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
+- (TDCollectionParser *)forBeginStmtParser {
+    if (!forBeginStmtParser) {
+        forBeginStmtParser = [TDSequence sequence];
+        [forBeginStmtParser add:self.forBeginParser];
+        [forParenStmtParser add:self.semiParser];
+        [forParenStmtParser add:self.exprOptParser];
+        [forParenStmtParser add:self.semiParser];
+        [forParenStmtParser add:self.exprOptParser];
+        [forParenStmtParser add:self.closeParenParser];
+        [forParenStmtParser add:self.stmtParser];
+    }
+    return forBeginStmtParser;
+}
+
+
+//forInStmt           = forBegin in expr closeParen stmt;
+- (TDCollectionParser *)forInStmtParser {
+    if (!forInStmtParser) {
+        forInStmtParser = [TDSequence sequence];
+        [forInStmtParser add:self.forBeginParser];
+        [forInStmtParser add:self.inParser];
+        [forInStmtParser add:self.exprParser];
+        [forInStmtParser add:self.closeParenParser];
+        [forInStmtParser add:self.stmtParser];
+    }
+    return forInStmtParser;
+}
+
+
+//breakStmt           = break semi;
+- (TDCollectionParser *)breakStmtParser {
+    if (!breakStmtParser) {
+        breakStmtParser = [TDSequence sequence];
+        [breakStmtParser add:self.breakParser];
+        [breakStmtParser add:self.semiParser];
+    }
+    return breakStmtParser;
+}
+
+
+//continueStmt        = continue semi;
+- (TDCollectionParser *)continueStmtParser {
+    if (!continueStmtParser) {
+        continueStmtParser = [TDSequence sequence];
+        [continueStmtParser add:self.continueParser];
+        [continueStmtParser add:self.semiParser];
+    }
+    return continueStmtParser;
+}
+
+
+//withStmt            = with openParen expr closeParen stmt;
+- (TDCollectionParser *)withStmtParser {
+    if (!withStmtParser) {
+        withStmtParser = [TDSequence sequence];
+        [withStmtParser add:self.withParser];
+        [withStmtParser add:self.openParenParser];
+        [withStmtParser add:self.exprParser];
+        [withStmtParser add:self.closeParenParser];
+        [withStmtParser add:self.stmtParser];
+    }
+    return withStmtParser;
+}
+
+
+//returnStmt          = return exprOpt semi;
+- (TDCollectionParser *)returnStmtParser {
+    if (!returnStmtParser) {
+        returnStmtParser = [TDSequence sequence];
+        [returnStmtParser add:self.returnParser];
+        [returnStmtParser add:self.exprOptParser];
+        [returnStmtParser add:self.semiParser];
+    }
+    return returnStmtParser;
+}
+
+
+//variablesOrExprStmt = variablesOrExpr semi;
+- (TDCollectionParser *)variablesOrExprStmtParser {
+    if (!variablesOrExprStmtParser) {
+        variablesOrExprStmtParser = [TDSequence sequence];
+        [variablesOrExprStmtParser add:self.variablesOrExprParser];
+        [variablesOrExprStmtParser add:self.semiParser];
+    }
+    return variablesOrExprStmtParser;
+}
 
 
 //  Condition:
 //           ( Expression )
 //
 //condition           = openParen expr closeParen;
+- (TDCollectionParser *)conditionParser {
+    if (!conditionParser) {
+        conditionParser = [TDSequence sequence];
+        [conditionParser add:self.openParenParser];
+        [conditionParser add:self.exprParser];
+        [conditionParser add:self.closeParenParser];
+    }
+    return conditionParser;
+}
 
 
 
@@ -509,6 +743,14 @@
 //           for (
 //
 //forParen            = for openParen;
+- (TDCollectionParser *)forParenParser {
+    if (!forParenParser) {
+        forParenParser = [TDSequence sequence];
+        [forParenParser add:self.forParser];
+        [forParenParser add:self.openParenParser];
+    }
+    return forParenParser;
+}
 
 
 
@@ -516,6 +758,14 @@
 //           ForParen VariablesOrExpression
 //
 //forBegin            = forParen variablesOrExpr;
+- (TDCollectionParser *)forBeginParser {
+    if (!forBeginParser) {
+        forBeginParser = [TDSequence sequence];
+        [forBeginParser add:self.forParenParser];
+        [forBeginParser add:self.variablesOrExprParser];
+    }
+    return forBeginParser;
+}
 
 
 
@@ -524,7 +774,25 @@
 //           Expression
 //
 //variablesOrExpr     = varVariables | expr;
+- (TDCollectionParser *)variablesOrExprParser {
+    if (!variablesOrExprParser) {
+        variablesOrExprParser = [TDAlternation alternation];
+        [variablesOrExprParser add:self.varVariablesParser];
+        [variablesOrExprParser add:self.exprParser];
+    }
+    return variablesOrExprParser;
+}
+
+
 //varVariables        = var variables;
+- (TDCollectionParser *)varVariablesParser {
+    if (!varVariablesParser) {
+        varVariablesParser = [TDSequence sequence];
+        [varVariablesParser add:self.varParser];
+        [varVariablesParser add:self.variablesParser];
+    }
+    return varVariablesParser;
+}
 
 
 
@@ -533,8 +801,25 @@
 //           Variable , Variables
 //
 //variables           = variable commaVariable*;
-//commaVariable       = comma variable;
+- (TDCollectionParser *)variablesParser {
+    if (!variablesParser) {
+        variablesParser = [TDSequence sequence];
+        [variablesParser add:self.variableParser];
+        [variablesParser add:[TDRepetition repetitionWithSubparser:self.commaVariableParser]];
+    }
+    return variablesParser;
+}
 
+
+//commaVariable       = comma variable;
+- (TDCollectionParser *)commaVariableParser {
+    if (!commaVariableParser) {
+        commaVariableParser = [TDSequence sequence];
+        [commaVariableParser add:self.commaParser];
+        [commaVariableParser add:self.variableParser];
+    }
+    return commaVariableParser;
+}
 
 
 //  Variable:
@@ -553,16 +838,10 @@
         [assignmentParser add:self.equalsParser];
         [assignmentParser add:self.assignmentExprParser];
         
-        [variableParser add:[self optionalParser:assignmentParser]];
+        [variableParser add:[self zeroOrOne:assignmentParser]];
     }
     return variableParser;
 }
-
-
-
-
-
-
 
 
 //  ExpressionOpt:
@@ -578,12 +857,17 @@
 //           AssignmentExpression , Expression
 //
 //expr                = assignmentExpr commaExpr?;
+
+
+
+
+
 //commaExpr           = comma expr;
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
         exprParser = [TDSequence sequence];
         [exprParser add:self.assignmentExprParser];
-        [exprParser add:[self optionalParser:self.commaExprParser]];
+        [exprParser add:[self zeroOrOne:self.commaExprParser]];
     }
     return exprParser;
 }
