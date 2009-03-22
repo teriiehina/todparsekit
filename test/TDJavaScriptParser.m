@@ -100,10 +100,12 @@
 - (TDAlternation *)oneOrMore:(TDParser *)p;
 @end
 
+
+// is a Program
 @implementation TDJavaScriptParser
 
 - (id)init {
-    if (self = [super init]) {
+    if (self = [super initWithSubparser:self.elementParser]) {
         self.tokenizer = [TDTokenizer tokenizer];
         
         tokenizer.commentState.reportsCommentTokens = YES;
@@ -435,12 +437,12 @@
 //           Element Program
 //
 //program             = element*;
-- (TDCollectionParser *)programParser {
-    if (!programParser) {
-        programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
-    }
-    return programParser;
-}
+//- (TDCollectionParser *)programParser {
+//    if (!programParser) {
+//        programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
+//    }
+//    return programParser;
+//}
 
 
 
