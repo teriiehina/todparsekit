@@ -1444,23 +1444,27 @@
 //           AssignmentExpression , ArgumentList
 //
 // argList             = assignmentExpr commaAssignmentExpr*;
-// commaAssignmentExpr = comma assignmentExpr;
 - (TDCollectionParser *)argListParser {
     if (!argListParser) {
         argListParser = [TDSequence sequence];
         [argListParser add:self.assignmentExprParser];
-        
-        TDSequence *s = [TDSequence sequence];
-        [s add:self.commaParser];
-        [s add:self.assignmentExprParser];
-        
-        [argListParser add:[TDRepetition repetitionWithSubparser:s]];
+        [argListParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
     return argListParser;
 }
 
 
-/*
+// commaAssignmentExpr = comma assignmentExpr;
+- (TDCollectionParser *)commaAssignmentExprParser {
+    if (!commaAssignmentExprParser) {
+        commaAssignmentExprParser = [TDSequence sequence];
+        [commaAssignmentExprParser add:self.commaParser];
+        [commaAssignmentExprParser add:self.assignmentExprParser];
+    }
+    return commaAssignmentExprParser;
+}
+
+
  //  PrimaryExpression:
  //           ( Expression )
  //           Identifier
@@ -1471,21 +1475,11 @@
  //           true
  //           null
  //           this
- 
- primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
- parenExprParen      = openParen expr closeParen;
- identifier          = Word;
- */
+// primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
 - (TDCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         primaryExprParser = [TDAlternation alternation];
-        
-        TDSequence *s = [TDSequence sequence];
-        [s add:[TDLiteral literalWithString:@"("]];
-        [s add:self.exprParser];
-        [s add:[TDLiteral literalWithString:@")"]];
-        [primaryExprParser add:s];
-        
+        [primaryExprParser add:self.parenExprParenParser];
         [primaryExprParser add:self.identifierParser];
         [primaryExprParser add:self.numberParser];
         [primaryExprParser add:self.stringParser];
@@ -1498,8 +1492,21 @@
     return primaryExprParser;
 }
 
+ 
+ 
+//  parenExprParen      = openParen expr closeParen;
+- (TDCollectionParser *)parenExprParenParser {
+    if (!parenExprParenParser) {
+        parenExprParenParser = [TDSequence sequence];
+        [parenExprParenParser add:self.openParenParser];
+        [parenExprParenParser add:self.exprParser];
+        [parenExprParenParser add:self.closeParenParser];
+    }
+    return parenExprParenParser;
+}
 
 
+//  identifier          = Word;
 - (TDParser *)identifierParser {
     if (!identifierParser) {
         identifierParser = [TDWord word];
