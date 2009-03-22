@@ -9,329 +9,94 @@
 #import "TDJavaScriptParser.h"
 
 /*
-
-assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
-
-relationalOperator  = lt | gt | ge | le | instanceof;
-equalityOperator    = eq | ne | is | isnot;
-
-shiftOperator       = shiftLeft | shiftRight | shiftRightExt;
-incrementOperator   = plusPlus | minusMinus;
-unaryOperator       = tilde | delete | typeof | void;
-
-multiplicativeOperator = times | div | mod;
-
-
-
-// Program:
-//           empty
-//           Element Program
-
-program             = element+;
-
-
-
-//  Element:
-//           function Identifier ( ParameterListOpt ) CompoundStatement
-//           Statement
-
-element             = func | stmt;
-func                = function identifier openParen paramListOpt closeParen compoundStmt;
-
-
-
-//  ParameterListOpt:
-//           empty
-//           ParameterList
-
-paramListOpt        = Empty | paramList;
-
-
-
-//  ParameterList:
-//           Identifier
-//           Identifier , ParameterList
-
-paramList           = identifier commaIdentifier*;
-commaIdentifier     = comma identifier;
-
-
-
-//  CompoundStatement:
-//           { Statements }
-
-compoundStmt        = openCurly stmts closeCurly;
-
-
-
-//  Statements:
-//           empty
-//           Statement Statements
-
-stmts               = stmt*;
-
-
-
-//  Statement:
-//           ;
-//           if Condition Statement
-//           if Condition Statement else Statement
-//           while Condition Statement
-//           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
-//           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
-//           ForBegin in Expression ) Statement
-//           break ;
-//           continue ;
-//           with ( Expression ) Statement
-//           return ExpressionOpt ;
-//           CompoundStatement
-//           VariablesOrExpression ;
-
-stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
-ifStmt              = if condition stmt;
-ifElseStmt          = if condition stmt else stmt;
-whileStmt           = while condition stmt;
-forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
-forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
-forInStmt           = forBegin in expr closeParen stmt;
-breakStmt           = break semi;
-continueStmt        = continue semi;
-withStmt            = with openParen expr closeParen stmt;
-returnStmt          = return exprOpt semi;
-variablesOrExprStmt = variablesOrExpr semi;
-
-
-
-//  Condition:
-//           ( Expression )
-
-condition           = openParen expr closeParen;
-
-
-
-//  ForParen:
-//           for (
-
-forParen            = for openParen;
-
-
-
-//  ForBegin:
-//           ForParen VariablesOrExpression
-
-forBegin            = forParen variablesOrExpr;
-
-
-
-//  VariablesOrExpression:
-//           var Variables
-//           Expression
-
-variablesOrExpr     = varVariables | expr;
-varVariables        = var variables;
-
-
-
-//  Variables:
-//           Variable
-//           Variable , Variables
-
-variables           = variable commaVariable*;
-commaVariable       = comma variable;
-
-
-
-//  Variable:
-//           Identifier
-//           Identifier = AssignmentExpression
-
-variable            = identifier assignment?;
-assignment          = equals assignmentExpr;
-
-
-
-//  ExpressionOpt:
-//           empty
-//           Expression
-
-exprOpt             = Empty | expr; // TODO -- Empty | expr;
-
-
-
-//  Expression:
-//           AssignmentExpression
-//           AssignmentExpression , Expression
-
-expr                = assignmentExpr commaExpr?;
-commaExpr           = comma expr;
-
-
-
-//  AssignmentExpression:
-//           ConditionalExpression
-//           ConditionalExpression AssignmentOperator AssignmentExpression
-
-assignmentExpr      = conditionalExpr extraAssignment?;
-extraAssignment     = assignmentOperator assignmentExpr;
-
-
-
-//  ConditionalExpression:
-//           OrExpression
-//           OrExpression ? AssignmentExpression : AssignmentExpression
-
-conditionalExpr     = orExpr ternaryExpr?;
-ternaryExpr         = question assignmentExpr colon assignmentExpr;
-
-
-
-//  OrExpression:
-//           AndExpression
-//           AndExpression || OrExpression
-
-orExpr              = andExpr orAndExpr*;
-orAndExpr           = or andExpr;
-
-
-
-//  AndExpression:
-//           BitwiseOrExpression
-//           BitwiseOrExpression && AndExpression
-
-andExpr             = bitwiseOrExpr andAndExpr?;
-andAndExpr          = and andExpr;
-
-
-
-//  BitwiseOrExpression:
-//           BitwiseXorExpression
-//           BitwiseXorExpression | BitwiseOrExpression
-
-bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseOrExpr?;
-pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
-
-
-
-//  BitwiseXorExpression:
-//           BitwiseAndExpression
-//           BitwiseAndExpression ^ BitwiseXorExpression
-
-bitwiseXorExpr      = bitwiseAndExpr caretBitwiseXorExpr?;
-caretBitwiseXorExpr = caret bitwiseXorExpr;
-
-
-
-//  BitwiseAndExpression:
-//           EqualityExpression
-//           EqualityExpression & BitwiseAndExpression
-
-bitwiseAndExpr      = equalityExpr ampBitwiseAndExpression?;
-ampBitwiseAndExpression = amp bitwiseAndExpr;
-
-
-
-//  EqualityExpression:
-//           RelationalExpression
-//           RelationalExpression EqualityualityOperator EqualityExpression
-
-equalityExpr        = relationalExpr equalityOpEqualityExpr?;
-equalityOpEqualityExpr = equalityOperator equalityExpr;
-
-
-
-//  RelationalExpression:
-//           ShiftExpression
-//           RelationalExpression RelationalationalOperator ShiftExpression
-
-relationalExpr      = shiftExpr | relationalExprRHS;
-relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
-
-
-
-//  ShiftExpression:
-//           AdditiveExpression
-//           AdditiveExpression ShiftOperator ShiftExpression
-
-shiftExpr           = additiveExpr shiftOpShiftExpr?;
-shiftOpShiftExpr    = shiftOperator shiftExpr;
-
-
-
-//  AdditiveExpression:
-//           MultiplicativeExpression
-//           MultiplicativeExpression + AdditiveExpression
-//           MultiplicativeExpression - AdditiveExpression
-
-additiveExpr        = multiplicativeExpr plusOrMinusExpr?;
-plusOrMinusExpr     = plusExpr | minusExpr;
-plusExpr            = plus additiveExpr;
-minusExpr           = minus additiveExpr;
-
-
-
-//  MultiplicativeExpression:
-//           UnaryExpression
-//           UnaryExpression MultiplicativeOperator MultiplicativeExpression
-
-multiplicativeExpr  = unaryExpr (multiplicativeOperator multiplicativeExpr)?;
-
-
-
-//  UnaryExpression:
-//           MemberExpression
-//           UnaryOperator UnaryExpression
-//           - UnaryExpression
-//           IncrementOperator MemberExpression
-//           MemberExpression IncrementOperator
-//           new Constructor
-//           delete MemberExpression
-
-unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
-unaryExpr1          = unaryOperator unaryExpr;
-unaryExpr2          = minus unaryExpr;
-unaryExpr3          = incrementOperator memberExpr;
-unaryExpr4          = memberExpr incrementOperator;
-unaryExpr5          = new constructor;
-unaryExpr6          = delete memberExpr;
-
-
-
-//  Constructor:
-//           this . ConstructorCall
-//           ConstructorCall
-
-constructor         = constructorCall; // TODO ???
-
-
-
-//  ConstructorCall:
-//           Identifier
-//           Identifier ( ArgumentListOpt )
-//           Identifier . ConstructorCall
-
-constructorCall     = identifier parenArgListParen?;  // TODO
-parenArgListParen   = openParen argListOpt closeParen;
-
-
-
-//  MemberExpression:
-//           PrimaryExpression
-//           PrimaryExpression . MemberExpression
-//           PrimaryExpression [ Expression ]
-//           PrimaryExpression ( ArgumentListOpt )
-
-memberExpr          = primaryExpr dotBracketOrParenExpr?;
-dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
-dotMemberExpr       = dot memberExpr;
-bracketMemberExpr   = openBracket expr closeBracket;
-parenMemberExpr     = openParen argListOpt closeParen;
-
-
-
-*/
+ @symbols            = '||' '&&' '!=' '!==' '==' '===' '<=' '>=' '++' '--' '+=' '-=' '*=' '/=' '%=' '<<' '>>' '>>>' '<<=' '>>=' '>>>=' '&=' '^=' '|=';
  
+ @reportsCommentTokens = YES;
+ @commentState       = '/';
+ @singleLineComments = '//';
+ @multiLineComments  = '/*' '* /';
+ 
+ @start              = program;
+ 
+ if                  = 'if';
+ else                = 'else';
+ while               = 'while';
+ for                 = 'for';
+ in                  = 'in';
+ break               = 'break';
+ continue            = 'continue';
+ with                = 'with';
+ return              = 'return';
+ var                 = 'var';
+ delete              = 'delete';
+ new                 = 'new';
+ this                = 'this';
+ false               = 'false';
+ true                = 'true';
+ null                = 'null';
+ undefined           = 'undefined';
+ void                = 'void';
+ typeof              = 'typeof';
+ instanceof          = 'instanceof';
+ function            = 'function';
+ 
+ openCurly           = '{';
+ closeCurly          = '}';
+ openParen           = '(';
+ closeParen          = ')';
+ openBracket         = '[';
+ closeBracket        = ']';
+ comma               = ',';
+ dot                 = '.';
+ semi                = ';';
+ colon               = ':';
+ equals              = '=';
+ not                 = '!';
+ lt                  = '<';
+ gt                  = '>';
+ amp                 = '&';
+ pipe                = '|';
+ caret               = '^';
+ tilde               = '~';
+ question            = '?';
+ plus                = '+';
+ minus               = '-';
+ times               = '*';
+ div                 = '/';
+ mod                 = '%';
+ 
+ or                  = '||';
+ and                 = '&&';
+ ne                  = '!=';
+ isnot               = '!==';
+ eq                  = '==';
+ is                  = '===';
+ le                  = '<=';
+ ge                  = '>=';
+ plusPlus            = '++';
+ minusMinus          = '--';
+ plusEq              = '+=';
+ minusEq             = '-=';
+ timesEq             = '*=';
+ divEq               = '/=';
+ modEq               = '%=';
+ shiftLeft           = '<<';
+ shiftRight          = '>>';
+ shiftRightExt       = '>>>';
+ shiftLeftEq         = '<<=';
+ shiftRightEq        = '>>=';
+ shiftRightExtEq     = '>>>=';
+ andEq               = '&=';
+ xorEq               = '^=';
+ orEq                = '|=';
+ */
+
 @interface TDParser ()
 - (void)setTokenizer:(TDTokenizer *)t;
+@end
+
+@interface TDJavaScriptParser ()
+- (TDAlternation *)optionalParser:(TDParser *)p;
 @end
 
 @implementation TDJavaScriptParser
@@ -374,16 +139,91 @@ parenMemberExpr     = openParen argListOpt closeParen;
 
 
 - (void)dealloc {    
-    self.primaryExprParser = nil;
-    
+    self.assignmentOperatorParser = nil;
+    self.relationalOperatorParser = nil;
+    self.equalityOperatorParser = nil;
+    self.shiftOperatorParser = nil;
+    self.incrementOperatorParser = nil;
+    self.unaryOperatorParser = nil;
+    self.multiplicativeOperatorParser = nil;
+    self.programParser = nil;
+    self.elementParser = nil;
+    self.funcParser = nil;
+    self.paramListOptParser = nil;
+    self.paramListParser = nil;
+    self.commaIdentifierParser = nil;
+    self.compoundStmtParser = nil;
+    self.stmtsParser = nil;
+    self.stmtParser = nil;
+    self.ifStmtParser = nil;
+    self.ifElseStmtParser = nil;
+    self.whileStmtParser = nil;
+    self.forParenStmtParser = nil;
+    self.forBeginStmtParser = nil;
+    self.forInStmtParser = nil;
+    self.breakStmtParser = nil;
+    self.continueStmtParser = nil;
+    self.withStmtParser = nil;
+    self.returnStmtParser = nil;
+    self.variablesOrExprStmtParser = nil;
+    self.conditionParser = nil;
+    self.forParenParser = nil;
+    self.forBeginParser = nil;
+    self.variablesOrExprParser = nil;
+    self.varVariablesParser = nil;
+    self.variablesParser = nil;
+    self.commaVariableParser = nil;
+    self.variableParser = nil;
+    self.exprOptParser = nil;
     self.exprParser = nil;
-    self.identifierParser = nil;
+    self.commaExprParser = nil;
     self.assignmentExprParser = nil;
-    self.assignmentParser = nil;
-
+    self.extraAssignmentParser = nil;
+    self.conditionalExprParser = nil;
+    self.ternaryExprParser = nil;
+    self.orExprParser = nil;
+    self.orAndExprParser = nil;
+    self.andExprParser = nil;
+    self.andAndExprParser = nil;
+    self.bitwiseOrExprParser = nil;
+    self.pipeBitwiseOrExprParser = nil;
+    self.bitwiseXorExprParser = nil;
+    self.caretBitwiseXorExprParser = nil;
+    self.bitwiseAndExprParser = nil;
+    self.ampBitwiseAndExpressionParser = nil;
+    self.equalityExprParser = nil;
+    self.equalityOpEqualityExprParser = nil;
+    self.relationalExprParser = nil;
+    self.relationalExprRHSParser = nil;
+    self.shiftExprParser = nil;
+    self.shiftOpShiftExprParser = nil;
+    self.additiveExprParser = nil;
+    self.plusOrMinusExprParser = nil;
+    self.plusExprParser = nil;
+    self.minusExprParser = nil;
+    self.multiplicativeExprParser = nil;
+    self.unaryExprParser = nil;
+    self.unaryExpr1Parser = nil;
+    self.unaryExpr2Parser = nil;
+    self.unaryExpr3Parser = nil;
+    self.unaryExpr4Parser = nil;
+    self.unaryExpr5Parser = nil;
+    self.unaryExpr6Parser = nil;
+    self.constructorParser = nil;
+    self.constructorCallParser = nil;
+    self.parenArgListParenParser = nil;
+    self.memberExprParser = nil;
+    self.dotBracketOrParenExprParser = nil;
+    self.dotMemberExprParser = nil;
+    self.bracketMemberExprParser = nil;
+    self.parenMemberExprParser = nil;
     self.argListOptParser = nil;
     self.argListParser = nil;
-    
+    self.commaAssignmentExprParser = nil;
+    self.primaryExprParser = nil;
+    self.parenExprParenParser = nil;
+
+    self.identifierParser = nil;
     self.stringParser = nil;
     self.numberParser = nil;
 
@@ -463,6 +303,498 @@ parenMemberExpr     = openParen argListOpt closeParen;
 }
 
 
+- (TDAlternation *)optionalParser:(TDParser *)p {
+    TDAlternation *a = [TDAlternation alternation];
+    [a add:[TDEmpty empty]];
+    [a add:p];
+    return a;
+}
+
+
+//- (TDCollectionParser *)XXXParser {
+//    if (!XXXParser) {
+//        XXXParser = [TDSequence sequence];
+//    }
+//    return XXXParser;
+//}
+
+
+
+
+// assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
+- (TDCollectionParser *)assignmentOperatorParser {
+    if (!assignmentOperatorParser) {
+        assignmentOperatorParser = [TDAlternation alternation];
+        [assignmentOperatorParser add:self.equalsParser];
+        [assignmentOperatorParser add:self.plusEqParser];
+        [assignmentOperatorParser add:self.minusEqParser];
+        [assignmentOperatorParser add:self.timesEqParser];
+        [assignmentOperatorParser add:self.divEqParser];
+        [assignmentOperatorParser add:self.modEqParser];
+        [assignmentOperatorParser add:self.shiftLeftEqParser];
+        [assignmentOperatorParser add:self.shiftRightEqParser];
+        [assignmentOperatorParser add:self.shiftRightExtEqParser];
+        [assignmentOperatorParser add:self.andEqParser];
+        [assignmentOperatorParser add:self.orEqParser];
+        [assignmentOperatorParser add:self.xorEqParser];
+    }
+    return assignmentOperatorParser;
+}
+
+
+// relationalOperator  = lt | gt | ge | le | instanceof;
+- (TDCollectionParser *)relationalOperatorParser {
+    if (!relationalOperatorParser) {
+        relationalOperatorParser = [TDAlternation alternation];
+        [relationalOperatorParser add:self.ltParser];
+        [relationalOperatorParser add:self.gtParser];
+        [relationalOperatorParser add:self.geParser];
+        [relationalOperatorParser add:self.leParser];
+        [relationalOperatorParser add:self.instanceofParser];
+    }
+    return relationalOperatorParser;
+}
+
+
+// equalityOperator    = eq | ne | is | isnot;
+- (TDCollectionParser *)equalityOperatorParser {
+    if (!equalityOperatorParser) {
+        equalityOperatorParser = [TDAlternation alternation];;
+        [equalityOperatorParser add:self.eqParser];
+        [equalityOperatorParser add:self.neParser];
+        [equalityOperatorParser add:self.isParser];
+        [equalityOperatorParser add:self.isNotParser];
+    }
+    return equalityOperatorParser;
+}
+
+
+//shiftOperator       = shiftLeft | shiftRight | shiftRightExt;
+- (TDCollectionParser *)shiftOperatorParser {
+    if (!shiftOperatorParser) {
+        shiftOperatorParser = [TDAlternation alternation];
+        [shiftOperatorParser add:self.shiftLeftParser];
+        [shiftOperatorParser add:self.shiftRightParser];
+        [shiftOperatorParser add:self.shiftRightExtParser];
+    }
+    return shiftOperatorParser;
+}
+
+
+//incrementOperator   = plusPlus | minusMinus;
+- (TDCollectionParser *)incrementOperatorParser {
+    if (!incrementOperatorParser) {
+        incrementOperatorParser = [TDAlternation alternation];
+        [incrementOperatorParser add:self.plusPlusParser];
+        [incrementOperatorParser add:self.minusMinusParser];
+    }
+    return incrementOperatorParser;
+}
+
+
+//unaryOperator       = tilde | delete | typeof | void;
+- (TDCollectionParser *)unaryOperatorParser {
+    if (!unaryOperatorParser) {
+        unaryOperatorParser = [TDAlternation alternation];
+        [unaryOperatorParser add:self.tildeParser];
+        [unaryOperatorParser add:self.deleteParser];
+        [unaryOperatorParser add:self.typeofParser];
+        [unaryOperatorParser add:self.voidParser];
+    }
+    return unaryOperatorParser;
+}
+
+
+// multiplicativeOperator = times | div | mod;
+- (TDCollectionParser *)multiplicativeOperatorParser {
+    if (!multiplicativeOperatorParser) {
+        multiplicativeOperatorParser = [TDAlternation alternation];
+        [multiplicativeOperatorParser add:self.timesParser];
+        [multiplicativeOperatorParser add:self.divParser];
+        [multiplicativeOperatorParser add:self.modParser];
+    }
+    return multiplicativeOperatorParser;
+}
+
+
+
+
+// Program:
+//           empty
+//           Element Program
+//
+//program             = element+;
+
+
+
+//  Element:
+//           function Identifier ( ParameterListOpt ) CompoundStatement
+//           Statement
+//
+//element             = func | stmt;
+//func                = function identifier openParen paramListOpt closeParen compoundStmt;
+
+
+
+//  ParameterListOpt:
+//           empty
+//           ParameterList
+//
+//paramListOpt        = Empty | paramList;
+
+
+
+//  ParameterList:
+//           Identifier
+//           Identifier , ParameterList
+//
+//paramList           = identifier commaIdentifier*;
+//commaIdentifier     = comma identifier;
+
+
+
+//  CompoundStatement:
+//           { Statements }
+//
+//compoundStmt        = openCurly stmts closeCurly;
+
+
+
+//  Statements:
+//           empty
+//           Statement Statements
+//
+//stmts               = stmt*;
+
+
+
+//  Statement:
+//           ;
+//           if Condition Statement
+//           if Condition Statement else Statement
+//           while Condition Statement
+//           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin in Expression ) Statement
+//           break ;
+//           continue ;
+//           with ( Expression ) Statement
+//           return ExpressionOpt ;
+//           CompoundStatement
+//           VariablesOrExpression ;
+//
+//stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
+//ifStmt              = if condition stmt;
+//ifElseStmt          = if condition stmt else stmt;
+//whileStmt           = while condition stmt;
+//forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
+//forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
+//forInStmt           = forBegin in expr closeParen stmt;
+//breakStmt           = break semi;
+//continueStmt        = continue semi;
+//withStmt            = with openParen expr closeParen stmt;
+//returnStmt          = return exprOpt semi;
+//variablesOrExprStmt = variablesOrExpr semi;
+
+
+
+//  Condition:
+//           ( Expression )
+//
+//condition           = openParen expr closeParen;
+
+
+
+//  ForParen:
+//           for (
+//
+//forParen            = for openParen;
+
+
+
+//  ForBegin:
+//           ForParen VariablesOrExpression
+//
+//forBegin            = forParen variablesOrExpr;
+
+
+
+//  VariablesOrExpression:
+//           var Variables
+//           Expression
+//
+//variablesOrExpr     = varVariables | expr;
+//varVariables        = var variables;
+
+
+
+//  Variables:
+//           Variable
+//           Variable , Variables
+//
+//variables           = variable commaVariable*;
+//commaVariable       = comma variable;
+
+
+
+//  Variable:
+//           Identifier
+//           Identifier = AssignmentExpression
+//
+//variable            = identifier assignment?;
+//assignment          = equals assignmentExpr;
+
+- (TDCollectionParser *)variableParser {
+    if (!variableParser) {
+        variableParser = [TDSequence sequence];
+        [variableParser add:self.identifierParser];
+        
+        TDSequence *assignmentParser = [TDSequence sequence];
+        [assignmentParser add:self.equalsParser];
+        [assignmentParser add:self.assignmentExprParser];
+        
+        [variableParser add:[self optionalParser:assignmentParser]];
+    }
+    return variableParser;
+}
+
+
+
+
+
+
+
+
+//  ExpressionOpt:
+//           empty
+//           Expression
+//
+//    exprOpt             = Empty | expr; // TODO -- Empty | expr;
+
+
+
+//  Expression:
+//           AssignmentExpression
+//           AssignmentExpression , Expression
+//
+//expr                = assignmentExpr commaExpr?;
+//commaExpr           = comma expr;
+- (TDCollectionParser *)exprParser {
+    if (!exprParser) {
+        exprParser = [TDSequence sequence];
+        [exprParser add:self.assignmentExprParser];
+        [exprParser add:[self optionalParser:self.commaExprParser]];
+    }
+    return exprParser;
+}
+
+
+
+//  AssignmentExpression:
+//           ConditionalExpression
+//           ConditionalExpression AssignmentOperator AssignmentExpression
+//
+// assignmentExpr      = conditionalExpr extraAssignment?;
+// extraAssignment     = assignmentOperator assignmentExpr;
+
+- (TDCollectionParser *)assignmentExprParser {
+    if (!assignmentExprParser) {
+        assignmentExprParser = [TDSequence sequence];
+    }
+    return assignmentExprParser;
+}
+
+
+
+
+
+
+//  ConditionalExpression:
+//           OrExpression
+//           OrExpression ? AssignmentExpression : AssignmentExpression
+//
+//    conditionalExpr     = orExpr ternaryExpr?;
+//    ternaryExpr         = question assignmentExpr colon assignmentExpr;
+
+
+
+//  OrExpression:
+//           AndExpression
+//           AndExpression || OrExpression
+//
+//    orExpr              = andExpr orAndExpr*;
+//    orAndExpr           = or andExpr;
+
+
+
+//  AndExpression:
+//           BitwiseOrExpression
+//           BitwiseOrExpression && AndExpression
+//
+//    andExpr             = bitwiseOrExpr andAndExpr?;
+//    andAndExpr          = and andExpr;
+
+
+
+//  BitwiseOrExpression:
+//           BitwiseXorExpression
+//           BitwiseXorExpression | BitwiseOrExpression
+//
+//    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseOrExpr?;
+//    pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
+
+
+
+//  BitwiseXorExpression:
+//           BitwiseAndExpression
+//           BitwiseAndExpression ^ BitwiseXorExpression
+//
+//    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseXorExpr?;
+//    caretBitwiseXorExpr = caret bitwiseXorExpr;
+
+
+
+//  BitwiseAndExpression:
+//           EqualityExpression
+//           EqualityExpression & BitwiseAndExpression
+//
+//    bitwiseAndExpr      = equalityExpr ampBitwiseAndExpression?;
+//    ampBitwiseAndExpression = amp bitwiseAndExpr;
+
+
+
+//  EqualityExpression:
+//           RelationalExpression
+//           RelationalExpression EqualityualityOperator EqualityExpression
+//
+//    equalityExpr        = relationalExpr equalityOpEqualityExpr?;
+//    equalityOpEqualityExpr = equalityOperator equalityExpr;
+
+
+
+//  RelationalExpression:
+//           ShiftExpression
+//           RelationalExpression RelationalationalOperator ShiftExpression
+//
+//    relationalExpr      = shiftExpr | relationalExprRHS;
+//    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
+
+
+
+//  ShiftExpression:
+//           AdditiveExpression
+//           AdditiveExpression ShiftOperator ShiftExpression
+//
+//    shiftExpr           = additiveExpr shiftOpShiftExpr?;
+//    shiftOpShiftExpr    = shiftOperator shiftExpr;
+
+
+
+//  AdditiveExpression:
+//           MultiplicativeExpression
+//           MultiplicativeExpression + AdditiveExpression
+//           MultiplicativeExpression - AdditiveExpression
+//
+//    additiveExpr        = multiplicativeExpr plusOrMinusExpr?;
+//    plusOrMinusExpr     = plusExpr | minusExpr;
+//    plusExpr            = plus additiveExpr;
+//    minusExpr           = minus additiveExpr;
+
+
+//  MultiplicativeExpression:
+//           UnaryExpression
+//           UnaryExpression MultiplicativeOperator MultiplicativeExpression
+//
+//    multiplicativeExpr  = unaryExpr (multiplicativeOperator multiplicativeExpr)?;
+
+
+
+//  UnaryExpression:
+//           MemberExpression
+//           UnaryOperator UnaryExpression
+//           - UnaryExpression
+//           IncrementOperator MemberExpression
+//           MemberExpression IncrementOperator
+//           new Constructor
+//           delete MemberExpression
+//
+//    unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
+//    unaryExpr1          = unaryOperator unaryExpr;
+//    unaryExpr2          = minus unaryExpr;
+//    unaryExpr3          = incrementOperator memberExpr;
+//    unaryExpr4          = memberExpr incrementOperator;
+//    unaryExpr5          = new constructor;
+//    unaryExpr6          = delete memberExpr;
+
+
+
+//  Constructor:
+//           this . ConstructorCall
+//           ConstructorCall
+//
+//    constructor         = constructorCall; // TODO ???
+
+
+
+//  ConstructorCall:
+//           Identifier
+//           Identifier ( ArgumentListOpt )
+//           Identifier . ConstructorCall
+//
+//    constructorCall     = identifier parenArgListParen?;  // TODO
+//    parenArgListParen   = openParen argListOpt closeParen;
+
+
+
+//  MemberExpression:
+//           PrimaryExpression
+//           PrimaryExpression . MemberExpression
+//           PrimaryExpression [ Expression ]
+//           PrimaryExpression ( ArgumentListOpt )
+//
+//    memberExpr          = primaryExpr dotBracketOrParenExpr?;
+//    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
+//    dotMemberExpr       = dot memberExpr;
+//    bracketMemberExpr   = openBracket expr closeBracket;
+//    parenMemberExpr     = openParen argListOpt closeParen;
+
+
+
+//  ArgumentListOpt:
+//           empty
+//           ArgumentList
+//
+// argListOpt          = argList?;
+- (TDCollectionParser *)argListOptParser {
+    if (!argListOptParser) {
+        argListOptParser = [TDAlternation alternation];
+        [argListOptParser add:[TDEmpty empty]];
+        [argListOptParser add:self.argListParser];
+    }
+    return argListOptParser;
+}
+
+
+//  ArgumentList:
+//           AssignmentExpression
+//           AssignmentExpression , ArgumentList
+//
+// argList             = assignmentExpr commaAssignmentExpr*;
+// commaAssignmentExpr = comma assignmentExpr;
+- (TDCollectionParser *)argListParser {
+    if (!argListParser) {
+        argListParser = [TDSequence sequence];
+        [argListParser add:self.assignmentExprParser];
+        
+        TDSequence *s = [TDSequence sequence];
+        [s add:self.commaParser];
+        [s add:self.assignmentExprParser];
+        
+        [argListParser add:[TDRepetition repetitionWithSubparser:s]];
+    }
+    return argListParser;
+}
+
 
 /*
  //  PrimaryExpression:
@@ -503,74 +835,13 @@ parenMemberExpr     = openParen argListOpt closeParen;
 }
 
 
-//  ArgumentListOpt:
-//           empty
-//           ArgumentList
-//
-// argListOpt          = argList?;
-- (TDCollectionParser *)argListOptParser {
-    if (!argListOptParser) {
-        argListOptParser = [TDAlternation alternation];
-        [argListOptParser add:[TDEmpty empty]];
-        [argListOptParser add:self.argListParser];
-    }
-    return argListOptParser;
-}
 
-
-//  ArgumentList:
-//           AssignmentExpression
-//           AssignmentExpression , ArgumentList
-//
-// argList             = assignmentExpr commaAssignmentExpr*;
-// commaAssignmentExpr = comma assignmentExpr;
-- (TDCollectionParser *)argListParser {
-    if (!argListParser) {
-        argListParser = [TDSequence sequence];
-        [argListParser add:self.assignmentExprParser];
-
-        TDSequence *s = [TDSequence sequence];
-        [s add:self.commaParser];
-        [s add:self.assignmentParser];
-        
-        [argListParser add:[TDRepetition repetitionWithSubparser:s]];
-    }
-    return argListParser;
-}
-
-
-- (TDCollectionParser *)exprParser {
-    if (!exprParser) {
-        exprParser = [TDSequence sequence];
-    }
-    return exprParser;
-}
-
-
-- (TDCollectionParser *)identifierParser {
+- (TDParser *)identifierParser {
     if (!identifierParser) {
-        identifierParser = [TDSequence sequence];
+        identifierParser = [TDWord word];
     }
     return identifierParser;
 }
-
-
-- (TDCollectionParser *)assignmentExprParser {
-    if (!assignmentExprParser) {
-        assignmentExprParser = [TDSequence sequence];
-    }
-    return assignmentExprParser;
-}
-
-
-- (TDCollectionParser *)assignmentParser {
-    if (!assignmentParser) {
-        assignmentParser = [TDSequence sequence];
-    }
-    return assignmentParser;
-}
-
-
 
 
 - (TDParser *)stringParser {
@@ -1149,16 +1420,92 @@ parenMemberExpr     = openParen argListOpt closeParen;
     return modParser;
 }
 
-@synthesize primaryExprParser;
-            
-@synthesize exprParser;
-@synthesize identifierParser;
-@synthesize assignmentExprParser;
-@synthesize assignmentParser;
+@synthesize assignmentOperatorParser;
+@synthesize relationalOperatorParser;
+@synthesize equalityOperatorParser;
+@synthesize shiftOperatorParser;
+@synthesize incrementOperatorParser;
+@synthesize unaryOperatorParser;
+@synthesize multiplicativeOperatorParser;
 
+@synthesize programParser;
+@synthesize elementParser;
+@synthesize funcParser;
+@synthesize paramListOptParser;
+@synthesize paramListParser;
+@synthesize commaIdentifierParser;
+@synthesize compoundStmtParser;
+@synthesize stmtsParser;
+@synthesize stmtParser;
+@synthesize ifStmtParser;
+@synthesize ifElseStmtParser;
+@synthesize whileStmtParser;
+@synthesize forParenStmtParser;
+@synthesize forBeginStmtParser;
+@synthesize forInStmtParser;
+@synthesize breakStmtParser;
+@synthesize continueStmtParser;
+@synthesize withStmtParser;
+@synthesize returnStmtParser;
+@synthesize variablesOrExprStmtParser;
+@synthesize conditionParser;
+@synthesize forParenParser;
+@synthesize forBeginParser;
+@synthesize variablesOrExprParser;
+@synthesize varVariablesParser;
+@synthesize variablesParser;
+@synthesize commaVariableParser;
+@synthesize variableParser;
+@synthesize exprOptParser;
+@synthesize exprParser;
+@synthesize commaExprParser;
+@synthesize assignmentExprParser;
+@synthesize extraAssignmentParser;
+@synthesize conditionalExprParser;
+@synthesize ternaryExprParser;
+@synthesize orExprParser;
+@synthesize orAndExprParser;
+@synthesize andExprParser;
+@synthesize andAndExprParser;
+@synthesize bitwiseOrExprParser;
+@synthesize pipeBitwiseOrExprParser;
+@synthesize bitwiseXorExprParser;
+@synthesize caretBitwiseXorExprParser;
+@synthesize bitwiseAndExprParser;
+@synthesize ampBitwiseAndExpressionParser;
+@synthesize equalityExprParser;
+@synthesize equalityOpEqualityExprParser;
+@synthesize relationalExprParser;
+@synthesize relationalExprRHSParser;
+@synthesize shiftExprParser;
+@synthesize shiftOpShiftExprParser;
+@synthesize additiveExprParser;
+@synthesize plusOrMinusExprParser;
+@synthesize plusExprParser;
+@synthesize minusExprParser;
+@synthesize multiplicativeExprParser;
+@synthesize unaryExprParser;
+@synthesize unaryExpr1Parser;
+@synthesize unaryExpr2Parser;
+@synthesize unaryExpr3Parser;
+@synthesize unaryExpr4Parser;
+@synthesize unaryExpr5Parser;
+@synthesize unaryExpr6Parser;
+@synthesize constructorParser;
+@synthesize constructorCallParser;
+@synthesize parenArgListParenParser;
+@synthesize memberExprParser;
+@synthesize dotBracketOrParenExprParser;
+@synthesize dotMemberExprParser;
+@synthesize bracketMemberExprParser;
+@synthesize parenMemberExprParser;
 @synthesize argListOptParser;
 @synthesize argListParser;
-            
+@synthesize commaAssignmentExprParser;
+@synthesize primaryExprParser;
+@synthesize parenExprParenParser;
+
+@synthesize identifierParser;
 @synthesize stringParser;
 @synthesize numberParser;
 
