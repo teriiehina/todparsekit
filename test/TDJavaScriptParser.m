@@ -909,6 +909,12 @@
 //
 //    conditionalExpr     = orExpr ternaryExpr?;
 //    ternaryExpr         = question assignmentExpr colon assignmentExpr;
+//- (TDCollectionParser *)XXXParser {
+//    if (!XXXParser) {
+//        XXXParser = [TDSequence sequence];
+//    }
+//    return XXXParser;
+//}
 
 
 
