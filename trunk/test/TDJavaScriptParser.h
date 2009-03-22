@@ -74,6 +74,7 @@
     TDCollectionParser *plusExprParser;
     TDCollectionParser *minusExprParser;
     TDCollectionParser *multiplicativeExprParser;
+    TDCollectionParser *multiplicativeExprRHSParser;
     TDCollectionParser *unaryExprParser;
     TDCollectionParser *unaryExpr1Parser;
     TDCollectionParser *unaryExpr2Parser;
@@ -239,6 +240,7 @@
 @property (nonatomic, retain) TDCollectionParser *plusExprParser;
 @property (nonatomic, retain) TDCollectionParser *minusExprParser;
 @property (nonatomic, retain) TDCollectionParser *multiplicativeExprParser;
+@property (nonatomic, retain) TDCollectionParser *multiplicativeExprRHSParser;
 @property (nonatomic, retain) TDCollectionParser *unaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr1Parser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr2Parser;
