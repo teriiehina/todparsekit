@@ -45,6 +45,7 @@
     TDCollectionParser *variablesParser;
     TDCollectionParser *commaVariableParser;
     TDCollectionParser *variableParser;
+    TDCollectionParser *assignmentParser;
     TDCollectionParser *exprOptParser;
     TDCollectionParser *exprParser;
     TDCollectionParser *commaExprParser;
@@ -209,6 +210,7 @@
 @property (nonatomic, retain) TDCollectionParser *variablesParser;
 @property (nonatomic, retain) TDCollectionParser *commaVariableParser;
 @property (nonatomic, retain) TDCollectionParser *variableParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentParser;
 @property (nonatomic, retain) TDCollectionParser *exprOptParser;
 @property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *commaExprParser;

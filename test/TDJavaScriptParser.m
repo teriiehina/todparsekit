@@ -175,6 +175,7 @@
     self.variablesParser = nil;
     self.commaVariableParser = nil;
     self.variableParser = nil;
+    self.assignmentParser = nil;
     self.exprOptParser = nil;
     self.exprParser = nil;
     self.commaExprParser = nil;
@@ -827,20 +828,23 @@
 //           Identifier = AssignmentExpression
 //
 //variable            = identifier assignment?;
-//assignment          = equals assignmentExpr;
-
 - (TDCollectionParser *)variableParser {
     if (!variableParser) {
         variableParser = [TDSequence sequence];
         [variableParser add:self.identifierParser];
-        
-        TDSequence *assignmentParser = [TDSequence sequence];
-        [assignmentParser add:self.equalsParser];
-        [assignmentParser add:self.assignmentExprParser];
-        
-        [variableParser add:[self zeroOrOne:assignmentParser]];
+        [variableParser add:[self zeroOrOne:self.assignmentParser]];
     }
     return variableParser;
+}
+
+//assignment          = equals assignmentExpr;
+- (TDCollectionParser *)assignmentParser {
+    if (!assignmentParser) {
+        assignmentParser = [TDSequence sequence];
+        [assignmentParser add:self.equalsParser];
+        [assignmentParser add:self.assignmentExprParser];
+    }
+    return assignmentParser;
 }
 
 
@@ -848,7 +852,13 @@
 //           empty
 //           Expression
 //
-//    exprOpt             = Empty | expr; // TODO -- Empty | expr;
+//    exprOpt             = Empty | expr;
+- (TDCollectionParser *)exprOptParser {
+    if (!exprOptParser) {
+        exprOptParser = [self zeroOrOne:self.exprParser];
+    }
+    return exprOptParser;
+}
 
 
 
@@ -857,12 +867,6 @@
 //           AssignmentExpression , Expression
 //
 //expr                = assignmentExpr commaExpr?;
-
-
-
-
-
-//commaExpr           = comma expr;
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
         exprParser = [TDSequence sequence];
@@ -872,6 +876,16 @@
     return exprParser;
 }
 
+
+//commaExpr           = comma expr;
+- (TDCollectionParser *)commaExprParser {
+    if (!commaExprParser) {
+        commaExprParser = [TDSequence sequence];
+        [commaExprParser add:self.commaParser];
+        [commaExprParser add:self.exprParser];
+    }
+    return commaExprParser;
+}
 
 
 //  AssignmentExpression:
@@ -887,10 +901,6 @@
     }
     return assignmentExprParser;
 }
-
-
-
-
 
 
 //  ConditionalExpression:
@@ -1740,6 +1750,7 @@
 @synthesize variablesParser;
 @synthesize commaVariableParser;
 @synthesize variableParser;
+@synthesize assignmentParser;
 @synthesize exprOptParser;
 @synthesize exprParser;
 @synthesize commaExprParser;
