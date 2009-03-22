@@ -204,6 +204,7 @@
     self.plusExprParser = nil;
     self.minusExprParser = nil;
     self.multiplicativeExprParser = nil;
+    self.multiplicativeExprRHSParser = nil;
     self.unaryExprParser = nil;
     self.unaryExpr1Parser = nil;
     self.unaryExpr2Parser = nil;
@@ -893,13 +894,24 @@
 //           ConditionalExpression AssignmentOperator AssignmentExpression
 //
 // assignmentExpr      = conditionalExpr extraAssignment?;
-// extraAssignment     = assignmentOperator assignmentExpr;
-
 - (TDCollectionParser *)assignmentExprParser {
     if (!assignmentExprParser) {
         assignmentExprParser = [TDSequence sequence];
+        [assignmentExprParser add:self.conditionParser];
+        [assignmentExprParser add:[self zeroOrOne:self.extraAssignmentParser]];
     }
     return assignmentExprParser;
+}
+
+
+// extraAssignment     = assignmentOperator assignmentExpr;
+- (TDCollectionParser *)extraAssignmentParser {
+    if (!extraAssignmentParser) {
+        extraAssignmentParser = [TDSequence sequence];
+        [extraAssignmentParser add:self.assignmentOperatorParser];
+        [extraAssignmentParser add:self.assignmentExprParser];
+    }
+    return extraAssignmentParser;
 }
 
 
@@ -908,14 +920,27 @@
 //           OrExpression ? AssignmentExpression : AssignmentExpression
 //
 //    conditionalExpr     = orExpr ternaryExpr?;
-//    ternaryExpr         = question assignmentExpr colon assignmentExpr;
-//- (TDCollectionParser *)XXXParser {
-//    if (!XXXParser) {
-//        XXXParser = [TDSequence sequence];
-//    }
-//    return XXXParser;
-//}
+- (TDCollectionParser *)conditionalExprParser {
+    if (!conditionalExprParser) {
+        conditionalExprParser = [TDSequence sequence];
+        [conditionalExprParser add:self.orExprParser];
+        [conditionalExprParser add:[self zeroOrOne:self.ternaryExprParser]];
+    }
+    return conditionalExprParser;
+}
 
+
+//    ternaryExpr         = question assignmentExpr colon assignmentExpr;
+- (TDCollectionParser *)ternaryExprParser {
+    if (!ternaryExprParser) {
+        ternaryExprParser = [TDSequence sequence];
+        [ternaryExprParser add:self.questionParser];
+        [ternaryExprParser add:self.assignmentExprParser];
+        [ternaryExprParser add:self.colonParser];
+        [ternaryExprParser add:self.assignmentExprParser];
+    }
+    return ternaryExprParser;
+}
 
 
 //  OrExpression:
@@ -923,8 +948,25 @@
 //           AndExpression || OrExpression
 //
 //    orExpr              = andExpr orAndExpr*;
-//    orAndExpr           = or andExpr;
+- (TDCollectionParser *)orExprParser {
+    if (!orExprParser) {
+        orExprParser = [TDSequence sequence];
+        [orExprParser add:self.andExprParser];
+        [orExprParser add:[TDRepetition repetitionWithSubparser:self.orAndExprParser]];
+    }
+    return orExprParser;
+}
 
+
+//    orAndExpr           = or andExpr;
+- (TDCollectionParser *)orAndExprParser {
+    if (!orAndExprParser) {
+        orAndExprParser = [TDSequence sequence];
+        [orAndExprParser add:self.orParser];
+        [orAndExprParser add:self.andExprParser];
+    }
+    return orAndExprParser;
+}
 
 
 //  AndExpression:
@@ -932,8 +974,25 @@
 //           BitwiseOrExpression && AndExpression
 //
 //    andExpr             = bitwiseOrExpr andAndExpr?;
-//    andAndExpr          = and andExpr;
+- (TDCollectionParser *)andExprParser {
+    if (!andExprParser) {
+        andExprParser = [TDSequence sequence];
+        [andExprParser add:self.bitwiseOrExprParser];
+        [andExprParser add:[self zeroOrOne:self.andAndExprParser]];
+    }
+    return andExprParser;
+}
 
+
+//    andAndExpr          = and andExpr;
+- (TDCollectionParser *)andAndExprParser {
+    if (!andAndExprParser) {
+        andAndExprParser = [TDSequence sequence];
+        [andAndExprParser add:self.andParser];
+        [andAndExprParser add:self.andExprParser];
+    }
+    return andAndExprParser;
+}
 
 
 //  BitwiseOrExpression:
@@ -941,8 +1000,25 @@
 //           BitwiseXorExpression | BitwiseOrExpression
 //
 //    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseOrExpr?;
-//    pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
+- (TDCollectionParser *)bitwiseOrExprParser {
+    if (!bitwiseOrExprParser) {
+        bitwiseOrExprParser = [TDSequence sequence];
+        [bitwiseOrExprParser add:self.bitwiseXorExprParser];
+        [bitwiseOrExprParser add:[self zeroOrOne:self.pipeBitwiseOrExprParser]];
+    }
+    return bitwiseOrExprParser;
+}
 
+
+//    pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
+- (TDCollectionParser *)pipeBitwiseOrExprParser {
+    if (!pipeBitwiseOrExprParser) {
+        pipeBitwiseOrExprParser = [TDSequence sequence];
+        [pipeBitwiseOrExprParser add:self.pipeParser];
+        [pipeBitwiseOrExprParser add:self.bitwiseOrExprParser];
+    }
+    return pipeBitwiseOrExprParser;
+}
 
 
 //  BitwiseXorExpression:
@@ -950,8 +1026,25 @@
 //           BitwiseAndExpression ^ BitwiseXorExpression
 //
 //    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseXorExpr?;
-//    caretBitwiseXorExpr = caret bitwiseXorExpr;
+- (TDCollectionParser *)bitwiseXorExprParser {
+    if (!bitwiseXorExprParser) {
+        bitwiseXorExprParser = [TDSequence sequence];
+        [bitwiseXorExprParser add:self.bitwiseAndExprParser];
+        [bitwiseXorExprParser add:[self zeroOrOne:self.caretBitwiseXorExprParser]];
+    }
+    return bitwiseXorExprParser;
+}
 
+
+//    caretBitwiseXorExpr = caret bitwiseXorExpr;
+- (TDCollectionParser *)caretBitwiseXorExprParser {
+    if (!caretBitwiseXorExprParser) {
+        caretBitwiseXorExprParser = [TDSequence sequence];
+        [caretBitwiseXorExprParser add:self.caretParser];
+        [caretBitwiseXorExprParser add:self.bitwiseXorExprParser];
+    }
+    return caretBitwiseXorExprParser;
+}
 
 
 //  BitwiseAndExpression:
@@ -959,8 +1052,25 @@
 //           EqualityExpression & BitwiseAndExpression
 //
 //    bitwiseAndExpr      = equalityExpr ampBitwiseAndExpression?;
-//    ampBitwiseAndExpression = amp bitwiseAndExpr;
+- (TDCollectionParser *)bitwiseAndExprParser {
+    if (!bitwiseAndExprParser) {
+        bitwiseAndExprParser = [TDSequence sequence];
+        [bitwiseAndExprParser add:self.equalityExprParser];
+        [bitwiseAndExprParser add:[self zeroOrOne:self.ampBitwiseAndExpressionParser]];
+    }
+    return bitwiseAndExprParser;
+}
 
+
+//    ampBitwiseAndExpression = amp bitwiseAndExpr;
+- (TDCollectionParser *)ampBitwiseAndExpressionParser {
+    if (!ampBitwiseAndExpressionParser) {
+        ampBitwiseAndExpressionParser = [TDSequence sequence];
+        [ampBitwiseAndExpressionParser add:self.ampParser];
+        [ampBitwiseAndExpressionParser add:self.bitwiseAndExprParser];
+    }
+    return ampBitwiseAndExpressionParser;
+}
 
 
 //  EqualityExpression:
@@ -968,8 +1078,25 @@
 //           RelationalExpression EqualityualityOperator EqualityExpression
 //
 //    equalityExpr        = relationalExpr equalityOpEqualityExpr?;
-//    equalityOpEqualityExpr = equalityOperator equalityExpr;
+- (TDCollectionParser *)equalityExprParser {
+    if (!equalityExprParser) {
+        equalityExprParser = [TDSequence sequence];
+        [equalityExprParser add:self.relationalExprParser];
+        [equalityExprParser add:[self zeroOrOne:self.equalityOpEqualityExprParser]];
+    }
+    return equalityExprParser;
+}
 
+
+//    equalityOpEqualityExpr = equalityOperator equalityExpr;
+- (TDCollectionParser *)equalityOpEqualityExprParser {
+    if (!equalityOpEqualityExprParser) {
+        equalityOpEqualityExprParser = [TDSequence sequence];
+        [equalityOpEqualityExprParser add:equalityOperatorParser];
+        [equalityOpEqualityExprParser add:equalityExprParser];
+    }
+    return equalityOpEqualityExprParser;
+}
 
 
 //  RelationalExpression:
@@ -977,8 +1104,26 @@
 //           RelationalExpression RelationalationalOperator ShiftExpression
 //
 //    relationalExpr      = shiftExpr | relationalExprRHS;
-//    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
+- (TDCollectionParser *)relationalExprParser {
+    if (!relationalExprParser) {
+        relationalExprParser = [TDAlternation alternation];
+        [relationalExprParser add:self.shiftExprParser];
+        [relationalExprParser add:self.relationalExprRHSParser];
+    }
+    return relationalExprParser;
+}
 
+
+//    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
+- (TDCollectionParser *)relationalExprRHSParser {
+    if (!relationalExprRHSParser) {
+        relationalExprRHSParser = [TDSequence sequence];
+        [relationalExprRHSParser add:self.relationalExprParser];
+        [relationalExprRHSParser add:self.relationalOperatorParser];
+        [relationalExprRHSParser add:self.shiftExprParser];
+    }
+    return relationalExprRHSParser;
+}
 
 
 //  ShiftExpression:
@@ -986,8 +1131,25 @@
 //           AdditiveExpression ShiftOperator ShiftExpression
 //
 //    shiftExpr           = additiveExpr shiftOpShiftExpr?;
-//    shiftOpShiftExpr    = shiftOperator shiftExpr;
+- (TDCollectionParser *)shiftExprParser {
+    if (!shiftExprParser) {
+        shiftExprParser = [TDSequence sequence];
+        [shiftExprParser add:self.additiveExprParser];
+        [shiftExprParser add:self.shiftOpShiftExprParser];
+    }
+    return shiftExprParser;
+}
 
+
+//    shiftOpShiftExpr    = shiftOperator shiftExpr;
+- (TDCollectionParser *)shiftOpShiftExprParser {
+    if (!shiftOpShiftExprParser) {
+        shiftOpShiftExprParser = [TDSequence sequence];
+        [shiftOpShiftExprParser add:self.shiftOperatorParser];
+        [shiftOpShiftExprParser add:self.shiftExprParser];
+    }
+    return shiftOpShiftExprParser;
+}
 
 
 //  AdditiveExpression:
@@ -996,17 +1158,73 @@
 //           MultiplicativeExpression - AdditiveExpression
 //
 //    additiveExpr        = multiplicativeExpr plusOrMinusExpr?;
+- (TDCollectionParser *)additiveExprParser {
+    if (!additiveExprParser) {
+        additiveExprParser = [TDSequence sequence];
+        [additiveExprParser add:self.multiplicativeExprParser];
+        [additiveExprParser add:[self zeroOrOne:self.plusOrMinusExprParser]];
+    }
+    return additiveExprParser;
+}
+
+
 //    plusOrMinusExpr     = plusExpr | minusExpr;
+- (TDCollectionParser *)plusOrMinusExprParser {
+    if (!plusOrMinusExprParser) {
+        plusOrMinusExprParser = [TDAlternation alternation];
+        [plusOrMinusExprParser add:self.plusExprParser];
+        [plusOrMinusExprParser add:self.minusExprParser];
+    }
+    return plusOrMinusExprParser;
+}
+
+
 //    plusExpr            = plus additiveExpr;
+- (TDCollectionParser *)plusExprParser {
+    if (!plusExprParser) {
+        plusExprParser = [TDSequence sequence];
+        [plusExprParser add:self.plusParser];
+        [plusExprParser add:self.additiveExprParser];
+    }
+    return plusExprParser;
+}
+
+
 //    minusExpr           = minus additiveExpr;
+- (TDCollectionParser *)minusExprParser {
+    if (!minusExprParser) {
+        minusExprParser = [TDSequence sequence];
+        [minusExprParser add:self.minusParser];
+        [minusExprParser add:self.additiveExprParser];
+    }
+    return minusExprParser;
+}
 
 
 //  MultiplicativeExpression:
 //           UnaryExpression
 //           UnaryExpression MultiplicativeOperator MultiplicativeExpression
 //
-//    multiplicativeExpr  = unaryExpr (multiplicativeOperator multiplicativeExpr)?;
+//    multiplicativeExpr  = unaryExpr multiplicativeExprRHS?;
+- (TDCollectionParser *)multiplicativeExprParser {
+    if (!multiplicativeExprParser) {
+        multiplicativeExprParser = [TDSequence sequence];
+        [multiplicativeExprParser add:self.unaryExprParser];
+        [multiplicativeExprParser add:[self zeroOrOne:self.multiplicativeExprRHSParser]];
+    }
+    return multiplicativeExprParser;
+}
 
+
+// multiplicativeExprRHS = multiplicativeOperator multiplicativeExpr;
+- (TDCollectionParser *)multiplicativeExprRHSParser {
+    if (!multiplicativeExprRHSParser) {
+        multiplicativeExprRHSParser = [TDSequence sequence];
+        [multiplicativeExprRHSParser add:multiplicativeOperatorParser];
+        [multiplicativeExprRHSParser add:multiplicativeExprParser];
+    }
+    return multiplicativeExprRHSParser;
+}
 
 
 //  UnaryExpression:
@@ -1019,13 +1237,85 @@
 //           delete MemberExpression
 //
 //    unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
-//    unaryExpr1          = unaryOperator unaryExpr;
-//    unaryExpr2          = minus unaryExpr;
-//    unaryExpr3          = incrementOperator memberExpr;
-//    unaryExpr4          = memberExpr incrementOperator;
-//    unaryExpr5          = new constructor;
-//    unaryExpr6          = delete memberExpr;
+- (TDCollectionParser *)unaryExprParser {
+    if (!unaryExprParser) {
+        unaryExprParser = [TDAlternation alternation];
+        [unaryExprParser add:self.memberExprParser];
+        [unaryExprParser add:self.unaryExpr1Parser];
+        [unaryExprParser add:self.unaryExpr2Parser];
+        [unaryExprParser add:self.unaryExpr3Parser];
+        [unaryExprParser add:self.unaryExpr4Parser];
+        [unaryExprParser add:self.unaryExpr5Parser];
+        [unaryExprParser add:self.unaryExpr6Parser];
+    }
+    return unaryExprParser;
+}
 
+
+//    unaryExpr1          = unaryOperator unaryExpr;
+- (TDCollectionParser *)unaryExpr1Parser {
+    if (!unaryExpr1Parser) {
+        unaryExpr1Parser = [TDSequence sequence];
+        [unaryExpr1Parser add:self.unaryOperatorParser];
+        [unaryExpr1Parser add:self.unaryExprParser];
+    }
+    return unaryExpr1Parser;
+}
+
+
+//    unaryExpr2          = minus unaryExpr;
+- (TDCollectionParser *)unaryExpr2Parser {
+    if (!unaryExpr2Parser) {
+        unaryExpr2Parser = [TDSequence sequence];
+        [unaryExpr1Parser add:self.minusParser];
+        [unaryExpr1Parser add:self.unaryExprParser];
+    }
+    return unaryExpr2Parser;
+}
+
+
+//    unaryExpr3          = incrementOperator memberExpr;
+- (TDCollectionParser *)unaryExpr3Parser {
+    if (!unaryExpr3Parser) {
+        unaryExpr3Parser = [TDSequence sequence];
+        [unaryExpr3Parser add:self.incrementOperatorParser];
+        [unaryExpr3Parser add:self.memberExprParser];
+    }
+    return unaryExpr3Parser;
+}
+
+
+//    unaryExpr4          = memberExpr incrementOperator;
+- (TDCollectionParser *)unaryExpr4Parser {
+    if (!unaryExpr4Parser) {
+        unaryExpr4Parser = [TDSequence sequence];
+        [unaryExpr4Parser add:self.memberExprParser];
+        [unaryExpr4Parser add:self.incrementOperatorParser];
+    }
+    return unaryExpr4Parser;
+}
+
+
+//    unaryExpr5          = new constructor;
+- (TDCollectionParser *)unaryExpr5Parser {
+    if (!unaryExpr5Parser) {
+        unaryExpr5Parser = [TDSequence sequence];
+        [unaryExpr5Parser add:self.newParser];
+        [unaryExpr5Parser add:self.constructorParser];
+    }
+    return unaryExpr5Parser;
+}
+
+
+//    unaryExpr6          = delete memberExpr;
+- (TDCollectionParser *)unaryExpr6Parser {
+    if (!unaryExpr6Parser) {
+        unaryExpr6Parser = [TDSequence sequence];
+        [unaryExpr6Parser add:self.deleteParser];
+        [unaryExpr6Parser add:self.memberExprParser];
+    }
+    return unaryExpr6Parser;
+}
 
 
 //  Constructor:
@@ -1033,7 +1323,13 @@
 //           ConstructorCall
 //
 //    constructor         = constructorCall; // TODO ???
-
+- (TDCollectionParser *)constructorParser {
+    if (!constructorParser) {
+        constructorParser = [TDSequence sequence];
+        [constructorParser add:self.constructorCallParser];
+    }
+    return constructorParser;
+}
 
 
 //  ConstructorCall:
@@ -1042,8 +1338,26 @@
 //           Identifier . ConstructorCall
 //
 //    constructorCall     = identifier parenArgListParen?;  // TODO
-//    parenArgListParen   = openParen argListOpt closeParen;
+- (TDCollectionParser *)constructorCallParser {
+    if (!constructorCallParser) {
+        constructorCallParser = [TDSequence sequence];
+        [constructorCallParser add:self.identifierParser];
+        [constructorCallParser add:[self zeroOrOne:self.parenArgListParenParser]];
+    }
+    return constructorCallParser;
+}
 
+
+//    parenArgListParen   = openParen argListOpt closeParen;
+- (TDCollectionParser *)parenArgListParenParser {
+    if (!parenArgListParenParser) {
+        parenArgListParenParser = [TDSequence sequence];
+        [parenArgListParenParser add:self.openParenParser];
+        [parenArgListParenParser add:self.argListOptParser];
+        [parenArgListParenParser add:self.closeParenParser];
+    }
+    return parenArgListParenParser;
+}
 
 
 //  MemberExpression:
@@ -1053,11 +1367,61 @@
 //           PrimaryExpression ( ArgumentListOpt )
 //
 //    memberExpr          = primaryExpr dotBracketOrParenExpr?;
-//    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
-//    dotMemberExpr       = dot memberExpr;
-//    bracketMemberExpr   = openBracket expr closeBracket;
-//    parenMemberExpr     = openParen argListOpt closeParen;
+- (TDCollectionParser *)memberExprParser {
+    if (!memberExprParser) {
+        memberExprParser = [TDSequence sequence];
+        [memberExprParser add:self.primaryExprParser];
+        [memberExprParser add:[self zeroOrOne:self.dotBracketOrParenExprParser]];
+    }
+    return memberExprParser;
+}
 
+
+//    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
+- (TDCollectionParser *)dotBracketOrParenExprParser {
+    if (!dotBracketOrParenExprParser) {
+        dotBracketOrParenExprParser = [TDAlternation alternation];
+        [dotBracketOrParenExprParser add:self.dotMemberExprParser];
+        [dotBracketOrParenExprParser add:self.bracketMemberExprParser];
+        [dotBracketOrParenExprParser add:self.parenMemberExprParser];
+    }
+    return dotBracketOrParenExprParser;
+}
+
+
+//    dotMemberExpr       = dot memberExpr;
+- (TDCollectionParser *)dotMemberExprParser {
+    if (!dotMemberExprParser) {
+        dotMemberExprParser = [TDSequence sequence];
+        [dotMemberExprParser add:self.dotParser];
+        [dotMemberExprParser add:self.memberExprParser];
+    }
+    return dotMemberExprParser;
+}
+
+
+//    bracketMemberExpr   = openBracket expr closeBracket;
+- (TDCollectionParser *)bracketMemberExprParser {
+    if (!bracketMemberExprParser) {
+        bracketMemberExprParser = [TDSequence sequence];
+        [bracketMemberExprParser add:self.openBracketParser];
+        [bracketMemberExprParser add:self.exprParser];
+        [bracketMemberExprParser add:self.closeBracketParser];
+    }
+    return bracketMemberExprParser;
+}
+
+
+//    parenMemberExpr     = openParen argListOpt closeParen;
+- (TDCollectionParser *)parenMemberExprParser {
+    if (!parenMemberExprParser) {
+        parenMemberExprParser = [TDSequence sequence];
+        [parenMemberExprParser add:self.openParenParser];
+        [parenMemberExprParser add:self.argListOptParser];
+        [parenMemberExprParser add:self.closeParenParser];
+    }
+    return parenMemberExprParser;
+}
 
 
 //  ArgumentListOpt:
@@ -1785,6 +2149,7 @@
 @synthesize plusExprParser;
 @synthesize minusExprParser;
 @synthesize multiplicativeExprParser;
+@synthesize multiplicativeExprRHSParser;
 @synthesize unaryExprParser;
 @synthesize unaryExpr1Parser;
 @synthesize unaryExpr2Parser;
