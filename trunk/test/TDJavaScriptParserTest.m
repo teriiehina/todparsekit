@@ -19,12 +19,61 @@
     
 }
 
+
+- (void)testUndefinedParser {
+    s = @"undefined";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.undefinedParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[undefined]undefined^");
+}
+
+
+- (void)testNullParser {
+    s = @"null";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.nullParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[null]null^");
+}
+
+
+- (void)testFalseParser {
+    s = @"false";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.falseParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[false]false^");
+}
+
+
+- (void)testTrueParser {
+    s = @"true";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.trueParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[true]true^");
+}
+
+
 - (void)testNumberParser {
     s = @"47.2";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp.numberParser completeMatchFor:a];
     TDEqualObjects([res description], @"[47.2]47.2^");
+
+    s = @"-0.20";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.numberParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[-0.20]-0.20^");
+    
+    s = @"-0.20e6";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.numberParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[-0.20e6]-0.20e6^");
 }
 
 
@@ -41,26 +90,26 @@
 //    s = @"var foo = 'bar';";
 //    jsp.tokenizer.string = s;
 //    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-////    res = [jsp completeMatchFor:a];
-////    TDEqualObjects([res description], @"[var, foo, =, 'bar', ;]var/foo/=/'bar'/;^");
+//    res = [jsp completeMatchFor:a];
+//    TDEqualObjects([res description], @"[var, foo, =, 'bar', ;]var/foo/=/'bar'/;^");
 //}
-//
-//
-//- (void)testSemi {
-//    s = @";";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-////    res = [jsp completeMatchFor:a];
-////    TDEqualObjects([res description], @"[;];^");
-//}
-//
-//
+
+
+- (void)testSemi {
+    s = @";";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp completeMatchFor:a];
+    TDEqualObjects([res description], @"[;];^");
+}
+
+
 //- (void)testString {
 //    s = @"'bar'";
 //    jsp.tokenizer.string = s;
 //    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-////    res = [jsp completeMatchFor:a];
-////    TDEqualObjects([res description], @"['bar']'bar'^");
+//    res = [jsp completeMatchFor:a];
+//    TDEqualObjects([res description], @"['bar']'bar'^");
 //}
 
 @end
