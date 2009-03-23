@@ -37,7 +37,7 @@
 @implementation TDCommentState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
         self.singleLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
         self.multiLineState = [[[TDMultiLineCommentState alloc] init] autorelease];

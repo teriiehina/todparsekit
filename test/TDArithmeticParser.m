@@ -23,7 +23,7 @@
 @implementation TDArithmeticParser
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         [self add:self.exprParser];
     }
     return self;

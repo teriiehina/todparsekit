@@ -26,7 +26,7 @@
 @implementation TDGenericAssembler
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] autorelease];
         self.productionNames = [NSMutableDictionary dictionary];
         self.defaultProperties = [NSDictionary dictionaryWithObjectsAndKeys:

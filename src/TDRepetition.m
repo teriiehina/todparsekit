@@ -31,7 +31,7 @@
 
 - (id)initWithSubparser:(TDParser *)p {
     //NSParameterAssert(p);
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.subparser = p;
     }
     return self;

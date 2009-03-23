@@ -36,7 +36,7 @@
 @implementation TDMultiLineCommentState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.startSymbols = [NSMutableArray array];
         self.endSymbols = [NSMutableArray array];
     }

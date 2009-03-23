@@ -30,7 +30,7 @@
 @implementation TDSingleLineCommentState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.startSymbols = [NSMutableArray array];
     }
     return self;

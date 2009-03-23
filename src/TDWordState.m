@@ -30,7 +30,7 @@
 @implementation TDWordState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.wordChars = [NSMutableArray arrayWithCapacity:256];
         NSInteger i = 0;
         for ( ; i <= 255; i++) {

@@ -15,7 +15,7 @@
 @implementation TDWordOrReservedState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.reservedWords = [NSMutableSet set];
     }
     return self;
