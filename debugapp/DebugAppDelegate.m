@@ -22,6 +22,7 @@
 #import "TDGenericAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
 #import "TDSyntaxHighlighter.h"
+#import "TDJavaScriptParser.h"
 #import <OCMock/OCMock.h>
 
 @protocol TDMockAssember
@@ -408,6 +409,16 @@
 }
 
 
+- (void)doJSParser {
+    TDJavaScriptParser *jsp = [TDJavaScriptParser parser];
+    NSString *s = @"'foo'";
+    jsp.tokenizer.string = s;
+    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    id res = [jsp.stringParser completeMatchFor:a];
+    //TDEqualObjects([res description], @"['foo']'foo'^");
+    
+}
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -416,8 +427,9 @@
 //    [self doJsonParser];
 //    [self doRubyHashParser];
 
+    [self doJSParser];
     
-    [self doProf];
+//    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     

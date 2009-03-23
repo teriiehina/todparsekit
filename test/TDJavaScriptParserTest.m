@@ -19,6 +19,23 @@
     
 }
 
+- (void)testNumberParser {
+    s = @"47.2";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.numberParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[47.2]47.2^");
+}
+
+
+- (void)testStringParser {
+    s = @"'foo'";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.stringParser completeMatchFor:a];
+    TDEqualObjects([res description], @"['foo']'foo'^");
+}
+
 
 //- (void)testFoo {
 //    s = @"var foo = 'bar';";
