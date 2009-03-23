@@ -17,7 +17,7 @@
 @implementation DemoAppDelegate
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
         
         [tokenizer.symbolState add:@"::"];
