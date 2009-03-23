@@ -108,11 +108,10 @@
     if (self = [super initWithSubparser:self.elementParser]) {
         self.tokenizer = [TDTokenizer tokenizer];
         
-        TDScientificNumberState *sns = [[[TDScientificNumberState alloc] init] autorelease];
-        tokenizer.numberState = sns;
-        [tokenizer setTokenizerState:sns from: '-' to: '-'];
-        [tokenizer setTokenizerState:sns from: '.' to: '.'];
-        [tokenizer setTokenizerState:sns from: '0' to: '9'];
+        tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
+        [tokenizer setTokenizerState:tokenizer.numberState from: '-' to: '-'];
+        [tokenizer setTokenizerState:tokenizer.numberState from: '.' to: '.'];
+        [tokenizer setTokenizerState:tokenizer.numberState from: '0' to: '9'];
         
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
