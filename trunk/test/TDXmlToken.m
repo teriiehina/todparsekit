@@ -63,7 +63,7 @@
 
 // designated initializer
 - (id)initWithTokenType:(TDXmlTokenType)t stringValue:(NSString *)s {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.tokenType = t;
         self.stringValue = s;
         

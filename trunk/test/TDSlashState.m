@@ -21,7 +21,7 @@
 @implementation TDSlashState
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.slashSlashState = [[[TDSlashSlashState alloc] init] autorelease];
         self.slashStarState  = [[[TDSlashStarState alloc] init] autorelease];
     }

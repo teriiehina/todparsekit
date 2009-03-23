@@ -19,7 +19,7 @@
 @implementation XPathParser
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.xpathAssembler = [[[XPathAssembler alloc] init] autorelease];
         [self add:self.locationPath];
     }

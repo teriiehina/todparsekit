@@ -34,7 +34,7 @@
 
 
 - (id)initWithString:(NSString *)s {
-        if (self = [super init]) {
+    if (self = [super init]) {
         self.string = s;
         self.reader = [[[TDReader alloc] init] autorelease];
         

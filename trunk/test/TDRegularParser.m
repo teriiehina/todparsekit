@@ -21,7 +21,7 @@
 @implementation TDRegularParser
 
 - (id)init {
-        if (self = [super init]) {
+    if (self = [super init]) {
         [self add:self.expressionParser];
     }
     return self;
