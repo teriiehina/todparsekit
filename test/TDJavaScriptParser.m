@@ -112,7 +112,10 @@
         [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'.' to:'.'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'0' to:'9'];
-        
+
+        // Words can start with '_'
+        [tokenizer setTokenizerState:tokenizer.wordState from:'_' to:'_'];
+
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
         [tokenizer.commentState addSingleLineStartSymbol:@"//"];
@@ -121,6 +124,7 @@
         [tokenizer.symbolState add:@"||"];
         [tokenizer.symbolState add:@"&&"];
         [tokenizer.symbolState add:@"!="];
+        [tokenizer.symbolState add:@"!=="];
         [tokenizer.symbolState add:@"=="];
         [tokenizer.symbolState add:@"==="];
         [tokenizer.symbolState add:@"<="];
@@ -140,7 +144,6 @@
         [tokenizer.symbolState add:@">>>="];
         [tokenizer.symbolState add:@"&="];
         [tokenizer.symbolState add:@"^="];
-        [tokenizer.symbolState add:@"|="];
     }
     return self;
 }
@@ -485,7 +488,7 @@
         [funcParser add:self.openParenParser];
         [funcParser add:self.paramListOptParser];
         [funcParser add:self.closeParenParser];
-        [funcParser add:self.compoundStmtParser];
+        //[funcParser add:self.compoundStmtParser];
     }
     return funcParser;
 }
@@ -605,6 +608,7 @@
 }
 
 
+//           if Condition Statement
 //ifStmt              = if condition stmt;
 - (TDCollectionParser *)ifStmtParser {
     if (!ifStmtParser) {
@@ -618,6 +622,7 @@
 }
 
 
+//           if Condition Statement else Statement
 //ifElseStmt          = if condition stmt else stmt;
 - (TDCollectionParser *)ifElseStmtParser {
     if (!ifElseStmtParser) {
@@ -633,6 +638,7 @@
 }
 
 
+//           while Condition Statement
 //whileStmt           = while condition stmt;
 - (TDCollectionParser *)whileStmtParser {
     if (!whileStmtParser) {
@@ -646,6 +652,7 @@
 }
 
 
+//           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
 //forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
 - (TDCollectionParser *)forParenStmtParser {
     if (!forParenStmtParser) {
@@ -663,6 +670,7 @@
 }
 
 
+//           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
 //forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
 - (TDCollectionParser *)forBeginStmtParser {
     if (!forBeginStmtParser) {
@@ -680,6 +688,7 @@
 }
 
 
+//           ForBegin in Expression ) Statement
 //forInStmt           = forBegin in expr closeParen stmt;
 - (TDCollectionParser *)forInStmtParser {
     if (!forInStmtParser) {
@@ -695,6 +704,7 @@
 }
 
 
+//           break ;
 //breakStmt           = break semi;
 - (TDCollectionParser *)breakStmtParser {
     if (!breakStmtParser) {
@@ -719,6 +729,7 @@
 }
 
 
+//           with ( Expression ) Statement
 //withStmt            = with openParen expr closeParen stmt;
 - (TDCollectionParser *)withStmtParser {
     if (!withStmtParser) {
@@ -734,6 +745,7 @@
 }
 
 
+//           return ExpressionOpt ;
 //returnStmt          = return exprOpt semi;
 - (TDCollectionParser *)returnStmtParser {
     if (!returnStmtParser) {
@@ -747,6 +759,7 @@
 }
 
 
+//           VariablesOrExpression ;
 //variablesOrExprStmt = variablesOrExpr semi;
 - (TDCollectionParser *)variablesOrExprStmtParser {
     if (!variablesOrExprStmtParser) {
