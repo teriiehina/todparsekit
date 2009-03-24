@@ -109,9 +109,9 @@
         self.tokenizer = [TDTokenizer tokenizer];
         
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
-        [tokenizer setTokenizerState:tokenizer.numberState from: '-' to: '-'];
-        [tokenizer setTokenizerState:tokenizer.numberState from: '.' to: '.'];
-        [tokenizer setTokenizerState:tokenizer.numberState from: '0' to: '9'];
+        [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
+        [tokenizer setTokenizerState:tokenizer.numberState from:'.' to:'.'];
+        [tokenizer setTokenizerState:tokenizer.numberState from:'0' to:'9'];
         
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
@@ -1154,8 +1154,8 @@
     if (!equalityOpEqualityExprParser) {
         self.equalityOpEqualityExprParser = [TDSequence sequence];
         equalityOpEqualityExprParser.name = @"equalityOpEqualityExpr";
-        [equalityOpEqualityExprParser add:equalityOperatorParser];
-        [equalityOpEqualityExprParser add:equalityExprParser];
+        [equalityOpEqualityExprParser add:self.equalityOperatorParser];
+        [equalityOpEqualityExprParser add:self.equalityExprParser];
     }
     return equalityOpEqualityExprParser;
 }
@@ -1227,6 +1227,7 @@
 - (TDCollectionParser *)additiveExprParser {
     if (!additiveExprParser) {
         self.additiveExprParser = [TDSequence sequence];
+        additiveExprParser.name = @"additiveExpr";
         [additiveExprParser add:self.multiplicativeExprParser];
         [additiveExprParser add:[self zeroOrOne:self.plusOrMinusExprParser]];
     }
@@ -1238,6 +1239,7 @@
 - (TDCollectionParser *)plusOrMinusExprParser {
     if (!plusOrMinusExprParser) {
         self.plusOrMinusExprParser = [TDAlternation alternation];
+        plusOrMinusExprParser.name = @"plusOrMinusExpr";
         [plusOrMinusExprParser add:self.plusExprParser];
         [plusOrMinusExprParser add:self.minusExprParser];
     }
@@ -1249,6 +1251,7 @@
 - (TDCollectionParser *)plusExprParser {
     if (!plusExprParser) {
         self.plusExprParser = [TDSequence sequence];
+        plusExprParser.name = @"plusExpr";
         [plusExprParser add:self.plusParser];
         [plusExprParser add:self.additiveExprParser];
     }
@@ -1260,6 +1263,7 @@
 - (TDCollectionParser *)minusExprParser {
     if (!minusExprParser) {
         self.minusExprParser = [TDSequence sequence];
+        minusExprParser.name = @"minusExpr";
         [minusExprParser add:self.minusParser];
         [minusExprParser add:self.additiveExprParser];
     }
@@ -1275,6 +1279,7 @@
 - (TDCollectionParser *)multiplicativeExprParser {
     if (!multiplicativeExprParser) {
         self.multiplicativeExprParser = [TDSequence sequence];
+        multiplicativeExprParser.name = @"multiplicativeExpr";
         [multiplicativeExprParser add:self.unaryExprParser];
         [multiplicativeExprParser add:[self zeroOrOne:self.multiplicativeExprRHSParser]];
     }
@@ -1286,8 +1291,9 @@
 - (TDCollectionParser *)multiplicativeExprRHSParser {
     if (!multiplicativeExprRHSParser) {
         self.multiplicativeExprRHSParser = [TDSequence sequence];
-        [multiplicativeExprRHSParser add:multiplicativeOperatorParser];
-        [multiplicativeExprRHSParser add:multiplicativeExprParser];
+        multiplicativeExprRHSParser.name = @"multiplicativeExprRHS";
+        [multiplicativeExprRHSParser add:self.multiplicativeOperatorParser];
+        [multiplicativeExprRHSParser add:self.multiplicativeExprParser];
     }
     return multiplicativeExprRHSParser;
 }
@@ -1306,6 +1312,7 @@
 - (TDCollectionParser *)unaryExprParser {
     if (!unaryExprParser) {
         self.unaryExprParser = [TDAlternation alternation];
+        unaryExprParser.name = @"unaryExpr";
         [unaryExprParser add:self.memberExprParser];
         [unaryExprParser add:self.unaryExpr1Parser];
         [unaryExprParser add:self.unaryExpr2Parser];
@@ -1322,6 +1329,7 @@
 - (TDCollectionParser *)unaryExpr1Parser {
     if (!unaryExpr1Parser) {
         self.unaryExpr1Parser = [TDSequence sequence];
+        unaryExpr1Parser.name = @"unaryExpr1";
         [unaryExpr1Parser add:self.unaryOperatorParser];
         [unaryExpr1Parser add:self.unaryExprParser];
     }
@@ -1333,6 +1341,7 @@
 - (TDCollectionParser *)unaryExpr2Parser {
     if (!unaryExpr2Parser) {
         self.unaryExpr2Parser = [TDSequence sequence];
+        unaryExpr2Parser.name = @"unaryExpr2";
         [unaryExpr1Parser add:self.minusParser];
         [unaryExpr1Parser add:self.unaryExprParser];
     }
@@ -1344,6 +1353,7 @@
 - (TDCollectionParser *)unaryExpr3Parser {
     if (!unaryExpr3Parser) {
         self.unaryExpr3Parser = [TDSequence sequence];
+        unaryExpr3Parser.name = @"unaryExpr3";
         [unaryExpr3Parser add:self.incrementOperatorParser];
         [unaryExpr3Parser add:self.memberExprParser];
     }
@@ -1355,6 +1365,7 @@
 - (TDCollectionParser *)unaryExpr4Parser {
     if (!unaryExpr4Parser) {
         self.unaryExpr4Parser = [TDSequence sequence];
+        unaryExpr4Parser.name = @"unaryExpr4";
         [unaryExpr4Parser add:self.memberExprParser];
         [unaryExpr4Parser add:self.incrementOperatorParser];
     }
@@ -1366,6 +1377,7 @@
 - (TDCollectionParser *)unaryExpr5Parser {
     if (!unaryExpr5Parser) {
         self.unaryExpr5Parser = [TDSequence sequence];
+        unaryExpr5Parser.name = @"unaryExpr5";
         [unaryExpr5Parser add:self.newParser];
         [unaryExpr5Parser add:self.constructorParser];
     }
@@ -1377,6 +1389,7 @@
 - (TDCollectionParser *)unaryExpr6Parser {
     if (!unaryExpr6Parser) {
         self.unaryExpr6Parser = [TDSequence sequence];
+        unaryExpr6Parser.name = @"unaryExpr6";
         [unaryExpr6Parser add:self.deleteParser];
         [unaryExpr6Parser add:self.memberExprParser];
     }
@@ -1392,6 +1405,7 @@
 - (TDCollectionParser *)constructorParser {
     if (!constructorParser) {
         self.constructorParser = [TDSequence sequence];
+        constructorParser.name = @"constructor";
         [constructorParser add:self.constructorCallParser];
     }
     return constructorParser;
@@ -1407,6 +1421,7 @@
 - (TDCollectionParser *)constructorCallParser {
     if (!constructorCallParser) {
         self.constructorCallParser = [TDSequence sequence];
+        constructorCallParser.name = @"constructorCall";
         [constructorCallParser add:self.identifierParser];
         [constructorCallParser add:[self zeroOrOne:self.parenArgListParenParser]];
     }
@@ -1418,6 +1433,7 @@
 - (TDCollectionParser *)parenArgListParenParser {
     if (!parenArgListParenParser) {
         self.parenArgListParenParser = [TDSequence sequence];
+        parenArgListParenParser.name = @"parenArgListParen";
         [parenArgListParenParser add:self.openParenParser];
         [parenArgListParenParser add:self.argListOptParser];
         [parenArgListParenParser add:self.closeParenParser];
@@ -1436,6 +1452,7 @@
 - (TDCollectionParser *)memberExprParser {
     if (!memberExprParser) {
         self.memberExprParser = [TDSequence sequence];
+        memberExprParser.name = @"memberExpr";
         [memberExprParser add:self.primaryExprParser];
         [memberExprParser add:[self zeroOrOne:self.dotBracketOrParenExprParser]];
     }
@@ -1447,6 +1464,7 @@
 - (TDCollectionParser *)dotBracketOrParenExprParser {
     if (!dotBracketOrParenExprParser) {
         self.dotBracketOrParenExprParser = [TDAlternation alternation];
+        dotBracketOrParenExprParser.name = @"dotBracketOrParenExpr";
         [dotBracketOrParenExprParser add:self.dotMemberExprParser];
         [dotBracketOrParenExprParser add:self.bracketMemberExprParser];
         [dotBracketOrParenExprParser add:self.parenMemberExprParser];
@@ -1459,6 +1477,7 @@
 - (TDCollectionParser *)dotMemberExprParser {
     if (!dotMemberExprParser) {
         self.dotMemberExprParser = [TDSequence sequence];
+        dotMemberExprParser.name = @"dotMemberExpr";
         [dotMemberExprParser add:self.dotParser];
         [dotMemberExprParser add:self.memberExprParser];
     }
@@ -1470,6 +1489,7 @@
 - (TDCollectionParser *)bracketMemberExprParser {
     if (!bracketMemberExprParser) {
         self.bracketMemberExprParser = [TDSequence sequence];
+        bracketMemberExprParser.name = @"bracketMemberExpr";
         [bracketMemberExprParser add:self.openBracketParser];
         [bracketMemberExprParser add:self.exprParser];
         [bracketMemberExprParser add:self.closeBracketParser];
@@ -1482,6 +1502,7 @@
 - (TDCollectionParser *)parenMemberExprParser {
     if (!parenMemberExprParser) {
         self.parenMemberExprParser = [TDSequence sequence];
+        parenMemberExprParser.name = @"parenMemberExpr";
         [parenMemberExprParser add:self.openParenParser];
         [parenMemberExprParser add:self.argListOptParser];
         [parenMemberExprParser add:self.closeParenParser];
@@ -1498,6 +1519,7 @@
 - (TDCollectionParser *)argListOptParser {
     if (!argListOptParser) {
         self.argListOptParser = [TDAlternation alternation];
+        argListOptParser.name = @"argListOpt";
         [argListOptParser add:[TDEmpty empty]];
         [argListOptParser add:self.argListParser];
     }
@@ -1513,6 +1535,7 @@
 - (TDCollectionParser *)argListParser {
     if (!argListParser) {
         self.argListParser = [TDSequence sequence];
+        argListParser.name = @"argList";
         [argListParser add:self.assignmentExprParser];
         [argListParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
@@ -1524,6 +1547,7 @@
 - (TDCollectionParser *)commaAssignmentExprParser {
     if (!commaAssignmentExprParser) {
         self.commaAssignmentExprParser = [TDSequence sequence];
+        commaAssignmentExprParser.name = @"commaAssignmentExpr";
         [commaAssignmentExprParser add:self.commaParser];
         [commaAssignmentExprParser add:self.assignmentExprParser];
     }
@@ -1545,6 +1569,7 @@
 - (TDCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
+        primaryExprParser.name = @"primaryExpr";
         [primaryExprParser add:self.parenExprParenParser];
         [primaryExprParser add:self.identifierParser];
         [primaryExprParser add:self.numberParser];
@@ -1564,6 +1589,7 @@
 - (TDCollectionParser *)parenExprParenParser {
     if (!parenExprParenParser) {
         self.parenExprParenParser = [TDSequence sequence];
+        parenExprParenParser.name = @"parenExprParen";
         [parenExprParenParser add:self.openParenParser];
         [parenExprParenParser add:self.exprParser];
         [parenExprParenParser add:self.closeParenParser];
@@ -1576,6 +1602,7 @@
 - (TDParser *)identifierParser {
     if (!identifierParser) {
         self.identifierParser = [TDWord word];
+        identifierParser.name = @"identifier";
     }
     return identifierParser;
 }
@@ -1584,6 +1611,7 @@
 - (TDParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
+        stringParser.name = @"string";
     }
     return stringParser;
 }
@@ -1592,6 +1620,7 @@
 - (TDParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
+        numberParser.name = @"number";
     }
     return numberParser;
 }
@@ -1603,6 +1632,7 @@
 - (TDParser *)ifParser {
     if (!ifParser) {
         self.ifParser = [TDLiteral literalWithString:@"if"];
+        ifParser.name = @"if";
     }
     return ifParser;
 }

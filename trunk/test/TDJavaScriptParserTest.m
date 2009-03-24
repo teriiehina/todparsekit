@@ -20,6 +20,21 @@
 }
 
 
+- (void)testForParenParser {
+    s = @"for (";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.forParenParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[for, (]for/(^");
+
+    s = @"for(";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.forParenParser completeMatchFor:a];
+    TDEqualObjects([res description], @"[for, (]for/(^");
+}
+
+
 - (void)testUndefinedParser {
     s = @"undefined";
     jsp.tokenizer.string = s;
@@ -95,13 +110,13 @@
 //}
 
 
-- (void)testSemi {
-    s = @";";
-    jsp.tokenizer.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp completeMatchFor:a];
-    TDEqualObjects([res description], @"[;];^");
-}
+//- (void)testSemi {
+//    s = @";";
+//    jsp.tokenizer.string = s;
+//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    res = [jsp completeMatchFor:a];
+//    TDEqualObjects([res description], @"[;];^");
+//}
 
 
 //- (void)testString {
