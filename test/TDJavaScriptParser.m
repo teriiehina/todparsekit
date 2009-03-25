@@ -150,13 +150,13 @@
 
 
 - (void)dealloc {    
-    self.assignmentOperatorParser = nil;
-    self.relationalOperatorParser = nil;
-    self.equalityOperatorParser = nil;
-    self.shiftOperatorParser = nil;
-    self.incrementOperatorParser = nil;
-    self.unaryOperatorParser = nil;
-    self.multiplicativeOperatorParser = nil;
+    self.assignmentOpParser = nil;
+    self.relationalOpParser = nil;
+    self.equalityOpParser = nil;
+    self.shiftOpParser = nil;
+    self.incrementOpParser = nil;
+    self.unaryOpParser = nil;
+    self.multiplicativeOpParser = nil;
     self.programParser = nil;
     self.elementParser = nil;
     self.funcParser = nil;
@@ -188,23 +188,23 @@
     self.assignmentParser = nil;
     self.exprOptParser = nil;
     self.exprParser = nil;
-    self.commaExprParser = nil;
+    self.commaAssignmentExprParser = nil;
     self.assignmentExprParser = nil;
-    self.extraAssignmentParser = nil;
+    self.assignmentOpConditionalExprParser = nil;
     self.conditionalExprParser = nil;
     self.ternaryExprParser = nil;
     self.orExprParser = nil;
     self.orAndExprParser = nil;
     self.andExprParser = nil;
-    self.andAndExprParser = nil;
+    self.andBitwiseOrExprParser = nil;
     self.bitwiseOrExprParser = nil;
-    self.pipeBitwiseOrExprParser = nil;
+    self.pipeBitwiseXorExprParser = nil;
     self.bitwiseXorExprParser = nil;
-    self.caretBitwiseXorExprParser = nil;
+    self.caretBitwiseAndExprParser = nil;
     self.bitwiseAndExprParser = nil;
-    self.ampBitwiseAndExpressionParser = nil;
+    self.ampEqualityExprParser = nil;
     self.equalityExprParser = nil;
-    self.equalityOpEqualityExprParser = nil;
+    self.equalityOpRelationalExprParser = nil;
     self.relationalExprParser = nil;
     self.relationalExprRHSParser = nil;
     self.shiftExprParser = nil;
@@ -214,7 +214,7 @@
     self.plusExprParser = nil;
     self.minusExprParser = nil;
     self.multiplicativeExprParser = nil;
-    self.multiplicativeExprRHSParser = nil;
+    self.multiplicativeOpUnaryExprParser = nil;
     self.unaryExprParser = nil;
     self.unaryExpr1Parser = nil;
     self.unaryExpr2Parser = nil;
@@ -232,7 +232,6 @@
     self.parenMemberExprParser = nil;
     self.argListOptParser = nil;
     self.argListParser = nil;
-    self.commaAssignmentExprParser = nil;
     self.primaryExprParser = nil;
     self.parenExprParenParser = nil;
 
@@ -343,105 +342,105 @@
 
 
 // assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
-- (TDCollectionParser *)assignmentOperatorParser {
-    if (!assignmentOperatorParser) {
-        self.assignmentOperatorParser = [TDAlternation alternation];
-        assignmentOperatorParser.name = @"assignmentOperator";
-        [assignmentOperatorParser add:self.equalsParser];
-        [assignmentOperatorParser add:self.plusEqParser];
-        [assignmentOperatorParser add:self.minusEqParser];
-        [assignmentOperatorParser add:self.timesEqParser];
-        [assignmentOperatorParser add:self.divEqParser];
-        [assignmentOperatorParser add:self.modEqParser];
-        [assignmentOperatorParser add:self.shiftLeftEqParser];
-        [assignmentOperatorParser add:self.shiftRightEqParser];
-        [assignmentOperatorParser add:self.shiftRightExtEqParser];
-        [assignmentOperatorParser add:self.andEqParser];
-        [assignmentOperatorParser add:self.orEqParser];
-        [assignmentOperatorParser add:self.xorEqParser];
+- (TDCollectionParser *)assignmentOpParser {
+    if (!assignmentOpParser) {
+        self.assignmentOpParser = [TDAlternation alternation];
+        assignmentOpParser.name = @"assignmentOperator";
+        [assignmentOpParser add:self.equalsParser];
+        [assignmentOpParser add:self.plusEqParser];
+        [assignmentOpParser add:self.minusEqParser];
+        [assignmentOpParser add:self.timesEqParser];
+        [assignmentOpParser add:self.divEqParser];
+        [assignmentOpParser add:self.modEqParser];
+        [assignmentOpParser add:self.shiftLeftEqParser];
+        [assignmentOpParser add:self.shiftRightEqParser];
+        [assignmentOpParser add:self.shiftRightExtEqParser];
+        [assignmentOpParser add:self.andEqParser];
+        [assignmentOpParser add:self.orEqParser];
+        [assignmentOpParser add:self.xorEqParser];
     }
-    return assignmentOperatorParser;
+    return assignmentOpParser;
 }
 
 
 // relationalOperator  = lt | gt | ge | le | instanceof;
-- (TDCollectionParser *)relationalOperatorParser {
-    if (!relationalOperatorParser) {
-        self.relationalOperatorParser = [TDAlternation alternation];
-        relationalOperatorParser.name = @"relationalOperator";
-        [relationalOperatorParser add:self.ltParser];
-        [relationalOperatorParser add:self.gtParser];
-        [relationalOperatorParser add:self.geParser];
-        [relationalOperatorParser add:self.leParser];
-        [relationalOperatorParser add:self.instanceofParser];
+- (TDCollectionParser *)relationalOpParser {
+    if (!relationalOpParser) {
+        self.relationalOpParser = [TDAlternation alternation];
+        relationalOpParser.name = @"relationalOperator";
+        [relationalOpParser add:self.ltParser];
+        [relationalOpParser add:self.gtParser];
+        [relationalOpParser add:self.geParser];
+        [relationalOpParser add:self.leParser];
+        [relationalOpParser add:self.instanceofParser];
     }
-    return relationalOperatorParser;
+    return relationalOpParser;
 }
 
 
-// equalityOperator    = eq | ne | is | isnot;
-- (TDCollectionParser *)equalityOperatorParser {
-    if (!equalityOperatorParser) {
-        self.equalityOperatorParser = [TDAlternation alternation];;
-        equalityOperatorParser.name = @"equalityOperator";
-        [equalityOperatorParser add:self.eqParser];
-        [equalityOperatorParser add:self.neParser];
-        [equalityOperatorParser add:self.isParser];
-        [equalityOperatorParser add:self.isNotParser];
+// equalityOp    = eq | ne | is | isnot;
+- (TDCollectionParser *)equalityOpParser {
+    if (!equalityOpParser) {
+        self.equalityOpParser = [TDAlternation alternation];;
+        equalityOpParser.name = @"equalityOp";
+        [equalityOpParser add:self.eqParser];
+        [equalityOpParser add:self.neParser];
+        [equalityOpParser add:self.isParser];
+        [equalityOpParser add:self.isNotParser];
     }
-    return equalityOperatorParser;
+    return equalityOpParser;
 }
 
 
-//shiftOperator       = shiftLeft | shiftRight | shiftRightExt;
-- (TDCollectionParser *)shiftOperatorParser {
-    if (!shiftOperatorParser) {
-        self.shiftOperatorParser = [TDAlternation alternation];
-        shiftOperatorParser.name = @"shiftOperator";
-        [shiftOperatorParser add:self.shiftLeftParser];
-        [shiftOperatorParser add:self.shiftRightParser];
-        [shiftOperatorParser add:self.shiftRightExtParser];
+//shiftOp         = shiftLeft | shiftRight | shiftRightExt;
+- (TDCollectionParser *)shiftOpParser {
+    if (!shiftOpParser) {
+        self.shiftOpParser = [TDAlternation alternation];
+        shiftOpParser.name = @"shiftOp";
+        [shiftOpParser add:self.shiftLeftParser];
+        [shiftOpParser add:self.shiftRightParser];
+        [shiftOpParser add:self.shiftRightExtParser];
     }
-    return shiftOperatorParser;
+    return shiftOpParser;
 }
 
 
 //incrementOperator   = plusPlus | minusMinus;
-- (TDCollectionParser *)incrementOperatorParser {
-    if (!incrementOperatorParser) {
-        self.incrementOperatorParser = [TDAlternation alternation];
-        incrementOperatorParser.name = @"incrementOperator";
-        [incrementOperatorParser add:self.plusPlusParser];
-        [incrementOperatorParser add:self.minusMinusParser];
+- (TDCollectionParser *)incrementOpParser {
+    if (!incrementOpParser) {
+        self.incrementOpParser = [TDAlternation alternation];
+        incrementOpParser.name = @"incrementOperator";
+        [incrementOpParser add:self.plusPlusParser];
+        [incrementOpParser add:self.minusMinusParser];
     }
-    return incrementOperatorParser;
+    return incrementOpParser;
 }
 
 
 //unaryOperator       = tilde | delete | typeof | void;
-- (TDCollectionParser *)unaryOperatorParser {
-    if (!unaryOperatorParser) {
-        self.unaryOperatorParser = [TDAlternation alternation];
-        unaryOperatorParser.name = @"unaryOperator";
-        [unaryOperatorParser add:self.tildeParser];
-        [unaryOperatorParser add:self.deleteParser];
-        [unaryOperatorParser add:self.typeofParser];
-        [unaryOperatorParser add:self.voidParser];
+- (TDCollectionParser *)unaryOpParser {
+    if (!unaryOpParser) {
+        self.unaryOpParser = [TDAlternation alternation];
+        unaryOpParser.name = @"unaryOperator";
+        [unaryOpParser add:self.tildeParser];
+        [unaryOpParser add:self.deleteParser];
+        [unaryOpParser add:self.typeofParser];
+        [unaryOpParser add:self.voidParser];
     }
-    return unaryOperatorParser;
+    return unaryOpParser;
 }
 
 
 // multiplicativeOperator = times | div | mod;
-- (TDCollectionParser *)multiplicativeOperatorParser {
-    if (!multiplicativeOperatorParser) {
-        self.multiplicativeOperatorParser = [TDAlternation alternation];
-        multiplicativeOperatorParser.name = @"multiplicativeOperator";
-        [multiplicativeOperatorParser add:self.timesParser];
-        [multiplicativeOperatorParser add:self.divParser];
-        [multiplicativeOperatorParser add:self.modParser];
+- (TDCollectionParser *)multiplicativeOpParser {
+    if (!multiplicativeOpParser) {
+        self.multiplicativeOpParser = [TDAlternation alternation];
+        multiplicativeOpParser.name = @"multiplicativeOperator";
+        [multiplicativeOpParser add:self.timesParser];
+        [multiplicativeOpParser add:self.divParser];
+        [multiplicativeOpParser add:self.modParser];
     }
-    return multiplicativeOperatorParser;
+    return multiplicativeOpParser;
 }
 
 
@@ -488,7 +487,7 @@
         [funcParser add:self.openParenParser];
         [funcParser add:self.paramListOptParser];
         [funcParser add:self.closeParenParser];
-        //[funcParser add:self.compoundStmtParser];
+        [funcParser add:self.compoundStmtParser];
     }
     return funcParser;
 }
@@ -924,27 +923,27 @@
 //           AssignmentExpression
 //           AssignmentExpression , Expression
 //
-//expr                = assignmentExpr commaExpr?;
+//expr                = assignmentExpr commaAssignmentExpr*;
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         exprParser.name = @"exprParser";
         [exprParser add:self.assignmentExprParser];
-        [exprParser add:[self zeroOrOne:self.commaExprParser]];
+        [exprParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
     return exprParser;
 }
 
 
-//commaExpr           = comma expr;
-- (TDCollectionParser *)commaExprParser {
-    if (!commaExprParser) {
-        self.commaExprParser = [TDSequence sequence];
-        commaExprParser.name = @"commaExpr";
-        [commaExprParser add:self.commaParser];
-        [commaExprParser add:self.exprParser];
+//commaAssignmentExpr           = comma assignmentExpr;
+- (TDCollectionParser *)commaAssignmentExprParser {
+    if (!commaAssignmentExprParser) {
+        self.commaAssignmentExprParser = [TDSequence sequence];
+        commaAssignmentExprParser.name = @"commaAssignmentExpr";
+        [commaAssignmentExprParser add:self.commaParser];
+        [commaAssignmentExprParser add:self.assignmentExprParser];
     }
-    return commaExprParser;
+    return commaAssignmentExprParser;
 }
 
 
@@ -952,27 +951,27 @@
 //           ConditionalExpression
 //           ConditionalExpression AssignmentOperator AssignmentExpression
 //
-// assignmentExpr      = conditionalExpr extraAssignment?;
+// assignmentExpr      = conditionalExpr assignmentOpConditionalExpr*;
 - (TDCollectionParser *)assignmentExprParser {
     if (!assignmentExprParser) {
         self.assignmentExprParser = [TDSequence sequence];
         assignmentExprParser.name = @"assignmentExpr";
         [assignmentExprParser add:self.conditionalExprParser];
-        [assignmentExprParser add:[self zeroOrOne:self.extraAssignmentParser]];
+        [assignmentExprParser add:[TDRepetition repetitionWithSubparser:self.assignmentOpConditionalExprParser]];
     }
     return assignmentExprParser;
 }
 
 
-// extraAssignment     = assignmentOperator assignmentExpr;
-- (TDCollectionParser *)extraAssignmentParser {
-    if (!extraAssignmentParser) {
-        self.extraAssignmentParser = [TDSequence sequence];
-        extraAssignmentParser.name = @"extraAssignment";
-        [extraAssignmentParser add:self.assignmentOperatorParser];
-        [extraAssignmentParser add:self.assignmentExprParser];
+// assignmentOpConditionalExpr     = assignmentOperator conditionalExpr;
+- (TDCollectionParser *)assignmentOpConditionalExprParser {
+    if (!assignmentOpConditionalExprParser) {
+        self.assignmentOpConditionalExprParser = [TDSequence sequence];
+        assignmentOpConditionalExprParser.name = @"assignmentOpConditionalExpr";
+        [assignmentOpConditionalExprParser add:self.assignmentOpParser];
+        [assignmentOpConditionalExprParser add:self.conditionalExprParser];
     }
-    return extraAssignmentParser;
+    return assignmentOpConditionalExprParser;
 }
 
 
@@ -1038,27 +1037,27 @@
 //           BitwiseOrExpression
 //           BitwiseOrExpression && AndExpression
 //
-//    andExpr             = bitwiseOrExpr andAndExpr?;
+//    andExpr             = bitwiseOrExpr andBitwiseOrExprParser*;
 - (TDCollectionParser *)andExprParser {
     if (!andExprParser) {
         self.andExprParser = [TDSequence sequence];
         andExprParser.name = @"andExpr";
         [andExprParser add:self.bitwiseOrExprParser];
-        [andExprParser add:[self zeroOrOne:self.andAndExprParser]];
+        [andExprParser add:[TDRepetition repetitionWithSubparser:self.andBitwiseOrExprParser]];
     }
     return andExprParser;
 }
 
 
-//    andAndExpr          = and andExpr;
-- (TDCollectionParser *)andAndExprParser {
-    if (!andAndExprParser) {
-        self.andAndExprParser = [TDSequence sequence];
-        andAndExprParser.name = @"andAndExpr";
-        [andAndExprParser add:self.andParser];
-        [andAndExprParser add:self.andExprParser];
+//    andBitwiseOrExprParser          = and bitwiseOrExpr;
+- (TDCollectionParser *)andBitwiseOrExprParser {
+    if (!andBitwiseOrExprParser) {
+        self.andBitwiseOrExprParser = [TDSequence sequence];
+        andBitwiseOrExprParser.name = @"andBitwiseOrExpr";
+        [andBitwiseOrExprParser add:self.andParser];
+        [andBitwiseOrExprParser add:self.bitwiseOrExprParser];
     }
-    return andAndExprParser;
+    return andBitwiseOrExprParser;
 }
 
 
@@ -1066,27 +1065,27 @@
 //           BitwiseXorExpression
 //           BitwiseXorExpression | BitwiseOrExpression
 //
-//    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseOrExpr?;
+//    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseXorExpr*;
 - (TDCollectionParser *)bitwiseOrExprParser {
     if (!bitwiseOrExprParser) {
         self.bitwiseOrExprParser = [TDSequence sequence];
         bitwiseOrExprParser.name = @"bitwiseOrExpr";
         [bitwiseOrExprParser add:self.bitwiseXorExprParser];
-        [bitwiseOrExprParser add:[self zeroOrOne:self.pipeBitwiseOrExprParser]];
+        [bitwiseOrExprParser add:[TDRepetition repetitionWithSubparser:self.pipeBitwiseXorExprParser]];
     }
     return bitwiseOrExprParser;
 }
 
 
-//    pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
-- (TDCollectionParser *)pipeBitwiseOrExprParser {
-    if (!pipeBitwiseOrExprParser) {
-        self.pipeBitwiseOrExprParser = [TDSequence sequence];
-        pipeBitwiseOrExprParser.name = @"pipeBitwiseOrExpr";
-        [pipeBitwiseOrExprParser add:self.pipeParser];
-        [pipeBitwiseOrExprParser add:self.bitwiseOrExprParser];
+//    pipeBitwiseXorExprParser   = pipe bitwiseXorExpr;
+- (TDCollectionParser *)pipeBitwiseXorExprParser {
+    if (!pipeBitwiseXorExprParser) {
+        self.pipeBitwiseXorExprParser = [TDSequence sequence];
+        pipeBitwiseXorExprParser.name = @"pipeBitwiseXorExpr";
+        [pipeBitwiseXorExprParser add:self.pipeParser];
+        [pipeBitwiseXorExprParser add:self.bitwiseXorExprParser];
     }
-    return pipeBitwiseOrExprParser;
+    return pipeBitwiseXorExprParser;
 }
 
 
@@ -1094,27 +1093,27 @@
 //           BitwiseAndExpression
 //           BitwiseAndExpression ^ BitwiseXorExpression
 //
-//    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseXorExpr?;
+//    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseAndExpr*;
 - (TDCollectionParser *)bitwiseXorExprParser {
     if (!bitwiseXorExprParser) {
         self.bitwiseXorExprParser = [TDSequence sequence];
         bitwiseXorExprParser.name = @"bitwiseXorExpr";
         [bitwiseXorExprParser add:self.bitwiseAndExprParser];
-        [bitwiseXorExprParser add:[self zeroOrOne:self.caretBitwiseXorExprParser]];
+        [bitwiseXorExprParser add:[TDRepetition repetitionWithSubparser:self.caretBitwiseAndExprParser]];
     }
     return bitwiseXorExprParser;
 }
 
 
-//    caretBitwiseXorExpr = caret bitwiseXorExpr;
-- (TDCollectionParser *)caretBitwiseXorExprParser {
-    if (!caretBitwiseXorExprParser) {
-        self.caretBitwiseXorExprParser = [TDSequence sequence];
-        caretBitwiseXorExprParser.name = @"caretBitwiseXorExpr";
-        [caretBitwiseXorExprParser add:self.caretParser];
-        [caretBitwiseXorExprParser add:self.bitwiseXorExprParser];
+//    caretBitwiseAndExpr = caret bitwiseAndExpr;
+- (TDCollectionParser *)caretBitwiseAndExprParser {
+    if (!caretBitwiseAndExprParser) {
+        self.caretBitwiseAndExprParser = [TDSequence sequence];
+        caretBitwiseAndExprParser.name = @"caretBitwiseAndExpr";
+        [caretBitwiseAndExprParser add:self.caretParser];
+        [caretBitwiseAndExprParser add:self.bitwiseAndExprParser];
     }
-    return caretBitwiseXorExprParser;
+    return caretBitwiseAndExprParser;
 }
 
 
@@ -1122,27 +1121,27 @@
 //           EqualityExpression
 //           EqualityExpression & BitwiseAndExpression
 //
-//    bitwiseAndExpr      = equalityExpr ampBitwiseAndExpression?;
+//    bitwiseAndExpr      = equalityExpr ampEqualityExpression*;
 - (TDCollectionParser *)bitwiseAndExprParser {
     if (!bitwiseAndExprParser) {
         self.bitwiseAndExprParser = [TDSequence sequence];
         bitwiseAndExprParser.name = @"bitwiseAndExpr";
         [bitwiseAndExprParser add:self.equalityExprParser];
-        [bitwiseAndExprParser add:[self zeroOrOne:self.ampBitwiseAndExpressionParser]];
+        [bitwiseAndExprParser add:[TDRepetition repetitionWithSubparser:self.ampEqualityExprParser]];
     }
     return bitwiseAndExprParser;
 }
 
 
-//    ampBitwiseAndExpression = amp bitwiseAndExpr;
-- (TDCollectionParser *)ampBitwiseAndExpressionParser {
-    if (!ampBitwiseAndExpressionParser) {
-        self.ampBitwiseAndExpressionParser = [TDSequence sequence];
-        ampBitwiseAndExpressionParser.name = @"ampBitwiseAndExpression";
-        [ampBitwiseAndExpressionParser add:self.ampParser];
-        [ampBitwiseAndExpressionParser add:self.bitwiseAndExprParser];
+//    ampEqualityExpression = amp equalityExpression;
+- (TDCollectionParser *)ampEqualityExprParser {
+    if (!ampEqualityExprParser) {
+        self.ampEqualityExprParser = [TDSequence sequence];
+        ampEqualityExprParser.name = @"ampEqualityExpression";
+        [ampEqualityExprParser add:self.ampParser];
+        [ampEqualityExprParser add:self.equalityExprParser];
     }
-    return ampBitwiseAndExpressionParser;
+    return ampEqualityExprParser;
 }
 
 
@@ -1150,27 +1149,27 @@
 //           RelationalExpression
 //           RelationalExpression EqualityualityOperator EqualityExpression
 //
-//    equalityExpr        = relationalExpr equalityOpEqualityExpr?;
+//    equalityExpr        = relationalExpr equalityOpRelationalExpr*;
 - (TDCollectionParser *)equalityExprParser {
     if (!equalityExprParser) {
         self.equalityExprParser = [TDSequence sequence];
         equalityExprParser.name = @"equalityExpr";
         [equalityExprParser add:self.relationalExprParser];
-        [equalityExprParser add:[self zeroOrOne:self.equalityOpEqualityExprParser]];
+        [equalityExprParser add:[TDRepetition repetitionWithSubparser:self.equalityOpRelationalExprParser]];
     }
     return equalityExprParser;
 }
 
 
-//    equalityOpEqualityExpr = equalityOperator equalityExpr;
-- (TDCollectionParser *)equalityOpEqualityExprParser {
-    if (!equalityOpEqualityExprParser) {
-        self.equalityOpEqualityExprParser = [TDSequence sequence];
-        equalityOpEqualityExprParser.name = @"equalityOpEqualityExpr";
-        [equalityOpEqualityExprParser add:self.equalityOperatorParser];
-        [equalityOpEqualityExprParser add:self.equalityExprParser];
+//    equalityOpRelationalExpr = equalityOp relationalExpr;
+- (TDCollectionParser *)equalityOpRelationalExprParser {
+    if (!equalityOpRelationalExprParser) {
+        self.equalityOpRelationalExprParser = [TDSequence sequence];
+        equalityOpRelationalExprParser.name = @"equalityOpRelationalExpr";
+        [equalityOpRelationalExprParser add:self.equalityOpParser];
+        [equalityOpRelationalExprParser add:self.relationalExprParser];
     }
-    return equalityOpEqualityExprParser;
+    return equalityOpRelationalExprParser;
 }
 
 
@@ -1178,7 +1177,7 @@
 //           ShiftExpression
 //           RelationalExpression RelationalationalOperator ShiftExpression
 //
-//    relationalExpr      = shiftExpr | relationalExprRHS;
+//    relationalExpr      = shiftExpr | relationalExprRHS;       /// TODO ????
 - (TDCollectionParser *)relationalExprParser {
     if (!relationalExprParser) {
         self.relationalExprParser = [TDAlternation alternation];
@@ -1196,7 +1195,7 @@
         self.relationalExprRHSParser = [TDSequence sequence];
         relationalExprRHSParser.name = @"relationalExprRHS";
         [relationalExprRHSParser add:self.relationalExprParser];
-        [relationalExprRHSParser add:self.relationalOperatorParser];
+        [relationalExprRHSParser add:self.relationalOpParser];
         [relationalExprRHSParser add:self.shiftExprParser];
     }
     return relationalExprRHSParser;
@@ -1213,18 +1212,18 @@
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
         [shiftExprParser add:self.additiveExprParser];
-        [shiftExprParser add:self.shiftOpShiftExprParser];
+        [shiftExprParser add:[self zeroOrOne:self.shiftOpShiftExprParser]];
     }
     return shiftExprParser;
 }
 
 
-//    shiftOpShiftExpr    = shiftOperator shiftExpr;
+//    shiftOpShiftExpr    = shiftOp shiftExpr;
 - (TDCollectionParser *)shiftOpShiftExprParser {
     if (!shiftOpShiftExprParser) {
         self.shiftOpShiftExprParser = [TDSequence sequence];
         shiftOpShiftExprParser.name = @"shiftOpShiftExpr";
-        [shiftOpShiftExprParser add:self.shiftOperatorParser];
+        [shiftOpShiftExprParser add:self.shiftOpParser];
         [shiftOpShiftExprParser add:self.shiftExprParser];
     }
     return shiftOpShiftExprParser;
@@ -1236,13 +1235,13 @@
 //           MultiplicativeExpression + AdditiveExpression
 //           MultiplicativeExpression - AdditiveExpression
 //
-//    additiveExpr        = multiplicativeExpr plusOrMinusExpr?;
+//    additiveExpr        = multiplicativeExpr plusOrMinusExpr*;
 - (TDCollectionParser *)additiveExprParser {
     if (!additiveExprParser) {
         self.additiveExprParser = [TDSequence sequence];
         additiveExprParser.name = @"additiveExpr";
         [additiveExprParser add:self.multiplicativeExprParser];
-        [additiveExprParser add:[self zeroOrOne:self.plusOrMinusExprParser]];
+        [additiveExprParser add:[TDRepetition repetitionWithSubparser:self.plusOrMinusExprParser]];
     }
     return additiveExprParser;
 }
@@ -1260,25 +1259,25 @@
 }
 
 
-//    plusExpr            = plus additiveExpr;
+//    plusExpr            = plus multiplicativeExprParser;
 - (TDCollectionParser *)plusExprParser {
     if (!plusExprParser) {
         self.plusExprParser = [TDSequence sequence];
         plusExprParser.name = @"plusExpr";
         [plusExprParser add:self.plusParser];
-        [plusExprParser add:self.additiveExprParser];
+        [plusExprParser add:self.multiplicativeExprParser];
     }
     return plusExprParser;
 }
 
 
-//    minusExpr           = minus additiveExpr;
+//    minusExpr           = minus multiplicativeExprParser;
 - (TDCollectionParser *)minusExprParser {
     if (!minusExprParser) {
         self.minusExprParser = [TDSequence sequence];
         minusExprParser.name = @"minusExpr";
         [minusExprParser add:self.minusParser];
-        [minusExprParser add:self.additiveExprParser];
+        [minusExprParser add:self.multiplicativeExprParser];
     }
     return minusExprParser;
 }
@@ -1288,27 +1287,27 @@
 //           UnaryExpression
 //           UnaryExpression MultiplicativeOperator MultiplicativeExpression
 //
-//    multiplicativeExpr  = unaryExpr multiplicativeExprRHS?;
+//    multiplicativeExpr  = unaryExpr multiplicativeOpUnaryExpr*;
 - (TDCollectionParser *)multiplicativeExprParser {
     if (!multiplicativeExprParser) {
         self.multiplicativeExprParser = [TDSequence sequence];
         multiplicativeExprParser.name = @"multiplicativeExpr";
         [multiplicativeExprParser add:self.unaryExprParser];
-        [multiplicativeExprParser add:[self zeroOrOne:self.multiplicativeExprRHSParser]];
+        [multiplicativeExprParser add:[TDRepetition repetitionWithSubparser:self.multiplicativeOpUnaryExprParser]];
     }
     return multiplicativeExprParser;
 }
 
 
-// multiplicativeExprRHS = multiplicativeOperator multiplicativeExpr;
-- (TDCollectionParser *)multiplicativeExprRHSParser {
-    if (!multiplicativeExprRHSParser) {
-        self.multiplicativeExprRHSParser = [TDSequence sequence];
-        multiplicativeExprRHSParser.name = @"multiplicativeExprRHS";
-        [multiplicativeExprRHSParser add:self.multiplicativeOperatorParser];
-        [multiplicativeExprRHSParser add:self.multiplicativeExprParser];
+// multiplicativeOpUnaryExpr = multiplicativeOp unaryExpr;
+- (TDCollectionParser *)multiplicativeOpUnaryExprParser {
+    if (!multiplicativeOpUnaryExprParser) {
+        self.multiplicativeOpUnaryExprParser = [TDSequence sequence];
+        multiplicativeOpUnaryExprParser.name = @"multiplicativeOpUnaryExpr";
+        [multiplicativeOpUnaryExprParser add:self.multiplicativeOpParser];
+        [multiplicativeOpUnaryExprParser add:self.unaryExprParser];
     }
-    return multiplicativeExprRHSParser;
+    return multiplicativeOpUnaryExprParser;
 }
 
 
@@ -1343,7 +1342,7 @@
     if (!unaryExpr1Parser) {
         self.unaryExpr1Parser = [TDSequence sequence];
         unaryExpr1Parser.name = @"unaryExpr1";
-        [unaryExpr1Parser add:self.unaryOperatorParser];
+        [unaryExpr1Parser add:self.unaryOpParser];
         [unaryExpr1Parser add:self.unaryExprParser];
     }
     return unaryExpr1Parser;
@@ -1367,7 +1366,7 @@
     if (!unaryExpr3Parser) {
         self.unaryExpr3Parser = [TDSequence sequence];
         unaryExpr3Parser.name = @"unaryExpr3";
-        [unaryExpr3Parser add:self.incrementOperatorParser];
+        [unaryExpr3Parser add:self.incrementOpParser];
         [unaryExpr3Parser add:self.memberExprParser];
     }
     return unaryExpr3Parser;
@@ -1380,7 +1379,7 @@
         self.unaryExpr4Parser = [TDSequence sequence];
         unaryExpr4Parser.name = @"unaryExpr4";
         [unaryExpr4Parser add:self.memberExprParser];
-        [unaryExpr4Parser add:self.incrementOperatorParser];
+        [unaryExpr4Parser add:self.incrementOpParser];
     }
     return unaryExpr4Parser;
 }
@@ -1553,18 +1552,6 @@
         [argListParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
     return argListParser;
-}
-
-
-// commaAssignmentExpr = comma assignmentExpr;
-- (TDCollectionParser *)commaAssignmentExprParser {
-    if (!commaAssignmentExprParser) {
-        self.commaAssignmentExprParser = [TDSequence sequence];
-        commaAssignmentExprParser.name = @"commaAssignmentExpr";
-        [commaAssignmentExprParser add:self.commaParser];
-        [commaAssignmentExprParser add:self.assignmentExprParser];
-    }
-    return commaAssignmentExprParser;
 }
 
 
@@ -2200,13 +2187,13 @@
     return modParser;
 }
 
-@synthesize assignmentOperatorParser;
-@synthesize relationalOperatorParser;
-@synthesize equalityOperatorParser;
-@synthesize shiftOperatorParser;
-@synthesize incrementOperatorParser;
-@synthesize unaryOperatorParser;
-@synthesize multiplicativeOperatorParser;
+@synthesize assignmentOpParser;
+@synthesize relationalOpParser;
+@synthesize equalityOpParser;
+@synthesize shiftOpParser;
+@synthesize incrementOpParser;
+@synthesize unaryOpParser;
+@synthesize multiplicativeOpParser;
 
 @synthesize programParser;
 @synthesize elementParser;
@@ -2239,23 +2226,23 @@
 @synthesize assignmentParser;
 @synthesize exprOptParser;
 @synthesize exprParser;
-@synthesize commaExprParser;
+@synthesize commaAssignmentExprParser;
 @synthesize assignmentExprParser;
-@synthesize extraAssignmentParser;
+@synthesize assignmentOpConditionalExprParser;
 @synthesize conditionalExprParser;
 @synthesize ternaryExprParser;
 @synthesize orExprParser;
 @synthesize orAndExprParser;
 @synthesize andExprParser;
-@synthesize andAndExprParser;
+@synthesize andBitwiseOrExprParser;
 @synthesize bitwiseOrExprParser;
-@synthesize pipeBitwiseOrExprParser;
+@synthesize pipeBitwiseXorExprParser;
 @synthesize bitwiseXorExprParser;
-@synthesize caretBitwiseXorExprParser;
+@synthesize caretBitwiseAndExprParser;
 @synthesize bitwiseAndExprParser;
-@synthesize ampBitwiseAndExpressionParser;
+@synthesize ampEqualityExprParser;
 @synthesize equalityExprParser;
-@synthesize equalityOpEqualityExprParser;
+@synthesize equalityOpRelationalExprParser;
 @synthesize relationalExprParser;
 @synthesize relationalExprRHSParser;
 @synthesize shiftExprParser;
@@ -2265,7 +2252,7 @@
 @synthesize plusExprParser;
 @synthesize minusExprParser;
 @synthesize multiplicativeExprParser;
-@synthesize multiplicativeExprRHSParser;
+@synthesize multiplicativeOpUnaryExprParser;
 @synthesize unaryExprParser;
 @synthesize unaryExpr1Parser;
 @synthesize unaryExpr2Parser;
@@ -2283,7 +2270,6 @@
 @synthesize parenMemberExprParser;
 @synthesize argListOptParser;
 @synthesize argListParser;
-@synthesize commaAssignmentExprParser;
 @synthesize primaryExprParser;
 @synthesize parenExprParenParser;
 
