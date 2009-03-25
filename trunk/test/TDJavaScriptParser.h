@@ -9,13 +9,13 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDJavaScriptParser : TDRepetition {
-    TDCollectionParser *assignmentOperatorParser;
-    TDCollectionParser *relationalOperatorParser;
-    TDCollectionParser *equalityOperatorParser;
-    TDCollectionParser *shiftOperatorParser;
-    TDCollectionParser *incrementOperatorParser;
-    TDCollectionParser *unaryOperatorParser;
-    TDCollectionParser *multiplicativeOperatorParser;
+    TDCollectionParser *assignmentOpParser;
+    TDCollectionParser *relationalOpParser;
+    TDCollectionParser *equalityOpParser;
+    TDCollectionParser *shiftOpParser;
+    TDCollectionParser *incrementOpParser;
+    TDCollectionParser *unaryOpParser;
+    TDCollectionParser *multiplicativeOpParser;
     
     TDCollectionParser *programParser;
     TDCollectionParser *elementParser;
@@ -48,23 +48,23 @@
     TDCollectionParser *assignmentParser;
     TDCollectionParser *exprOptParser;
     TDCollectionParser *exprParser;
-    TDCollectionParser *commaExprParser;
+    TDCollectionParser *commaAssignmentExprParser;
     TDCollectionParser *assignmentExprParser;
-    TDCollectionParser *extraAssignmentParser;
+    TDCollectionParser *assignmentOpConditionalExprParser;
     TDCollectionParser *conditionalExprParser;
     TDCollectionParser *ternaryExprParser;
     TDCollectionParser *orExprParser;
     TDCollectionParser *orAndExprParser;
     TDCollectionParser *andExprParser;
-    TDCollectionParser *andAndExprParser;
+    TDCollectionParser *andBitwiseOrExprParser;
     TDCollectionParser *bitwiseOrExprParser;
-    TDCollectionParser *pipeBitwiseOrExprParser;
+    TDCollectionParser *pipeBitwiseXorExprParser;
     TDCollectionParser *bitwiseXorExprParser;
-    TDCollectionParser *caretBitwiseXorExprParser;
+    TDCollectionParser *caretBitwiseAndExprParser;
     TDCollectionParser *bitwiseAndExprParser;
-    TDCollectionParser *ampBitwiseAndExpressionParser;
+    TDCollectionParser *ampEqualityExprParser;
     TDCollectionParser *equalityExprParser;
-    TDCollectionParser *equalityOpEqualityExprParser;
+    TDCollectionParser *equalityOpRelationalExprParser;
     TDCollectionParser *relationalExprParser;
     TDCollectionParser *relationalExprRHSParser;
     TDCollectionParser *shiftExprParser;
@@ -74,7 +74,7 @@
     TDCollectionParser *plusExprParser;
     TDCollectionParser *minusExprParser;
     TDCollectionParser *multiplicativeExprParser;
-    TDCollectionParser *multiplicativeExprRHSParser;
+    TDCollectionParser *multiplicativeOpUnaryExprParser;
     TDCollectionParser *unaryExprParser;
     TDCollectionParser *unaryExpr1Parser;
     TDCollectionParser *unaryExpr2Parser;
@@ -92,7 +92,6 @@
     TDCollectionParser *parenMemberExprParser;
     TDCollectionParser *argListOptParser;
     TDCollectionParser *argListParser;
-    TDCollectionParser *commaAssignmentExprParser;
     TDCollectionParser *primaryExprParser;
     TDCollectionParser *parenExprParenParser;
 
@@ -175,13 +174,13 @@
     TDParser *divParser;
     TDParser *modParser;
 }
-@property (nonatomic, retain) TDCollectionParser *assignmentOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *relationalOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *equalityOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *shiftOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *incrementOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *unaryOperatorParser;
-@property (nonatomic, retain) TDCollectionParser *multiplicativeOperatorParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentOpParser;
+@property (nonatomic, retain) TDCollectionParser *relationalOpParser;
+@property (nonatomic, retain) TDCollectionParser *equalityOpParser;
+@property (nonatomic, retain) TDCollectionParser *shiftOpParser;
+@property (nonatomic, retain) TDCollectionParser *incrementOpParser;
+@property (nonatomic, retain) TDCollectionParser *unaryOpParser;
+@property (nonatomic, retain) TDCollectionParser *multiplicativeOpParser;
 
 @property (nonatomic, retain) TDCollectionParser *programParser;
 @property (nonatomic, retain) TDCollectionParser *elementParser;
@@ -214,23 +213,23 @@
 @property (nonatomic, retain) TDCollectionParser *assignmentParser;
 @property (nonatomic, retain) TDCollectionParser *exprOptParser;
 @property (nonatomic, retain) TDCollectionParser *exprParser;
-@property (nonatomic, retain) TDCollectionParser *commaExprParser;
+@property (nonatomic, retain) TDCollectionParser *commaAssignmentExprParser;
 @property (nonatomic, retain) TDCollectionParser *assignmentExprParser;
-@property (nonatomic, retain) TDCollectionParser *extraAssignmentParser;
+@property (nonatomic, retain) TDCollectionParser *assignmentOpConditionalExprParser;
 @property (nonatomic, retain) TDCollectionParser *conditionalExprParser;
 @property (nonatomic, retain) TDCollectionParser *ternaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *orExprParser;
 @property (nonatomic, retain) TDCollectionParser *orAndExprParser;
 @property (nonatomic, retain) TDCollectionParser *andExprParser;
-@property (nonatomic, retain) TDCollectionParser *andAndExprParser;
+@property (nonatomic, retain) TDCollectionParser *andBitwiseOrExprParser;
 @property (nonatomic, retain) TDCollectionParser *bitwiseOrExprParser;
-@property (nonatomic, retain) TDCollectionParser *pipeBitwiseOrExprParser;
+@property (nonatomic, retain) TDCollectionParser *pipeBitwiseXorExprParser;
 @property (nonatomic, retain) TDCollectionParser *bitwiseXorExprParser;
-@property (nonatomic, retain) TDCollectionParser *caretBitwiseXorExprParser;
+@property (nonatomic, retain) TDCollectionParser *caretBitwiseAndExprParser;
 @property (nonatomic, retain) TDCollectionParser *bitwiseAndExprParser;
-@property (nonatomic, retain) TDCollectionParser *ampBitwiseAndExpressionParser;
+@property (nonatomic, retain) TDCollectionParser *ampEqualityExprParser;
 @property (nonatomic, retain) TDCollectionParser *equalityExprParser;
-@property (nonatomic, retain) TDCollectionParser *equalityOpEqualityExprParser;
+@property (nonatomic, retain) TDCollectionParser *equalityOpRelationalExprParser;
 @property (nonatomic, retain) TDCollectionParser *relationalExprParser;
 @property (nonatomic, retain) TDCollectionParser *relationalExprRHSParser;
 @property (nonatomic, retain) TDCollectionParser *shiftExprParser;
@@ -240,7 +239,7 @@
 @property (nonatomic, retain) TDCollectionParser *plusExprParser;
 @property (nonatomic, retain) TDCollectionParser *minusExprParser;
 @property (nonatomic, retain) TDCollectionParser *multiplicativeExprParser;
-@property (nonatomic, retain) TDCollectionParser *multiplicativeExprRHSParser;
+@property (nonatomic, retain) TDCollectionParser *multiplicativeOpUnaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *unaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr1Parser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr2Parser;
@@ -258,7 +257,6 @@
 @property (nonatomic, retain) TDCollectionParser *parenMemberExprParser;
 @property (nonatomic, retain) TDCollectionParser *argListOptParser;
 @property (nonatomic, retain) TDCollectionParser *argListParser;
-@property (nonatomic, retain) TDCollectionParser *commaAssignmentExprParser;
 @property (nonatomic, retain) TDCollectionParser *primaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *parenExprParenParser;
 

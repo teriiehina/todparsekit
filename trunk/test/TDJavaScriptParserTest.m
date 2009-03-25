@@ -37,6 +37,23 @@
 //    TDEqualObjects([res description], @"[function, (, a, ,, b, ), {, }]function/(/a/,/b/)/{/}^");
 //}
 
+- (void)testBitwiseOrExprParser {
+    s = @"&& true";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    res = [jsp.bitwiseOrExprParser bestMatchFor:a];
+//    TDEqualObjects([res description], @"[&&, true]&&/truet^");
+}
+
+
+- (void)testAndBitwiseOrExprParser {
+    s = @"&& true";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    //res = [jsp.andBitwiseOrExprParser bestMatchFor:a];
+    //TDEqualObjects([res description], @"[&&, true]&&/truet^");
+}
+
 
 - (void)testParamListParser {
     s = @"baz, bat";
@@ -92,65 +109,65 @@
 }
 
 
-- (void)testAssignmentOperatorParser {
+- (void)testAssignmentOpParser {
     s = @"=";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.assignmentOperatorParser bestMatchFor:a];
+    res = [jsp.assignmentOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[=]=^");
     
     s = @"*=";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.assignmentOperatorParser bestMatchFor:a];
+    res = [jsp.assignmentOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[*=]*=^");
     
     s = @"%=";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.assignmentOperatorParser bestMatchFor:a];
+    res = [jsp.assignmentOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[%=]%=^");
     
     s = @">>>=";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.assignmentOperatorParser bestMatchFor:a];
+    res = [jsp.assignmentOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[>>>=]>>>=^");
 }
 
 
-- (void)testRelationalOperatorParser {
+- (void)testRelationalOpParser {
     s = @"<=";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.relationalOperatorParser bestMatchFor:a];
+    res = [jsp.relationalOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[<=]<=^");
 
     s = @"instanceof";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.relationalOperatorParser bestMatchFor:a];
+    res = [jsp.relationalOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[instanceof]instanceof^");
 }
 
 
-- (void)testEqualityOperatorParser {
+- (void)testEqualityOpParser {
     s = @"==";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.equalityOperatorParser bestMatchFor:a];
+    res = [jsp.equalityOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[==]==^");
     
     s = @"!==";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.equalityOperatorParser bestMatchFor:a];
+    res = [jsp.equalityOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[!==]!==^");
     
     s = @"===";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    res = [jsp.equalityOperatorParser bestMatchFor:a];
+    res = [jsp.equalityOpParser bestMatchFor:a];
     TDEqualObjects([res description], @"[===]===^");
 }
 
