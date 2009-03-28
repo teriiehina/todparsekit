@@ -207,7 +207,7 @@
     self.equalityExprParser = nil;
     self.equalityOpRelationalExprParser = nil;
     self.relationalExprParser = nil;
-    self.relationalExprRHSParser = nil;
+    self.relationalOpShiftExprParser = nil;
     self.shiftExprParser = nil;
     self.shiftOpShiftExprParser = nil;
     self.additiveExprParser = nil;
@@ -1233,30 +1233,30 @@
 //           ShiftExpression
 //           RelationalExpression RelationalationalOperator ShiftExpression
 //
-//    relationalExpr      = shiftExpr | relationalExprRHS;       /// TODO ????
+
+//    relationalExpr      = shiftExpr relationalOpShiftExpr*;       /// TODO ????
 - (TDCollectionParser *)relationalExprParser {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!relationalExprParser) {
         self.relationalExprParser = [TDAlternation alternation];
         relationalExprParser.name = @"relationalExpr";
         [relationalExprParser add:self.shiftExprParser];
-        [relationalExprParser add:self.relationalExprRHSParser];
+        [relationalExprParser add:[TDRepetition repetitionWithSubparser:self.relationalOpShiftExprParser]];
     }
     return relationalExprParser;
 }
 
 
 //    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
-- (TDCollectionParser *)relationalExprRHSParser {
+- (TDCollectionParser *)relationalOpShiftExprParser {
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    if (!relationalExprRHSParser) {
-        self.relationalExprRHSParser = [TDSequence sequence];
-        relationalExprRHSParser.name = @"relationalExprRHS";
-        [relationalExprRHSParser add:self.relationalExprParser];
-        [relationalExprRHSParser add:self.relationalOpParser];
-        [relationalExprRHSParser add:self.shiftExprParser];
+    if (!relationalOpShiftExprParser) {
+        self.relationalOpShiftExprParser = [TDSequence sequence];
+        relationalOpShiftExprParser.name = @"relationalOpShiftExpr";
+        [relationalOpShiftExprParser add:self.relationalOpParser];
+        [relationalOpShiftExprParser add:self.shiftExprParser];
     }
-    return relationalExprRHSParser;
+    return relationalOpShiftExprParser;
 }
 
 
@@ -2469,7 +2469,7 @@
 @synthesize equalityExprParser;
 @synthesize equalityOpRelationalExprParser;
 @synthesize relationalExprParser;
-@synthesize relationalExprRHSParser;
+@synthesize relationalOpShiftExprParser;
 @synthesize shiftExprParser;
 @synthesize shiftOpShiftExprParser;
 @synthesize additiveExprParser;
