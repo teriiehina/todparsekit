@@ -116,6 +116,9 @@
         // Words can start with '_'
         [tokenizer setTokenizerState:tokenizer.wordState from:'_' to:'_'];
 
+        // Words cannot contain '-'
+        [tokenizer.wordState setWordChars:NO from:'-' to:'-'];
+
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
         [tokenizer.commentState addSingleLineStartSymbol:@"//"];
