@@ -106,8 +106,7 @@
 
 - (id)init {
     if (self = [super initWithSubparser:self.elementParser]) {
-        NSLog(@"%s", __PRETTY_FUNCTION__);
-        self.tokenizer = [TDTokenizer tokenizer];
+            self.tokenizer = [TDTokenizer tokenizer];
         
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
         [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
@@ -344,7 +343,6 @@
 
 // assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
 - (TDCollectionParser *)assignmentOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!assignmentOpParser) {
         self.assignmentOpParser = [TDAlternation alternation];
         assignmentOpParser.name = @"assignmentOperator";
@@ -367,7 +365,6 @@
 
 // relationalOperator  = lt | gt | ge | le | instanceof;
 - (TDCollectionParser *)relationalOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!relationalOpParser) {
         self.relationalOpParser = [TDAlternation alternation];
         relationalOpParser.name = @"relationalOperator";
@@ -383,7 +380,6 @@
 
 // equalityOp    = eq | ne | is | isnot;
 - (TDCollectionParser *)equalityOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!equalityOpParser) {
         self.equalityOpParser = [TDAlternation alternation];;
         equalityOpParser.name = @"equalityOp";
@@ -398,7 +394,6 @@
 
 //shiftOp         = shiftLeft | shiftRight | shiftRightExt;
 - (TDCollectionParser *)shiftOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftOpParser) {
         self.shiftOpParser = [TDAlternation alternation];
         shiftOpParser.name = @"shiftOp";
@@ -412,7 +407,6 @@
 
 //incrementOperator   = plusPlus | minusMinus;
 - (TDCollectionParser *)incrementOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!incrementOpParser) {
         self.incrementOpParser = [TDAlternation alternation];
         incrementOpParser.name = @"incrementOperator";
@@ -425,7 +419,6 @@
 
 //unaryOperator       = tilde | delete | typeof | void;
 - (TDCollectionParser *)unaryOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryOpParser) {
         self.unaryOpParser = [TDAlternation alternation];
         unaryOpParser.name = @"unaryOperator";
@@ -440,7 +433,6 @@
 
 // multiplicativeOperator = times | div | mod;
 - (TDCollectionParser *)multiplicativeOpParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!multiplicativeOpParser) {
         self.multiplicativeOpParser = [TDAlternation alternation];
         multiplicativeOpParser.name = @"multiplicativeOperator";
@@ -460,7 +452,6 @@
 //
 //program             = element*;
 - (TDCollectionParser *)programParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!programParser) {
         self.programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
         programParser.name = @"program";
@@ -476,7 +467,6 @@
 //
 //element             = func | stmt;
 - (TDCollectionParser *)elementParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!elementParser) {
         self.elementParser = [TDAlternation alternation];
         elementParser.name = @"element";
@@ -489,7 +479,6 @@
 
 //func                = function identifier openParen paramListOpt closeParen compoundStmt;
 - (TDCollectionParser *)funcParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!funcParser) {
         self.funcParser = [TDSequence sequence];
         funcParser.name = @"func";
@@ -511,7 +500,6 @@
 //
 //paramListOpt        = Empty | paramList;
 - (TDCollectionParser *)paramListOptParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!paramListOptParser) {
         self.paramListOptParser = [TDAlternation alternation];
         paramListOptParser.name = @"paramListOpt";
@@ -528,7 +516,6 @@
 //
 //paramList           = identifier commaIdentifier*;
 - (TDCollectionParser *)paramListParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!paramListParser) {
         self.paramListParser = [TDSequence sequence];
         paramListParser.name = @"paramList";
@@ -541,7 +528,6 @@
 
 //commaIdentifier     = comma identifier;
 - (TDCollectionParser *)commaIdentifierParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!commaIdentifierParser) {
         self.commaIdentifierParser = [TDSequence sequence];
         commaIdentifierParser.name = @"commaIdentifier";
@@ -558,7 +544,6 @@
 //
 //compoundStmt        = openCurly stmts closeCurly;
 - (TDCollectionParser *)compoundStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!compoundStmtParser) {
         self.compoundStmtParser = [TDSequence sequence];
         compoundStmtParser.name = @"compoundStmt";
@@ -576,7 +561,6 @@
 //
 //stmts               = stmt*;
 - (TDCollectionParser *)stmtsParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!stmtsParser) {
         self.stmtsParser = [TDRepetition repetitionWithSubparser:self.stmtParser];
         stmtsParser.name = @"stmts";
@@ -602,7 +586,6 @@
 //
 //stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
 - (TDCollectionParser *)stmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!stmtParser) {
         self.stmtParser = [TDAlternation alternation];
         stmtParser.name = @"stmt";
@@ -627,7 +610,6 @@
 //           if Condition Statement
 //ifStmt              = if condition stmt;
 - (TDCollectionParser *)ifStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ifStmtParser) {
         self.ifStmtParser = [TDSequence sequence];
         ifStmtParser.name = @"ifStmt";
@@ -642,7 +624,6 @@
 //           if Condition Statement else Statement
 //ifElseStmt          = if condition stmt else stmt;
 - (TDCollectionParser *)ifElseStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ifElseStmtParser) {
         self.ifElseStmtParser = [TDSequence sequence];
         ifElseStmtParser.name = @"ifElseStmt";
@@ -659,7 +640,6 @@
 //           while Condition Statement
 //whileStmt           = while condition stmt;
 - (TDCollectionParser *)whileStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!whileStmtParser) {
         self.whileStmtParser = [TDSequence sequence];
         whileStmtParser.name = @"whileStmt";
@@ -674,7 +654,6 @@
 //           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
 //forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
 - (TDCollectionParser *)forParenStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forParenStmtParser) {
         self.forParenStmtParser = [TDSequence sequence];
         forParenStmtParser.name = @"forParenStmt";
@@ -693,7 +672,6 @@
 //           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
 //forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
 - (TDCollectionParser *)forBeginStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forBeginStmtParser) {
         self.forBeginStmtParser = [TDSequence sequence];
         forBeginStmtParser.name = @"forBeginStmt";
@@ -712,7 +690,6 @@
 //           ForBegin in Expression ) Statement
 //forInStmt           = forBegin in expr closeParen stmt;
 - (TDCollectionParser *)forInStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forInStmtParser) {
         self.forInStmtParser = [TDSequence sequence];
         forInStmtParser.name = @"forInStmt";
@@ -729,7 +706,6 @@
 //           break ;
 //breakStmt           = break semi;
 - (TDCollectionParser *)breakStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!breakStmtParser) {
         self.breakStmtParser = [TDSequence sequence];
         breakStmtParser.name = @"breakStmt";
@@ -742,7 +718,6 @@
 
 //continueStmt        = continue semi;
 - (TDCollectionParser *)continueStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!continueStmtParser) {
         self.continueStmtParser = [TDSequence sequence];
         continueStmtParser.name = @"continueStmt";
@@ -756,7 +731,6 @@
 //           with ( Expression ) Statement
 //withStmt            = with openParen expr closeParen stmt;
 - (TDCollectionParser *)withStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!withStmtParser) {
         self.withStmtParser = [TDSequence sequence];
         withStmtParser.name = @"withStmt";
@@ -773,7 +747,6 @@
 //           return ExpressionOpt ;
 //returnStmt          = return exprOpt semi;
 - (TDCollectionParser *)returnStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!returnStmtParser) {
         self.returnStmtParser = [TDSequence sequence];
         returnStmtParser.name = @"returnStmt";
@@ -788,7 +761,6 @@
 //           VariablesOrExpression ;
 //variablesOrExprStmt = variablesOrExpr semi;
 - (TDCollectionParser *)variablesOrExprStmtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!variablesOrExprStmtParser) {
         self.variablesOrExprStmtParser = [TDSequence sequence];
         variablesOrExprStmtParser.name = @"variablesOrExprStmt";
@@ -804,7 +776,6 @@
 //
 //condition           = openParen expr closeParen;
 - (TDCollectionParser *)conditionParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!conditionParser) {
         self.conditionParser = [TDSequence sequence];
         conditionParser.name = @"condition";
@@ -822,7 +793,6 @@
 //
 //forParen            = for openParen;
 - (TDCollectionParser *)forParenParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forParenParser) {
         self.forParenParser = [TDSequence sequence];
         forParenParser.name = @"forParen";
@@ -839,7 +809,6 @@
 //
 //forBegin            = forParen variablesOrExpr;
 - (TDCollectionParser *)forBeginParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forBeginParser) {
         self.forBeginParser = [TDSequence sequence];
         forBeginParser.name = @"forBegin";
@@ -857,7 +826,6 @@
 //
 //variablesOrExpr     = varVariables | expr;
 - (TDCollectionParser *)variablesOrExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!variablesOrExprParser) {
         self.variablesOrExprParser = [TDAlternation alternation];
         variablesOrExprParser.name = @"variablesOrExpr";
@@ -870,7 +838,6 @@
 
 //varVariables        = var variables;
 - (TDCollectionParser *)varVariablesParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!varVariablesParser) {
         self.varVariablesParser = [TDSequence sequence];
         varVariablesParser.name = @"varVariables";
@@ -888,7 +855,6 @@
 //
 //variables           = variable commaVariable*;
 - (TDCollectionParser *)variablesParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!variablesParser) {
         self.variablesParser = [TDSequence sequence];
         variablesParser.name = @"variables";
@@ -901,7 +867,6 @@
 
 //commaVariable       = comma variable;
 - (TDCollectionParser *)commaVariableParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!commaVariableParser) {
         self.commaVariableParser = [TDSequence sequence];
         commaVariableParser.name = @"commaVariable";
@@ -918,7 +883,6 @@
 //
 //variable            = identifier assignment?;
 - (TDCollectionParser *)variableParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!variableParser) {
         self.variableParser = [TDSequence sequence];
         variableParser.name = @"variableParser";
@@ -930,7 +894,6 @@
 
 //assignment          = equals assignmentExpr;
 - (TDCollectionParser *)assignmentParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!assignmentParser) {
         self.assignmentParser = [TDSequence sequence];
         assignmentParser.name = @"assignment";
@@ -947,7 +910,6 @@
 //
 //    exprOpt             = Empty | expr;
 - (TDCollectionParser *)exprOptParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!exprOptParser) {
         self.exprOptParser = [self zeroOrOne:self.exprParser];
         exprOptParser.name = @"exprOpt";
@@ -963,7 +925,6 @@
 //
 //expr                = assignmentExpr commaAssignmentExpr*;
 - (TDCollectionParser *)exprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         exprParser.name = @"exprParser";
@@ -976,7 +937,6 @@
 
 //commaAssignmentExpr           = comma assignmentExpr;
 - (TDCollectionParser *)commaAssignmentExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!commaAssignmentExprParser) {
         self.commaAssignmentExprParser = [TDSequence sequence];
         commaAssignmentExprParser.name = @"commaAssignmentExpr";
@@ -993,7 +953,6 @@
 //
 // assignmentExpr      = conditionalExpr assignmentOpConditionalExpr*;
 - (TDCollectionParser *)assignmentExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!assignmentExprParser) {
         self.assignmentExprParser = [TDSequence sequence];
         assignmentExprParser.name = @"assignmentExpr";
@@ -1006,7 +965,6 @@
 
 // assignmentOpConditionalExpr     = assignmentOperator conditionalExpr;
 - (TDCollectionParser *)assignmentOpConditionalExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!assignmentOpConditionalExprParser) {
         self.assignmentOpConditionalExprParser = [TDSequence sequence];
         assignmentOpConditionalExprParser.name = @"assignmentOpConditionalExpr";
@@ -1023,7 +981,6 @@
 //
 //    conditionalExpr     = orExpr ternaryExpr?;
 - (TDCollectionParser *)conditionalExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!conditionalExprParser) {
         self.conditionalExprParser = [TDSequence sequence];
         conditionalExprParser.name = @"conditionalExpr";
@@ -1036,7 +993,6 @@
 
 //    ternaryExpr         = question assignmentExpr colon assignmentExpr;
 - (TDCollectionParser *)ternaryExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ternaryExprParser) {
         self.ternaryExprParser = [TDSequence sequence];
         ternaryExprParser.name = @"ternaryExpr";
@@ -1055,7 +1011,6 @@
 //
 //    orExpr              = andExpr orAndExpr*;
 - (TDCollectionParser *)orExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!orExprParser) {
         self.orExprParser = [TDSequence sequence];
         orExprParser.name = @"orExpr";
@@ -1068,7 +1023,6 @@
 
 //    orAndExpr           = or andExpr;
 - (TDCollectionParser *)orAndExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!orAndExprParser) {
         self.orAndExprParser = [TDSequence sequence];
         orAndExprParser.name = @"orAndExpr";
@@ -1085,7 +1039,6 @@
 //
 //    andExpr             = bitwiseOrExpr andBitwiseOrExprParser*;
 - (TDCollectionParser *)andExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!andExprParser) {
         self.andExprParser = [TDSequence sequence];
         andExprParser.name = @"andExpr";
@@ -1098,7 +1051,6 @@
 
 //    andBitwiseOrExprParser          = and bitwiseOrExpr;
 - (TDCollectionParser *)andBitwiseOrExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!andBitwiseOrExprParser) {
         self.andBitwiseOrExprParser = [TDSequence sequence];
         andBitwiseOrExprParser.name = @"andBitwiseOrExpr";
@@ -1115,7 +1067,6 @@
 //
 //    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseXorExpr*;
 - (TDCollectionParser *)bitwiseOrExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!bitwiseOrExprParser) {
         self.bitwiseOrExprParser = [TDSequence sequence];
         bitwiseOrExprParser.name = @"bitwiseOrExpr";
@@ -1128,7 +1079,6 @@
 
 //    pipeBitwiseXorExprParser   = pipe bitwiseXorExpr;
 - (TDCollectionParser *)pipeBitwiseXorExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!pipeBitwiseXorExprParser) {
         self.pipeBitwiseXorExprParser = [TDSequence sequence];
         pipeBitwiseXorExprParser.name = @"pipeBitwiseXorExpr";
@@ -1145,7 +1095,6 @@
 //
 //    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseAndExpr*;
 - (TDCollectionParser *)bitwiseXorExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!bitwiseXorExprParser) {
         self.bitwiseXorExprParser = [TDSequence sequence];
         bitwiseXorExprParser.name = @"bitwiseXorExpr";
@@ -1158,7 +1107,6 @@
 
 //    caretBitwiseAndExpr = caret bitwiseAndExpr;
 - (TDCollectionParser *)caretBitwiseAndExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!caretBitwiseAndExprParser) {
         self.caretBitwiseAndExprParser = [TDSequence sequence];
         caretBitwiseAndExprParser.name = @"caretBitwiseAndExpr";
@@ -1175,7 +1123,6 @@
 //
 //    bitwiseAndExpr      = equalityExpr ampEqualityExpression*;
 - (TDCollectionParser *)bitwiseAndExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!bitwiseAndExprParser) {
         self.bitwiseAndExprParser = [TDSequence sequence];
         bitwiseAndExprParser.name = @"bitwiseAndExpr";
@@ -1188,7 +1135,6 @@
 
 //    ampEqualityExpression = amp equalityExpression;
 - (TDCollectionParser *)ampEqualityExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ampEqualityExprParser) {
         self.ampEqualityExprParser = [TDSequence sequence];
         ampEqualityExprParser.name = @"ampEqualityExpression";
@@ -1205,7 +1151,6 @@
 //
 //    equalityExpr        = relationalExpr equalityOpRelationalExpr*;
 - (TDCollectionParser *)equalityExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!equalityExprParser) {
         self.equalityExprParser = [TDSequence sequence];
         equalityExprParser.name = @"equalityExpr";
@@ -1218,7 +1163,6 @@
 
 //    equalityOpRelationalExpr = equalityOp relationalExpr;
 - (TDCollectionParser *)equalityOpRelationalExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!equalityOpRelationalExprParser) {
         self.equalityOpRelationalExprParser = [TDSequence sequence];
         equalityOpRelationalExprParser.name = @"equalityOpRelationalExpr";
@@ -1236,7 +1180,6 @@
 
 //    relationalExpr      = shiftExpr relationalOpShiftExpr*;       /// TODO ????
 - (TDCollectionParser *)relationalExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!relationalExprParser) {
         self.relationalExprParser = [TDAlternation alternation];
         relationalExprParser.name = @"relationalExpr";
@@ -1249,7 +1192,6 @@
 
 //    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
 - (TDCollectionParser *)relationalOpShiftExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!relationalOpShiftExprParser) {
         self.relationalOpShiftExprParser = [TDSequence sequence];
         relationalOpShiftExprParser.name = @"relationalOpShiftExpr";
@@ -1266,7 +1208,6 @@
 //
 //    shiftExpr           = additiveExpr shiftOpShiftExpr?;
 - (TDCollectionParser *)shiftExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftExprParser) {
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
@@ -1279,7 +1220,6 @@
 
 //    shiftOpShiftExpr    = shiftOp shiftExpr;
 - (TDCollectionParser *)shiftOpShiftExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftOpShiftExprParser) {
         self.shiftOpShiftExprParser = [TDSequence sequence];
         shiftOpShiftExprParser.name = @"shiftOpShiftExpr";
@@ -1297,7 +1237,6 @@
 //
 //    additiveExpr        = multiplicativeExpr plusOrMinusExpr*;
 - (TDCollectionParser *)additiveExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!additiveExprParser) {
         self.additiveExprParser = [TDSequence sequence];
         additiveExprParser.name = @"additiveExpr";
@@ -1310,7 +1249,6 @@
 
 //    plusOrMinusExpr     = plusExpr | minusExpr;
 - (TDCollectionParser *)plusOrMinusExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!plusOrMinusExprParser) {
         self.plusOrMinusExprParser = [TDAlternation alternation];
         plusOrMinusExprParser.name = @"plusOrMinusExpr";
@@ -1323,7 +1261,6 @@
 
 //    plusExpr            = plus multiplicativeExprParser;
 - (TDCollectionParser *)plusExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!plusExprParser) {
         self.plusExprParser = [TDSequence sequence];
         plusExprParser.name = @"plusExpr";
@@ -1336,7 +1273,6 @@
 
 //    minusExpr           = minus multiplicativeExprParser;
 - (TDCollectionParser *)minusExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!minusExprParser) {
         self.minusExprParser = [TDSequence sequence];
         minusExprParser.name = @"minusExpr";
@@ -1353,7 +1289,6 @@
 //
 //    multiplicativeExpr  = unaryExpr multiplicativeOpUnaryExpr*;
 - (TDCollectionParser *)multiplicativeExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!multiplicativeExprParser) {
         self.multiplicativeExprParser = [TDSequence sequence];
         multiplicativeExprParser.name = @"multiplicativeExpr";
@@ -1366,7 +1301,6 @@
 
 // multiplicativeOpUnaryExpr = multiplicativeOp unaryExpr;
 - (TDCollectionParser *)multiplicativeOpUnaryExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!multiplicativeOpUnaryExprParser) {
         self.multiplicativeOpUnaryExprParser = [TDSequence sequence];
         multiplicativeOpUnaryExprParser.name = @"multiplicativeOpUnaryExpr";
@@ -1388,7 +1322,6 @@
 //
 //    unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
 - (TDCollectionParser *)unaryExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExprParser) {
         self.unaryExprParser = [TDAlternation alternation];
         unaryExprParser.name = @"unaryExpr";
@@ -1406,7 +1339,6 @@
 
 //    unaryExpr1          = unaryOperator unaryExpr;
 - (TDCollectionParser *)unaryExpr1Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr1Parser) {
         self.unaryExpr1Parser = [TDSequence sequence];
         unaryExpr1Parser.name = @"unaryExpr1";
@@ -1419,7 +1351,6 @@
 
 //    unaryExpr2          = minus unaryExpr;
 - (TDCollectionParser *)unaryExpr2Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr2Parser) {
         self.unaryExpr2Parser = [TDSequence sequence];
         unaryExpr2Parser.name = @"unaryExpr2";
@@ -1432,7 +1363,6 @@
 
 //    unaryExpr3          = incrementOperator memberExpr;
 - (TDCollectionParser *)unaryExpr3Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr3Parser) {
         self.unaryExpr3Parser = [TDSequence sequence];
         unaryExpr3Parser.name = @"unaryExpr3";
@@ -1445,7 +1375,6 @@
 
 //    unaryExpr4          = memberExpr incrementOperator;
 - (TDCollectionParser *)unaryExpr4Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr4Parser) {
         self.unaryExpr4Parser = [TDSequence sequence];
         unaryExpr4Parser.name = @"unaryExpr4";
@@ -1458,7 +1387,6 @@
 
 //    unaryExpr5          = new constructor;
 - (TDCollectionParser *)unaryExpr5Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr5Parser) {
         self.unaryExpr5Parser = [TDSequence sequence];
         unaryExpr5Parser.name = @"unaryExpr5";
@@ -1471,7 +1399,6 @@
 
 //    unaryExpr6          = delete memberExpr;
 - (TDCollectionParser *)unaryExpr6Parser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!unaryExpr6Parser) {
         self.unaryExpr6Parser = [TDSequence sequence];
         unaryExpr6Parser.name = @"unaryExpr6";
@@ -1488,7 +1415,6 @@
 //
 //    constructor         = constructorCall; // TODO ???
 - (TDCollectionParser *)constructorParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!constructorParser) {
         self.constructorParser = [TDSequence sequence];
         constructorParser.name = @"constructor";
@@ -1505,7 +1431,6 @@
 //
 //    constructorCall     = identifier parenArgListParen?;  // TODO
 - (TDCollectionParser *)constructorCallParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!constructorCallParser) {
         self.constructorCallParser = [TDSequence sequence];
         constructorCallParser.name = @"constructorCall";
@@ -1518,7 +1443,6 @@
 
 //    parenArgListParen   = openParen argListOpt closeParen;
 - (TDCollectionParser *)parenArgListParenParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!parenArgListParenParser) {
         self.parenArgListParenParser = [TDSequence sequence];
         parenArgListParenParser.name = @"parenArgListParen";
@@ -1538,7 +1462,6 @@
 //
 //    memberExpr          = primaryExpr dotBracketOrParenExpr?;    // TODO ??????
 - (TDCollectionParser *)memberExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!memberExprParser) {
         self.memberExprParser = [TDSequence sequence];
         memberExprParser.name = @"memberExpr";
@@ -1551,7 +1474,6 @@
 
 //    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
 - (TDCollectionParser *)dotBracketOrParenExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!dotBracketOrParenExprParser) {
         self.dotBracketOrParenExprParser = [TDAlternation alternation];
         dotBracketOrParenExprParser.name = @"dotBracketOrParenExpr";
@@ -1565,7 +1487,6 @@
 
 //    dotMemberExpr       = dot memberExpr;
 - (TDCollectionParser *)dotMemberExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!dotMemberExprParser) {
         self.dotMemberExprParser = [TDSequence sequence];
         dotMemberExprParser.name = @"dotMemberExpr";
@@ -1578,7 +1499,6 @@
 
 //    bracketMemberExpr   = openBracket expr closeBracket;
 - (TDCollectionParser *)bracketMemberExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!bracketMemberExprParser) {
         self.bracketMemberExprParser = [TDSequence sequence];
         bracketMemberExprParser.name = @"bracketMemberExpr";
@@ -1592,7 +1512,6 @@
 
 //    parenMemberExpr     = openParen argListOpt closeParen;
 - (TDCollectionParser *)parenMemberExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!parenMemberExprParser) {
         self.parenMemberExprParser = [TDSequence sequence];
         parenMemberExprParser.name = @"parenMemberExpr";
@@ -1610,7 +1529,6 @@
 //
 // argListOpt          = argList?;
 - (TDCollectionParser *)argListOptParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!argListOptParser) {
         self.argListOptParser = [TDAlternation alternation];
         argListOptParser.name = @"argListOpt";
@@ -1627,7 +1545,6 @@
 //
 // argList             = assignmentExpr commaAssignmentExpr*;
 - (TDCollectionParser *)argListParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!argListParser) {
         self.argListParser = [TDSequence sequence];
         argListParser.name = @"argList";
@@ -1650,7 +1567,6 @@
  //           this
 // primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
 - (TDCollectionParser *)primaryExprParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
@@ -1671,7 +1587,6 @@
  
 //  parenExprParen      = openParen expr closeParen;
 - (TDCollectionParser *)parenExprParenParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!parenExprParenParser) {
         self.parenExprParenParser = [TDSequence sequence];
         parenExprParenParser.name = @"parenExprParen";
@@ -1685,7 +1600,6 @@
 
 //  identifier          = Word;
 - (TDParser *)identifierParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!identifierParser) {
         self.identifierParser = [TDWord word];
         identifierParser.name = @"identifier";
@@ -1695,7 +1609,6 @@
 
 
 - (TDParser *)stringParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
         stringParser.name = @"string";
@@ -1705,7 +1618,6 @@
 
 
 - (TDParser *)numberParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!numberParser) {
         self.numberParser = [TDNum num];
         numberParser.name = @"number";
@@ -1718,7 +1630,6 @@
 #pragma mark keywords
 
 - (TDParser *)ifParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ifParser) {
         self.ifParser = [TDLiteral literalWithString:@"if"];
         ifParser.name = @"if";
@@ -1728,7 +1639,6 @@
 
 
 - (TDParser *)elseParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!elseParser) {
         self.elseParser = [TDLiteral literalWithString:@"else"];
         elseParser.name = @"else";
@@ -1738,7 +1648,6 @@
 
 
 - (TDParser *)whileParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!whileParser) {
         self.whileParser = [TDLiteral literalWithString:@"while"];
         whileParser.name = @"while";
@@ -1748,7 +1657,6 @@
 
 
 - (TDParser *)forParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!forParser) {
         self.forParser = [TDLiteral literalWithString:@"for"];
         forParser.name = @"for";
@@ -1758,7 +1666,6 @@
 
 
 - (TDParser *)inParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!inParser) {
         self.inParser = [TDLiteral literalWithString:@"in"];
         inParser.name = @"in";
@@ -1768,7 +1675,6 @@
 
 
 - (TDParser *)breakParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!breakParser) {
         self.breakParser = [TDLiteral literalWithString:@"break"];
         breakParser.name = @"break";
@@ -1778,7 +1684,6 @@
 
 
 - (TDParser *)continueParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!continueParser) {
         self.continueParser = [TDLiteral literalWithString:@"continue"];
         continueParser.name = @"continue";
@@ -1788,7 +1693,6 @@
 
 
 - (TDParser *)withParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!withParser) {
         self.withParser = [TDLiteral literalWithString:@"with"];
         withParser.name = @"with";
@@ -1798,7 +1702,6 @@
 
 
 - (TDParser *)returnParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!returnParser) {
         self.returnParser = [TDLiteral literalWithString:@"return"];
         returnParser.name = @"return";
@@ -1808,7 +1711,6 @@
 
 
 - (TDParser *)varParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!varParser) {
         self.varParser = [TDLiteral literalWithString:@"var"];
         varParser.name = @"var";
@@ -1818,7 +1720,6 @@
 
 
 - (TDParser *)deleteParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!deleteParser) {
         self.deleteParser = [TDLiteral literalWithString:@"delete"];
         deleteParser.name = @"delete";
@@ -1828,7 +1729,6 @@
 
 
 - (TDParser *)newParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!newParser) {
         self.newParser = [TDLiteral literalWithString:@"new"];
         newParser.name = @"new";
@@ -1838,7 +1738,6 @@
 
 
 - (TDParser *)thisParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!thisParser) {
         self.thisParser = [TDLiteral literalWithString:@"this"];
         thisParser.name = @"this";
@@ -1848,7 +1747,6 @@
 
 
 - (TDParser *)falseParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!falseParser) {
         self.falseParser = [TDLiteral literalWithString:@"false"];
         falseParser.name = @"false";
@@ -1858,7 +1756,6 @@
 
 
 - (TDParser *)trueParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!trueParser) {
         self.trueParser = [TDLiteral literalWithString:@"true"];
         trueParser.name = @"true";
@@ -1868,7 +1765,6 @@
 
 
 - (TDParser *)nullParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!nullParser) {
         self.nullParser = [TDLiteral literalWithString:@"null"];
         nullParser.name = @"null";
@@ -1878,7 +1774,6 @@
 
 
 - (TDParser *)undefinedParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!undefinedParser) {
         self.undefinedParser = [TDLiteral literalWithString:@"undefined"];
         undefinedParser.name = @"undefined";
@@ -1888,7 +1783,6 @@
 
 
 - (TDParser *)voidParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!voidParser) {
         self.voidParser = [TDLiteral literalWithString:@"void"];
         voidParser.name = @"void";
@@ -1898,7 +1792,6 @@
 
 
 - (TDParser *)typeofParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!typeofParser) {
         self.typeofParser = [TDLiteral literalWithString:@"typeof"];
         typeofParser.name = @"typeof";
@@ -1908,7 +1801,6 @@
 
 
 - (TDParser *)instanceofParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!instanceofParser) {
         self.instanceofParser = [TDLiteral literalWithString:@"instanceof"];
         instanceofParser.name = @"instanceof";
@@ -1918,7 +1810,6 @@
 
 
 - (TDParser *)functionParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!functionParser) {
         self.functionParser = [TDLiteral literalWithString:@"function"];
         functionParser.name = @"function";
@@ -1931,7 +1822,6 @@
 #pragma mark single-char symbols
 
 - (TDParser *)orParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!orParser) {
         self.orParser = [TDSymbol symbolWithString:@"||"];
         orParser.name = @"or";
@@ -1941,7 +1831,6 @@
 
 
 - (TDParser *)andParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!andParser) {
         self.andParser = [TDSymbol symbolWithString:@"&&"];
         andParser.name = @"and";
@@ -1951,7 +1840,6 @@
 
 
 - (TDParser *)neParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!neParser) {
         self.neParser = [TDSymbol symbolWithString:@"!="];
         neParser.name = @"ne";
@@ -1961,7 +1849,6 @@
 
 
 - (TDParser *)isNotParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!isNotParser) {
         self.isNotParser = [TDSymbol symbolWithString:@"!=="];
         isNotParser.name = @"isNot";
@@ -1971,7 +1858,6 @@
 
 
 - (TDParser *)eqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!eqParser) {
         self.eqParser = [TDSymbol symbolWithString:@"=="];
         eqParser.name = @"eq";
@@ -1981,7 +1867,6 @@
 
 
 - (TDParser *)isParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!isParser) {
         self.isParser = [TDSymbol symbolWithString:@"==="];
         isParser.name = @"is";
@@ -1991,7 +1876,6 @@
 
 
 - (TDParser *)leParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!leParser) {
         self.leParser = [TDSymbol symbolWithString:@"<="];
         leParser.name = @"le";
@@ -2001,7 +1885,6 @@
 
 
 - (TDParser *)geParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!geParser) {
         self.geParser = [TDSymbol symbolWithString:@">="];
         geParser.name = @"ge";
@@ -2011,7 +1894,6 @@
 
 
 - (TDParser *)plusPlusParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!plusPlusParser) {
         self.plusPlusParser = [TDSymbol symbolWithString:@"++"];
         plusPlusParser.name = @"plusPlus";
@@ -2021,7 +1903,6 @@
 
 
 - (TDParser *)minusMinusParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!minusMinusParser) {
         self.minusMinusParser = [TDSymbol symbolWithString:@"--"];
         minusMinusParser.name = @"minusMinus";
@@ -2031,7 +1912,6 @@
 
 
 - (TDParser *)plusEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!plusEqParser) {
         self.plusEqParser = [TDSymbol symbolWithString:@"+="];
         plusEqParser.name = @"plusEq";
@@ -2041,7 +1921,6 @@
 
 
 - (TDParser *)minusEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!minusEqParser) {
         self.minusEqParser = [TDSymbol symbolWithString:@"-="];
         minusEqParser.name = @"minusEq";
@@ -2051,7 +1930,6 @@
 
 
 - (TDParser *)timesEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!timesEqParser) {
         self.timesEqParser = [TDSymbol symbolWithString:@"*="];
         timesEqParser.name = @"timesEq";
@@ -2061,7 +1939,6 @@
 
 
 - (TDParser *)divEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!divEqParser) {
         self.divEqParser = [TDSymbol symbolWithString:@"/="];
         divEqParser.name = @"divEq";
@@ -2071,7 +1948,6 @@
 
 
 - (TDParser *)modEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!modEqParser) {
         self.modEqParser = [TDSymbol symbolWithString:@"%="];
         modEqParser.name = @"modEq";
@@ -2081,7 +1957,6 @@
 
 
 - (TDParser *)shiftLeftParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftLeftParser) {
         self.shiftLeftParser = [TDSymbol symbolWithString:@"<<"];
         shiftLeftParser.name = @"shiftLeft";
@@ -2091,7 +1966,6 @@
 
 
 - (TDParser *)shiftRightParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftRightParser) {
         self.shiftRightParser = [TDSymbol symbolWithString:@">>"];
         shiftRightParser.name = @"shiftRight";
@@ -2101,7 +1975,6 @@
 
 
 - (TDParser *)shiftRightExtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftRightExtParser) {
         self.shiftRightExtParser = [TDSymbol symbolWithString:@">>>"];
         shiftRightExtParser.name = @"shiftRightExt";
@@ -2111,7 +1984,6 @@
 
 
 - (TDParser *)shiftLeftEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftLeftEqParser) {
         self.shiftLeftEqParser = [TDSymbol symbolWithString:@"<<="];
         shiftLeftEqParser.name = @"shiftLeftEq";
@@ -2121,7 +1993,6 @@
 
 
 - (TDParser *)shiftRightEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftRightEqParser) {
         self.shiftRightEqParser = [TDSymbol symbolWithString:@">>="];
         shiftRightEqParser.name = @"shiftRightEq";
@@ -2131,7 +2002,6 @@
 
 
 - (TDParser *)shiftRightExtEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!shiftRightExtEqParser) {
         self.shiftRightExtEqParser = [TDSymbol symbolWithString:@">>>="];
         shiftRightExtEqParser.name = @"shiftRightExtEq";
@@ -2141,7 +2011,6 @@
 
 
 - (TDParser *)andEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!andEqParser) {
         self.andEqParser = [TDSymbol symbolWithString:@"&="];
         andEqParser.name = @"andEq";
@@ -2151,7 +2020,6 @@
 
 
 - (TDParser *)xorEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!xorEqParser) {
         self.xorEqParser = [TDSymbol symbolWithString:@"^="];
         xorEqParser.name = @"xorEq";
@@ -2161,7 +2029,6 @@
 
 
 - (TDParser *)orEqParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!orEqParser) {
         self.orEqParser = [TDSymbol symbolWithString:@"|="];
         orEqParser.name = @"orEq";
@@ -2174,7 +2041,6 @@
 #pragma mark single-char symbols
 
 - (TDParser *)openCurlyParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!openCurlyParser) {
         self.openCurlyParser = [TDSymbol symbolWithString:@"{"];
         openCurlyParser.name = @"openCurly";
@@ -2184,7 +2050,6 @@
 
 
 - (TDParser *)closeCurlyParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!closeCurlyParser) {
         self.closeCurlyParser = [TDSymbol symbolWithString:@"}"];
         closeCurlyParser.name = @"closeCurly";
@@ -2194,7 +2059,6 @@
 
 
 - (TDParser *)openParenParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!openParenParser) {
         self.openParenParser = [TDSymbol symbolWithString:@"("];
         openParenParser.name = @"openParen";
@@ -2204,7 +2068,6 @@
 
 
 - (TDParser *)closeParenParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!closeParenParser) {
         self.closeParenParser = [TDSymbol symbolWithString:@")"];
         closeParenParser.name = @"closeParen";
@@ -2214,7 +2077,6 @@
 
 
 - (TDParser *)openBracketParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!openBracketParser) {
         self.openBracketParser = [TDSymbol symbolWithString:@"["];
         openBracketParser.name = @"openBracket";
@@ -2224,7 +2086,6 @@
 
 
 - (TDParser *)closeBracketParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!closeBracketParser) {
         self.closeBracketParser = [TDSymbol symbolWithString:@"]"];
         closeBracketParser.name = @"closeBracket";
@@ -2234,7 +2095,6 @@
 
 
 - (TDParser *)commaParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!commaParser) {
         self.commaParser = [TDSymbol symbolWithString:@","];
         commaParser.name = @"comma";
@@ -2244,7 +2104,6 @@
 
 
 - (TDParser *)dotParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!dotParser) {
         self.dotParser = [TDSymbol symbolWithString:@"."];
         dotParser.name = @"dot";
@@ -2254,7 +2113,6 @@
 
 
 - (TDParser *)semiParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!semiParser) {
         self.semiParser = [TDSymbol symbolWithString:@";"];
         semiParser.name = @"semi";
@@ -2264,7 +2122,6 @@
 
 
 - (TDParser *)colonParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!colonParser) {
         self.colonParser = [TDSymbol symbolWithString:@":"];
         colonParser.name = @"colon";
@@ -2274,7 +2131,6 @@
 
 
 - (TDParser *)equalsParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!equalsParser) {
         self.equalsParser = [TDSymbol symbolWithString:@"="];
         equalsParser.name = @"equals";
@@ -2284,7 +2140,6 @@
 
 
 - (TDParser *)notParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!notParser) {
         self.notParser = [TDSymbol symbolWithString:@"!"];
         notParser.name = @"not";
@@ -2294,7 +2149,6 @@
 
 
 - (TDParser *)ltParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ltParser) {
         self.ltParser = [TDSymbol symbolWithString:@"<"];
         ltParser.name = @"lt";
@@ -2304,7 +2158,6 @@
 
 
 - (TDParser *)gtParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!gtParser) {
         self.gtParser = [TDSymbol symbolWithString:@">"];
         gtParser.name = @"gt";
@@ -2314,7 +2167,6 @@
 
 
 - (TDParser *)ampParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!ampParser) {
         self.ampParser = [TDSymbol symbolWithString:@"&"];
         ampParser.name = @"amp";
@@ -2324,7 +2176,6 @@
 
 
 - (TDParser *)pipeParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!pipeParser) {
         self.pipeParser = [TDSymbol symbolWithString:@"|"];
         pipeParser.name = @"pipe";
@@ -2334,7 +2185,6 @@
 
 
 - (TDParser *)caretParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!caretParser) {
         self.caretParser = [TDSymbol symbolWithString:@"^"];
         caretParser.name = @"caret";
@@ -2344,7 +2194,6 @@
 
 
 - (TDParser *)tildeParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!tildeParser) {
         self.tildeParser = [TDSymbol symbolWithString:@"~"];
         tildeParser.name = @"tilde";
@@ -2354,7 +2203,6 @@
 
 
 - (TDParser *)questionParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!questionParser) {
         self.questionParser = [TDSymbol symbolWithString:@"?"];
         questionParser.name = @"question";
@@ -2364,7 +2212,6 @@
 
 
 - (TDParser *)plusParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!plusParser) {
         self.plusParser = [TDSymbol symbolWithString:@"+"];
         plusParser.name = @"plus";
@@ -2374,7 +2221,6 @@
 
 
 - (TDParser *)minusParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!minusParser) {
         self.minusParser = [TDSymbol symbolWithString:@"-"];
         minusParser.name = @"minus";
@@ -2384,7 +2230,6 @@
 
 
 - (TDParser *)timesParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!timesParser) {
         self.timesParser = [TDSymbol symbolWithString:@"x"];
         timesParser.name = @"times";
@@ -2394,7 +2239,6 @@
 
 
 - (TDParser *)divParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!divParser) {
         self.divParser = [TDSymbol symbolWithString:@"/"];
         divParser.name = @"div";
@@ -2404,7 +2248,6 @@
 
 
 - (TDParser *)modParser {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     if (!modParser) {
         self.modParser = [TDSymbol symbolWithString:@"%"];
         modParser.name = @"mod";
