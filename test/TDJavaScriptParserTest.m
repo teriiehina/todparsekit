@@ -26,6 +26,12 @@
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp.stmtParser bestMatchFor:a];
     TDEqualObjects([res description], @"[;];^");
+
+    s = @"{}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.stmtParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[{, }]{/}^");
 }
 
 
@@ -236,6 +242,33 @@
 }
 
 
+- (void)testExprOptParser {
+    s = @"true";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.exprOptParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[true]true^");
+}
+
+
+//- (void)testForParenStmtParser {
+//    s = @"for( ; true; true) {}";
+//    jsp.tokenizer.string = s;
+//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    res = [jsp.forParenStmtParser bestMatchFor:a];
+//    TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
+//}
+//
+//
+//- (void)testForBeginStmtParser {
+//    s = @"for(var i = 0; true; true) {}";
+//    jsp.tokenizer.string = s;
+//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    res = [jsp.forBeginStmtParser bestMatchFor:a];
+//    TDEqualObjects([res description], @"[for, (var, i, =, 0, ;, true, ;, true, ), {, }]for/(/var/i/=/0/;/true/;/true/)/{/}^");
+//}
+
+
 - (void)testUndefinedParser {
     s = @"undefined";
     jsp.tokenizer.string = s;
@@ -338,13 +371,12 @@
 }
 
 
-
 - (void)testForLoop {
-//    s = @"for( ; true; ) {}";
+//    s = @"for( ; true; true) {}";
 //    jsp.tokenizer.string = s;
 //    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
 //    res = [jsp bestMatchFor:a];
-//    TDEqualObjects([res description], @"[for, (, var, i, =, 0, ;, i, <, 10, ;, i, ++, ), {, alert, (, i, ), ;, }]for/(/var/i/=/0/;/i/</10/;/i/++/)/{/alert/(/i/)/;/}^");
+//    TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
 
 //    s = @"for(var i=0; i<10; i++) {alert(i);}";
 //    jsp.tokenizer.string = s;
