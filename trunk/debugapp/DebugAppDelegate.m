@@ -411,12 +411,13 @@
 
 - (void)doJSParser {
     TDJavaScriptParser *jsp = [TDJavaScriptParser parser];
-    NSString *s = @"'foo'";
+    NSString *s = @"for( ; true; true) {}";
     jsp.tokenizer.string = s;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    id res = [jsp.stringParser completeMatchFor:a];
+    id res = [jsp bestMatchFor:a];
     //TDEqualObjects([res description], @"['foo']'foo'^");
     
+    //TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
 }
 
 - (IBAction)run:(id)sender {
