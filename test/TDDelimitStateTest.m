@@ -207,7 +207,6 @@
     [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
-    
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"=");
     TDEquals(tok.floatValue, (CGFloat)0.0);
@@ -294,7 +293,7 @@
 }
 
 
-- (void)testLtDollarDollar123DollarHashNumbersAllowed {
+- (void)testLtDollarDollar123DollarHashDecimalDigitAllowed {
     s = @"$$123$#";
     t.string = s;
     NSCharacterSet *cs = [NSCharacterSet decimalDigitCharacterSet];
@@ -306,6 +305,63 @@
     
     TDTrue(tok.isDelimitedString);
     TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollar123DollarHashAlphanumericAllowed {
+    s = @"$$123$#";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet alphanumericCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollar123DollarHashWhitespaceAllowed {
+    s = @"$$123$#";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet whitespaceCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isNumber);
+    TDEqualObjects(tok.stringValue, @"123");
+    TDEquals(tok.floatValue, (CGFloat)123.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"#");
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
