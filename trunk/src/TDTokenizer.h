@@ -18,6 +18,7 @@
 @class TDSymbolState;
 @class TDWhitespaceState;
 @class TDWordState;
+@class TDDelimitState;
 @class TDReader;
 
 /*!
@@ -54,6 +55,7 @@
     TDSymbolState *symbolState;
     TDWhitespaceState *whitespaceState;
     TDWordState *wordState;
+    TDDelimitState *delimitState;
 }
 
 /*!
@@ -131,4 +133,10 @@
     @brief      The state this tokenizer uses to build words.
 */
 @property (nonatomic, retain) TDWordState *wordState;
+
+/*!
+    @property   delimitState
+    @brief      The state this tokenizer uses to build delimited strings.
+*/
+@property (nonatomic, retain) TDDelimitState *delimitState;
 @end

@@ -52,6 +52,7 @@
 #import <TDParseKit/TDTokenizerState.h>
 #import <TDParseKit/TDNumberState.h>
 #import <TDParseKit/TDQuoteState.h>
+#import <TDParseKit/TDDelimitState.h>
 #import <TDParseKit/TDCommentState.h>
 #import <TDParseKit/TDSingleLineCommentState.h>
 #import <TDParseKit/TDMultiLineCommentState.h>
