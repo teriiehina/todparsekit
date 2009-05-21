@@ -126,36 +126,37 @@
 }
 
 
-//- (void)testLtHashFooGtWithFAllowed {
-//    s = @"<#foo>";
-//    t.string = s;
-//    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
-//    
-//    [t setTokenizerState:delimitState from:'<' to:'<'];
-//    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
-//    
-//    tok = [t nextToken];
-//    
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"<");
-//    TDEquals(tok.floatValue, (CGFloat)0.0);
-//    
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"<#");
-//    TDEquals(tok.floatValue, (CGFloat)0.0);
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isWord);
-//    TDEqualObjects(tok.stringValue, @"foo");
-//    TDEquals(tok.floatValue, (CGFloat)0.0);
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @">");
-//    TDEquals(tok.floatValue, (CGFloat)0.0);
-//    
-//    tok = [t nextToken];
-//    TDEqualObjects(tok, [TDToken EOFToken]);
-//}
+- (void)testLtHashFooGtWithFAllowed {
+    s = @"<#foo>";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
+    
+    [t setTokenizerState:delimitState from:'<' to:'<'];
+    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"<");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"#");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"foo");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @">");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
 
 @end
