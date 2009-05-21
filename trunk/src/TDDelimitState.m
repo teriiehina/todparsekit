@@ -142,7 +142,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
 }
 
 @synthesize rootNode;
