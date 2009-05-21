@@ -81,6 +81,23 @@
 }
 
 
+- (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol {
+    NSUInteger i = [startSymbols indexOfObject:startSymbol];
+    return [endSymbols objectAtIndex:i];
+}
+
+
+- (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol {
+    NSCharacterSet *characterSet = nil;
+    NSUInteger i = [startSymbols indexOfObject:startSymbol];
+    id csOrNull = [characterSets objectAtIndex:i];
+    if ([NSNull null] != csOrNull) {
+        characterSet = csOrNull;
+    }
+    return characterSet;
+}
+
+
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
@@ -95,19 +112,11 @@
         return [self unwindReader:r andReturnSymbolTokenFor:cin];
     }
     
-    // get end symbol
-    NSUInteger i = [startSymbols indexOfObject:startSymbol];
-    NSString *endSymbol = [endSymbols objectAtIndex:i];
-    TDUniChar e = [endSymbol characterAtIndex:0];
-
-    // get allowed character set
-    NSCharacterSet *characterSet = nil;
-    id csOrNull = [characterSets objectAtIndex:i];
-    if ([NSNull null] != csOrNull) {
-        characterSet = csOrNull;
-    }
+    NSString *endSymbol = [self endSymbolForStartSymbol:startSymbol];
+    NSCharacterSet *characterSet = [self allowedCharacterSetForStartSymbol:startSymbol];
     
     TDUniChar c;
+    TDUniChar e = [endSymbol characterAtIndex:0];
     while (1) {
         c = [r read];
         if (TDEOF == c) {
@@ -137,7 +146,6 @@
         // check if char is in allowed character set (if given)
         if (characterSet) {
             if (![characterSet characterIsMember:c]) {
-                NSLog(@"!!!!!!!!!!!!!!!! not allowed: %C, buff: %@", c, [self bufferedString]);
                 // if not, unwind and return a symbol tok for cin
                 return [self unwindReader:r andReturnSymbolTokenFor:cin];
             }
