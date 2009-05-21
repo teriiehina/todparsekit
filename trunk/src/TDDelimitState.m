@@ -137,7 +137,7 @@
         // check if char is in allowed character set (if given)
         if (characterSet) {
             if (![characterSet characterIsMember:c]) {
-                NSLog(@"!!!!!!!!!!!!!!!! not allowed: %C, in %@", c, characterSet);
+                NSLog(@"!!!!!!!!!!!!!!!! not allowed: %C, buff: %@", c, [self bufferedString]);
                 // if not, unwind and return a symbol tok for cin
                 return [self unwindReader:r andReturnSymbolTokenFor:cin];
             }
