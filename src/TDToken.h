@@ -16,6 +16,9 @@
     @var        TDTokenTypeQuotedString A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
     @var        TDTokenTypeSymbol A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
     @var        TDTokenTypeWord A constant indicating that a token is a word, like <tt>cat</tt>.
+    @var        TDTokenTypeWhitespace A constant indicating that a token is whitespace, like <tt>\t</tt>.
+    @var        TDTokenTypeComment A constant indicating that a token is a comment, like <tt>// this is a hack</tt>.
+    @var        TDTokenTypeDelimtedString A constant indicating that a token is a delimitedString, like <tt><#foo></tt>.
 */
 typedef enum {
     TDTokenTypeEOF,
@@ -44,6 +47,7 @@ typedef enum {
     BOOL word;
     BOOL whitespace;
     BOOL comment;
+    BOOL delimitedString;
     
     id value;
 }
@@ -121,6 +125,12 @@ typedef enum {
     @brief      True if this token is a comment. getter=isComment
 */
 @property (nonatomic, readonly, getter=isComment) BOOL comment;
+
+/*!
+    @property   delimitedString
+    @brief      True if this token is a delimited string. getter=isDelimitedString
+*/
+@property (nonatomic, readonly, getter=isDelimitedString) BOOL delimitedString;
 
 /*!
     @property   tokenType

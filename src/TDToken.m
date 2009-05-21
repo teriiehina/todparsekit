@@ -82,6 +82,7 @@ static TDTokenEOF *EOFToken = nil;
 @property (nonatomic, readwrite, getter=isWord) BOOL word;
 @property (nonatomic, readwrite, getter=isWhitespace) BOOL whitespace;
 @property (nonatomic, readwrite, getter=isComment) BOOL comment;
+@property (nonatomic, readwrite, getter=isDelimitedString) BOOL delimitedString;
 
 @property (nonatomic, readwrite) CGFloat floatValue;
 @property (nonatomic, readwrite, copy) NSString *stringValue;
@@ -115,6 +116,7 @@ static TDTokenEOF *EOFToken = nil;
         self.word = (TDTokenTypeWord == t);
         self.whitespace = (TDTokenTypeWhitespace == t);
         self.comment = (TDTokenTypeComment == t);
+        self.delimitedString = (TDTokenTypeDelimitedString == t);
     }
     return self;
 }
@@ -197,6 +199,8 @@ static TDTokenEOF *EOFToken = nil;
         typeString = @"Whitespace";
     } else if (self.isComment) {
         typeString = @"Comment";
+    } else if (self.isDelimitedString) {
+        typeString = @"Delimited String";
     }
     return [NSString stringWithFormat:@"<%@ %C%@%C>", typeString, 0x00AB, self.value, 0x00BB];
 }
@@ -212,6 +216,7 @@ static TDTokenEOF *EOFToken = nil;
 @synthesize word;
 @synthesize whitespace;
 @synthesize comment;
+@synthesize delimitedString;
 @synthesize floatValue;
 @synthesize stringValue;
 @synthesize tokenType;

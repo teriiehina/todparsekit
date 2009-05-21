@@ -44,6 +44,7 @@
         self.symbolState     = [[[TDSymbolState alloc] init] autorelease];
         self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
         self.wordState       = [[[TDWordState alloc] init] autorelease];
+        self.delimitState    = [[[TDDelimitState alloc] init] autorelease];
         
         [symbolState add:@"<="];
         [symbolState add:@">="];
@@ -88,6 +89,7 @@
     self.symbolState = nil;
     self.whitespaceState = nil;
     self.wordState = nil;
+    self.delimitState = nil;
     [super dealloc];
 }
 
@@ -193,6 +195,7 @@
 @synthesize symbolState;
 @synthesize whitespaceState;
 @synthesize wordState;
+@synthesize delimitState;
 @synthesize string;
 @synthesize tokenizerStates;
 @end
