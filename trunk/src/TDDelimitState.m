@@ -21,6 +21,8 @@
 @end
 
 @interface TDDelimitState ()
+- (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol;
+- (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol;
 - (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *startSymbols;
@@ -82,12 +84,14 @@
 
 
 - (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol {
+    NSParameterAssert([startSymbols containsObject:startSymbol]);
     NSUInteger i = [startSymbols indexOfObject:startSymbol];
     return [endSymbols objectAtIndex:i];
 }
 
 
 - (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol {
+    NSParameterAssert([startSymbols containsObject:startSymbol]);
     NSCharacterSet *characterSet = nil;
     NSUInteger i = [startSymbols indexOfObject:startSymbol];
     id csOrNull = [characterSets objectAtIndex:i];
@@ -95,6 +99,16 @@
         characterSet = csOrNull;
     }
     return characterSet;
+}
+
+
+- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin {
+    NSUInteger i = 0;
+    NSUInteger len = [[self bufferedString] length];
+    for ( ; i < len - 1; i++) {
+        [r unread];
+    }
+    return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];    
 }
 
 
@@ -157,16 +171,6 @@
     }
     
     return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
-}
-
-
-- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin {
-    NSUInteger i = 0;
-    NSUInteger len = [[self bufferedString] length];
-    for ( ; i < len - 1; i++) {
-        [r unread];
-    }
-    return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];    
 }
 
 @synthesize rootNode;
