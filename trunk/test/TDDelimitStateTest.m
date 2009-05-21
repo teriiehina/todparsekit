@@ -82,4 +82,23 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+- (void)testLtHashFooGtWithFOAllowed {
+    s = @"<#foo>";
+    r.string = s;
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
+    
+    [t setTokenizerState:delimitState from:'<' to:'<'];
+    [delimitState addStartSymbol:@"<" endSymbol:@">" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end
