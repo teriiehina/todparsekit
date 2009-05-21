@@ -409,6 +409,21 @@
 }
 
 
+- (void)doDelimitedString {
+    NSString *s = @"<#foo>";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
+    
+    [t setTokenizerState:t.delimitState from:'<' to:'<'];
+    [t.delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    
+    TDToken *tok = [t nextToken];
+    
+    //TDTrue(tok.isDelimitedString);
+    
+}
+
+
 - (void)doJSParser {
     TDJavaScriptParser *jsp = [TDJavaScriptParser parser];
     NSString *s = @"for( ; true; true) {}";
@@ -428,7 +443,7 @@
 //    [self doJsonParser];
 //    [self doRubyHashParser];
 
-    [self doJSParser];
+//    [self doJSParser];
     
 //    [self doProf];
 
@@ -445,8 +460,9 @@
 //    [self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
+    [self doDelimitedString];
     
-    [self doFactory];
+//    [self doFactory];
     
     [pool drain];
 }

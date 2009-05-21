@@ -10,7 +10,6 @@
 
 @interface TDDelimitStateTest : SenTestCase {
     TDDelimitState *delimitState;
-    TDReader *r;
     TDTokenizer *t;
     NSString *s;
     TDToken *tok;
