@@ -21,6 +21,7 @@
 @end
 
 @interface TDDelimitState ()
+- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *startSymbols;
 @property (nonatomic, retain) NSMutableArray *endSymbols;
@@ -84,21 +85,22 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
     
+    [self reset];
+
     NSString *startSymbol = [rootNode nextSymbol:r startingWith:cin];
+    [self appendString:startSymbol];
+
+    // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
     if (!startSymbol.length || ![startSymbols containsObject:startSymbol]) {
-        NSUInteger i = 0;
-        for ( ; i < startSymbol.length - 1; i++) {
-            [r unread];
-        }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
+        return [self unwindReader:r andReturnSymbolTokenFor:cin];
     }
     
-    [self reset];
-    [self appendString:startSymbol];
-    
+    // get end symbol
     NSUInteger i = [startSymbols indexOfObject:startSymbol];
     NSString *endSymbol = [endSymbols objectAtIndex:i];
     TDUniChar e = [endSymbol characterAtIndex:0];
+
+    // get allowed character set
     NSCharacterSet *characterSet = nil;
     id csOrNull = [characterSets objectAtIndex:i];
     if ([NSNull null] != csOrNull) {
@@ -115,12 +117,6 @@
             break;
         }
         
-        if (characterSet) {
-            if (![characterSet characterIsMember:c]) {
-                // TODO unwind
-            }
-        }
-        
         if (e == c) {
             NSString *peek = [rootNode nextSymbol:r startingWith:e];
             if ([endSymbol isEqualToString:peek]) {
@@ -135,7 +131,17 @@
                 }
             }
         }
+
         [self append:c];
+
+        // check if char is in allowed character set (if given)
+        if (characterSet) {
+            if (![characterSet characterIsMember:c]) {
+                NSLog(@"!!!!!!!!!!!!!!!! not allowed: %C, in %@", c, characterSet);
+                // if not, unwind and return a symbol tok for cin
+                return [self unwindReader:r andReturnSymbolTokenFor:cin];
+            }
+        }
     }
     
     if (TDEOF != c) {
@@ -143,6 +149,16 @@
     }
     
     return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
+}
+
+
+- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin {
+    NSUInteger i = 0;
+    NSUInteger len = [[self bufferedString] length];
+    for ( ; i < len - 1; i++) {
+        [r unread];
+    }
+    return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];    
 }
 
 @synthesize rootNode;
