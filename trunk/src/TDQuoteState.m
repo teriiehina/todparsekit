@@ -34,7 +34,7 @@
         c = [r read];
         if (TDEOF == c) {
             c = cin;
-            if (balancesEOFTerminatedQuotes) {
+            if (balancesEOFTerminatedStrings) {
                 [self append:c];
             }
         } else {
@@ -46,5 +46,5 @@
     return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
 }
 
-@synthesize balancesEOFTerminatedQuotes;
+@synthesize balancesEOFTerminatedStrings;
 @end
