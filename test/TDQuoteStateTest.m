@@ -43,7 +43,7 @@
 - (void)testQuotedStringRepairEOFTerminated {
     s = @"'stuff";
     r.string = s;
-    quoteState.balancesEOFTerminatedQuotes = YES;
+    quoteState.balancesEOFTerminatedStrings = YES;
     TDToken *tok = [quoteState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@"'stuff'", tok.stringValue);
 }

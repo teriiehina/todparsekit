@@ -24,12 +24,12 @@ static JSValueRef TDQuoteState_toString(JSContextRef ctx, JSObjectRef function, 
 
 static JSValueRef TDQuoteState_getBalancesEOFTerminatedQuotes(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     TDQuoteState *data = JSObjectGetPrivate(this);
-    return JSValueMakeBoolean(ctx, data.balancesEOFTerminatedQuotes);
+    return JSValueMakeBoolean(ctx, data.balancesEOFTerminatedStrings);
 }
 
 static bool TDQuoteState_setBalancesEOFTerminatedQuotes(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     TDQuoteState *data = JSObjectGetPrivate(this);
-    data.balancesEOFTerminatedQuotes = JSValueToBoolean(ctx, value);
+    data.balancesEOFTerminatedStrings = JSValueToBoolean(ctx, value);
     return true;
 }
 

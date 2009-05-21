@@ -239,7 +239,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     t.whitespaceState.reportsWhitespaceTokens = [self boolForTokenForKey:@"@reportsWhitespaceTokens"];
     t.commentState.reportsCommentTokens = [self boolForTokenForKey:@"@reportsCommentTokens"];
 	t.commentState.balancesEOFTerminatedComments = [self boolForTokenForKey:@"balancesEOFTerminatedComments"];
-	t.quoteState.balancesEOFTerminatedQuotes = [self boolForTokenForKey:@"@balancesEOFTerminatedQuotes"];
+	t.quoteState.balancesEOFTerminatedStrings = [self boolForTokenForKey:@"@balancesEOFTerminatedQuotes"];
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
