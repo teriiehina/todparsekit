@@ -161,12 +161,12 @@
 
 
 - (void)testLtHashFooHashGt {
-    s = @"<#foo#>";
+    s = @"=#foo#=";
     t.string = s;
     NSCharacterSet *cs = nil;
     
-    [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@"#>" allowedCharacterSet:cs];
+    [t setTokenizerState:delimitState from:'=' to:'='];
+    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -180,12 +180,12 @@
 
 
 - (void)testLtHashFooHashGtWithFOAllowed {
-    s = @"<#foo#>";
+    s = @"=#foo#=";
     t.string = s;
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
     
-    [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@"#>" allowedCharacterSet:cs];
+    [t setTokenizerState:delimitState from:'=' to:'='];
+    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -199,17 +199,17 @@
 
 
 - (void)testLtHashFooHashGtWithFAllowed {
-    s = @"<#foo#>";
+    s = @"=#foo#=";
     t.string = s;
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
     
-    [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@"#>" allowedCharacterSet:cs];
+    [t setTokenizerState:delimitState from:'=' to:'='];
+    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
     TDTrue(tok.isSymbol);
-    TDEqualObjects(tok.stringValue, @"<");
+    TDEqualObjects(tok.stringValue, @"=");
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
@@ -229,7 +229,83 @@
     
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
-    TDEqualObjects(tok.stringValue, @">");
+    TDEqualObjects(tok.stringValue, @"=");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollar123Dollar {
+    s = @"$123$";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$" endSymbol:@"$" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollar123DollarDollar {
+    s = @"$$123$$";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$$" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollar123DollarHash {
+    s = @"$$123$#";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollar123DollarHashNumbersAllowed {
+    s = @"$$123$#";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet decimalDigitCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];

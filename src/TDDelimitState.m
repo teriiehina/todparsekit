@@ -158,11 +158,9 @@
         [self append:c];
 
         // check if char is in allowed character set (if given)
-        if (characterSet) {
-            if (![characterSet characterIsMember:c]) {
-                // if not, unwind and return a symbol tok for cin
-                return [self unwindReader:r andReturnSymbolTokenFor:cin];
-            }
+        if (characterSet && ![characterSet characterIsMember:c]) {
+            // if not, unwind and return a symbol tok for cin
+            return [self unwindReader:r andReturnSymbolTokenFor:cin];
         }
     }
     
