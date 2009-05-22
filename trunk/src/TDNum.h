@@ -11,7 +11,7 @@
 
 /*!
     @class      TDNum 
-    @brief      A Num matches a number from a token assembly.
+    @brief      A <tt>TDNum</tt> matches a number from a token assembly.
 */
 @interface TDNum : TDTerminal {
 

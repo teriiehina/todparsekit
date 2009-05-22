@@ -11,7 +11,7 @@
 
 /*!
     @class      TDComment
-    @brief      A Comment matches a comment from a token assembly.
+    @brief      A <tt>TDComment</tt> matches a comment from a token assembly.
 */
 @interface TDComment : TDTerminal {
 
