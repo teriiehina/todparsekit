@@ -23,7 +23,7 @@
 @interface TDDelimitState ()
 - (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol;
 - (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol;
-- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin;
+- (TDToken *)symbolTokenFor:(TDUniChar)cin;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *startSymbols;
 @property (nonatomic, retain) NSMutableArray *endSymbols;
@@ -74,7 +74,7 @@
 }
 
 
-- (void)unreadSymbol:(NSString *)s fromReader:(TDReader *)r {
+- (void)unreadString:(NSString *)s fromReader:(TDReader *)r {
     NSUInteger len = s.length;
     NSUInteger i = 0;
     for ( ; i < len - 1; i++) {
@@ -102,12 +102,7 @@
 }
 
 
-- (TDToken *)unwindReader:(TDReader *)r andReturnSymbolTokenFor:(TDUniChar)cin {
-    NSUInteger i = 0;
-    NSUInteger len = [[self bufferedString] length];
-    for ( ; i < len - 1; i++) {
-        [r unread];
-    }
+- (TDToken *)symbolTokenFor:(TDUniChar)cin {
     return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];    
 }
 
@@ -116,16 +111,17 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
     
-    [self reset];
-
     NSString *startSymbol = [rootNode nextSymbol:r startingWith:cin];
-    [self appendString:startSymbol];
 
     // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
     if (!startSymbol.length || ![startSymbols containsObject:startSymbol]) {
-        return [self unwindReader:r andReturnSymbolTokenFor:cin];
+        [self unreadString:startSymbol fromReader:r];
+        return [self symbolTokenFor:cin];
     }
     
+    [self reset];
+    [self appendString:startSymbol];
+
     NSString *endSymbol = [self endSymbolForStartSymbol:startSymbol];
     NSCharacterSet *characterSet = [self allowedCharacterSetForStartSymbol:startSymbol];
     
@@ -147,7 +143,7 @@
                 c = [r read];
                 break;
             } else {
-                [self unreadSymbol:peek fromReader:r];
+                [self unreadString:peek fromReader:r];
                 if (e != [peek characterAtIndex:0]) {
                     [self append:c];
                     c = [r read];
@@ -160,7 +156,8 @@
         // check if char is in allowed character set (if given)
         if (characterSet && ![characterSet characterIsMember:c]) {
             // if not, unwind and return a symbol tok for cin
-            return [self unwindReader:r andReturnSymbolTokenFor:cin];
+            [self unreadString:[self bufferedString] fromReader:r];
+            return [self symbolTokenFor:cin];
         }
     }
     
