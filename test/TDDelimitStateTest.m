@@ -331,12 +331,12 @@
 }
 
 
-- (void)testLtDollarDollar123DollarHashAlphanumericAndWhitespaceAllowed {
+- (void)testLtDollarDollar123DollarHashAlphanumericAndWhitespaceAndNewlineAllowed {
     s = @"$$123 456\t789\n0$#";
     t.string = s;
     NSMutableCharacterSet *cs = [[[NSCharacterSet alphanumericCharacterSet] mutableCopy] autorelease];
     [cs formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
-    [cs addCharactersInString:@"\n"];
+    [cs formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
     [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
@@ -388,5 +388,22 @@
     tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
+
+
+//- (void)testLtDollarDollarDollarHash {
+//    s = @"$$$#";
+//    t.string = s;
+//    NSCharacterSet *cs = nil;
+//    
+//    [t setTokenizerState:delimitState from:'$' to:'$'];
+//    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+//    
+//    TDTrue(tok.isDelimitedString);
+//    TDEqualObjects(tok.stringValue, s);
+//    TDEquals(tok.floatValue, (CGFloat)0.0);
+//    
+//    tok = [t nextToken];
+//    TDEqualObjects(tok, [TDToken EOFToken]);
+//}
 
 @end
