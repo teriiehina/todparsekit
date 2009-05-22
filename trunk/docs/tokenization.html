@@ -88,6 +88,7 @@ while ((tok = [t nextToken]) != eof) {
 	<li><tt>TDTokenTypeSymbol</tt></li>
 	<li><tt>TDTokenTypeWhitespace</tt></li>
 	<li><tt>TDTokenTypeComment</tt></li>
+	<li><tt>TDTokenTypeDelimitedString</tt></li>
 </ul>
 	
 <p><tt>TDTokens</tt> also have corresponding <tt>BOOL</tt> properties for convenience (<tt>isWord</tt>, <tt>isNumber</tt>, etc.)</p>
@@ -115,6 +116,7 @@ while ((tok = [t nextToken]) != eof) {
 				<tt>@property (readonly) BOOL isQuotedString;</tt><br/>
 				<tt>@property (readonly) BOOL isWhitespace;</tt><br/>
 				<tt>@property (readonly) BOOL isComment;</tt><br/>
+				<tt>@property (readonly) BOOL isDelimitedString;</tt><br/>
 			</p>
 			<p>
 				<tt>...</tt><br/>
@@ -140,13 +142,23 @@ while ((tok = [t nextToken]) != eof) {
 <p><tt>&laquo;Blast-off&raquo;</tt> is recognized as a single <tt>Word</tt> token despite containing a symbol character (<tt>&laquo;-&raquo;</tt>) that would normally signal the start of a new <tt>Symbol</tt> token. By default, <tt>TDTokenzier</tt> allows <tt>Word</tt> tokens to <b>contain</b> (but <b>not start with</b>) several symbol and number characters: <tt>&laquo;-&raquo;</tt>, <tt>&laquo;_&raquo;</tt>, <tt>&laquo;'&raquo;</tt>, <tt>&laquo;0&raquo;</tt>-<tt>&laquo;9&raquo;</tt>. The consequence of this behavior is that <tt>TDTokenizer</tt> will recognize the follwing strings as individual <tt>Word</tt> tokens by default: <tt>&laquo;it's&raquo;</tt>, <tt>&laquo;first_name&raquo;</tt>, <tt>&laquo;sat-yr-9&raquo;</tt> <tt>&laquo;Rodham-Clinton&raquo;</tt>. Again, you can configure <tt>TDTokenizer</tt> to alter this default behavior.</p>
 
 <h4>Quoted String</h4>
-<p><tt>TDTokenizer</tt> produces <tt>Quoted String</tt> tokens for substrings enclosed in quote delimiter characters. The default delimiters are single- or double-quotes (<tt>&laquo;'&raquo;</tt> or <tt>&laquo;"&raquo;</tt>). The quote delimiter characters are configurable (see below). Note that the <tt>stringValue</tt> of <tt>Quoted String</tt> tokens include the quote delimiter characters (&laquo;'Woo-hoo!'&raquo;).</p>
+<p><tt>TDTokenizer</tt> produces <tt>Quoted String</tt> tokens for substrings enclosed in quote delimiter characters. The default delimiters are single- or double-quotes (<tt>&laquo;'&raquo;</tt> or <tt>&laquo;"&raquo;</tt>). The quote delimiter characters may be changed (see below), but must be a single character. Note that the <tt>stringValue</tt> of <tt>Quoted String</tt> tokens include the quote delimiter characters (&laquo;'Woo-hoo!'&raquo;).</p>
 
 <h4>Whitespace</h4>
 <p>By default, whitespace characters are silently consumed by <tt>TDTokenizer</tt>, and <tt>Whitespace</tt> tokens are never emitted. However, you can configure which characters are considered <tt>Whitespace</tt> characters or even ask <tt>TDTokenizer</tt> to return <tt>Whitespace</tt> tokens containing the literal whitespace <tt>stringValue</tt>s by setting: <tt>t.whitespaceState.reportsWhitespaceTokens = YES</tt>.</p>
 
 <h4>Comment</h4>
-<p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>//</tt>) and C++-style (<tt>/* */</tt>) comments and silently removes the associated comments from the output rather than producing <tt>Comment</tt> tokens. See below for steps to either report <tt>Comment</tt> tokens or to turn off comments recognition altogether.</p>
+<p>By default, <tt>TDTokenizer</tt> recognizes C-style (<tt>&laquo;//&raquo;</tt>) and C++-style (<tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>) comments and silently removes the associated comments from the output rather than producing <tt>Comment</tt> tokens. See below for steps to either report <tt>Comment</tt> tokens or to turn off comments recognition altogether.</p>
+
+<h4>Delimited String</h4>
+<p>The <tt>Delimited String</tt> token type is a powerful feature of <tt>TDParseKit</tt> which can be used much like a regular expression. Use the <tt>Delimited String</tt> token type to ask <tt>TDTokenizer</tt> to recognize tokens with arbitrary start and end symbol strings much like a <tt>Quoted String</tt> but with more power:</p>
+
+<ul>
+    <li>The start and end symbols may be multi-char (e.g. <tt>&laquo;&lt;#&raquo;</tt> <tt>&laquo;#&gt;&raquo;</tt>)</li>
+    <li>The start and end symbols need not match (e.g. <tt>&laquo;&lt;?php&raquo;</tt> <tt>&laquo;?&gt;&raquo;</tt>)</li>
+    <li>The characters allowed within the delimited string may be specified using an <tt>NSCharacterSet</tt></li>
+</ul>
+
 
 <a name="custom-behavior"></a>
 <h3>Customizing <tt>TDTokenizer</tt> behavior</h3>
@@ -158,9 +170,8 @@ while ((tok = [t nextToken]) != eof) {
 	<li>Which characters are allowed within the current token being created?</li>
 </ol>
 
+
 <p><tt>TDTokenizer</tt>'s behavior with respect to these two types of decisions is totally configurable. Let's tackle them, starting with the second question first.</p>
-
-
 
 <h4>Changing which characters are allowed within a token of a particular type</h4>
 
@@ -180,6 +191,7 @@ while ((tok = [t nextToken]) != eof) {
 				<tt>@property (readonly, retain) TDSymbolState *symbolState;</tt><br/>
 				<tt>@property (readonly, retain) TDWhitespaceState *whitespaceState;</tt><br/>
 				<tt>@property (readonly, retain) TDCommentState *commentState;</tt><br/>
+				<tt>@property (readonly, retain) TDDelimitState *delimitState;</tt><br/>
 			</p>
 		</td>
 	</tr>
