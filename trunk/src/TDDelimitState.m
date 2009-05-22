@@ -21,6 +21,7 @@
 @end
 
 @interface TDDelimitState ()
+- (void)unreadString:(NSString *)s fromReader:(TDReader *)r;
 - (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol;
 - (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol;
 - (TDToken *)symbolTokenFor:(TDUniChar)cin;

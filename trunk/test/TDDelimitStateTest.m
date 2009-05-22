@@ -390,20 +390,21 @@
 }
 
 
-//- (void)testLtDollarDollarDollarHash {
-//    s = @"$$$#";
-//    t.string = s;
-//    NSCharacterSet *cs = nil;
-//    
-//    [t setTokenizerState:delimitState from:'$' to:'$'];
-//    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
-//    
-//    TDTrue(tok.isDelimitedString);
-//    TDEqualObjects(tok.stringValue, s);
-//    TDEquals(tok.floatValue, (CGFloat)0.0);
-//    
-//    tok = [t nextToken];
-//    TDEqualObjects(tok, [TDToken EOFToken]);
-//}
+- (void)testLtDollarDollarDollarHash {
+    s = @"$$$#";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
 
 @end
