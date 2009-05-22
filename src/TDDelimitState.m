@@ -53,14 +53,14 @@
 }
 
 
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end allowedCharacterSet:(NSCharacterSet *)cs {
+- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set{
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
     [rootNode add:start];
     [rootNode add:end];
     [startSymbols addObject:start];
     [endSymbols addObject:end];
-    [characterSets addObject:cs ? cs : (id)[NSNull null]];
+    [characterSets addObject:set ? set : (id)[NSNull null]];
 }
 
 

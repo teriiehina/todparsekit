@@ -29,8 +29,9 @@
     @details    <tt>start</tt> and <tt>end</tt> may be different strings. e.g. <tt>&lt;#</tt> and <tt>#&gt;</tt>.
     @param      start a single- or multi-character symbol that should be recognized as the start of a multi-line comment
     @param      end a single- or multi-character symbol that should be recognized as the end of a multi-line comment that began with <tt>start</tt>
+    @param      set of characters allowed to appear within the delimited string or <tt>nil</tt> to allow any non-newline characters
 */
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end allowedCharacterSet:(NSCharacterSet *)cs;
+- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set;
 
 /*!
     @brief      Removes <tt>start</tt> and its orignal <tt>end</tt> counterpart as a delimited string start and end markers.
