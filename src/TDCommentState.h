@@ -49,7 +49,7 @@
 - (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end;
 
 /*!
-    @brief      Removes <tt>start</tt> and its orignall <tt>end</tt> counterpart as a multi-line comment start and end markers.
+    @brief      Removes <tt>start</tt> and its orignal <tt>end</tt> counterpart as a multi-line comment start and end markers.
     @details    If <tt>start</tt> was never added as a multi-line comment start symbol, this has no effect.
     @param      start a single- or multi-character symbol that should no longer be recognized as the start of a multi-line comment
 */
