@@ -331,6 +331,27 @@
 }
 
 
+- (void)testLtDollarDollar123DollarHashAlphanumericAndWhitespaceAllowed {
+    s = @"$$123 456\t789\n0$#";
+    t.string = s;
+    NSMutableCharacterSet *cs = [[[NSCharacterSet alphanumericCharacterSet] mutableCopy] autorelease];
+    [cs formUnionWithCharacterSet:[NSCharacterSet whitespaceCharacterSet]];
+    [cs addCharactersInString:@"\n"];
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
 - (void)testLtDollarDollar123DollarHashWhitespaceAllowed {
     s = @"$$123$#";
     t.string = s;
