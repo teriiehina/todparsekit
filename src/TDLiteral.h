@@ -13,7 +13,7 @@
 
 /*!
     @class      TDLiteral 
-    @brief      A Literal matches a specific word from an assembly.
+    @brief      A <tt>TDLiteral</tt> matches a specific word from an assembly.
 */
 @interface TDLiteral : TDTerminal {
     TDToken *literal;
