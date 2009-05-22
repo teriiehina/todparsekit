@@ -24,7 +24,6 @@
 - (void)unreadString:(NSString *)s fromReader:(TDReader *)r;
 - (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol;
 - (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol;
-- (TDToken *)symbolTokenFor:(TDUniChar)cin;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *startSymbols;
 @property (nonatomic, retain) NSMutableArray *endSymbols;
@@ -103,11 +102,6 @@
 }
 
 
-- (TDToken *)symbolTokenFor:(TDUniChar)cin {
-    return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];    
-}
-
-
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
@@ -117,7 +111,7 @@
     // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
     if (!startSymbol.length || ![startSymbols containsObject:startSymbol]) {
         [self unreadString:startSymbol fromReader:r];
-        return [self symbolTokenFor:cin];
+        return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
     [self reset];
@@ -158,7 +152,7 @@
         if (characterSet && ![characterSet characterIsMember:c]) {
             // if not, unwind and return a symbol tok for cin
             [self unreadString:[self bufferedString] fromReader:r];
-            return [self symbolTokenFor:cin];
+            return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
         }
     }
     
