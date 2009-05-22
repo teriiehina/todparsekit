@@ -407,4 +407,41 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+
+- (void)testLtDollarDollarDollar {
+    s = @"$$$";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testLtDollarDollarDollarBalanceEOFStrings {
+    s = @"$$$";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    delimitState.balancesEOFTerminatedStrings = YES;
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, @"$$$$#");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end
