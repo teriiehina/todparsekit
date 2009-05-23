@@ -10,9 +10,9 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 @interface TDMultiLineCommentState : TDTokenizerState {
-    NSMutableArray *startSymbols;
-    NSMutableArray *endSymbols;
-    NSString *currentStartSymbol;
+    NSMutableArray *startMarkers;
+    NSMutableArray *endMarkers;
+    NSString *currentStartMarker;
 }
 
 @end

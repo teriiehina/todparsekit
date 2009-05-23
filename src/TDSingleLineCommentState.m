@@ -21,38 +21,38 @@
 @end
 
 @interface TDSingleLineCommentState ()
-- (void)addStartSymbol:(NSString *)start;
-- (void)removeStartSymbol:(NSString *)start;
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSString *currentStartSymbol;
+- (void)addStartMarker:(NSString *)start;
+- (void)removeStartMarker:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startMarkers;
+@property (nonatomic, retain) NSString *currentStartMarker;
 @end
 
 @implementation TDSingleLineCommentState
 
 - (id)init {
     if (self = [super init]) {
-        self.startSymbols = [NSMutableArray array];
+        self.startMarkers = [NSMutableArray array];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.startSymbols = nil;
-    self.currentStartSymbol = nil;
+    self.startMarkers = nil;
+    self.currentStartMarker = nil;
     [super dealloc];
 }
 
 
-- (void)addStartSymbol:(NSString *)start {
+- (void)addStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
-    [startSymbols addObject:start];
+    [startMarkers addObject:start];
 }
 
 
-- (void)removeStartSymbol:(NSString *)start {
+- (void)removeStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
-    [startSymbols removeObject:start];
+    [startMarkers removeObject:start];
 }
 
 
@@ -63,8 +63,8 @@
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
         [self reset];
-        if (currentStartSymbol.length > 1) {
-            [self appendString:currentStartSymbol];
+        if (currentStartMarker.length > 1) {
+            [self appendString:currentStartMarker];
         }
     }
     
@@ -83,7 +83,7 @@
         [r unread];
     }
     
-    self.currentStartSymbol = nil;
+    self.currentStartMarker = nil;
     
     if (reportTokens) {
         return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
@@ -92,6 +92,6 @@
     }
 }
 
-@synthesize startSymbols;
-@synthesize currentStartSymbol;
+@synthesize startMarkers;
+@synthesize currentStartMarker;
 @end

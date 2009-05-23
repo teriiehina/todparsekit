@@ -51,8 +51,8 @@
         [symbolState add:@"!="];
         [symbolState add:@"=="];
         
-        [commentState addSingleLineStartSymbol:@"//"];
-        [commentState addMultiLineStartSymbol:@"/*" endSymbol:@"*/"];
+        [commentState addSingleLineStartMarker:@"//"];
+        [commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
         
         self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
         
