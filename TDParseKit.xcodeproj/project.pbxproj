@@ -19,7 +19,6 @@
 		D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5500E60E50800A0803E /* TDLiteralTest.m */; };
 		D31FE5650E60E50800A0803E /* TDParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5520E60E50800A0803E /* TDParserTest.m */; };
 		D31FE5660E60E50800A0803E /* TDRepetitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5540E60E50800A0803E /* TDRepetitionTest.m */; };
-		D31FE5670E60E50800A0803E /* TDReservedWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5560E60E50800A0803E /* TDReservedWordTest.m */; };
 		D31FE5680E60E50800A0803E /* TDRobotCommandTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5580E60E50800A0803E /* TDRobotCommandTest.m */; };
 		D31FE5690E60E50800A0803E /* TDSequenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55A0E60E50800A0803E /* TDSequenceTest.m */; };
 		D31FE56A0E60E50800A0803E /* TDSymbolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE55C0E60E50800A0803E /* TDSymbolTest.m */; };
@@ -125,14 +124,8 @@
 		D31FE68B0E60E80600A0803E /* TDWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6810E60E80600A0803E /* TDWord.m */; };
 		D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE68F0E60E82300A0803E /* TDCaseInsensitiveLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */; };
-		D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6930E60E84400A0803E /* TDWordOrReservedState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */; };
 		D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6950E60E85800A0803E /* TDLowercaseWord.m */; };
-		D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6960E60E85800A0803E /* TDNonReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE69F0E60E85800A0803E /* TDNonReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6970E60E85800A0803E /* TDNonReservedWord.m */; };
-		D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6980E60E85800A0803E /* TDReservedWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6A10E60E85800A0803E /* TDReservedWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6990E60E85800A0803E /* TDReservedWord.m */; };
 		D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */; };
 		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -1024,6 +1017,12 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
+				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
+				D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */,
+				D31FE6980E60E85800A0803E /* TDReservedWord.h */,
+				D31FE6990E60E85800A0803E /* TDReservedWord.m */,
+				D31FE6960E60E85800A0803E /* TDNonReservedWord.h */,
+				D31FE6970E60E85800A0803E /* TDNonReservedWord.m */,
 				D3DDDC230F085C5400A58000 /* TDSlashSlashState.h */,
 				D3DDDC240F085C5400A58000 /* TDSlashSlashState.m */,
 				D3DDDC250F085C5400A58000 /* TDSlashStarState.h */,
@@ -1103,10 +1102,6 @@
 				D31FE6950E60E85800A0803E /* TDLowercaseWord.m */,
 				D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */,
 				D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */,
-				D31FE6980E60E85800A0803E /* TDReservedWord.h */,
-				D31FE6990E60E85800A0803E /* TDReservedWord.m */,
-				D31FE6960E60E85800A0803E /* TDNonReservedWord.h */,
-				D31FE6970E60E85800A0803E /* TDNonReservedWord.m */,
 			);
 			name = "token terminals";
 			sourceTree = "<group>";
@@ -1116,8 +1111,6 @@
 			children = (
 				D32365200E92F327008CB5C4 /* TDScientificNumberState.h */,
 				D32365210E92F327008CB5C4 /* TDScientificNumberState.m */,
-				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
-				D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -1825,10 +1818,7 @@
 				D31FE6880E60E80600A0803E /* TDSymbol.h in Headers */,
 				D31FE68A0E60E80600A0803E /* TDWord.h in Headers */,
 				D31FE68E0E60E82300A0803E /* TDCaseInsensitiveLiteral.h in Headers */,
-				D31FE6920E60E84400A0803E /* TDWordOrReservedState.h in Headers */,
 				D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */,
-				D31FE69E0E60E85800A0803E /* TDNonReservedWord.h in Headers */,
-				D31FE6A00E60E85800A0803E /* TDReservedWord.h in Headers */,
 				D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */,
 				D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */,
 				D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */,
@@ -2188,10 +2178,7 @@
 				D31FE6890E60E80600A0803E /* TDSymbol.m in Sources */,
 				D31FE68B0E60E80600A0803E /* TDWord.m in Sources */,
 				D31FE68F0E60E82300A0803E /* TDCaseInsensitiveLiteral.m in Sources */,
-				D31FE6930E60E84400A0803E /* TDWordOrReservedState.m in Sources */,
 				D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */,
-				D31FE69F0E60E85800A0803E /* TDNonReservedWord.m in Sources */,
-				D31FE6A10E60E85800A0803E /* TDReservedWord.m in Sources */,
 				D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */,
 				D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */,
 				D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */,
@@ -2316,7 +2303,6 @@
 				D31FE5640E60E50800A0803E /* TDLiteralTest.m in Sources */,
 				D31FE5650E60E50800A0803E /* TDParserTest.m in Sources */,
 				D31FE5660E60E50800A0803E /* TDRepetitionTest.m in Sources */,
-				D31FE5670E60E50800A0803E /* TDReservedWordTest.m in Sources */,
 				D31FE5680E60E50800A0803E /* TDRobotCommandTest.m in Sources */,
 				D31FE5690E60E50800A0803E /* TDSequenceTest.m in Sources */,
 				D31FE56A0E60E50800A0803E /* TDSymbolTest.m in Sources */,
