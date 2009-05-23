@@ -22,11 +22,11 @@
 
 @interface TDDelimitState ()
 - (void)unreadString:(NSString *)s fromReader:(TDReader *)r;
-- (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol;
-- (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol;
+- (NSString *)endMarkerForStartMarker:(NSString *)startMarker;
+- (NSCharacterSet *)allowedCharacterSetForStartMarker:(NSString *)startMarker;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSMutableArray *endSymbols;
+@property (nonatomic, retain) NSMutableArray *startMarkers;
+@property (nonatomic, retain) NSMutableArray *endMarkers;
 @property (nonatomic, retain) NSMutableArray *characterSets;
 @end
 
@@ -35,8 +35,8 @@
 - (id)init {
     if (self = [super init]) {
         self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
-        self.startSymbols = [NSMutableArray array];
-        self.endSymbols = [NSMutableArray array];
+        self.startMarkers = [NSMutableArray array];
+        self.endMarkers = [NSMutableArray array];
         self.characterSets = [NSMutableArray array];
     }
     return self;
@@ -45,31 +45,31 @@
 
 - (void)dealloc {
     self.rootNode = nil;
-    self.startSymbols = nil;
-    self.endSymbols = nil;
+    self.startMarkers = nil;
+    self.endMarkers = nil;
     self.characterSets = nil;
     [super dealloc];
 }
 
 
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set{
+- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set{
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
     [rootNode add:start];
     [rootNode add:end];
-    [startSymbols addObject:start];
-    [endSymbols addObject:end];
+    [startMarkers addObject:start];
+    [endMarkers addObject:end];
     [characterSets addObject:set ? set : (id)[NSNull null]];
 }
 
 
-- (void)removeStartSymbol:(NSString *)start {
+- (void)removeStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
     [rootNode remove:start];
-    NSUInteger i = [startSymbols indexOfObject:start];
+    NSUInteger i = [startMarkers indexOfObject:start];
     if (NSNotFound != i) {
-        [startSymbols removeObject:start];
-        [endSymbols removeObjectAtIndex:i]; // this should always be in range.
+        [startMarkers removeObject:start];
+        [endMarkers removeObjectAtIndex:i]; // this should always be in range.
     }
 }
 
@@ -83,17 +83,17 @@
 }
 
 
-- (NSString *)endSymbolForStartSymbol:(NSString *)startSymbol {
-    NSParameterAssert([startSymbols containsObject:startSymbol]);
-    NSUInteger i = [startSymbols indexOfObject:startSymbol];
-    return [endSymbols objectAtIndex:i];
+- (NSString *)endMarkerForStartMarker:(NSString *)startMarker {
+    NSParameterAssert([startMarkers containsObject:startMarker]);
+    NSUInteger i = [startMarkers indexOfObject:startMarker];
+    return [endMarkers objectAtIndex:i];
 }
 
 
-- (NSCharacterSet *)allowedCharacterSetForStartSymbol:(NSString *)startSymbol {
-    NSParameterAssert([startSymbols containsObject:startSymbol]);
+- (NSCharacterSet *)allowedCharacterSetForStartMarker:(NSString *)startMarker {
+    NSParameterAssert([startMarkers containsObject:startMarker]);
     NSCharacterSet *characterSet = nil;
-    NSUInteger i = [startSymbols indexOfObject:startSymbol];
+    NSUInteger i = [startMarkers indexOfObject:startMarker];
     id csOrNull = [characterSets objectAtIndex:i];
     if ([NSNull null] != csOrNull) {
         characterSet = csOrNull;
@@ -106,35 +106,35 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
     
-    NSString *startSymbol = [rootNode nextSymbol:r startingWith:cin];
+    NSString *startMarker = [rootNode nextSymbol:r startingWith:cin];
 
     // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
-    if (!startSymbol.length || ![startSymbols containsObject:startSymbol]) {
-        [self unreadString:startSymbol fromReader:r];
+    if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
+        [self unreadString:startMarker fromReader:r];
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
     [self reset];
-    [self appendString:startSymbol];
+    [self appendString:startMarker];
 
-    NSString *endSymbol = [self endSymbolForStartSymbol:startSymbol];
-    NSCharacterSet *characterSet = [self allowedCharacterSetForStartSymbol:startSymbol];
+    NSString *endMarker = [self endMarkerForStartMarker:startMarker];
+    NSCharacterSet *characterSet = [self allowedCharacterSetForStartMarker:startMarker];
     
     TDUniChar c;
-    TDUniChar e = [endSymbol characterAtIndex:0];
+    TDUniChar e = [endMarker characterAtIndex:0];
     while (1) {
         c = [r read];
         if (TDEOF == c) {
             if (balancesEOFTerminatedStrings) {
-                [self appendString:endSymbol];
+                [self appendString:endMarker];
             }
             break;
         }
         
         if (e == c) {
             NSString *peek = [rootNode nextSymbol:r startingWith:e];
-            if ([endSymbol isEqualToString:peek]) {
-                [self appendString:endSymbol];
+            if ([endMarker isEqualToString:peek]) {
+                [self appendString:endMarker];
                 c = [r read];
                 break;
             } else {
@@ -165,7 +165,7 @@
 
 @synthesize rootNode;
 @synthesize balancesEOFTerminatedStrings;
-@synthesize startSymbols;
-@synthesize endSymbols;
+@synthesize startMarkers;
+@synthesize endMarkers;
 @synthesize characterSets;
 @end

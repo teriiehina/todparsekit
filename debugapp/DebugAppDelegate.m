@@ -410,12 +410,13 @@
 
 
 - (void)doDelimitedString {
-    NSString *s = @"<#foo>";
+    NSString *s = @"<?= 'foo' ?>";
+
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
+    NSCharacterSet *cs = nil;
     
     [t setTokenizerState:t.delimitState from:'<' to:'<'];
-    [t.delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    [t.delimitState addStartSymbol:@"<?=" endSymbol:@"?>" allowedCharacterSet:cs];
     
     TDToken *tok = [t nextToken];
     

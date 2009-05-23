@@ -27,7 +27,7 @@
     NSCharacterSet *cs = nil;
 
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
 
@@ -46,7 +46,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -65,7 +65,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -94,8 +94,8 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<" endSymbol:@">" allowedCharacterSet:cs];
-    [delimitState removeStartSymbol:@"<"];
+    [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
+    [delimitState removeStartMarker:@"<"];
     
     tok = [t nextToken];
     
@@ -124,7 +124,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<#" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -143,7 +143,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<#" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -162,7 +162,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<#" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -196,7 +196,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
     
     [t setTokenizerState:delimitState from:'<' to:'<'];
-    [delimitState addStartSymbol:@"<#" endSymbol:@">" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"<#" endMarker:@">" allowedCharacterSet:cs];
     
     [t.symbolState add:@"<#"];
     
@@ -227,7 +227,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'=' to:'='];
-    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"=#" endMarker:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -246,7 +246,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"fo"];
     
     [t setTokenizerState:delimitState from:'=' to:'='];
-    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"=#" endMarker:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -265,7 +265,7 @@
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"f"];
     
     [t setTokenizerState:delimitState from:'=' to:'='];
-    [delimitState addStartSymbol:@"=#" endSymbol:@"#=" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"=#" endMarker:@"#=" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
@@ -303,7 +303,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$" endSymbol:@"$" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$" endMarker:@"$" allowedCharacterSet:cs];
     
     tok = [t nextToken];
 
@@ -322,7 +322,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$$" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$$" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -341,7 +341,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -360,7 +360,7 @@
     NSCharacterSet *cs = [NSCharacterSet decimalDigitCharacterSet];
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -379,7 +379,7 @@
     NSCharacterSet *cs = [NSCharacterSet alphanumericCharacterSet];
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -400,7 +400,7 @@
     [cs formUnionWithCharacterSet:[NSCharacterSet newlineCharacterSet]];
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     
@@ -419,7 +419,7 @@
     NSCharacterSet *cs = [NSCharacterSet whitespaceCharacterSet];
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
@@ -457,7 +457,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     TDTrue(tok.isDelimitedString);
@@ -475,7 +475,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     TDTrue(tok.isDelimitedString);
@@ -494,11 +494,47 @@
     
     delimitState.balancesEOFTerminatedStrings = YES;
     [t setTokenizerState:delimitState from:'$' to:'$'];
-    [delimitState addStartSymbol:@"$$" endSymbol:@"$#" allowedCharacterSet:cs];
+    [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
     TDTrue(tok.isDelimitedString);
     TDEqualObjects(tok.stringValue, @"$$$$#");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testPHPPrint {
+    s = @"<?= 'foo' ?>";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'<' to:'<'];
+    [delimitState addStartMarker:@"<?=" endMarker:@"?>" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testPHP {
+    s = @"<?php echo 'foo'; ?>";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'<' to:'<'];
+    [delimitState addStartMarker:@"<?php" endMarker:@"?>" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
