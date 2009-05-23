@@ -50,7 +50,7 @@
     s = @"// foo";
     r.string = s;
     t.string = s;
-    [commentState removeSingleLineStartSymbol:@"//"];
+    [commentState removeSingleLineStartMarker:@"//"];
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"/");
@@ -85,7 +85,7 @@
     s = @"# foo";
     r.string = s;
     t.string = s;
-    [commentState addSingleLineStartSymbol:@"#"];
+    [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
     tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
@@ -98,7 +98,7 @@
     r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
-    [commentState addSingleLineStartSymbol:@"#"];
+    [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
     tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
     TDTrue(tok.isComment);
@@ -267,7 +267,7 @@
     s = @"/* foo */";
     r.string = s;
     t.string = s;
-    [commentState removeMultiLineStartSymbol:@"/*"];
+    [commentState removeMultiLineStartMarker:@"/*"];
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"/");
@@ -313,7 +313,7 @@
     s = @"<!-- foo --> a";
     r.string = s;
     t.string = s;
-    [commentState addMultiLineStartSymbol:@"<!--" endSymbol:@"-->"];
+    [commentState addMultiLineStartMarker:@"<!--" endMarker:@"-->"];
     [t setTokenizerState:commentState from:'<' to:'<'];
     tok = [t nextToken];
     TDTrue(tok.isWord);
@@ -333,7 +333,7 @@
     r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
-    [commentState addMultiLineStartSymbol:@"<!--" endSymbol:@"-->"];
+    [commentState addMultiLineStartMarker:@"<!--" endMarker:@"-->"];
     [t setTokenizerState:commentState from:'<' to:'<'];
     tok = [t nextToken];
     TDTrue(tok.isComment);

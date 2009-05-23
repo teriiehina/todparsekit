@@ -26,51 +26,51 @@
 @end
 
 @interface TDMultiLineCommentState ()
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end;
-- (void)removeStartSymbol:(NSString *)start;
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSMutableArray *endSymbols;
-@property (nonatomic, copy) NSString *currentStartSymbol;
+- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end;
+- (void)removeStartMarker:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startMarkers;
+@property (nonatomic, retain) NSMutableArray *endMarkers;
+@property (nonatomic, copy) NSString *currentStartMarker;
 @end
 
 @implementation TDMultiLineCommentState
 
 - (id)init {
     if (self = [super init]) {
-        self.startSymbols = [NSMutableArray array];
-        self.endSymbols = [NSMutableArray array];
+        self.startMarkers = [NSMutableArray array];
+        self.endMarkers = [NSMutableArray array];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.startSymbols = nil;
-    self.endSymbols = nil;
-    self.currentStartSymbol = nil;
+    self.startMarkers = nil;
+    self.endMarkers = nil;
+    self.currentStartMarker = nil;
     [super dealloc];
 }
 
 
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end {
+- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end {
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
-    [startSymbols addObject:start];
-    [endSymbols addObject:end];
+    [startMarkers addObject:start];
+    [endMarkers addObject:end];
 }
 
 
-- (void)removeStartSymbol:(NSString *)start {
+- (void)removeStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
-    NSUInteger i = [startSymbols indexOfObject:start];
+    NSUInteger i = [startMarkers indexOfObject:start];
     if (NSNotFound != i) {
-        [startSymbols removeObject:start];
-        [endSymbols removeObjectAtIndex:i]; // this should always be in range.
+        [startMarkers removeObject:start];
+        [endMarkers removeObjectAtIndex:i]; // this should always be in range.
     }
 }
 
 
-- (void)unreadSymbol:(NSString *)s fromReader:(TDReader *)r {
+- (void)unreadMarker:(NSString *)s fromReader:(TDReader *)r {
     NSUInteger len = s.length;
     NSUInteger i = 0;
     for ( ; i < len - 1; i++) {
@@ -87,11 +87,11 @@
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
         [self reset];
-        [self appendString:currentStartSymbol];
+        [self appendString:currentStartMarker];
     }
     
-    NSUInteger i = [startSymbols indexOfObject:currentStartSymbol];
-    NSString *currentEndSymbol = [endSymbols objectAtIndex:i];
+    NSUInteger i = [startMarkers indexOfObject:currentStartMarker];
+    NSString *currentEndSymbol = [endMarkers objectAtIndex:i];
     TDUniChar e = [currentEndSymbol characterAtIndex:0];
     
     // get the definitions of all multi-char comment start and end symbols from the commentState
@@ -116,7 +116,7 @@
                 c = [r read];
                 break;
             } else {
-                [self unreadSymbol:peek fromReader:r];
+                [self unreadMarker:peek fromReader:r];
                 if (e != [peek characterAtIndex:0]) {
                     if (reportTokens) {
                         [self append:c];
@@ -134,7 +134,7 @@
         [r unread];
     }
     
-    self.currentStartSymbol = nil;
+    self.currentStartMarker = nil;
 
     if (reportTokens) {
         return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
@@ -143,7 +143,7 @@
     }
 }
 
-@synthesize startSymbols;
-@synthesize endSymbols;
-@synthesize currentStartSymbol;
+@synthesize startMarkers;
+@synthesize endMarkers;
+@synthesize currentStartMarker;
 @end

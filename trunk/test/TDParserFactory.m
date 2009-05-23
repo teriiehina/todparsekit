@@ -233,8 +233,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (TDTokenizer *)tokenizerFromGrammarSettings {
     TDTokenizer *t = [TDTokenizer tokenizer];
-    [t.commentState removeSingleLineStartSymbol:@"//"];
-    [t.commentState removeMultiLineStartSymbol:@"/*"];
+    [t.commentState removeSingleLineStartMarker:@"//"];
+    [t.commentState removeMultiLineStartMarker:@"/*"];
 
     t.whitespaceState.reportsWhitespaceTokens = [self boolForTokenForKey:@"@reportsWhitespaceTokens"];
     t.commentState.reportsCommentTokens = [self boolForTokenForKey:@"@reportsCommentTokens"];
@@ -288,7 +288,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
-            [t.commentState addSingleLineStartSymbol:s];
+            [t.commentState addSingleLineStartMarker:s];
             [t.symbolState add:s];
         }
     }
@@ -303,7 +303,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             if (startTok.isQuotedString && endTok.isQuotedString) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
-                [t.commentState addMultiLineStartSymbol:start endSymbol:end];
+                [t.commentState addMultiLineStartMarker:start endMarker:end];
                 [t.symbolState add:start];
                 [t.symbolState add:end];
             }

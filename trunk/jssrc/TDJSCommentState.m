@@ -26,7 +26,7 @@ static JSValueRef TDCommentState_addSingleLine(JSContextRef ctx, JSObjectRef fun
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
     TDCommentState *data = JSObjectGetPrivate(this);
-    [data addSingleLineStartSymbol:start];
+    [data addSingleLineStartMarker:start];
     
     return JSValueMakeUndefined(ctx);
 }
@@ -38,7 +38,7 @@ static JSValueRef TDCommentState_removeSingleLine(JSContextRef ctx, JSObjectRef 
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
     TDCommentState *data = JSObjectGetPrivate(this);
-    [data removeSingleLineStartSymbol:start];
+    [data removeSingleLineStartMarker:start];
     
     return JSValueMakeUndefined(ctx);
 }
@@ -51,7 +51,7 @@ static JSValueRef TDCommentState_addMultiLine(JSContextRef ctx, JSObjectRef func
     NSString *end = TDJSValueGetNSString(ctx, argv[1], ex);
     
     TDCommentState *data = JSObjectGetPrivate(this);
-    [data addMultiLineStartSymbol:start endSymbol:end];
+    [data addMultiLineStartMarker:start endMarker:end];
     
     return JSValueMakeUndefined(ctx);
 }
@@ -63,7 +63,7 @@ static JSValueRef TDCommentState_removeMultiLine(JSContextRef ctx, JSObjectRef f
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
     TDCommentState *data = JSObjectGetPrivate(this);
-    [data removeMultiLineStartSymbol:start];
+    [data removeMultiLineStartMarker:start];
     
     return JSValueMakeUndefined(ctx);
 }

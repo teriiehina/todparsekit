@@ -121,8 +121,8 @@
 
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
-        [tokenizer.commentState addSingleLineStartSymbol:@"//"];
-        [tokenizer.commentState addMultiLineStartSymbol:@"/*" endSymbol:@"*/"];
+        [tokenizer.commentState addSingleLineStartMarker:@"//"];
+        [tokenizer.commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
         
         [tokenizer.symbolState add:@"||"];
         [tokenizer.symbolState add:@"&&"];

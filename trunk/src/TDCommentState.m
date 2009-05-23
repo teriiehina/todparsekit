@@ -20,18 +20,18 @@
 @end
 
 @interface TDSingleLineCommentState ()
-- (void)addStartSymbol:(NSString *)start;
-- (void)removeStartSymbol:(NSString *)start;
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSString *currentStartSymbol;
+- (void)addStartMarker:(NSString *)start;
+- (void)removeStartMarker:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startMarkers;
+@property (nonatomic, retain) NSString *currentStartMarker;
 @end
 
 @interface TDMultiLineCommentState ()
-- (void)addStartSymbol:(NSString *)start endSymbol:(NSString *)end;
-- (void)removeStartSymbol:(NSString *)start;
-@property (nonatomic, retain) NSMutableArray *startSymbols;
-@property (nonatomic, retain) NSMutableArray *endSymbols;
-@property (nonatomic, copy) NSString *currentStartSymbol;
+- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end;
+- (void)removeStartMarker:(NSString *)start;
+@property (nonatomic, retain) NSMutableArray *startMarkers;
+@property (nonatomic, retain) NSMutableArray *endMarkers;
+@property (nonatomic, copy) NSString *currentStartMarker;
 @end
 
 @implementation TDCommentState
@@ -54,33 +54,33 @@
 }
 
 
-- (void)addSingleLineStartSymbol:(NSString *)start {
+- (void)addSingleLineStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
     [rootNode add:start];
-    [singleLineState addStartSymbol:start];
+    [singleLineState addStartMarker:start];
 }
 
 
-- (void)removeSingleLineStartSymbol:(NSString *)start {
+- (void)removeSingleLineStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
     [rootNode remove:start];
-    [singleLineState removeStartSymbol:start];
+    [singleLineState removeStartMarker:start];
 }
 
 
-- (void)addMultiLineStartSymbol:(NSString *)start endSymbol:(NSString *)end {
+- (void)addMultiLineStartMarker:(NSString *)start endMarker:(NSString *)end {
     NSParameterAssert(start.length);
     NSParameterAssert(end.length);
     [rootNode add:start];
     [rootNode add:end];
-    [multiLineState addStartSymbol:start endSymbol:end];
+    [multiLineState addStartMarker:start endMarker:end];
 }
 
 
-- (void)removeMultiLineStartSymbol:(NSString *)start {
+- (void)removeMultiLineStartMarker:(NSString *)start {
     NSParameterAssert(start.length);
     [rootNode remove:start];
-    [multiLineState removeStartSymbol:start];
+    [multiLineState removeStartMarker:start];
 }
 
 
@@ -90,11 +90,11 @@
 
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
 
-    if ([multiLineState.startSymbols containsObject:symbol]) {
-        multiLineState.currentStartSymbol = symbol;
+    if ([multiLineState.startMarkers containsObject:symbol]) {
+        multiLineState.currentStartMarker = symbol;
         return [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
-    } else if ([singleLineState.startSymbols containsObject:symbol]) {
-        singleLineState.currentStartSymbol = symbol;
+    } else if ([singleLineState.startMarkers containsObject:symbol]) {
+        singleLineState.currentStartMarker = symbol;
         return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
         NSUInteger i = 0;

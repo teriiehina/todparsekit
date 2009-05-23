@@ -10,8 +10,8 @@
 #import <TDParseKit/TDTokenizerState.h>
 
 @interface TDSingleLineCommentState : TDTokenizerState {
-    NSMutableArray *startSymbols;
-    NSString *currentStartSymbol;
+    NSMutableArray *startMarkers;
+    NSString *currentStartMarker;
 }
 
 @end
