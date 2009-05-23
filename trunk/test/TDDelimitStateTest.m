@@ -541,4 +541,49 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+
+- (void)testEnvVars {
+    s = @"${PRODUCT_NAME} or ${EXECUTABLE_NAME}";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ_"];
+    
+    [t setTokenizerState:delimitState from:'$' to:'$'];
+    [delimitState addStartMarker:@"${" endMarker:@"}" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"${PRODUCT_NAME}");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue,  @"or");
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"${EXECUTABLE_NAME}");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testCocoaString {
+    s = @"@\"foo\"";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'@' to:'@'];
+    [delimitState addStartMarker:@"@\"" endMarker:@"\"" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end
