@@ -586,4 +586,76 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+
+- (void)testAlphaMarkerXX {
+    s = @"XXfooXX";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'X' to:'X'];
+    [delimitState addStartMarker:@"XX" endMarker:@"XX" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testAlphaMarkerXXAndXXX {
+    s = @"XXfooXXX";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'X' to:'X'];
+    [delimitState addStartMarker:@"XX" endMarker:@"XXX" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testAlphaMarkerXXFails {
+    s = @"XXfooXX";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet whitespaceCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'X' to:'X'];
+    [delimitState addStartMarker:@"XX" endMarker:@"XX" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testAlphaMarkerXXFalseStartMarker {
+    s = @"XfooXX";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet whitespaceCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'X' to:'X'];
+    [delimitState addStartMarker:@"XX" endMarker:@"XX" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end

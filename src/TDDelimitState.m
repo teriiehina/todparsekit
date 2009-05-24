@@ -13,6 +13,10 @@
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDTypes.h>
 
+@interface TDTokenizer ()
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+@end
+
 @interface TDTokenizerState ()
 - (void)reset;
 - (void)append:(TDUniChar)c;
@@ -111,7 +115,7 @@
     // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
     if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
         [self unreadString:startMarker fromReader:r];
-        return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
     [self reset];
@@ -152,7 +156,7 @@
         if (characterSet && ![characterSet characterIsMember:c]) {
             // if not, unwind and return a symbol tok for cin
             [self unreadString:[self bufferedString] fromReader:r];
-            return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
+            return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
         }
     }
     

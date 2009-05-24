@@ -11,6 +11,7 @@
 
 @interface TDTokenizer ()
 - (void)addTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end;
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
 - (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
 @property (nonatomic, retain) TDReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
@@ -46,6 +47,13 @@
         self.wordState       = [[[TDWordState alloc] init] autorelease];
         self.delimitState    = [[[TDDelimitState alloc] init] autorelease];
         
+        self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
+        
+        NSInteger i = 0;
+        for ( ; i < 256; i++) {
+            [self addTokenizerState:[self defaultTokenizerStateFor:i] from:i to:i];
+        }
+
         [symbolState add:@"<="];
         [symbolState add:@">="];
         [symbolState add:@"!="];
@@ -53,27 +61,7 @@
         
         [commentState addSingleLineStartMarker:@"//"];
         [commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
-        
-        self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
-        
-        [self addTokenizerState:whitespaceState from:   0 to: ' ']; // From:  0 to: 32    From:0x00 to:0x20
-        [self addTokenizerState:symbolState     from:  33 to:  33];
-        [self addTokenizerState:quoteState      from: '"' to: '"']; // From: 34 to: 34    From:0x22 to:0x22
-        [self addTokenizerState:symbolState     from:  35 to:  38];
-        [self addTokenizerState:quoteState      from:'\'' to:'\'']; // From: 39 to: 39    From:0x27 to:0x27
-        [self addTokenizerState:symbolState     from:  40 to:  42];
-        [self addTokenizerState:symbolState     from: '+' to: '+']; // From: 43 to: 43    From:0x2B to:0x2B
-        [self addTokenizerState:symbolState     from:  44 to:  44];
-        [self addTokenizerState:numberState     from: '-' to: '-']; // From: 45 to: 45    From:0x2D to:0x2D
-        [self addTokenizerState:numberState     from: '.' to: '.']; // From: 46 to: 46    From:0x2E to:0x2E
-        [self addTokenizerState:commentState    from: '/' to: '/']; // From: 47 to: 47    From:0x2F to:0x2F
-        [self addTokenizerState:numberState     from: '0' to: '9']; // From: 48 to: 57    From:0x30 to:0x39
-        [self addTokenizerState:symbolState     from:  58 to:  64];
-        [self addTokenizerState:wordState       from: 'A' to: 'Z']; // From: 65 to: 90    From:0x41 to:0x5A
-        [self addTokenizerState:symbolState     from:  91 to:  96];
-        [self addTokenizerState:wordState       from: 'a' to: 'z']; // From: 97 to:122    From:0x61 to:0x7A
-        [self addTokenizerState:symbolState     from: 123 to: 191];
-        [self addTokenizerState:wordState       from:0xC0 to:0xFF]; // From:192 to:255    From:0xC0 to:0xFF
+        [self setTokenizerState:commentState from:'/' to:'/'];
     }
     return self;
 }
@@ -124,8 +112,62 @@
 }
 
 
-- (TDReader *)reader {
-    return reader;
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c {
+    if (c >= 0 && c <= ' ') {            // From:  0 to: 32    From:0x00 to:0x20
+        return whitespaceState;
+    } else if (c == 33) {
+        return symbolState;
+    } else if (c == '"') {               // From: 34 to: 34    From:0x22 to:0x22
+        return quoteState;
+    } else if (c >= 35 && c <= 38) {
+        return symbolState;
+    } else if (c == '\'') {              // From: 39 to: 39    From:0x27 to:0x27
+        return quoteState;
+    } else if (c >= 40 && c <= 42) {
+        return symbolState;
+    } else if (c == '+') {               // From: 43 to: 43    From:0x2B to:0x2B
+        return symbolState;
+    } else if (c == 44) {
+        return symbolState;
+    } else if (c == '-') {               // From: 45 to: 45    From:0x2D to:0x2D
+        return numberState;
+    } else if (c == '.') {               // From: 46 to: 46    From:0x2E to:0x2E
+        return numberState;
+    } else if (c == '/') {               // From: 47 to: 47    From:0x2F to:0x2F
+        return symbolState;
+    } else if (c >= '0' && c <= '9') {   // From: 48 to: 57    From:0x30 to:0x39
+        return numberState;
+    } else if (c >= 58 && c <= 64) {
+        return symbolState;
+    } else if (c >= 'A' && c <= 'Z') {   // From: 65 to: 90    From:0x41 to:0x5A
+        return wordState;
+    } else if (c >= 91 && c <= 96) {
+        return symbolState;
+    } else if (c >= 'a' && c <= 'z') {   // From: 97 to:122    From:0x61 to:0x7A
+        return wordState;
+    } else if (c >= 123 && c <= 191) {
+        return symbolState;
+    } else if (c >= 0xC0 && c <= 0xFF) { // From:192 to:255    From:0xC0 to:0xFF
+        return wordState;
+    } else if (c >= 0x19E0 && c <= 0x19FF) { // khmer symbols
+        return symbolState;
+    } else if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
+        return symbolState;
+    } else if (c >= 0x2E00 && c <= 0x2E7F) { // supplemental punctuation
+        return symbolState;
+    } else if (c >= 0x3000 && c <= 0x303F) { // cjk symbols & punctuation
+        return symbolState;
+    } else if (c >= 0x3200 && c <= 0x33FF) { // enclosed cjk letters and months, cjk compatibility
+        return symbolState;
+    } else if (c >= 0x4DC0 && c <= 0x4DFF) { // yijing hexagram symbols
+        return symbolState;
+    } else if (c >= 0xFE30 && c <= 0xFE6F) { // cjk compatibility forms, small form variants
+        return symbolState;
+    } else if (c >= 0xFF00 && c <= 0xFFFF) { // hiragana & katakana halfwitdh & fullwidth forms, Specials
+        return symbolState;
+    } else {
+        return wordState;
+    }
 }
 
 
@@ -135,11 +177,6 @@
         reader = [r retain];
         reader.string = string;
     }
-}
-
-
-- (NSString *)string {
-    return string;
 }
 
 
@@ -165,27 +202,10 @@
 
 
 - (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c {
-    if (c < 0 || c > 255) {
-        if (c >= 0x19E0 && c <= 0x19FF) { // khmer symbols
-            return symbolState;
-        } else if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
-            return symbolState;
-        } else if (c >= 0x2E00 && c <= 0x2E7F) { // supplemental punctuation
-            return symbolState;
-        } else if (c >= 0x3000 && c <= 0x303F) { // cjk symbols & punctuation
-            return symbolState;
-        } else if (c >= 0x3200 && c <= 0x33FF) { // enclosed cjk letters and months, cjk compatibility
-            return symbolState;
-        } else if (c >= 0x4DC0 && c <= 0x4DFF) { // yijing hexagram symbols
-            return symbolState;
-        } else if (c >= 0xFE30 && c <= 0xFE6F) { // cjk compatibility forms, small form variants
-            return symbolState;
-        } else if (c >= 0xFF00 && c <= 0xFFFF) { // hiragana & katakana halfwitdh & fullwidth forms, Specials
-            return symbolState;
-        } else {
-            return wordState;
-        }
+    if (c < 0 || c > 255) { // customization above 255 is not supported, so fetch default.
+        return [self defaultTokenizerStateFor:c];
     }
+    // customization below 255 is supported, so be sure to get the customized state from `tokenizerStates`
     return [tokenizerStates objectAtIndex:c];
 }
 
@@ -197,5 +217,6 @@
 @synthesize wordState;
 @synthesize delimitState;
 @synthesize string;
+@synthesize reader;
 @synthesize tokenizerStates;
 @end
