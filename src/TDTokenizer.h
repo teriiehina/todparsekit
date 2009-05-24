@@ -59,7 +59,7 @@
 }
 
 /*!
-    @brief      Convenience factory method. Sets string to read from to <tt>nil</tt>.
+    @brief      Convenience factory method. Sets string from which to to read to <tt>nil</tt>.
     @result     An initialized tokenizer.
 */
 + (id)tokenizer;
