@@ -106,9 +106,7 @@
         for ( ; i < symbol.length - 1; i++) {
             [r unread];
         }
-        NSLog(@"[t defaultTokenizerStateFor:cin]: %@ %C",[t defaultTokenizerStateFor:cin], cin);
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
-        //return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
     }
 }
 
