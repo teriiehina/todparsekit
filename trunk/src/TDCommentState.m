@@ -7,11 +7,16 @@
 //
 
 #import <TDParseKit/TDCommentState.h>
+#import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDSingleLineCommentState.h>
 #import <TDParseKit/TDMultiLineCommentState.h>
+
+@interface TDTokenizer ()
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+@end
 
 @interface TDCommentState ()
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
@@ -101,7 +106,9 @@
         for ( ; i < symbol.length - 1; i++) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
+        NSLog(@"[t defaultTokenizerStateFor:cin]: %@ %C",[t defaultTokenizerStateFor:cin], cin);
+        return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+        //return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
     }
 }
 

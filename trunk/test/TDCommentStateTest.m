@@ -354,4 +354,55 @@
     TDEqualObjects(tok.stringValue, @" ");
 }
 
+
+- (void)testXXMarker {
+    s = @"XX foo XX a";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    [commentState addMultiLineStartMarker:@"XX" endMarker:@"XX"];
+    [t setTokenizerState:commentState from:'X' to:'X'];
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"XX foo XX");
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"a");
+    
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    t.whitespaceState.reportsWhitespaceTokens = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"XX foo XX");
+    tok = [t nextToken];
+    TDTrue(tok.isWhitespace);
+    TDEqualObjects(tok.stringValue, @" ");
+}
+
+
+- (void)testXXMarkerFalseStartMarkerMatch {
+    s = @"X foo X a";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    [commentState addMultiLineStartMarker:@"XX" endMarker:@"XX"];
+    [t setTokenizerState:commentState from:'X' to:'X'];
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"X");
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"foo");
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"X");
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"a");
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end
