@@ -73,6 +73,10 @@
     NSUInteger i = [startMarkers indexOfObject:start];
     if (NSNotFound != i) {
         [startMarkers removeObject:start];
+        [characterSets removeObjectAtIndex:i];
+        
+        NSString *end = [endMarkers objectAtIndex:i];
+        [rootNode remove:end];
         [endMarkers removeObjectAtIndex:i]; // this should always be in range.
     }
 }
