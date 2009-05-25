@@ -10,9 +10,8 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDTokenizer ()
-- (void)addTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end;
-- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
 - (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
 @property (nonatomic, retain) TDReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 @end
@@ -51,7 +50,7 @@
         
         NSInteger i = 0;
         for ( ; i < 256; i++) {
-            [self addTokenizerState:[self defaultTokenizerStateFor:i] from:i to:i];
+            [tokenizerStates addObject:[self defaultTokenizerStateFor:i]];
         }
 
         [symbolState add:@"<="];
@@ -112,6 +111,36 @@
 }
 
 
+- (void)setReader:(TDReader *)r {
+    if (reader != r) {
+        [reader release];
+        reader = [r retain];
+        reader.string = string;
+    }
+}
+
+
+- (void)setString:(NSString *)s {
+    if (string != s) {
+        [string release];
+        string = [s retain];
+    }
+    reader.string = string;
+}
+
+
+#pragma mark -
+
+- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c {
+    if (c < 0 || c > 255) {
+        // customization above 255 is not supported, so fetch default.
+        return [self defaultTokenizerStateFor:c];
+    } else {
+        // customization below 255 is supported, so be sure to get the (possibly) customized state from `tokenizerStates`
+        return [tokenizerStates objectAtIndex:c];
+    }
+}
+
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c {
     if (c >= 0 && c <= ' ') {            // From:  0 to: 32    From:0x00 to:0x20
         return whitespaceState;
@@ -168,45 +197,6 @@
     } else {
         return wordState;
     }
-}
-
-
-- (void)setReader:(TDReader *)r {
-    if (reader != r) {
-        [reader release];
-        reader = [r retain];
-        reader.string = string;
-    }
-}
-
-
-- (void)setString:(NSString *)s {
-    if (string != s) {
-        [string release];
-        string = [s retain];
-    }
-    reader.string = string;
-}
-
-
-#pragma mark -
-
-- (void)addTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end {
-    NSParameterAssert(state);
-    
-    NSInteger i = start;
-    for ( ; i <= end; i++) {
-        [tokenizerStates addObject:state];
-    }
-}
-
-
-- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c {
-    if (c < 0 || c > 255) { // customization above 255 is not supported, so fetch default.
-        return [self defaultTokenizerStateFor:c];
-    }
-    // customization below 255 is supported, so be sure to get the customized state from `tokenizerStates`
-    return [tokenizerStates objectAtIndex:c];
 }
 
 @synthesize numberState;
