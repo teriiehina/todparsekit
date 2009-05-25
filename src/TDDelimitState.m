@@ -116,7 +116,6 @@
     
     NSString *startMarker = [rootNode nextSymbol:r startingWith:cin];
 
-    // if cin does not actually signal the start of a delimiter symbol string, unwind and return a symbol tok
     if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
         [self unreadString:startMarker fromReader:r];
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
