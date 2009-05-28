@@ -51,6 +51,8 @@
     self.andPhraseParser = nil;
     self.phraseParser = nil;
     self.atomicValueParser = nil;
+    self.trueParser = nil;
+    self.falseParser = nil;
     [super dealloc];
 }
 
@@ -117,14 +119,42 @@
 }
 
 
-// atomicValue      = 'true' | 'false'
+// atomicValue      = false | true
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
-        [atomicValueParser add:[TDLiteral literalWithString:@"true"]];
-        [atomicValueParser add:[TDLiteral literalWithString:@"false"]];
+        [atomicValueParser add:self.trueParser];
+        [atomicValueParser add:self.falseParser];
     }
     return atomicValueParser;
+}
+
+
+- (TDParser *)trueParser {
+    if (!trueParser) {
+        self.trueParser = [[TDLiteral literalWithString:@"true"] discard];
+        [trueParser setAssembler:self selector:@selector(workOnTrueAssembly:)];
+    }
+    return trueParser;
+}
+
+
+- (TDParser *)falseParser {
+    if (!falseParser) {
+        self.falseParser = [[TDLiteral literalWithString:@"false"] discard];
+        [falseParser setAssembler:self selector:@selector(workOnFalseAssembly:)];
+    }
+    return falseParser;
+}
+
+
+- (void)workOnTrueAssembly:(TDAssembly *)a {
+    [a push:[NSPredicate predicateWithValue:YES]];
+}
+
+
+- (void)workOnFalseAssembly:(TDAssembly *)a {
+    [a push:[NSPredicate predicateWithValue:NO]];
 }
 
 @synthesize expressionParser;
@@ -133,4 +163,6 @@
 @synthesize andPhraseParser;
 @synthesize phraseParser;
 @synthesize atomicValueParser;
+@synthesize trueParser;
+@synthesize falseParser;
 @end

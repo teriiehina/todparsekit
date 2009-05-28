@@ -10,12 +10,17 @@
 
 @implementation PredicateParserTest
 
-- (void)testFoo {
-    PredicateParser *p = [PredicateParser parser];
-    NSString *s = @"true and false";
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    a = [p bestMatchFor:a];
-    TDEqualObjects(@"[true, false]true/and/false^", [a description]);
+- (void)setUp {
+    p = [PredicateParser parser];
 }
+
+
+- (void)testTrueAndFalse {
+    s = @"true and false";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [p bestMatchFor:a];
+    TDEqualObjects(@"[TRUEPREDICATE, FALSEPREDICATE]true/and/false^", [a description]);
+}
+
 
 @end
