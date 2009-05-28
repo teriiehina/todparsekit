@@ -8,7 +8,6 @@
 
 #import "TDTestScaffold.h"
 
-
 @interface EBNFParserTest : SenTestCase {
 
 }
