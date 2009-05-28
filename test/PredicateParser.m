@@ -44,7 +44,6 @@
 }
 
 
-
 // expression       = term orTerm*
 - (TDCollectionParser *)expressionParser {
     if (!expressionParser) {
