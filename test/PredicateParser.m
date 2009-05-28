@@ -38,7 +38,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        
+        [self add:self.expressionParser];
     }
     return self;
 }
@@ -60,6 +60,8 @@
 - (TDCollectionParser *)expressionParser {
     if (!expressionParser) {
         self.expressionParser = [TDSequence sequence];
+        [expressionParser add:self.termParser];
+        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
     }
     return expressionParser;
 }
@@ -69,6 +71,8 @@
 - (TDCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
+        [termParser add:self.phraseParser];
+        [termParser add:[TDRepetition repetitionWithSubparser:self.andPhraseParser]];
     }
     return termParser;
 }
@@ -78,6 +82,8 @@
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
+        [orTermParser add:[[TDLiteral literalWithString:@"or"] discard]];
+        [orTermParser add:self.termParser];
     }
     return orTermParser;
 }
@@ -87,6 +93,8 @@
 - (TDCollectionParser *)andPhraseParser {
     if (!andPhraseParser) {
         self.andPhraseParser = [TDSequence sequence];
+        [andPhraseParser add:[[TDLiteral literalWithString:@"and"] discard]];
+        [andPhraseParser add:self.phraseParser];
     }
     return andPhraseParser;
 }
@@ -95,7 +103,15 @@
 // phrase           = atomicValue | '(' expression ')'
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
-        self.phraseParser = [TDSequence sequence];
+        self.phraseParser = [TDAlternation alternation];
+        [phraseParser add:self.atomicValueParser];
+        
+        TDSequence *s = [TDSequence sequence];
+        [s add:[[TDSymbol symbolWithString:@"("] discard]];
+        [s add:self.expressionParser];
+        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        
+        [phraseParser add:s];
     }
     return phraseParser;
 }
@@ -104,7 +120,9 @@
 // atomicValue      = 'true' | 'false'
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
-        self.atomicValueParser = [TDSequence sequence];
+        self.atomicValueParser = [TDAlternation alternation];
+        [atomicValueParser add:[TDLiteral literalWithString:@"true"]];
+        [atomicValueParser add:[TDLiteral literalWithString:@"false"]];
     }
     return atomicValueParser;
 }
