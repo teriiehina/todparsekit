@@ -15,6 +15,8 @@
     TDCollectionParser *andPhraseParser;
     TDCollectionParser *phraseParser;
     TDCollectionParser *atomicValueParser;
+    TDCollectionParser *negatedValueParser;
+    TDCollectionParser *valueParser;
     TDParser *trueParser;
     TDParser *falseParser;
 }
@@ -25,6 +27,8 @@
 @property (nonatomic, retain) TDCollectionParser *andPhraseParser;
 @property (nonatomic, retain) TDCollectionParser *phraseParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) TDCollectionParser *negatedValueParser;
+@property (nonatomic, retain) TDCollectionParser *valueParser;
 @property (nonatomic, retain) TDParser *trueParser;
 @property (nonatomic, retain) TDParser *falseParser;
 @end
