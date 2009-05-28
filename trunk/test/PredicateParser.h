@@ -9,7 +9,18 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface PredicateParser : NSObject {
-
+    TDCollectionParser *expressionParser;
+    TDCollectionParser *termParser;
+    TDCollectionParser *orTermParser;
+    TDCollectionParser *andPhraseParser;
+    TDCollectionParser *phraseParser;
+    TDCollectionParser *atomicValueParser;
 }
 
+@property (nonatomic, retain) TDCollectionParser *expressionParser;
+@property (nonatomic, retain) TDCollectionParser *termParser;
+@property (nonatomic, retain) TDCollectionParser *orTermParser;
+@property (nonatomic, retain) TDCollectionParser *andPhraseParser;
+@property (nonatomic, retain) TDCollectionParser *phraseParser;
+@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @end
