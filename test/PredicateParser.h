@@ -15,6 +15,8 @@
     TDCollectionParser *andPhraseParser;
     TDCollectionParser *phraseParser;
     TDCollectionParser *atomicValueParser;
+    TDParser *trueParser;
+    TDParser *falseParser;
 }
 
 @property (nonatomic, retain) TDCollectionParser *expressionParser;
@@ -23,4 +25,6 @@
 @property (nonatomic, retain) TDCollectionParser *andPhraseParser;
 @property (nonatomic, retain) TDCollectionParser *phraseParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) TDParser *trueParser;
+@property (nonatomic, retain) TDParser *falseParser;
 @end

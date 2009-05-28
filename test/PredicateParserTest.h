@@ -10,7 +10,9 @@
 #import "PredicateParser.h"
 
 @interface PredicateParserTest : SenTestCase {
-    
+    PredicateParser *p;
+    NSString *s;
+    TDAssembly *a;
 }
 
 @end
