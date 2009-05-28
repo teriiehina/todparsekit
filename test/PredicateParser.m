@@ -36,4 +36,77 @@
 
 @implementation PredicateParser
 
+- (id)init {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
+
+- (void)dealloc {
+    self.expressionParser = nil;
+    self.termParser = nil;
+    self.orTermParser = nil;
+    self.andPhraseParser = nil;
+    self.phraseParser = nil;
+    self.atomicValueParser = nil;
+    [super dealloc];
+}
+
+
+
+- (TDCollectionParser *)expressionParser {
+    if (!expressionParser) {
+        self.expressionParser = [TDSequence sequence];
+    }
+    return expressionParser;
+}
+
+
+- (TDCollectionParser *)termParser {
+    if (!termParser) {
+        self.termParser = [TDSequence sequence];
+    }
+    return termParser;
+}
+
+
+- (TDCollectionParser *)orTermParser {
+    if (!orTermParser) {
+        self.orTermParser = [TDSequence sequence];
+    }
+    return orTermParser;
+}
+
+
+- (TDCollectionParser *)andPhraseParser {
+    if (!andPhraseParser) {
+        self.andPhraseParser = [TDSequence sequence];
+    }
+    return andPhraseParser;
+}
+
+
+- (TDCollectionParser *)phraseParser {
+    if (!phraseParser) {
+        self.phraseParser = [TDSequence sequence];
+    }
+    return phraseParser;
+}
+
+
+- (TDCollectionParser *)atomicValueParser {
+    if (!atomicValueParser) {
+        self.atomicValueParser = [TDSequence sequence];
+    }
+    return atomicValueParser;
+}
+
+@synthesize expressionParser;
+@synthesize termParser;
+@synthesize orTermParser;
+@synthesize andPhraseParser;
+@synthesize phraseParser;
+@synthesize atomicValueParser;
 @end
