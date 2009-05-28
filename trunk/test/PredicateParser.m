@@ -56,6 +56,7 @@
 
 
 
+// expression       = term orTerm*
 - (TDCollectionParser *)expressionParser {
     if (!expressionParser) {
         self.expressionParser = [TDSequence sequence];
@@ -64,6 +65,7 @@
 }
 
 
+// term             = phrase andPhrase*
 - (TDCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
@@ -72,6 +74,7 @@
 }
 
 
+// orTerm           = 'or' term
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
@@ -80,6 +83,7 @@
 }
 
 
+// andPhrase        = 'and' phrase
 - (TDCollectionParser *)andPhraseParser {
     if (!andPhraseParser) {
         self.andPhraseParser = [TDSequence sequence];
@@ -88,6 +92,7 @@
 }
 
 
+// phrase           = atomicValue | '(' expression ')'
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDSequence sequence];
@@ -96,6 +101,7 @@
 }
 
 
+// atomicValue      = 'true' | 'false'
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
