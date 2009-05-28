@@ -86,6 +86,7 @@
         self.orTermParser = [TDSequence sequence];
         [orTermParser add:[[TDLiteral literalWithString:@"or"] discard]];
         [orTermParser add:self.termParser];
+        [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
     }
     return orTermParser;
 }
@@ -97,6 +98,7 @@
         self.andPhraseParser = [TDSequence sequence];
         [andPhraseParser add:[[TDLiteral literalWithString:@"and"] discard]];
         [andPhraseParser add:self.phraseParser];
+        [andPhraseParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return andPhraseParser;
 }
@@ -145,6 +147,22 @@
         [falseParser setAssembler:self selector:@selector(workOnFalseAssembly:)];
     }
     return falseParser;
+}
+
+
+- (void)workOnAndAssembly:(TDAssembly *)a {
+    id p2 = [a pop];
+    id p1 = [a pop];
+    NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
+    [a push:[NSCompoundPredicate andPredicateWithSubpredicates:subs]];
+}
+
+
+- (void)workOnOrAssembly:(TDAssembly *)a {
+    id p2 = [a pop];
+    id p1 = [a pop];
+    NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
+    [a push:[NSCompoundPredicate orPredicateWithSubpredicates:subs]];
 }
 
 
