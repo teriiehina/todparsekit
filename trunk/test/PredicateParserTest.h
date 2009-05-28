@@ -6,11 +6,11 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-
+#import "TDTestScaffold.h"
+#import "PredicateParser.h"
 
 @interface PredicateParserTest : SenTestCase {
-
+    
 }
 
 @end

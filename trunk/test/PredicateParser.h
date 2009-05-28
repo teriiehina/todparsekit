@@ -8,7 +8,7 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@interface PredicateParser : NSObject {
+@interface PredicateParser : TDSequence {
     TDCollectionParser *expressionParser;
     TDCollectionParser *termParser;
     TDCollectionParser *orTermParser;
