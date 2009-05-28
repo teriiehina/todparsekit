@@ -13,7 +13,11 @@
 // orTerm           = 'or' term
 // andPhrase        = 'and' phrase
 // phrase           = atomicValue | '(' expression ')'
-// atomicValue      = 'true' | 'false'
+// atomicValue      = value | negatedValue
+// negatedValue     = 'not' value
+// value            = true | false
+// true             = 'true'
+// false            = 'false'
 
 @implementation PredicateParser
 
@@ -31,6 +35,8 @@
     self.orTermParser = nil;
     self.andPhraseParser = nil;
     self.phraseParser = nil;
+    self.negatedValueParser = nil;
+    self.valueParser = nil;
     self.atomicValueParser = nil;
     self.trueParser = nil;
     self.falseParser = nil;
@@ -102,14 +108,37 @@
 }
 
 
-// atomicValue      = false | true
+// atomicValue      = value | negatedValue
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
-        [atomicValueParser add:self.trueParser];
-        [atomicValueParser add:self.falseParser];
+        [atomicValueParser add:self.valueParser];
+        [atomicValueParser add:self.negatedValueParser];
     }
     return atomicValueParser;
+}
+
+
+// negatedValue      = 'not' value
+- (TDCollectionParser *)negatedValueParser {
+    if (!negatedValueParser) {
+        self.negatedValueParser = [TDSequence sequence];
+        [negatedValueParser add:[[TDLiteral literalWithString:@"not"] discard]];
+        [negatedValueParser add:self.valueParser];
+        [negatedValueParser setAssembler:self selector:@selector(workOnNegatedValueAssembly:)];
+    }
+    return negatedValueParser;
+}
+
+
+// value      = false | true
+- (TDCollectionParser *)valueParser {
+    if (!valueParser) {
+        self.valueParser = [TDAlternation alternation];
+        [valueParser add:self.trueParser];
+        [valueParser add:self.falseParser];
+    }
+    return valueParser;
 }
 
 
@@ -147,6 +176,12 @@
 }
 
 
+- (void)workOnNegatedValueAssembly:(TDAssembly *)a {
+    id p = [a pop];
+    [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
+}
+
+
 - (void)workOnTrueAssembly:(TDAssembly *)a {
     [a push:[NSPredicate predicateWithValue:YES]];
 }
@@ -162,6 +197,8 @@
 @synthesize andPhraseParser;
 @synthesize phraseParser;
 @synthesize atomicValueParser;
+@synthesize negatedValueParser;
+@synthesize valueParser;
 @synthesize trueParser;
 @synthesize falseParser;
 @end
