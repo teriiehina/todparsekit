@@ -14,7 +14,7 @@
 - (BOOL)boolForAttributeKey:(NSString *)key;
 @end
 
-@interface PredicateParser : TDSequence {
+@interface PredicateParser : NSObject {
     id <PredicateParserDelegate>delegate;
     TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
