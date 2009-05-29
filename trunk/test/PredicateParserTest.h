@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 #import "PredicateParser.h"
 
-@interface PredicateParserTest : SenTestCase {
+@interface PredicateParserTest : SenTestCase <PredicateParserDelegate> {
     PredicateParser *p;
     NSString *s;
     TDAssembly *a;

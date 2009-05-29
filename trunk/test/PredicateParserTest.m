@@ -10,8 +10,13 @@
 
 @implementation PredicateParserTest
 
+- (id)attributeForKey:(NSString *)key {
+    return @"foo";
+}
+
+
 - (void)setUp {
-    p = [PredicateParser parser];
+    p = [[[PredicateParser alloc] initWithDelegate:self] autorelease];
 }
 
 
