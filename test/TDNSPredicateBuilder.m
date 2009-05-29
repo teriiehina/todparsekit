@@ -57,9 +57,13 @@
     self.termParser = nil;
     self.andPrimaryExprParser = nil;
     self.primaryExprParser = nil;
+    self.phraseParser = nil;
     self.negatedPredicateParser = nil;
     self.predicateParser = nil;
-    self.phraseParser = nil;
+    self.completePredicateParser = nil;
+    self.attrValuePredicateParser = nil;
+    self.attrPredicateParser = nil;
+	self.valuePredicateParser = nil;
     self.attrParser = nil;
     self.tagParser = nil;
     self.relationParser = nil;
