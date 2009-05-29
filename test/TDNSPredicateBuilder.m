@@ -524,56 +524,56 @@
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    id value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K > %@", key, value]];
 }
 
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    id value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K >= %@", key, value]];
 }
 
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    id value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K < %@", key, value]];
 }
 
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    id value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K <= %@", key, value]];
 }
 
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K BEGINSWITH %@", key, value]];
 }
 
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K CONTAINS %@", key, value]];
 }
 
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K ENDSWITH %@", key, value]];
 }
 
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *key = [a pop];
     [a push:[NSPredicate predicateWithFormat:@"%K MATCHES %@", key, value]];
 }
