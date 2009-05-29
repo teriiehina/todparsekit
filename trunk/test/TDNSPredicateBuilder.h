@@ -9,6 +9,7 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDNSPredicateBuilder : NSObject {
+    TDToken *nonReservedWordFence;
     TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
     TDCollectionParser *termParser;

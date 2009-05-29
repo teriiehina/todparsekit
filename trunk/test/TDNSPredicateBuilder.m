@@ -36,17 +36,22 @@
 
 // bool                 = 'true' | 'false'
 
+@interface TDNSPredicateBuilder ()
+@property (nonatomic, retain) TDToken *nonReservedWordFence;
+@end
+
 @implementation TDNSPredicateBuilder
 
 - (id)init {
     if (self = [super init]) {
-
+        self.nonReservedWordFence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     }
     return self;
 }
 
 
 - (void)dealloc {
+    self.nonReservedWordFence = nil;
     self.exprParser = nil;
     self.orTermParser = nil;
     self.termParser = nil;
@@ -643,21 +648,19 @@
 
 
 - (void)workOnNonReservedWordAssembly:(TDAssembly *)a {
-    TDToken *fence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     TDToken *tok = [a pop];
-    [a push:fence];
+    [a push:nonReservedWordFence];
     [a push:tok.stringValue];
 }
 
 
 - (void)workOnUnquotedStringAssembly:(TDAssembly *)a {
-    TDToken *fence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     NSMutableArray *wordStrings = [NSMutableArray array];
 
     while (1) {
-        NSArray *objs = [a objectsAbove:fence];
+        NSArray *objs = [a objectsAbove:nonReservedWordFence];
         id next = [a pop]; // is the next obj a fence?
-        if (![fence isEqualTo:next]) {
+        if (![nonReservedWordFence isEqualTo:next]) {
             if (next) {
                 [a push:next];
             }
@@ -689,6 +692,7 @@
     [a push:n];
 }
 
+@synthesize nonReservedWordFence;
 @synthesize exprParser;
 @synthesize orTermParser;
 @synthesize termParser;
