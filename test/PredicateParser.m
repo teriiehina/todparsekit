@@ -8,36 +8,52 @@
 
 #import "PredicateParser.h"
 
-// expression       = term orTerm*
-// term             = phrase andPhrase*
+// expr             = term orTerm*
 // orTerm           = 'or' term
-// andPhrase        = 'and' phrase
-// phrase           = atomicValue | '(' expression ')'
-// atomicValue      = value | negatedValue
-// negatedValue     = 'not' value
-// value            = true | false
+// term             = primaryExpr andPrimaryExpr*
+// andPrimaryExpr   = 'and' primaryExpr
+// primaryExpr      = phrase | '(' expression ')'
+// phrase           = predicate | negatedPredicate
+// negatedPredicate = 'not' predicate
+// predicate        = bool | sentance
+// sentance         = attribute relation value
+// attribute        = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
+// relation         = '=' | '!=' | '>' | '>=' | '<' | '<=' | 'beginswith' | 'contains' | 'endswith' | 'matches'
+// value            = QuotedString
+// bool             = true | false
 // true             = 'true'
 // false            = 'false'
+
+//attribute:
+//UNIQUEID | LINE | TYPE | ISGROUPHEADER | LEVEL | CHILD_INDEX | CONTENT | PARENT | PROJECT | COUNTOFCHILDREN | TAG;
+//
+//relation:
+//EQ | NOTEQ | GT | GTEQ | LT | LTEQ | BEGINSWITH | CONTAINS | ENDSWITH | MATCHES;
+//
+//value:
+
 
 @implementation PredicateParser
 
 - (id)init {
     if (self = [super init]) {
-        [self add:self.expressionParser];
+        [self add:self.exprParser];
     }
     return self;
 }
 
 
 - (void)dealloc {
-    self.expressionParser = nil;
-    self.termParser = nil;
+    self.exprParser = nil;
     self.orTermParser = nil;
-    self.andPhraseParser = nil;
+    self.termParser = nil;
+    self.andPrimaryExprParser = nil;
+    self.primaryExprParser = nil;
+    self.negatedPredicateParser = nil;
+    self.predicateParser = nil;
     self.phraseParser = nil;
-    self.negatedValueParser = nil;
-    self.valueParser = nil;
-    self.atomicValueParser = nil;
+    self.boolParser = nil;
+    self.sentenceParser = nil;
     self.trueParser = nil;
     self.falseParser = nil;
     [super dealloc];
@@ -45,24 +61,13 @@
 
 
 // expression       = term orTerm*
-- (TDCollectionParser *)expressionParser {
-    if (!expressionParser) {
-        self.expressionParser = [TDSequence sequence];
-        [expressionParser add:self.termParser];
-        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+- (TDCollectionParser *)exprParser {
+    if (!exprParser) {
+        self.exprParser = [TDSequence sequence];
+        [exprParser add:self.termParser];
+        [exprParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
     }
-    return expressionParser;
-}
-
-
-// term             = phrase andPhrase*
-- (TDCollectionParser *)termParser {
-    if (!termParser) {
-        self.termParser = [TDSequence sequence];
-        [termParser add:self.phraseParser];
-        [termParser add:[TDRepetition repetitionWithSubparser:self.andPhraseParser]];
-    }
-    return termParser;
+    return exprParser;
 }
 
 
@@ -78,66 +83,87 @@
 }
 
 
-// andPhrase        = 'and' phrase
-- (TDCollectionParser *)andPhraseParser {
-    if (!andPhraseParser) {
-        self.andPhraseParser = [TDSequence sequence];
-        [andPhraseParser add:[[TDLiteral literalWithString:@"and"] discard]];
-        [andPhraseParser add:self.phraseParser];
-        [andPhraseParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+// term             = primaryExpr andPrimaryExpr*
+- (TDCollectionParser *)termParser {
+    if (!termParser) {
+        self.termParser = [TDSequence sequence];
+        [termParser add:self.primaryExprParser];
+        [termParser add:[TDRepetition repetitionWithSubparser:self.andPrimaryExprParser]];
     }
-    return andPhraseParser;
+    return termParser;
 }
 
 
-// phrase           = atomicValue | '(' expression ')'
-- (TDCollectionParser *)phraseParser {
-    if (!phraseParser) {
-        self.phraseParser = [TDAlternation alternation];
-        [phraseParser add:self.atomicValueParser];
+// andPrimaryExpr        = 'and' primaryExpr
+- (TDCollectionParser *)andPrimaryExprParser {
+    if (!andPrimaryExprParser) {
+        self.andPrimaryExprParser = [TDSequence sequence];
+        [andPrimaryExprParser add:[[TDLiteral literalWithString:@"and"] discard]];
+        [andPrimaryExprParser add:self.primaryExprParser];
+        [andPrimaryExprParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+    }
+    return andPrimaryExprParser;
+}
+
+
+// primaryExpr           = phrase | '(' expression ')'
+- (TDCollectionParser *)primaryExprParser {
+    if (!primaryExprParser) {
+        self.primaryExprParser = [TDAlternation alternation];
+        [primaryExprParser add:self.phraseParser];
         
         TDSequence *s = [TDSequence sequence];
         [s add:[[TDSymbol symbolWithString:@"("] discard]];
-        [s add:self.expressionParser];
+        [s add:self.exprParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
         
-        [phraseParser add:s];
+        [primaryExprParser add:s];
+    }
+    return primaryExprParser;
+}
+
+
+// phrase      = predicate | negatedPredicate
+- (TDCollectionParser *)phraseParser {
+    if (!phraseParser) {
+        self.phraseParser = [TDAlternation alternation];
+        [phraseParser add:self.predicateParser];
+        [phraseParser add:self.negatedPredicateParser];
     }
     return phraseParser;
 }
 
 
-// atomicValue      = value | negatedValue
-- (TDCollectionParser *)atomicValueParser {
-    if (!atomicValueParser) {
-        self.atomicValueParser = [TDAlternation alternation];
-        [atomicValueParser add:self.valueParser];
-        [atomicValueParser add:self.negatedValueParser];
+// negatedPredicate      = 'not' predicate
+- (TDCollectionParser *)negatedPredicateParser {
+    if (!negatedPredicateParser) {
+        self.negatedPredicateParser = [TDSequence sequence];
+        [negatedPredicateParser add:[[TDLiteral literalWithString:@"not"] discard]];
+        [negatedPredicateParser add:self.predicateParser];
+        [negatedPredicateParser setAssembler:self selector:@selector(workOnNegatedValueAssembly:)];
     }
-    return atomicValueParser;
+    return negatedPredicateParser;
 }
 
 
-// negatedValue      = 'not' value
-- (TDCollectionParser *)negatedValueParser {
-    if (!negatedValueParser) {
-        self.negatedValueParser = [TDSequence sequence];
-        [negatedValueParser add:[[TDLiteral literalWithString:@"not"] discard]];
-        [negatedValueParser add:self.valueParser];
-        [negatedValueParser setAssembler:self selector:@selector(workOnNegatedValueAssembly:)];
+// predicate      = bool
+- (TDCollectionParser *)predicateParser {
+    if (!predicateParser) {
+        self.predicateParser = [TDAlternation alternation];
+        [predicateParser add:self.boolParser];
     }
-    return negatedValueParser;
+    return predicateParser;
 }
 
 
-// value      = false | true
-- (TDCollectionParser *)valueParser {
-    if (!valueParser) {
-        self.valueParser = [TDAlternation alternation];
-        [valueParser add:self.trueParser];
-        [valueParser add:self.falseParser];
+// bool      = false | true
+- (TDCollectionParser *)boolParser {
+    if (!boolParser) {
+        self.boolParser = [TDAlternation alternation];
+        [boolParser add:self.trueParser];
+        [boolParser add:self.falseParser];
     }
-    return valueParser;
+    return boolParser;
 }
 
 
@@ -190,14 +216,16 @@
     [a push:[NSPredicate predicateWithValue:NO]];
 }
 
-@synthesize expressionParser;
-@synthesize termParser;
+@synthesize exprParser;
 @synthesize orTermParser;
-@synthesize andPhraseParser;
+@synthesize termParser;
+@synthesize andPrimaryExprParser;
+@synthesize primaryExprParser;
 @synthesize phraseParser;
-@synthesize atomicValueParser;
-@synthesize negatedValueParser;
-@synthesize valueParser;
+@synthesize negatedPredicateParser;
+@synthesize predicateParser;
+@synthesize boolParser;
+@synthesize sentenceParser;
 @synthesize trueParser;
 @synthesize falseParser;
 @end
