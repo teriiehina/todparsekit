@@ -38,6 +38,17 @@
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p bestMatchFor:a];
     TDEqualObjects(@"[TRUEPREDICATE]foo/=/1.0^", [a description]);
+    
+    s = @"foo = -1.0";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [p bestMatchFor:a];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/=/-1.0^", [a description]);
+    
+    [d setValue:@"bar" forKey:@"foo"];
+    s = @"foo = 'bar'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    a = [p bestMatchFor:a];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/=/'bar'^", [a description]);
 }
 
 
