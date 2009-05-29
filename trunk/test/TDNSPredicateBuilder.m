@@ -28,8 +28,8 @@
 // endswithPredicate    = attr 'endswith' value
 // matchesPredicate     = attr 'matches' value
 
-// attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
-// tag                  = '@' Any
+// attr                 = tag | Word
+// tag                  = '@' Word
 // value                = QuotedString | Num | bool
 // bool                 = 'true' | 'false'
 
@@ -201,16 +201,6 @@
         self.attrParser = [TDAlternation alternation];
         [attrParser add:self.tagParser];
         [attrParser add:[TDWord word]];
-//        [attrParser add:[TDLiteral literalWithString:@"uniqueid"]];
-//        [attrParser add:[TDLiteral literalWithString:@"line"]];
-//        [attrParser add:[TDLiteral literalWithString:@"type"]];
-//        [attrParser add:[TDLiteral literalWithString:@"isgroupheader"]];
-//        [attrParser add:[TDLiteral literalWithString:@"level"]];
-//        [attrParser add:[TDLiteral literalWithString:@"index"]];
-//        [attrParser add:[TDLiteral literalWithString:@"content"]];
-//        [attrParser add:[TDLiteral literalWithString:@"parent"]];
-//        [attrParser add:[TDLiteral literalWithString:@"project"]];
-//        [attrParser add:[TDLiteral literalWithString:@"countofchildren"]];
         [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
     }
     return attrParser;
