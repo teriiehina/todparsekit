@@ -1,0 +1,20 @@
+//
+//  TDPredicateEvaluatorTest.h
+//  TDParseKit
+//
+//  Created by Todd Ditchendorf on 5/28/09.
+//  Copyright 2009 Todd Ditchendorf. All rights reserved.
+//
+
+#import "TDTestScaffold.h"
+#import "TDPredicateEvaluator.h"
+
+@interface TDPredicateEvaluatorTest : SenTestCase <TDPredicateEvaluatorDelegate> {
+    TDPredicateEvaluator *p;
+    NSString *s;
+    TDAssembly *a;
+    
+    NSMutableDictionary *d;
+}
+
+@end

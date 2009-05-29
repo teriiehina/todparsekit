@@ -156,6 +156,10 @@
 		D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D331B5A10EA5293A0020BF01 /* TDTrackException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D331B5A20EA5293A0020BF01 /* TDTrackException.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
+		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
+		D3385FDD0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
+		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
@@ -655,6 +659,10 @@
 		D331B5A10EA5293A0020BF01 /* TDTrackException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTrackException.h; path = src/TDTrackException.h; sourceTree = "<group>"; };
 		D331B5A20EA5293A0020BF01 /* TDTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrackException.m; path = src/TDTrackException.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3385FD70FCFB1FF003BF729 /* TDPredicateEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluator.h; path = test/TDPredicateEvaluator.h; sourceTree = "<group>"; };
+		D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluator.m; path = test/TDPredicateEvaluator.m; sourceTree = "<group>"; };
+		D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluatorTest.h; path = test/TDPredicateEvaluatorTest.h; sourceTree = "<group>"; };
+		D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluatorTest.m; path = test/TDPredicateEvaluatorTest.m; sourceTree = "<group>"; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
@@ -1083,6 +1091,10 @@
 				D3252F7D0FCE1A87005EF059 /* PredicateParser.m */,
 				D3252F780FCE1A7E005EF059 /* PredicateParserTest.h */,
 				D3252F790FCE1A7F005EF059 /* PredicateParserTest.m */,
+				D3385FD70FCFB1FF003BF729 /* TDPredicateEvaluator.h */,
+				D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */,
+				D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */,
+				D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */,
 			);
 			name = predicate;
 			sourceTree = "<group>";
@@ -2253,6 +2265,8 @@
 				D31A16530F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
 				D3252F7A0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */,
 				D3252F7E0FCE1A87005EF059 /* PredicateParser.m in Sources */,
+				D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
+				D3385FDD0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2404,6 +2418,8 @@
 				D3E39C3F0FC5FFD10022DAB9 /* TDDelimitStateTest.m in Sources */,
 				D3252F7B0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */,
 				D3252F7F0FCE1A87005EF059 /* PredicateParser.m in Sources */,
+				D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
+				D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
