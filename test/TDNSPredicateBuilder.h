@@ -9,6 +9,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDNSPredicateBuilder : NSObject {
+    NSString *defaultAttr;
+    NSString *defaultRelation;
+    NSString *defaultValue;
     NSArray *reservedWords;
     TDToken *nonReservedWordFence;
     TDCollectionParser *exprParser;
@@ -38,6 +41,9 @@
 }
 - (NSPredicate *)buildFrom:(NSString *)s;
 
+@property (nonatomic, copy) NSString *defaultAttr;
+@property (nonatomic, copy) NSString *defaultRelation;
+@property (nonatomic, copy) NSString *defaultValue;
 @property (nonatomic, copy) NSArray *reservedWords;
 
 @property (nonatomic, retain) TDCollectionParser *exprParser;
