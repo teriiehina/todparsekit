@@ -563,7 +563,7 @@
 
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
     [a push:[NSNumber numberWithBool:yn]];
@@ -571,7 +571,7 @@
 
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *attrKey = [a pop];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
     BOOL yn = (NSNotFound != r.location);
@@ -580,7 +580,7 @@
 
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
     [a push:[NSNumber numberWithBool:yn]];
@@ -588,7 +588,7 @@
 
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
-    NSString *value = [[a pop] stringValue];
+    NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
     [a push:[NSNumber numberWithBool:yn]];
