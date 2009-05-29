@@ -188,6 +188,16 @@
     s = @"foo <= .3";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[0]foo/<=/.3^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:.3] forKey:@"foo"];
+    s = @"foo <= .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/<=/.3^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:.3111] forKey:@"foo"];
+    s = @"foo <= .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/<=/.3^", [a description]);
 }
 
 
@@ -196,6 +206,11 @@
     s = @"foo beginswith 'foo'";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[1]foo/beginswith/'foo'^", [a description]);
+
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo beginswith 'bar'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/beginswith/'bar'^", [a description]);
 }
 
 
@@ -204,6 +219,11 @@
     s = @"foo contains 'baz'";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[1]foo/contains/'baz'^", [a description]);
+
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo contains 'bat'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/contains/'bat'^", [a description]);
 }
 
 
@@ -212,6 +232,11 @@
     s = @"foo endswith 'baz'";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[1]foo/endswith/'baz'^", [a description]);
+
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo endswith 'bat'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/endswith/'bat'^", [a description]);
 }
 
 
