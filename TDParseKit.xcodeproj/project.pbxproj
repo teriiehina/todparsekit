@@ -149,10 +149,10 @@
 		D31FE7420E60F40900A0803E /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
 		D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D32365200E92F327008CB5C4 /* TDScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D32365210E92F327008CB5C4 /* TDScientificNumberState.m */; };
-		D3252F7A0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* PredicateParserTest.m */; };
-		D3252F7B0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* PredicateParserTest.m */; };
-		D3252F7E0FCE1A87005EF059 /* PredicateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* PredicateParser.m */; };
-		D3252F7F0FCE1A87005EF059 /* PredicateParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* PredicateParser.m */; };
+		D3252F7A0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */; };
+		D3252F7B0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */; };
+		D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
+		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D331B5A10EA5293A0020BF01 /* TDTrackException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D331B5A20EA5293A0020BF01 /* TDTrackException.m */; };
 		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
@@ -652,10 +652,10 @@
 		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
 		D32365200E92F327008CB5C4 /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = src/TDScientificNumberState.h; sourceTree = "<group>"; };
 		D32365210E92F327008CB5C4 /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = src/TDScientificNumberState.m; sourceTree = "<group>"; };
-		D3252F780FCE1A7E005EF059 /* PredicateParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PredicateParserTest.h; path = test/PredicateParserTest.h; sourceTree = "<group>"; };
-		D3252F790FCE1A7F005EF059 /* PredicateParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PredicateParserTest.m; path = test/PredicateParserTest.m; sourceTree = "<group>"; };
-		D3252F7C0FCE1A87005EF059 /* PredicateParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PredicateParser.h; path = test/PredicateParser.h; sourceTree = "<group>"; };
-		D3252F7D0FCE1A87005EF059 /* PredicateParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PredicateParser.m; path = test/PredicateParser.m; sourceTree = "<group>"; };
+		D3252F780FCE1A7E005EF059 /* TDNSPredicateBuilderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilderTest.h; path = test/TDNSPredicateBuilderTest.h; sourceTree = "<group>"; };
+		D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilderTest.m; path = test/TDNSPredicateBuilderTest.m; sourceTree = "<group>"; };
+		D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilder.h; path = test/TDNSPredicateBuilder.h; sourceTree = "<group>"; };
+		D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilder.m; path = test/TDNSPredicateBuilder.m; sourceTree = "<group>"; };
 		D331B5A10EA5293A0020BF01 /* TDTrackException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTrackException.h; path = src/TDTrackException.h; sourceTree = "<group>"; };
 		D331B5A20EA5293A0020BF01 /* TDTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTrackException.m; path = src/TDTrackException.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1087,10 +1087,10 @@
 		D3252F670FCE171D005EF059 /* predicate */ = {
 			isa = PBXGroup;
 			children = (
-				D3252F7C0FCE1A87005EF059 /* PredicateParser.h */,
-				D3252F7D0FCE1A87005EF059 /* PredicateParser.m */,
-				D3252F780FCE1A7E005EF059 /* PredicateParserTest.h */,
-				D3252F790FCE1A7F005EF059 /* PredicateParserTest.m */,
+				D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */,
+				D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */,
+				D3252F780FCE1A7E005EF059 /* TDNSPredicateBuilderTest.h */,
+				D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */,
 				D3385FD70FCFB1FF003BF729 /* TDPredicateEvaluator.h */,
 				D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */,
 				D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */,
@@ -2263,8 +2263,8 @@
 				D37F87800F61B62400C1F429 /* TDParserFactory.m in Sources */,
 				D37F87810F61B62D00C1F429 /* NSString+TDParseKitAdditions.m in Sources */,
 				D31A16530F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
-				D3252F7A0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */,
-				D3252F7E0FCE1A87005EF059 /* PredicateParser.m in Sources */,
+				D3252F7A0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */,
+				D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */,
 				D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
 				D3385FDD0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
 			);
@@ -2416,8 +2416,8 @@
 				D31A16520F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
 				D3B43FB80F76E99C0072AF40 /* TDJavaScriptParserTest.m in Sources */,
 				D3E39C3F0FC5FFD10022DAB9 /* TDDelimitStateTest.m in Sources */,
-				D3252F7B0FCE1A7F005EF059 /* PredicateParserTest.m in Sources */,
-				D3252F7F0FCE1A87005EF059 /* PredicateParser.m in Sources */,
+				D3252F7B0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */,
+				D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */,
 				D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
 				D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
 			);

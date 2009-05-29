@@ -7,14 +7,12 @@
 //
 
 #import "TDTestScaffold.h"
-#import "PredicateParser.h"
+#import "TDNSPredicateBuilder.h"
 
-@interface PredicateParserTest : SenTestCase <PredicateParserDelegate> {
-    PredicateParser *p;
+@interface TDNSPredicateBuilderTest : SenTestCase {
+    TDNSPredicateBuilder *b;
     NSString *s;
     TDAssembly *a;
-
-    NSMutableDictionary *d;
 }
 
 @end

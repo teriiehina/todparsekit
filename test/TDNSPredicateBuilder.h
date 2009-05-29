@@ -8,14 +8,7 @@
 
 #import <TDParseKit/TDParseKit.h>
 
-@protocol PredicateParserDelegate <NSObject>
-- (id)valueForAttributeKey:(NSString *)key;
-- (CGFloat)floatForAttributeKey:(NSString *)key;
-- (BOOL)boolForAttributeKey:(NSString *)key;
-@end
-
-@interface PredicateParser : NSObject {
-    id <PredicateParserDelegate>delegate;
+@interface TDNSPredicateBuilder : NSObject {
     TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
     TDCollectionParser *termParser;
@@ -47,8 +40,7 @@
     TDParser *stringParser;
     TDParser *numberParser;
 }
-- (id)initWithDelegate:(id <PredicateParserDelegate>)d;
-- (NSPredicate *)parse:(NSString *)s;
+- (NSPredicate *)buildFrom:(NSString *)s;
 
 @property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;

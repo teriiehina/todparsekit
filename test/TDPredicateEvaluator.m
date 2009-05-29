@@ -595,11 +595,6 @@
 }
 
 
-//- (void)workOnTagAssembly:(TDAssembly *)a {
-//    [a push:[[a pop] stringValue]];
-//}
-//
-//
 - (void)workOnAttrAssembly:(TDAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
