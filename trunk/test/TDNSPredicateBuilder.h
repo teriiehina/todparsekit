@@ -37,7 +37,9 @@
     TDCollectionParser *boolParser;
     TDParser *trueParser;
     TDParser *falseParser;
-    TDParser *stringParser;
+    TDCollectionParser *stringParser;
+    TDParser *quotedStringParser;
+    TDParser *unquotedStringParser;
     TDParser *numberParser;
 }
 - (NSPredicate *)buildFrom:(NSString *)s;
@@ -70,6 +72,8 @@
 @property (nonatomic, retain) TDCollectionParser *boolParser;
 @property (nonatomic, retain) TDParser *trueParser;
 @property (nonatomic, retain) TDParser *falseParser;
-@property (nonatomic, retain) TDParser *stringParser;
+@property (nonatomic, retain) TDCollectionParser *stringParser;
+@property (nonatomic, retain) TDParser *quotedStringParser;
+@property (nonatomic, retain) TDParser *unquotedStringParser;
 @property (nonatomic, retain) TDParser *numberParser;
 @end
