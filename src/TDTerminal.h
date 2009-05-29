@@ -18,6 +18,7 @@
 @interface TDTerminal : TDParser {
     NSString *string;
     BOOL discardFlag;
+    NSArray *exceptions;
 }
 
 /*!
@@ -27,6 +28,8 @@
     @result     an initialized <tt>TDTerminal</tt> subclass object
 */
 - (id)initWithString:(NSString *)s;
+
+- (void)setExceptions:(NSArray *)a;
 
 /*!
     @brief      By default, terminals push themselves upon a assembly's stack, after a successful match. This method will turn off that behavior.

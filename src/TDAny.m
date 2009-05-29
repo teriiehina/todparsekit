@@ -9,6 +9,10 @@
 #import <TDParseKit/TDAny.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTerminal ()
+- (BOOL)except:(id)obj;
+@end
+
 @implementation TDAny
 
 + (id)any {
@@ -17,7 +21,12 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    return [obj isKindOfClass:[TDToken class]];
+    if ([obj isKindOfClass:[TDToken class]]) {
+        TDToken *tok = (TDToken *)obj;
+        return ![self except:tok.value];
+    } else {
+        return NO;
+    }
 }
 
 @end

@@ -9,6 +9,10 @@
 #import <TDParseKit/TDNum.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTerminal ()
+- (BOOL)except:(id)obj;
+@end
+
 @implementation TDNum
 
 + (id)num {
@@ -18,7 +22,7 @@
 
 - (BOOL)qualifies:(id)obj {
     TDToken *tok = (TDToken *)obj;
-    return tok.isNumber;
+    return tok.isNumber && ![self except:tok.value];
 }
 
 @end
