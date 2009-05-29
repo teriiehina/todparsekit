@@ -119,6 +119,70 @@
 }
 
 
+- (void)testGt {
+    [d setValue:[NSNumber numberWithInteger:41] forKey:@"foo"];
+    s = @"foo > 42";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/>/42^", [a description]);
+}
+
+
+- (void)testLt {
+    [d setValue:[NSNumber numberWithInteger:41] forKey:@"foo"];
+    s = @"foo < .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/</.3^", [a description]);
+}
+
+
+- (void)testGteq {
+    [d setValue:[NSNumber numberWithInteger:41] forKey:@"foo"];
+    s = @"foo >= 42";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/>=/42^", [a description]);
+}
+
+
+- (void)testLteq {
+    [d setValue:[NSNumber numberWithInteger:41] forKey:@"foo"];
+    s = @"foo <= .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/<=/.3^", [a description]);
+}
+
+
+- (void)testBeginswith {
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo beginswith 'foo'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/beginswith/'foo'^", [a description]);
+}
+
+
+- (void)testContains {
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo contains 'baz'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/contains/'baz'^", [a description]);
+}
+
+
+- (void)testEndswith {
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo endswith 'baz'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/endswith/'baz'^", [a description]);
+}
+
+
+- (void)testMatches {
+    [d setValue:@"foobarbaz" forKey:@"foo"];
+    s = @"foo matches 'baz'";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/matches/'baz'^", [a description]);
+}
+
+
 - (void)testBools {
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
