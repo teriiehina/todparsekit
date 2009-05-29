@@ -25,7 +25,7 @@
 // tag                  = '@' Word
 // value                = string | Num | bool
 // string               = QuotedString | unquotedString
-// unquotedString       = Word[^and, or, not]+
+// unquotedString       = nonReservedWord+
 // bool                 = 'true' | 'false'
 
 @interface TDNSPredicateBuilder ()
@@ -420,7 +420,7 @@
 	id value = [a pop];
 	id attr = [a pop];
 	[a push:attr];
-	[a push:defaultRelation]; // default relation
+	[a push:defaultRelation];
 	[a push:value];
 }
 
@@ -428,15 +428,15 @@
 - (void)workOnAttrPredicateAssembly:(TDAssembly *)a {
 	id attr = [a pop];
 	[a push:attr];
-	[a push:defaultRelation]; // default relation
-	[a push:defaultValue]; // default value;
+	[a push:defaultRelation];
+	[a push:defaultValue];
 }
 
 
 - (void)workOnValuePredicateAssembly:(TDAssembly *)a {
 	id value = [a pop];
-	[a push:defaultAttr]; // default attribute
-	[a push:defaultRelation]; // default relation
+	[a push:defaultAttr];
+	[a push:defaultRelation];
 	[a push:value];
 }
 
