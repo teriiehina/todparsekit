@@ -13,6 +13,8 @@
     PredicateParser *p;
     NSString *s;
     TDAssembly *a;
+
+    NSMutableDictionary *d;
 }
 
 @end
