@@ -30,9 +30,11 @@
 
 // attr                 = tag | Word
 // tag                  = '@' Word
-// value                = QuotedString | Num | bool
-// bool                 = 'true' | 'false'
+// value                = string | Num | bool
+// string               = QuotedString | unquotedString
+// unquotedString       = Word[^and, or, not]*
 
+// bool                 = 'true' | 'false'
 
 @implementation TDNSPredicateBuilder
 
@@ -74,6 +76,8 @@
     self.trueParser = nil;
     self.falseParser = nil;
     self.stringParser = nil;
+    self.quotedStringParser = nil;
+    self.unquotedStringParser = nil;
     self.numberParser = nil;
     [super dealloc];
 }
@@ -224,7 +228,7 @@
         self.eqStringPredicateParser = [TDSequence sequence];
         [eqStringPredicateParser add:self.attrParser];
         [eqStringPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
-        [eqStringPredicateParser add:self.stringParser];
+        [eqStringPredicateParser add:self.quotedStringParser];
         [eqStringPredicateParser setAssembler:self selector:@selector(workOnEqStringPredicateAssembly:)];
     }
     return eqStringPredicateParser;
@@ -261,7 +265,7 @@
         self.neStringPredicateParser = [TDSequence sequence];
         [neStringPredicateParser add:self.attrParser];
         [neStringPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
-        [neStringPredicateParser add:self.stringParser];
+        [neStringPredicateParser add:self.quotedStringParser];
         [neStringPredicateParser setAssembler:self selector:@selector(workOnNeStringPredicateAssembly:)];
     }
     return neStringPredicateParser;
@@ -400,7 +404,7 @@
 - (TDCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
-        [valueParser add:self.stringParser];
+        [valueParser add:self.quotedStringParser];
         [valueParser add:self.numberParser];
         [valueParser add:self.boolParser];
     }
@@ -437,12 +441,35 @@
 }
 
 
-- (TDParser *)stringParser {
+- (TDCollectionParser *)stringParser {
     if (!stringParser) {
-        self.stringParser = [TDQuotedString quotedString];
+        self.stringParser = [TDAlternation alternation];
+        [stringParser add:self.quotedStringParser];
+        [stringParser add:self.unquotedStringParser];
         [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
     }
     return stringParser;
+}
+
+
+- (TDParser *)quotedStringParser {
+    if (!quotedStringParser) {
+        self.quotedStringParser = [TDQuotedString quotedString];
+        [quotedStringParser setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
+    }
+    return quotedStringParser;
+}
+
+
+// unquotedString       = Word[^and, or, not]*
+- (TDParser *)unquotedStringParser {
+    if (!unquotedStringParser) {
+        TDWord *w = [TDWord word];
+        w.exceptions = [NSArray arrayWithObjects:@"and", @"or", @"not", nil];
+        self.unquotedStringParser = [TDRepetition repetitionWithSubparser:w];
+        [unquotedStringParser setAssembler:self selector:@selector(workOnUnquotedStringAssembly:)];
+    }
+    return unquotedStringParser;
 }
 
 
@@ -597,7 +624,30 @@
 
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
+
+}
+
+
+- (void)workOnQuotedStringAssembly:(TDAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
+    [a push:s];
+}
+
+
+- (void)workOnUnquotedStringAssembly:(TDAssembly *)a {
+    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"|" floatValue:0.0];
+    NSArray *words = [a objectsAbove:tok];
+    
+    NSInteger last = words.count - 1;
+    NSInteger i = 0;
+    NSMutableString *s = [NSMutableString string];
+    for (TDToken *word in words) {
+        if (i == last) {
+            [s appendString:word.stringValue];
+        } else {
+            [s appendFormat:@"%@ ", word.stringValue];
+        }
+    }
     [a push:s];
 }
 
@@ -636,5 +686,7 @@
 @synthesize trueParser;
 @synthesize falseParser;
 @synthesize stringParser;
+@synthesize quotedStringParser;
+@synthesize unquotedStringParser;
 @synthesize numberParser;
 @end
