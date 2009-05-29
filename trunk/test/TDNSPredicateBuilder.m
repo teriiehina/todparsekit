@@ -606,7 +606,6 @@
     NSNumber *n = [NSNumber numberWithFloat:[[a pop] floatValue]];
     [a push:n];
 }
-          
 
 @synthesize exprParser;
 @synthesize orTermParser;
