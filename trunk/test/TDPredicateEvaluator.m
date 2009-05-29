@@ -531,33 +531,33 @@
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
+    BOOL yn = (NSOrderedDescending == [[delegate valueForAttributeKey:attrKey] compare:value]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
+    BOOL yn = (NSOrderedAscending != [[delegate valueForAttributeKey:attrKey] compare:value]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
+    BOOL yn = (NSOrderedAscending == [[delegate valueForAttributeKey:attrKey] compare:value]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
-    CGFloat value = [[a pop] floatValue];
+    NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
+    BOOL yn = (NSOrderedDescending != [[delegate valueForAttributeKey:attrKey] compare:value]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
