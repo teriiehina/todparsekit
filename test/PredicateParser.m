@@ -54,6 +54,19 @@
     self.negatedPredicateParser = nil;
     self.predicateParser = nil;
     self.phraseParser = nil;
+    self.attrParser = nil;
+    self.tagParser = nil;
+    self.eqPredicateParser = nil;
+    self.nePredicateParser = nil;
+    self.gtPredicateParser = nil;
+    self.gteqPredicateParser = nil;
+    self.ltPredicateParser = nil;
+    self.lteqPredicateParser = nil;
+    self.beginswithPredicateParser = nil;
+    self.containsPredicateParser = nil;
+    self.endswithPredicateParser = nil;
+    self.matchesPredicateParser = nil;
+    self.valueParser = nil;
     self.boolParser = nil;
     self.trueParser = nil;
     self.falseParser = nil;
@@ -157,6 +170,177 @@
 }
 
 
+// attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
+- (TDCollectionParser *)attrParser {
+    if (!attrParser) {
+        self.attrParser = [TDAlternation alternation];
+        [attrParser add:self.tagParser];
+        [attrParser add:[TDLiteral literalWithString:@"uniqueid"]];
+        [attrParser add:[TDLiteral literalWithString:@"line"]];
+        [attrParser add:[TDLiteral literalWithString:@"type"]];
+        [attrParser add:[TDLiteral literalWithString:@"isgroupheader"]];
+        [attrParser add:[TDLiteral literalWithString:@"level"]];
+        [attrParser add:[TDLiteral literalWithString:@"index"]];
+        [attrParser add:[TDLiteral literalWithString:@"content"]];
+        [attrParser add:[TDLiteral literalWithString:@"parent"]];
+        [attrParser add:[TDLiteral literalWithString:@"project"]];
+        [attrParser add:[TDLiteral literalWithString:@"countofchildren"]];
+    }
+    return attrParser;
+}
+
+
+// tag                  = '@' Any
+- (TDCollectionParser *)tagParser {
+    if (!tagParser) {
+        self.tagParser = [TDSequence sequence];
+        [tagParser add:[TDSymbol symbolWithString:@"@"]];
+    }
+    return tagParser;
+}
+
+
+// eqPredicate          = attr '=' value
+- (TDCollectionParser *)eqPredicateParser {
+    if (!eqPredicateParser) {
+        self.eqPredicateParser = [TDSequence sequence];
+        [eqPredicateParser add:self.attrParser];
+        [eqPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [eqPredicateParser add:self.valueParser];
+        [eqPredicateParser setAssembler:self selector:@selector(workOnEqPredicateAssembly:)];
+    }
+    return eqPredicateParser;
+}
+
+
+// nePredicate          = attr '!=' value
+- (TDCollectionParser *)nePredicateParser {
+    if (!nePredicateParser) {
+        self.nePredicateParser = [TDSequence sequence];
+        [nePredicateParser add:self.attrParser];
+        [nePredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
+        [nePredicateParser add:self.valueParser];
+        [nePredicateParser setAssembler:self selector:@selector(workOnNePredicateAssembly:)];
+    }
+    return nePredicateParser;
+}
+
+// gtPredicate          = attr '>' value
+- (TDCollectionParser *)gtPredicateParser {
+    if (!gtPredicateParser) {
+        self.gtPredicateParser = [TDSequence sequence];
+        [gtPredicateParser add:self.attrParser];
+        [gtPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [gtPredicateParser add:self.valueParser];
+        [gtPredicateParser setAssembler:self selector:@selector(workOnGtPredicateAssembly:)];
+    }
+    return gtPredicateParser;
+}
+
+
+// gteqPredicate        = attr '>=' value
+- (TDCollectionParser *)gteqPredicateParser {
+    if (!gteqPredicateParser) {
+        self.gteqPredicateParser = [TDSequence sequence];
+        [gteqPredicateParser add:self.attrParser];
+        [gteqPredicateParser add:[[TDSymbol symbolWithString:@">="] discard]];
+        [gteqPredicateParser add:self.valueParser];
+        [gteqPredicateParser setAssembler:self selector:@selector(workOnGteqPredicateAssembly:)];
+    }
+    return gteqPredicateParser;
+}
+
+
+// ltPredicate          = attr '<' value
+- (TDCollectionParser *)ltPredicateParser {
+    if (!ltPredicateParser) {
+        self.ltPredicateParser = [TDSequence sequence];
+        [ltPredicateParser add:self.attrParser];
+        [ltPredicateParser add:[[TDSymbol symbolWithString:@"<"] discard]];
+        [ltPredicateParser add:self.valueParser];
+        [ltPredicateParser setAssembler:self selector:@selector(workOnLtPredicateAssembly:)];
+    }
+    return ltPredicateParser;
+}
+
+
+// lteqPredicate        = attr '<=' value
+- (TDCollectionParser *)lteqPredicateParser {
+    if (!lteqPredicateParser) {
+        self.lteqPredicateParser = [TDSequence sequence];
+        [lteqPredicateParser add:self.attrParser];
+        [lteqPredicateParser add:[[TDSymbol symbolWithString:@"<="] discard]];
+        [lteqPredicateParser add:self.valueParser];
+        [lteqPredicateParser setAssembler:self selector:@selector(workOnLteqPredicateAssembly:)];
+    }
+    return lteqPredicateParser;
+}
+
+
+// beginswithPredicate  = attr 'beginswith' value
+- (TDCollectionParser *)beginswithPredicateParser {
+    if (!beginswithPredicateParser) {
+        self.beginswithPredicateParser = [TDSequence sequence];
+        [beginswithPredicateParser add:self.attrParser];
+        [beginswithPredicateParser add:[[TDLiteral literalWithString:@"beginswith"] discard]];
+        [beginswithPredicateParser add:self.valueParser];
+        [beginswithPredicateParser setAssembler:self selector:@selector(workOnBeginswithPredicateAssembly:)];
+    }
+    return beginswithPredicateParser;
+}
+
+
+// containsPredicate    = attr 'contains' value
+- (TDCollectionParser *)containsPredicateParser {
+    if (!containsPredicateParser) {
+        self.containsPredicateParser = [TDSequence sequence];
+        [containsPredicateParser add:self.attrParser];
+        [containsPredicateParser add:[[TDLiteral literalWithString:@"contains"] discard]];
+        [containsPredicateParser add:self.valueParser];
+        [containsPredicateParser setAssembler:self selector:@selector(workOnContainsPredicateAssembly:)];
+    }
+    return containsPredicateParser;
+}
+
+
+// endswithPredicate    = attr 'endswith' value
+- (TDCollectionParser *)endswithPredicateParser {
+    if (!endswithPredicateParser) {
+        self.endswithPredicateParser = [TDSequence sequence];
+        [endswithPredicateParser add:self.attrParser];
+        [endswithPredicateParser add:[[TDLiteral literalWithString:@"endswith"] discard]];
+        [endswithPredicateParser add:self.valueParser];
+        [endswithPredicateParser setAssembler:self selector:@selector(workOnEndswithPredicateAssembly:)];
+    }
+    return endswithPredicateParser;
+}
+
+
+// matchesPredicate     = attr 'matches' value
+- (TDCollectionParser *)matchesPredicateParser {
+    if (!matchesPredicateParser) {
+        self.matchesPredicateParser = [TDSequence sequence];
+        [matchesPredicateParser add:self.attrParser];
+        [matchesPredicateParser add:[[TDLiteral literalWithString:@"matches"] discard]];
+        [matchesPredicateParser add:self.valueParser];
+        [matchesPredicateParser setAssembler:self selector:@selector(workOnMatchesPredicateAssembly:)];
+    }
+    return matchesPredicateParser;
+}
+
+
+// value                = QuotedString | Num | bool
+- (TDCollectionParser *)valueParser {
+    if (!valueParser) {
+        self.valueParser = [TDAlternation alternation];
+        [valueParser add:[TDQuotedString quotedString]];
+        [valueParser add:[TDNum num]];
+        [valueParser add:self.boolParser];
+    }
+    return valueParser;
+}
+
+
 - (TDCollectionParser *)boolParser {
     if (!boolParser) {
         self.boolParser = [TDAlternation alternation];
@@ -223,6 +407,19 @@
 @synthesize phraseParser;
 @synthesize negatedPredicateParser;
 @synthesize predicateParser;
+@synthesize attrParser;
+@synthesize tagParser;
+@synthesize eqPredicateParser;
+@synthesize nePredicateParser;
+@synthesize gtPredicateParser;
+@synthesize gteqPredicateParser;
+@synthesize ltPredicateParser;
+@synthesize lteqPredicateParser;
+@synthesize beginswithPredicateParser;
+@synthesize containsPredicateParser;
+@synthesize endswithPredicateParser;
+@synthesize matchesPredicateParser;
+@synthesize valueParser;
 @synthesize boolParser;
 @synthesize trueParser;
 @synthesize falseParser;
