@@ -36,6 +36,9 @@
 
 - (id)init {
     if (self = [super init]) {
+        self.defaultAttr = @"content";
+        self.defaultRelation = @"=";
+        self.defaultValue = @"";
         self.reservedWords = [NSArray arrayWithObjects:@"true", @"false", @"and", @"or", @"not", @"contains", @"beginswith", @"endswith", @"matches", nil];
         self.nonReservedWordFence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     }
@@ -44,6 +47,9 @@
 
 
 - (void)dealloc {
+    self.defaultAttr = nil;
+    self.defaultRelation = nil;
+    self.defaultValue = nil;
     self.reservedWords = nil;
     self.nonReservedWordFence = nil;
     self.exprParser = nil;
@@ -414,7 +420,7 @@
 	id value = [a pop];
 	id attr = [a pop];
 	[a push:attr];
-	[a push:@"="]; // default relation
+	[a push:defaultRelation]; // default relation
 	[a push:value];
 }
 
@@ -422,15 +428,15 @@
 - (void)workOnAttrPredicateAssembly:(TDAssembly *)a {
 	id attr = [a pop];
 	[a push:attr];
-	[a push:@"="]; // default relation
-	[a push:@""]; // default value;
+	[a push:defaultRelation]; // default relation
+	[a push:defaultValue]; // default value;
 }
 
 
 - (void)workOnValuePredicateAssembly:(TDAssembly *)a {
 	id value = [a pop];
-	[a push:@"content"]; // default attribute
-	[a push:@"="]; // default relation
+	[a push:defaultAttr]; // default attribute
+	[a push:defaultRelation]; // default relation
 	[a push:value];
 }
 
@@ -520,6 +526,9 @@
     [a push:n];
 }
 
+@synthesize defaultAttr;
+@synthesize defaultRelation;
+@synthesize defaultValue;
 @synthesize reservedWords;
 @synthesize nonReservedWordFence;
 @synthesize exprParser;
