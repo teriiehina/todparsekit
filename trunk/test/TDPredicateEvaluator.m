@@ -466,17 +466,17 @@
 
 
 - (void)workOnAndAssembly:(TDAssembly *)a {
-    id p2 = [a pop];
-    id p1 = [a pop];
-    NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
+    id b2 = [a pop];
+    id b1 = [a pop];
+    NSArray *subs = [NSArray arrayWithObjects:b1, b2, nil];
     [a push:[NSCompoundPredicate andPredicateWithSubpredicates:subs]];
 }
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
-    id p2 = [a pop];
-    id p1 = [a pop];
-    NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
+    id b2 = [a pop];
+    id b1 = [a pop];
+    NSArray *subs = [NSArray arrayWithObjects:b1, b2, nil];
     [a push:[NSCompoundPredicate orPredicateWithSubpredicates:subs]];
 }
 
@@ -498,9 +498,9 @@
 
 
 - (void)workOnEqBoolPredicateAssembly:(TDAssembly *)a {
-    NSNumber *n = [a pop];
+    NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate boolForAttributeKey:attrKey] == [n boolValue]);
+    BOOL yn = ([delegate boolForAttributeKey:attrKey] == [b boolValue]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
@@ -523,9 +523,9 @@
 
 
 - (void)workOnNeBoolPredicateAssembly:(TDAssembly *)a {
-    NSNumber *n = [a pop];
+    NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
-    BOOL yn = ([delegate boolForAttributeKey:attrKey] != [n boolValue]);
+    BOOL yn = ([delegate boolForAttributeKey:attrKey] != [b boolValue]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
@@ -634,8 +634,8 @@
 
 
 - (void)workOnNumberAssembly:(TDAssembly *)a {
-    NSNumber *n = [NSNumber numberWithFloat:[[a pop] floatValue]];
-    [a push:n];
+    NSNumber *b = [NSNumber numberWithFloat:[[a pop] floatValue]];
+    [a push:b];
 }
 
 
