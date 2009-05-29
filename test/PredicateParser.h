@@ -8,7 +8,12 @@
 
 #import <TDParseKit/TDParseKit.h>
 
+@protocol PredicateParserDelegate <NSObject>
+- (id)attributeForKey:(NSString *)key;
+@end
+
 @interface PredicateParser : TDSequence {
+    id <PredicateParserDelegate>delegate;
     TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
     TDCollectionParser *termParser;
@@ -22,6 +27,7 @@
     TDParser *trueParser;
     TDParser *falseParser;
 }
+- (id)initWithDelegate:(id <PredicateParserDelegate>)d;
 
 @property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;

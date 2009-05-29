@@ -35,8 +35,9 @@
 
 @implementation PredicateParser
 
-- (id)init {
+- (id)initWithDelegate:(id <PredicateParserDelegate>)d {
     if (self = [super init]) {
+        delegate = d;
         [self add:self.exprParser];
     }
     return self;
@@ -44,6 +45,7 @@
 
 
 - (void)dealloc {
+    delegate = nil;
     self.exprParser = nil;
     self.orTermParser = nil;
     self.termParser = nil;
