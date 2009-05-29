@@ -29,8 +29,6 @@
 */
 - (id)initWithString:(NSString *)s;
 
-- (void)setExceptions:(NSArray *)a;
-
 /*!
     @brief      By default, terminals push themselves upon a assembly's stack, after a successful match. This method will turn off that behavior.
     @details    This method returns this parser as a convenience for chainging-style usage.
@@ -43,4 +41,11 @@
     @brief      the string matched by this parser.
 */
 @property (nonatomic, readonly, copy) NSString *string;
+
+/*!
+    @property   exceptionss
+    @details    This adds support for reserved words
+    @brief      <tt>TDWord</tt> tokens whose <tt>stringValue</tt> match strings in this array should not be matched
+*/
+@property (nonatomic, copy) NSArray *exceptions;
 @end

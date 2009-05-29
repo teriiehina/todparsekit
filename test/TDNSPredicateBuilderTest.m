@@ -135,6 +135,29 @@
 }
 
 
+- (void)testUnqotedString {
+    s = @"foo matches bar";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"bar\"]foo/matches/bar^", [a description]);
+
+    s = @"foo matches bar baz";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"bar baz\"]foo/matches/bar/baz^", [a description]);
+
+    s = @"foo matches foo bar baz";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"foo bar baz\"]foo/matches/foo/bar/baz^", [a description]);
+
+    s = @"foo matches bar and baz contains bat";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"bar\" AND baz CONTAINS \"bat\"]foo/matches/bar/and/baz/contains/bat^", [a description]);
+
+    s = @"foo matches foo bar and baz contains bat";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"foo bar\" AND baz CONTAINS \"bat\"]foo/matches/foo/bar/and/baz/contains/bat^", [a description]);
+}
+
+
 - (void)testBools {
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];

@@ -32,7 +32,7 @@
 // tag                  = '@' Word
 // value                = string | Num | bool
 // string               = QuotedString | unquotedString
-// unquotedString       = Word[^and, or, not]*
+// unquotedString       = Word[^and, or, not]+
 
 // bool                 = 'true' | 'false'
 
@@ -228,7 +228,7 @@
         self.eqStringPredicateParser = [TDSequence sequence];
         [eqStringPredicateParser add:self.attrParser];
         [eqStringPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
-        [eqStringPredicateParser add:self.quotedStringParser];
+        [eqStringPredicateParser add:self.stringParser];
         [eqStringPredicateParser setAssembler:self selector:@selector(workOnEqStringPredicateAssembly:)];
     }
     return eqStringPredicateParser;
@@ -265,7 +265,7 @@
         self.neStringPredicateParser = [TDSequence sequence];
         [neStringPredicateParser add:self.attrParser];
         [neStringPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
-        [neStringPredicateParser add:self.quotedStringParser];
+        [neStringPredicateParser add:self.stringParser];
         [neStringPredicateParser setAssembler:self selector:@selector(workOnNeStringPredicateAssembly:)];
     }
     return neStringPredicateParser;
@@ -404,7 +404,7 @@
 - (TDCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
-        [valueParser add:self.quotedStringParser];
+        [valueParser add:self.stringParser];
         [valueParser add:self.numberParser];
         [valueParser add:self.boolParser];
     }
@@ -441,6 +441,7 @@
 }
 
 
+// string               = quotedString | unquotedString
 - (TDCollectionParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDAlternation alternation];
@@ -452,6 +453,7 @@
 }
 
 
+// quotedString         = QuotedString
 - (TDParser *)quotedStringParser {
     if (!quotedStringParser) {
         self.quotedStringParser = [TDQuotedString quotedString];
@@ -461,12 +463,17 @@
 }
 
 
-// unquotedString       = Word[^and, or, not]*
-- (TDParser *)unquotedStringParser {
+// unquotedString       = Word[^and, or, not]+
+- (TDCollectionParser *)unquotedStringParser {
     if (!unquotedStringParser) {
+        
         TDWord *w = [TDWord word];
-        w.exceptions = [NSArray arrayWithObjects:@"and", @"or", @"not", nil];
-        self.unquotedStringParser = [TDRepetition repetitionWithSubparser:w];
+        w.exceptions = [NSArray arrayWithObjects:@"true", @"false", @"and", @"or", @"not", nil];
+        [w setAssembler:self selector:@selector(workOnUnquotedStringWordAssembly:)];
+        
+        self.unquotedStringParser = [TDSequence sequence];
+        [unquotedStringParser add:w];
+        [unquotedStringParser add:[TDRepetition repetitionWithSubparser:w]];
         [unquotedStringParser setAssembler:self selector:@selector(workOnUnquotedStringAssembly:)];
     }
     return unquotedStringParser;
@@ -624,6 +631,7 @@
 
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 
 }
 
@@ -634,21 +642,45 @@
 }
 
 
+- (void)workOnUnquotedStringWordAssembly:(TDAssembly *)a {
+    TDToken *fence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
+    TDToken *tok = [a pop];
+    [a push:fence];
+    [a push:tok.stringValue];
+}
+
+
 - (void)workOnUnquotedStringAssembly:(TDAssembly *)a {
-    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"|" floatValue:0.0];
-    NSArray *words = [a objectsAbove:tok];
+    TDToken *fence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
+    NSMutableArray *wordStrings = [NSMutableArray array];
+
+    while (1) {
+        NSArray *objs = [a objectsAbove:fence];
+        id next = [a pop]; // is the next obj a fence?
+        if (![fence isEqualTo:next]) {
+            if (next) {
+                [a push:next];
+            }
+            for (id obj in [objs reverseObjectEnumerator]) {
+                [a push:obj];
+            }
+            break;
+        }
+        NSAssert(1 == objs.count, @"");
+        [wordStrings addObject:[objs objectAtIndex:0]];
+    }
     
-    NSInteger last = words.count - 1;
+    NSInteger last = wordStrings.count - 1;
     NSInteger i = 0;
-    NSMutableString *s = [NSMutableString string];
-    for (TDToken *word in words) {
-        if (i == last) {
-            [s appendString:word.stringValue];
+    NSMutableString *ms = [NSMutableString string];
+    for (NSString *wordString in [wordStrings reverseObjectEnumerator]) {
+        if (i++ == last) {
+            [ms appendString:wordString];
         } else {
-            [s appendFormat:@"%@ ", word.stringValue];
+            [ms appendFormat:@"%@ ", wordString];
         }
     }
-    [a push:s];
+    [a push:[[ms copy] autorelease]];
 }
 
 
