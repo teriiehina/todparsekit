@@ -8,29 +8,29 @@
 
 #import "PredicateParser.h"
 
-// expr              = term orTerm*
-// orTerm            = 'or' term
-// term              = primaryExpr andPrimaryExpr*
-// andPrimaryExpr    = 'and' primaryExpr
-// primaryExpr       = phrase | '(' expression ')'
-// phrase            = predicate | negatedPredicate
-// negatedPredicate  = 'not' predicate
-// predicate         = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
-// attr              = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
-// tag               = '@' Any
-// eqPredicate       = attr '=' value
-// nePredicate       = attr '!=' value
-// gtPredicate       = attr '>' value
-// gteqPredicate     = attr '>=' value
-// ltPredicate       = attr '<' value
-// lteqPredicate     = attr '<=' value
-// beginswithPredicate = attr 'beginswith' value
-// containsPredicate = attr 'contains' value
-// endswithPredicate = attr 'endswith' value
-// matchesPredicate  = attr 'matches' value
+// expr                 = term orTerm*
+// orTerm               = 'or' term
+// term                 = primaryExpr andPrimaryExpr*
+// andPrimaryExpr       = 'and' primaryExpr
+// primaryExpr          = phrase | '(' expression ')'
+// phrase               = predicate | negatedPredicate
+// negatedPredicate     = 'not' predicate
+// predicate            = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
+// attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
+// tag                  = '@' Any
+// eqPredicate          = attr '=' value
+// nePredicate          = attr '!=' value
+// gtPredicate          = attr '>' value
+// gteqPredicate        = attr '>=' value
+// ltPredicate          = attr '<' value
+// lteqPredicate        = attr '<=' value
+// beginswithPredicate  = attr 'beginswith' value
+// containsPredicate    = attr 'contains' value
+// endswithPredicate    = attr 'endswith' value
+// matchesPredicate     = attr 'matches' value
 
-// value             = QuotedString | Num | bool
-// bool              = 'true' | 'false'
+// value                = QuotedString | Num | bool
+// bool                 = 'true' | 'false'
 
 
 @implementation PredicateParser
