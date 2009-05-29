@@ -13,8 +13,10 @@
 @interface TDTerminal ()
 - (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly;
 - (BOOL)qualifies:(id)obj;
+- (BOOL)except:(id)obj;
 
 @property (nonatomic, readwrite, copy) NSString *string;
+@property (nonatomic, copy) NSArray *exceptions;
 @end
 
 @implementation TDTerminal
@@ -34,6 +36,7 @@
 
 - (void)dealloc {
     self.string = nil;
+    self.exceptions = nil;
     [super dealloc];
 }
 
@@ -79,10 +82,20 @@
 }
 
 
+- (BOOL)except:(id)obj {
+    if (!exceptions) {
+        return NO;
+    }
+    
+    return [exceptions containsObject:obj];
+}
+
+
 - (TDTerminal *)discard {
     discardFlag = YES;
     return self;
 }
 
 @synthesize string;
+@synthesize exceptions;
 @end

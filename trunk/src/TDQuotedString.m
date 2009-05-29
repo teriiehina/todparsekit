@@ -9,6 +9,10 @@
 #import <TDParseKit/TDQuotedString.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTerminal ()
+- (BOOL)except:(id)obj;
+@end
+
 @implementation TDQuotedString
 
 + (id)quotedString {
@@ -18,7 +22,7 @@
 
 - (BOOL)qualifies:(id)obj {
     TDToken *tok = (TDToken *)obj;
-    return tok.isQuotedString;
+    return tok.isQuotedString && ![self except:tok.value];
 }
 
 @end

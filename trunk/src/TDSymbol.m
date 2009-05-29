@@ -9,6 +9,10 @@
 #import <TDParseKit/TDSymbol.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDTerminal ()
+- (BOOL)except:(id)obj;
+@end
+
 @interface TDSymbol ()
 @property (nonatomic, retain) TDToken *symbol;
 @end
@@ -47,7 +51,7 @@
         return [symbol isEqual:obj];
     } else {
         TDToken *tok = (TDToken *)obj;
-        return tok.isSymbol;
+        return tok.isSymbol && ![self except:tok.value];
     }
 }
 
