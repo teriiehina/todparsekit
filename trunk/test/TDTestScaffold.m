@@ -111,6 +111,7 @@
                            @"TDMiniCSSAssemblerTest",
                            @"TDPredicateEvaluatorTest",
                            @"TDNSPredicateBuilderTest",
+                           @"TDJavaScriptParserTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];
