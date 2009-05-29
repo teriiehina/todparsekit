@@ -456,16 +456,16 @@
 
 
 - (void)workOnAndAssembly:(TDAssembly *)a {
-    id p2 = [a pop];
-    id p1 = [a pop];
+    NSPredicate *p2 = [a pop];
+    NSPredicate *p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
     [a push:[NSCompoundPredicate andPredicateWithSubpredicates:subs]];
 }
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
-    id p2 = [a pop];
-    id p1 = [a pop];
+    NSPredicate *p2 = [a pop];
+    NSPredicate *p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
     [a push:[NSCompoundPredicate orPredicateWithSubpredicates:subs]];
 }
