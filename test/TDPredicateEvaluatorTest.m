@@ -124,6 +124,21 @@
     s = @"foo > 42";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[0]foo/>/42^", [a description]);
+
+    [d setValue:[NSNumber numberWithInteger:43] forKey:@"foo"];
+    s = @"foo > 42";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/>/42^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:1.2] forKey:@"foo"];
+    s = @"foo > 1.2";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/>/1.2^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:1.2001] forKey:@"foo"];
+    s = @"foo > 1.2";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/>/1.2^", [a description]);
 }
 
 
@@ -132,6 +147,21 @@
     s = @"foo < .3";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[0]foo/</.3^", [a description]);
+
+    [d setValue:[NSNumber numberWithInteger:0] forKey:@"foo"];
+    s = @"foo < .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/</.3^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:.3] forKey:@"foo"];
+    s = @"foo < .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/</.3^", [a description]);
+
+    [d setValue:[NSNumber numberWithFloat:.29999999] forKey:@"foo"];
+    s = @"foo < .3";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/</.3^", [a description]);
 }
 
 
@@ -140,6 +170,16 @@
     s = @"foo >= 42";
     a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[0]foo/>=/42^", [a description]);
+    
+    [d setValue:[NSNumber numberWithFloat:41.99] forKey:@"foo"];
+    s = @"foo >= 42";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[0]foo/>=/42^", [a description]);
+    
+    [d setValue:[NSNumber numberWithInteger:42] forKey:@"foo"];
+    s = @"foo >= 42";
+    a = [p.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]foo/>=/42^", [a description]);
 }
 
 
