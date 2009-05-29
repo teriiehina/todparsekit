@@ -8,29 +8,29 @@
 
 #import "PredicateParser.h"
 
-// expr             = term orTerm*
-// orTerm           = 'or' term
-// term             = primaryExpr andPrimaryExpr*
-// andPrimaryExpr   = 'and' primaryExpr
-// primaryExpr      = phrase | '(' expression ')'
-// phrase           = predicate | negatedPredicate
-// negatedPredicate = 'not' predicate
-// predicate        = bool | sentance
-// sentance         = attribute relation value
-// attribute        = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
-// relation         = '=' | '!=' | '>' | '>=' | '<' | '<=' | 'beginswith' | 'contains' | 'endswith' | 'matches'
-// value            = QuotedString
-// bool             = true | false
-// true             = 'true'
-// false            = 'false'
+// expr              = term orTerm*
+// orTerm            = 'or' term
+// term              = primaryExpr andPrimaryExpr*
+// andPrimaryExpr    = 'and' primaryExpr
+// primaryExpr       = phrase | '(' expression ')'
+// phrase            = predicate | negatedPredicate
+// negatedPredicate  = 'not' predicate
+// predicate         = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
+// attr              = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
+// tag               = '@' Any
+// eqPredicate       = attr '=' value
+// nePredicate       = attr '!=' value
+// gtPredicate       = attr '>' value
+// gteqPredicate     = attr '>=' value
+// ltPredicate       = attr '<' value
+// lteqPredicate     = attr '<=' value
+// beginswithPredicate = attr 'beginswith' value
+// containsPredicate = attr 'contains' value
+// endswithPredicate = attr 'endswith' value
+// matchesPredicate  = attr 'matches' value
 
-//attribute:
-//UNIQUEID | LINE | TYPE | ISGROUPHEADER | LEVEL | CHILD_INDEX | CONTENT | PARENT | PROJECT | COUNTOFCHILDREN | TAG;
-//
-//relation:
-//EQ | NOTEQ | GT | GTEQ | LT | LTEQ | BEGINSWITH | CONTAINS | ENDSWITH | MATCHES;
-//
-//value:
+// value             = QuotedString | Num | bool
+// bool              = 'true' | 'false'
 
 
 @implementation PredicateParser
@@ -55,7 +55,6 @@
     self.predicateParser = nil;
     self.phraseParser = nil;
     self.boolParser = nil;
-    self.sentenceParser = nil;
     self.trueParser = nil;
     self.falseParser = nil;
     [super dealloc];
@@ -148,7 +147,7 @@
 }
 
 
-// predicate      = bool
+// predicate         = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
 - (TDCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDAlternation alternation];
@@ -158,7 +157,6 @@
 }
 
 
-// bool      = false | true
 - (TDCollectionParser *)boolParser {
     if (!boolParser) {
         self.boolParser = [TDAlternation alternation];
@@ -208,7 +206,6 @@
     [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
 }
 
-
 - (void)workOnTrueAssembly:(TDAssembly *)a {
     [a push:[NSPredicate predicateWithValue:YES]];
 }
@@ -227,7 +224,6 @@
 @synthesize negatedPredicateParser;
 @synthesize predicateParser;
 @synthesize boolParser;
-@synthesize sentenceParser;
 @synthesize trueParser;
 @synthesize falseParser;
 @end

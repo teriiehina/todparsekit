@@ -23,7 +23,6 @@
     TDCollectionParser *negatedPredicateParser;
     TDCollectionParser *predicateParser;
     TDCollectionParser *boolParser;
-    TDCollectionParser *sentenceParser;
     TDParser *trueParser;
     TDParser *falseParser;
 }
@@ -38,7 +37,6 @@
 @property (nonatomic, retain) TDCollectionParser *negatedPredicateParser;
 @property (nonatomic, retain) TDCollectionParser *predicateParser;
 @property (nonatomic, retain) TDCollectionParser *boolParser;
-@property (nonatomic, retain) TDCollectionParser *sentenceParser;
 @property (nonatomic, retain) TDParser *trueParser;
 @property (nonatomic, retain) TDParser *falseParser;
 @end
