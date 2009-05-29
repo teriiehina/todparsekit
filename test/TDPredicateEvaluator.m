@@ -468,16 +468,16 @@
 - (void)workOnAndAssembly:(TDAssembly *)a {
     id b2 = [a pop];
     id b1 = [a pop];
-    NSArray *subs = [NSArray arrayWithObjects:b1, b2, nil];
-    [a push:[NSCompoundPredicate andPredicateWithSubpredicates:subs]];
+    BOOL yn = ([b1 boolValue] && [b2 boolValue]);
+    [a push:[NSNumber numberWithBool:yn]];
 }
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
     id b2 = [a pop];
     id b1 = [a pop];
-    NSArray *subs = [NSArray arrayWithObjects:b1, b2, nil];
-    [a push:[NSCompoundPredicate orPredicateWithSubpredicates:subs]];
+    BOOL yn = ([b1 boolValue] || [b2 boolValue]);
+    [a push:[NSNumber numberWithBool:yn]];
 }
 
 
@@ -606,8 +606,8 @@
 
 
 - (void)workOnNegatedValueAssembly:(TDAssembly *)a {
-    id p = [a pop];
-    [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
+    NSNumber *b = [a pop];
+    [a push:[NSNumber numberWithBool:![b boolValue]]];
 }
 
 

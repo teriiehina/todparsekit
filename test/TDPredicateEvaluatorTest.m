@@ -128,7 +128,7 @@
     s = @"not true";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[NOT 1]not/true^", [a description]);
+    TDEqualObjects(@"[0]not/true^", [a description]);
     
     s = @"false";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -138,37 +138,37 @@
     s = @"not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[NOT 0]not/false^", [a description]);
+    TDEqualObjects(@"[1]not/false^", [a description]);
     
     s = @"true and false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[1 AND 0]true/and/false^", [a description]);
+    TDEqualObjects(@"[0]true/and/false^", [a description]);
     
     s = @"not true and false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(NOT 1) AND 0]not/true/and/false^", [a description]);
+    TDEqualObjects(@"[0]not/true/and/false^", [a description]);
     
     s = @"not true and not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(NOT 1) AND (NOT 0)]not/true/and/not/false^", [a description]);
+    TDEqualObjects(@"[0]not/true/and/not/false^", [a description]);
     
     s = @"true or false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[1 OR 0]true/or/false^", [a description]);
+    TDEqualObjects(@"[1]true/or/false^", [a description]);
     
     s = @"(true and false) or false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(1 AND 0) OR 0](/true/and/false/)/or/false^", [a description]);
+    TDEqualObjects(@"[0](/true/and/false/)/or/false^", [a description]);
     
     s = @"(true and false) or not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [p.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(1 AND 0) OR (NOT 0)](/true/and/false/)/or/not/false^", [a description]);
+    TDEqualObjects(@"[1](/true/and/false/)/or/not/false^", [a description]);
 }
 
 @end
