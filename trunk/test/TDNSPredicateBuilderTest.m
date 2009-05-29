@@ -79,6 +79,62 @@
 }
 
 
+- (void)testGt {
+    s = @"foo > 42";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo > 42]foo/>/42^", [a description]);
+}
+
+
+- (void)testLt {
+    s = @"foo < .3";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo < 0.3]foo/</.3^", [a description]);
+}
+
+
+- (void)testGteq {
+    s = @"foo >= 42";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo >= 42]foo/>=/42^", [a description]);
+}
+
+
+- (void)testLteq {
+    s = @"foo <= .3";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo <= 0.3]foo/<=/.3^", [a description]);
+}
+
+
+- (void)testBeginswith {
+    s = @"foo beginswith 'bar'";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo BEGINSWITH \"bar\"]foo/beginswith/'bar'^", [a description]);
+}
+
+
+- (void)testContains {
+    s = @"foo contains 'baz'";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo CONTAINS \"baz\"]foo/contains/'baz'^", [a description]);
+}
+
+
+- (void)testEndswith {
+    s = @"foo endswith 'baz'";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo ENDSWITH \"baz\"]foo/endswith/'baz'^", [a description]);
+}
+
+
+- (void)testMatches {
+    s = @"foo matches 'baz'";
+    a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo MATCHES \"baz\"]foo/matches/'baz'^", [a description]);
+}
+
+
 - (void)testBools {
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
