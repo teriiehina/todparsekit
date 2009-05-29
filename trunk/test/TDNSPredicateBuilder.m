@@ -661,9 +661,11 @@
         NSArray *objs = [a objectsAbove:nonReservedWordFence];
         id next = [a pop]; // is the next obj a fence?
         if (![nonReservedWordFence isEqualTo:next]) {
+            // if not, put the next token back
             if (next) {
                 [a push:next];
             }
+            // also put back any toks we didnt mean to pop
             for (id obj in [objs reverseObjectEnumerator]) {
                 [a push:obj];
             }
