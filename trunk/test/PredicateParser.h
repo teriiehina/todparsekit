@@ -9,26 +9,30 @@
 #import <TDParseKit/TDParseKit.h>
 
 @interface PredicateParser : TDSequence {
-    TDCollectionParser *expressionParser;
-    TDCollectionParser *termParser;
+    TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
-    TDCollectionParser *andPhraseParser;
+    TDCollectionParser *termParser;
+    TDCollectionParser *andPrimaryExprParser;
+    TDCollectionParser *primaryExprParser;
     TDCollectionParser *phraseParser;
-    TDCollectionParser *atomicValueParser;
-    TDCollectionParser *negatedValueParser;
-    TDCollectionParser *valueParser;
+    TDCollectionParser *negatedPredicateParser;
+    TDCollectionParser *predicateParser;
+    TDCollectionParser *boolParser;
+    TDCollectionParser *sentenceParser;
     TDParser *trueParser;
     TDParser *falseParser;
 }
 
-@property (nonatomic, retain) TDCollectionParser *expressionParser;
-@property (nonatomic, retain) TDCollectionParser *termParser;
+@property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;
-@property (nonatomic, retain) TDCollectionParser *andPhraseParser;
+@property (nonatomic, retain) TDCollectionParser *termParser;
+@property (nonatomic, retain) TDCollectionParser *andPrimaryExprParser;
+@property (nonatomic, retain) TDCollectionParser *primaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *phraseParser;
-@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
-@property (nonatomic, retain) TDCollectionParser *negatedValueParser;
-@property (nonatomic, retain) TDCollectionParser *valueParser;
+@property (nonatomic, retain) TDCollectionParser *negatedPredicateParser;
+@property (nonatomic, retain) TDCollectionParser *predicateParser;
+@property (nonatomic, retain) TDCollectionParser *boolParser;
+@property (nonatomic, retain) TDCollectionParser *sentenceParser;
 @property (nonatomic, retain) TDParser *trueParser;
 @property (nonatomic, retain) TDParser *falseParser;
 @end
