@@ -29,11 +29,11 @@
     // test bools
     s = @"foo = true";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo == 1]foo/=/true^", [a description]);
+    TDEqualObjects(@"[foo == TRUEPREDICATE]foo/=/true^", [a description]);
     
     s = @"foo = false";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo == 0]foo/=/false^", [a description]);
+    TDEqualObjects(@"[foo == FALSEPREDICATE]foo/=/false^", [a description]);
     
     
     // test strings
@@ -61,11 +61,11 @@
     // test bools
     s = @"foo != true";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo != 1]foo/!=/true^", [a description]);
+    TDEqualObjects(@"[foo != TRUEPREDICATE]foo/!=/true^", [a description]);
     
     s = @"foo != false";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo != 0]foo/!=/false^", [a description]);
+    TDEqualObjects(@"[foo != FALSEPREDICATE]foo/!=/false^", [a description]);
         
     
     // test strings
@@ -136,9 +136,9 @@
 
 
 - (void)testUnqotedString {
-    s = @"foo matches bar";
+    s = @"foo contains bar";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo MATCHES \"bar\"]foo/matches/bar^", [a description]);
+    TDEqualObjects(@"[foo CONTAINS \"bar\"]foo/contains/bar^", [a description]);
 
     s = @"foo matches bar baz";
     a = [b.exprParser bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
@@ -162,52 +162,52 @@
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[TRUEPREDICATE]true^", [a description]);
+    TDEqualObjects(@"[content == TRUEPREDICATE]true^", [a description]);
     
     s = @"not true";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[NOT TRUEPREDICATE]not/true^", [a description]);
+    TDEqualObjects(@"[NOT content == TRUEPREDICATE]not/true^", [a description]);
 
     s = @"false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[FALSEPREDICATE]false^", [a description]);
+    TDEqualObjects(@"[content == FALSEPREDICATE]false^", [a description]);
     
     s = @"not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[NOT FALSEPREDICATE]not/false^", [a description]);
+    TDEqualObjects(@"[NOT content == FALSEPREDICATE]not/false^", [a description]);
     
     s = @"true and false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[TRUEPREDICATE AND FALSEPREDICATE]true/and/false^", [a description]);
+    TDEqualObjects(@"[content == TRUEPREDICATE AND content == FALSEPREDICATE]true/and/false^", [a description]);
     
     s = @"not true and false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(NOT TRUEPREDICATE) AND FALSEPREDICATE]not/true/and/false^", [a description]);
+    TDEqualObjects(@"[(NOT content == TRUEPREDICATE) AND content == FALSEPREDICATE]not/true/and/false^", [a description]);
     
     s = @"not true and not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(NOT TRUEPREDICATE) AND (NOT FALSEPREDICATE)]not/true/and/not/false^", [a description]);
+    TDEqualObjects(@"[(NOT content == TRUEPREDICATE) AND (NOT content == FALSEPREDICATE)]not/true/and/not/false^", [a description]);
     
     s = @"true or false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[TRUEPREDICATE OR FALSEPREDICATE]true/or/false^", [a description]);
+    TDEqualObjects(@"[content == TRUEPREDICATE OR content == FALSEPREDICATE]true/or/false^", [a description]);
 
     s = @"(true and false) or false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(TRUEPREDICATE AND FALSEPREDICATE) OR FALSEPREDICATE](/true/and/false/)/or/false^", [a description]);
+    TDEqualObjects(@"[(content == TRUEPREDICATE AND content == FALSEPREDICATE) OR content == FALSEPREDICATE](/true/and/false/)/or/false^", [a description]);
 
     s = @"(true and false) or not false";
     a = [TDTokenAssembly assemblyWithString:s];
     a = [b.exprParser bestMatchFor:a];
-    TDEqualObjects(@"[(TRUEPREDICATE AND FALSEPREDICATE) OR (NOT FALSEPREDICATE)](/true/and/false/)/or/not/false^", [a description]);
+    TDEqualObjects(@"[(content == TRUEPREDICATE AND content == FALSEPREDICATE) OR (NOT content == FALSEPREDICATE)](/true/and/false/)/or/not/false^", [a description]);
 }
 
 @end
