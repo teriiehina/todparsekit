@@ -100,7 +100,7 @@
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
-        [orTermParser add:[[TDLiteral literalWithString:@"or"] discard]];
+        [orTermParser add:[[TDCaseInsensitiveLiteral literalWithString:@"or"] discard]];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
     }
@@ -123,7 +123,7 @@
 - (TDCollectionParser *)andPrimaryExprParser {
     if (!andPrimaryExprParser) {
         self.andPrimaryExprParser = [TDSequence sequence];
-        [andPrimaryExprParser add:[[TDLiteral literalWithString:@"and"] discard]];
+        [andPrimaryExprParser add:[[TDCaseInsensitiveLiteral literalWithString:@"and"] discard]];
         [andPrimaryExprParser add:self.primaryExprParser];
         [andPrimaryExprParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
@@ -163,7 +163,7 @@
 - (TDCollectionParser *)negatedPredicateParser {
     if (!negatedPredicateParser) {
         self.negatedPredicateParser = [TDSequence sequence];
-        [negatedPredicateParser add:[[TDLiteral literalWithString:@"not"] discard]];
+        [negatedPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"not"] discard]];
         [negatedPredicateParser add:self.predicateParser];
         [negatedPredicateParser setAssembler:self selector:@selector(workOnNegatedValueAssembly:)];
     }
