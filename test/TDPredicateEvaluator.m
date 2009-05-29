@@ -456,16 +456,16 @@
 
 
 - (void)workOnAndAssembly:(TDAssembly *)a {
-    id b2 = [a pop];
-    id b1 = [a pop];
+    NSNumber *b2 = [a pop];
+    NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] && [b2 boolValue]);
     [a push:[NSNumber numberWithBool:yn]];
 }
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
-    id b2 = [a pop];
-    id b1 = [a pop];
+    NSNumber *b2 = [a pop];
+    NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] || [b2 boolValue]);
     [a push:[NSNumber numberWithBool:yn]];
 }
