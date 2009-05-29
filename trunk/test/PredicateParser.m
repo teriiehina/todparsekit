@@ -16,8 +16,6 @@
 // phrase               = predicate | negatedPredicate
 // negatedPredicate     = 'not' predicate
 // predicate            = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
-// attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
-// tag                  = '@' Any
 // eqPredicate          = attr '=' value
 // nePredicate          = attr '!=' value
 // gtPredicate          = attr '>' value
@@ -29,6 +27,8 @@
 // endswithPredicate    = attr 'endswith' value
 // matchesPredicate     = attr 'matches' value
 
+// attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
+// tag                  = '@' Any
 // value                = QuotedString | Num | bool
 // bool                 = 'true' | 'false'
 
@@ -165,6 +165,16 @@
     if (!predicateParser) {
         self.predicateParser = [TDAlternation alternation];
         [predicateParser add:self.boolParser];
+        [predicateParser add:self.eqPredicateParser];
+        [predicateParser add:self.nePredicateParser];
+        [predicateParser add:self.gtPredicateParser];
+        [predicateParser add:self.gteqPredicateParser];
+        [predicateParser add:self.ltPredicateParser];
+        [predicateParser add:self.lteqPredicateParser];
+        [predicateParser add:self.beginswithPredicateParser];
+        [predicateParser add:self.containsPredicateParser];
+        [predicateParser add:self.endswithPredicateParser];
+        [predicateParser add:self.matchesPredicateParser];
     }
     return predicateParser;
 }
@@ -175,16 +185,17 @@
     if (!attrParser) {
         self.attrParser = [TDAlternation alternation];
         [attrParser add:self.tagParser];
-        [attrParser add:[TDLiteral literalWithString:@"uniqueid"]];
-        [attrParser add:[TDLiteral literalWithString:@"line"]];
-        [attrParser add:[TDLiteral literalWithString:@"type"]];
-        [attrParser add:[TDLiteral literalWithString:@"isgroupheader"]];
-        [attrParser add:[TDLiteral literalWithString:@"level"]];
-        [attrParser add:[TDLiteral literalWithString:@"index"]];
-        [attrParser add:[TDLiteral literalWithString:@"content"]];
-        [attrParser add:[TDLiteral literalWithString:@"parent"]];
-        [attrParser add:[TDLiteral literalWithString:@"project"]];
-        [attrParser add:[TDLiteral literalWithString:@"countofchildren"]];
+        [attrParser add:[TDWord word]];
+//        [attrParser add:[TDLiteral literalWithString:@"uniqueid"]];
+//        [attrParser add:[TDLiteral literalWithString:@"line"]];
+//        [attrParser add:[TDLiteral literalWithString:@"type"]];
+//        [attrParser add:[TDLiteral literalWithString:@"isgroupheader"]];
+//        [attrParser add:[TDLiteral literalWithString:@"level"]];
+//        [attrParser add:[TDLiteral literalWithString:@"index"]];
+//        [attrParser add:[TDLiteral literalWithString:@"content"]];
+//        [attrParser add:[TDLiteral literalWithString:@"parent"]];
+//        [attrParser add:[TDLiteral literalWithString:@"project"]];
+//        [attrParser add:[TDLiteral literalWithString:@"countofchildren"]];
     }
     return attrParser;
 }
@@ -230,7 +241,7 @@
     if (!gtPredicateParser) {
         self.gtPredicateParser = [TDSequence sequence];
         [gtPredicateParser add:self.attrParser];
-        [gtPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [gtPredicateParser add:[[TDSymbol symbolWithString:@">"] discard]];
         [gtPredicateParser add:self.valueParser];
         [gtPredicateParser setAssembler:self selector:@selector(workOnGtPredicateAssembly:)];
     }
@@ -370,6 +381,7 @@
 
 
 - (void)workOnAndAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p2 = [a pop];
     id p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -378,6 +390,7 @@
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p2 = [a pop];
     id p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -386,14 +399,28 @@
 
 
 - (void)workOnEqPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     id value = [a pop];
     id attrKey = [[a pop] stringValue];
-    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
+    
+    BOOL yn = NO;
+    id actualValue = [delegate valueForAttributeKey:attrKey];
+
+    NSLog(@"value: %@", value);
+    NSLog(@"actualValue: %@", actualValue);
+
+    if ([actualValue isKindOfClass:[NSNumber class]]) {
+        yn = [actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
+    } else {
+        yn = [actualValue isEqual:value];
+    }
+    NSLog(@"isEqual: %d", yn);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
-
+        
 - (void)workOnNePredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     id value = [a pop];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ![[delegate valueForAttributeKey:attrKey] isEqual:value];
@@ -402,14 +429,17 @@
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
+    NSLog(@"isEqual: %d", yn);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
@@ -418,6 +448,7 @@
 
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
@@ -426,6 +457,7 @@
 
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
@@ -434,6 +466,7 @@
 
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
@@ -442,6 +475,7 @@
 
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
@@ -451,6 +485,7 @@
 
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
@@ -459,6 +494,7 @@
 
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
@@ -467,17 +503,20 @@
 
 
 - (void)workOnNegatedValueAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p = [a pop];
     [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
 }
 
 
 - (void)workOnTrueAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [a push:[NSPredicate predicateWithValue:YES]];
 }
 
 
 - (void)workOnFalseAssembly:(TDAssembly *)a {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     [a push:[NSPredicate predicateWithValue:NO]];
 }
 
