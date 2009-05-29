@@ -385,10 +385,92 @@
 }
 
 
+- (void)workOnEqPredicateAssembly:(TDAssembly *)a {
+    id value = [a pop];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnNePredicateAssembly:(TDAssembly *)a {
+    id value = [a pop];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = ![[delegate valueForAttributeKey:attrKey] isEqual:value];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnGtPredicateAssembly:(TDAssembly *)a {
+    CGFloat value = [[a pop] floatValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
+    CGFloat value = [[a pop] floatValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnLtPredicateAssembly:(TDAssembly *)a {
+    CGFloat value = [[a pop] floatValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
+    CGFloat value = [[a pop] floatValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [[a pop] stringValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [[a pop] stringValue];
+    id attrKey = [[a pop] stringValue];
+    NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
+    BOOL yn = (NSNotFound != r.location);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [[a pop] stringValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [[a pop] stringValue];
+    id attrKey = [[a pop] stringValue];
+    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
 - (void)workOnNegatedValueAssembly:(TDAssembly *)a {
     id p = [a pop];
     [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
 }
+
 
 - (void)workOnTrueAssembly:(TDAssembly *)a {
     [a push:[NSPredicate predicateWithValue:YES]];

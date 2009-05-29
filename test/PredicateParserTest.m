@@ -10,8 +10,18 @@
 
 @implementation PredicateParserTest
 
-- (id)attributeForKey:(NSString *)key {
+- (id)valueForAttributeKey:(NSString *)key {
     return @"foo";
+}
+
+
+- (CGFloat)floatForAttributeKey:(NSString *)key {
+    return 1.0;
+}
+
+
+- (BOOL)boolForAttributeKey:(NSString *)key {
+    return YES;
 }
 
 

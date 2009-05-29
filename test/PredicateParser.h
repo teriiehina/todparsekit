@@ -9,7 +9,9 @@
 #import <TDParseKit/TDParseKit.h>
 
 @protocol PredicateParserDelegate <NSObject>
-- (id)attributeForKey:(NSString *)key;
+- (id)valueForAttributeKey:(NSString *)key;
+- (CGFloat)floatForAttributeKey:(NSString *)key;
+- (BOOL)boolForAttributeKey:(NSString *)key;
 @end
 
 @interface PredicateParser : TDSequence {
