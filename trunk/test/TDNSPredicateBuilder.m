@@ -78,6 +78,7 @@
     self.stringParser = nil;
     self.quotedStringParser = nil;
     self.unquotedStringParser = nil;
+    self.nonReservedWordParser = nil;
     self.numberParser = nil;
     [super dealloc];
 }
@@ -447,7 +448,6 @@
         self.stringParser = [TDAlternation alternation];
         [stringParser add:self.quotedStringParser];
         [stringParser add:self.unquotedStringParser];
-        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
     }
     return stringParser;
 }
@@ -463,20 +463,26 @@
 }
 
 
-// unquotedString       = Word[^and, or, not]+
+// unquotedString       = nonReservedWord+
 - (TDCollectionParser *)unquotedStringParser {
     if (!unquotedStringParser) {
-        
-        TDWord *w = [TDWord word];
-        w.exceptions = [NSArray arrayWithObjects:@"true", @"false", @"and", @"or", @"not", nil];
-        [w setAssembler:self selector:@selector(workOnUnquotedStringWordAssembly:)];
-        
         self.unquotedStringParser = [TDSequence sequence];
-        [unquotedStringParser add:w];
-        [unquotedStringParser add:[TDRepetition repetitionWithSubparser:w]];
+        [unquotedStringParser add:self.nonReservedWordParser];
+        [unquotedStringParser add:[TDRepetition repetitionWithSubparser:self.nonReservedWordParser]];
         [unquotedStringParser setAssembler:self selector:@selector(workOnUnquotedStringAssembly:)];
     }
     return unquotedStringParser;
+}
+
+
+// nonReservedWord      = Word[^and, or, not] 
+- (TDTerminal *)nonReservedWordParser {
+    if (!nonReservedWordParser) {
+        self.nonReservedWordParser = [TDWord word];
+        nonReservedWordParser.exceptions = [NSArray arrayWithObjects:@"true", @"false", @"and", @"or", @"not", nil];
+        [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWordAssembly:)];
+    }
+    return nonReservedWordParser;
 }
 
 
@@ -630,19 +636,13 @@
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-
-}
-
-
 - (void)workOnQuotedStringAssembly:(TDAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnUnquotedStringWordAssembly:(TDAssembly *)a {
+- (void)workOnNonReservedWordAssembly:(TDAssembly *)a {
     TDToken *fence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     TDToken *tok = [a pop];
     [a push:fence];
@@ -720,5 +720,6 @@
 @synthesize stringParser;
 @synthesize quotedStringParser;
 @synthesize unquotedStringParser;
+@synthesize nonReservedWordParser;
 @synthesize numberParser;
 @end
