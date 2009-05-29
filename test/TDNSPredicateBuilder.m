@@ -63,7 +63,7 @@
     self.completePredicateParser = nil;
     self.attrValuePredicateParser = nil;
     self.attrPredicateParser = nil;
-	self.valuePredicateParser = nil;
+    self.valuePredicateParser = nil;
     self.attrParser = nil;
     self.tagParser = nil;
     self.relationParser = nil;
@@ -258,21 +258,21 @@
 }
 
 
-// relation				= '=' | '!=' | '>' | '>=' | '<' | '<=' | 'beginswith' | 'contains' | 'endswith' | 'matches'
+// relation                = '=' | '!=' | '>' | '>=' | '<' | '<=' | 'beginswith' | 'contains' | 'endswith' | 'matches'
 - (TDCollectionParser *)relationParser {
     if (!relationParser) {
         self.relationParser = [TDAlternation alternation];
         relationParser.name = @"relation";
-		[relationParser add:[TDSymbol symbolWithString:@"="]];
-		[relationParser add:[TDSymbol symbolWithString:@"!="]];
-		[relationParser add:[TDSymbol symbolWithString:@">"]];
-		[relationParser add:[TDSymbol symbolWithString:@">="]];
-		[relationParser add:[TDSymbol symbolWithString:@"<"]];
+        [relationParser add:[TDSymbol symbolWithString:@"="]];
+        [relationParser add:[TDSymbol symbolWithString:@"!="]];
+        [relationParser add:[TDSymbol symbolWithString:@">"]];
+        [relationParser add:[TDSymbol symbolWithString:@">="]];
+        [relationParser add:[TDSymbol symbolWithString:@"<"]];
         [relationParser add:[TDSymbol symbolWithString:@"<="]];
-		[relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"beginswith"]];
-		[relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"contains"]];
-		[relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"endswith"]];
-		[relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"matches"]];
+        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"beginswith"]];
+        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"contains"]];
+        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"endswith"]];
+        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"matches"]];
         [relationParser setAssembler:self selector:@selector(workOnRelationAssembly:)];
     }
     return relationParser;
@@ -411,37 +411,37 @@
 
 
 - (void)workOnPredicateAssembly:(TDAssembly *)a {
-	id value = [a pop];
-	id relation = [a pop];
-	id attr = [a pop];
-	NSString *predicateFormat = [NSString stringWithFormat:@"%@ %@ %%@", attr, relation, nil];
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, value, nil];
-	[a push:predicate];
+    id value = [a pop];
+    id relation = [a pop];
+    id attr = [a pop];
+    NSString *predicateFormat = [NSString stringWithFormat:@"%@ %@ %%@", attr, relation, nil];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:predicateFormat, value, nil];
+    [a push:predicate];
 }
 
 
 - (void)workOnAttrValuePredicateAssembly:(TDAssembly *)a {
-	id value = [a pop];
-	id attr = [a pop];
-	[a push:attr];
-	[a push:defaultRelation];
-	[a push:value];
+    id value = [a pop];
+    id attr = [a pop];
+    [a push:attr];
+    [a push:defaultRelation];
+    [a push:value];
 }
 
 
 - (void)workOnAttrPredicateAssembly:(TDAssembly *)a {
-	id attr = [a pop];
-	[a push:attr];
-	[a push:defaultRelation];
-	[a push:defaultValue];
+    id attr = [a pop];
+    [a push:attr];
+    [a push:defaultRelation];
+    [a push:defaultValue];
 }
 
 
 - (void)workOnValuePredicateAssembly:(TDAssembly *)a {
-	id value = [a pop];
-	[a push:defaultAttr];
-	[a push:defaultRelation];
-	[a push:value];
+    id value = [a pop];
+    [a push:defaultAttr];
+    [a push:defaultRelation];
+    [a push:value];
 }
 
 
