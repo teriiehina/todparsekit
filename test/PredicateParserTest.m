@@ -32,23 +32,90 @@
 
 
 - (void)testEq {
+    // test numbers
     [d setValue:[NSNumber numberWithFloat:1.0] forKey:@"foo"];
-
     s = @"foo = 1.0";
-    a = [TDTokenAssembly assemblyWithString:s];
-    a = [p bestMatchFor:a];
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[TRUEPREDICATE]foo/=/1.0^", [a description]);
     
     s = @"foo = -1.0";
-    a = [TDTokenAssembly assemblyWithString:s];
-    a = [p bestMatchFor:a];
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[FALSEPREDICATE]foo/=/-1.0^", [a description]);
     
+    
+    // test bools
+    [d setValue:[NSNumber numberWithBool:YES] forKey:@"foo"];
+    s = @"foo = true";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/=/true^", [a description]);
+    
+    s = @"foo = false";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/=/false^", [a description]);
+    
+    [d setValue:[NSNumber numberWithBool:NO] forKey:@"foo"];
+    s = @"foo = true";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/=/true^", [a description]);
+    
+    s = @"foo = false";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/=/false^", [a description]);
+    
+    
+    // test strings
     [d setValue:@"bar" forKey:@"foo"];
     s = @"foo = 'bar'";
-    a = [TDTokenAssembly assemblyWithString:s];
-    a = [p bestMatchFor:a];
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[TRUEPREDICATE]foo/=/'bar'^", [a description]);
+    
+    s = @"foo = 'baz'";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/=/'baz'^", [a description]);
+}
+
+
+- (void)testNe {
+    // test numbers
+    [d setValue:[NSNumber numberWithFloat:1.0] forKey:@"foo"];
+    s = @"foo != 1.0";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/!=/1.0^", [a description]);
+    
+    s = @"foo != -1.0";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/!=/-1.0^", [a description]);
+    
+    
+    // test bools
+    [d setValue:[NSNumber numberWithBool:YES] forKey:@"foo"];
+    s = @"foo != true";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/!=/true^", [a description]);
+    
+    s = @"foo != false";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/!=/false^", [a description]);
+    
+    [d setValue:[NSNumber numberWithBool:NO] forKey:@"foo"];
+    s = @"foo != true";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/!=/true^", [a description]);
+    
+    s = @"foo != false";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/!=/false^", [a description]);
+    
+    
+    // test strings
+    [d setValue:@"bar" forKey:@"foo"];
+    s = @"foo != 'bar'";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FALSEPREDICATE]foo/!=/'bar'^", [a description]);
+    
+    s = @"foo != 'baz'";
+    a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[TRUEPREDICATE]foo/!=/'baz'^", [a description]);
 }
 
 

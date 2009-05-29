@@ -57,8 +57,12 @@
     self.phraseParser = nil;
     self.attrParser = nil;
     self.tagParser = nil;
-    self.eqPredicateParser = nil;
-    self.nePredicateParser = nil;
+    self.eqStringPredicateParser = nil;
+    self.eqNumberPredicateParser = nil;
+    self.eqBoolPredicateParser = nil;
+    self.neStringPredicateParser = nil;
+    self.neNumberPredicateParser = nil;
+    self.neBoolPredicateParser = nil;
     self.gtPredicateParser = nil;
     self.gteqPredicateParser = nil;
     self.ltPredicateParser = nil;
@@ -71,6 +75,8 @@
     self.boolParser = nil;
     self.trueParser = nil;
     self.falseParser = nil;
+    self.stringParser = nil;
+    self.numberParser = nil;
     [super dealloc];
 }
 
@@ -166,8 +172,12 @@
     if (!predicateParser) {
         self.predicateParser = [TDAlternation alternation];
         [predicateParser add:self.boolParser];
-        [predicateParser add:self.eqPredicateParser];
-        [predicateParser add:self.nePredicateParser];
+        [predicateParser add:self.eqStringPredicateParser];
+        [predicateParser add:self.eqNumberPredicateParser];
+        [predicateParser add:self.eqBoolPredicateParser];
+        [predicateParser add:self.neStringPredicateParser];
+        [predicateParser add:self.neNumberPredicateParser];
+        [predicateParser add:self.neBoolPredicateParser];
         [predicateParser add:self.gtPredicateParser];
         [predicateParser add:self.gteqPredicateParser];
         [predicateParser add:self.ltPredicateParser];
@@ -197,45 +207,96 @@
 //        [attrParser add:[TDLiteral literalWithString:@"parent"]];
 //        [attrParser add:[TDLiteral literalWithString:@"project"]];
 //        [attrParser add:[TDLiteral literalWithString:@"countofchildren"]];
+        [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
     }
     return attrParser;
 }
 
 
-// tag                  = '@' Any
+// tag                  = '@' Word
 - (TDCollectionParser *)tagParser {
     if (!tagParser) {
         self.tagParser = [TDSequence sequence];
-        [tagParser add:[TDSymbol symbolWithString:@"@"]];
+        [tagParser add:[[TDSymbol symbolWithString:@"@"] discard]];
+        [tagParser add:[TDWord word]];
     }
     return tagParser;
 }
 
 
 // eqPredicate          = attr '=' value
-- (TDCollectionParser *)eqPredicateParser {
-    if (!eqPredicateParser) {
-        self.eqPredicateParser = [TDSequence sequence];
-        [eqPredicateParser add:self.attrParser];
-        [eqPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
-        [eqPredicateParser add:self.valueParser];
-        [eqPredicateParser setAssembler:self selector:@selector(workOnEqPredicateAssembly:)];
+- (TDCollectionParser *)eqStringPredicateParser {
+    if (!eqStringPredicateParser) {
+        self.eqStringPredicateParser = [TDSequence sequence];
+        [eqStringPredicateParser add:self.attrParser];
+        [eqStringPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [eqStringPredicateParser add:self.stringParser];
+        [eqStringPredicateParser setAssembler:self selector:@selector(workOnEqStringPredicateAssembly:)];
     }
-    return eqPredicateParser;
+    return eqStringPredicateParser;
+}
+
+
+- (TDCollectionParser *)eqNumberPredicateParser {
+    if (!eqNumberPredicateParser) {
+        self.eqNumberPredicateParser = [TDSequence sequence];
+        [eqNumberPredicateParser add:self.attrParser];
+        [eqNumberPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [eqNumberPredicateParser add:self.numberParser];
+        [eqNumberPredicateParser setAssembler:self selector:@selector(workOnEqNumberPredicateAssembly:)];
+    }
+    return eqNumberPredicateParser;
+}
+
+
+- (TDCollectionParser *)eqBoolPredicateParser {
+    if (!eqBoolPredicateParser) {
+        self.eqBoolPredicateParser = [TDSequence sequence];
+        [eqBoolPredicateParser add:self.attrParser];
+        [eqBoolPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [eqBoolPredicateParser add:self.boolParser];
+        [eqBoolPredicateParser setAssembler:self selector:@selector(workOnEqBoolPredicateAssembly:)];
+    }
+    return eqBoolPredicateParser;
 }
 
 
 // nePredicate          = attr '!=' value
-- (TDCollectionParser *)nePredicateParser {
-    if (!nePredicateParser) {
-        self.nePredicateParser = [TDSequence sequence];
-        [nePredicateParser add:self.attrParser];
-        [nePredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
-        [nePredicateParser add:self.valueParser];
-        [nePredicateParser setAssembler:self selector:@selector(workOnNePredicateAssembly:)];
+- (TDCollectionParser *)neStringPredicateParser {
+    if (!neStringPredicateParser) {
+        self.neStringPredicateParser = [TDSequence sequence];
+        [neStringPredicateParser add:self.attrParser];
+        [neStringPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
+        [neStringPredicateParser add:self.stringParser];
+        [neStringPredicateParser setAssembler:self selector:@selector(workOnNeStringPredicateAssembly:)];
     }
-    return nePredicateParser;
+    return neStringPredicateParser;
 }
+
+
+- (TDCollectionParser *)neNumberPredicateParser {
+    if (!neNumberPredicateParser) {
+        self.neNumberPredicateParser = [TDSequence sequence];
+        [neNumberPredicateParser add:self.attrParser];
+        [neNumberPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
+        [neNumberPredicateParser add:self.numberParser];
+        [neNumberPredicateParser setAssembler:self selector:@selector(workOnNeNumberPredicateAssembly:)];
+    }
+    return neNumberPredicateParser;
+}
+
+
+- (TDCollectionParser *)neBoolPredicateParser {
+    if (!neBoolPredicateParser) {
+        self.neBoolPredicateParser = [TDSequence sequence];
+        [neBoolPredicateParser add:self.attrParser];
+        [neBoolPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
+        [neBoolPredicateParser add:self.boolParser];
+        [neBoolPredicateParser setAssembler:self selector:@selector(workOnNeBoolPredicateAssembly:)];
+    }
+    return neBoolPredicateParser;
+}
+
 
 // gtPredicate          = attr '>' value
 - (TDCollectionParser *)gtPredicateParser {
@@ -345,8 +406,8 @@
 - (TDCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
-        [valueParser add:[TDQuotedString quotedString]];
-        [valueParser add:[TDNum num]];
+        [valueParser add:self.stringParser];
+        [valueParser add:self.numberParser];
         [valueParser add:self.boolParser];
     }
     return valueParser;
@@ -358,6 +419,7 @@
         self.boolParser = [TDAlternation alternation];
         [boolParser add:self.trueParser];
         [boolParser add:self.falseParser];
+        [boolParser setAssembler:self selector:@selector(workOnBoolAssembly:)];
     }
     return boolParser;
 }
@@ -381,6 +443,24 @@
 }
 
 
+- (TDParser *)stringParser {
+    if (!stringParser) {
+        self.stringParser = [TDQuotedString quotedString];
+        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+    }
+    return stringParser;
+}
+
+
+- (TDParser *)numberParser {
+    if (!numberParser) {
+        self.numberParser = [TDNum num];
+        [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
+    }
+    return numberParser;
+}
+
+
 - (void)workOnAndAssembly:(TDAssembly *)a {
     id p2 = [a pop];
     id p1 = [a pop];
@@ -397,40 +477,58 @@
 }
 
 
-- (void)workOnEqPredicateAssembly:(TDAssembly *)a {
-//    NSLog(@"%s", __PRETTY_FUNCTION__);
-    id value = [a pop];
-    id attrKey = [[a pop] stringValue];
+- (void)workOnEqStringPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [a pop];
+    NSString *attrKey = [a pop];
+    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnEqNumberPredicateAssembly:(TDAssembly *)a {
+    NSNumber *value = [a pop];
+    NSString *attrKey = [a pop];
+    BOOL yn = [value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnEqBoolPredicateAssembly:(TDAssembly *)a {
+    NSPredicate *p = [a pop];
+    NSString *attrKey = [a pop];
+    BOOL yn = ([delegate boolForAttributeKey:attrKey] == [p evaluateWithObject:nil]);
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnNeStringPredicateAssembly:(TDAssembly *)a {
+    NSString *value = [a pop];
+    NSString *attrKey = [a pop];
     
-    BOOL yn = NO;
-    id actualValue = [delegate valueForAttributeKey:attrKey];
-    if ([actualValue isKindOfClass:[NSNumber class]]) {
-        yn = [actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
-    } else {
-        yn = [actualValue isEqual:[[value stringValue] stringByTrimmingQuotes]];
-    }
+    BOOL yn = ![[delegate valueForAttributeKey:attrKey] isEqual:value];
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
         
-- (void)workOnNePredicateAssembly:(TDAssembly *)a {
-    id value = [a pop];
-    id attrKey = [[a pop] stringValue];
-    
-    BOOL yn = NO;
-    id actualValue = [delegate valueForAttributeKey:attrKey];
-    if ([actualValue isKindOfClass:[NSNumber class]]) {
-        yn = ![actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
-    } else {
-        yn = ![actualValue isEqual:[[value stringValue] stringByTrimmingQuotes]];
-    }
+- (void)workOnNeNumberPredicateAssembly:(TDAssembly *)a {
+    NSNumber *value = [a pop];
+    NSString *attrKey = [a pop];
+    BOOL yn = ![value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
+    [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+- (void)workOnNeBoolPredicateAssembly:(TDAssembly *)a {
+    NSPredicate *p = [a pop];
+    NSString *attrKey = [a pop];
+    BOOL yn = ([delegate boolForAttributeKey:attrKey] != [p evaluateWithObject:nil]);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -438,7 +536,7 @@
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -446,7 +544,7 @@
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -454,7 +552,7 @@
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -462,7 +560,7 @@
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -470,7 +568,7 @@
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
     BOOL yn = (NSNotFound != r.location);
     [a push:[NSPredicate predicateWithValue:yn]];
@@ -479,7 +577,7 @@
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -487,9 +585,19 @@
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    id attrKey = [[a pop] stringValue];
+    NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
     [a push:[NSPredicate predicateWithValue:yn]];
+}
+
+
+//- (void)workOnTagAssembly:(TDAssembly *)a {
+//    [a push:[[a pop] stringValue]];
+//}
+//
+//
+- (void)workOnAttrAssembly:(TDAssembly *)a {
+    [a push:[[a pop] stringValue]];
 }
 
 
@@ -499,14 +607,33 @@
 }
 
 
+- (void)workOnBoolAssembly:(TDAssembly *)a {
+    NSNumber *b = [a pop];
+    [a push:[NSPredicate predicateWithValue:[b boolValue]]];
+}
+
+
 - (void)workOnTrueAssembly:(TDAssembly *)a {
-    [a push:[NSPredicate predicateWithValue:YES]];
+    [a push:[NSNumber numberWithBool:YES]];
 }
 
 
 - (void)workOnFalseAssembly:(TDAssembly *)a {
-    [a push:[NSPredicate predicateWithValue:NO]];
+    [a push:[NSNumber numberWithBool:NO]];
 }
+
+
+- (void)workOnStringAssembly:(TDAssembly *)a {
+    NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
+    [a push:s];
+}
+
+
+- (void)workOnNumberAssembly:(TDAssembly *)a {
+    NSNumber *n = [NSNumber numberWithFloat:[[a pop] floatValue]];
+    [a push:n];
+}
+          
 
 @synthesize exprParser;
 @synthesize orTermParser;
@@ -518,8 +645,12 @@
 @synthesize predicateParser;
 @synthesize attrParser;
 @synthesize tagParser;
-@synthesize eqPredicateParser;
-@synthesize nePredicateParser;
+@synthesize eqStringPredicateParser;
+@synthesize eqNumberPredicateParser;
+@synthesize eqBoolPredicateParser;
+@synthesize neStringPredicateParser;
+@synthesize neNumberPredicateParser;
+@synthesize neBoolPredicateParser;
 @synthesize gtPredicateParser;
 @synthesize gteqPredicateParser;
 @synthesize ltPredicateParser;
@@ -532,4 +663,6 @@
 @synthesize boolParser;
 @synthesize trueParser;
 @synthesize falseParser;
+@synthesize stringParser;
+@synthesize numberParser;
 @end
