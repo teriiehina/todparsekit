@@ -33,7 +33,7 @@
     if (self = [super init]) {
         self.wordChars = [NSMutableArray arrayWithCapacity:256];
         NSInteger i = 0;
-        for ( ; i <= 255; i++) {
+        for ( ; i < 256; i++) {
             [wordChars addObject:TDFALSE];
         }
         
