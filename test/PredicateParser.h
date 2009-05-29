@@ -48,6 +48,7 @@
     TDParser *numberParser;
 }
 - (id)initWithDelegate:(id <PredicateParserDelegate>)d;
+- (NSPredicate *)parse:(NSString *)s;
 
 @property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;

@@ -81,6 +81,12 @@
 }
 
 
+- (NSPredicate *)parse:(NSString *)s {
+    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    return [[self completeMatchFor:a] pop];
+}
+
+
 // expression       = term orTerm*
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
