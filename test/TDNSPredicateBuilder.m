@@ -359,7 +359,7 @@
     if (!beginswithPredicateParser) {
         self.beginswithPredicateParser = [TDSequence sequence];
         [beginswithPredicateParser add:self.attrParser];
-        [beginswithPredicateParser add:[[TDLiteral literalWithString:@"beginswith"] discard]];
+        [beginswithPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"beginswith"] discard]];
         [beginswithPredicateParser add:self.valueParser];
         [beginswithPredicateParser setAssembler:self selector:@selector(workOnBeginswithPredicateAssembly:)];
     }
@@ -372,7 +372,7 @@
     if (!containsPredicateParser) {
         self.containsPredicateParser = [TDSequence sequence];
         [containsPredicateParser add:self.attrParser];
-        [containsPredicateParser add:[[TDLiteral literalWithString:@"contains"] discard]];
+        [containsPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"contains"] discard]];
         [containsPredicateParser add:self.valueParser];
         [containsPredicateParser setAssembler:self selector:@selector(workOnContainsPredicateAssembly:)];
     }
@@ -385,7 +385,7 @@
     if (!endswithPredicateParser) {
         self.endswithPredicateParser = [TDSequence sequence];
         [endswithPredicateParser add:self.attrParser];
-        [endswithPredicateParser add:[[TDLiteral literalWithString:@"endswith"] discard]];
+        [endswithPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"endswith"] discard]];
         [endswithPredicateParser add:self.valueParser];
         [endswithPredicateParser setAssembler:self selector:@selector(workOnEndswithPredicateAssembly:)];
     }
@@ -398,7 +398,7 @@
     if (!matchesPredicateParser) {
         self.matchesPredicateParser = [TDSequence sequence];
         [matchesPredicateParser add:self.attrParser];
-        [matchesPredicateParser add:[[TDLiteral literalWithString:@"matches"] discard]];
+        [matchesPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"matches"] discard]];
         [matchesPredicateParser add:self.valueParser];
         [matchesPredicateParser setAssembler:self selector:@selector(workOnMatchesPredicateAssembly:)];
     }
@@ -431,7 +431,7 @@
 
 - (TDParser *)trueParser {
     if (!trueParser) {
-        self.trueParser = [[TDLiteral literalWithString:@"true"] discard];
+        self.trueParser = [[TDCaseInsensitiveLiteral literalWithString:@"true"] discard];
         [trueParser setAssembler:self selector:@selector(workOnTrueAssembly:)];
     }
     return trueParser;
@@ -440,7 +440,7 @@
 
 - (TDParser *)falseParser {
     if (!falseParser) {
-        self.falseParser = [[TDLiteral literalWithString:@"false"] discard];
+        self.falseParser = [[TDCaseInsensitiveLiteral literalWithString:@"false"] discard];
         [falseParser setAssembler:self selector:@selector(workOnFalseAssembly:)];
     }
     return falseParser;
