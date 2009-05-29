@@ -7,6 +7,7 @@
 //
 
 #import "PredicateParser.h"
+#import "NSString+TDParseKitAdditions.h"
 
 // expr                 = term orTerm*
 // orTerm               = 'or' term
@@ -397,6 +398,7 @@
 
 
 - (void)workOnEqPredicateAssembly:(TDAssembly *)a {
+//    NSLog(@"%s", __PRETTY_FUNCTION__);
     id value = [a pop];
     id attrKey = [[a pop] stringValue];
     
@@ -405,7 +407,7 @@
     if ([actualValue isKindOfClass:[NSNumber class]]) {
         yn = [actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
     } else {
-        yn = [actualValue isEqual:value];
+        yn = [actualValue isEqual:[[value stringValue] stringByTrimmingQuotes]];
     }
     [a push:[NSPredicate predicateWithValue:yn]];
 }
@@ -420,7 +422,7 @@
     if ([actualValue isKindOfClass:[NSNumber class]]) {
         yn = ![actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
     } else {
-        yn = ![actualValue isEqual:value];
+        yn = ![actualValue isEqual:[[value stringValue] stringByTrimmingQuotes]];
     }
     [a push:[NSPredicate predicateWithValue:yn]];
 }
