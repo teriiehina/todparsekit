@@ -16,7 +16,6 @@
 - (BOOL)except:(id)obj;
 
 @property (nonatomic, readwrite, copy) NSString *string;
-@property (nonatomic, copy) NSArray *exceptions;
 @end
 
 @implementation TDTerminal
