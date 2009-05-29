@@ -8,8 +8,8 @@
 
 #import "TDTestScaffold.h"
 
-#define RUN_ALL_TEST_CASES 0
-#define SOLO_TEST_CASE @"TDPredicateEvaluatorTest"
+#define RUN_ALL_TEST_CASES 1
+#define SOLO_TEST_CASE @"TDNSPredicateBuilderTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
@@ -110,6 +110,7 @@
                            @"TDParserFactoryTest",
                            @"TDMiniCSSAssemblerTest",
                            @"TDPredicateEvaluatorTest",
+                           @"TDNSPredicateBuilderTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];

@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "PredicateParser.h"
+#import "TDNSPredicateBuilder.h"
 #import "NSString+TDParseKitAdditions.h"
 
 // expr                 = term orTerm*
@@ -34,18 +34,17 @@
 // bool                 = 'true' | 'false'
 
 
-@implementation PredicateParser
+@implementation TDNSPredicateBuilder
 
-- (id)initWithDelegate:(id <PredicateParserDelegate>)d {
+- (id)init {
     if (self = [super init]) {
-        delegate = d;
+
     }
     return self;
 }
 
 
 - (void)dealloc {
-    delegate = nil;
     self.exprParser = nil;
     self.orTermParser = nil;
     self.termParser = nil;
@@ -80,7 +79,7 @@
 }
 
 
-- (NSPredicate *)parse:(NSString *)s {
+- (NSPredicate *)buildFrom:(NSString *)s; {
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
     return [[self.exprParser completeMatchFor:a] pop];
 }
@@ -484,123 +483,102 @@
 
 - (void)workOnEqStringPredicateAssembly:(TDAssembly *)a {
     NSString *value = [a pop];
-    NSString *attrKey = [a pop];
-    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K = %@", key, value]];
 }
 
 
 - (void)workOnEqNumberPredicateAssembly:(TDAssembly *)a {
     NSNumber *value = [a pop];
-    NSString *attrKey = [a pop];
-    BOOL yn = [value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K = %@", key, value]];
 }
 
 
 - (void)workOnEqBoolPredicateAssembly:(TDAssembly *)a {
     NSPredicate *p = [a pop];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate boolForAttributeKey:attrKey] == [p evaluateWithObject:nil]);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K = %d", key, [p evaluateWithObject:nil]]];
 }
 
 
 - (void)workOnNeStringPredicateAssembly:(TDAssembly *)a {
     NSString *value = [a pop];
-    NSString *attrKey = [a pop];
-    
-    BOOL yn = ![[delegate valueForAttributeKey:attrKey] isEqual:value];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K != %@", key, value]];
 }
 
         
 - (void)workOnNeNumberPredicateAssembly:(TDAssembly *)a {
     NSNumber *value = [a pop];
-    NSString *attrKey = [a pop];
-    BOOL yn = ![value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K != %@", key, value]];
 }
 
 
 - (void)workOnNeBoolPredicateAssembly:(TDAssembly *)a {
     NSPredicate *p = [a pop];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate boolForAttributeKey:attrKey] != [p evaluateWithObject:nil]);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K != %d", key, [p evaluateWithObject:nil]]];
 }
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K > %@", key, value]];
 }
 
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K >= %@", key, value]];
 }
 
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K < %@", key, value]];
 }
 
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
     CGFloat value = [[a pop] floatValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K <= %@", key, value]];
 }
 
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K BEGINSWITH %@", key, value]];
 }
 
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    NSString *attrKey = [a pop];
-    NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
-    BOOL yn = (NSNotFound != r.location);
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K CONTAINS %@", key, value]];
 }
 
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K ENDSWITH %@", key, value]];
 }
 
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
     NSString *value = [[a pop] stringValue];
-    NSString *attrKey = [a pop];
-    BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
-    [a push:[NSPredicate predicateWithValue:yn]];
+    NSString *key = [a pop];
+    [a push:[NSPredicate predicateWithFormat:@"%K MATCHES %@", key, value]];
 }
 
 
-//- (void)workOnTagAssembly:(TDAssembly *)a {
-//    [a push:[[a pop] stringValue]];
-//}
-//
-//
 - (void)workOnAttrAssembly:(TDAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
