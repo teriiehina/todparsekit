@@ -39,7 +39,6 @@
 - (id)initWithDelegate:(id <PredicateParserDelegate>)d {
     if (self = [super init]) {
         delegate = d;
-        [self add:self.exprParser];
     }
     return self;
 }
@@ -83,7 +82,7 @@
 
 - (NSPredicate *)parse:(NSString *)s {
     TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
-    return [[self completeMatchFor:a] pop];
+    return [[self.exprParser completeMatchFor:a] pop];
 }
 
 
