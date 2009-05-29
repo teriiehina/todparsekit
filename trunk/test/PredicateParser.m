@@ -381,7 +381,6 @@
 
 
 - (void)workOnAndAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p2 = [a pop];
     id p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -390,7 +389,6 @@
 
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p2 = [a pop];
     id p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -399,47 +397,44 @@
 
 
 - (void)workOnEqPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     id value = [a pop];
     id attrKey = [[a pop] stringValue];
     
     BOOL yn = NO;
     id actualValue = [delegate valueForAttributeKey:attrKey];
-
-    NSLog(@"value: %@", value);
-    NSLog(@"actualValue: %@", actualValue);
-
     if ([actualValue isKindOfClass:[NSNumber class]]) {
         yn = [actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
     } else {
         yn = [actualValue isEqual:value];
     }
-    NSLog(@"isEqual: %d", yn);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
         
 - (void)workOnNePredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     id value = [a pop];
     id attrKey = [[a pop] stringValue];
-    BOOL yn = ![[delegate valueForAttributeKey:attrKey] isEqual:value];
+    
+    BOOL yn = NO;
+    id actualValue = [delegate valueForAttributeKey:attrKey];
+    if ([actualValue isKindOfClass:[NSNumber class]]) {
+        yn = ![actualValue isEqualToNumber:[NSNumber numberWithFloat:[value floatValue]]];
+    } else {
+        yn = ![actualValue isEqual:value];
+    }
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
 
 - (void)workOnGtPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] > value);
-    NSLog(@"isEqual: %d", yn);
     [a push:[NSPredicate predicateWithValue:yn]];
 }
 
 
 - (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] >= value);
@@ -448,7 +443,6 @@
 
 
 - (void)workOnLtPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] < value);
@@ -457,7 +451,6 @@
 
 
 - (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     CGFloat value = [[a pop] floatValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = ([delegate floatForAttributeKey:attrKey] <= value);
@@ -466,7 +459,6 @@
 
 
 - (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
@@ -475,7 +467,6 @@
 
 
 - (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
@@ -485,7 +476,6 @@
 
 
 - (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
@@ -494,7 +484,6 @@
 
 
 - (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSString *value = [[a pop] stringValue];
     id attrKey = [[a pop] stringValue];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
@@ -503,20 +492,17 @@
 
 
 - (void)workOnNegatedValueAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     id p = [a pop];
     [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
 }
 
 
 - (void)workOnTrueAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     [a push:[NSPredicate predicateWithValue:YES]];
 }
 
 
 - (void)workOnFalseAssembly:(TDAssembly *)a {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     [a push:[NSPredicate predicateWithValue:NO]];
 }
 
