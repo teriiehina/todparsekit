@@ -416,7 +416,7 @@
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:t.delimitState from:'<' to:'<'];
-    [t.delimitState addStartSymbol:@"<?=" endSymbol:@"?>" allowedCharacterSet:cs];
+    [t.delimitState addStartMarker:@"<?=" endMarker:@"?>" allowedCharacterSet:cs];
     
     TDToken *tok = [t nextToken];
     
@@ -446,7 +446,7 @@
 
 //    [self doJSParser];
     
-//    [self doProf];
+    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
@@ -461,7 +461,7 @@
 //    [self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
-    [self doDelimitedString];
+//    [self doDelimitedString];
     
 //    [self doFactory];
     
