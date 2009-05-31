@@ -108,12 +108,16 @@
     if ([multiLineState.startMarkers containsObject:symbol]) {
         multiLineState.currentStartMarker = symbol;
         TDToken *tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
-        tok.offset = offset;
+        if (tok.isComment) {
+            tok.offset = offset;
+        }
         return tok;
     } else if ([singleLineState.startMarkers containsObject:symbol]) {
         singleLineState.currentStartMarker = symbol;
         TDToken *tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
-        tok.offset = offset;
+        if (tok.isComment) {
+            tok.offset = offset;
+        }
         return tok;
     } else {
         NSUInteger i = 0;
