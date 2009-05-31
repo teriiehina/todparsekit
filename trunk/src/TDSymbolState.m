@@ -55,7 +55,7 @@
         tok.offset = offset;
         return tok;
     } else {
-        [r unread:len];
+        [r unread:len - 1];
         TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
         tok.offset = offset;
         return tok;
