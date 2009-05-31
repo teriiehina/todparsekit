@@ -137,7 +137,11 @@
     }
     t.string = s;
     TDAssembly *a = [self completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-    return [a pop];
+    if (a.target) {
+        return a.target;
+    } else {
+        return [a pop];
+    }
 }
 
 
