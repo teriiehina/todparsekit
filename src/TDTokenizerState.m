@@ -7,15 +7,17 @@
 //
 
 #import <TDParseKit/TDTokenizerState.h>
+#import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 
 @property (nonatomic, retain) NSMutableString *stringbuf;
+@property (nonatomic) NSUInteger offset;
 @end
 
 @implementation TDTokenizerState
@@ -32,8 +34,9 @@
 }
 
 
-- (void)reset {
+- (void)resetWithReader:(TDReader *)r {
     self.stringbuf = [NSMutableString string];
+    self.offset = r.offset - 1;
 }
 
 
@@ -54,4 +57,5 @@
 }
 
 @synthesize stringbuf;
+@synthesize offset;
 @end

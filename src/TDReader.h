@@ -15,7 +15,7 @@
 */
 @interface TDReader : NSObject {
     NSString *string;
-    NSUInteger cursor;
+    NSUInteger offset;
     NSUInteger length;
 }
 
@@ -44,4 +44,10 @@
     @brief      This reader's string.
 */
 @property (nonatomic, retain) NSString *string;
+
+/*!
+    @property   offset
+    @brief      This reader's current offset in string
+*/
+@property (nonatomic, readonly) NSUInteger offset;
 @end

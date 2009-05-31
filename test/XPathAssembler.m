@@ -26,7 +26,7 @@
 }
 
 
-- (void)reset {
+- (void)resetWithReader:(TDReader *)r {
     [context resetWithCurrentNode:nil];
 }
 

@@ -92,7 +92,7 @@
 
 
 - (id)parse:(NSString *)s {
-    [xpathAssembler reset];
+    [xpathAssembler resetWithReader:nil];
     TDAssembly *a = [self assemblyWithString:s];
     id result = [self completeMatchFor:a];
     return result;

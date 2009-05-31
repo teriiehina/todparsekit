@@ -13,7 +13,7 @@
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -52,7 +52,7 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
-    [self reset];
+    [self resetWithReader:r];
     
     c = cin;
     while ([self isWhitespaceChar:c]) {

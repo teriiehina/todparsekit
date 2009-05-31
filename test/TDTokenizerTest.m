@@ -61,6 +61,7 @@
     TDTrue(tok.isNumber);
     TDEqualObjects(tok.stringValue, @"2");
     TDEqualObjects(tok.value, [NSNumber numberWithFloat:2.0]);
+    TDEquals(tok.offset, (NSUInteger)0);
 
     tok = [t nextToken];
     TDNotNil(tok);
@@ -68,6 +69,7 @@
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"!=");
     TDEqualObjects(tok.value, @"!=");
+    TDEquals(tok.offset, (NSUInteger)2);
 
     tok = [t nextToken];
     TDNotNil(tok);
@@ -75,6 +77,7 @@
     TDTrue(tok.isNumber);
     TDEqualObjects(tok.stringValue, @"47");
     TDEqualObjects(tok.value, [NSNumber numberWithFloat:47.0]);
+    TDEquals(tok.offset, (NSUInteger)5);
     
     tok = [t nextToken];
     TDNotNil(tok);
@@ -82,6 +85,7 @@
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @".");
     TDEqualObjects(tok.value, @".");
+    TDEquals(tok.offset, (NSUInteger)7);
     
     tok = [t nextToken];
     TDNotNil(tok);
@@ -89,6 +93,7 @@
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"Blast-off");
     TDEqualObjects(tok.value, @"Blast-off");
+    TDEquals(tok.offset, (NSUInteger)9);
     
     tok = [t nextToken];
     TDNotNil(tok);
@@ -96,6 +101,7 @@
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"!");
     TDEqualObjects(tok.value, @"!");
+    TDEquals(tok.offset, (NSUInteger)18);
     
     tok = [t nextToken];
     TDNotNil(tok);

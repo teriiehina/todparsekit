@@ -12,7 +12,7 @@
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -26,7 +26,7 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
-    [self reset];
+    [self resetWithReader:r];
     
     [self append:cin];
     TDUniChar c;
@@ -43,7 +43,7 @@
         
     } while (c != cin);
     
-    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0 offset:offset];
 }
 
 @synthesize balancesEOFTerminatedStrings;

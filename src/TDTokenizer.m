@@ -9,6 +9,10 @@
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDParseKit.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizer ()
 - (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;

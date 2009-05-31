@@ -12,6 +12,10 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 
+@interface TDTokenizerState ()
+- (void)resetWithReader:(TDReader *)r;
+@end
+
 @interface TDSymbolState ()
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *addedSymbols;
@@ -37,17 +41,19 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
+    [self resetWithReader:r];
+    
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
     NSUInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0 offset:offset];
     } else {
         NSUInteger i = 0;
         for ( ; i < len - 1; i++) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
+        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0 offset:offset];
     }
 }
 
