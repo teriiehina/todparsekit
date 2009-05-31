@@ -7,6 +7,7 @@
 //
 
 #import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDTypes.h>
 
 @interface TDTokenEOF : TDToken {}
 + (TDTokenEOF *)instance;
@@ -69,6 +70,11 @@ static TDTokenEOF *EOFToken = nil;
 
 - (NSString *)debugDescription {
     return [self description];
+}
+
+
+- (NSUInteger)offset {
+    return TDEOF;
 }
 
 @end
