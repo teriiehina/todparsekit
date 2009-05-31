@@ -57,5 +57,14 @@
     offset = (0 == offset) ? 0 : offset - 1;
 }
 
+
+- (void)unread:(NSUInteger)count {
+    NSParameterAssert(offset >= count);
+    NSUInteger i = 0;
+    for ( ; i < count - 1; i++) {
+        [self unread];
+    }
+}
+
 @synthesize offset;
 @end
