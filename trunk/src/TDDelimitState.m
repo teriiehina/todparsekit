@@ -30,7 +30,6 @@
 @end
 
 @interface TDDelimitState ()
-- (void)unreadString:(NSString *)s fromReader:(TDReader *)r;
 - (NSString *)endMarkerForStartMarker:(NSString *)startMarker;
 - (NSCharacterSet *)allowedCharacterSetForStartMarker:(NSString *)startMarker;
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
@@ -98,15 +97,6 @@
 }
 
 
-- (void)unreadString:(NSString *)s fromReader:(TDReader *)r {
-    NSUInteger len = s.length;
-    NSUInteger i = 0;
-    for ( ; i < len - 1; i++) {
-        [r unread];
-    }
-}
-
-
 - (NSString *)endMarkerForStartMarker:(NSString *)startMarker {
     NSParameterAssert([startMarkers containsObject:startMarker]);
     NSUInteger i = [startMarkers indexOfObject:startMarker];
@@ -133,7 +123,7 @@
     NSString *startMarker = [rootNode nextSymbol:r startingWith:cin];
 
     if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
-        [self unreadString:startMarker fromReader:r];
+        [r unread:startMarker.length];
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
@@ -163,7 +153,7 @@
         if (!endMarker && [t.whitespaceState isWhitespaceChar:c]) {
             // if only the start marker was matched, dont return delimited string token. instead, defer tokenization
             if ([startMarker isEqualToString:[self bufferedString]]) {
-                [self unreadString:startMarker fromReader:r];
+                [r unread:startMarker.length];
                 return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
             }
             // else, return delimited string tok
@@ -177,7 +167,7 @@
                 c = [r read];
                 break;
             } else {
-                [self unreadString:peek fromReader:r];
+                [r unread:peek.length];
                 if (e != [peek characterAtIndex:0]) {
                     [self append:c];
                     c = [r read];
@@ -190,7 +180,7 @@
         // check if char is in allowed character set (if given)
         if (characterSet && ![characterSet characterIsMember:c]) {
             // if not, unwind and return a symbol tok for cin
-            [self unreadString:[self bufferedString] fromReader:r];
+            [r unread:[[self bufferedString] length]];
             return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
         }
     }

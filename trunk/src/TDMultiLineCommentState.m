@@ -74,15 +74,6 @@
 }
 
 
-- (void)unreadMarker:(NSString *)s fromReader:(TDReader *)r {
-    NSUInteger len = s.length;
-    NSUInteger i = 0;
-    for ( ; i < len - 1; i++) {
-        [r unread];
-    }
-}
-
-
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
@@ -120,7 +111,7 @@
                 c = [r read];
                 break;
             } else {
-                [self unreadMarker:peek fromReader:r];
+                [r unread:peek.length];
                 if (e != [peek characterAtIndex:0]) {
                     if (reportTokens) {
                         [self append:c];

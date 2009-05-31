@@ -39,6 +39,8 @@
 */
 - (void)unread;
 
+- (void)unread:(NSUInteger)count;
+
 /*!
     @property   string
     @brief      This reader's string.
