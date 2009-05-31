@@ -35,10 +35,15 @@
 
 /*!
     @brief      Push back a single character
-    @details    moves the cursor back one position
+    @details    moves the offset back one position
 */
 - (void)unread;
 
+/*!
+    @brief      Push back count characters
+    @param      count of characters to push back
+    @details    moves the offset back count positions
+*/
 - (void)unread:(NSUInteger)count;
 
 /*!
