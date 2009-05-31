@@ -10,6 +10,7 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDToken.h>
+#import <TDParseKit/TDWhitespaceState.h>
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDTypes.h>
 
@@ -56,14 +57,23 @@
 }
 
 
-- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set{
+- (void)addStartMarker:(NSString *)start endMarker:(NSString *)end allowedCharacterSet:(NSCharacterSet *)set {
     NSParameterAssert(start.length);
-    NSParameterAssert(end.length);
     [rootNode add:start];
-    [rootNode add:end];
     [startMarkers addObject:start];
-    [endMarkers addObject:end];
-    [characterSets addObject:set ? set : (id)[NSNull null]];
+    
+    if (end) {
+        [rootNode add:end];
+        [endMarkers addObject:end];
+    } else {
+        [endMarkers addObject:[NSNull null]];
+    }
+
+    if (set) {
+        [characterSets addObject:set];
+    } else {
+        [characterSets addObject:[NSNull null]];
+    }
 }
 
 
@@ -75,8 +85,10 @@
         [startMarkers removeObject:start];
         [characterSets removeObjectAtIndex:i];
         
-        NSString *end = [endMarkers objectAtIndex:i];
-        [rootNode remove:end];
+        id endOrNull = [endMarkers objectAtIndex:i];
+        if ([NSNull null] != endOrNull) {
+            [rootNode remove:endOrNull];
+        }
         [endMarkers removeObjectAtIndex:i]; // this should always be in range.
     }
 }
@@ -124,23 +136,39 @@
     [self reset];
     [self appendString:startMarker];
 
-    NSString *endMarker = [self endMarkerForStartMarker:startMarker];
+    id endMarkerOrNull = [self endMarkerForStartMarker:startMarker];
+    NSString *endMarker = nil;
     NSCharacterSet *characterSet = [self allowedCharacterSetForStartMarker:startMarker];
     
-    TDUniChar c;
-    TDUniChar e = [endMarker characterAtIndex:0];
+    TDUniChar c, e;
+    if ([NSNull null] == endMarkerOrNull) {
+        e = TDEOF;
+    } else {
+        endMarker = endMarkerOrNull;
+        e = [endMarker characterAtIndex:0];
+    }
     while (1) {
         c = [r read];
         if (TDEOF == c) {
-            if (balancesEOFTerminatedStrings) {
+            if (balancesEOFTerminatedStrings && endMarker) {
                 [self appendString:endMarker];
             }
             break;
         }
         
+        if (!endMarker && [t.whitespaceState isWhitespaceChar:c]) {
+            // if only the start marker was matched, dont return delimited string token. instead, defer tokenization
+            if ([startMarker isEqualToString:[self bufferedString]]) {
+                [self unreadString:startMarker fromReader:r];
+                return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+            }
+            // else, return delimited string tok
+            break;
+        }
+        
         if (e == c) {
             NSString *peek = [rootNode nextSymbol:r startingWith:e];
-            if ([endMarker isEqualToString:peek]) {
+            if (endMarker && [endMarker isEqualToString:peek]) {
                 [self appendString:endMarker];
                 c = [r read];
                 break;

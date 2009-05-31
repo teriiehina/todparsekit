@@ -8,8 +8,8 @@
 
 #import "TDTestScaffold.h"
 
-#define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDNSPredicateBuilderTest"
+#define RUN_ALL_TEST_CASES 0
+#define SOLO_TEST_CASE @"TDDelimitStateTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
