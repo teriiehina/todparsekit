@@ -59,10 +59,11 @@
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
+
+    [self resetWithReader:r];
     
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
-        [self resetWithReader:r];
         if (currentStartMarker.length > 1) {
             [self appendString:currentStartMarker];
         }

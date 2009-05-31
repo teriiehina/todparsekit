@@ -74,7 +74,7 @@ static TDTokenEOF *EOFToken = nil;
 
 
 - (NSUInteger)offset {
-    return TDEOF;
+    return -1;
 }
 
 @end

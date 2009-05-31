@@ -83,10 +83,11 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
     
+    [self resetWithReader:r];
+
     BOOL balanceEOF = t.commentState.balancesEOFTerminatedComments;
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
-        [self resetWithReader:r];
         [self appendString:currentStartMarker];
     }
     

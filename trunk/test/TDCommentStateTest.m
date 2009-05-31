@@ -29,6 +29,7 @@
     t.string = s;
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEquals(tok.offset, (NSUInteger)-1);
     TDEquals([r read], TDEOF);
 }
 
@@ -41,6 +42,7 @@
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.offset, (NSUInteger)0);
     TDEqualObjects([t nextToken], [TDToken EOFToken]);
 //    TDEquals([r read], TDEOF);
 }
@@ -51,9 +53,10 @@
     r.string = s;
     t.string = s;
     [commentState removeSingleLineStartMarker:@"//"];
-    tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
+    tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"/");
+    TDEquals(tok.offset, (NSUInteger)0);
     TDEquals([r read], (TDUniChar)'/');
 }
 
