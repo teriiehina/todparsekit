@@ -181,172 +181,184 @@
 
 - (void)testReportSlashStarFooStarSlashSpaceA {
     s = @"/* foo */ a";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
+    TDEquals(tok.offset, (NSUInteger)10);
     
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)9);
 }
 
 
 - (void)testReportSlashStarStarFooStarSlashSpaceA {
     s = @"/** foo */ a";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/** foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
+    TDEquals(tok.offset, (NSUInteger)11);
     
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/** foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)10);
 }
 
 
 - (void)testReportSlashStarFooStarStarSlashSpaceA {
     s = @"/* foo **/ a";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo **/");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
+    TDEquals(tok.offset, (NSUInteger)11);
     
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo **/");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)10);
 }
 
 
 - (void)testReportSlashStarFooStarSlashSpaceStarSlash {
     s = @"/* foo */ */";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"*");
+    TDEquals(tok.offset, (NSUInteger)10);
     
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)9);
 }
 
 
 - (void)testTurnOffSlashStarFooStarSlash {
     s = @"/* foo */";
-    r.string = s;
     t.string = s;
     [commentState removeMultiLineStartMarker:@"/*"];
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"/");
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testReportSlashStarFooStar {
     s = @"/* foo *";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testReportBalancedSlashStarFooStar {
     s = @"/* foo *";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     commentState.balancesEOFTerminatedComments = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo **/");
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testReportBalancedSlashStarFoo {
     s = @"/* foo ";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     commentState.balancesEOFTerminatedComments = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testXMLFooStarXMLA {
     s = @"<!-- foo --> a";
-    r.string = s;
     t.string = s;
     [commentState addMultiLineStartMarker:@"<!--" endMarker:@"-->"];
     [t setTokenizerState:commentState from:'<' to:'<'];
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
+//    TDEquals(tok.offset, (NSUInteger)13);
     
-    r.string = s;
     t.string = s;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+//    TDEquals(tok.offset, (NSUInteger)12);
+
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"a");
+    TDEquals(tok.offset, (NSUInteger)13);
 }
 
 
 - (void)testReportXMLFooStarXMLA {
     s = @"<!-- foo --> a";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     [commentState addMultiLineStartMarker:@"<!--" endMarker:@"-->"];
@@ -354,20 +366,23 @@
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"<!-- foo -->");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
+    TDEquals(tok.offset, (NSUInteger)13);
     
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"<!-- foo -->");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)12);
 }
 
 
