@@ -341,14 +341,14 @@
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
-//    TDEquals(tok.offset, (NSUInteger)13);
+    TDEquals(tok.offset, (NSUInteger)13);
     
     t.string = s;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
-//    TDEquals(tok.offset, (NSUInteger)12);
+    TDEquals(tok.offset, (NSUInteger)12);
 
     tok = [t nextToken];
     TDTrue(tok.isWord);
