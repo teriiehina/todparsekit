@@ -175,14 +175,20 @@
             }
         }
 
-        [self append:c];
 
-        // check if char is in allowed character set (if given)
+        // check if char is not in allowed character set (if given)
         if (characterSet && ![characterSet characterIsMember:c]) {
-            // if not, unwind and return a symbol tok for cin
-            [r unread:[[self bufferedString] length] - 1];
-            return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+            if (allowsUnbalancedStrings) {
+                break;
+            } else {
+                // if not, unwind and return a symbol tok for cin
+                [self append:c];
+                [r unread:[[self bufferedString] length] - 1];
+                return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+            }
         }
+        
+        [self append:c];
     }
     
     if (TDEOF != c) {
@@ -196,6 +202,7 @@
 
 @synthesize rootNode;
 @synthesize balancesEOFTerminatedStrings;
+@synthesize allowsUnbalancedStrings;
 @synthesize startMarkers;
 @synthesize endMarkers;
 @synthesize characterSets;
