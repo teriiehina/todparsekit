@@ -109,6 +109,7 @@
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"!");
     TDEqualObjects(tok.value, @"!");
+    TDEquals(tok.offset, (NSUInteger)19);
     
     tok = [t nextToken];
     TDNotNil(tok);
@@ -116,10 +117,12 @@
     TDTrue(tok.isQuotedString);
     TDEqualObjects(tok.stringValue, @"'Woo-hoo!'");
     TDEqualObjects(tok.value, @"'Woo-hoo!'");
+    TDEquals(tok.offset, (NSUInteger)21);
     
     tok = [t nextToken];
     TDNotNil(tok);
     TDTrue(tok == eof);
+    TDEquals(tok.offset, (NSUInteger)TDEOF);
 }
 
 
