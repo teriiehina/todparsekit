@@ -120,10 +120,7 @@
         }
         return tok;
     } else {
-        NSUInteger i = 0;
-        for ( ; i < symbol.length - 1; i++) {
-            [r unread];
-        }
+        [r unread:symbol.length];
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
 }
