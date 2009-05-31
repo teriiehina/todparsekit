@@ -41,20 +41,21 @@
         length = string.length;
     }
     // reset cursor
-    cursor = 0;
+    offset = 0;
 }
 
 
 - (TDUniChar)read {
-    if (0 == length || cursor > length - 1) {
+    if (0 == length || offset > length - 1) {
         return TDEOF;
     }
-    return [string characterAtIndex:cursor++];
+    return [string characterAtIndex:offset++];
 }
 
 
 - (void)unread {
-    cursor = (0 == cursor) ? 0 : cursor - 1;
+    offset = (0 == offset) ? 0 : offset - 1;
 }
 
+@synthesize offset;
 @end

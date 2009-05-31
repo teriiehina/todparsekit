@@ -16,7 +16,7 @@
 #define TDFALSE (id)kCFBooleanFalse
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -73,7 +73,7 @@
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     if (reportsWhitespaceTokens) {
-        [self reset];
+        [self resetWithReader:r];
     }
     
     TDUniChar c = cin;
@@ -88,7 +88,7 @@
     }
     
     if (reportsWhitespaceTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
+        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0 offset:offset];
     } else {
         return [t nextToken];
     }

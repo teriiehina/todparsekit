@@ -20,6 +20,7 @@
 */
 @interface TDTokenizerState : NSObject {
     NSMutableString *stringbuf;
+    NSUInteger offset;
 }
 
 /*!

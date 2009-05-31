@@ -16,7 +16,7 @@
 #define TDFALSE (id)kCFBooleanFalse
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -94,7 +94,7 @@
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
-    [self reset];
+    [self resetWithReader:r];
     
     TDUniChar c = cin;
     do {
@@ -106,7 +106,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0 offset:offset];
 }
 
 

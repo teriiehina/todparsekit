@@ -14,7 +14,7 @@
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
@@ -62,7 +62,7 @@
     
     BOOL reportTokens = t.commentState.reportsCommentTokens;
     if (reportTokens) {
-        [self reset];
+        [self resetWithReader:r];
         if (currentStartMarker.length > 1) {
             [self appendString:currentStartMarker];
         }
@@ -86,7 +86,7 @@
     self.currentStartMarker = nil;
     
     if (reportTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+        return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0 offset:offset];
     } else {
         return [t nextToken];
     }

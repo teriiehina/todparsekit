@@ -14,7 +14,7 @@
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -27,7 +27,7 @@
     
     BOOL reportTokens = t.slashState.reportsCommentTokens;
     if (reportTokens) {
-        [self reset];
+        [self resetWithReader:r];
         [self append:'/'];
     }
     

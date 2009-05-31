@@ -14,7 +14,7 @@
 #import <TDParseKit/TDTypes.h>
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -38,7 +38,7 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
 
-    [self reset];
+    [self resetWithReader:r];
     negative = NO;
     TDUniChar originalCin = cin;
     
@@ -75,7 +75,7 @@
         floatValue = -floatValue;
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
+    return [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value] offset:offset];
 }
 
 

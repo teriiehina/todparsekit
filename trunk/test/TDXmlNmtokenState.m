@@ -12,7 +12,7 @@
 #import "TDXmlToken.h"
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -31,7 +31,7 @@
 
 
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
-    [self reset];
+    [self resetWithReader:r];
     
     NSInteger c = cin;
     do {

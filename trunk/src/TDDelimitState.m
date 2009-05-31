@@ -19,7 +19,7 @@
 @end
 
 @interface TDTokenizerState ()
-- (void)reset;
+- (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
@@ -133,7 +133,7 @@
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
-    [self reset];
+    [self resetWithReader:r];
     [self appendString:startMarker];
 
     id endMarkerOrNull = [self endMarkerForStartMarker:startMarker];
@@ -195,7 +195,7 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
+    return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0 offset:offset];
 }
 
 @synthesize rootNode;

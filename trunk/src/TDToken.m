@@ -88,6 +88,8 @@ static TDTokenEOF *EOFToken = nil;
 @property (nonatomic, readwrite, copy) NSString *stringValue;
 @property (nonatomic, readwrite) TDTokenType tokenType;
 @property (nonatomic, readwrite, copy) id value;
+
+@property (nonatomic, readwrite) NSUInteger offset;
 @end
 
 @implementation TDToken
@@ -98,17 +100,28 @@ static TDTokenEOF *EOFToken = nil;
 
 
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-    return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
+    return [self tokenWithTokenType:t stringValue:s floatValue:n offset:0];
+}
+
+
++ (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i {
+    return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n offset:i] autorelease];
+}
+
+
+- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
+    return [self initWithTokenType:t stringValue:s floatValue:n offset:0];
 }
 
 
 // designated initializer
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
+- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i {
     //NSParameterAssert(s);
     if (self = [super init]) {
         self.tokenType = t;
         self.stringValue = s;
         self.floatValue = n;
+        self.offset = i;
         
         self.number = (TDTokenTypeNumber == t);
         self.quotedString = (TDTokenTypeQuotedString == t);
@@ -221,4 +234,5 @@ static TDTokenEOF *EOFToken = nil;
 @synthesize stringValue;
 @synthesize tokenType;
 @synthesize value;
+@synthesize offset;
 @end
