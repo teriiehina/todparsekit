@@ -44,7 +44,19 @@
     TDEqualObjects(tok.stringValue, s);
     TDEquals(tok.offset, (NSUInteger)0);
     TDEqualObjects([t nextToken], [TDToken EOFToken]);
-//    TDEquals([r read], TDEOF);
+}
+
+
+- (void)testReportSpaceSlashSlashFoo {
+    s = @" // foo";
+    r.string = s;
+    t.string = s;
+    commentState.reportsCommentTokens = YES;
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, @"// foo");
+    TDEquals(tok.offset, (NSUInteger)1);
+    TDEqualObjects([t nextToken], [TDToken EOFToken]);
 }
 
 
@@ -68,9 +80,11 @@
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"#");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"foo");
+    TDEquals(tok.offset, (NSUInteger)2);
 
     r.string = s;
     t.string = s;
@@ -78,43 +92,42 @@
     tok = [t nextToken];
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"#");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
     TDEqualObjects(tok.stringValue, @" ");
+    TDEquals(tok.offset, (NSUInteger)1);
 }
 
 
 - (void)testAddHashFoo {
     s = @"# foo";
-    r.string = s;
     t.string = s;
     [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
-    tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], TDEOF);
+    tok = [t nextToken];
+    TDTrue(tok == [TDToken EOFToken]);
+    TDEquals(tok.offset, (NSUInteger)-1);
 }
 
 
 - (void)testReportAddHashFoo {
     s = @"# foo";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
-    tok = [commentState nextTokenFromReader:r startingWith:'#' tokenizer:t];
+    tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
-    TDEquals([r read], TDEOF);
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testSlashStarFooStarSlash {
     s = @"/* foo */";
-    r.string = s;
     t.string = s;
-    tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
+    tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
     TDEquals([r read], TDEOF);
 }
@@ -122,9 +135,8 @@
 
 - (void)testSlashStarFooStarSlashSpace {
     s = @"/* foo */ ";
-    r.string = s;
     t.string = s;
-    tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
+    tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
     TDEquals([r read], TDEOF);
 }
@@ -139,26 +151,27 @@
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
     TDEquals([t nextToken], [TDToken EOFToken]);
+    TDEquals(tok.offset, (NSUInteger)0);
 }
 
 
 - (void)testReportSlashStarFooStarSlashSpace {
     s = @"/* foo */ ";
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
+    TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
 
-    r.string = s;
     t.string = s;
     commentState.reportsCommentTokens = YES;
     t.whitespaceState.reportsWhitespaceTokens = YES;
     tok = [t nextToken];
     TDTrue(tok.isComment);
+    TDEquals(tok.offset, (NSUInteger)0);
     TDEqualObjects(tok.stringValue, @"/* foo */");
     tok = [t nextToken];
     TDTrue(tok.isWhitespace);
