@@ -250,7 +250,7 @@
         attrParser.name = @"attr";
         [attrParser add:self.tagParser];
         TDWord *w = [TDWord word];
-        w.exceptions = reservedWords;
+        [w setExceptions:reservedWords ignoringCase:YES];
         [attrParser add:w];
         [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
     }
@@ -377,7 +377,7 @@
     if (!nonReservedWordParser) {
         self.nonReservedWordParser = [TDWord word];
         nonReservedWordParser.name = @"nonReservedWord";
-        nonReservedWordParser.exceptions = reservedWords;
+        [nonReservedWordParser setExceptions:reservedWords ignoringCase:YES];
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWordAssembly:)];
     }
     return nonReservedWordParser;
