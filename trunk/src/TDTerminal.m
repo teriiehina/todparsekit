@@ -16,6 +16,7 @@
 - (BOOL)except:(id)obj;
 
 @property (nonatomic, readwrite, copy) NSString *string;
+@property (nonatomic, readwrite, copy) NSArray *exceptions;
 @end
 
 @implementation TDTerminal
@@ -93,6 +94,12 @@
 - (TDTerminal *)discard {
     discardFlag = YES;
     return self;
+}
+
+
+- (void)setExceptions:(NSArray *)strings ignoringCase:(BOOL)ignoringCase {
+    self.exceptions = strings;
+    exceptIgnoringCase = ignoringCase;
 }
 
 @synthesize string;

@@ -19,6 +19,7 @@
     NSString *string;
     BOOL discardFlag;
     NSArray *exceptions;
+    BOOL exceptIgnoringCase;
 }
 
 /*!
@@ -37,15 +38,16 @@
 - (TDTerminal *)discard;
 
 /*!
+    @brief      <tt>TDWord</tt> tokens whose <tt>stringValue</tt> match objects in strings should not be matched
+    @details    This adds support for reserved words
+    @param      strings to not match
+    @param      ignoringCase if true match strings case-insensitive
+*/
+- (void)setExceptions:(NSArray *)strings ignoringCase:(BOOL)ignoringCase;
+
+/*!
     @property   string
     @brief      the string matched by this parser.
 */
 @property (nonatomic, readonly, copy) NSString *string;
-
-/*!
-    @property   exceptionss
-    @details    This adds support for reserved words
-    @brief      <tt>TDWord</tt> tokens whose <tt>stringValue</tt> match strings in this array should not be matched
-*/
-@property (nonatomic, copy) NSArray *exceptions;
 @end
