@@ -14,6 +14,10 @@
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDTypes.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
@@ -137,7 +141,9 @@
     self.currentStartMarker = nil;
 
     if (reportTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0 offset:offset];
+        TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+        tok.offset = offset;
+        return tok;
     } else {
         return [t nextToken];
     }

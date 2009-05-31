@@ -15,6 +15,10 @@
 #define TDTRUE (id)kCFBooleanTrue
 #define TDFALSE (id)kCFBooleanFalse
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
@@ -88,7 +92,9 @@
     }
     
     if (reportsWhitespaceTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0 offset:offset];
+        TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
+        tok.offset = offset;
+        return tok;
     } else {
         return [t nextToken];
     }

@@ -14,6 +14,10 @@
 #import <TDParseKit/TDSymbolRootNode.h>
 #import <TDParseKit/TDTypes.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizer ()
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
 @end
@@ -195,7 +199,9 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0 offset:offset];
+    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
+    tok.offset = offset;
+    return tok;
 }
 
 @synthesize rootNode;

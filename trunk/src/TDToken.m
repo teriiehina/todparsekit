@@ -106,28 +106,17 @@ static TDTokenEOF *EOFToken = nil;
 
 
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-    return [self tokenWithTokenType:t stringValue:s floatValue:n offset:0];
-}
-
-
-+ (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i {
-    return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n offset:i] autorelease];
-}
-
-
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
-    return [self initWithTokenType:t stringValue:s floatValue:n offset:0];
+    return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
 }
 
 
 // designated initializer
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i {
+- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
     //NSParameterAssert(s);
     if (self = [super init]) {
         self.tokenType = t;
         self.stringValue = s;
         self.floatValue = n;
-        self.offset = i;
         
         self.number = (TDTokenTypeNumber == t);
         self.quotedString = (TDTokenTypeQuotedString == t);
