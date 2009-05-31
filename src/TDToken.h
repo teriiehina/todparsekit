@@ -69,32 +69,13 @@ typedef enum {
 + (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-    @brief      Factory convenience method for creating an autoreleased token.
-    @param      t the type of this token.
-    @param      s the string value of this token.
-    @param      n the number falue of this token.
-    @param      i the offset of this token in the source string
-    @result     an autoreleased initialized token.
-*/
-+ (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i;
-
-/*!
+    @brief      Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
     @param      t the type of this token.
     @param      s the string value of this token.
     @param      n the number falue of this token.
     @result     an autoreleased initialized token.
 */
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
-
-/*!
-    @brief      Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
-    @param      t the type of this token.
-    @param      s the string value of this token.
-    @param      n the number falue of this token.
-    @param      i the offset of this token in the source string
-    @result     an autoreleased initialized token.
-*/
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n offset:(NSUInteger)i;
 
 /*!
     @brief      Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.

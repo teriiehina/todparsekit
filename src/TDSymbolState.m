@@ -12,6 +12,10 @@
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTokenizer.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 @end
@@ -47,13 +51,17 @@
     NSUInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0 offset:offset];
+        TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0];
+        tok.offset = offset;
+        return tok;
     } else {
         NSUInteger i = 0;
         for ( ; i < len - 1; i++) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0 offset:offset];
+        TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
+        tok.offset = offset;
+        return tok;
     }
 }
 

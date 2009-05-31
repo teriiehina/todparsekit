@@ -11,6 +11,10 @@
 #import <TDParseKit/TDToken.h>
 #import <TDParseKit/TDTypes.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
@@ -43,7 +47,9 @@
         
     } while (c != cin);
     
-    return [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0 offset:offset];
+    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
+    tok.offset = offset;
+    return tok;
 }
 
 @synthesize balancesEOFTerminatedStrings;

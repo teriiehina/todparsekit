@@ -15,6 +15,10 @@
 #define TDTRUE (id)kCFBooleanTrue
 #define TDFALSE (id)kCFBooleanFalse
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
@@ -106,7 +110,9 @@
         [r unread];
     }
     
-    return [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0 offset:offset];
+    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0];
+    tok.offset = offset;
+    return tok;
 }
 
 
