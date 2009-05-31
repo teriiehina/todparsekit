@@ -170,6 +170,7 @@
 		D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DC70EF260FC00226554 /* TDTokenArraySource.m */; };
 		D3656DD60EF2614C00226554 /* TDTokenArraySource.h in Headers */ = {isa = PBXBuildFile; fileRef = D3656DC60EF260FC00226554 /* TDTokenArraySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */; };
+		D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */; };
 		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
 		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
 		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
@@ -678,6 +679,8 @@
 		D3656DC70EF260FC00226554 /* TDTokenArraySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenArraySource.m; path = src/TDTokenArraySource.m; sourceTree = "<group>"; };
 		D3656DFC0EF2620E00226554 /* TDTokenArraySourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenArraySourceTest.h; path = test/TDTokenArraySourceTest.h; sourceTree = "<group>"; };
 		D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenArraySourceTest.m; path = test/TDTokenArraySourceTest.m; sourceTree = "<group>"; };
+		D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest2.h; path = test/TDParserFactoryTest2.h; sourceTree = "<group>"; };
+		D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest2.m; path = test/TDParserFactoryTest2.m; sourceTree = "<group>"; };
 		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
 		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
 		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
@@ -1806,6 +1809,8 @@
 				D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */,
 				D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */,
 				D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */,
+				D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */,
+				D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */,
 			);
 			name = factory;
 			sourceTree = "<group>";
@@ -2416,6 +2421,7 @@
 				D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */,
 				D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
 				D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
+				D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

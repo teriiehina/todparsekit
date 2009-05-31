@@ -108,6 +108,7 @@
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
                            @"TDParserFactoryTest",
+                           @"TDParserFactoryTest2",
                            @"TDMiniCSSAssemblerTest",
                            @"TDPredicateEvaluatorTest",
                            @"TDNSPredicateBuilderTest",
