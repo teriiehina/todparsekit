@@ -59,7 +59,6 @@
 
 
 - (void)unread:(NSUInteger)count {
-    NSParameterAssert(offset >= count - 1);
     NSUInteger i = 0;
     for ( ; i < count - 1; i++) {
         [self unread];
