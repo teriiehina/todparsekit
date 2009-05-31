@@ -14,8 +14,16 @@
 #import <TDParseKit/TDSingleLineCommentState.h>
 #import <TDParseKit/TDMultiLineCommentState.h>
 
+@interface TDToken ()
+@property (nonatomic, readwrite) NSUInteger offset;
+@end
+
 @interface TDTokenizer ()
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+@end
+
+@interface TDTokenizerState ()
+- (void)resetWithReader:(TDReader *)r;
 @end
 
 @interface TDCommentState ()
@@ -93,14 +101,20 @@
     NSParameterAssert(r);
     NSParameterAssert(t);
 
+    [self resetWithReader:r];
+
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
 
     if ([multiLineState.startMarkers containsObject:symbol]) {
         multiLineState.currentStartMarker = symbol;
-        return [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        TDToken *tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        tok.offset = offset;
+        return tok;
     } else if ([singleLineState.startMarkers containsObject:symbol]) {
         singleLineState.currentStartMarker = symbol;
-        return [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        TDToken *tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        tok.offset = offset;
+        return tok;
     } else {
         NSUInteger i = 0;
         for ( ; i < symbol.length - 1; i++) {
