@@ -709,4 +709,37 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+
+- (void)testUnbalancedElementStartTag {
+    s = @"<foo bar=\"baz\" <bat ";
+    NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"<"] invertedSet];
+    
+    t.string = s;
+    [t setTokenizerState:delimitState from:'<' to:'<'];
+    [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue,  @"<");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue,  @"foo");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    t.string = s;
+    delimitState.allowsUnbalancedStrings = YES;
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"<foo bar=\"baz\" ");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"<bat ");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+}
+
 @end

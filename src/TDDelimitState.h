@@ -18,6 +18,7 @@
 @interface TDDelimitState : TDTokenizerState {
     TDSymbolRootNode *rootNode;
     BOOL balancesEOFTerminatedStrings;
+    BOOL allowsUnbalancedStrings;
 
     NSMutableArray *startMarkers;
     NSMutableArray *endMarkers;
@@ -45,4 +46,6 @@
     @brief      if true, this state will append a matching end delimiter marker (e.g. <tt>--></tt> or <tt>%></tt>) to strings terminated by EOF. Default is NO.
 */
 @property (nonatomic) BOOL balancesEOFTerminatedStrings;
+
+@property (nonatomic) BOOL allowsUnbalancedStrings;
 @end
