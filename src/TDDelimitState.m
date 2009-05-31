@@ -123,7 +123,7 @@
     NSString *startMarker = [rootNode nextSymbol:r startingWith:cin];
 
     if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
-        [r unread:startMarker.length];
+        [r unread:startMarker.length - 1];
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
@@ -153,7 +153,7 @@
         if (!endMarker && [t.whitespaceState isWhitespaceChar:c]) {
             // if only the start marker was matched, dont return delimited string token. instead, defer tokenization
             if ([startMarker isEqualToString:[self bufferedString]]) {
-                [r unread:startMarker.length];
+                [r unread:startMarker.length - 1];
                 return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
             }
             // else, return delimited string tok
@@ -167,7 +167,7 @@
                 c = [r read];
                 break;
             } else {
-                [r unread:peek.length];
+                [r unread:peek.length - 1];
                 if (e != [peek characterAtIndex:0]) {
                     [self append:c];
                     c = [r read];
@@ -180,7 +180,7 @@
         // check if char is in allowed character set (if given)
         if (characterSet && ![characterSet characterIsMember:c]) {
             // if not, unwind and return a symbol tok for cin
-            [r unread:[[self bufferedString] length]];
+            [r unread:[[self bufferedString] length] - 1];
             return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
         }
     }

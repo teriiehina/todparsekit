@@ -111,7 +111,7 @@
                 c = [r read];
                 break;
             } else {
-                [r unread:peek.length];
+                [r unread:peek.length - 1];
                 if (e != [peek characterAtIndex:0]) {
                     if (reportTokens) {
                         [self append:c];

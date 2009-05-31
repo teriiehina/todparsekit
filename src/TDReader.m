@@ -60,7 +60,7 @@
 
 - (void)unread:(NSUInteger)count {
     NSUInteger i = 0;
-    for ( ; i < count - 1; i++) {
+    for ( ; i < count; i++) {
         [self unread];
     }
 }

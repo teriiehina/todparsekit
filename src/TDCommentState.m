@@ -120,7 +120,7 @@
         }
         return tok;
     } else {
-        [r unread:symbol.length];
+        [r unread:symbol.length - 1];
         return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
 }
