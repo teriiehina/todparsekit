@@ -658,4 +658,55 @@
     TDEqualObjects(tok, [TDToken EOFToken]);
 }
 
+
+- (void)testAtStartMarkerNilEndMarker {
+    s = @"@foo";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet alphanumericCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'@' to:'@'];
+    [delimitState addStartMarker:@"@" endMarker:nil allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testAtStartMarkerNilEndMarker2 {
+    s = @"@foo bar @ @baz ";
+    t.string = s;
+    NSCharacterSet *cs = [NSCharacterSet alphanumericCharacterSet];
+    
+    [t setTokenizerState:delimitState from:'@' to:'@'];
+    [delimitState addStartMarker:@"@" endMarker:nil allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"@foo");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue,  @"bar");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue,  @"@");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue,  @"@baz");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
 @end
