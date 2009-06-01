@@ -149,4 +149,20 @@
     TDNil(a);
 }    
 
+
+- (void)testInvertAndOrNotTrueFalse {
+    s = @"true";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"and|or|not|true|false"];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[true]true^");
+    
+    [p invert];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+}    
+
 @end
