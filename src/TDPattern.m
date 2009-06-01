@@ -22,7 +22,7 @@
 
 
 + (id)patternWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t {
-    return [self patternWithString:s options:opts tokenType:TDTokenTypeAny inRange:NSMakeRange(0, NSUIntegerMax)];
+    return [self patternWithString:s options:opts tokenType:t inRange:NSMakeRange(0, NSUIntegerMax)];
 }
 
 

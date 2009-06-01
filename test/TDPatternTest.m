@@ -13,6 +13,52 @@
 - (void)testFoo {
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo"];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo" options:0];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeWord];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeWord inRange:NSMakeRange(0, 3)];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeWord inRange:NSMakeRange(0, 2)];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeSymbol];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"fo+"];
     a = [p completeMatchFor:a];
     
