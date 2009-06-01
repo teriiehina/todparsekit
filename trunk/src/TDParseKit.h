@@ -70,6 +70,7 @@
 #import <TDParseKit/TDLiteral.h>
 #import <TDParseKit/TDCaseInsensitiveLiteral.h>
 #import <TDParseKit/TDAny.h>
+#import <TDParseKit/TDPattern.h>
 
 // ext
 #import <TDParseKit/TDScientificNumberState.h>
