@@ -68,7 +68,7 @@
 
 - (id)invertedPattern {
     TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType inRange:range];
-    pattern->inverted = !inverted;
+    [pattern invert];
     return pattern;
 }
 
