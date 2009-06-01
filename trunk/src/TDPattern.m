@@ -51,7 +51,9 @@
     if (NSNotFound == r.location) {
         r = NSMakeRange(0, tok.stringValue.length);
     }
-    return [tok.stringValue isMatchedByRegex:self.string options:options inRange:r error:nil];
+    
+    NSRange res = [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil];
+    return NSEqualRanges(r, res);
 }
 
 @end

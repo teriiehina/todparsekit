@@ -93,12 +93,19 @@
 - (void)testAndOrOr {
     s = @"and";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"a|or"];
+    p = [TDPattern patternWithString:@"and|or"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[and]and^");
-
+    
+    s = @"and";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"an|or"];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+    
     s = @"or";
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"(and)|(or)"];
