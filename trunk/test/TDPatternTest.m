@@ -115,4 +115,22 @@
     TDEqualObjects([a description], @"[or]or^");
 }    
 
+
+- (void)testNotAnd {
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"[^and]+"];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+    
+    s = @"and";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"[^(and)]"];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+}    
+
 @end
