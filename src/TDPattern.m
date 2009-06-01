@@ -22,7 +22,7 @@
 
 
 + (id)patternWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t {
-    return [self patternWithString:s options:opts tokenType:t inRange:NSMakeRange(0, NSUIntegerMax)];
+    return [self patternWithString:s options:opts tokenType:t inRange:NSMakeRange(NSNotFound, 0)];
 }
 
 
@@ -31,7 +31,7 @@
 }
 
 
-- (id)initWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r; {
+- (id)initWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
     if (self = [super initWithString:s]) {
         options = opts;
         tokenType = t;
@@ -47,7 +47,11 @@
         return NO;
     }
     
-    return [tok.stringValue isMatchedByRegex:self.string options:options inRange:range error:nil];
+    NSRange r = range;
+    if (NSNotFound == r.location) {
+        r = NSMakeRange(0, tok.stringValue.length);
+    }
+    return [tok.stringValue isMatchedByRegex:self.string options:options inRange:r error:nil];
 }
 
 @end
