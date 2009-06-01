@@ -27,13 +27,13 @@ typedef enum {
 }
 + (id)patternWithString:(NSString *)s;
 
-+ (id)patternWithString:(NSString *)s options:(uint32_t)opts;
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts;
 
-+ (id)patternWithString:(NSString *)s options:(uint32_t)opts tokenType:(TDTokenType)t;
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
 
-+ (id)patternWithString:(NSString *)s options:(uint32_t)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
 
-- (id)initWithString:(NSString *)s options:(uint32_t)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
+- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
 
 - (void)invert;
 

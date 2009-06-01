@@ -12,26 +12,26 @@
 @implementation TDPattern
 
 + (id)patternWithString:(NSString *)s {
-    return [self patternWithString:s options:RKLNoOptions];
+    return [self patternWithString:s options:TDPatternNoOptions];
 }
 
 
-+ (id)patternWithString:(NSString *)s options:(RKLRegexOptions)opts {
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts {
     return [self patternWithString:s options:opts tokenType:TDTokenTypeAny];
 }
 
 
-+ (id)patternWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t {
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t {
     return [self patternWithString:s options:opts tokenType:t inRange:NSMakeRange(NSNotFound, 0)];
 }
 
 
-+ (id)patternWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
++ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
     return [[[self alloc] initWithString:s options:opts tokenType:t inRange:r] autorelease];
 }
 
 
-- (id)initWithString:(NSString *)s options:(RKLRegexOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
+- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
     if (self = [super initWithString:s]) {
         options = opts;
         tokenType = t;
