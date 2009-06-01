@@ -163,6 +163,19 @@
     a = [p completeMatchFor:a];
     
     TDNil(a);
+
+    s = @"TRUE";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternIgnoreCase];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[TRUE]TRUE^");
+    
+    [p invert];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
 }    
 
 @end
