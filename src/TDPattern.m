@@ -52,7 +52,24 @@
         r = NSMakeRange(0, tok.stringValue.length);
     }
     
-    return NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil]);
+    BOOL isMatch = NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil]);
+    if (inverted) {
+        return !isMatch;
+    } else {
+        return isMatch;
+    }
+}
+
+
+- (void)invert {
+    inverted = !inverted;
+}
+
+
+- (id)invertedPattern {
+    TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType inRange:range];
+    pattern->inverted = !inverted;
+    return pattern;
 }
 
 @end

@@ -14,6 +14,7 @@
     uint32_t options; // RKLRegexOptions
     TDTokenType tokenType;
     NSRange range;
+    BOOL inverted;
 }
 + (id)patternWithString:(NSString *)s;
 + (id)patternWithString:(NSString *)s options:(uint32_t)opts;
@@ -21,4 +22,8 @@
 + (id)patternWithString:(NSString *)s options:(uint32_t)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
 
 - (id)initWithString:(NSString *)s options:(uint32_t)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
+
+- (void)invert;
+
+- (id)invertedPattern;
 @end
