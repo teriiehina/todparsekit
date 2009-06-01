@@ -38,7 +38,7 @@
 - (TDTerminal *)discard;
 
 /*!
-    @brief      <tt>TDWord</tt> tokens whose <tt>stringValue</tt> match objects in strings should not be matched
+    @brief      tokens whose <tt>stringValue</tt> match objects in strings should not be matched
     @details    This adds support for reserved words
     @param      strings to not match
     @param      ignoringCase if true match strings case-insensitive
