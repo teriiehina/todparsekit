@@ -12,7 +12,7 @@
 @implementation TDPattern
 
 + (id)patternWithString:(NSString *)s {
-    return [self patternWithString:s options:TDPatternNoOptions];
+    return [self patternWithString:s options:TDPatternOptionsNone];
 }
 
 

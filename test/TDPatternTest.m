@@ -166,7 +166,7 @@
 
     s = @"TRUE";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternIgnoreCase];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
