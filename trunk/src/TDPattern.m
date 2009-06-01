@@ -22,20 +22,14 @@
 
 
 + (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t {
-    return [self patternWithString:s options:opts tokenType:t inRange:NSMakeRange(NSNotFound, 0)];
+    return [[[self alloc] initWithString:s options:opts tokenType:t] autorelease];
 }
 
 
-+ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
-    return [[[self alloc] initWithString:s options:opts tokenType:t inRange:r] autorelease];
-}
-
-
-- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r {
+- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t {
     if (self = [super initWithString:s]) {
         options = opts;
         tokenType = t;
-        range = r;
     }
     return self;
 }
@@ -47,11 +41,8 @@
         return NO;
     }
     
-    NSRange r = range;
-    if (NSNotFound == r.location) {
-        r = NSMakeRange(0, tok.stringValue.length);
-    }
-    
+    NSRange r = NSMakeRange(0, tok.stringValue.length);
+
     BOOL isMatch = NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:(uint32_t)options inRange:r capture:0 error:nil]);
     if (inverted) {
         return !isMatch;
@@ -67,7 +58,7 @@
 
 
 - (id)invertedPattern {
-    TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType inRange:range];
+    TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType];
     [pattern invert];
     return pattern;
 }

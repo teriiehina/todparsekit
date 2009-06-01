@@ -22,7 +22,6 @@ typedef enum {
 @interface TDPattern : TDTerminal {
     TDPatternOptions options;
     TDTokenType tokenType;
-    NSRange range;
     BOOL inverted;
 }
 + (id)patternWithString:(NSString *)s;
@@ -31,9 +30,7 @@ typedef enum {
 
 + (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
 
-+ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
-
-- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t inRange:(NSRange)r;
+- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
 
 - (void)invert;
 
