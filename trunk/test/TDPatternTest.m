@@ -161,6 +161,26 @@
     a = [p completeMatchFor:a];
     
     TDNil(a);
+
+    s = @"NOT";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[NOT]NOT^");
+    
+    p = [p invertedPattern];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+
+    s = @"oR";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeSymbol];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
 }    
 
 @end
