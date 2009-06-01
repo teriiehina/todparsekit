@@ -28,7 +28,8 @@ typedef enum {
     TDTokenTypeWord,
     TDTokenTypeWhitespace,
     TDTokenTypeComment,
-    TDTokenTypeDelimitedString
+    TDTokenTypeDelimitedString,
+    TDTokenTypeAny
 } TDTokenType;
 
 /*!
