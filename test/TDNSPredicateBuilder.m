@@ -28,8 +28,6 @@
 // unquotedString       = nonReservedWord+
 // bool                 = 'true' | 'false'
 
-static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|beginswith|endswith|matches";
-
 @interface TDNSPredicateBuilder ()
 @property (nonatomic, retain) TDToken *nonReservedWordFence;
 @end
@@ -74,6 +72,7 @@ static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|b
     self.stringParser = nil;
     self.quotedStringParser = nil;
     self.unquotedStringParser = nil;
+    self.reservedWordParser = nil;
     self.nonReservedWordParser = nil;
     self.numberParser = nil;
     [super dealloc];
@@ -249,7 +248,7 @@ static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|b
         self.attrParser = [TDAlternation alternation];
         attrParser.name = @"attr";
         [attrParser add:self.tagParser];
-        [attrParser add:[[TDPattern patternWithString:sReservedWordsRegex options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord] invertedPattern]];
+        [attrParser add:[self.reservedWordParser invertedPattern]];
         [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
     }
     return attrParser;
@@ -370,10 +369,20 @@ static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|b
 }
 
 
+- (TDPattern *)reservedWordParser {
+    if (!reservedWordParser) {
+        NSString *s = @"true|false|and|or|not|contains|beginswith|endswith|matches";
+        self.reservedWordParser = [TDPattern patternWithString:s options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord];
+        reservedWordParser.name = @"reservedWord";
+    }
+    return reservedWordParser;
+}
+
+
 // nonReservedWord      = Word
-- (TDTerminal *)nonReservedWordParser {
+- (TDPattern *)nonReservedWordParser {
     if (!nonReservedWordParser) {
-        self.nonReservedWordParser = [[TDPattern patternWithString:sReservedWordsRegex options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord] invertedPattern];
+        self.nonReservedWordParser = [self.reservedWordParser invertedPattern];
         nonReservedWordParser.name = @"nonReservedWord";
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWordAssembly:)];
     }
@@ -552,6 +561,7 @@ static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|b
 @synthesize stringParser;
 @synthesize quotedStringParser;
 @synthesize unquotedStringParser;
+@synthesize reservedWordParser;
 @synthesize nonReservedWordParser;
 @synthesize numberParser;
 @end
