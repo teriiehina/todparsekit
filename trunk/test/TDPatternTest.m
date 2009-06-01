@@ -128,7 +128,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[foo]foo^");
     
-    [p invert];
+    p = [p invertedPattern];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -144,7 +144,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[true]true^");
     
-    [p invert];
+    p = [p invertedPattern];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -157,7 +157,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[TRUE]TRUE^");
     
-    [p invert];
+    p = [p invertedPattern];
     a = [p completeMatchFor:a];
     
     TDNil(a);

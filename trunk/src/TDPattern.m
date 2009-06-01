@@ -52,14 +52,9 @@
 }
 
 
-- (void)invert {
-    inverted = !inverted;
-}
-
-
 - (id)invertedPattern {
     TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType];
-    [pattern invert];
+    pattern->inverted = !inverted;
     return pattern;
 }
 

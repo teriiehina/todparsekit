@@ -32,7 +32,5 @@ typedef enum {
 
 - (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
 
-- (void)invert;
-
 - (id)invertedPattern;
 @end
