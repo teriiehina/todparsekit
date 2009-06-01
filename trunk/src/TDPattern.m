@@ -52,7 +52,7 @@
         r = NSMakeRange(0, tok.stringValue.length);
     }
     
-    BOOL isMatch = NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil]);
+    BOOL isMatch = NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:(uint32_t)options inRange:r capture:0 error:nil]);
     if (inverted) {
         return !isMatch;
     } else {
