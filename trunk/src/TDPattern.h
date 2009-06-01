@@ -20,7 +20,7 @@ typedef enum {
 } TDPatternOptions;
 
 @interface TDPattern : TDTerminal {
-    uint32_t options; // RKLRegexOptions
+    TDPatternOptions options;
     TDTokenType tokenType;
     NSRange range;
     BOOL inverted;
