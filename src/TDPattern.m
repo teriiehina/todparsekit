@@ -52,8 +52,7 @@
         r = NSMakeRange(0, tok.stringValue.length);
     }
     
-    NSRange res = [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil];
-    return NSEqualRanges(r, res);
+    return NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:options inRange:r capture:0 error:nil]);
 }
 
 @end
