@@ -53,9 +53,19 @@
 
 
 - (id)invertedPattern {
+    //TDPattern *pattern = [[self copy] autorelease];
     TDPattern *pattern = [[self class] patternWithString:self.string options:options tokenType:tokenType];
     pattern->inverted = !inverted;
     return pattern;
 }
+
+
+//- (id)copyWithZone:(NSZone *)zone {
+//    TDPattern *p = (TDPattern *)[super copyWithZone:zone];
+//    p->options = options;
+//    p->tokenType = tokenType;
+//    p->inverted = inverted;
+//    return p;
+//}
 
 @end

@@ -9,10 +9,6 @@
 #import <TDParseKit/TDWord.h>
 #import <TDParseKit/TDToken.h>
 
-@interface TDTerminal ()
-- (BOOL)except:(id)obj;
-@end
-
 @implementation TDWord
 
 + (id)word {
@@ -22,7 +18,7 @@
 
 - (BOOL)qualifies:(id)obj {
     TDToken *tok = (TDToken *)obj;
-    return tok.isWord && ![self except:tok.value];
+    return tok.isWord;
 }
 
 @end

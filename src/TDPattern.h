@@ -19,7 +19,7 @@ typedef enum {
     TDPatternOptionsUnicodeWordBoundaries   = 256
 } TDPatternOptions;
 
-@interface TDPattern : TDTerminal {
+@interface TDPattern : TDTerminal /*<NSCopying>*/ {
     TDPatternOptions options;
     TDTokenType tokenType;
     BOOL inverted;

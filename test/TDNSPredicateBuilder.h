@@ -12,7 +12,6 @@
     NSString *defaultAttr;
     NSString *defaultRelation;
     NSString *defaultValue;
-    NSArray *reservedWords;
     TDToken *nonReservedWordFence;
     TDCollectionParser *exprParser;
     TDCollectionParser *orTermParser;
@@ -44,7 +43,6 @@
 @property (nonatomic, copy) NSString *defaultAttr;
 @property (nonatomic, copy) NSString *defaultRelation;
 @property (nonatomic, copy) NSString *defaultValue;
-@property (nonatomic, copy) NSArray *reservedWords;
 
 @property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;
