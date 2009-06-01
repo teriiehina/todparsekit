@@ -28,6 +28,8 @@
 // unquotedString       = nonReservedWord+
 // bool                 = 'true' | 'false'
 
+static NSString * const sReservedWordsRegex = @"true|false|and|or|not|contains|beginswith|endswith|matches";
+
 @interface TDNSPredicateBuilder ()
 @property (nonatomic, retain) TDToken *nonReservedWordFence;
 @end
@@ -39,7 +41,6 @@
         self.defaultAttr = @"content";
         self.defaultRelation = @"=";
         self.defaultValue = @"";
-        self.reservedWords = [NSArray arrayWithObjects:@"true", @"false", @"and", @"or", @"not", @"contains", @"beginswith", @"endswith", @"matches", nil];
         self.nonReservedWordFence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     }
     return self;
@@ -50,7 +51,6 @@
     self.defaultAttr = nil;
     self.defaultRelation = nil;
     self.defaultValue = nil;
-    self.reservedWords = nil;
     self.nonReservedWordFence = nil;
     self.exprParser = nil;
     self.orTermParser = nil;
@@ -249,9 +249,7 @@
         self.attrParser = [TDAlternation alternation];
         attrParser.name = @"attr";
         [attrParser add:self.tagParser];
-        TDWord *w = [TDWord word];
-        [w setExceptions:reservedWords ignoringCase:YES];
-        [attrParser add:w];
+        [attrParser add:[[TDPattern patternWithString:sReservedWordsRegex options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord] invertedPattern]];
         [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
     }
     return attrParser;
@@ -375,9 +373,8 @@
 // nonReservedWord      = Word
 - (TDTerminal *)nonReservedWordParser {
     if (!nonReservedWordParser) {
-        self.nonReservedWordParser = [TDWord word];
+        self.nonReservedWordParser = [[TDPattern patternWithString:sReservedWordsRegex options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord] invertedPattern];
         nonReservedWordParser.name = @"nonReservedWord";
-        [nonReservedWordParser setExceptions:reservedWords ignoringCase:YES];
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWordAssembly:)];
     }
     return nonReservedWordParser;
@@ -532,7 +529,6 @@
 @synthesize defaultAttr;
 @synthesize defaultRelation;
 @synthesize defaultValue;
-@synthesize reservedWords;
 @synthesize nonReservedWordFence;
 @synthesize exprParser;
 @synthesize orTermParser;

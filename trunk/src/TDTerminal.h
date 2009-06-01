@@ -18,8 +18,6 @@
 @interface TDTerminal : TDParser {
     NSString *string;
     BOOL discardFlag;
-    NSArray *exceptions;
-    BOOL exceptIgnoringCase;
 }
 
 /*!
@@ -36,14 +34,6 @@
     @result     this parser, returned for chaining/convenience
 */
 - (TDTerminal *)discard;
-
-/*!
-    @brief      tokens whose <tt>stringValue</tt> match objects in strings should not be matched
-    @details    This adds support for reserved words
-    @param      strings to not match
-    @param      ignoringCase if true match strings case-insensitive
-*/
-- (void)setExceptions:(NSArray *)strings ignoringCase:(BOOL)ignoringCase;
 
 /*!
     @property   string

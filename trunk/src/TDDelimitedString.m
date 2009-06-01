@@ -9,10 +9,6 @@
 #import <TDParseKit/TDDelimitedString.h>
 #import <TDParseKit/TDToken.h>
 
-@interface TDTerminal ()
-- (BOOL)except:(id)obj;
-@end
-
 @implementation TDDelimitedString
 
 + (id)delimitedString {
@@ -22,7 +18,7 @@
 
 - (BOOL)qualifies:(id)obj {
     TDToken *tok = (TDToken *)obj;
-    return tok.isDelimitedString && ![self except:tok.value];
+    return tok.isDelimitedString;
 }
 
 @end
