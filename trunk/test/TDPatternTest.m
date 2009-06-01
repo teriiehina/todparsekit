@@ -133,4 +133,20 @@
     TDNil(a);
 }    
 
+
+- (void)testInvertFoo {
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    p = [TDPattern patternWithString:@"fo+"];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[foo]foo^");
+    
+    [p invert];
+    a = [p completeMatchFor:a];
+    
+    TDNil(a);
+}    
+
 @end
