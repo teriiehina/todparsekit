@@ -11,12 +11,12 @@
 #import <TDParseKit/TDToken.h>
 
 typedef enum {
-    TDPatternOptionsNone              = 0,
-    TDPatternOptionsIgnoreCase             = 2,
-    TDPatternOptionsComments               = 4,
-    TDPatternOptionsDotAll                 = 32,
-    TDPatternOptionsMultiline              = 8,
-    TDPatternOptionsUnicodeWordBoundaries  = 256
+    TDPatternOptionsNone                    = 0,
+    TDPatternOptionsIgnoreCase              = 2,
+    TDPatternOptionsComments                = 4,
+    TDPatternOptionsMultiline               = 8,
+    TDPatternOptionsDotAll                  = 32,
+    TDPatternOptionsUnicodeWordBoundaries   = 256
 } TDPatternOptions;
 
 @interface TDPattern : TDTerminal {
