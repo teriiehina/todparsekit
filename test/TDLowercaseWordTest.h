@@ -9,6 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDLowercaseWordTest : SenTestCase {
+    
 }
 @end
     
