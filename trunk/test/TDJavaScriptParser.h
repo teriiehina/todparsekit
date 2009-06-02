@@ -68,7 +68,7 @@
     TDCollectionParser *relationalExprParser;
     TDCollectionParser *relationalOpShiftExprParser;
     TDCollectionParser *shiftExprParser;
-    TDCollectionParser *shiftOpShiftExprParser;
+    TDCollectionParser *shiftOpAdditiveExprParser;
     TDCollectionParser *additiveExprParser;
     TDCollectionParser *plusOrMinusExprParser;
     TDCollectionParser *plusExprParser;
@@ -233,7 +233,7 @@
 @property (nonatomic, retain) TDCollectionParser *relationalExprParser;
 @property (nonatomic, retain) TDCollectionParser *relationalOpShiftExprParser;
 @property (nonatomic, retain) TDCollectionParser *shiftExprParser;
-@property (nonatomic, retain) TDCollectionParser *shiftOpShiftExprParser;
+@property (nonatomic, retain) TDCollectionParser *shiftOpAdditiveExprParser;
 @property (nonatomic, retain) TDCollectionParser *additiveExprParser;
 @property (nonatomic, retain) TDCollectionParser *plusOrMinusExprParser;
 @property (nonatomic, retain) TDCollectionParser *plusExprParser;

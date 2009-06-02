@@ -211,7 +211,7 @@
     self.relationalExprParser = nil;
     self.relationalOpShiftExprParser = nil;
     self.shiftExprParser = nil;
-    self.shiftOpShiftExprParser = nil;
+    self.shiftOpAdditiveExprParser = nil;
     self.additiveExprParser = nil;
     self.plusOrMinusExprParser = nil;
     self.plusExprParser = nil;
@@ -1209,27 +1209,27 @@
 //           AdditiveExpression
 //           AdditiveExpression ShiftOperator ShiftExpression
 //
-//    shiftExpr           = additiveExpr shiftOpShiftExpr?;
+//    shiftExpr           = additiveExpr shiftOpAdditiveExpr?;
 - (TDCollectionParser *)shiftExprParser {
     if (!shiftExprParser) {
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
         [shiftExprParser add:self.additiveExprParser];
-        [shiftExprParser add:[self zeroOrOne:self.shiftOpShiftExprParser]];
+        [shiftExprParser add:[self zeroOrOne:self.shiftOpAdditiveExprParser]];
     }
     return shiftExprParser;
 }
 
 
 //    shiftOpShiftExpr    = shiftOp shiftExpr;
-- (TDCollectionParser *)shiftOpShiftExprParser {
-    if (!shiftOpShiftExprParser) {
-        self.shiftOpShiftExprParser = [TDSequence sequence];
-        shiftOpShiftExprParser.name = @"shiftOpShiftExpr";
-        [shiftOpShiftExprParser add:self.shiftOpParser];
-        [shiftOpShiftExprParser add:self.shiftExprParser];
+- (TDCollectionParser *)shiftOpAdditiveExprParser {
+    if (!shiftOpAdditiveExprParser) {
+        self.shiftOpAdditiveExprParser = [TDSequence sequence];
+        shiftOpAdditiveExprParser.name = @"shiftOpShiftExpr";
+        [shiftOpAdditiveExprParser add:self.shiftOpParser];
+        [shiftOpAdditiveExprParser add:self.additiveExprParser];
     }
-    return shiftOpShiftExprParser;
+    return shiftOpAdditiveExprParser;
 }
 
 
@@ -1357,8 +1357,8 @@
     if (!unaryExpr2Parser) {
         self.unaryExpr2Parser = [TDSequence sequence];
         unaryExpr2Parser.name = @"unaryExpr2";
-        [unaryExpr1Parser add:self.minusParser];
-        [unaryExpr1Parser add:self.unaryExprParser];
+        [unaryExpr2Parser add:self.minusParser];
+        [unaryExpr2Parser add:self.unaryExprParser];
     }
     return unaryExpr2Parser;
 }
@@ -1580,7 +1580,7 @@
         [primaryExprParser add:self.trueParser];
         [primaryExprParser add:self.falseParser];
         [primaryExprParser add:self.nullParser];
-        [primaryExprParser add:self.undefinedParser];
+        [primaryExprParser add:self.undefinedParser]; // TODO ??
         [primaryExprParser add:self.thisParser];
     }
     return primaryExprParser;
@@ -2317,7 +2317,7 @@
 @synthesize relationalExprParser;
 @synthesize relationalOpShiftExprParser;
 @synthesize shiftExprParser;
-@synthesize shiftOpShiftExprParser;
+@synthesize shiftOpAdditiveExprParser;
 @synthesize additiveExprParser;
 @synthesize plusOrMinusExprParser;
 @synthesize plusExprParser;
