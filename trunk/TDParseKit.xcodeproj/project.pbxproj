@@ -177,6 +177,10 @@
 		D36C56030FD361AD00141CB7 /* TDPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C56010FD361AD00141CB7 /* TDPattern.m */; };
 		D36C560C0FD363D500141CB7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C560B0FD363D500141CB7 /* libicucore.dylib */; };
 		D36C562B0FD365DB00141CB7 /* TDPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C562A0FD365DB00141CB7 /* TDPatternTest.m */; };
+		D36C578D0FD4C66A00141CB7 /* TDJSDelimitState.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C578B0FD4C66A00141CB7 /* TDJSDelimitState.h */; };
+		D36C578E0FD4C66A00141CB7 /* TDJSDelimitState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C578C0FD4C66A00141CB7 /* TDJSDelimitState.m */; };
+		D36C579E0FD4C81900141CB7 /* TDJSDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C579C0FD4C81900141CB7 /* TDJSDelimitedString.h */; };
+		D36C579F0FD4C81900141CB7 /* TDJSDelimitedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C579D0FD4C81900141CB7 /* TDJSDelimitedString.m */; };
 		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
 		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
 		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
@@ -694,6 +698,10 @@
 		D36C560B0FD363D500141CB7 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = /usr/lib/libicucore.dylib; sourceTree = "<absolute>"; };
 		D36C56290FD365DB00141CB7 /* TDPatternTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPatternTest.h; path = test/TDPatternTest.h; sourceTree = "<group>"; };
 		D36C562A0FD365DB00141CB7 /* TDPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPatternTest.m; path = test/TDPatternTest.m; sourceTree = "<group>"; };
+		D36C578B0FD4C66A00141CB7 /* TDJSDelimitState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSDelimitState.h; path = jssrc/TDJSDelimitState.h; sourceTree = "<group>"; };
+		D36C578C0FD4C66A00141CB7 /* TDJSDelimitState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSDelimitState.m; path = jssrc/TDJSDelimitState.m; sourceTree = "<group>"; };
+		D36C579C0FD4C81900141CB7 /* TDJSDelimitedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSDelimitedString.h; path = jssrc/TDJSDelimitedString.h; sourceTree = "<group>"; };
+		D36C579D0FD4C81900141CB7 /* TDJSDelimitedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSDelimitedString.m; path = jssrc/TDJSDelimitedString.m; sourceTree = "<group>"; };
 		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
 		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
 		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
@@ -1416,6 +1424,8 @@
 				D389F5770F19B7E200558235 /* TDJSWhitespaceState.m */,
 				D389F5780F19B7E200558235 /* TDJSWordState.h */,
 				D389F5790F19B7E200558235 /* TDJSWordState.m */,
+				D36C578B0FD4C66A00141CB7 /* TDJSDelimitState.h */,
+				D36C578C0FD4C66A00141CB7 /* TDJSDelimitState.m */,
 			);
 			name = Tokens;
 			sourceTree = "<group>";
@@ -1479,6 +1489,8 @@
 				D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */,
 				D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */,
 				D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */,
+				D36C579C0FD4C81900141CB7 /* TDJSDelimitedString.h */,
+				D36C579D0FD4C81900141CB7 /* TDJSDelimitedString.m */,
 			);
 			name = "Token Terminals";
 			sourceTree = "<group>";
@@ -1945,6 +1957,8 @@
 				D389FAF60F1B202000558235 /* TDJSSymbol.h in Headers */,
 				D354A67E0F1D304C00B3F04F /* TDJSUppercaseWord.h in Headers */,
 				D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */,
+				D36C578D0FD4C66A00141CB7 /* TDJSDelimitState.h in Headers */,
+				D36C579E0FD4C81900141CB7 /* TDJSDelimitedString.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2342,6 +2356,8 @@
 				D389FAF70F1B202000558235 /* TDJSSymbol.m in Sources */,
 				D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */,
 				D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */,
+				D36C578E0FD4C66A00141CB7 /* TDJSDelimitState.m in Sources */,
+				D36C579F0FD4C81900141CB7 /* TDJSDelimitedString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
