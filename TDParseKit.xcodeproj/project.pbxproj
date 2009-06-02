@@ -181,6 +181,8 @@
 		D36C578E0FD4C66A00141CB7 /* TDJSDelimitState.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C578C0FD4C66A00141CB7 /* TDJSDelimitState.m */; };
 		D36C579E0FD4C81900141CB7 /* TDJSDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C579C0FD4C81900141CB7 /* TDJSDelimitedString.h */; };
 		D36C579F0FD4C81900141CB7 /* TDJSDelimitedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C579D0FD4C81900141CB7 /* TDJSDelimitedString.m */; };
+		D36C57A30FD4C92000141CB7 /* TDJSPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C57A10FD4C92000141CB7 /* TDJSPattern.h */; };
+		D36C57A40FD4C92000141CB7 /* TDJSPattern.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C57A20FD4C92000141CB7 /* TDJSPattern.m */; };
 		D36E95460E578ECC00496BD3 /* XPathParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95450E578ECC00496BD3 /* XPathParser.m */; };
 		D36E95D80E57B08400496BD3 /* XPathParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E95D70E57B08400496BD3 /* XPathParserTest.m */; };
 		D36E97B00E589DAE00496BD3 /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
@@ -702,6 +704,8 @@
 		D36C578C0FD4C66A00141CB7 /* TDJSDelimitState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSDelimitState.m; path = jssrc/TDJSDelimitState.m; sourceTree = "<group>"; };
 		D36C579C0FD4C81900141CB7 /* TDJSDelimitedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSDelimitedString.h; path = jssrc/TDJSDelimitedString.h; sourceTree = "<group>"; };
 		D36C579D0FD4C81900141CB7 /* TDJSDelimitedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSDelimitedString.m; path = jssrc/TDJSDelimitedString.m; sourceTree = "<group>"; };
+		D36C57A10FD4C92000141CB7 /* TDJSPattern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSPattern.h; path = jssrc/TDJSPattern.h; sourceTree = "<group>"; };
+		D36C57A20FD4C92000141CB7 /* TDJSPattern.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSPattern.m; path = jssrc/TDJSPattern.m; sourceTree = "<group>"; };
 		D36E95440E578ECC00496BD3 /* XPathParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParser.h; path = test/XPathParser.h; sourceTree = "<group>"; };
 		D36E95450E578ECC00496BD3 /* XPathParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParser.m; path = test/XPathParser.m; sourceTree = "<group>"; };
 		D36E95D60E57B08400496BD3 /* XPathParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserTest.h; path = test/XPathParserTest.h; sourceTree = "<group>"; };
@@ -1453,6 +1457,8 @@
 				D389FAE80F1B1CCD00558235 /* TDJSEmpty.m */,
 				D389FADE0F1B1B3600558235 /* TDJSAny.h */,
 				D389FADF0F1B1B3600558235 /* TDJSAny.m */,
+				D36C57A10FD4C92000141CB7 /* TDJSPattern.h */,
+				D36C57A20FD4C92000141CB7 /* TDJSPattern.m */,
 				D389FAE30F1B1B8F00558235 /* Char Terminals */,
 				D389FAE20F1B1B7200558235 /* Token Terminals */,
 			);
@@ -1959,6 +1965,7 @@
 				D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */,
 				D36C578D0FD4C66A00141CB7 /* TDJSDelimitState.h in Headers */,
 				D36C579E0FD4C81900141CB7 /* TDJSDelimitedString.h in Headers */,
+				D36C57A30FD4C92000141CB7 /* TDJSPattern.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2358,6 +2365,7 @@
 				D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */,
 				D36C578E0FD4C66A00141CB7 /* TDJSDelimitState.m in Sources */,
 				D36C579F0FD4C81900141CB7 /* TDJSDelimitedString.m in Sources */,
+				D36C57A40FD4C92000141CB7 /* TDJSPattern.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
