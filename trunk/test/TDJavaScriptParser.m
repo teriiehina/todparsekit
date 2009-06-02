@@ -106,7 +106,7 @@
 
 - (id)init {
     if (self = [super initWithSubparser:self.elementParser]) {
-            self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [TDTokenizer tokenizer];
         
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
         [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
