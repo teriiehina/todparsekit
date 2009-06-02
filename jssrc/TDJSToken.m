@@ -67,6 +67,11 @@ static JSValueRef TDToken_getIsComment(JSContextRef ctx, JSObjectRef this, JSStr
     return JSValueMakeBoolean(ctx, data.isComment);
 }
 
+static JSValueRef TDToken_getIsDelimitedString(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
+    TDToken *data = JSObjectGetPrivate(this);
+    return JSValueMakeBoolean(ctx, data.isDelimitedString);
+}
+
 #pragma mark -
 #pragma mark Initializer/Finalizer
 
@@ -94,6 +99,7 @@ static JSStaticValue TDToken_staticValues[] = {
 { "isQuotedString", TDToken_getIsQuotedString, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Boolean
 { "isWhitespace", TDToken_getIsWhitespace, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Boolean
 { "isComment", TDToken_getIsComment, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Boolean
+{ "isDelimitedString", TDToken_getIsDelimitedString, NULL, kJSPropertyAttributeDontDelete|kJSPropertyAttributeReadOnly }, // Boolean
 { 0, 0, 0, 0 }
 };
 
