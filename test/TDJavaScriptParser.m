@@ -23,10 +23,12 @@
     if (self = [super initWithSubparser:self.elementParser]) {
         self.tokenizer = [TDTokenizer tokenizer];
         
+        // JS supports scientific number notation (exponents like 4E+12 or 2.0e-42)
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
 
-        // numbers cannot end with '.' (e.g. 32. must be 32.0)
+        // Nums cannot end with '.' (e.g. 32. must be 32.0)
         tokenizer.numberState.allowsTrailingDot = NO;
+        
         [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'.' to:'.'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'0' to:'9'];
@@ -37,9 +39,14 @@
         // Words cannot contain '-'
         [tokenizer.wordState setWordChars:NO from:'-' to:'-'];
 
+        // Comments
         tokenizer.commentState.reportsCommentTokens = YES;
         [tokenizer setTokenizerState:tokenizer.commentState from:'/' to:'/'];
+
+        // single-line Comments
         [tokenizer.commentState addSingleLineStartMarker:@"//"];
+        
+        // multi-line Comments
         [tokenizer.commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
         
         [tokenizer.symbolState add:@"||"];
