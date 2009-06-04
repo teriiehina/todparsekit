@@ -82,7 +82,6 @@
     TDCollectionParser *unaryExpr4Parser;
     TDCollectionParser *unaryExpr5Parser;
     TDCollectionParser *unaryExpr6Parser;
-    TDCollectionParser *constructorParser;
     TDCollectionParser *constructorCallParser;
     TDCollectionParser *parenArgListOptParenParser;
     TDCollectionParser *memberExprParser;
@@ -250,7 +249,6 @@
 @property (nonatomic, retain) TDCollectionParser *unaryExpr4Parser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr5Parser;
 @property (nonatomic, retain) TDCollectionParser *unaryExpr6Parser;
-@property (nonatomic, retain) TDCollectionParser *constructorParser;
 @property (nonatomic, retain) TDCollectionParser *constructorCallParser;
 @property (nonatomic, retain) TDCollectionParser *parenArgListOptParenParser;
 @property (nonatomic, retain) TDCollectionParser *memberExprParser;
