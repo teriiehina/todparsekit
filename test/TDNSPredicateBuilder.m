@@ -9,24 +9,24 @@
 #import "TDNSPredicateBuilder.h"
 #import "NSString+TDParseKitAdditions.h"
 
-// expr                 = term orTerm*
-// orTerm               = 'or' term
-// term                 = primaryExpr andPrimaryExpr*
-// andPrimaryExpr       = 'and' primaryExpr
-// primaryExpr          = phrase | '(' expression ')'
-// phrase               = predicate | negatedPredicate
-// negatedPredicate     = 'not' predicate
-// predicate            = completePredicate | attrValuePredicate | attrPredicate | valuePredicate
-// completePredicate    = attr relation value
-// attrValuePredicate   = attr value
-// attrPredicate        = attr
-// valuePredicate       = value
-// attr                 = tag | Word
-// tag                  = '@' Word
-// value                = string | Num | bool
-// string               = QuotedString | unquotedString
-// unquotedString       = nonReservedWord+
-// bool                 = 'true' | 'false'
+// expr                 = term orTerm*;
+// orTerm               = 'or' term;
+// term                 = primaryExpr andPrimaryExpr*;
+// andPrimaryExpr       = 'and' primaryExpr;
+// primaryExpr          = phrase | '(' expression ')';
+// phrase               = predicate | negatedPredicate;
+// negatedPredicate     = 'not' predicate;
+// predicate            = completePredicate | attrValuePredicate | attrPredicate | valuePredicate;
+// completePredicate    = attr relation value;
+// attrValuePredicate   = attr value;
+// attrPredicate        = attr;
+// valuePredicate       = value;
+// attr                 = tag | Word;
+// tag                  = '@' Word;
+// value                = string | Num | bool;
+// string               = QuotedString | unquotedString;
+// unquotedString       = nonReservedWord+;
+// bool                 = 'true' | 'false';
 
 @interface TDNSPredicateBuilder ()
 @property (nonatomic, retain) TDToken *nonReservedWordFence;
