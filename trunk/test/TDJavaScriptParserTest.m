@@ -251,22 +251,61 @@
 }
 
 
-//- (void)testForParenStmtParser {
-//    s = @"for( ; true; true) {}";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-//    res = [jsp.forParenStmtParser bestMatchFor:a];
-//    TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
-//}
-//
-//
-//- (void)testForBeginStmtParser {
-//    s = @"for(var i = 0; true; true) {}";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-//    res = [jsp.forBeginStmtParser bestMatchFor:a];
-//    TDEqualObjects([res description], @"[for, (var, i, =, 0, ;, true, ;, true, ), {, }]for/(/var/i/=/0/;/true/;/true/)/{/}^");
-//}
+- (void)testForBeginParenStmtParser {
+    s = @"for(1";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.forBeginParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[for, (, 1]for/(/1^");
+    
+    s = @";";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.semiParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[;];^");
+    
+    s = @"3<2";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.exprOptParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[3, <, 2]3/</2^");
+    
+    s = @"1";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.exprOptParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[1]1^");
+    
+    s = @")";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.closeParenParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[)])^");
+    
+    s = @"{}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.stmtParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[{, }]{/}^");    
+        
+    s = @"for(1; 3<2; 1) {}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.forBeginStmtParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[for, (, 1, ;, 3, <, 2, ;, 1, ), {, }]for/(/1/;/3/</2/;/1/)/{/}^");
+    
+    s = @"for(1; 3<2; 1) {}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[for, (, 1, ;, 3, <, 2, ;, 1, ), {, }]for/(/1/;/3/</2/;/1/)/{/}^");
+
+    s = @"for(var i = 0; true; true) {}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.forBeginStmtParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[for, (, var, i, =, 0, ;, true, ;, true, ), {, }]for/(/var/i/=/0/;/true/;/true/)/{/}^");
+}
 
 
 - (void)testUndefinedParser {
@@ -383,7 +422,25 @@
 //    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
 //    res = [jsp bestMatchFor:a];
 //    TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
-
+    
+    s = @"i++";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.unaryExpr4Parser bestMatchFor:a];
+    TDEqualObjects([res description], @"[i, ++]i/++^");
+    
+    s = @"i++";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.unaryExprParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[i, ++]i/++^");
+    
+    s = @"i++;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[i, ++, ;]i/++/;^");
+    
 //    s = @"for(var i=0; i<10; i++) {alert(i);}";
 //    jsp.tokenizer.string = s;
 //    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
@@ -404,12 +461,6 @@
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp bestMatchFor:a];
     TDEqualObjects([res description], @"[for, (, var, p, in, obj, ), alert, (, p, ), ;]for/(/var/p/in/obj/)/alert/(/p/)/;^");
-    
-//    s = @"for(var p in obj) alert(p)";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-//    res = [jsp bestMatchFor:a];
-//    TDEqualObjects([res description], @"[for, (, var, p, in, obj, ), alert, (, p, )]for/(/var/p/in/obj/)/alert/(/p/)^");
     
     s = @"for(var p in obj) {}";
     jsp.tokenizer.string = s;

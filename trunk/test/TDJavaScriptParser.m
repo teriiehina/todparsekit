@@ -412,7 +412,7 @@
 - (TDCollectionParser *)incrementOpParser {
     if (!incrementOpParser) {
         self.incrementOpParser = [TDAlternation alternation];
-        incrementOpParser.name = @"incrementOperator";
+        incrementOpParser.name = @"incrementOp";
         [incrementOpParser add:self.plusPlusParser];
         [incrementOpParser add:self.minusMinusParser];
     }
@@ -424,7 +424,7 @@
 - (TDCollectionParser *)unaryOpParser {
     if (!unaryOpParser) {
         self.unaryOpParser = [TDAlternation alternation];
-        unaryOpParser.name = @"unaryOperator";
+        unaryOpParser.name = @"unaryOp";
         [unaryOpParser add:self.tildeParser];
         [unaryOpParser add:self.deleteParser];
         [unaryOpParser add:self.typeofParser];
@@ -679,12 +679,12 @@
         self.forBeginStmtParser = [TDSequence sequence];
         forBeginStmtParser.name = @"forBeginStmt";
         [forBeginStmtParser add:self.forBeginParser];
-        [forParenStmtParser add:self.semiParser];
-        [forParenStmtParser add:self.exprOptParser];
-        [forParenStmtParser add:self.semiParser];
-        [forParenStmtParser add:self.exprOptParser];
-        [forParenStmtParser add:self.closeParenParser];
-        [forParenStmtParser add:self.stmtParser];
+        [forBeginStmtParser add:self.semiParser];
+        [forBeginStmtParser add:self.exprOptParser];
+        [forBeginStmtParser add:self.semiParser];
+        [forBeginStmtParser add:self.exprOptParser];
+        [forBeginStmtParser add:self.closeParenParser];
+        [forBeginStmtParser add:self.stmtParser];
     }
     return forBeginStmtParser;
 }
@@ -1124,7 +1124,7 @@
 //           EqualityExpression
 //           EqualityExpression & BitwiseAndExpression
 //
-//    bitwiseAndExpr      = equalityExpr ampEqualityExpression*;
+//    bitwiseAndExpr      = equalityExpr ampEqualityExpr*;
 - (TDCollectionParser *)bitwiseAndExprParser {
     if (!bitwiseAndExprParser) {
         self.bitwiseAndExprParser = [TDSequence sequence];
@@ -1140,7 +1140,7 @@
 - (TDCollectionParser *)ampEqualityExprParser {
     if (!ampEqualityExprParser) {
         self.ampEqualityExprParser = [TDSequence sequence];
-        ampEqualityExprParser.name = @"ampEqualityExpression";
+        ampEqualityExprParser.name = @"ampEqualityExpr";
         [ampEqualityExprParser add:self.ampParser];
         [ampEqualityExprParser add:self.equalityExprParser];
     }
@@ -1188,7 +1188,6 @@
         relationalExprParser.name = @"relationalExpr";
         [relationalExprParser add:self.shiftExprParser];
         [relationalExprParser add:[TDRepetition repetitionWithSubparser:self.relationalOpShiftExprParser]];
-//        [relationalExprParser add:[self zeroOrOne:self.relationalOpShiftExprParser]];
     }
     return relationalExprParser;
 }
@@ -1216,7 +1215,6 @@
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
         [shiftExprParser add:self.additiveExprParser];
-//        [shiftExprParser add:[self zeroOrOne:self.shiftOpAdditiveExprParser]];
         [shiftExprParser add:[TDRepetition repetitionWithSubparser:self.shiftOpAdditiveExprParser]];
     }
     return shiftExprParser;
@@ -1535,10 +1533,8 @@
 // argListOpt          = argList?;
 - (TDCollectionParser *)argListOptParser {
     if (!argListOptParser) {
-        self.argListOptParser = [TDAlternation alternation];
+        self.argListOptParser = [self zeroOrOne:self.argListParser];
         argListOptParser.name = @"argListOpt";
-        [argListOptParser add:[TDEmpty empty]];
-        [argListOptParser add:self.argListParser];
     }
     return argListOptParser;
 }
