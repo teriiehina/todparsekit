@@ -502,12 +502,28 @@
     TDEqualObjects([res description], @"[var, foo, =, [, 'bar', ], ;]var/foo/=/[/'bar'/]/;^");    
 }
 
+
 - (void)testObjectLiteral {
     s = @"var foo = {foo:'bar'};";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp bestMatchFor:a];
     TDEqualObjects([res description], @"[var, foo, =, {, foo, :, 'bar', }, ;]var/foo/=/{/foo/:/'bar'/}/;^");    
+}
+
+
+- (void)testExecuteAnonFunc {
+    s = @"(function() {})();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[(, function, (, ), {, }, ), (, ), ;](/function/(/)/{/}/)/(/)/;^");    
+
+    s = @"(function(a) {alert(a);})();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[(, function, (, a, ), {, alert, (, a, ), ;, }, ), (, ), ;](/function/(/a/)/{/alert/(/a/)/;/}/)/(/)/;^");    
 }
 
 
