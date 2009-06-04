@@ -13,7 +13,7 @@
 // orTerm               = 'or' term;
 // term                 = primaryExpr andPrimaryExpr*;
 // andPrimaryExpr       = 'and' primaryExpr;
-// primaryExpr          = phrase | '(' expression ')';
+// primaryExpr          = phrase | '(' expr ')';
 // phrase               = predicate | negatedPredicate;
 // negatedPredicate     = 'not' predicate;
 // predicate            = completePredicate | attrValuePredicate | attrPredicate | valuePredicate;
