@@ -163,7 +163,6 @@
     self.programParser = nil;
     self.elementParser = nil;
     self.funcParser = nil;
-    self.funcLiteralParser = nil;
     self.paramListOptParser = nil;
     self.paramListParser = nil;
     self.commaIdentifierParser = nil;
@@ -238,6 +237,10 @@
     self.argListParser = nil;
     self.primaryExprParser = nil;
     self.parenExprParenParser = nil;
+
+    self.funcLiteralParser = nil;
+    self.arrayLiteralParser = nil;
+    self.objectLiteralParser = nil;
 
     self.identifierParser = nil;
     self.stringParser = nil;
@@ -494,21 +497,6 @@
         [funcParser add:self.compoundStmtParser];
     }
     return funcParser;
-}
-
-
-//func                = function openParen paramListOpt closeParen compoundStmt;
-- (TDCollectionParser *)funcLiteralParser {
-    if (!funcLiteralParser) {
-        self.funcLiteralParser = [TDSequence sequence];
-        funcLiteralParser.name = @"funcLiteral";
-        [funcLiteralParser add:self.functionParser];
-        [funcLiteralParser add:self.openParenParser];
-        [funcLiteralParser add:self.paramListOptParser];
-        [funcLiteralParser add:self.closeParenParser];
-        [funcLiteralParser add:self.compoundStmtParser];
-    }
-    return funcLiteralParser;
 }
 
 
@@ -1574,6 +1562,7 @@
  //  PrimaryExpression:
  //           ( Expression )
  //           funcLiteral
+ //           arrayLiteral
  //           Identifier
  //           IntegerLiteral
  //           FloatingPointLiteral
@@ -1582,13 +1571,15 @@
  //           true
  //           null
  //           this
-// primaryExpr         = parenExprParen | func | identifier | Num | QuotedString | false | true | null | undefined | this;
+// primaryExpr         = parenExprParen | funcLiteral | arrayLiteral | identifier | Num | QuotedString | false | true | null | undefined | this;
 - (TDCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
         [primaryExprParser add:self.parenExprParenParser];
         [primaryExprParser add:self.funcLiteralParser];
+        [primaryExprParser add:self.arrayLiteralParser];
+        [primaryExprParser add:self.objectLiteralParser];
         [primaryExprParser add:self.identifierParser];
         [primaryExprParser add:self.numberParser];
         [primaryExprParser add:self.stringParser];
@@ -1613,6 +1604,78 @@
         [parenExprParenParser add:self.closeParenParser];
     }
     return parenExprParenParser;
+}
+
+
+//funcLiteral                = function openParen paramListOpt closeParen compoundStmt;
+- (TDCollectionParser *)funcLiteralParser {
+    if (!funcLiteralParser) {
+        self.funcLiteralParser = [TDSequence sequence];
+        funcLiteralParser.name = @"funcLiteral";
+        [funcLiteralParser add:self.functionParser];
+        [funcLiteralParser add:self.openParenParser];
+        [funcLiteralParser add:self.paramListOptParser];
+        [funcLiteralParser add:self.closeParenParser];
+        [funcLiteralParser add:self.compoundStmtParser];
+    }
+    return funcLiteralParser;
+}
+
+
+//arrayLiteral                = '[' arrayContents ']';
+- (TDCollectionParser *)arrayLiteralParser {
+    if (!arrayLiteralParser) {
+        self.arrayLiteralParser = [TDTrack track];
+        arrayLiteralParser.name = @"arrayLiteralParser";
+        
+        TDSequence *commaPrimaryExpr = [TDSequence sequence];
+        [commaPrimaryExpr add:self.commaParser];
+        [commaPrimaryExpr add:self.primaryExprParser];
+
+        TDSequence *actualArrayContents = [TDSequence sequence];
+        [actualArrayContents add:self.primaryExprParser];
+        [actualArrayContents add:[TDRepetition repetitionWithSubparser:commaPrimaryExpr]];
+
+        TDAlternation *arrayContents = [TDAlternation alternation];
+        [arrayContents add:[TDEmpty empty]];
+        [arrayContents add:actualArrayContents];
+
+        [arrayLiteralParser add:self.openBracketParser];
+        [arrayLiteralParser add:arrayContents];
+        [arrayLiteralParser add:self.closeBracketParser];
+    }
+    return arrayLiteralParser;
+}
+
+
+//objectLiteral                = '{' objectContentsOpt '}';
+- (TDCollectionParser *)objectLiteralParser {
+    if (!objectLiteralParser) {
+        self.objectLiteralParser = [TDSequence sequence];
+        objectLiteralParser.name = @"objectLiteralParser";
+
+        TDSequence *member = [TDSequence sequence];
+        [member add:self.identifierParser];
+        [member add:self.colonParser];
+        [member add:self.primaryExprParser];
+
+        TDSequence *commaMember = [TDSequence sequence];
+        [commaMember add:self.commaParser];
+        [commaMember add:member];
+        
+        TDSequence *objectContents = [TDSequence sequence];
+        [objectContents add:member];
+        [objectContents add:[TDRepetition repetitionWithSubparser:commaMember]];
+        
+        TDAlternation *objectContentsOpt = [TDAlternation alternation];
+        [objectContentsOpt add:[TDEmpty empty]];
+        [objectContentsOpt add:objectContents];
+        
+        [objectLiteralParser add:self.openCurlyParser];
+        [objectLiteralParser add:objectContentsOpt];
+        [objectLiteralParser add:self.closeCurlyParser];
+    }
+    return objectLiteralParser;
 }
 
 
@@ -2284,7 +2347,6 @@
 @synthesize programParser;
 @synthesize elementParser;
 @synthesize funcParser;
-@synthesize funcLiteralParser;
 @synthesize paramListOptParser;
 @synthesize paramListParser;
 @synthesize commaIdentifierParser;
@@ -2359,6 +2421,10 @@
 @synthesize argListParser;
 @synthesize primaryExprParser;
 @synthesize parenExprParenParser;
+
+@synthesize funcLiteralParser;
+@synthesize arrayLiteralParser;
+@synthesize objectLiteralParser;
 
 @synthesize identifierParser;
 @synthesize stringParser;
