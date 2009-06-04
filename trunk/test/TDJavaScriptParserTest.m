@@ -544,4 +544,43 @@
     TDEqualObjects([res description], @"['bar', ;]'bar'/;^");
 }
 
+
+- (void)testMember {
+    s = @"foo.bar;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, ., bar, ;]foo/./bar/;^");
+
+    s = @"foo.bar();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, ., bar, (, ), ;]foo/./bar/(/)/;^");
+
+    s = @"foo[bar];";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, [, bar, ], ;]foo/[/bar/]/;^");
+}
+
+
+- (void)testConstructor {
+    s = @"new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[new, foo, (, ), ;]new/foo/(/)/;^");
+}    
+
+
+- (void)testDelete {
+    s = @"delete foo[bar];";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[delete, foo, [, bar, ], ;]delete/foo/[/bar/]/;^");
+}    
+
 @end
