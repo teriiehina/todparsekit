@@ -572,6 +572,102 @@
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp bestMatchFor:a];
     TDEqualObjects([res description], @"[new, foo, (, ), ;]new/foo/(/)/;^");
+
+    s = @"var bar = new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[var, bar, =, new, foo, (, ), ;]var/bar/=/new/foo/(/)/;^");
+    
+    s = @"baz.bar = new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[baz, ., bar, =, new, foo, (, ), ;]baz/./bar/=/new/foo/(/)/;^");
+    
+    s = @"baz[bar] = new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[baz, [, bar, ], =, new, foo, (, ), ;]baz/[/bar/]/=/new/foo/(/)/;^");
+    
+    s = @"baz['bar'] = new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[baz, [, 'bar', ], =, new, foo, (, ), ;]baz/[/'bar'/]/=/new/foo/(/)/;^");
+    
+    s = @"foo.bar.baz;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, ., bar, ., baz, ;]foo/./bar/./baz/;^");
+
+    s = @"foo[bar].baz;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, [, bar, ], ., baz, ;]foo/[/bar/]/./baz/;^");
+    
+    s = @"foo[bar].baz();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, [, bar, ], ., baz, (, ), ;]foo/[/bar/]/./baz/(/)/;^");
+    
+    s = @"foo[bar][baz];";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, [, bar, ], [, baz, ], ;]foo/[/bar/]/[/baz/]/;^");
+    
+    s = @"foo(bar);";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, bar, ), ;]foo/(/bar/)/;^");
+    
+    s = @"foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, ), ;]foo/(/)/;^");
+    
+    s = @"foo()();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, ), (, ), ;]foo/(/)/(/)/;^");
+    
+    s = @"foo().bat;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, ), ., bat, ;]foo/(/)/./bat/;^");
+    
+    s = @"foo().bat();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, ), ., bat, (, ), ;]foo/(/)/./bat/(/)/;^");
+    
+    s = @"foo().bat()[bar];";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[foo, (, ), ., bat, (, ), [, bar, ], ;]foo/(/)/./bat/(/)/[/bar/]/;^");
+    
+    s = @"new foo().bat;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+//    TDEqualObjects([res description], @"[new, foo, (, ), ., bat, ;]new/foo/(/)/./bat/;^");
+    
+    s = @"var _bar = new _foo_();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[var, _bar, =, new, _foo_, (, ), ;]var/_bar/=/new/_foo_/(/)/;^");
 }    
 
 
