@@ -152,12 +152,13 @@
     self.unaryExpr6Parser = nil;
     self.constructorParser = nil;
     self.constructorCallParser = nil;
-    self.parenArgListParenParser = nil;
+    self.constructorCallExtParser = nil;
+    self.dotConstructorCallParser = nil;
+    self.parenArgListOptParenParser = nil;
     self.memberExprParser = nil;
     self.dotBracketOrParenExprParser = nil;
     self.dotMemberExprParser = nil;
     self.bracketMemberExprParser = nil;
-    self.parenMemberExprParser = nil;
     self.argListOptParser = nil;
     self.argListParser = nil;
     self.primaryExprParser = nil;
@@ -1350,28 +1351,53 @@
 //           Identifier ( ArgumentListOpt )
 //           Identifier . ConstructorCall
 //
-//    constructorCall     = identifier parenArgListParen?;  // TODO
+
+// constructorCall = identifier constructorExt*
 - (TDCollectionParser *)constructorCallParser {
     if (!constructorCallParser) {
         self.constructorCallParser = [TDSequence sequence];
         constructorCallParser.name = @"constructorCall";
         [constructorCallParser add:self.identifierParser];
-        [constructorCallParser add:[self zeroOrOne:self.parenArgListParenParser]];
+        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.constructorCallExtParser]]; //[self zeroOrOne:self.parenArgListOptParenParser]];
     }
     return constructorCallParser;
 }
 
 
-//    parenArgListParen   = openParen argListOpt closeParen;
-- (TDCollectionParser *)parenArgListParenParser {
-    if (!parenArgListParenParser) {
-        self.parenArgListParenParser = [TDSequence sequence];
-        parenArgListParenParser.name = @"parenArgListParen";
-        [parenArgListParenParser add:self.openParenParser];
-        [parenArgListParenParser add:self.argListOptParser];
-        [parenArgListParenParser add:self.closeParenParser];
+// constructorExt  = parentArgListOpt | dotConstructorCall
+- (TDCollectionParser *)constructorCallExtParser {
+    if (!constructorCallExtParser) {
+        self.constructorCallExtParser = [TDAlternation alternation];
+        constructorCallExtParser.name = @"constructorCallExt";
+        [constructorCallExtParser add:self.parenArgListOptParenParser];
+        [constructorCallExtParser add:self.dotConstructorCallParser];
     }
-    return parenArgListParenParser;
+    return constructorCallExtParser;
+}
+
+
+// dotConstructorCallParser = dot constructorCall
+- (TDCollectionParser *)dotConstructorCallParser {
+    if (!dotConstructorCallParser) {
+        self.dotConstructorCallParser = [TDSequence sequence];
+        dotConstructorCallParser.name = @"dotConstructorCall";
+        [dotConstructorCallParser add:self.dotParser];
+        [dotConstructorCallParser add:self.constructorCallParser]; //[self zeroOrOne:self.parenArgListOptParenParser]];
+    }
+    return dotConstructorCallParser;
+}
+
+
+//    parenArgListParen   = openParen argListOpt closeParen;
+- (TDCollectionParser *)parenArgListOptParenParser {
+    if (!parenArgListOptParenParser) {
+        self.parenArgListOptParenParser = [TDSequence sequence];
+        parenArgListOptParenParser.name = @"parenArgListParen";
+        [parenArgListOptParenParser add:self.openParenParser];
+        [parenArgListOptParenParser add:self.argListOptParser];
+        [parenArgListOptParenParser add:self.closeParenParser];
+    }
+    return parenArgListOptParenParser;
 }
 
 
@@ -1407,7 +1433,7 @@
         dotBracketOrParenExprParser.name = @"dotBracketOrParenExpr";
         [dotBracketOrParenExprParser add:self.dotMemberExprParser];
         [dotBracketOrParenExprParser add:self.bracketMemberExprParser];
-        [dotBracketOrParenExprParser add:self.parenMemberExprParser];
+        [dotBracketOrParenExprParser add:self.parenArgListOptParenParser];
     }
     return dotBracketOrParenExprParser;
 }
@@ -1435,19 +1461,6 @@
         [bracketMemberExprParser add:self.closeBracketParser];
     }
     return bracketMemberExprParser;
-}
-
-
-//    parenMemberExpr     = openParen argListOpt closeParen;
-- (TDCollectionParser *)parenMemberExprParser {
-    if (!parenMemberExprParser) {
-        self.parenMemberExprParser = [TDSequence sequence];
-        parenMemberExprParser.name = @"parenMemberExpr";
-        [parenMemberExprParser add:self.openParenParser];
-        [parenMemberExprParser add:self.argListOptParser];
-        [parenMemberExprParser add:self.closeParenParser];
-    }
-    return parenMemberExprParser;
 }
 
 
@@ -2333,12 +2346,13 @@
 @synthesize unaryExpr6Parser;
 @synthesize constructorParser;
 @synthesize constructorCallParser;
-@synthesize parenArgListParenParser;
+@synthesize constructorCallExtParser;
+@synthesize dotConstructorCallParser;
+@synthesize parenArgListOptParenParser;
 @synthesize memberExprParser;
 @synthesize dotBracketOrParenExprParser;
 @synthesize dotMemberExprParser;
 @synthesize bracketMemberExprParser;
-@synthesize parenMemberExprParser;
 @synthesize argListOptParser;
 @synthesize argListParser;
 @synthesize primaryExprParser;
