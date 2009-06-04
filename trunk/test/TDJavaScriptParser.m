@@ -1387,11 +1387,18 @@
         self.memberExprParser = [TDSequence sequence];
         memberExprParser.name = @"memberExpr";
         [memberExprParser add:self.primaryExprParser];
-        [memberExprParser add:[self zeroOrOne:self.dotBracketOrParenExprParser]];
+        [memberExprParser add:[TDRepetition repetitionWithSubparser:self.dotBracketOrParenExprParser]];
     }
     return memberExprParser;
 }
 
+
+//- (TDCollectionParser *)fooParser {
+//    if (!fooParser) {
+//        self.fooParser = [TD
+//    }
+//}
+//
 
 //    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
 - (TDCollectionParser *)dotBracketOrParenExprParser {
@@ -1547,16 +1554,16 @@
         [commaPrimaryExpr add:self.commaParser];
         [commaPrimaryExpr add:self.primaryExprParser];
 
-        TDSequence *actualArrayContents = [TDSequence sequence];
-        [actualArrayContents add:self.primaryExprParser];
-        [actualArrayContents add:[TDRepetition repetitionWithSubparser:commaPrimaryExpr]];
+        TDSequence *arrayContents = [TDSequence sequence];
+        [arrayContents add:self.primaryExprParser];
+        [arrayContents add:[TDRepetition repetitionWithSubparser:commaPrimaryExpr]];
 
-        TDAlternation *arrayContents = [TDAlternation alternation];
-        [arrayContents add:[TDEmpty empty]];
-        [arrayContents add:actualArrayContents];
+        TDAlternation *arrayContentsOpt = [TDAlternation alternation];
+        [arrayContentsOpt add:[TDEmpty empty]];
+        [arrayContentsOpt add:arrayContents];
 
         [arrayLiteralParser add:self.openBracketParser];
-        [arrayLiteralParser add:arrayContents];
+        [arrayLiteralParser add:arrayContentsOpt];
         [arrayLiteralParser add:self.closeBracketParser];
     }
     return arrayLiteralParser;
