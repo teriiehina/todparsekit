@@ -1184,16 +1184,17 @@
 //    relationalExpr      = shiftExpr relationalOpShiftExpr*;       /// TODO ????
 - (TDCollectionParser *)relationalExprParser {
     if (!relationalExprParser) {
-        self.relationalExprParser = [TDAlternation alternation];
+        self.relationalExprParser = [TDSequence sequence];
         relationalExprParser.name = @"relationalExpr";
         [relationalExprParser add:self.shiftExprParser];
         [relationalExprParser add:[TDRepetition repetitionWithSubparser:self.relationalOpShiftExprParser]];
+//        [relationalExprParser add:[self zeroOrOne:self.relationalOpShiftExprParser]];
     }
     return relationalExprParser;
 }
 
 
-//    relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
+//    relationalOpShiftExpr   = relationalOperator shiftExpr;
 - (TDCollectionParser *)relationalOpShiftExprParser {
     if (!relationalOpShiftExprParser) {
         self.relationalOpShiftExprParser = [TDSequence sequence];
@@ -1215,13 +1216,14 @@
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
         [shiftExprParser add:self.additiveExprParser];
-        [shiftExprParser add:[self zeroOrOne:self.shiftOpAdditiveExprParser]];
+//        [shiftExprParser add:[self zeroOrOne:self.shiftOpAdditiveExprParser]];
+        [shiftExprParser add:[TDRepetition repetitionWithSubparser:self.shiftOpAdditiveExprParser]];
     }
     return shiftExprParser;
 }
 
 
-//    shiftOpShiftExpr    = shiftOp shiftExpr;
+//    shiftOpShiftExpr    = shiftOp additiveExpr;
 - (TDCollectionParser *)shiftOpAdditiveExprParser {
     if (!shiftOpAdditiveExprParser) {
         self.shiftOpAdditiveExprParser = [TDSequence sequence];

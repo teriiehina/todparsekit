@@ -363,11 +363,17 @@
     res = [jsp bestMatchFor:a];
     TDEqualObjects([res description], @"[while, (, true, ), {, alert, (, i, ++, ), ;, }]while/(/true/)/{/alert/(/i/++/)/;/}^");
 
-//    s = @"while(i<10) {alert(i++);}";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-//    res = [jsp bestMatchFor:a];
-//    TDEqualObjects([res description], @"[while, (, i, <, 10, ), {, alert, (, i, ++, ), ;, }]while/(/i/</10/)/{/alert/(/i/++/)/;/}^");
+    s = @"2 < 10;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[2, <, 10, ;]2/</10/;^");
+
+    s = @"while(i<10) {alert(i++);}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[while, (, i, <, 10, ), {, alert, (, i, ++, ), ;, }]while/(/i/</10/)/{/alert/(/i/++/)/;/}^");
 }
 
 
