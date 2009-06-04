@@ -150,7 +150,6 @@
     self.unaryExpr4Parser = nil;
     self.unaryExpr5Parser = nil;
     self.unaryExpr6Parser = nil;
-    self.constructorParser = nil;
     self.constructorCallParser = nil;
     self.parenArgListOptParenParser = nil;
     self.memberExprParser = nil;
@@ -1311,7 +1310,7 @@
         self.unaryExpr5Parser = [TDSequence sequence];
         unaryExpr5Parser.name = @"unaryExpr5";
         [unaryExpr5Parser add:self.newParser];
-        [unaryExpr5Parser add:self.constructorParser];
+        [unaryExpr5Parser add:self.constructorCallParser];
     }
     return unaryExpr5Parser;
 }
@@ -1326,21 +1325,6 @@
         [unaryExpr6Parser add:self.memberExprParser];
     }
     return unaryExpr6Parser;
-}
-
-
-//  Constructor:
-//           this . ConstructorCall
-//           ConstructorCall
-//
-//    constructor         = constructorCall; // TODO ???
-- (TDCollectionParser *)constructorParser {
-    if (!constructorParser) {
-        self.constructorParser = [TDSequence sequence];
-        constructorParser.name = @"constructor";
-        [constructorParser add:self.constructorCallParser];
-    }
-    return constructorParser;
 }
 
 
@@ -2319,7 +2303,6 @@
 @synthesize unaryExpr4Parser;
 @synthesize unaryExpr5Parser;
 @synthesize unaryExpr6Parser;
-@synthesize constructorParser;
 @synthesize constructorCallParser;
 @synthesize parenArgListOptParenParser;
 @synthesize memberExprParser;
