@@ -1,5 +1,5 @@
 //
-//  PredicateParser.m
+//  TDNSPredicateBuilder.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 5/27/09.
