@@ -657,6 +657,24 @@
     res = [jsp bestMatchFor:a];
     TDEqualObjects([res description], @"[foo, (, ), ., bat, (, ), [, bar, ], ;]foo/(/)/./bat/(/)/[/bar/]/;^");
     
+    s = @"new foo();";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[new, foo, (, ), ;]new/foo/(/)/;^");
+    
+    s = @"new foo;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[new, foo, ;]new/foo/;^");
+    
+    s = @"new foo.bar;";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[new, foo, ., bar, ;]new/foo/./bar/;^");
+    
     s = @"new foo().bat;";
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
