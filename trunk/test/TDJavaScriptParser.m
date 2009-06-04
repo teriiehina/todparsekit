@@ -365,7 +365,6 @@
 
 
 
-
 // Program:
 //           empty
 //           Element Program
@@ -378,7 +377,6 @@
     }
     return programParser;
 }
-
 
 
 //  Element:
@@ -428,7 +426,6 @@
 }
 
 
-
 //  ParameterList:
 //           Identifier
 //           Identifier , ParameterList
@@ -455,7 +452,6 @@
     }
     return commaIdentifierParser;
 }
-
 
 
 //  CompoundStatement:
@@ -706,7 +702,6 @@
 }
 
 
-
 //  ForParen:
 //           for (
 //
@@ -722,7 +717,6 @@
 }
 
 
-
 //  ForBegin:
 //           ForParen VariablesOrExpression
 //
@@ -736,7 +730,6 @@
     }
     return forBeginParser;
 }
-
 
 
 //  VariablesOrExpression:
@@ -765,7 +758,6 @@
     }
     return varVariablesParser;
 }
-
 
 
 //  Variables:
@@ -811,6 +803,7 @@
     return variableParser;
 }
 
+
 //assignment          = equals assignmentExpr;
 - (TDCollectionParser *)assignmentParser {
     if (!assignmentParser) {
@@ -835,7 +828,6 @@
     }
     return exprOptParser;
 }
-
 
 
 //  Expression:
