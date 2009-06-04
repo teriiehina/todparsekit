@@ -17,8 +17,6 @@
 - (TDAlternation *)oneOrMore:(TDParser *)p;
 @end
 
-
-// is a Program
 @implementation TDJavaScriptParser
 
 - (id)init {
