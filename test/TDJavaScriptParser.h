@@ -20,6 +20,7 @@
     TDCollectionParser *programParser;
     TDCollectionParser *elementParser;
     TDCollectionParser *funcParser;
+    TDCollectionParser *funcLiteralParser;
     TDCollectionParser *paramListOptParser;
     TDCollectionParser *paramListParser;
     TDCollectionParser *commaIdentifierParser;
@@ -185,6 +186,7 @@
 @property (nonatomic, retain) TDCollectionParser *programParser;
 @property (nonatomic, retain) TDCollectionParser *elementParser;
 @property (nonatomic, retain) TDCollectionParser *funcParser;
+@property (nonatomic, retain) TDCollectionParser *funcLiteralParser;
 @property (nonatomic, retain) TDCollectionParser *paramListOptParser;
 @property (nonatomic, retain) TDCollectionParser *paramListParser;
 @property (nonatomic, retain) TDCollectionParser *commaIdentifierParser;
