@@ -661,7 +661,13 @@
     jsp.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp bestMatchFor:a];
-//    TDEqualObjects([res description], @"[new, foo, (, ), ., bat, ;]new/foo/(/)/./bat/;^");
+    TDEqualObjects([res description], @"[new, foo, (, ), ., bat, ;]new/foo/(/)/./bat/;^");
+    
+    s = @"new foo().bat[bar];";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[new, foo, (, ), ., bat, [, bar, ], ;]new/foo/(/)/./bat/[/bar/]/;^");
     
     s = @"var _bar = new _foo_();";
     jsp.tokenizer.string = s;
