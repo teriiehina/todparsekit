@@ -1358,7 +1358,7 @@
         self.constructorCallParser = [TDSequence sequence];
         constructorCallParser.name = @"constructorCall";
         [constructorCallParser add:self.identifierParser];
-        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.constructorCallExtParser]]; //[self zeroOrOne:self.parenArgListOptParenParser]];
+        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.constructorCallExtParser]];
     }
     return constructorCallParser;
 }
