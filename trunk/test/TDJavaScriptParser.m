@@ -24,6 +24,9 @@
         self.tokenizer = [TDTokenizer tokenizer];
         
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
+
+        // numbers cannot end with '.' (e.g. 32. must be 32.0)
+        tokenizer.numberState.allowsTrailingDot = NO;
         [tokenizer setTokenizerState:tokenizer.numberState from:'-' to:'-'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'.' to:'.'];
         [tokenizer setTokenizerState:tokenizer.numberState from:'0' to:'9'];
