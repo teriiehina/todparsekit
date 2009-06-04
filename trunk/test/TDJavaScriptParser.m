@@ -152,11 +152,9 @@
     self.unaryExpr6Parser = nil;
     self.constructorParser = nil;
     self.constructorCallParser = nil;
-    self.constructorCallExtParser = nil;
-    self.dotConstructorCallParser = nil;
     self.parenArgListOptParenParser = nil;
     self.memberExprParser = nil;
-    self.dotBracketOrParenExprParser = nil;
+    self.memberExprExtParser = nil;
     self.dotMemberExprParser = nil;
     self.bracketMemberExprParser = nil;
     self.argListOptParser = nil;
@@ -1352,39 +1350,16 @@
 //           Identifier . ConstructorCall
 //
 
-// constructorCall = identifier constructorExt*
+// constructorCall = identifier parentArgListOptParent? memberExprExt*
 - (TDCollectionParser *)constructorCallParser {
     if (!constructorCallParser) {
         self.constructorCallParser = [TDSequence sequence];
         constructorCallParser.name = @"constructorCall";
         [constructorCallParser add:self.identifierParser];
-        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.constructorCallExtParser]];
+        [constructorCallParser add:[self zeroOrOne:self.parenArgListOptParenParser]];
+        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.memberExprExtParser]];
     }
     return constructorCallParser;
-}
-
-
-// constructorExt  = parentArgListOpt | dotConstructorCall
-- (TDCollectionParser *)constructorCallExtParser {
-    if (!constructorCallExtParser) {
-        self.constructorCallExtParser = [TDAlternation alternation];
-        constructorCallExtParser.name = @"constructorCallExt";
-        [constructorCallExtParser add:self.parenArgListOptParenParser];
-        [constructorCallExtParser add:self.dotConstructorCallParser];
-    }
-    return constructorCallExtParser;
-}
-
-
-// dotConstructorCallParser = dot constructorCall
-- (TDCollectionParser *)dotConstructorCallParser {
-    if (!dotConstructorCallParser) {
-        self.dotConstructorCallParser = [TDSequence sequence];
-        dotConstructorCallParser.name = @"dotConstructorCall";
-        [dotConstructorCallParser add:self.dotParser];
-        [dotConstructorCallParser add:self.constructorCallParser]; //[self zeroOrOne:self.parenArgListOptParenParser]];
-    }
-    return dotConstructorCallParser;
 }
 
 
@@ -1407,13 +1382,13 @@
 //           PrimaryExpression [ Expression ]
 //           PrimaryExpression ( ArgumentListOpt )
 //
-//    memberExpr          = primaryExpr dotBracketOrParenExpr?;    // TODO ??????
+//    memberExpr          = primaryExpr memberExprExt?;    // TODO ??????
 - (TDCollectionParser *)memberExprParser {
     if (!memberExprParser) {
         self.memberExprParser = [TDSequence sequence];
         memberExprParser.name = @"memberExpr";
         [memberExprParser add:self.primaryExprParser];
-        [memberExprParser add:[TDRepetition repetitionWithSubparser:self.dotBracketOrParenExprParser]];
+        [memberExprParser add:[TDRepetition repetitionWithSubparser:self.memberExprExtParser]];
     }
     return memberExprParser;
 }
@@ -1426,16 +1401,16 @@
 //}
 //
 
-//    dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
-- (TDCollectionParser *)dotBracketOrParenExprParser {
-    if (!dotBracketOrParenExprParser) {
-        self.dotBracketOrParenExprParser = [TDAlternation alternation];
-        dotBracketOrParenExprParser.name = @"dotBracketOrParenExpr";
-        [dotBracketOrParenExprParser add:self.dotMemberExprParser];
-        [dotBracketOrParenExprParser add:self.bracketMemberExprParser];
-        [dotBracketOrParenExprParser add:self.parenArgListOptParenParser];
+//    memberExprExt = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
+- (TDCollectionParser *)memberExprExtParser {
+    if (!memberExprExtParser) {
+        self.memberExprExtParser = [TDAlternation alternation];
+        memberExprExtParser.name = @"memberExprExt";
+        [memberExprExtParser add:self.dotMemberExprParser];
+        [memberExprExtParser add:self.bracketMemberExprParser];
+        [memberExprExtParser add:self.parenArgListOptParenParser];
     }
-    return dotBracketOrParenExprParser;
+    return memberExprExtParser;
 }
 
 
@@ -2346,11 +2321,9 @@
 @synthesize unaryExpr6Parser;
 @synthesize constructorParser;
 @synthesize constructorCallParser;
-@synthesize constructorCallExtParser;
-@synthesize dotConstructorCallParser;
 @synthesize parenArgListOptParenParser;
 @synthesize memberExprParser;
-@synthesize dotBracketOrParenExprParser;
+@synthesize memberExprExtParser;
 @synthesize dotMemberExprParser;
 @synthesize bracketMemberExprParser;
 @synthesize argListOptParser;
