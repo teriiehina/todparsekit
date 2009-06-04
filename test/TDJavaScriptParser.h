@@ -84,11 +84,9 @@
     TDCollectionParser *unaryExpr6Parser;
     TDCollectionParser *constructorParser;
     TDCollectionParser *constructorCallParser;
-    TDCollectionParser *constructorCallExtParser;
-    TDCollectionParser *dotConstructorCallParser;
     TDCollectionParser *parenArgListOptParenParser;
     TDCollectionParser *memberExprParser;
-    TDCollectionParser *dotBracketOrParenExprParser;
+    TDCollectionParser *memberExprExtParser;
     TDCollectionParser *dotMemberExprParser;
     TDCollectionParser *bracketMemberExprParser;
     TDCollectionParser *argListOptParser;
@@ -254,11 +252,9 @@
 @property (nonatomic, retain) TDCollectionParser *unaryExpr6Parser;
 @property (nonatomic, retain) TDCollectionParser *constructorParser;
 @property (nonatomic, retain) TDCollectionParser *constructorCallParser;
-@property (nonatomic, retain) TDCollectionParser *constructorCallExtParser;
-@property (nonatomic, retain) TDCollectionParser *dotConstructorCallParser;
 @property (nonatomic, retain) TDCollectionParser *parenArgListOptParenParser;
 @property (nonatomic, retain) TDCollectionParser *memberExprParser;
-@property (nonatomic, retain) TDCollectionParser *dotBracketOrParenExprParser;
+@property (nonatomic, retain) TDCollectionParser *memberExprExtParser;
 @property (nonatomic, retain) TDCollectionParser *dotMemberExprParser;
 @property (nonatomic, retain) TDCollectionParser *bracketMemberExprParser;
 @property (nonatomic, retain) TDCollectionParser *argListOptParser;
