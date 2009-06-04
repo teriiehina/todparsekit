@@ -163,6 +163,7 @@
     self.programParser = nil;
     self.elementParser = nil;
     self.funcParser = nil;
+    self.funcLiteralParser = nil;
     self.paramListOptParser = nil;
     self.paramListParser = nil;
     self.commaIdentifierParser = nil;
@@ -495,6 +496,20 @@
     return funcParser;
 }
 
+
+//func                = function openParen paramListOpt closeParen compoundStmt;
+- (TDCollectionParser *)funcLiteralParser {
+    if (!funcLiteralParser) {
+        self.funcLiteralParser = [TDSequence sequence];
+        funcLiteralParser.name = @"funcLiteral";
+        [funcLiteralParser add:self.functionParser];
+        [funcLiteralParser add:self.openParenParser];
+        [funcLiteralParser add:self.paramListOptParser];
+        [funcLiteralParser add:self.closeParenParser];
+        [funcLiteralParser add:self.compoundStmtParser];
+    }
+    return funcLiteralParser;
+}
 
 
 //  ParameterListOpt:
@@ -1558,6 +1573,7 @@
 
  //  PrimaryExpression:
  //           ( Expression )
+ //           funcLiteral
  //           Identifier
  //           IntegerLiteral
  //           FloatingPointLiteral
@@ -1566,12 +1582,13 @@
  //           true
  //           null
  //           this
-// primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
+// primaryExpr         = parenExprParen | func | identifier | Num | QuotedString | false | true | null | undefined | this;
 - (TDCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
         [primaryExprParser add:self.parenExprParenParser];
+        [primaryExprParser add:self.funcLiteralParser];
         [primaryExprParser add:self.identifierParser];
         [primaryExprParser add:self.numberParser];
         [primaryExprParser add:self.stringParser];
@@ -2267,6 +2284,7 @@
 @synthesize programParser;
 @synthesize elementParser;
 @synthesize funcParser;
+@synthesize funcLiteralParser;
 @synthesize paramListOptParser;
 @synthesize paramListParser;
 @synthesize commaIdentifierParser;

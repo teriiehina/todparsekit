@@ -89,6 +89,12 @@
     a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
     res = [jsp.funcParser bestMatchFor:a];
     TDEqualObjects([res description], @"[function, foo, (, a, ,, b, ), {, a, ++, ;, b, --, ;, return, a, +, b, ;, }]function/foo/(/a/,/b/)/{/a/++/;/b/--/;/return/a/+/b/;/}^");
+
+    s = @"function foo(a, b) { a++; b--; return a + b; }";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.elementParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[function, foo, (, a, ,, b, ), {, a, ++, ;, b, --, ;, return, a, +, b, ;, }]function/foo/(/a/,/b/)/{/a/++/;/b/--/;/return/a/+/b/;/}^");
 }
 
 
@@ -375,11 +381,23 @@
 
 
 - (void)testFoo {
-//    s = @"var foo = function(a, b) { return a+b;};";
-//    jsp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-//    res = [jsp bestMatchFor:a];
-//    TDEqualObjects([res description], @"[var, foo, =, function, (, a, ,, b, ), {, return, a, +, b, ;, }, ;]var/foo/=/function/(/a/,/b/)/{/return/a/+/b/;/}/;^");
+    s = @"function() {}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.funcLiteralParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[function, (, ), {, }]function/(/)/{/}^");
+    
+    s = @"function() {}";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp.primaryExprParser bestMatchFor:a];
+    TDEqualObjects([res description], @"[function, (, ), {, }]function/(/)/{/}^");
+    
+    s = @"var foo =function(a, b) {return a+b;};";
+    jsp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+    res = [jsp bestMatchFor:a];
+    TDEqualObjects([res description], @"[var, foo, =, function, (, a, ,, b, ), {, return, a, +, b, ;, }, ;]var/foo/=/function/(/a/,/b/)/{/return/a/+/b/;/}/;^");
     
     s = @"var foo = 'bar';";
     jsp.tokenizer.string = s;
