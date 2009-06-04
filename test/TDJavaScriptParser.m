@@ -338,16 +338,6 @@
 }
 
 
-//- (TDCollectionParser *)XXXParser {
-//    if (!XXXParser) {
-//        XXXParser = [TDSequence sequence];
-//    }
-//    return XXXParser;
-//}
-
-
-
-
 // assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
 - (TDCollectionParser *)assignmentOpParser {
     if (!assignmentOpParser) {
