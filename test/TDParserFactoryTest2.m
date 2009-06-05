@@ -195,6 +195,21 @@
 
 
 - (void)test10 {
+    g = @"@start = Word | (Num QuotedString);";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+
+    s = @"42 'bar'";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[42, 'bar']42/'bar'^", [res description]);
+}
+
+
+- (void)test11 {
     g = @"@start = ((Word | Num)* | ('$' '%')+) QuotedString+;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
