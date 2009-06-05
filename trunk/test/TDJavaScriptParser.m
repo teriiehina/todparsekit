@@ -266,7 +266,7 @@
 - (TDCollectionParser *)assignmentOpParser {
     if (!assignmentOpParser) {
         self.assignmentOpParser = [TDAlternation alternation];
-        assignmentOpParser.name = @"assignmentOperator";
+        assignmentOpParser.name = @"assignmentOp";
         [assignmentOpParser add:self.equalsParser];
         [assignmentOpParser add:self.plusEqParser];
         [assignmentOpParser add:self.minusEqParser];
@@ -288,7 +288,7 @@
 - (TDCollectionParser *)relationalOpParser {
     if (!relationalOpParser) {
         self.relationalOpParser = [TDAlternation alternation];
-        relationalOpParser.name = @"relationalOperator";
+        relationalOpParser.name = @"relationalOp";
         [relationalOpParser add:self.ltParser];
         [relationalOpParser add:self.gtParser];
         [relationalOpParser add:self.geParser];
