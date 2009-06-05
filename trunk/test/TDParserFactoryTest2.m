@@ -180,7 +180,6 @@
 
 
 - (void)test9 {
-//    g = @"@start = ((Word | Num)* | ('$' '%')+) | QuotedString+;";
     g = @"@start = Word | (Num);";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -192,15 +191,21 @@
     s = @"foo";
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
-    
-//    s = @"foo $ % $ %";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[foo, $, %, $, %]foo/$/%/$/%^", [res description]);
-//    
-//    s = @"$ % $ %";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[$, %, $, %]$/%/$/%^", [res description]);
 }
 
+
+- (void)test10 {
+    g = @"@start = ((Word | Num)* | ('$' '%')+) QuotedString+;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+
+    s = @"foo 'bar'";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo, 'bar']foo/'bar'^", [res description]);
+    
+    s = @"$ % $ % 'bar'";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[$, %, $, %, 'bar']$/%/$/%/'bar'^", [res description]);
+}
 
 @end
