@@ -38,7 +38,7 @@
         c = [r read];
         if (TDEOF == c) {
             c = cin;
-            if (balancesEOFTerminatedStrings) {
+            if (balancesEOFTerminatedQuotes) {
                 [self append:c];
             }
         } else {
@@ -52,5 +52,5 @@
     return tok;
 }
 
-@synthesize balancesEOFTerminatedStrings;
+@synthesize balancesEOFTerminatedQuotes;
 @end
