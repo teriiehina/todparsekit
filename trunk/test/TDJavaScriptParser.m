@@ -224,6 +224,7 @@
     self.closeBracketParser = nil;
     self.commaParser = nil;
     self.dotParser = nil;
+    self.semiOptParser = nil;
     self.semiParser = nil;
     self.colonParser = nil;
     self.equalsParser = nil;
@@ -625,7 +626,7 @@
         self.breakStmtParser = [TDSequence sequence];
         breakStmtParser.name = @"breakStmt";
         [breakStmtParser add:self.breakParser];
-        [breakStmtParser add:self.semiParser];
+        [breakStmtParser add:self.semiOptParser];
     }
     return breakStmtParser;
 }
@@ -637,7 +638,7 @@
         self.continueStmtParser = [TDSequence sequence];
         continueStmtParser.name = @"continueStmt";
         [continueStmtParser add:self.continueParser];
-        [continueStmtParser add:self.semiParser];
+        [continueStmtParser add:self.semiOptParser];
     }
     return continueStmtParser;
 }
@@ -667,7 +668,7 @@
         returnStmtParser.name = @"returnStmt";
         [returnStmtParser add:self.returnParser];
         [returnStmtParser add:self.exprOptParser];
-        [returnStmtParser add:self.semiParser];
+        [returnStmtParser add:self.semiOptParser];
     }
     return returnStmtParser;
 }
@@ -680,7 +681,7 @@
         self.variablesOrExprStmtParser = [TDSequence sequence];
         variablesOrExprStmtParser.name = @"variablesOrExprStmt";
         [variablesOrExprStmtParser add:self.variablesOrExprParser];
-        [variablesOrExprStmtParser add:self.semiParser];
+        [variablesOrExprStmtParser add:self.semiOptParser];
     }
     return variablesOrExprStmtParser;
 }
@@ -2072,6 +2073,15 @@
 }
 
 
+- (TDParser *)semiOptParser {
+    if (!semiOptParser) {
+        self.semiOptParser = [self zeroOrOne:self.semiParser];
+        semiOptParser.name = @"semiOpt";
+    }
+    return semiOptParser;
+}
+
+
 - (TDParser *)semiParser {
     if (!semiParser) {
         self.semiParser = [TDSymbol symbolWithString:@";"];
@@ -2362,6 +2372,7 @@
 @synthesize closeBracketParser;
 @synthesize commaParser;
 @synthesize dotParser;
+@synthesize semiOptParser;
 @synthesize semiParser;
 @synthesize colonParser;
 @synthesize equalsParser;

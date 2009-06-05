@@ -159,6 +159,7 @@
     TDParser *closeBracketParser;
     TDParser *commaParser;
     TDParser *dotParser;
+    TDParser *semiOptParser;
     TDParser *semiParser;
     TDParser *colonParser;
     TDParser *equalsParser;
@@ -323,6 +324,7 @@
 @property (nonatomic, retain) TDParser *closeBracketParser;
 @property (nonatomic, retain) TDParser *commaParser;
 @property (nonatomic, retain) TDParser *dotParser;
+@property (nonatomic, retain) TDParser *semiOptParser;
 @property (nonatomic, retain) TDParser *semiParser;
 @property (nonatomic, retain) TDParser *colonParser;
 @property (nonatomic, retain) TDParser *equalsParser;
