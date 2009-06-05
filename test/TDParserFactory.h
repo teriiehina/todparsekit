@@ -30,6 +30,7 @@ typedef enum {
     NSMutableDictionary *selectorTable;
     TDToken *equals;
     TDToken *curly;
+    TDToken *paren;
     BOOL isGatheringClasses;
     TDCollectionParser *statementParser;
     TDCollectionParser *declarationParser;
