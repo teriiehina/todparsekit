@@ -1530,8 +1530,6 @@
 				D3F741430EF8E96A00559B9F /* xpath1_0.grammar */,
 				D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */,
 				D31A15250F6DE449002AFDF1 /* javascript.grammar */,
-				D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */,
-				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
 				D385FD400F05A88C00DB2946 /* TDMiniCSSAssembler.h */,
 				D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */,
 				D385FD420F05A88C00DB2946 /* TDMiniCSSAssemblerTest.h */,
@@ -1856,6 +1854,8 @@
 				D39834140EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.m */,
 				D3F740B90EF8D78300559B9F /* NSArray+TDParseKitAdditions.h */,
 				D3F740BA0EF8D78300559B9F /* NSArray+TDParseKitAdditions.m */,
+				D380BA5F0F0F06CD0009EC13 /* TDParserFactoryTest.h */,
+				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
 				D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */,
 				D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */,
 			);

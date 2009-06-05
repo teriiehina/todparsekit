@@ -86,6 +86,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) NSMutableDictionary *selectorTable;
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
+@property (nonatomic, retain) TDToken *paren;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
@@ -120,6 +121,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (self = [super init]) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
         self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -137,6 +139,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.selectorTable = nil;
     self.equals = nil;
     self.curly = nil;
+    self.paren = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -583,7 +586,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [phraseParser add:self.atomicValueParser];
 
         TDTrack *t = [TDTrack track];
-        [t add:[[TDSymbol symbolWithString:@"("] discard]];
+        [t add:[TDSymbol symbolWithString:@"("]];
         [t add:self.expressionParser];
         [t add:[[TDSymbol symbolWithString:@")"] discard]];
         [phraseParser add:t];
@@ -778,7 +781,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:equals];
+    NSArray *objs = [a objectsAbove:paren];
+    [a pop]; // pop '('
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
         for (id obj in [objs reverseObjectEnumerator]) {
@@ -926,6 +930,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize selectorTable;
 @synthesize equals;
 @synthesize curly;
+@synthesize paren;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
