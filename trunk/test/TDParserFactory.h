@@ -49,6 +49,7 @@ typedef enum {
     TDCollectionParser *cardinalityParser;
     TDCollectionParser *atomicValueParser;
     TDCollectionParser *discardParser;
+    TDCollectionParser *patternParser;
     TDParser *literalParser;
     TDParser *variableParser;
     TDParser *constantParser;
