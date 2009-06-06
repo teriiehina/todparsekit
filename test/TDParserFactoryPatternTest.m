@@ -16,7 +16,7 @@
 
 
 - (void)test1 {
-    g = @"@start = ^foo^;";
+    g = @"@start = /foo/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
