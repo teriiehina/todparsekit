@@ -9,6 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDPatternTest : SenTestCase {
+    TDTokenizer *t;
     TDPattern *p;
     TDAssembly *a;
     NSString *s;
