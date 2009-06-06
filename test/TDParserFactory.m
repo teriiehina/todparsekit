@@ -90,6 +90,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
+@property (nonatomic, retain) TDToken *fwdSlash;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
@@ -144,6 +145,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
+    self.fwdSlash = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -721,17 +723,28 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.patternParser = [TDSequence sequence];
         patternParser.name = @"pattern";
         
-        TDAlternation *tt = [TDAlternation alternation];
-        [tt add:[TDLiteral literalWithString:@"Word"]];
-        [tt add:[TDLiteral literalWithString:@"Num"]];
-        [tt add:[TDLiteral literalWithString:@"Symbol"]];
-        [tt add:[TDLiteral literalWithString:@"QuotedString"]];
-
-        TDPattern *p = [TDPattern patternWithString:@"/.+/" options:TDPatternOptionsNone tokenType:TDTokenTypeDelimitedString];
-        [patternParser add:p];
-        [patternParser add:[self zeroOrOne:[TDWord word]]]; // im (case insensitive, multiline, etc)
-        [patternParser add:[self zeroOrOne:[TDSymbol symbolWithString:@"/"]]];
-        [patternParser add:[self zeroOrOne:tt]]; // token type
+        // tokenType
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:[TDLiteral literalWithString:@"Word"]];
+        [a add:[TDLiteral literalWithString:@"Num"]];
+        [a add:[TDLiteral literalWithString:@"Symbol"]];
+        [a add:[TDLiteral literalWithString:@"QuotedString"]];
+        [a setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
+        TDParser *tokenType = [self zeroOrOne:a];
+        
+        // options
+        TDParser *w = [TDWord word];
+        [w setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
+        TDParser *options = [self zeroOrOne:w];
+        
+        // pattern
+        TDPattern *pattern = [TDPattern patternWithString:@"/.+/" options:TDPatternOptionsNone tokenType:TDTokenTypeDelimitedString];
+        [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
+        
+        [patternParser add:pattern];
+        [patternParser add:options]; // im (case insensitive, multiline, etc)
+        [patternParser add:[self zeroOrOne:[[TDSymbol symbolWithString:@"/"] discard]]];
+        [patternParser add:tokenType]; // token type
         
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
@@ -847,7 +860,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
-    
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+}
+
+
+- (void)workOnPatternPatternAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+}
+
+
+- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+}
+
+
+- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
 }
 
 
@@ -974,6 +1002,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
+@synthesize fwdSlash;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
