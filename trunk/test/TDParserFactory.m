@@ -206,12 +206,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t setTokenizerState:t.wordState from:'@' to:'@'];
 
     // cusomtize tokenizer for finding pattern descriptors
-    [t setTokenizerState:t.quoteState from:'^' to:'^'];
-    
-    [t setTokenizerState:t.symbolState from:'/' to:'/'];
+    [t setTokenizerState:t.quoteState from:'/' to:'/'];
+  
+    // remove default comments
     [t.commentState removeSingleLineStartMarker:@"//"];
     [t.commentState removeMultiLineStartMarker:@"/*"];
-    
+
+    // add desired comments
     [t setTokenizerState:t.commentState from:'#' to:'#'];
     [t.commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:t.commentState from:'(' to:'('];
