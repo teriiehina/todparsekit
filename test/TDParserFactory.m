@@ -64,6 +64,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 // this is only for unit tests? can it go away?
 - (TDSequence *)parserFromExpression:(NSString *)s;
 
+- (TDAlternation *)zeroOrOne:(TDParser *)p;
+- (TDAlternation *)oneOrMore:(TDParser *)p;
+    
 - (void)workOnStatementAssembly:(TDAssembly *)a;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 - (void)workOnCallbackAssembly:(TDAssembly *)a;
@@ -104,6 +107,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
+@property (nonatomic, retain) TDCollectionParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
@@ -156,6 +160,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.phraseCardinalityParser = nil;
     self.cardinalityParser = nil;
     self.atomicValueParser = nil;
+    self.patternParser = nil;
     self.discardParser = nil;
     self.literalParser = nil;
     self.variableParser = nil;
@@ -194,6 +199,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    
+    // customize tokenizer to find tokenizer customization directives
     [t setTokenizerState:t.wordState from:'@' to:'@'];
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
@@ -251,6 +258,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
     [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
+    
+    // cusomtize tokenizer for finding pattern descriptors
+    //NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"/"] invertedSet];
+    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:nil];
+    [t setTokenizerState:t.delimitState from:'/' to:'/'];    
 
     NSArray *toks = nil;
     
@@ -426,6 +438,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
+- (TDAlternation *)zeroOrOne:(TDParser *)p {
+    TDAlternation *a = [TDAlternation alternation];
+    [a add:[TDEmpty empty]];
+    [a add:p];
+    return a;
+}
+
+
+- (TDAlternation *)oneOrMore:(TDParser *)p {
+    TDAlternation *s = [TDSequence sequence];
+    [s add:p];
+    [s add:[TDRepetition repetitionWithSubparser:p]];
+    return s;
+}
+
+
 // @start               = statement*
 // satement             = declaration '=' expression
 // declaration          = Word callback?
@@ -442,11 +470,12 @@ void TDReleaseSubparserTree(TDParser *p) {
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num '}'
-// atomicValue          = (literal | variable | constant) discard?
+// atomicValue          = (literal | variable | constant | pattern) discard?
 // discard              = '.' 'discard'
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
+// pattern              = '/' Any[^'/']+ '/' Word? '/'? Word?
 
 
 // satement             = declaration '=' expression
@@ -458,10 +487,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [statementParser add:[TDSymbol symbolWithString:@"="]];
 
         // accept any tokens in the parser expr the first time around. just gather tokens for later
-        TDSequence *seq = [TDSequence sequence];
-        [seq add:[TDAny any]];
-        [seq add:[TDRepetition repetitionWithSubparser:[TDAny any]]];
-        [statementParser add:seq];
+        [statementParser add:[self oneOrMore:[TDAny any]]];
         [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
     }
     return statementParser;
@@ -474,11 +500,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.declarationParser = [TDSequence sequence];
         declarationParser.name = @"declaration";
         [declarationParser add:[TDWord word]];
-        
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
-        [a add:self.callbackParser];
-        [declarationParser add:a];
+        [declarationParser add:[self zeroOrOne:self.callbackParser]];
     }
     return declarationParser;
 }
@@ -673,10 +695,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [a add:self.constantParser];
         [atomicValueParser add:a];
 
-        a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
-        [a add:self.discardParser];
-        [atomicValueParser add:a];
+        [atomicValueParser add:[self zeroOrOne:self.discardParser]];
     }
     return atomicValueParser;
 }
@@ -692,6 +711,30 @@ void TDReleaseSubparserTree(TDParser *p) {
         [discardParser setAssembler:self selector:@selector(workOnDiscardAssembly:)];
     }
     return discardParser;
+}
+
+
+// // pattern              = /\/.+\// Word? '/'? Word?
+- (TDParser *)patternParser {
+    if (!patternParser) {
+        self.patternParser = [TDSequence sequence];
+        patternParser.name = @"pattern";
+        
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:[TDLiteral literalWithString:@"Word"]];
+        [a add:[TDLiteral literalWithString:@"Num"]];
+        [a add:[TDLiteral literalWithString:@"Symbol"]];
+        [a add:[TDLiteral literalWithString:@"QuotedString"]];
+
+        TDPattern *p = [TDPattern patternWithString:@"/.+/" options:TDPatternOptionsNone tokenType:TDTokenTypeDelimitedString];
+        [patternParser add:p];
+        [patternParser add:[self zeroOrOne:[TDWord word]]];
+        [patternParser add:[self zeroOrOne:[TDSymbol symbolWithString:@"/"]]];
+        [patternParser add:[self zeroOrOne:a]];
+        
+        [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
+    }
+    return patternParser;
 }
 
 
@@ -875,19 +918,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnPlusAssembly:(TDAssembly *)a {
     id top = [a pop];
-    TDSequence *seq = [TDSequence sequence];
-    [seq add:top];
-    [seq add:[TDRepetition repetitionWithSubparser:top]];
-    [a push:seq];
+    [a push:[self oneOrMore:top]];
 }
 
 
 - (void)workOnQuestionAssembly:(TDAssembly *)a {
     id top = [a pop];
-    TDAlternation *alt = [TDAlternation alternation];
-    [alt add:[TDEmpty empty]];
-    [alt add:top];
-    [a push:alt];
+    [a push:[self zeroOrOne:top]];
 }
 
 
@@ -948,6 +985,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize cardinalityParser;
 @synthesize atomicValueParser;
 @synthesize discardParser;
+@synthesize patternParser;
 @synthesize literalParser;
 @synthesize variableParser;
 @synthesize constantParser;
