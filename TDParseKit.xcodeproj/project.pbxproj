@@ -324,6 +324,7 @@
 		D3A8812C0FC5443300A40BEF /* TDDelimitState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A8812A0FC5443300A40BEF /* TDDelimitState.m */; };
 		D3A881C40FC637C200A40BEF /* TDDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881C20FC637C200A40BEF /* TDDelimitedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3A881C50FC637C200A40BEF /* TDDelimitedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A881C30FC637C200A40BEF /* TDDelimitedString.m */; };
+		D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */; };
 		D3B43FB80F76E99C0072AF40 /* TDJavaScriptParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B43FB60F76E99C0072AF40 /* TDJavaScriptParserTest.m */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
@@ -840,6 +841,8 @@
 		D3A8812A0FC5443300A40BEF /* TDDelimitState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDelimitState.m; path = src/TDDelimitState.m; sourceTree = "<group>"; };
 		D3A881C20FC637C200A40BEF /* TDDelimitedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDelimitedString.h; path = src/TDDelimitedString.h; sourceTree = "<group>"; };
 		D3A881C30FC637C200A40BEF /* TDDelimitedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDelimitedString.m; path = src/TDDelimitedString.m; sourceTree = "<group>"; };
+		D3AF49760FDB122E0032F4DC /* TDParserFactoryPatternTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryPatternTest.h; path = test/TDParserFactoryPatternTest.h; sourceTree = "<group>"; };
+		D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryPatternTest.m; path = test/TDParserFactoryPatternTest.m; sourceTree = "<group>"; };
 		D3B43FB50F76E99C0072AF40 /* TDJavaScriptParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParserTest.h; path = test/TDJavaScriptParserTest.h; sourceTree = "<group>"; };
 		D3B43FB60F76E99C0072AF40 /* TDJavaScriptParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJavaScriptParserTest.m; path = test/TDJavaScriptParserTest.m; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
@@ -1831,6 +1834,8 @@
 				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
 				D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */,
 				D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */,
+				D3AF49760FDB122E0032F4DC /* TDParserFactoryPatternTest.h */,
+				D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */,
 			);
 			name = factory;
 			sourceTree = "<group>";
@@ -2446,6 +2451,7 @@
 				D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */,
 				D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */,
 				D36C562B0FD365DB00141CB7 /* TDPatternTest.m in Sources */,
+				D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

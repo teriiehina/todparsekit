@@ -204,6 +204,19 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     // customize tokenizer to find tokenizer customization directives
     [t setTokenizerState:t.wordState from:'@' to:'@'];
+
+    // cusomtize tokenizer for finding pattern descriptors
+    [t setTokenizerState:t.quoteState from:'^' to:'^'];
+    
+    [t setTokenizerState:t.symbolState from:'/' to:'/'];
+    [t.commentState removeSingleLineStartMarker:@"//"];
+    [t.commentState removeMultiLineStartMarker:@"/*"];
+    
+    [t setTokenizerState:t.commentState from:'#' to:'#'];
+    [t.commentState addSingleLineStartMarker:@"#"];
+    [t setTokenizerState:t.commentState from:'(' to:'('];
+    [t.commentState addMultiLineStartMarker:@"(:" endMarker:@":)"];
+    
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
@@ -261,11 +274,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
     
-    // cusomtize tokenizer for finding pattern descriptors
-    //NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"/"] invertedSet];
-    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:nil];
-    [t setTokenizerState:t.delimitState from:'/' to:'/'];    
-
     NSArray *toks = nil;
     
     // muli-char symbols
@@ -685,7 +693,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// atomicValue          = (literal | variable | constant) discard?
+// atomicValue          = (pattern | literal | variable | constant) discard?
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
@@ -724,32 +732,61 @@ void TDReleaseSubparserTree(TDParser *p) {
         patternParser.name = @"pattern";
         
         // tokenType
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDLiteral literalWithString:@"Word"]];
-        [a add:[TDLiteral literalWithString:@"Num"]];
-        [a add:[TDLiteral literalWithString:@"Symbol"]];
-        [a add:[TDLiteral literalWithString:@"QuotedString"]];
-        [a setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
-        TDParser *tokenType = [self zeroOrOne:a];
-        
-        // options
-        TDParser *w = [TDWord word];
-        [w setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
-        TDParser *options = [self zeroOrOne:w];
+//        TDAlternation *a = [TDAlternation alternation];
+//        [a add:[TDLiteral literalWithString:@"Word"]];
+//        [a add:[TDLiteral literalWithString:@"Num"]];
+//        [a add:[TDLiteral literalWithString:@"Symbol"]];
+//        [a add:[TDLiteral literalWithString:@"QuotedString"]];
+//        [a setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
+//        TDParser *tokenType = [self zeroOrOne:a];
+//        
+//        // options
+//        TDParser *w = [TDWord word];
+//        [w setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
+//        TDParser *options = [self zeroOrOne:w];
         
         // pattern
-        TDPattern *pattern = [TDPattern patternWithString:@"/.+/" options:TDPatternOptionsNone tokenType:TDTokenTypeDelimitedString];
+        TDPattern *pattern = [TDPattern patternWithString:@"^.+^" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
         [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
         
         [patternParser add:pattern];
-        [patternParser add:options]; // im (case insensitive, multiline, etc)
-        [patternParser add:[self zeroOrOne:[[TDSymbol symbolWithString:@"/"] discard]]];
-        [patternParser add:tokenType]; // token type
+//        [patternParser add:options]; // im (case insensitive, multiline, etc)
+//        [patternParser add:[self zeroOrOne:[[TDSymbol symbolWithString:@"/"] discard]]];
+//        [patternParser add:tokenType]; // token type
         
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
 }
+
+
+- (void)workOnPatternAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+}
+
+
+- (void)workOnPatternPatternAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+
+    TDToken *tok = [a pop];
+    NSAssert(tok.isDelimitedString, @"");
+}
+
+
+- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+}
+
+
+- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
+    //NSArray *toks = [a objectsAbove:fwdSlash];
+    
+    TDToken *tok = [a pop];
+    NSAssert(tok.isWord, @"");
+}
+
+
+
 
 
 // literal = QuotedString
@@ -856,26 +893,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTerminal *t = [a pop]; // tell terminal to discard itself when matched
     [t discard];
     [a push:t];
-}
-
-
-- (void)workOnPatternAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
-}
-
-
-- (void)workOnPatternPatternAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
-}
-
-
-- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
-}
-
-
-- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
 }
 
 

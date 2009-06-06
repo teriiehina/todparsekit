@@ -75,6 +75,27 @@
 }
 
 
+- (void)testSlashFooSlash {
+    s = @"/foo/";
+    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    [t setTokenizerState:t.quoteState from:'/' to:'/'];
+    
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
+    a = [p completeMatchFor:a];
+    
+    TDNotNil(a);
+    TDEqualObjects([a description], @"[/foo/]/foo/^");
+
+//    a = [TDTokenAssembly assemblyWithTokenizer:t];
+//    p = [TDPattern patternWithString:@"/\\w+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
+//    a = [p completeMatchFor:a];
+//    
+//    TDNotNil(a);
+//    TDEqualObjects([a description], @"[/foo/]/foo/^");
+}
+
+
 - (void)testAndOrOr {
     s = @"and";
     a = [TDTokenAssembly assemblyWithString:s];

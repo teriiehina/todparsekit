@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDParserFactoryTest2"
+#define SOLO_TEST_CASE @"TDParserFactoryPatternTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
@@ -108,12 +108,24 @@
                            @"TDArithmeticParserTest",
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
-                           @"TDParserFactoryTest",
-                           @"TDParserFactoryTest2",
-                           @"TDMiniCSSAssemblerTest",
                            @"TDPredicateEvaluatorTest",
                            @"TDNSPredicateBuilderTest",
                            @"TDJavaScriptParserTest",
+                           nil];
+    
+    [suite addSuitesForClassNames:classNames];
+    return suite;
+}
+
+
++ (SenTestSuite *)parserFactoryTestSuite {
+    SenTestSuite *suite = [SenTestSuite testSuiteWithName:@"ParserFactory Test Suite"];
+    
+    NSArray *classNames = [NSArray arrayWithObjects:
+                           @"TDParserFactoryTest",
+                           @"TDParserFactoryTest2",
+                           @"TDParserFactoryPatternTest",
+                           @"TDMiniCSSAssemblerTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];
@@ -132,6 +144,10 @@
 //    [suite addTest:[self tokensTestSuite]];
 //    [suite addTest:[self parseTestSuite]];
     [suite addTest:[self soloTestSuite]];
+
+
+    suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
+    [suite addTest:[self parserFactoryTestSuite]];
 #endif
     
     return suite;
