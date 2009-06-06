@@ -19,7 +19,7 @@
 <h1>TDParseKit</h1>
 
 <h2>About</h2>
-<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java" by Steven John Metsker</a>. TDParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
+<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java"</a> by Steven John Metsker. TDParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
 
 <p>The TDParseKit Source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
 
@@ -46,7 +46,7 @@
 
 <ol>
 <li><b>TDParseKit</b> : the TDParseKit Objective-C framework. The central feature/codebase of this project.</li>
-<li><b>Tests</b> : a UnitTest Bundle containing hundreds of unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world usages of the framework.</li>
+<li><b>Tests</b> : a UnitTest Bundle containing hundreds of unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world uses of the framework.</li>
 <li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TDTokenizer class.</li>
 <li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle).</li>
 <li><b>TDJSParseKit</b> : A JavaScriptCore-based scripting interface to TDParseKit which can be used to expose the entire framework to JavaScript environments.</li>
@@ -57,18 +57,16 @@
 
 <h2>TDParseKit Framework</h2>
 
-<p>The Objective-C classes in the TDParseKit Framework offer 2 basic services of general use to Cocoa developers:</p>
+<p>The TDParseKit Framework offers 2 basic services of general interest to Cocoa developers:</p>
 
 <ol>
-<li><b>Tokenization</b> via the <tt>TDTokenizer</tt> and <tt>TDToken</tt> classes.</li>
-<li><b>Parsing</b> via a high-level parser-building toolkit consisting of <tt>TDParser</tt> subclasses.</li>
+<li><b>String Tokenization</b> via the Objective-C <tt>TDTokenizer</tt> and <tt>TDToken</tt> classes.</li>
+<li><b>Language Parsing</b> using either:
+    <ul>
+        <li>The Objective-C API for parser-building (the <tt>TDParser</tt> class and sublcasses).</li>
+        <li>The via high-level, declarative language grammar syntax (very similar to yacc or ANTLR).</li>
+    </ul>
 </ol>
-
-<p>And one new experimental service:</p>
-<ol>
-<li><b>Declarative Parsing via Grammars</b> an ObjC API for creating language parsers from simple declarative grammars (no code).</li>
-</ol>
-
 
 <hr/>
 <h3>Tokenization</h3>
