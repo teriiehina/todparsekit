@@ -690,6 +690,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         atomicValueParser.name = @"atomicValue";
         
         TDAlternation *a = [TDAlternation alternation];
+        [a add:self.patternParser];
         [a add:self.literalParser];
         [a add:self.variableParser];
         [a add:self.constantParser];
@@ -714,23 +715,23 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// // pattern              = /\/.+\// Word? '/'? Word?
+// pattern              = /\/.+\// Word? '/'? Word?
 - (TDParser *)patternParser {
     if (!patternParser) {
         self.patternParser = [TDSequence sequence];
         patternParser.name = @"pattern";
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDLiteral literalWithString:@"Word"]];
-        [a add:[TDLiteral literalWithString:@"Num"]];
-        [a add:[TDLiteral literalWithString:@"Symbol"]];
-        [a add:[TDLiteral literalWithString:@"QuotedString"]];
+        TDAlternation *tt = [TDAlternation alternation];
+        [tt add:[TDLiteral literalWithString:@"Word"]];
+        [tt add:[TDLiteral literalWithString:@"Num"]];
+        [tt add:[TDLiteral literalWithString:@"Symbol"]];
+        [tt add:[TDLiteral literalWithString:@"QuotedString"]];
 
         TDPattern *p = [TDPattern patternWithString:@"/.+/" options:TDPatternOptionsNone tokenType:TDTokenTypeDelimitedString];
         [patternParser add:p];
-        [patternParser add:[self zeroOrOne:[TDWord word]]];
+        [patternParser add:[self zeroOrOne:[TDWord word]]]; // im (case insensitive, multiline, etc)
         [patternParser add:[self zeroOrOne:[TDSymbol symbolWithString:@"/"]]];
-        [patternParser add:[self zeroOrOne:a]];
+        [patternParser add:[self zeroOrOne:tt]]; // token type
         
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
@@ -842,6 +843,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTerminal *t = [a pop]; // tell terminal to discard itself when matched
     [t discard];
     [a push:t];
+}
+
+
+- (void)workOnPatternAssembly:(TDAssembly *)a {
+    
 }
 
 
