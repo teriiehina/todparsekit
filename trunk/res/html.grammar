@@ -1,9 +1,9 @@
-/**
+(:
     An HTML grammar for use with TDParseKit
 
     this grammar is intentionally very forgiving (non-strict)
     the point here is to highlight, not validate, HTML.
-*/
+:)
 
 @multiLineComments = '<!--' '-->';
 
@@ -24,8 +24,8 @@ tagContent      = (tagWord | fwdSlash | eq | tagQuotedString)+;
 //tagContent      = tagName attribute;
 //attribute       = (tagWord | eq | tagQuotedString)*;
 //tagName         = Word;
-tagWord         = Word;
-tagQuotedString = QuotedString;
+tagWord           = Word;
+tagQuotedString   = QuotedString;
 
 eq              = '=';
 lt              = '<';
