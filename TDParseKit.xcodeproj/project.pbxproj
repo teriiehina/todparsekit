@@ -1501,7 +1501,6 @@
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
 			isa = PBXGroup;
 			children = (
-				D3F823560F57859900B7DC48 /* factory */,
 				D380B5370F0D7DDE0009EC13 /* css.css */,
 				D380B5080F0D71A90009EC13 /* css.grammar */,
 				D380B5930F0D82F60009EC13 /* example.css */,
@@ -1536,16 +1535,17 @@
 		D3C7D8220A411F31005DD154 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D3252F670FCE171D005EF059 /* predicate */,
-				D31A164F0F703899002AFDF1 /* javascript */,
 				D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */,
 				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
+				D3252F670FCE171D005EF059 /* predicate */,
+				D31A164F0F703899002AFDF1 /* javascript */,
 				D3D63F570E2A8548009BF5CD /* parse */,
 				D3D63F560E2A8538009BF5CD /* tokens */,
 				D34A20080E55FD5F00A4A0BF /* chars */,
 				D3C85C770E63B400000445FD /* arithmetic */,
 				D3E786030E5510AE008C7D61 /* regex */,
+				D3F823560F57859900B7DC48 /* factory */,
 				D3C0309C0EF34DD200C5ABEB /* grammar */,
 				D3E788890E567B6D008C7D61 /* ebnf */,
 				D36568A40EEF9FB600226554 /* plist */,
