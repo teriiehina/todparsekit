@@ -747,11 +747,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 //        TDParser *options = [self zeroOrOne:w];
         
         // pattern
-        TDPattern *pattern = [TDPattern patternWithString:@"/[^\\/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
+        TDPattern *pattern = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
         [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
         
         [patternParser add:pattern];
-//        [patternParser add:options]; // im (case insensitive, multiline, etc)
+//        [patternParser add:options]; // imwx (case insensitive, multiline, etc)
 //        [patternParser add:[self zeroOrOne:[[TDSymbol symbolWithString:@"/"] discard]]];
 //        [patternParser add:tokenType]; // token type
         
@@ -762,12 +762,28 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
-    NSArray *toks = [a objectsAbove:fwdSlash];
+    NSArray *objs = [a objectsAbove:fwdSlash];
+    NSAssert(objs.count, @"");
+
     [a pop]; //discard '/' fence
     
-    NSAssert(toks.count, @"");
-    NSString *regex = [toks objectAtIndex:0];
-    [a push:[TDPattern patternWithString:regex]];
+    NSString *re = nil;
+    NSUInteger opts = TDPatternOptionsNone;
+    TDTokenType tt = TDTokenTypeAny;
+    
+    NSInteger i = 0;
+    for (id obj in objs) {
+        if (0 == i) {
+            re = obj;
+        } else if (1 == i) {
+            opts = [obj unsignedIntegerValue];
+        } else if (2 == i) {
+            tt = [obj integerValue];
+        }
+        i++;
+    }
+    
+    [a push:[TDPattern patternWithString:re options:opts tokenType:tt]];
 }
 
 
