@@ -1,9 +1,9 @@
-"""
+/*
     An HTML grammar for use with TDParseKit
 
     this grammar is intentionally very forgiving (non-strict)
     the point here is to highlight, not validate, HTML.
-"""
+*/
 
 @multiLineComments = '<!--' '-->';
 

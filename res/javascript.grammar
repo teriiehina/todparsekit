@@ -92,69 +92,69 @@ multiplicativeOperator = times | div | mod;
 
 
 
-# Program:
-#           empty
-#           Element Program
+// Program:
+//           empty
+//           Element Program
 
 program             = element+;
 
 
 
-#  Element:
-#           function Identifier ( ParameterListOpt ) CompoundStatement
-#           Statement
+//  Element:
+//           function Identifier ( ParameterListOpt ) CompoundStatement
+//           Statement
 
 element             = func | stmt;
 func                = function identifier openParen paramListOpt closeParen compoundStmt;
 
 
 
-#  ParameterListOpt:
-#           empty
-#           ParameterList
+//  ParameterListOpt:
+//           empty
+//           ParameterList
 
 paramListOpt        = Empty | paramList;
 
 
 
-#  ParameterList:
-#           Identifier
-#           Identifier , ParameterList
+//  ParameterList:
+//           Identifier
+//           Identifier , ParameterList
 
 paramList           = identifier commaIdentifier*;
 commaIdentifier     = comma identifier;
 
 
 
-#  CompoundStatement:
-#           { Statements }
+//  CompoundStatement:
+//           { Statements }
 
 compoundStmt        = openCurly stmts closeCurly;
 
 
 
-#  Statements:
-#           empty
-#           Statement Statements
+//  Statements:
+//           empty
+//           Statement Statements
 
 stmts               = stmt*;
 
 
 
-#  Statement:
-#           ;
-#           if Condition Statement
-#           if Condition Statement else Statement
-#           while Condition Statement
-#           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
-#           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
-#           ForBegin in Expression ) Statement
-#           break ;
-#           continue ;
-#           with ( Expression ) Statement
-#           return ExpressionOpt ;
-#           CompoundStatement
-#           VariablesOrExpression ;
+//  Statement:
+//           ;
+//           if Condition Statement
+//           if Condition Statement else Statement
+//           while Condition Statement
+//           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
+//           ForBegin in Expression ) Statement
+//           break ;
+//           continue ;
+//           with ( Expression ) Statement
+//           return ExpressionOpt ;
+//           CompoundStatement
+//           VariablesOrExpression ;
 
 stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
 ifStmt              = if condition stmt;
@@ -171,165 +171,165 @@ variablesOrExprStmt = variablesOrExpr semi;
 
 
 
-#  Condition:
-#           ( Expression )
+//  Condition:
+//           ( Expression )
 
 condition           = openParen expr closeParen;
 
 
 
-#  ForParen:
-#           for (
+//  ForParen:
+//           for (
 
 forParen            = for openParen;
 
 
 
-#  ForBegin:
-#           ForParen VariablesOrExpression
+//  ForBegin:
+//           ForParen VariablesOrExpression
 
 forBegin            = forParen variablesOrExpr;
 
 
 
-#  VariablesOrExpression:
-#           var Variables
-#           Expression
+//  VariablesOrExpression:
+//           var Variables
+//           Expression
 
 variablesOrExpr     = varVariables | expr;
 varVariables        = var variables;
 
 
 
-#  Variables:
-#           Variable
-#           Variable , Variables
+//  Variables:
+//           Variable
+//           Variable , Variables
 
 variables           = variable commaVariable*;
 commaVariable       = comma variable;
 
 
 
-#  Variable:
-#           Identifier
-#           Identifier = AssignmentExpression
+//  Variable:
+//           Identifier
+//           Identifier = AssignmentExpression
 
 variable            = identifier assignment?;
 assignment          = equals assignmentExpr;
 
 
 
-#  ExpressionOpt:
-#           empty
-#           Expression
+//  ExpressionOpt:
+//           empty
+//           Expression
 
-exprOpt             = Empty | expr; # TODO -- Empty | expr;
+exprOpt             = Empty | expr; // TODO -- Empty | expr;
 
 
 
-#  Expression:
-#           AssignmentExpression
-#           AssignmentExpression , Expression
+//  Expression:
+//           AssignmentExpression
+//           AssignmentExpression , Expression
 
 expr                = assignmentExpr commaExpr?;
 commaExpr           = comma expr;
 
 
 
-#  AssignmentExpression:
-#           ConditionalExpression
-#           ConditionalExpression AssignmentOperator AssignmentExpression
+//  AssignmentExpression:
+//           ConditionalExpression
+//           ConditionalExpression AssignmentOperator AssignmentExpression
 
 assignmentExpr      = conditionalExpr extraAssignment?;
 extraAssignment     = assignmentOperator assignmentExpr;
 
 
 
-#  ConditionalExpression:
-#           OrExpression
-#           OrExpression ? AssignmentExpression : AssignmentExpression
+//  ConditionalExpression:
+//           OrExpression
+//           OrExpression ? AssignmentExpression : AssignmentExpression
 
 conditionalExpr     = orExpr ternaryExpr?;
 ternaryExpr         = question assignmentExpr colon assignmentExpr;
 
 
 
-#  OrExpression:
-#           AndExpression
-#           AndExpression || OrExpression
+//  OrExpression:
+//           AndExpression
+//           AndExpression || OrExpression
 
 orExpr              = andExpr orAndExpr*;
 orAndExpr           = or andExpr;
 
 
 
-#  AndExpression:
-#           BitwiseOrExpression
-#           BitwiseOrExpression && AndExpression
+//  AndExpression:
+//           BitwiseOrExpression
+//           BitwiseOrExpression && AndExpression
 
 andExpr             = bitwiseOrExpr andAndExpr?;
 andAndExpr          = and andExpr;
 
 
 
-#  BitwiseOrExpression:
-#           BitwiseXorExpression
-#           BitwiseXorExpression | BitwiseOrExpression
+//  BitwiseOrExpression:
+//           BitwiseXorExpression
+//           BitwiseXorExpression | BitwiseOrExpression
 
 bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseOrExpr?;
 pipeBitwiseOrExpr   = pipe bitwiseOrExpr;
 
 
 
-#  BitwiseXorExpression:
-#           BitwiseAndExpression
-#           BitwiseAndExpression ^ BitwiseXorExpression
+//  BitwiseXorExpression:
+//           BitwiseAndExpression
+//           BitwiseAndExpression ^ BitwiseXorExpression
 
 bitwiseXorExpr      = bitwiseAndExpr caretBitwiseXorExpr?;
 caretBitwiseXorExpr = caret bitwiseXorExpr;
 
 
 
-#  BitwiseAndExpression:
-#           EqualityExpression
-#           EqualityExpression & BitwiseAndExpression
+//  BitwiseAndExpression:
+//           EqualityExpression
+//           EqualityExpression & BitwiseAndExpression
 
 bitwiseAndExpr      = equalityExpr ampBitwiseAndExpression?;
 ampBitwiseAndExpression = amp bitwiseAndExpr;
 
 
 
-#  EqualityExpression:
-#           RelationalExpression
-#           RelationalExpression EqualityualityOperator EqualityExpression
+//  EqualityExpression:
+//           RelationalExpression
+//           RelationalExpression EqualityualityOperator EqualityExpression
 
 equalityExpr        = relationalExpr equalityOpEqualityExpr?;
 equalityOpEqualityExpr = equalityOperator equalityExpr;
 
 
 
-#  RelationalExpression:
-#           ShiftExpression
-#           RelationalExpression RelationalationalOperator ShiftExpression
+//  RelationalExpression:
+//           ShiftExpression
+//           RelationalExpression RelationalationalOperator ShiftExpression
 
 relationalExpr      = shiftExpr | relationalExprRHS;
 relationalExprRHS   = relationalExpr relationalOperator shiftExpr;
 
 
 
-#  ShiftExpression:
-#           AdditiveExpression
-#           AdditiveExpression ShiftOperator ShiftExpression
+//  ShiftExpression:
+//           AdditiveExpression
+//           AdditiveExpression ShiftOperator ShiftExpression
 
 shiftExpr           = additiveExpr shiftOpShiftExpr?;
 shiftOpShiftExpr    = shiftOperator shiftExpr;
 
 
 
-#  AdditiveExpression:
-#           MultiplicativeExpression
-#           MultiplicativeExpression + AdditiveExpression
-#           MultiplicativeExpression - AdditiveExpression
+//  AdditiveExpression:
+//           MultiplicativeExpression
+//           MultiplicativeExpression + AdditiveExpression
+//           MultiplicativeExpression - AdditiveExpression
 
 additiveExpr        = multiplicativeExpr plusOrMinusExpr?;
 plusOrMinusExpr     = plusExpr | minusExpr;
@@ -338,22 +338,22 @@ minusExpr           = minus additiveExpr;
 
 
 
-#  MultiplicativeExpression:
-#           UnaryExpression
-#           UnaryExpression MultiplicativeOperator MultiplicativeExpression
+//  MultiplicativeExpression:
+//           UnaryExpression
+//           UnaryExpression MultiplicativeOperator MultiplicativeExpression
 
 multiplicativeExpr  = unaryExpr (multiplicativeOperator multiplicativeExpr)?;
 
 
 
-#  UnaryExpression:
-#           MemberExpression
-#           UnaryOperator UnaryExpression
-#           - UnaryExpression
-#           IncrementOperator MemberExpression
-#           MemberExpression IncrementOperator
-#           new Constructor
-#           delete MemberExpression
+//  UnaryExpression:
+//           MemberExpression
+//           UnaryOperator UnaryExpression
+//           - UnaryExpression
+//           IncrementOperator MemberExpression
+//           MemberExpression IncrementOperator
+//           new Constructor
+//           delete MemberExpression
 
 unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
 unaryExpr1          = unaryOperator unaryExpr;
@@ -365,29 +365,29 @@ unaryExpr6          = delete memberExpr;
 
 
 
-#  Constructor:
-#           this . ConstructorCall
-#           ConstructorCall
+//  Constructor:
+//           this . ConstructorCall
+//           ConstructorCall
 
-constructor         = constructorCall; # TODO ???
+constructor         = constructorCall; // TODO ???
 
 
 
-#  ConstructorCall:
-#           Identifier
-#           Identifier ( ArgumentListOpt )
-#           Identifier . ConstructorCall
+//  ConstructorCall:
+//           Identifier
+//           Identifier ( ArgumentListOpt )
+//           Identifier . ConstructorCall
 
-constructorCall     = identifier parenArgListParen?;  # TODO
+constructorCall     = identifier parenArgListParen?;  // TODO
 parenArgListParen   = openParen argListOpt closeParen;
 
 
 
-#  MemberExpression:
-#           PrimaryExpression
-#           PrimaryExpression . MemberExpression
-#           PrimaryExpression [ Expression ]
-#           PrimaryExpression ( ArgumentListOpt )
+//  MemberExpression:
+//           PrimaryExpression
+//           PrimaryExpression . MemberExpression
+//           PrimaryExpression [ Expression ]
+//           PrimaryExpression ( ArgumentListOpt )
 
 memberExpr          = primaryExpr dotBracketOrParenExpr?;
 dotBracketOrParenExpr = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
@@ -397,33 +397,33 @@ parenMemberExpr     = openParen argListOpt closeParen;
 
 
 
-#  ArgumentListOpt:
-#           empty
-#           ArgumentList
+//  ArgumentListOpt:
+//           empty
+//           ArgumentList
 
 argListOpt          = argList?;
 
 
 
-#  ArgumentList:
-#           AssignmentExpression
-#           AssignmentExpression , ArgumentList
+//  ArgumentList:
+//           AssignmentExpression
+//           AssignmentExpression , ArgumentList
 
 argList             = assignmentExpr commaAssignmentExpr*;
 commaAssignmentExpr = comma assignmentExpr;
 
 
 
-#  PrimaryExpression:
-#           ( Expression )
-#           Identifier
-#           IntegerLiteral
-#           FloatingPointLiteral
-#           StringLiteral
-#           false
-#           true
-#           null
-#           this
+//  PrimaryExpression:
+//           ( Expression )
+//           Identifier
+//           IntegerLiteral
+//           FloatingPointLiteral
+//           StringLiteral
+//           false
+//           true
+//           null
+//           this
 
 primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
 parenExprParen      = openParen expr closeParen;
