@@ -146,8 +146,8 @@
     [suite addTest:[self soloTestSuite]];
 
 
-    suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
-    [suite addTest:[self parserFactoryTestSuite]];
+//    suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
+//    [suite addTest:[self parserFactoryTestSuite]];
 #endif
     
     return suite;

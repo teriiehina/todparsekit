@@ -325,6 +325,10 @@
 		D3A881C40FC637C200A40BEF /* TDDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881C20FC637C200A40BEF /* TDDelimitedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3A881C50FC637C200A40BEF /* TDDelimitedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A881C30FC637C200A40BEF /* TDDelimitedString.m */; };
 		D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */; };
+		D3AF4BE70FDC3D890032F4DC /* TDBlobState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF4BE60FDC3D890032F4DC /* TDBlobState.m */; };
+		D3AF4BEA0FDC3DD50032F4DC /* TDBlob.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF4BE90FDC3DD50032F4DC /* TDBlob.m */; };
+		D3AF4BF70FDC40050032F4DC /* TDToken+Blob.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF4BF60FDC40050032F4DC /* TDToken+Blob.m */; };
+		D3AF4BFD0FDC41190032F4DC /* TDTokenizer+BlobState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF4BFC0FDC41190032F4DC /* TDTokenizer+BlobState.m */; };
 		D3B43FB80F76E99C0072AF40 /* TDJavaScriptParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B43FB60F76E99C0072AF40 /* TDJavaScriptParserTest.m */; };
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
@@ -843,6 +847,14 @@
 		D3A881C30FC637C200A40BEF /* TDDelimitedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDelimitedString.m; path = src/TDDelimitedString.m; sourceTree = "<group>"; };
 		D3AF49760FDB122E0032F4DC /* TDParserFactoryPatternTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryPatternTest.h; path = test/TDParserFactoryPatternTest.h; sourceTree = "<group>"; };
 		D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryPatternTest.m; path = test/TDParserFactoryPatternTest.m; sourceTree = "<group>"; };
+		D3AF4BE50FDC3D890032F4DC /* TDBlobState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBlobState.h; sourceTree = "<group>"; };
+		D3AF4BE60FDC3D890032F4DC /* TDBlobState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBlobState.m; sourceTree = "<group>"; };
+		D3AF4BE80FDC3DD50032F4DC /* TDBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDBlob.h; path = test/TDBlob.h; sourceTree = "<group>"; };
+		D3AF4BE90FDC3DD50032F4DC /* TDBlob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDBlob.m; path = test/TDBlob.m; sourceTree = "<group>"; };
+		D3AF4BF50FDC40050032F4DC /* TDToken+Blob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TDToken+Blob.h"; path = "test/TDToken+Blob.h"; sourceTree = "<group>"; };
+		D3AF4BF60FDC40050032F4DC /* TDToken+Blob.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TDToken+Blob.m"; path = "test/TDToken+Blob.m"; sourceTree = "<group>"; };
+		D3AF4BFB0FDC41190032F4DC /* TDTokenizer+BlobState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TDTokenizer+BlobState.h"; path = "test/TDTokenizer+BlobState.h"; sourceTree = "<group>"; };
+		D3AF4BFC0FDC41190032F4DC /* TDTokenizer+BlobState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "TDTokenizer+BlobState.m"; path = "test/TDTokenizer+BlobState.m"; sourceTree = "<group>"; };
 		D3B43FB50F76E99C0072AF40 /* TDJavaScriptParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParserTest.h; path = test/TDJavaScriptParserTest.h; sourceTree = "<group>"; };
 		D3B43FB60F76E99C0072AF40 /* TDJavaScriptParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJavaScriptParserTest.m; path = test/TDJavaScriptParserTest.m; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
@@ -1824,6 +1836,14 @@
 		D3F823560F57859900B7DC48 /* factory */ = {
 			isa = PBXGroup;
 			children = (
+				D3AF4BF50FDC40050032F4DC /* TDToken+Blob.h */,
+				D3AF4BF60FDC40050032F4DC /* TDToken+Blob.m */,
+				D3AF4BFB0FDC41190032F4DC /* TDTokenizer+BlobState.h */,
+				D3AF4BFC0FDC41190032F4DC /* TDTokenizer+BlobState.m */,
+				D3AF4BE50FDC3D890032F4DC /* TDBlobState.h */,
+				D3AF4BE60FDC3D890032F4DC /* TDBlobState.m */,
+				D3AF4BE80FDC3DD50032F4DC /* TDBlob.h */,
+				D3AF4BE90FDC3DD50032F4DC /* TDBlob.m */,
 				D380BA5D0F0F06CD0009EC13 /* TDParserFactory.h */,
 				D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */,
 				D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */,
@@ -2452,6 +2472,10 @@
 				D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */,
 				D36C562B0FD365DB00141CB7 /* TDPatternTest.m in Sources */,
 				D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */,
+				D3AF4BE70FDC3D890032F4DC /* TDBlobState.m in Sources */,
+				D3AF4BEA0FDC3DD50032F4DC /* TDBlob.m in Sources */,
+				D3AF4BF70FDC40050032F4DC /* TDToken+Blob.m in Sources */,
+				D3AF4BFD0FDC41190032F4DC /* TDTokenizer+BlobState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

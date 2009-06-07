@@ -16,7 +16,7 @@
 
 
 - (void)test1 {
-    g = @"@start = Pattern('foo', '', Any);";
+    g = @"@start = /foo/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -25,7 +25,7 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
-    g = @"@start = Pattern('foo', '');";
+    g = @"@start = /fo+/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -34,7 +34,7 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
-    g = @"@start = Pattern('fo+', '', Any);";
+    g = @"@start = /fo+/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -43,7 +43,7 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
-    g = @"@start = Pattern('fo+', '');";
+    g = @"@start = /[fo]+/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -51,35 +51,8 @@
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
     
-    
-    g = @"@start = Pattern('[fo]+', '', Any);";
-    lp = [factory parserFromGrammar:g assembler:nil];
-    TDNotNil(lp);
-    
-    s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo]foo^", [res description]);
-    
-    
-    g = @"@start = Pattern('[fo]+', '');";
-    lp = [factory parserFromGrammar:g assembler:nil];
-    TDNotNil(lp);
-    
-    s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo]foo^", [res description]);
-    
-    
-    g = @"@start = Pattern('\\w+', '', Any);";
-    lp = [factory parserFromGrammar:g assembler:nil];
-    TDNotNil(lp);
-    
-    s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[foo]foo^", [res description]);
-
-    
-    g = @"@start = Pattern('\\w+', '');";
+        
+    g = @"@start = /\\w+/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -90,7 +63,7 @@
 
 
 - (void)testOptions {
-    g = @"@start = Pattern('foo', 'i', Any);";
+    g = @"@start = /foo/i;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -99,25 +72,7 @@
     TDEqualObjects(@"[FOO]FOO^", [res description]);
     
     
-    g = @"@start = Pattern('foo', 'i');";
-    lp = [factory parserFromGrammar:g assembler:nil];
-    TDNotNil(lp);
-    
-    s = @"FOO";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[FOO]FOO^", [res description]);
-    
-    
-    g = @"@start = Pattern('foo', 'i', Any);";
-    lp = [factory parserFromGrammar:g assembler:nil];
-    TDNotNil(lp);
-    
-    s = @"FoO";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-    TDEqualObjects(@"[FoO]FoO^", [res description]);
-
-
-    g = @"@start = Pattern('foo', 'i');";
+    g = @"@start = /foo/i;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
