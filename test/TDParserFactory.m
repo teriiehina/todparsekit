@@ -747,7 +747,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 //        TDParser *options = [self zeroOrOne:w];
         
         // pattern
-        TDPattern *pattern = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
+        TDPattern *pattern = [TDPattern patternWithString:@"/[^\\/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
         [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
         
         [patternParser add:pattern];
@@ -762,9 +762,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
+    NSArray *toks = [a objectsAbove:fwdSlash];
+    [a pop]; //discard '/' fence
     
-    NSString *regex = [a pop];
+    NSAssert(toks.count, @"");
+    NSString *regex = [toks objectAtIndex:0];
     [a push:[TDPattern patternWithString:regex]];
 }
 
@@ -773,12 +775,31 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDToken *tok = [a pop];
     NSAssert([tok isKindOfClass:[TDToken class]], @"");
     NSAssert(tok.isQuotedString, @"");
+    
+    [a push:fwdSlash]; // put a fence in dere
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
 - (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
+    TDToken *tok = [a pop];
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
+    NSAssert(tok.isWord, @"");
+    
+    TDPatternOptions opts = TDPatternOptionsNone;
+    if (NSNotFound != [tok.stringValue rangeOfString:@"i"].location) {
+        opts &= TDPatternOptionsIgnoreCase;
+    } else if (NSNotFound != [tok.stringValue rangeOfString:@"m"].location) {
+        opts &= TDPatternOptionsMultiline;
+    } else if (NSNotFound != [tok.stringValue rangeOfString:@"x"].location) {
+        opts &= TDPatternOptionsComments;
+    } else if (NSNotFound != [tok.stringValue rangeOfString:@"s"].location) {
+        opts &= TDPatternOptionsDotAll;
+    } else if (NSNotFound != [tok.stringValue rangeOfString:@"w"].location) {
+        opts &= TDPatternOptionsUnicodeWordBoundaries;
+    }
+    
+    [a push:[NSNumber numberWithUnsignedInteger:opts]];
 }
 
 
