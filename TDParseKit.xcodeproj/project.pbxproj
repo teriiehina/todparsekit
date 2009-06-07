@@ -1063,6 +1063,14 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
+				D3AF4BF50FDC40050032F4DC /* TDToken+Blob.h */,
+				D3AF4BF60FDC40050032F4DC /* TDToken+Blob.m */,
+				D3AF4BFB0FDC41190032F4DC /* TDTokenizer+BlobState.h */,
+				D3AF4BFC0FDC41190032F4DC /* TDTokenizer+BlobState.m */,
+				D3AF4C190FDC568F0032F4DC /* TDBlobState.h */,
+				D3AF4C1A0FDC568F0032F4DC /* TDBlobState.m */,
+				D3AF4BE80FDC3DD50032F4DC /* TDBlob.h */,
+				D3AF4BE90FDC3DD50032F4DC /* TDBlob.m */,
 				D31FE6900E60E84400A0803E /* TDWordOrReservedState.h */,
 				D31FE6910E60E84400A0803E /* TDWordOrReservedState.m */,
 				D31FE6980E60E85800A0803E /* TDReservedWord.h */,
@@ -1836,14 +1844,6 @@
 		D3F823560F57859900B7DC48 /* factory */ = {
 			isa = PBXGroup;
 			children = (
-				D3AF4BF50FDC40050032F4DC /* TDToken+Blob.h */,
-				D3AF4BF60FDC40050032F4DC /* TDToken+Blob.m */,
-				D3AF4BFB0FDC41190032F4DC /* TDTokenizer+BlobState.h */,
-				D3AF4BFC0FDC41190032F4DC /* TDTokenizer+BlobState.m */,
-				D3AF4C190FDC568F0032F4DC /* TDBlobState.h */,
-				D3AF4C1A0FDC568F0032F4DC /* TDBlobState.m */,
-				D3AF4BE80FDC3DD50032F4DC /* TDBlob.h */,
-				D3AF4BE90FDC3DD50032F4DC /* TDBlob.m */,
 				D380BA5D0F0F06CD0009EC13 /* TDParserFactory.h */,
 				D380BA5E0F0F06CD0009EC13 /* TDParserFactory.m */,
 				D39834130EC27BC200FDCCE3 /* NSString+TDParseKitAdditions.h */,

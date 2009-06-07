@@ -65,7 +65,7 @@
     [rootNode add:start];
     [startMarkers addObject:start];
     
-    if (end) {
+    if (end.length) {
         [rootNode add:end];
         [endMarkers addObject:end];
     } else {
