@@ -10,10 +10,6 @@
 #import <TDParseKit/TDParseKit.h>
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import "TDBlob.h"
-#import "TDBlobState.h"
-#import "TDToken+Blob.h"
-#import "TDTokenizer+BlobState.h"
 
 @interface TDParser (TDParserFactoryAdditionsFriend)
 - (void)setTokenizer:(TDTokenizer *)t;
@@ -208,7 +204,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t setTokenizerState:t.wordState from:'@' to:'@'];
 
     // customize tokenizer for Pattern regexes
-    [t setTokenizerState:t.blobState from:'/' to:'/'];
+    [t setTokenizerState:t.delimitState from:'/' to:'/'];
+    [t.delimitState addStartMarker:@"/" endMarker:nil allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
 
     // customize tokenizer for comments
     [t setTokenizerState:t.commentState from:'#' to:'#'];
@@ -490,7 +487,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
-// pattern              = Blob('/')
+// pattern              = DelimitedString('/', '', nil)
 
 
 // satement             = declaration '=' expression
@@ -730,12 +727,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = /[^/]+/i/QuotedString Word? '/'? Word?
+// pattern              = /[\S]+
 // pattern              = 'Pattern' '(' QuotedString ',' QuotedString ',' Word ')';
+// pattern              = DelimitedString('/', '', nil)
 - (TDParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
-        self.patternParser = [TDBlob blobWithStartMarker:@"/"];
+        self.patternParser = [TDDelimitedString delimitedString];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
@@ -857,10 +855,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    NSAssert(tok.isBlob, @"");
+    NSAssert(tok.isDelimitedString, @"");
 
     NSString *s = tok.stringValue;
     NSAssert(s.length > 2, @"");
+    NSLog(@"\n\n\ns: %@\n", s);
     
     NSAssert([[s substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"], @"");
     s = [s substringFromIndex:1];
