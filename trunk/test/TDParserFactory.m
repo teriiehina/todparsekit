@@ -841,6 +841,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
+    NSAssert(objs.count, @"");
+    
     [a pop]; // pop '('
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
@@ -856,6 +858,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnDiscardAssembly:(TDAssembly *)a {
     TDTerminal *t = [a pop];
+    NSAssert([t isKindOfClass:[TDTerminal class]], @"");
+
     [t discard]; // tell terminal to discard itself when matched
     [a push:t];
 }
