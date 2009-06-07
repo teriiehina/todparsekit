@@ -203,21 +203,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     
     // customize tokenizer to find tokenizer customization directives
-    [t setTokenizerState:t.wordState from:'@' to:'@'];
-
-    // cusomtize tokenizer for finding pattern descriptors
-    [t setTokenizerState:t.quoteState from:'/' to:'/'];
-  
-    // remove default comments
-    [t.commentState removeSingleLineStartMarker:@"//"];
-    [t.commentState removeMultiLineStartMarker:@"/*"];
-
-    // add desired comments
-    [t setTokenizerState:t.commentState from:'#' to:'#'];
-    [t.commentState addSingleLineStartMarker:@"#"];
-    [t setTokenizerState:t.commentState from:'"' to:'"'];
-    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
-    
+    [t setTokenizerState:t.wordState from:'@' to:'@'];    
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table

@@ -1,10 +1,10 @@
-"""
+/*
     A Grammar for CSS
     
     This grammar is intentionally lenient/forgiving. 
     The purpose is to highlight, not validate (possibly invalid) CSS.
     
-"""
+*/
 
 @multiLineComments = '/*' '*/';
 @wordState = '-';

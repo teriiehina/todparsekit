@@ -59,6 +59,15 @@
     s = @"FOO";
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[FOO]FOO^", [res description]);
+
+
+    g = @"@start = Pattern('foo', 'i', Any);";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"FoO";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FoO]FoO^", [res description]);
 }
 
 @end
