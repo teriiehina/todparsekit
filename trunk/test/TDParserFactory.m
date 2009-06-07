@@ -7,9 +7,13 @@
 //
 
 #import "TDParserFactory.h"
+#import <TDParseKit/TDParseKit.h>
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import "TDBlob.h"
+#import "TDBlobState.h"
+#import "TDToken+Blob.h"
+#import "TDTokenizer+BlobState.h"
 
 @interface TDParser (TDParserFactoryAdditionsFriend)
 - (void)setTokenizer:(TDTokenizer *)t;
@@ -203,7 +207,18 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     
     // customize tokenizer to find tokenizer customization directives
-    [t setTokenizerState:t.wordState from:'@' to:'@'];    
+    [t setTokenizerState:t.wordState from:'@' to:'@'];
+
+    // customize tokenizer for Pattern regexes
+    [t setTokenizerState:t.blobState from:'/' to:'/'];
+
+    // customize tokenizer for comments
+    [t setTokenizerState:t.commentState from:'#' to:'#'];
+    [t setTokenizerState:t.commentState from:'"' to:'"'];
+    [t.commentState removeSingleLineStartMarker:@"//"];
+    [t.commentState removeMultiLineStartMarker:@"/*"];
+    [t.commentState addSingleLineStartMarker:@"#"];
+    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
@@ -227,6 +242,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     // discover the actual parser class types
     for (NSString *parserName in parserTokensTable) {
         NSString *className = [self parserClassNameFromTokenArray:[parserTokensTable objectForKey:parserName]];
+        NSAssert(className.length, @"");
         [parserClassTable setObject:className forKey:parserName];
     }
     isGatheringClasses = NO;
@@ -360,7 +376,9 @@ void TDReleaseSubparserTree(TDParser *p) {
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
+        NSAssert(className.length, @"");
         TDParser *p = [[NSClassFromString(className) alloc] init];
+        NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         [p release];
         
@@ -369,6 +387,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
         [self setAssemblerForParser:p];
 
+        NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         return p;
     }
@@ -473,7 +492,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
-// pattern              = /[^/]+/i/QuotedString Word? '/'? Word?
+// pattern              = Blob('/')
 
 
 // satement             = declaration '=' expression
@@ -717,37 +736,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 // pattern              = 'Pattern' '(' QuotedString ',' QuotedString ',' Word ')';
 - (TDParser *)patternParser {
     if (!patternParser) {
-        self.patternParser = [TDSequence sequence];
         patternParser.name = @"pattern";
-
-        TDParser *re = [TDQuotedString quotedString];
-        [re setAssembler:self selector:@selector(workOnPatternRegexAssembly:)];
-        
-        TDParser *opts = [TDQuotedString quotedString];
-        [opts setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
-        
-        // tokenType
-        TDAlternation *tt = [TDAlternation alternation];
-        [tt add:[TDLiteral literalWithString:@"Any"]];
-        [tt add:[TDLiteral literalWithString:@"Word"]];
-        [tt add:[TDLiteral literalWithString:@"Num"]];
-        [tt add:[TDLiteral literalWithString:@"Number"]];
-        [tt add:[TDLiteral literalWithString:@"Symbol"]];
-        [tt add:[TDLiteral literalWithString:@"QuotedString"]];
-        [tt add:[TDLiteral literalWithString:@"DelimitedString"]];
-        [tt setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
-        
-        TDSequence *commaTokenType = [TDSequence sequence];
-        [commaTokenType add:[[TDSymbol symbolWithString:@","] discard]];
-        [commaTokenType add:tt];
-        
-        [patternParser add:[[TDLiteral literalWithString:@"Pattern"] discard]];
-        [patternParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
-        [patternParser add:re];
-        [patternParser add:[[TDSymbol symbolWithString:@","] discard]];
-        [patternParser add:opts];
-        [patternParser add:[self zeroOrOne:commaTokenType]];
-        [patternParser add:[[TDSymbol symbolWithString:@")"] discard]];
+        self.patternParser = [TDBlob blobWithStartMarker:@"/"];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
@@ -812,9 +802,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     }
     
     if (selName) {
+        NSAssert(selName.length, @"");
         [selectorTable setObject:selName forKey:parserName];
     }
 	NSMutableDictionary *d = a.target;
+    NSAssert(toks.count, @"");
     [d setObject:toks forKey:parserName];
 }
 
@@ -866,94 +858,37 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:paren];
-    NSAssert(objs.count, @"");
-    NSAssert(objs.count < 4, @"");
-    
-    [a pop]; //discard '(' fence
-    
-    NSString *re = nil;
-    NSUInteger opts = TDPatternOptionsNone;
-    TDTokenType tt = TDTokenTypeAny;
-    
-    NSInteger i = 0;
-    for (id obj in [objs reverseObjectEnumerator]) {
-        if (0 == i) {
-            NSAssert([obj isKindOfClass:[NSString class]], @"");
-            re = obj;
-        } else if (1 == i) {
-            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
-            opts = [obj unsignedIntegerValue];
-        } else if (2 == i) {
-            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
-            tt = [obj integerValue];
-        }
-        i++;
-    }
-    
-    [a push:[TDPattern patternWithString:re options:opts tokenType:tt]];
-}
-
-
-- (void)workOnPatternRegexAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isQuotedString, @"");
-    
-    [a push:[tok.stringValue stringByTrimmingQuotes]];
-}
+    NSAssert(tok.isBlob, @"");
 
-
-- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isQuotedString, @"");
+    NSString *s = tok.stringValue;
+    NSAssert(s.length > 2, @"");
     
+    s = [s substringFromIndex:1];
+    NSInteger loc = [s rangeOfString:@"/" options:NSBackwardsSearch].location;
+    NSAssert(NSNotFound != loc, @"");
+    
+    NSString *optsString = [s substringFromIndex:loc + 1];
+    NSString *re = [s substringToIndex:loc];
+
     TDPatternOptions opts = TDPatternOptionsNone;
-    NSString *s = [tok.stringValue stringByTrimmingQuotes];
-    if (NSNotFound != [s rangeOfString:@"i"].location) {
+    if (NSNotFound != [optsString rangeOfString:@"i"].location) {
         opts |= TDPatternOptionsIgnoreCase;
     }
-    if (NSNotFound != [s rangeOfString:@"m"].location) {
+    if (NSNotFound != [optsString rangeOfString:@"m"].location) {
         opts |= TDPatternOptionsMultiline;
     }
-    if (NSNotFound != [s rangeOfString:@"x"].location) {
+    if (NSNotFound != [optsString rangeOfString:@"x"].location) {
         opts |= TDPatternOptionsComments;
     }
-    if (NSNotFound != [s rangeOfString:@"s"].location) {
+    if (NSNotFound != [optsString rangeOfString:@"s"].location) {
         opts |= TDPatternOptionsDotAll;
     }
-    if (NSNotFound != [s rangeOfString:@"w"].location) {
+    if (NSNotFound != [optsString rangeOfString:@"w"].location) {
         opts |= TDPatternOptionsUnicodeWordBoundaries;
     }
     
-    [a push:[NSNumber numberWithUnsignedInteger:opts]];
-}
-
-
-- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isWord, @"");
-    
-    TDTokenType tt = TDTokenTypeAny;
-    if ([tok.stringValue isEqualToString:@"Word"]) {
-        tt = TDTokenTypeWord;
-    } else if ([tok.stringValue isEqualToString:@"Num"] || [tok.stringValue isEqualToString:@"Number"]) {
-        tt = TDTokenTypeNumber;
-    } else if ([tok.stringValue isEqualToString:@"Symbol"]) {
-        tt = TDTokenTypeSymbol;
-    } else if ([tok.stringValue isEqualToString:@"QuotedString"]) {
-        tt = TDTokenTypeQuotedString;
-    } else if ([tok.stringValue isEqualToString:@"DelimitedString"]) {
-        tt = TDTokenTypeDelimitedString;
-    } else if ([tok.stringValue isEqualToString:@"Any"]) {
-        tt = TDTokenTypeAny;
-    } else {
-        NSAssert(0, @"unknown token type provided as thrid arg to Pattern()");
-    }
-    
-    [a push:[NSNumber numberWithInteger:tt]];
+    [a push:[TDPattern patternWithString:re options:opts tokenType:TDTokenTypeAny]];
 }
 
 
@@ -977,7 +912,9 @@ void TDReleaseSubparserTree(TDParser *p) {
             p = [TDSequence sequence];
         }
     } else {
-        p = [self expandedParserForName:parserName];
+        if ([parserTokensTable objectForKey:parserName]) {
+            p = [self expandedParserForName:parserName];
+        }
     }
     [a push:p];
 }
