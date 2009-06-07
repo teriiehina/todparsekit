@@ -1060,26 +1060,10 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
-				D3AF4CC90FDC743C0032F4DC /* New Group */,
+				D3AF4CCB0FDC74540032F4DC /* Whitespace */,
+				D3AF4CCA0FDC74490032F4DC /* Slash */,
+				D3AF4CC90FDC743C0032F4DC /* ReservedWord */,
 				D3AF4CC80FDC74320032F4DC /* Blob */,
-				D3AF4CBF0FDC740A0032F4DC /* TDNonReservedWord.h */,
-				D3AF4CC00FDC740A0032F4DC /* TDNonReservedWord.m */,
-				D3AF4CC10FDC740A0032F4DC /* TDReservedWord.h */,
-				D3AF4CC20FDC740A0032F4DC /* TDReservedWord.m */,
-				D3AF4CC30FDC740A0032F4DC /* TDSignificantWhitespaceState.h */,
-				D3AF4CC40FDC740A0032F4DC /* TDSignificantWhitespaceState.m */,
-				D3AF4CC50FDC740A0032F4DC /* TDWordOrReservedState.h */,
-				D3AF4CC60FDC740A0032F4DC /* TDWordOrReservedState.m */,
-				D3DDDC230F085C5400A58000 /* TDSlashSlashState.h */,
-				D3DDDC240F085C5400A58000 /* TDSlashSlashState.m */,
-				D3DDDC250F085C5400A58000 /* TDSlashStarState.h */,
-				D3DDDC260F085C5400A58000 /* TDSlashStarState.m */,
-				D3DDDC270F085C5400A58000 /* TDSlashState.h */,
-				D3DDDC280F085C5400A58000 /* TDSlashState.m */,
-				D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */,
-				D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */,
-				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
-				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
 			);
 			name = "Other Sources (not used)";
 			sourceTree = "<group>";
@@ -1531,11 +1515,43 @@
 			name = Blob;
 			sourceTree = "<group>";
 		};
-		D3AF4CC90FDC743C0032F4DC /* New Group */ = {
+		D3AF4CC90FDC743C0032F4DC /* ReservedWord */ = {
 			isa = PBXGroup;
 			children = (
+				D3AF4CC50FDC740A0032F4DC /* TDWordOrReservedState.h */,
+				D3AF4CC60FDC740A0032F4DC /* TDWordOrReservedState.m */,
+				D3AF4CBF0FDC740A0032F4DC /* TDNonReservedWord.h */,
+				D3AF4CC00FDC740A0032F4DC /* TDNonReservedWord.m */,
+				D3AF4CC10FDC740A0032F4DC /* TDReservedWord.h */,
+				D3AF4CC20FDC740A0032F4DC /* TDReservedWord.m */,
 			);
-			name = "New Group";
+			name = ReservedWord;
+			sourceTree = "<group>";
+		};
+		D3AF4CCA0FDC74490032F4DC /* Slash */ = {
+			isa = PBXGroup;
+			children = (
+				D3DDDC230F085C5400A58000 /* TDSlashSlashState.h */,
+				D3DDDC240F085C5400A58000 /* TDSlashSlashState.m */,
+				D3DDDC250F085C5400A58000 /* TDSlashStarState.h */,
+				D3DDDC260F085C5400A58000 /* TDSlashStarState.m */,
+				D3DDDC270F085C5400A58000 /* TDSlashState.h */,
+				D3DDDC280F085C5400A58000 /* TDSlashState.m */,
+				D31FE57D0E60E58C00A0803E /* TDSlashStateTest.h */,
+				D31FE57E0E60E58C00A0803E /* TDSlashStateTest.m */,
+			);
+			name = Slash;
+			sourceTree = "<group>";
+		};
+		D3AF4CCB0FDC74540032F4DC /* Whitespace */ = {
+			isa = PBXGroup;
+			children = (
+				D3AF4CC30FDC740A0032F4DC /* TDSignificantWhitespaceState.h */,
+				D3AF4CC40FDC740A0032F4DC /* TDSignificantWhitespaceState.m */,
+				D31FE57B0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.h */,
+				D31FE57C0E60E58C00A0803E /* TDSignificantWhitespaceStateTest.m */,
+			);
+			name = Whitespace;
 			sourceTree = "<group>";
 		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
