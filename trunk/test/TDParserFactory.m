@@ -486,7 +486,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
-// pattern              = '/' Any[^'/']+ '/' Word? '/'? Word?
+// pattern              = /[^/]+/i/QuotedString Word? '/'? Word?
 
 
 // satement             = declaration '=' expression
@@ -618,11 +618,11 @@ void TDReleaseSubparserTree(TDParser *p) {
         phraseParser.name = @"phrase";
         [phraseParser add:self.atomicValueParser];
 
-        TDTrack *t = [TDTrack track];
-        [t add:[TDSymbol symbolWithString:@"("]];
-        [t add:self.expressionParser];
-        [t add:[[TDSymbol symbolWithString:@")"] discard]];
-        [phraseParser add:t];
+        TDSequence *s = [TDSequence sequence];
+        [s add:[TDSymbol symbolWithString:@"("]];
+        [s add:self.expressionParser];
+        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        [phraseParser add:s];
     }
     return phraseParser;
 }
@@ -726,35 +726,38 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = /\/.+\// Word? '/'? Word?
+// pattern              = /[^/]+/i/QuotedString Word? '/'? Word?
+// pattern              = 'Pattern' '(' QuotedString ',' QuotedString ',' Word ')';
 - (TDParser *)patternParser {
     if (!patternParser) {
-        self.patternParser = [TDSequence sequence];
+        self.patternParser = [TDTrack track];
         patternParser.name = @"pattern";
+
+        TDParser *re = [TDQuotedString quotedString];
+        [re setAssembler:self selector:@selector(workOnPatternRegexAssembly:)];
+        
+        TDParser *opts = [TDQuotedString quotedString];
+        [opts setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
         
         // tokenType
-//        TDAlternation *a = [TDAlternation alternation];
-//        [a add:[TDLiteral literalWithString:@"Word"]];
-//        [a add:[TDLiteral literalWithString:@"Num"]];
-//        [a add:[TDLiteral literalWithString:@"Symbol"]];
-//        [a add:[TDLiteral literalWithString:@"QuotedString"]];
-//        [a setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
-//        TDParser *tokenType = [self zeroOrOne:a];
-//        
-//        // options
-//        TDParser *w = [TDWord word];
-//        [w setAssembler:self selector:@selector(workOnPatternOptionsAssembly:)];
-//        TDParser *options = [self zeroOrOne:w];
+        TDAlternation *tt = [TDAlternation alternation];
+        [tt add:[TDLiteral literalWithString:@"Any"]];
+        [tt add:[TDLiteral literalWithString:@"Word"]];
+        [tt add:[TDLiteral literalWithString:@"Num"]];
+        [tt add:[TDLiteral literalWithString:@"Number"]];
+        [tt add:[TDLiteral literalWithString:@"Symbol"]];
+        [tt add:[TDLiteral literalWithString:@"QuotedString"]];
+        [tt add:[TDLiteral literalWithString:@"DelimitedString"]];
+        [tt setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
         
-        // pattern
-        TDPattern *pattern = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
-        [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
-        
-        [patternParser add:pattern];
-//        [patternParser add:options]; // imwx (case insensitive, multiline, etc)
-//        [patternParser add:[self zeroOrOne:[[TDSymbol symbolWithString:@"/"] discard]]];
-//        [patternParser add:tokenType]; // token type
-        
+        [patternParser add:[[TDLiteral literalWithString:@"Pattern"] discard]];
+        [patternParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
+        [patternParser add:re];
+        [patternParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [patternParser add:opts];
+        [patternParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [patternParser add:tt];
+        [patternParser add:[[TDSymbol symbolWithString:@")"] discard]];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
@@ -762,21 +765,25 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:fwdSlash];
+    NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
+    //NSAssert(1 == objs.count, @"");
 
-    [a pop]; //discard '/' fence
+    [a pop]; //discard '(' fence
     
     NSString *re = nil;
     NSUInteger opts = TDPatternOptionsNone;
     TDTokenType tt = TDTokenTypeAny;
+
+    NSLog(@"objs: %@", objs);
     
     NSInteger i = 0;
-    for (id obj in objs) {
+    for (id obj in [objs reverseObjectEnumerator]) {
         if (0 == i) {
             NSAssert([obj isKindOfClass:[NSString class]], @"");
             re = obj;
         } else if (1 == i) {
+            NSLog(@"opts: %@", obj);
             NSAssert([obj isKindOfClass:[NSNumber class]], @"");
             opts = [obj unsignedIntegerValue];
         } else if (2 == i) {
@@ -790,7 +797,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnPatternPatternAssembly:(TDAssembly *)a {
+- (void)workOnPatternRegexAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSAssert([tok isKindOfClass:[TDToken class]], @"");
     NSAssert(tok.isQuotedString, @"");
@@ -803,21 +810,29 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isWord, @"");
+    NSAssert(tok.isQuotedString, @"");
+    
+    NSLog(@"\n\n opts token: %@\n", tok.stringValue);
     
     TDPatternOptions opts = TDPatternOptionsNone;
-    if (NSNotFound != [tok.stringValue rangeOfString:@"i"].location) {
-        opts &= TDPatternOptionsIgnoreCase;
-    } else if (NSNotFound != [tok.stringValue rangeOfString:@"m"].location) {
-        opts &= TDPatternOptionsMultiline;
-    } else if (NSNotFound != [tok.stringValue rangeOfString:@"x"].location) {
-        opts &= TDPatternOptionsComments;
-    } else if (NSNotFound != [tok.stringValue rangeOfString:@"s"].location) {
-        opts &= TDPatternOptionsDotAll;
-    } else if (NSNotFound != [tok.stringValue rangeOfString:@"w"].location) {
-        opts &= TDPatternOptionsUnicodeWordBoundaries;
+    NSString *s = [tok.stringValue stringByTrimmingQuotes];
+    if (NSNotFound != [s rangeOfString:@"i"].location) {
+        opts |= TDPatternOptionsIgnoreCase;
+    }
+    if (NSNotFound != [s rangeOfString:@"m"].location) {
+        opts |= TDPatternOptionsMultiline;
+    }
+    if (NSNotFound != [s rangeOfString:@"x"].location) {
+        opts |= TDPatternOptionsComments;
+    }
+    if (NSNotFound != [s rangeOfString:@"s"].location) {
+        opts |= TDPatternOptionsDotAll;
+    }
+    if (NSNotFound != [s rangeOfString:@"w"].location) {
+        opts |= TDPatternOptionsUnicodeWordBoundaries;
     }
     
+    NSLog(@"opts here: %@", [NSNumber numberWithUnsignedInteger:opts]);
     [a push:[NSNumber numberWithUnsignedInteger:opts]];
 }
 
@@ -1002,6 +1017,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [TDAny any];
     } else if ([s isEqualToString:@"Empty"]) {
         p = [TDEmpty empty];
+    } else if ([s isEqualToString:@"Pattern"]) {
+        p = tok;
     } else if ([s isEqualToString:@"YES"] || [s isEqualToString:@"NO"]) {
         p = tok;
     } else {
