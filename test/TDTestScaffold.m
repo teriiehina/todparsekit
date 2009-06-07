@@ -8,7 +8,7 @@
 
 #import "TDTestScaffold.h"
 
-#define RUN_ALL_TEST_CASES 0
+#define RUN_ALL_TEST_CASES 1
 #define SOLO_TEST_CASE @"TDParserFactoryPatternTest"
 
 @interface SenTestSuite (TDAdditions)
@@ -143,11 +143,8 @@
 //    [suite addTest:[self charsTestSuite]];
 //    [suite addTest:[self tokensTestSuite]];
 //    [suite addTest:[self parseTestSuite]];
-    [suite addTest:[self soloTestSuite]];
-
-
-//    suite = [SenTestSuite testSuiteWithName:@"My Tests"]; 
 //    [suite addTest:[self parserFactoryTestSuite]];
+    [suite addTest:[self soloTestSuite]];
 #endif
     
     return suite;
