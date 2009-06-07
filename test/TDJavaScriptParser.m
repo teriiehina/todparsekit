@@ -14,7 +14,7 @@
 
 @interface TDJavaScriptParser ()
 - (TDAlternation *)zeroOrOne:(TDParser *)p;
-- (TDAlternation *)oneOrMore:(TDParser *)p;
+- (TDSequence *)oneOrMore:(TDParser *)p;
 @end
 
 @implementation TDJavaScriptParser
@@ -254,8 +254,8 @@
 }
 
 
-- (TDAlternation *)oneOrMore:(TDParser *)p {
-    TDAlternation *s = [TDSequence sequence];
+- (TDSequence *)oneOrMore:(TDParser *)p {
+    TDSequence *s = [TDSequence sequence];
     [s add:p];
     [s add:[TDRepetition repetitionWithSubparser:p]];
     return s;

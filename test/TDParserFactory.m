@@ -56,7 +56,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (BOOL)boolForTokenForKey:(NSString *)key;
 - (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 
-- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks;
+- (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 - (void)setAssemblerForParser:(TDParser *)p;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
@@ -65,7 +65,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDSequence *)parserFromExpression:(NSString *)s;
 
 - (TDAlternation *)zeroOrOne:(TDParser *)p;
-- (TDAlternation *)oneOrMore:(TDParser *)p;
+- (TDSequence *)oneOrMore:(TDParser *)p;
     
 - (void)workOnStatementAssembly:(TDAssembly *)a;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
@@ -360,7 +360,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
-        TDCollectionParser *p = [[NSClassFromString(className) alloc] init];
+        TDParser *p = [[NSClassFromString(className) alloc] init];
         [parserTokensTable setObject:p forKey:parserName];
         [p release];
         
@@ -411,14 +411,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (id)expandParser:(TDCollectionParser *)p fromTokenArray:(NSArray *)toks {	
+- (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks {	
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.expressionParser completeMatchFor:a];
     TDParser *res = [a pop];
-    if ([res isKindOfClass:[TDCollectionParser class]]) {
-        [p add:res];
-        return p;
+    if ([p isKindOfClass:[TDCollectionParser class]]) {
+        TDCollectionParser *cp = (TDCollectionParser *)p;
+        [cp add:res];
+        return cp;
     } else {
         return res;
     }
@@ -443,8 +444,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDAlternation *)oneOrMore:(TDParser *)p {
-    TDAlternation *s = [TDSequence sequence];
+- (TDSequence *)oneOrMore:(TDParser *)p {
+    TDSequence *s = [TDSequence sequence];
     [s add:p];
     [s add:[TDRepetition repetitionWithSubparser:p]];
     return s;
@@ -716,7 +717,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // pattern              = 'Pattern' '(' QuotedString ',' QuotedString ',' Word ')';
 - (TDParser *)patternParser {
     if (!patternParser) {
-        self.patternParser = [TDTrack track];
+        self.patternParser = [TDSequence sequence];
         patternParser.name = @"pattern";
 
         TDParser *re = [TDQuotedString quotedString];
@@ -779,6 +780,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         i++;
     }
     
+    NSLog(@"ok pushing pattern num args: %d", i);
+    
     [a push:[TDPattern patternWithString:re options:opts tokenType:tt]];
 }
 
@@ -788,7 +791,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSAssert([tok isKindOfClass:[TDToken class]], @"");
     NSAssert(tok.isQuotedString, @"");
     
-    [a push:fwdSlash]; // put a fence in dere
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
@@ -818,7 +820,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         opts |= TDPatternOptionsUnicodeWordBoundaries;
     }
     
-    NSLog(@"opts here: %@", [NSNumber numberWithUnsignedInteger:opts]);
     [a push:[NSNumber numberWithUnsignedInteger:opts]];
 }
 
