@@ -94,7 +94,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
-@property (nonatomic, retain) TDToken *fwdSlash;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
@@ -149,7 +148,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
-    self.fwdSlash = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -864,6 +862,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSString *s = tok.stringValue;
     NSAssert(s.length > 2, @"");
     
+    NSAssert([[s substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"], @"");
     s = [s substringFromIndex:1];
     NSInteger loc = [s rangeOfString:@"/" options:NSBackwardsSearch].location;
     NSAssert(NSNotFound != loc, @"");
@@ -1019,7 +1018,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
-@synthesize fwdSlash;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
