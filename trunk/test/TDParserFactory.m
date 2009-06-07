@@ -737,116 +737,21 @@ void TDReleaseSubparserTree(TDParser *p) {
         [tt add:[TDLiteral literalWithString:@"DelimitedString"]];
         [tt setAssembler:self selector:@selector(workOnPatternTokenTypeAssembly:)];
         
+        TDSequence *commaTokenType = [TDSequence sequence];
+        [commaTokenType add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaTokenType add:tt];
+        
         [patternParser add:[[TDLiteral literalWithString:@"Pattern"] discard]];
         [patternParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
         [patternParser add:re];
         [patternParser add:[[TDSymbol symbolWithString:@","] discard]];
         [patternParser add:opts];
-        [patternParser add:[[TDSymbol symbolWithString:@","] discard]];
-        [patternParser add:tt];
+        [patternParser add:[self zeroOrOne:commaTokenType]];
         [patternParser add:[[TDSymbol symbolWithString:@")"] discard]];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
 }
-
-
-- (void)workOnPatternAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:paren];
-    NSAssert(objs.count, @"");
-    //NSAssert(1 == objs.count, @"");
-
-    [a pop]; //discard '(' fence
-    
-    NSString *re = nil;
-    NSUInteger opts = TDPatternOptionsNone;
-    TDTokenType tt = TDTokenTypeAny;
-
-    NSLog(@"objs: %@", objs);
-    
-    NSInteger i = 0;
-    for (id obj in [objs reverseObjectEnumerator]) {
-        if (0 == i) {
-            NSAssert([obj isKindOfClass:[NSString class]], @"");
-            re = obj;
-        } else if (1 == i) {
-            NSLog(@"opts: %@", obj);
-            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
-            opts = [obj unsignedIntegerValue];
-        } else if (2 == i) {
-            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
-            tt = [obj integerValue];
-        }
-        i++;
-    }
-    
-    NSLog(@"ok pushing pattern num args: %d", i);
-    
-    [a push:[TDPattern patternWithString:re options:opts tokenType:tt]];
-}
-
-
-- (void)workOnPatternRegexAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isQuotedString, @"");
-    
-    [a push:[tok.stringValue stringByTrimmingQuotes]];
-}
-
-
-- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isQuotedString, @"");
-    
-    NSLog(@"\n\n opts token: %@\n", tok.stringValue);
-    
-    TDPatternOptions opts = TDPatternOptionsNone;
-    NSString *s = [tok.stringValue stringByTrimmingQuotes];
-    if (NSNotFound != [s rangeOfString:@"i"].location) {
-        opts |= TDPatternOptionsIgnoreCase;
-    }
-    if (NSNotFound != [s rangeOfString:@"m"].location) {
-        opts |= TDPatternOptionsMultiline;
-    }
-    if (NSNotFound != [s rangeOfString:@"x"].location) {
-        opts |= TDPatternOptionsComments;
-    }
-    if (NSNotFound != [s rangeOfString:@"s"].location) {
-        opts |= TDPatternOptionsDotAll;
-    }
-    if (NSNotFound != [s rangeOfString:@"w"].location) {
-        opts |= TDPatternOptionsUnicodeWordBoundaries;
-    }
-    
-    [a push:[NSNumber numberWithUnsignedInteger:opts]];
-}
-
-
-- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    NSAssert([tok isKindOfClass:[TDToken class]], @"");
-    NSAssert(tok.isWord, @"");
-
-    TDTokenType tt = TDTokenTypeAny;
-    if ([tok.stringValue isEqualToString:@"Word"]) {
-        tt = TDTokenTypeWord;
-    } else if ([tok.stringValue isEqualToString:@"Num"] || [tok.stringValue isEqualToString:@"Number"]) {
-        tt = TDTokenTypeNumber;
-    } else if ([tok.stringValue isEqualToString:@"Symbol"]) {
-        tt = TDTokenTypeSymbol;
-    } else if ([tok.stringValue isEqualToString:@"QuotedString"]) {
-        tt = TDTokenTypeQuotedString;
-    } else if ([tok.stringValue isEqualToString:@"DelimitedString"]) {
-        tt = TDTokenTypeDelimitedString;
-    }
-    
-    [a push:[NSNumber numberWithInteger:tt]];
-}
-
-
-
 
 
 // literal = QuotedString
@@ -950,9 +855,97 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnDiscardAssembly:(TDAssembly *)a {
-    TDTerminal *t = [a pop]; // tell terminal to discard itself when matched
-    [t discard];
+    TDTerminal *t = [a pop];
+    [t discard]; // tell terminal to discard itself when matched
     [a push:t];
+}
+
+
+- (void)workOnPatternAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:paren];
+    NSAssert(objs.count, @"");
+    NSAssert(objs.count < 4, @"");
+    
+    [a pop]; //discard '(' fence
+    
+    NSString *re = nil;
+    NSUInteger opts = TDPatternOptionsNone;
+    TDTokenType tt = TDTokenTypeAny;
+    
+    NSInteger i = 0;
+    for (id obj in [objs reverseObjectEnumerator]) {
+        if (0 == i) {
+            NSAssert([obj isKindOfClass:[NSString class]], @"");
+            re = obj;
+        } else if (1 == i) {
+            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
+            opts = [obj unsignedIntegerValue];
+        } else if (2 == i) {
+            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
+            tt = [obj integerValue];
+        }
+        i++;
+    }
+    
+    [a push:[TDPattern patternWithString:re options:opts tokenType:tt]];
+}
+
+
+- (void)workOnPatternRegexAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
+    NSAssert(tok.isQuotedString, @"");
+    
+    [a push:[tok.stringValue stringByTrimmingQuotes]];
+}
+
+
+- (void)workOnPatternOptionsAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
+    NSAssert(tok.isQuotedString, @"");
+    
+    TDPatternOptions opts = TDPatternOptionsNone;
+    NSString *s = [tok.stringValue stringByTrimmingQuotes];
+    if (NSNotFound != [s rangeOfString:@"i"].location) {
+        opts |= TDPatternOptionsIgnoreCase;
+    }
+    if (NSNotFound != [s rangeOfString:@"m"].location) {
+        opts |= TDPatternOptionsMultiline;
+    }
+    if (NSNotFound != [s rangeOfString:@"x"].location) {
+        opts |= TDPatternOptionsComments;
+    }
+    if (NSNotFound != [s rangeOfString:@"s"].location) {
+        opts |= TDPatternOptionsDotAll;
+    }
+    if (NSNotFound != [s rangeOfString:@"w"].location) {
+        opts |= TDPatternOptionsUnicodeWordBoundaries;
+    }
+    
+    [a push:[NSNumber numberWithUnsignedInteger:opts]];
+}
+
+
+- (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
+    TDToken *tok = [a pop];
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
+    NSAssert(tok.isWord, @"");
+    
+    TDTokenType tt = TDTokenTypeAny;
+    if ([tok.stringValue isEqualToString:@"Word"]) {
+        tt = TDTokenTypeWord;
+    } else if ([tok.stringValue isEqualToString:@"Num"] || [tok.stringValue isEqualToString:@"Number"]) {
+        tt = TDTokenTypeNumber;
+    } else if ([tok.stringValue isEqualToString:@"Symbol"]) {
+        tt = TDTokenTypeSymbol;
+    } else if ([tok.stringValue isEqualToString:@"QuotedString"]) {
+        tt = TDTokenTypeQuotedString;
+    } else if ([tok.stringValue isEqualToString:@"DelimitedString"]) {
+        tt = TDTokenTypeDelimitedString;
+    }
+    
+    [a push:[NSNumber numberWithInteger:tt]];
 }
 
 
