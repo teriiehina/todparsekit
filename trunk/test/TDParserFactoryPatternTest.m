@@ -24,7 +24,26 @@
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
 
-//    g = @"@start = /fo+/;";
+
+    g = @"@start = /fo+/;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+
+    
+    g = @"@start = /[fo]+/;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+
+
+//    g = @"@start = /\\w+/;";
 //    lp = [factory parserFromGrammar:g assembler:nil];
 //    TDNotNil(lp);
 //    
