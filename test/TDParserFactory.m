@@ -774,10 +774,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSInteger i = 0;
     for (id obj in objs) {
         if (0 == i) {
+            NSAssert([obj isKindOfClass:[NSString class]], @"");
             re = obj;
         } else if (1 == i) {
+            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
             opts = [obj unsignedIntegerValue];
         } else if (2 == i) {
+            NSAssert([obj isKindOfClass:[NSNumber class]], @"");
             tt = [obj integerValue];
         }
         i++;
