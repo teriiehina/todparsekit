@@ -43,13 +43,13 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
 
 
-//    g = @"@start = Pattern('\\w+', '', Any);";
-//    lp = [factory parserFromGrammar:g assembler:nil];
-//    TDNotNil(lp);
-//    
-//    s = @"foo";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[foo]foo^", [res description]);
+    g = @"@start = Pattern('\\w+', '', Any);";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
 //
 //
 //    g = @"@start = Pattern('foo' 'i', Any);";
