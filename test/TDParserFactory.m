@@ -215,8 +215,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     // add desired comments
     [t setTokenizerState:t.commentState from:'#' to:'#'];
     [t.commentState addSingleLineStartMarker:@"#"];
-    [t setTokenizerState:t.commentState from:'(' to:'('];
-    [t.commentState addMultiLineStartMarker:@"(:" endMarker:@":)"];
+    [t setTokenizerState:t.commentState from:'"' to:'"'];
+    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
     
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
@@ -747,7 +747,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 //        TDParser *options = [self zeroOrOne:w];
         
         // pattern
-        TDPattern *pattern = [TDPattern patternWithString:@"^.+^" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
+        TDPattern *pattern = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
         [pattern setAssembler:self selector:@selector(workOnPatternPatternAssembly:)];
         
         [patternParser add:pattern];
@@ -763,14 +763,17 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnPatternAssembly:(TDAssembly *)a {
     //NSArray *toks = [a objectsAbove:fwdSlash];
+    
+    NSString *regex = [a pop];
+    [a push:[TDPattern patternWithString:regex]];
 }
 
 
 - (void)workOnPatternPatternAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
-
     TDToken *tok = [a pop];
-    NSAssert(tok.isDelimitedString, @"");
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
+    NSAssert(tok.isQuotedString, @"");
+    [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
@@ -780,10 +783,24 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnPatternTokenTypeAssembly:(TDAssembly *)a {
-    //NSArray *toks = [a objectsAbove:fwdSlash];
-    
     TDToken *tok = [a pop];
+    NSAssert([tok isKindOfClass:[TDToken class]], @"");
     NSAssert(tok.isWord, @"");
+
+    TDTokenType tt = TDTokenTypeAny;
+    if ([tok.stringValue isEqualToString:@"Word"]) {
+        tt = TDTokenTypeWord;
+    } else if ([tok.stringValue isEqualToString:@"Num"] || [tok.stringValue isEqualToString:@"Number"]) {
+        tt = TDTokenTypeNumber;
+    } else if ([tok.stringValue isEqualToString:@"Symbol"]) {
+        tt = TDTokenTypeSymbol;
+    } else if ([tok.stringValue isEqualToString:@"QuotedString"]) {
+        tt = TDTokenTypeQuotedString;
+    } else if ([tok.stringValue isEqualToString:@"DelimitedString"]) {
+        tt = TDTokenTypeDelimitedString;
+    }
+    
+    [a push:[NSNumber numberWithInteger:tt]];
 }
 
 

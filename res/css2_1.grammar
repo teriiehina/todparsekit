@@ -1,6 +1,6 @@
-(:
+"""
     This is an attempt to convert the official CSS 2.1 grammar to TDParseKit
-:)
+"""
 
 
 @start          = stylesheet;

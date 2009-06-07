@@ -1,6 +1,6 @@
-(:
+"""
     A Grammar for a small subset of CSS useful for syntax highlighting in an NSTextView + NSAttributedString
-:)
+"""
 
 @start        = ruleset*;
 ruleset       = selectors '{' decls '}'.discard;
