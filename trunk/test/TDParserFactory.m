@@ -943,6 +943,10 @@ void TDReleaseSubparserTree(TDParser *p) {
         tt = TDTokenTypeQuotedString;
     } else if ([tok.stringValue isEqualToString:@"DelimitedString"]) {
         tt = TDTokenTypeDelimitedString;
+    } else if ([tok.stringValue isEqualToString:@"Any"]) {
+        tt = TDTokenTypeAny;
+    } else {
+        NSAssert(0, @"unknown token type provided as thrid arg to Pattern()");
     }
     
     [a push:[NSNumber numberWithInteger:tt]];
