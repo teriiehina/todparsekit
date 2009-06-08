@@ -9,16 +9,50 @@
 #import <TDParseKit/TDDelimitedString.h>
 #import <TDParseKit/TDToken.h>
 
+@interface TDDelimitedString ()
+@property (nonatomic, retain) NSString *startMarker;
+@property (nonatomic, retain) NSString *endMarker;
+@end
+
 @implementation TDDelimitedString
 
 + (id)delimitedString {
-    return [[[self alloc] initWithString:nil] autorelease];
+    return [self delimitedStringWithStartMarker:nil];
+}
+
+
++ (id)delimitedStringWithStartMarker:(NSString *)start {
+    return [self delimitedStringWithStartMarker:start endMarker:nil];
+}
+
+
++ (id)delimitedStringWithStartMarker:(NSString *)start endMarker:(NSString *)end {
+    TDDelimitedString *ds = [[[self alloc] initWithString:nil] autorelease];
+    ds.startMarker = start;
+    ds.endMarker = end;
+    return ds;
+}
+
+
+- (void)dealloc {
+    self.startMarker = nil;
+    self.endMarker = nil;
+    [super dealloc];
 }
 
 
 - (BOOL)qualifies:(id)obj {
     TDToken *tok = (TDToken *)obj;
-    return tok.isDelimitedString;
+    BOOL result = tok.isDelimitedString;
+    if (result && startMarker.length) {
+        result = [tok.stringValue hasPrefix:startMarker];
+        if (result && endMarker.length) {
+            result = [tok.stringValue hasSuffix:endMarker];
+        }
+    }
+    return result;
 }
 
+@synthesize startMarker;
+@synthesize endMarker;
 @end
