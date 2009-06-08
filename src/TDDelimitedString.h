@@ -14,7 +14,8 @@
     @brief      A <tt>TDDelimitedString</tt> matches a delimited string from a token assembly.
 */
 @interface TDDelimitedString : TDTerminal {
-
+    NSString *startMarker;
+    NSString *endMarker;
 }
 
 /*!
@@ -22,4 +23,8 @@
     @result     an initialized autoreleased <tt>TDDelimitedString</tt> object
 */
 + (id)delimitedString;
+
++ (id)delimitedStringWithStartMarker:(NSString *)start;
+
++ (id)delimitedStringWithStartMarker:(NSString *)start endMarker:(NSString *)end;
 @end

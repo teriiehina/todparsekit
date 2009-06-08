@@ -263,11 +263,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     t.commentState.reportsCommentTokens = [self boolForTokenForKey:@"@reportsCommentTokens"];
 	t.commentState.balancesEOFTerminatedComments = [self boolForTokenForKey:@"balancesEOFTerminatedComments"];
 	t.quoteState.balancesEOFTerminatedQuotes = [self boolForTokenForKey:@"@balancesEOFTerminatedQuotes"];
+	t.delimitState.balancesEOFTerminatedStrings = [self boolForTokenForKey:@"@balancesEOFTerminatedStrings"];
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
     [self setTokenizerState:t.quoteState onTokenizer:t forTokensForKey:@"@quoteState"];
+    [self setTokenizerState:t.delimitState onTokenizer:t forTokensForKey:@"@delimitState"];
     [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
     [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
@@ -733,7 +735,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
-        self.patternParser = [TDDelimitedString delimitedString];
+        self.patternParser = [TDDelimitedString delimitedStringWithStartMarker:@"/"];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
