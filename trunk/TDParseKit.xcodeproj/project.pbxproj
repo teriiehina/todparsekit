@@ -1698,6 +1698,8 @@
 				D331B5A20EA5293A0020BF01 /* TDTrackException.m */,
 				D31FE6140E60E75300A0803E /* TDEmpty.h */,
 				D31FE6150E60E75300A0803E /* TDEmpty.m */,
+				D3D6E4E10EF625D700292EE6 /* TDAny.h */,
+				D3D6E4E20EF625D700292EE6 /* TDAny.m */,
 				D31FE61C0E60E75300A0803E /* TDTerminal.h */,
 				D31FE61D0E60E75300A0803E /* TDTerminal.m */,
 			);
@@ -1773,8 +1775,6 @@
 				D31FE6790E60E80600A0803E /* TDLiteral.m */,
 				D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */,
 				D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */,
-				D3D6E4E10EF625D700292EE6 /* TDAny.h */,
-				D3D6E4E20EF625D700292EE6 /* TDAny.m */,
 			);
 			name = "token terminals";
 			sourceTree = "<group>";
