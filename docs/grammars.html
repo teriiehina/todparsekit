@@ -135,6 +135,9 @@
   
   TDParser *parser = nil;
   parser = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];</pre>
+  
+  NSString *s = @"cold freezing cold beer.";
+  id result = [parser parse:s];
     </div>
     
     
