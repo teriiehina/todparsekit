@@ -11,10 +11,12 @@
         .code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
         h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
         a[name] {display:block; margin-bottom:60px;}
+        #home-link {position:fixed; top:0; right:0; margin:0; padding:3px 10px; font:bold 13px "Lucida Grande";}
     </style>
 </head>
 <body>
     <h1>TDParseKit Documentation</h1>
+    <div id="home-link"><a href="/tdparsekit">Home</a></div>
 <div id="content">
         
     <h2>Language Parsing via Grammars</h2>
@@ -23,17 +25,17 @@
         <li><a href="#basic-syntax">Basic Grammar Syntax</a></li>
         <li><a href="#production-syntax">Individual Grammar Production Syntax</a></li>
         <li><a href="#grouping">Grouping</a></li>
-        
+        <li><a href="#instantiating">Instantiating Grammar Parsers in Objective-C</a></li>
     </ul>
 
     <a name="basic-syntax"></a>
     <h3>Basic Grammar Syntax</h3>
 
-    <p>TDParseKit allows users to build parsers for custom languages from a declarative, BNF-style grammar syntax without writing any code. Under the hood, grammar support is implemented using the TDParseKit Objective-C API, so the grammar syntax closely mirrors the features of the Objective-C API.</p>
+    <p>TDParseKit allows users to build parsers for custom languages from a declarative, BNF-style grammar syntax without writing any code (well, ok.. a <em>single line</em> of code). Under the hood, grammar support is implemented using the TDParseKit Objective-C API, so the grammar syntax closely mirrors the features of the Objective-C API.</p>
     
     <p>The grammar below describes a simple toy language called <b>Cold Beer</b> and will serve as a quick introduction to the TDPK grammar syntax. The rules of the <b>Cold Beer</b> language are as follows. The language should consist of a sequence of one or more sentences beginning with the word <tt>&laquo;cold&raquo;</tt> followed by a repetition of either <tt>&laquo;cold&raquo;</tt> or <tt>&laquo;freezing&raquo;</tt> followed by <tt>&laquo;beer&raquo;</tt> and terminated by the symbol <tt>&laquo;.&raquo;</tt>.</p>
     
-    <p>So for example, each of the following lines are valid instances of the <b>Cold Beer</b> language (as is the example as a whole):</p>
+    <p>For example, each of the following lines are valid instances of the <b>Cold Beer</b> language (as is the example as a whole):</p>
     
     <div class="code">
     <pre>
@@ -99,8 +101,7 @@
     
     <div class="code">
     <pre>
-    adjectives = cold adjective*;
-    </pre>
+    adjectives = cold adjective*;</pre>
     </div>
     
     <p>In turn, <tt>adjectives</tt> is a <em>sequence</em> of a single instance of the <tt>cold</tt> production followed by a <em>repetition</em> (<tt>&laquo;*&raquo;</tt> read as 'zero or more') of the <tt>adjective</tt> production.</p>
@@ -125,6 +126,18 @@
     @start = ('cold' ('cold' | 'freezing')* 'beer' '.')+;</pre>
     </div>
 
+    <a name="instantiating"></a>
+    <h3>Instantiating Grammar Parsers in Objective-C</h3>
+    
+    <div class="code">
+    <pre>
+  NSString *g = ... // fetch your grammar from a file on disk
+  
+  TDParser *parser = nil;
+  parser = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];</pre>
+    </div>
+    
+    
 </div>
 </body>
 </html>
