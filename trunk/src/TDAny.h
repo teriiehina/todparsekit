@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDParser.h>
+#import <TDParseKit/TDTerminal.h>
 
 /*!
     @class      TDAny 
     @brief      A <tt>TDAny</tt> matches any token from a token assembly.
 */
-@interface TDAny : TDParser {
+@interface TDAny : TDTerminal {
 
 }
 

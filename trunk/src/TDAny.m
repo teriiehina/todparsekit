@@ -12,7 +12,7 @@
 @implementation TDAny
 
 + (id)any {
-    return [[[self alloc] init] autorelease];
+    return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
