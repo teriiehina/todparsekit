@@ -1,0 +1,130 @@
+<html>
+<head>
+    <title>TDParseKit Language Parsing via Grammars</title>
+    <style>
+        h1 {position:fixed; left:0; top:0; right:0; margin:0; border-bottom:1px solid silver; padding:3px 10px; background:#eeeeec; font:bold 16px "Lucida Grande";}
+        #content {width:575px; margin:60px auto 30px; text-align:justify;}
+        body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
+        tt, pre {font:12px Monaco;}
+        table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
+        th, td {border:1px solid silver;}
+        .code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
+        h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
+        a[name] {display:block; margin-bottom:60px;}
+    </style>
+</head>
+<body>
+    <h1>TDParseKit Documentation</h1>
+<div id="content">
+        
+    <h2>Language Parsing via Grammars</h2>
+    
+    <ul>
+        <li><a href="#basic-syntax">Basic Grammar Syntax</a></li>
+        <li><a href="#production-syntax">Individual Grammar Production Syntax</a></li>
+        <li><a href="#grouping">Grouping</a></li>
+        
+    </ul>
+
+    <a name="basic-syntax"></a>
+    <h3>Basic Grammar Syntax</h3>
+
+    <p>TDParseKit allows users to build parsers for custom languages from a declarative, BNF-style grammar syntax without writing any code. Under the hood, grammar support is implemented using the TDParseKit Objective-C API, so the grammar syntax closely mirrors the features of the Objective-C API.</p>
+    
+    <p>The grammar below describes a simple toy language called <b>Cold Beer</b> and will serve as a quick introduction to the TDPK grammar syntax. The rules of the <b>Cold Beer</b> language are as follows. The language should consist of a sequence of one or more sentences beginning with the word <tt>&laquo;cold&raquo;</tt> followed by a repetition of either <tt>&laquo;cold&raquo;</tt> or <tt>&laquo;freezing&raquo;</tt> followed by <tt>&laquo;beer&raquo;</tt> and terminated by the symbol <tt>&laquo;.&raquo;</tt>.</p>
+    
+    <p>So for example, each of the following lines are valid instances of the <b>Cold Beer</b> language (as is the example as a whole):</p>
+    
+    <div class="code">
+    <pre>
+    cold cold cold freezing cold freezing cold beer.
+    cold cold freezing cold beer.
+    cold freezing beer.
+    cold beer.</pre>
+    </div>
+    
+    <p>The following lines are <b><em>not</em></b> valid <b>Cold Beer</b> statements:</p>
+
+    <div class="code">
+    <pre>
+    freezing cold beer.
+    cold freezing beer
+    beer.</pre>
+    </div>
+    
+    <p>Here is a complete TDParseKit grammar for the <b>Cold Beer</b> language.</p>
+    
+    <div class="code">
+    <pre>
+    @start = sentence+;
+    sentence = adjectives 'beer' '.';
+    adjectives = cold adjective*;
+    adjective = cold | 'freezing';
+    cold = 'cold';</pre>
+    </div>
+    
+    <p>As shown above, the TDPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of the Python programming language. So a commented <b>Cold Beer</b> grammar may appear as:</p>
+    
+    <div class="code">
+    <pre>
+    """
+        A Grammar for the Cold Beer Language
+        by Todd Ditchendorf
+    """
+    @start = sentence+;     # outermost production
+    sentence = adjectives 'beer' '.';
+    adjectives = cold adjective*;
+    adjective = cold | 'freezing';
+    cold = 'cold';</pre>
+    </div>
+    
+    <a name="production-syntax"></a>
+    <h3>Individual Grammar Production Syntax</h3>
+
+    <p>Every TDPK grammar <b>must</b> contain <b>one and only one</b> production named <tt>@start</tt>. This will be the <em>highest-level</em> or <em>outermost</em> production rule in the language. For <b>Cold Beer</b>, the outermost production is:</p>
+
+    <div class="code">
+    <pre>
+    @start = sentence+;</pre>
+    </div>
+    
+    <p>Which states that the outermost production of this language consists of a <em>sequence</em> of one or more (<tt>&laquo;+&raquo;</tt>) instances of the <tt>sentence</tt> production.</p>
+
+    <div class="code">
+    <pre>
+    sentence = adjectives 'beer' '.';</pre>
+    </div>
+
+    <p>The <tt>sentence</tt> production states that sentences are a <em>sequence</em> of the <tt>adjective</tt> production followed by the literal strings <tt>beer</tt> and <tt>.</tt></p>
+    
+    <div class="code">
+    <pre>
+    adjectives = cold adjective*;
+    </pre>
+    </div>
+    
+    <p>In turn, <tt>adjectives</tt> is a <em>sequence</em> of a single instance of the <tt>cold</tt> production followed by a <em>repetition</em> (<tt>&laquo;*&raquo;</tt> read as 'zero or more') of the <tt>adjective</tt> production.</p>
+
+    <div class="code">
+    <pre>
+    adjective = cold | 'freezing';
+    cold = 'cold';</pre>
+    </div>
+    
+    <p>The <tt>adjective</tt> production is an <em>alternation</em> of either an instance of the <tt>cold</tt> production or the literal string <tt>freezing</tt>, and <tt>cold</tt> is the literal string <tt>cold</tt>.</p>
+
+    <a name="grouping"></a>
+    <h3>Grouping</h3>
+    
+    <p>A language may be expressed in many different, yet equivalent, grammars. Productions may be grouped using parentheses (<tt>&laquo;(&raquo;</tt> and <tt>&laquo;)&raquo;</tt>).</p>
+    
+    <p>For example, the <b>Cold Beer</b> language could also be represented by the following grammar:</p>
+
+    <div class="code">
+    <pre>
+    @start = ('cold' ('cold' | 'freezing')* 'beer' '.')+;</pre>
+    </div>
+
+</div>
+</body>
+</html>
