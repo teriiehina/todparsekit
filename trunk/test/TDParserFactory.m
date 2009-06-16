@@ -336,6 +336,22 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+
+    // delimited strings
+    toks = [parserTokensTable objectForKey:@"@delimitedStrings"];
+    NSLog(@"toks for delimitedStrings: %@", toks);
+    if (toks.count > 1) {
+        NSInteger i = 0;
+        for ( ; i < toks.count - 1; i++) {
+            TDToken *startTok = [toks objectAtIndex:i];
+            TDToken *endTok = [toks objectAtIndex:++i];
+            if (startTok.isQuotedString && endTok.isQuotedString) {
+                NSString *start = [startTok.stringValue stringByTrimmingQuotes];
+                NSString *end = [endTok.stringValue stringByTrimmingQuotes];
+                [t.delimitState addStartMarker:start endMarker:end allowedCharacterSet:nil];
+            }
+        }
+    }
     
     return t;
 }
@@ -982,8 +998,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     NSAssert(2 == toks.count, @"");
     NSString *start = [[[toks objectAtIndex:1] stringValue] stringByTrimmingQuotes];
+    NSLog(@"start: %@", start);
     NSString *end = [[[toks objectAtIndex:0] stringValue] stringByTrimmingQuotes];
+    NSLog(@"end: %@", end);
     TDDelimitedString *ds = [TDDelimitedString delimitedStringWithStartMarker:start endMarker:end];
+    NSLog(@"ds: %@", ds);
     [a push:ds];
 }
 
