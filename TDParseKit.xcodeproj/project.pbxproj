@@ -165,6 +165,7 @@
 		D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */; };
 		D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */; };
 		D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */; };
+		D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D6A5FE840307C02AAC07 /* AppKit.framework */; };
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
 		D3656DD00EF2612000226554 /* TDTokenArraySource.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DC70EF260FC00226554 /* TDTokenArraySource.m */; };
@@ -774,6 +775,7 @@
 		D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUppercaseWord.m; path = jssrc/TDJSUppercaseWord.m; sourceTree = "<group>"; };
 		D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSLowercaseWord.h; path = jssrc/TDJSLowercaseWord.h; sourceTree = "<group>"; };
 		D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSLowercaseWord.m; path = jssrc/TDJSLowercaseWord.m; sourceTree = "<group>"; };
+		D3587EA50FE83EAC00DDD023 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		D36568A50EEF9FE900226554 /* TDPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParser.h; path = test/TDPlistParser.h; sourceTree = "<group>"; };
 		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
 		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
@@ -1089,6 +1091,7 @@
 				D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */,
 				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
 				D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
+				D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1123,6 +1126,7 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				D3587EA50FE83EAC00DDD023 /* AppKit.framework */,
 			);
 			name = TODParseKit;
 			sourceTree = "<group>";
@@ -3036,7 +3040,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = staticlib;
+				PRODUCT_NAME = TDParseKit;
 			};
 			name = Debug;
 		};
