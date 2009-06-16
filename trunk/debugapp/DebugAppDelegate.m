@@ -418,7 +418,7 @@
     [t setTokenizerState:t.delimitState from:'<' to:'<'];
     [t.delimitState addStartMarker:@"<?=" endMarker:@"?>" allowedCharacterSet:cs];
     
-    TDToken *tok = [t nextToken];
+//    TDToken *tok = [t nextToken];
     
     //TDTrue(tok.isDelimitedString);
     
@@ -429,8 +429,8 @@
     TDJavaScriptParser *jsp = [TDJavaScriptParser parser];
     NSString *s = @"for( ; true; true) {}";
     jsp.tokenizer.string = s;
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
-    id res = [jsp bestMatchFor:a];
+//    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    id res = [jsp bestMatchFor:a];
     //TDEqualObjects([res description], @"['foo']'foo'^");
     
     //TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
