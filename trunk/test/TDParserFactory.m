@@ -111,6 +111,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
+@property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
 @property (nonatomic, retain) TDParser *numParser;
 @end
 
@@ -165,6 +166,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.literalParser = nil;
     self.variableParser = nil;
     self.constantParser = nil;
+    self.delimitedStringParser = nil;
     self.numParser = nil;
     [super dealloc];
 }
@@ -484,7 +486,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num '}'
-// atomicValue          = (literal | variable | constant | pattern) discard?
+// atomicValue          = (literal | variable | constant | pattern | delimitedString) discard?
 // discard              = '.' 'discard'
 // literal              = QuotedString
 // variable             = LowercaseWord
@@ -697,7 +699,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// atomicValue          = (pattern | literal | variable | constant) discard?
+// atomicValue          = (pattern | literal | variable | constant  | delimitedString) discard?
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
@@ -708,6 +710,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [a add:self.literalParser];
         [a add:self.variableParser];
         [a add:self.constantParser];
+        [a add:self.delimitedStringParser];
         [atomicValueParser add:a];
 
         [atomicValueParser add:[self zeroOrOne:self.discardParser]];
@@ -729,9 +732,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = /[\S]+
-// pattern              = 'Pattern' '(' QuotedString ',' QuotedString ',' Word ')';
-// pattern              = DelimitedString('/', '', nil)
+// pattern              = DelimitedString('/', '')
 - (TDParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
@@ -771,6 +772,25 @@ void TDReleaseSubparserTree(TDParser *p) {
         [constantParser setAssembler:self selector:@selector(workOnConstantAssembly:)];
     }
     return constantParser;
+}
+
+
+// constant = UppercaseWord
+- (TDCollectionParser *)delimitedStringParser {
+    if (!delimitedStringParser) {
+        self.delimitedStringParser = [TDSequence sequence];
+        delimitedStringParser.name = @"delimitedString";
+        
+        [delimitedStringParser add:[[TDLiteral literalWithString:@"DelimitedString"] discard]];
+        [delimitedStringParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
+        [delimitedStringParser add:[TDQuotedString quotedString]]; // startMarker
+        [delimitedStringParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [delimitedStringParser add:[TDQuotedString quotedString]]; // endMarker
+        [delimitedStringParser add:[[TDSymbol symbolWithString:@")"] discard]];
+
+        [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedStringAssembly:)];
+    }
+    return delimitedStringParser;
 }
 
 
@@ -944,6 +964,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [TDEmpty empty];
     } else if ([s isEqualToString:@"Pattern"]) {
         p = tok;
+    } else if ([s isEqualToString:@"DelimitedString"]) {
+        p = tok;
     } else if ([s isEqualToString:@"YES"] || [s isEqualToString:@"NO"]) {
         p = tok;
     } else {
@@ -951,6 +973,18 @@ void TDReleaseSubparserTree(TDParser *p) {
          @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Num, Symbol, Empty.", s];
     }
     [a push:p];
+}
+
+
+- (void)workOnDelimitedStringAssembly:(TDAssembly *)a {
+    NSArray *toks = [a objectsAbove:paren];
+    [a pop]; // discard '(' fence
+    
+    NSAssert(2 == toks.count, @"");
+    NSString *start = [[[toks objectAtIndex:1] stringValue] stringByTrimmingQuotes];
+    NSString *end = [[[toks objectAtIndex:0] stringValue] stringByTrimmingQuotes];
+    TDDelimitedString *ds = [TDDelimitedString delimitedStringWithStartMarker:start endMarker:end];
+    [a push:ds];
 }
 
 
@@ -1040,6 +1074,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize literalParser;
 @synthesize variableParser;
 @synthesize constantParser;
+@synthesize delimitedStringParser;
 @synthesize numParser;
 @synthesize assemblerSettingBehavior;
 @end

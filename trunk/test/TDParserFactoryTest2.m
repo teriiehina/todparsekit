@@ -223,4 +223,17 @@
     TDEqualObjects(@"[$, %, $, %, 'bar']$/%/$/%/'bar'^", [res description]);
 }
 
+
+- (void)test12 {
+//    g = @"@start = DelimitedString('$', '$');";
+//    lp = [factory parserFromGrammar:g assembler:nil];
+//    TDNotNil(lp);
+//    
+//    s = @"$foo$";
+//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+//    TDEqualObjects(@"[$foo$]$foo$^", [res description]);
+}
+
+
+
 @end
