@@ -225,13 +225,15 @@
 
 
 - (void)test12 {
-//    g = @"@start = DelimitedString('$', '$');";
-//    lp = [factory parserFromGrammar:g assembler:nil];
-//    TDNotNil(lp);
-//    
-//    s = @"$foo$";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[$foo$]$foo$^", [res description]);
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%'; @start = DelimitedString('$', '%');";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"$foo%";
+    TDTokenizer *t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[$foo%]$foo%^", [res description]);
 }
 
 
