@@ -107,7 +107,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
-@property (nonatomic, retain) TDCollectionParser *patternParser;
+@property (nonatomic, retain) TDParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
