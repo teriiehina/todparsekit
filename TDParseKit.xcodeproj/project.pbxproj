@@ -161,6 +161,7 @@
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
+		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
 		D354A67E0F1D304C00B3F04F /* TDJSUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A67C0F1D304C00B3F04F /* TDJSUppercaseWord.h */; };
 		D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */; };
 		D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */; };
@@ -766,6 +767,7 @@
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
 		D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReaderTest.m; path = test/XMLReaderTest.m; sourceTree = "<group>"; };
+		D35384EC0FE9691100926552 /* nspredicate.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = nspredicate.grammar; path = res/nspredicate.grammar; sourceTree = "<group>"; };
 		D354A67C0F1D304C00B3F04F /* TDJSUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSUppercaseWord.h; path = jssrc/TDJSUppercaseWord.h; sourceTree = "<group>"; };
 		D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUppercaseWord.m; path = jssrc/TDJSUppercaseWord.m; sourceTree = "<group>"; };
 		D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSLowercaseWord.h; path = jssrc/TDJSLowercaseWord.h; sourceTree = "<group>"; };
@@ -1212,6 +1214,7 @@
 		D3252F670FCE171D005EF059 /* predicate */ = {
 			isa = PBXGroup;
 			children = (
+				D35384EC0FE9691100926552 /* nspredicate.grammar */,
 				D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */,
 				D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */,
 				D3252F780FCE1A7E005EF059 /* TDNSPredicateBuilderTest.h */,
@@ -2432,6 +2435,7 @@
 				D380B5940F0D82F60009EC13 /* example.css in Resources */,
 				D3FD79200F4CC86800BAD816 /* rubyhash.grammar in Resources */,
 				D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */,
+				D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
