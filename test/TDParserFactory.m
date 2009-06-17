@@ -340,7 +340,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     // delimited strings
     toks = [parserTokensTable objectForKey:@"@delimitedStrings"];
     NSAssert(0 == toks.count % 3, @"@delimitedStrings must be specified as quoted strings in multiples of 3");
-    NSLog(@"toks for delimitedStrings: %@", toks);
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 2; i++) {
@@ -397,9 +396,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
-        NSAssert(className.length, @"");
         TDParser *p = [[NSClassFromString(className) alloc] init];
-        NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         [p release];
         
@@ -408,7 +405,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 
         [self setAssemblerForParser:p];
 
-        NSAssert(p, @"");
         [parserTokensTable setObject:p forKey:parserName];
         return p;
     }
