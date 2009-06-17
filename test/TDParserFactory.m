@@ -904,30 +904,27 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSString *s = tok.stringValue;
     NSAssert(s.length > 2, @"");
     
-    NSAssert([[s substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"], @"");
-    s = [s substringFromIndex:1];
-    NSInteger loc = [s rangeOfString:@"/" options:NSBackwardsSearch].location;
-    NSAssert(NSNotFound != loc, @"");
-    
-    NSString *optsString = [s substringFromIndex:loc + 1];
-    NSString *re = [s substringToIndex:loc];
+    NSAssert([s hasPrefix:@"/"], @"");
+    NSAssert([s hasSuffix:@"/"], @"");
+
+    NSString *re = [s stringByTrimmingQuotes];
 
     TDPatternOptions opts = TDPatternOptionsNone;
-    if (NSNotFound != [optsString rangeOfString:@"i"].location) {
-        opts |= TDPatternOptionsIgnoreCase;
-    }
-    if (NSNotFound != [optsString rangeOfString:@"m"].location) {
-        opts |= TDPatternOptionsMultiline;
-    }
-    if (NSNotFound != [optsString rangeOfString:@"x"].location) {
-        opts |= TDPatternOptionsComments;
-    }
-    if (NSNotFound != [optsString rangeOfString:@"s"].location) {
-        opts |= TDPatternOptionsDotAll;
-    }
-    if (NSNotFound != [optsString rangeOfString:@"w"].location) {
-        opts |= TDPatternOptionsUnicodeWordBoundaries;
-    }
+//    if (NSNotFound != [optsString rangeOfString:@"i"].location) {
+//        opts |= TDPatternOptionsIgnoreCase;
+//    }
+//    if (NSNotFound != [optsString rangeOfString:@"m"].location) {
+//        opts |= TDPatternOptionsMultiline;
+//    }
+//    if (NSNotFound != [optsString rangeOfString:@"x"].location) {
+//        opts |= TDPatternOptionsComments;
+//    }
+//    if (NSNotFound != [optsString rangeOfString:@"s"].location) {
+//        opts |= TDPatternOptionsDotAll;
+//    }
+//    if (NSNotFound != [optsString rangeOfString:@"w"].location) {
+//        opts |= TDPatternOptionsUnicodeWordBoundaries;
+//    }
     
     [a push:[TDPattern patternWithString:re options:opts tokenType:TDTokenTypeAny]];
 }
