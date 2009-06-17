@@ -225,15 +225,48 @@
 
 
 - (void)test12 {
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%'; @start = DelimitedString('$', '%');";
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$', '%');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
     s = @"$foo%";
-    TDTokenizer *t = lp.tokenizer;
+    t = lp.tokenizer;
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[$foo%]$foo%^", [res description]);
+    
+    
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$');";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"$foo%";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[$foo%]$foo%^", [res description]);
+    
+    
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' 'fo'; @start = DelimitedString('$', '%');";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"$foo%";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[$foo%]$foo%^", [res description]);
+
+    
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' 'f'; @start = DelimitedString('$', '%');";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"$foo%";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
 }
 
 

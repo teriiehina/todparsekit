@@ -339,16 +339,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     // delimited strings
     toks = [parserTokensTable objectForKey:@"@delimitedStrings"];
+    NSAssert(0 == toks.count % 3, @"@delimitedStrings must be specified as quoted strings in multiples of 3");
     NSLog(@"toks for delimitedStrings: %@", toks);
     if (toks.count > 1) {
         NSInteger i = 0;
-        for ( ; i < toks.count - 1; i++) {
+        for ( ; i < toks.count - 2; i++) {
             TDToken *startTok = [toks objectAtIndex:i];
             TDToken *endTok = [toks objectAtIndex:++i];
+            TDToken *charSetTok = [toks objectAtIndex:++i];
             if (startTok.isQuotedString && endTok.isQuotedString) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
-                [t.delimitState addStartMarker:start endMarker:end allowedCharacterSet:nil];
+                NSCharacterSet *charSet = nil;
+                if (charSetTok.isQuotedString) {
+                    charSet = [NSCharacterSet characterSetWithCharactersInString:[charSetTok.stringValue stringByTrimmingQuotes]];
+                }
+                [t.delimitState addStartMarker:start endMarker:end allowedCharacterSet:charSet];
             }
         }
     }
@@ -791,17 +797,20 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// constant = UppercaseWord
+// delimitedString = 'DelimitedString' '(' QuotedString (',' QuotedString)? ')'
 - (TDCollectionParser *)delimitedStringParser {
     if (!delimitedStringParser) {
         self.delimitedStringParser = [TDSequence sequence];
         delimitedStringParser.name = @"delimitedString";
         
+        TDSequence *secondArg = [TDSequence sequence];
+        [secondArg add:[[TDSymbol symbolWithString:@","] discard]];
+        [secondArg add:[TDQuotedString quotedString]]; // endMarker
+        
         [delimitedStringParser add:[[TDLiteral literalWithString:@"DelimitedString"] discard]];
         [delimitedStringParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
         [delimitedStringParser add:[TDQuotedString quotedString]]; // startMarker
-        [delimitedStringParser add:[[TDSymbol symbolWithString:@","] discard]];
-        [delimitedStringParser add:[TDQuotedString quotedString]]; // endMarker
+        [delimitedStringParser add:[self zeroOrOne:secondArg]];
         [delimitedStringParser add:[[TDSymbol symbolWithString:@")"] discard]];
 
         [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedStringAssembly:)];
@@ -996,13 +1005,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSArray *toks = [a objectsAbove:paren];
     [a pop]; // discard '(' fence
     
-    NSAssert(2 == toks.count, @"");
-    NSString *start = [[[toks objectAtIndex:1] stringValue] stringByTrimmingQuotes];
-    NSLog(@"start: %@", start);
-    NSString *end = [[[toks objectAtIndex:0] stringValue] stringByTrimmingQuotes];
-    NSLog(@"end: %@", end);
+    NSAssert(toks.count > 0 && toks.count < 3, @"");
+    NSString *start = [[[toks lastObject] stringValue] stringByTrimmingQuotes];
+    NSString *end = nil;
+    if (toks.count > 1) {
+        end = [[[toks objectAtIndex:0] stringValue] stringByTrimmingQuotes];
+    }
     TDDelimitedString *ds = [TDDelimitedString delimitedStringWithStartMarker:start endMarker:end];
-    NSLog(@"ds: %@", ds);
     [a push:ds];
 }
 

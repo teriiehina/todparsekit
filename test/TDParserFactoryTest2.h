@@ -16,6 +16,7 @@
     TDParserFactory *factory;
     TDAssembly *res;
     TDParser *lp; // language parser
+    TDTokenizer *t;
 }
 
 @end
