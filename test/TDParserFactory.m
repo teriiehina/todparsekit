@@ -396,6 +396,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
+
         TDParser *p = [[NSClassFromString(className) alloc] init];
         [parserTokensTable setObject:p forKey:parserName];
         [p release];

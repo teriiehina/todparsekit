@@ -40,9 +40,9 @@ attrName {
 //    font-size:11px;
 //}
 
-word, num {
+text {
     color:rgb(255, 255, 255);
-    background-color:rgb(30, 30, 36);
+    background-color:rgb(255, 0, 0);
     font-family:'Monaco';
     font-size:11px;
 }
