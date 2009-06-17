@@ -207,7 +207,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     // customize tokenizer for Pattern regexes
     [t setTokenizerState:t.delimitState from:'/' to:'/'];
-    [t.delimitState addStartMarker:@"/" endMarker:nil allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
+    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
 
     // customize tokenizer for comments
     [t setTokenizerState:t.commentState from:'#' to:'#'];
@@ -751,11 +751,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = DelimitedString('/', '')
+// pattern              = DelimitedString('/', '/')
 - (TDParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
-        self.patternParser = [TDDelimitedString delimitedStringWithStartMarker:@"/"];
+        self.patternParser = [TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"];
         [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
     }
     return patternParser;
@@ -903,7 +903,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     NSString *s = tok.stringValue;
     NSAssert(s.length > 2, @"");
-    NSLog(@"\n\n\ns: %@\n", s);
     
     NSAssert([[s substringWithRange:NSMakeRange(0, 1)] isEqualToString:@"/"], @"");
     s = [s substringFromIndex:1];

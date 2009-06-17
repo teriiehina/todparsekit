@@ -236,7 +236,7 @@
     TDEqualObjects(@"[$foo%]$foo%^", [res description]);
     
     
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$');";
+    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$', '');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     

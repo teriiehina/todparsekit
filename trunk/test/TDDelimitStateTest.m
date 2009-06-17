@@ -25,14 +25,83 @@
     s = @"<foo>";
     t.string = s;
     NSCharacterSet *cs = nil;
-
+    
     [t setTokenizerState:delimitState from:'<' to:'<'];
     [delimitState addStartMarker:@"<" endMarker:@">" allowedCharacterSet:cs];
     
     tok = [t nextToken];
-
+    
     TDTrue(tok.isDelimitedString);
     TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testSlashFooSlash {
+    s = @"/foo/";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'/' to:'/'];
+    [delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, s);
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testSlashFooSlashBar {
+    s = @"/foo/bar";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'/' to:'/'];
+    [delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, @"/foo/");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isWord);
+    TDEqualObjects(tok.stringValue, @"bar");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDEqualObjects(tok, [TDToken EOFToken]);
+}
+
+
+- (void)testSlashFooSlashSemi {
+    s = @"/foo/;";
+    t.string = s;
+    NSCharacterSet *cs = nil;
+    
+    [t setTokenizerState:delimitState from:'/' to:'/'];
+    [delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:cs];
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isDelimitedString);
+    TDEqualObjects(tok.stringValue, @"/foo/");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @";");
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
