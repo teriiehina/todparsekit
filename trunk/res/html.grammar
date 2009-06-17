@@ -8,22 +8,19 @@
 @multiLineComments = '<!--' '-->';
 
 @start          = element;
-element         = tag elementContent tag;
-elementContent  = (text | comment)*;
-
-text            = (word | num)+;
-word            = Word;
-num             = Num;
+element         = tag elementContent* tag;
+elementContent  = text;
+text            = /[^<]+/ ;
 
 tag             = lt tagContent gt;
 tagContent      = (tagWord | fwdSlash | eq | tagQuotedString)+;
 
 
-//startTag        = lt tagContent gt;
-//endTag          = endTagStart tagContent gt;
-//tagContent      = tagName attribute;
-//attribute       = (tagWord | eq | tagQuotedString)*;
-//tagName         = Word;
+                                                    # startTag        = lt tagContent gt;
+                                                    # endTag          = endTagStart tagContent gt;
+                                                    # tagContent      = tagName attribute;
+                                                    # attribute       = (tagWord | eq | tagQuotedString)*;
+                                                    # tagName         = Word;
 tagWord           = Word;
 tagQuotedString   = QuotedString;
 
