@@ -12,9 +12,7 @@
 @class TDNSPredicateEvaluator;
 
 @protocol TDKeyPathResolver <NSObject>
-- (id)resolveValueForKeyPath:(NSString *)s;
-- (CGFloat)resolveFloatForKeyPath:(NSString *)s;
-- (BOOL)resolveBoolForKeyPath:(NSString *)s;
+- (id)resolvedValueForKeyPath:(NSString *)s;
 @end
 
 @interface TDNSPredicateEvaluator : NSObject {

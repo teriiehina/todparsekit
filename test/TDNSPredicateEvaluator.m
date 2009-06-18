@@ -94,31 +94,33 @@
 }
 
 
+- (void)workOnKeyPathAssembly:(TDAssembly *)a {
+    NSString *keyPath = [[a pop] stringValue];
+    [a push:[resolver resolvedValueForKeyPath:keyPath]];
+}
+
+
 - (void)workOnNumAssembly:(TDAssembly *)a {
     [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
 }
 
 
 - (void)workOnTrueAssembly:(TDAssembly *)a {
-    [a pop];
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
 - (void)workOnFalseAssembly:(TDAssembly *)a {
-    [a pop];
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
 - (void)workOnTruePredicateAssembly:(TDAssembly *)a {
-    [a pop];
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
 - (void)workOnFalsePredicateAssembly:(TDAssembly *)a {
-    [a pop];
     [a push:[NSNumber numberWithBool:NO]];
 }
 

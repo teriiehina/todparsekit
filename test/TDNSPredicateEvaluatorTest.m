@@ -10,18 +10,12 @@
 
 @implementation TDNSPredicateEvaluatorTest
 
-- (id)resolveValueForKeyPath:(NSString *)kp {
-    return [d objectForKey:kp];
-}
-
-
-- (CGFloat)resolveFloatForKeyPath:(NSString *)kp {
-    return [[d objectForKey:kp] floatValue];
-}
-
-
-- (BOOL)resolveBoolForKeyPath:(NSString *)kp {
-    return [[d objectForKey:kp] boolValue];
+- (id)resolvedValueForKeyPath:(NSString *)kp {
+    id result = [d objectForKey:kp];
+    if (!result) {
+        result = [NSNumber numberWithBool:NO];
+    }
+    return result;
 }
 
 
@@ -29,6 +23,27 @@
     d = [NSMutableDictionary dictionary];
     eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:self] autorelease];
 }
+
+
+- (void)testKeyPath {
+    [d setObject:[NSNumber numberWithBool:YES] forKey:@"foo"];
+    [d setObject:[NSNumber numberWithBool:NO] forKey:@"baz"];
+    
+    s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [[eval.parser parserNamed:@"keyPath"] completeMatchFor:a];
+    TDEqualObjects(@"[1]foo^", [res description]);
+
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [[eval.parser parserNamed:@"keyPath"] completeMatchFor:a];
+    TDEqualObjects(@"[0]bar^", [res description]);
+
+    s = @"baz";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [[eval.parser parserNamed:@"keyPath"] completeMatchFor:a];
+    TDEqualObjects(@"[0]baz^", [res description]);
+}    
 
 
 - (void)testNegatedPredicate {
@@ -64,6 +79,16 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]'foo'/ENDSWITH/'o'^", [res description]);
+
+    s = @"'foo' CONTAINS 'fo'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]'foo'/CONTAINS/'fo'^", [res description]);
+    
+    s = @"'foo' CONTAINS '-'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]'foo'/CONTAINS/'-'^", [res description]);
 }
 
     
