@@ -209,4 +209,22 @@
     TDEqualObjects(@"[1]1/IN/{/1/}^", [res description]);
 }    
     
+
+- (void)testOr {
+    s = @"TRUEPREDICATE OR FALSEPREDICATE";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]TRUEPREDICATE/OR/FALSEPREDICATE^", [res description]);
+}    
+
+
+- (void)testAnd {
+    s = @"TRUEPREDICATE AND FALSEPREDICATE";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]TRUEPREDICATE/AND/FALSEPREDICATE^", [res description]);
+}    
+
 @end
