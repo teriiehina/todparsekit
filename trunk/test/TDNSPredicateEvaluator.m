@@ -41,6 +41,35 @@
 }
 
 
+- (void)workOnComparisonPredicateAssembly:(TDAssembly *)a {
+    CGFloat n2 = [[a pop] floatValue];
+    NSString *op = [[a pop] stringValue];
+    CGFloat n1 = [[a pop] floatValue];
+    
+    BOOL result = NO;
+    if ([op isEqualToString:@"<"]) {
+        result = n1 < n2;
+    } else if ([op isEqualToString:@">"]) {
+        result = n1 > n2;
+    } else if ([op isEqualToString:@"="] || [op isEqualToString:@"=="]) {
+        result = n1 == n2;
+    } else if ([op isEqualToString:@"<="] || [op isEqualToString:@"=<"]) {
+        result = n1 <= n2;
+    } else if ([op isEqualToString:@">="] || [op isEqualToString:@"=>"]) {
+        result = n1 >= n2;
+    } else if ([op isEqualToString:@"!="] || [op isEqualToString:@"<>"]) {
+        result = n1 != n2;
+    }
+    
+    [a push:[NSNumber numberWithBool:result]];
+}
+
+
+- (void)workOnNumAssembly:(TDAssembly *)a {
+    [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
+}
+
+
 - (void)workOnTrueAssembly:(TDAssembly *)a {
     [a pop];
     [a push:[NSNumber numberWithBool:YES]];
@@ -51,6 +80,7 @@
     [a pop];
     [a push:[NSNumber numberWithBool:NO]];
 }
+
 
 - (void)workOnTruePredicateAssembly:(TDAssembly *)a {
     [a pop];

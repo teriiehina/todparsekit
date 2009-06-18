@@ -31,6 +31,27 @@
 }
 
 
+- (void)testComparison {
+    s = @"1 < 2";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [[eval.parser parserNamed:@"comparisonPredicate"] completeMatchFor:a];
+    TDEqualObjects(@"[1]1/</2^", [res description]);
+
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]1/</2^", [res description]);
+
+    s = @"1 > 2";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [[eval.parser parserNamed:@"comparisonPredicate"] completeMatchFor:a];
+    TDEqualObjects(@"[0]1/>/2^", [res description]);
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]1/>/2^", [res description]);
+}
+
+
 - (void)testTrue {
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
