@@ -88,10 +88,9 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
 
 # Collection Tests
-    collectionTestPredicate = aggregateOp? value collectionTestOp collection;
+    collectionTestPredicate = value in collection;
     collection              = keyPath | array;
-    collectionTestOp        = in;
-    in                      = 'IN';
+    in                      = 'IN'.discard;
 
 
 # Aggregate Operators
