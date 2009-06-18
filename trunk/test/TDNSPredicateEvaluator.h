@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <TDParseKit/TDParseKit.h>
 
-@class TDParser;
 @class TDNSPredicateEvaluator;
 
 @protocol TDKeyPathResolver <NSObject>
@@ -18,6 +18,7 @@
 @interface TDNSPredicateEvaluator : NSObject {
     id <TDKeyPathResolver>resolver;
     TDParser *parser;
+    TDToken *openCurly;
 }
 - (id)initWithKeyPathResolver:(id <TDKeyPathResolver>)r;
 

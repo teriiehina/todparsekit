@@ -36,10 +36,10 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     false = 'false'.discard;
 
 # arrays
-    array = '{'.discard arrayContentsOpt '}'.discard;
+    array = '{' arrayContentsOpt '}'.discard;
     arrayContentsOpt = Empty | arrayContents;
     arrayContents = value commaValue*;
-    commaValue = ',' value;
+    commaValue = ','.discard value;
 
 
 # keyPaths
