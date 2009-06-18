@@ -201,4 +201,12 @@
 }
 
 
+- (void)testCollectionTest {
+    s = @"1 IN {1}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]1/IN/{/1/}^", [res description]);
+}    
+    
 @end

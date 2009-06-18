@@ -111,6 +111,14 @@
 }
 
 
+- (void)workOnCollectionTestPredicateAssembly:(TDAssembly *)a {
+    NSArray *array = [a pop];
+    NSAssert([array isKindOfClass:[NSArray class]], @"");
+    id value = [a pop];
+    [a push:[NSNumber numberWithBool:[array containsObject:value]]];
+}
+
+
 - (void)workOnKeyPathAssembly:(TDAssembly *)a {
     NSString *keyPath = [[a pop] stringValue];
     [a push:[resolver resolvedValueForKeyPath:keyPath]];
