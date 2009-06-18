@@ -36,9 +36,37 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[0]not/0/</2^", [res description]);
+
+    s = @"! 0 < 2";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]!/0/</2^", [res description]);
 }
 
 
+- (void)testStringTest {
+    s = @"'foo' BEGINSWITH 'f'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]'foo'/BEGINSWITH/'f'^", [res description]);
+
+    s = @"'foo' BEGINSWITH 'o'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]'foo'/BEGINSWITH/'o'^", [res description]);
+
+    s = @"'foo' ENDSWITH 'f'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]'foo'/ENDSWITH/'f'^", [res description]);
+    
+    s = @"'foo' ENDSWITH 'o'";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]'foo'/ENDSWITH/'o'^", [res description]);
+}
+
+    
 - (void)testComparison {
     s = @"1 < 2";
     a = [TDTokenAssembly assemblyWithString:s];

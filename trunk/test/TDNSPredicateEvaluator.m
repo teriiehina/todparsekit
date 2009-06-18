@@ -8,6 +8,7 @@
 
 #import "TDNSPredicateEvaluator.h"
 #import "TDParserFactory.h"
+#import "NSString+TDParseKitAdditions.h"
 #import <TDParseKit/TDParseKit.h>
 
 @interface TDNSPredicateEvaluator ()
@@ -65,6 +66,28 @@
         result = n1 >= n2;
     } else if ([op isEqualToString:@"!="] || [op isEqualToString:@"<>"]) {
         result = n1 != n2;
+    }
+    
+    [a push:[NSNumber numberWithBool:result]];
+}
+
+
+- (void)workOnStringTestPredicateAssembly:(TDAssembly *)a {
+    NSString *s2 = [[[a pop] stringValue] stringByTrimmingQuotes];
+    NSString *op = [[a pop] stringValue];
+    NSString *s1 = [[[a pop] stringValue] stringByTrimmingQuotes];
+    
+    BOOL result = NO;
+    if (NSOrderedSame == [op caseInsensitiveCompare:@"BEGINSWITH"]) {
+        result = [s1 hasPrefix:s2];
+    } else if (NSOrderedSame == [op caseInsensitiveCompare:@"CONTAINS"]) {
+        result = (NSNotFound != [s1 rangeOfString:s2].location);
+    } else if (NSOrderedSame == [op caseInsensitiveCompare:@"ENDSWITH"]) {
+        result = [s1 hasSuffix:s2];
+    } else if (NSOrderedSame == [op caseInsensitiveCompare:@"LIKE"]) {
+        result = NSOrderedSame == [s1 caseInsensitiveCompare:s2]; // TODO
+    } else if (NSOrderedSame == [op caseInsensitiveCompare:@"MATCHES"]) {
+        result = NSOrderedSame == [s1 caseInsensitiveCompare:s2]; // TODO
     }
     
     [a push:[NSNumber numberWithBool:result]];
