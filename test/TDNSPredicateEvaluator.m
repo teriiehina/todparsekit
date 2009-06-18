@@ -40,6 +40,29 @@
     return [result boolValue];
 }
 
+
+- (void)workOnTrueAssembly:(TDAssembly *)a {
+    [a pop];
+    [a push:[NSNumber numberWithBool:YES]];
+}
+
+
+- (void)workOnFalseAssembly:(TDAssembly *)a {
+    [a pop];
+    [a push:[NSNumber numberWithBool:NO]];
+}
+
+- (void)workOnTruePredicateAssembly:(TDAssembly *)a {
+    [a pop];
+    [a push:[NSNumber numberWithBool:YES]];
+}
+
+
+- (void)workOnFalsePredicateAssembly:(TDAssembly *)a {
+    [a pop];
+    [a push:[NSNumber numberWithBool:NO]];
+}
+
 @synthesize resolver;
 @synthesize parser;
 @end
