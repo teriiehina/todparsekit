@@ -46,6 +46,9 @@
     
     res = [[eval.parser parserNamed:@"bool"] completeMatchFor:a];
     TDEqualObjects(@"[0]false^", [res description]);
+//
+//    res = [[eval.parser parserNamed:@"value"] completeMatchFor:a];
+//    TDEqualObjects(@"[0]false^", [res description]);
 }
 
 
