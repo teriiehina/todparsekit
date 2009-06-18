@@ -14,6 +14,7 @@
     NSString *s;
     TDAssembly *a;
     TDAssembly *res;
+    TDTokenizer *t;
     
     NSMutableDictionary *d;
 }

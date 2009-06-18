@@ -6,6 +6,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 """
 
 @wordState = '#';
+@wordChars = '.' '[' ']';
 
 @symbols = '==' '>=' '=>' '<=' '=<' '!=' '<>' '&&' '||';
 
@@ -42,9 +43,13 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
 
 # keyPaths
-    keyPath = key dotKey*;
-    key = Word;
-    dotKey = '.' key;
+    keyPath = Word;
+
+#    keyPath = key dotKey*;
+#    key = name memberAccess?;
+#    name = Word;
+#    dotKey = '.' key;
+#    memberAccess = '[' (num | 'FIRST' | 'LAST' | 'SIZE') ']';
 
 
 # Comparison Tests
