@@ -147,30 +147,12 @@
     
     res = [[eval.parser parserNamed:@"bool"] completeMatchFor:a];
     TDEqualObjects(@"[0]false^", [res description]);
-//
-//    res = [[eval.parser parserNamed:@"value"] completeMatchFor:a];
-//    TDEqualObjects(@"[0]false^", [res description]);
 }
 
 
 - (void)testTruePredicate {
     s = @"TRUEPREDICATE";
     a = [TDTokenAssembly assemblyWithString:s];
-    
-    res = [[eval.parser parserNamed:@"boolPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"predicate"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"primaryExpr"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"andTerm"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"expr"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
     
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
@@ -180,21 +162,6 @@
 - (void)testFalsePredicate {
     s = @"FALSEPREDICATE";
     a = [TDTokenAssembly assemblyWithString:s];
-    
-    res = [[eval.parser parserNamed:@"boolPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"predicate"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"primaryExpr"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"andTerm"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"expr"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
     
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
@@ -225,6 +192,15 @@
     
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[0]TRUEPREDICATE/AND/FALSEPREDICATE^", [res description]);
+}    
+
+
+- (void)testCompoundExpr {
+    s = @"(TRUEPREDICATE)";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1](/TRUEPREDICATE/)^", [res description]);
 }    
 
 @end
