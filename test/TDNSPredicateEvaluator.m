@@ -41,6 +41,12 @@
 }
 
 
+- (void)workOnNegatedPredicateAssembly:(TDAssembly *)a {
+    BOOL b = [[a pop] boolValue];
+    [a push:[NSNumber numberWithBool:!b]];
+}
+
+
 - (void)workOnComparisonPredicateAssembly:(TDAssembly *)a {
     CGFloat n2 = [[a pop] floatValue];
     NSString *op = [[a pop] stringValue];

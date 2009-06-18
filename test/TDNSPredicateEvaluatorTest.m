@@ -31,24 +31,39 @@
 }
 
 
+- (void)testNegatedPredicate {
+    s = @"not 0 < 2";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]not/0/</2^", [res description]);
+}
+
+
 - (void)testComparison {
     s = @"1 < 2";
     a = [TDTokenAssembly assemblyWithString:s];
-    
-    res = [[eval.parser parserNamed:@"comparisonPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[1]1/</2^", [res description]);
-
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]1/</2^", [res description]);
 
     s = @"1 > 2";
-    a = [TDTokenAssembly assemblyWithString:s];
-    
-    res = [[eval.parser parserNamed:@"comparisonPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[0]1/>/2^", [res description]);
-    
+    a = [TDTokenAssembly assemblyWithString:s];    
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[0]1/>/2^", [res description]);
+    
+    s = @"1 != 2";
+    a = [TDTokenAssembly assemblyWithString:s];    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]1/!=/2^", [res description]);
+    
+    s = @"1 == 2";
+    a = [TDTokenAssembly assemblyWithString:s];    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]1/==/2^", [res description]);
+
+    s = @"1 = 2";
+    a = [TDTokenAssembly assemblyWithString:s];    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]1/=/2^", [res description]);
 }
 
 
