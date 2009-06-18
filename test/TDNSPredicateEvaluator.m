@@ -76,10 +76,16 @@
 }
 
 
+- (void)workOnStringAssembly:(TDAssembly *)a {
+    NSString*s = [[[a pop] stringValue] stringByTrimmingQuotes];
+    [a push:s];
+}
+
+
 - (void)workOnStringTestPredicateAssembly:(TDAssembly *)a {
-    NSString *s2 = [[[a pop] stringValue] stringByTrimmingQuotes];
+    NSString *s2 = [a pop];
     NSString *op = [[a pop] stringValue];
-    NSString *s1 = [[[a pop] stringValue] stringByTrimmingQuotes];
+    NSString *s1 = [a pop];
     
     BOOL result = NO;
     if (NSOrderedSame == [op caseInsensitiveCompare:@"BEGINSWITH"]) {
