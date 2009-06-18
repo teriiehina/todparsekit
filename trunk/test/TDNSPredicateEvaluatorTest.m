@@ -160,9 +160,6 @@
     res = [[eval.parser parserNamed:@"boolPredicate"] completeMatchFor:a];
     TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
     
-    res = [[eval.parser parserNamed:@"actualPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
-    
     res = [[eval.parser parserNamed:@"predicate"] completeMatchFor:a];
     TDEqualObjects(@"[1]TRUEPREDICATE^", [res description]);
     
@@ -185,9 +182,6 @@
     a = [TDTokenAssembly assemblyWithString:s];
     
     res = [[eval.parser parserNamed:@"boolPredicate"] completeMatchFor:a];
-    TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
-    
-    res = [[eval.parser parserNamed:@"actualPredicate"] completeMatchFor:a];
     TDEqualObjects(@"[0]FALSEPREDICATE^", [res description]);
     
     res = [[eval.parser parserNamed:@"predicate"] completeMatchFor:a];

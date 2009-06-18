@@ -21,9 +21,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     primaryExpr          = predicate | negatedPredicate;
     negatedPredicate     = not predicate;
 
-    predicate            = aggregateOp? actualPredicate;
-    
-    actualPredicate      = boolPredicate | comparisonPredicate | stringTestPredicate | collectionTestPredicate;
+    predicate            = boolPredicate | comparisonPredicate | stringTestPredicate | collectionTestPredicate;
 
 
 # values
@@ -90,7 +88,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
 
 # Collection Tests
-    collectionTestPredicate = value collectionTestOp collection;
+    collectionTestPredicate = aggregateOp? value collectionTestOp collection;
     collection              = keyPath | array;
     collectionTestOp        = in;
     in                      = 'IN';
