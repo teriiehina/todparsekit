@@ -104,6 +104,20 @@
 }
 
 
+- (void)workOnAndAndTermAssembly:(TDAssembly *)a {
+    BOOL b2 = [[a pop] boolValue];
+    BOOL b1 = [[a pop] boolValue];
+    [a push:[NSNumber numberWithBool:b1 && b2]];
+}
+
+
+- (void)workOnOrOrTermAssembly:(TDAssembly *)a {
+    BOOL b2 = [[a pop] boolValue];
+    BOOL b1 = [[a pop] boolValue];
+    [a push:[NSNumber numberWithBool:b1 || b2]];
+}
+
+
 - (void)workOnArrayAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:openCurly];
     [a pop]; // discard '{'
