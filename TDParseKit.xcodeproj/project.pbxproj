@@ -166,6 +166,10 @@
 		D354A67F0F1D304C00B3F04F /* TDJSUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */; };
 		D354A6820F1D309800B3F04F /* TDJSLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */; };
 		D354A6830F1D309800B3F04F /* TDJSLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */; };
+		D355C62D0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D355C62C0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m */; };
+		D355C62E0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D355C62C0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m */; };
+		D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D355C6300FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m */; };
+		D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
 		D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D6A5FE840307C02AAC07 /* AppKit.framework */; };
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
@@ -772,6 +776,10 @@
 		D354A67D0F1D304C00B3F04F /* TDJSUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSUppercaseWord.m; path = jssrc/TDJSUppercaseWord.m; sourceTree = "<group>"; };
 		D354A6800F1D309800B3F04F /* TDJSLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSLowercaseWord.h; path = jssrc/TDJSLowercaseWord.h; sourceTree = "<group>"; };
 		D354A6810F1D309800B3F04F /* TDJSLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSLowercaseWord.m; path = jssrc/TDJSLowercaseWord.m; sourceTree = "<group>"; };
+		D355C62B0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateEvaluator.h; path = test/TDNSPredicateEvaluator.h; sourceTree = "<group>"; };
+		D355C62C0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateEvaluator.m; path = test/TDNSPredicateEvaluator.m; sourceTree = "<group>"; };
+		D355C62F0FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateEvaluatorTest.h; path = test/TDNSPredicateEvaluatorTest.h; sourceTree = "<group>"; };
+		D355C6300FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateEvaluatorTest.m; path = test/TDNSPredicateEvaluatorTest.m; sourceTree = "<group>"; };
 		D36568A50EEF9FE900226554 /* TDPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParser.h; path = test/TDPlistParser.h; sourceTree = "<group>"; };
 		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
 		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
@@ -1214,6 +1222,10 @@
 		D3252F670FCE171D005EF059 /* predicate */ = {
 			isa = PBXGroup;
 			children = (
+				D355C62B0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.h */,
+				D355C62C0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m */,
+				D355C62F0FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.h */,
+				D355C6300FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m */,
 				D35384EC0FE9691100926552 /* nspredicate.grammar */,
 				D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */,
 				D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */,
@@ -2384,6 +2396,7 @@
 				D380B5950F0D82F90009EC13 /* example.css in Resources */,
 				D3FD79210F4CC87900BAD816 /* rubyhash.grammar in Resources */,
 				D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */,
+				D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2545,6 +2558,7 @@
 				D31A16530F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */,
 				D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */,
 				D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
+				D355C62E0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2755,6 +2769,8 @@
 				D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */,
 				D36C562B0FD365DB00141CB7 /* TDPatternTest.m in Sources */,
 				D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */,
+				D355C62D0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
+				D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

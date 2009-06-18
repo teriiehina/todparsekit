@@ -5,82 +5,99 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
 """
 
+@wordState = '#';
+
 @symbols = '==' '>=' '=>' '<=' '=<' '!=' '<>' '&&' '||';
 
+@start = expr;
 
-##########################
-# Comparison Operators
-##########################
-comparisonOp = eq | gt | lt | gtEq | ltEq | notEq | between;
+# Expressions
+    expr                 = orTerm orOrTerm*;
+    orOrTerm             = or orTerm;
+    orTerm               = andTerm andAndTerm*;
+    andAndTerm           = and andTerm;
+    andTerm              = primaryExpr | '(' expr ')';
+    primaryExpr          = predicate | negatedPredicate;
+    negatedPredicate     = not predicate;
 
-eq      = '=' | '==';
-gt      = '>';
-lt      = '<';
-gtEq    = '>=' | '=>';
-ltEq    = '<=' | '=<';
-notEq   = '!=' | '<>';
-between = 'BETWEEN';
+    predicate            = aggregateOp? actualPredicate;
+    
+    actualPredicate      = boolPredicate | comparisonPredicate | stringTestPredicate | collectionTestPredicate;
+
+
+# values
+    value = keyPath | string | num | bool | array;
+
+    string = QuotedString;
+    num = Num;
+    bool = 'true' | 'false';
+
+# arrays
+    array = '{' arrayContentsOpt '}';
+    arrayContentsOpt = Empty | arrayContents;
+    arrayContents = value commaValue*;
+    commaValue = ',' value;
+
+
+# keyPaths
+    keyPath = key dotKey*;
+    key = Word;
+    dotKey = '.' key;
+
+
+# Comparison Tests
+    comparisonPredicate = value comparisonOp value;
+
+    comparisonOp = eq | gt | lt | gtEq | ltEq | notEq | between;
+
+    eq      = '=' | '==';
+    gt      = '>';
+    lt      = '<';
+    gtEq    = '>=' | '=>';
+    ltEq    = '<=' | '=<';
+    notEq   = '!=' | '<>';
+    between = 'BETWEEN';
 
 
 
-##########################
 # Boolean Value Predicates
-##########################
-boolPred = truePred | falsePred;
+    boolPredicate  = truePredicate | falsePredicate;
 
-truePred = 'TRUEPREDICATE';
-falsePred = 'FALSEPREDICATE';
-
-
-
-##########################
-# Compound Predicates
-##########################
-
-and = 'AND' | '&&';
-or  = 'OR' | '||';
-not = 'NOT' | '!';
+    truePredicate  = 'TRUEPREDICATE';
+    falsePredicate = 'FALSEPREDICATE';
 
 
 
-##########################
-# String Comparisons
-##########################
-stringComparisonOp = beginswith | contains | endswith | like | matches;
-
-beginswith  = 'BEGINSWITH';
-contains    = 'CONTAINS';
-endswith    = 'ENDSWITH';
-like        = 'LIKE';
-matches     = 'MATCHES';
+# Compound Expressions
+    and = 'AND' | '&&';
+    or  = 'OR' | '||';
+    not = 'NOT' | '!';
 
 
-##########################
+
+# String Tests
+    stringTestPredicate = string stringTestOp value;
+
+    stringTestOp = beginswith | contains | endswith | like | matches;
+
+    beginswith  = 'BEGINSWITH';
+    contains    = 'CONTAINS';
+    endswith    = 'ENDSWITH';
+    like        = 'LIKE';
+    matches     = 'MATCHES';
+
+
+# Collection Tests
+    collectionTestPredicate = value collectionTestOp collection;
+    collection              = keyPath | array;
+    collectionTestOp        = in;
+    in                      = 'IN';
+
+
 # Aggregate Operators
-##########################
+    aggregateOp = any | some | all | none;
+    any         = 'ANY';
+    some        = 'SOME';
+    all         = 'ALL';
+    none        = 'NONE';
 
-any     = 'ANY';
-some    = 'SOME';
-all     = 'all';
-none    = 'NONE';
-in      = 'IN';
-
-
-// expr                 = term orTerm*;
-// orTerm               = 'or' term;
-// term                 = primaryExpr andPrimaryExpr*;
-// andPrimaryExpr       = 'and' primaryExpr;
-// primaryExpr          = phrase | '(' expr ')';
-// phrase               = predicate | negatedPredicate;
-// negatedPredicate     = 'not' predicate;
-// predicate            = completePredicate | attrValuePredicate | attrPredicate | valuePredicate;
-// completePredicate    = attr relation value;
-// attrValuePredicate   = attr value;
-// attrPredicate        = attr;
-// valuePredicate       = value;
-// attr                 = tag | Word;
-// tag                  = '@' Word;
-// value                = string | Num | bool;
-// string               = QuotedString | unquotedString;
-// unquotedString       = nonReservedWord+;
-// bool                 = 'true' | 'false';

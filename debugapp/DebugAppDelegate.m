@@ -23,6 +23,7 @@
 #import "NSArray+TDParseKitAdditions.h"
 #import "TDSyntaxHighlighter.h"
 #import "TDJavaScriptParser.h"
+#import "TDNSPredicateEvaluator.h"
 #import <OCMock/OCMock.h>
 
 @protocol TDMockAssember
@@ -436,6 +437,15 @@
     //TDEqualObjects([res description], @"[for, (, ;, true, ;, true, ), {, }]for/(/;/true/;/true/)/{/}^");
 }
 
+
+- (void)doNSPredicateEvaluator {
+    
+    TDNSPredicateEvaluator *eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:nil] autorelease];
+    
+    
+}
+
+
 - (IBAction)run:(id)sender {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
@@ -446,7 +456,7 @@
 
 //    [self doJSParser];
     
-    [self doProf];
+//    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
@@ -464,6 +474,8 @@
 //    [self doDelimitedString];
     
 //    [self doFactory];
+    
+    [self doNSPredicateEvaluator];
     
     [pool drain];
 }
