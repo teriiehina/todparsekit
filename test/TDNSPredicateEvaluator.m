@@ -9,10 +9,11 @@
 #import "TDNSPredicateEvaluator.h"
 #import "TDParserFactory.h"
 #import "NSString+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import "NSArray+TDParseKitAdditions.h"
 
 @interface TDNSPredicateEvaluator ()
 @property (nonatomic, assign) id <TDKeyPathResolver>resolver;
+@property (nonatomic, retain) TDToken *openCurly;
 @end
 
 @implementation TDNSPredicateEvaluator
@@ -20,7 +21,9 @@
 - (id)initWithKeyPathResolver:(id <TDKeyPathResolver>)r {
     if (self = [super init]) {
         self.resolver = r;
-        
+
+        self.openCurly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
+
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nspredicate" ofType:@"grammar"];
         NSString *s = [NSString stringWithContentsOfFile:path];
         self.parser = [[TDParserFactory factory] parserFromGrammar:s assembler:self];
@@ -32,6 +35,7 @@
 - (void)dealloc {
     resolver = nil;
     self.parser = nil;
+    self.openCurly = nil;
     [super dealloc];
 }
 
@@ -94,6 +98,13 @@
 }
 
 
+- (void)workOnArrayAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:openCurly];
+    [a pop]; // discard '{'
+    [a push:[objs reversedArray]];
+}
+
+
 - (void)workOnKeyPathAssembly:(TDAssembly *)a {
     NSString *keyPath = [[a pop] stringValue];
     [a push:[resolver resolvedValueForKeyPath:keyPath]];
@@ -126,4 +137,5 @@
 
 @synthesize resolver;
 @synthesize parser;
+@synthesize openCurly;
 @end

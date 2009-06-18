@@ -120,6 +120,18 @@
 }
 
 
+- (void)testArray {
+    s = @"{1, 3}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    
+    res = [[eval.parser parserNamed:@"array"] completeMatchFor:a];
+    NSArray *array = [res pop];
+    TDEquals((NSUInteger)2, array.count);
+    TDEqualObjects([array objectAtIndex:0], [NSNumber numberWithInteger:1]);
+    TDEqualObjects([array objectAtIndex:1], [NSNumber numberWithInteger:3]);
+}
+
+
 - (void)testTrue {
     s = @"true";
     a = [TDTokenAssembly assemblyWithString:s];
