@@ -50,14 +50,14 @@
     res = [[eval.parser parserNamed:@"primaryExpr"] completeMatchFor:a];
     TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
     
-//    res = [[eval.parser parserNamed:@"andTerm"] completeMatchFor:a];
-//    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
-//    
-//    res = [[eval.parser parserNamed:@"expr"] completeMatchFor:a];
-//    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
+    res = [[eval.parser parserNamed:@"andTerm"] completeMatchFor:a];
+    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
+    
+    res = [[eval.parser parserNamed:@"expr"] completeMatchFor:a];
+    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
 
-//    res = [eval.parser completeMatchFor:a];
-//    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[TRUEPREDICATE]TRUEPREDICATE^", [res description]);
 }
 
 

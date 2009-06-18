@@ -16,7 +16,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     orOrTerm             = or orTerm;
     orTerm               = andTerm andAndTerm*;
     andAndTerm           = and andTerm;
-    andTerm              = primaryExpr | '(' expr ')';
+    andTerm              = primaryExpr; # | '(' expr ')';
     primaryExpr          = predicate | negatedPredicate;
     negatedPredicate     = not predicate;
 
