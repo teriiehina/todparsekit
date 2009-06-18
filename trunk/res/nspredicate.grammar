@@ -30,7 +30,9 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
     string = QuotedString;
     num = Num;
-    bool = 'true' | 'false';
+    bool = true | false;
+    true = 'true';
+    false = 'false';
 
 # arrays
     array = '{' arrayContentsOpt '}';
