@@ -49,7 +49,8 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 
 
 # Comparison Tests
-    comparisonPredicate = value comparisonOp value;
+    comparisonPredicate = comparisonValue comparisonOp comparisonValue;
+    comparisonValue = keyPath | num;
 
     comparisonOp = eq | gt | lt | gtEq | ltEq | notEq | between;
 
@@ -60,8 +61,6 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     ltEq    = '<=' | '=<';
     notEq   = '!=' | '<>';
     between = 'BETWEEN';
-
-
 
 # Boolean Value Predicates
     boolPredicate  = truePredicate | falsePredicate;
