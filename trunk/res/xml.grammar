@@ -1,6 +1,6 @@
 @start = document;
 
-@symbols = '<?' '?>' '<![CDATA[', ']]>' '<?xml';
+@symbols = '<?' '?>' '<![CDATA[', ']]>' '<?xml' '<!DOCTYPE';
 
 @commentState = '<';
 @multiLineComments = '<!--' '-->';
@@ -78,11 +78,21 @@ versionNum = /(['"])1\.[0-9]\1/; # TODO
 # [27]   	Misc	   ::=   	 Comment | PI | S
 misc = comment | pi;
 
-[28]   	doctypedecl	   ::=   	'<!DOCTYPE' S Name (S ExternalID)? S? ('[' intSubset ']' S?)? '>'
-[28a]   	DeclSep	   ::=   	 PEReference | S	
-[28b]   	intSubset	   ::=   	(markupdecl | DeclSep)*
-[29]   	markupdecl	   ::=   	 elementdecl | AttlistDecl | EntityDecl | NotationDecl | PI | Comment
-[30]   	extSubset	   ::=   	 TextDecl? extSubsetDecl
+# [28]   	doctypedecl	   ::=   	'<!DOCTYPE' S Name (S ExternalID)? S? ('[' intSubset ']' S?)? '>'
+doctypedecl = '<!DOCTYPE' name externaID? ('[' intSubset ']')? '>';
+
+# [28a]   	DeclSep	   ::=   	 PEReference | S
+declSep = peReference?; # TODO
+
+# [28b]   	intSubset	   ::=   	(markupdecl | DeclSep)*
+intSubset = (markupdecl | declSep)*;
+
+# [29]   	markupdecl	   ::=   	 elementdecl | AttlistDecl | EntityDecl | NotationDecl | PI | Comment
+markupdecl = elementdecl | attlistDecl | entityDecl | notationDecl | pi | comment;
+
+# [30]   	extSubset	   ::=   	 TextDecl? extSubsetDecl
+extSubset = textDecl? extSubsetDecl;
+
 [31]   	extSubsetDecl	   ::=   	( markupdecl | conditionalSect | DeclSep)*
 [32]   	SDDecl	   ::=   	 S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
 [39]   	element	   ::=   	 EmptyElemTag | STag content ETag
