@@ -19,9 +19,15 @@
 }
 
 
+- (void)dealloc {
+    [eval release];
+    [super dealloc];
+}
+
+
 - (void)setUp {
     d = [NSMutableDictionary dictionary];
-    eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:self] autorelease];
+    eval = [[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:self];
     t = eval.parser.tokenizer;
 }
 
@@ -183,13 +189,13 @@
 }    
 
 
-- (void)testCollectionComparison {
+- (void)testCollectionLtComparison {
     t.string = @"ANY {3} < 4";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]ANY/{/3/}/</4^", [res description]);
-
+    
     t.string = @"SOME {3} < 4";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     
@@ -207,6 +213,33 @@
     
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]ALL/{/3/}/</4^", [res description]);
+}    
+
+
+- (void)testCollectionGtComparison {
+    t.string = @"ANY {3} > 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]ANY/{/3/}/>/4^", [res description]);
+    
+    t.string = @"SOME {3} > 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]SOME/{/3/}/>/4^", [res description]);
+    
+    t.string = @"NONE {3} > 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]NONE/{/3/}/>/4^", [res description]);
+    
+    t.string = @"ALL {3} > 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]ALL/{/3/}/>/4^", [res description]);
 }    
 
 
