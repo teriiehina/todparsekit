@@ -1,9 +1,12 @@
 @start = document;
 
-@symbols = '<?' '?>' '<![CDATA[', ']]>' '<?xml' '<!DOCTYPE';
+@symbols = '</' '/>' '<?' '?>' '<![CDATA[', '<![' ']]>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '#PCDATA' '<!ATTLIST' '#REQUIRED' '#IMPLIED' '#FIXED' ')*'
+            '<!--' '-->';
 
-@commentState = '<';
-@multiLineComments = '<!--' '-->';
+@delimitState = '<';
+
+# @commentState = '<';
+# @multiLineComments = '<!--' '-->';
 
 # [1]   	document	   ::=   	 prolog element Misc*
 document = prolog element misc*;
@@ -42,7 +45,7 @@ pubidLiteral = QuotedString; # TODO
 # [13]   	PubidChar	   ::=   	#x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%]
 
 # [14]   	CharData	   ::=   	[^<&]* - ([^<&]* ']]>' [^<&]*)
-#TODO
+charData = /[^<&].+/; #TODO
 
 # [15]   	Comment	   ::=   	'<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
 comment = Comment;
@@ -93,21 +96,51 @@ markupdecl = elementdecl | attlistDecl | entityDecl | notationDecl | pi | commen
 # [30]   	extSubset	   ::=   	 TextDecl? extSubsetDecl
 extSubset = textDecl? extSubsetDecl;
 
-[31]   	extSubsetDecl	   ::=   	( markupdecl | conditionalSect | DeclSep)*
-[32]   	SDDecl	   ::=   	 S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
-[39]   	element	   ::=   	 EmptyElemTag | STag content ETag
-[40]   	STag	   ::=   	'<' Name (S Attribute)* S? '>'
-[41]   	Attribute	   ::=   	 Name Eq AttValue
-[42]   	ETag	   ::=   	'</' Name S? '>'
-[43]   	content	   ::=   	 CharData? ((element | Reference | CDSect | PI | Comment) CharData?)*
-[44]   	EmptyElemTag	   ::=   	'<' Name (S Attribute)* S? '/>'
-[45]   	elementdecl	   ::=   	'<!ELEMENT' S Name S contentspec S? '>'
-[46]   	contentspec	   ::=   	'EMPTY' | 'ANY' | Mixed | children
-[47]   	children	   ::=   	(choice | seq) ('?' | '*' | '+')?
-[48]   	cp	   ::=   	(Name | choice | seq) ('?' | '*' | '+')?
-[49]   	choice	   ::=   	'(' S? cp ( S? '|' S? cp )+ S? ')'
-[50]   	seq	   ::=   	'(' S? cp ( S? ',' S? cp )* S? ')'
-[51]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? Name)* S? ')*' | '(' S? '#PCDATA' S? ')'
+# [31]   	extSubsetDecl	   ::=   	( markupdecl | conditionalSect | DeclSep)*
+extSubsetDecl = ( markupdecl | conditionalSect | declSep)*;
+
+# [32]   	SDDecl	   ::=   	 S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
+sDDecl = 'standalone' eq /(["'])(yes|no)\1/; # TODO
+
+# [39]   	element	   ::=   	 EmptyElemTag | STag content ETag
+element = emptyElemTag | sTag content eTag;
+
+# [40]   	STag	   ::=   	'<' Name (S Attribute)* S? '>'
+sTag = '<' name attribute* '>';
+
+# [41]   	Attribute	   ::=   	 Name Eq AttValue
+attribute = name eq attValue;
+
+# [42]   	ETag	   ::=   	'</' Name S? '>'
+eTag = '</' name '>';
+
+# [43]   	content	   ::=   	 CharData? ((element | Reference | CDSect | PI | Comment) CharData?)*
+content = charData? ((element | reference | cdSect | pi | comment) charData?)*;
+
+# [44]   	EmptyElemTag	   ::=   	'<' Name (S Attribute)* S? '/>'
+emptyElemTag = '<' name attribute* '/>';
+
+# [45]   	elementdecl	   ::=   	'<!ELEMENT' S Name S contentspec S? '>'
+elementdecl = '<!ELEMENT' name contentspec '>';
+
+# [46]   	contentspec	   ::=   	'EMPTY' | 'ANY' | Mixed | children
+contentspec = 'EMPTY' | 'ANY' | mixed | children;
+
+# [47]   	children	   ::=   	(choice | seq) ('?' | '*' | '+')?
+children = (choice | seq) ('?' | '*' | '+')?;
+
+# [48]   	cp	   ::=   	(Name | choice | seq) ('?' | '*' | '+')?
+cp = (name | choice | seq) ('?' | '*' | '+')?;
+
+# [49]   	choice	   ::=   	'(' S? cp ( S? '|' S? cp )+ S? ')'
+choice = '(' cp ( '|' cp )+ ')';
+
+# [50]   	seq	   ::=   	'(' S? cp ( S? ',' S? cp )* S? ')'
+seq = '(' cp ( ',' cp )* ')';
+
+# [51]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? Name)* S? ')*' | '(' S? '#PCDATA' S? ')'
+mixed = '(' '#PCDATA' ('|' Name)* ')*' | '(' '#PCDATA' ')';
+
 [52]   	AttlistDecl	   ::=   	'<!ATTLIST' S Name AttDef* S? '>'
 [53]   	AttDef	   ::=   	 S Name S AttType S DefaultDecl
 [54]   	AttType	   ::=   	 StringType | TokenizedType | EnumeratedType
