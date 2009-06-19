@@ -113,12 +113,14 @@
             }
         }
     } else if (isAll) {
+        NSInteger c = 0;
         for (id obj in array) {
             if (ordered != [obj compare:value]) {
                 break;
             }
+            c++;
         }
-        result = YES;
+        result = c == array.count;
     }
     
     if (isNone) {
