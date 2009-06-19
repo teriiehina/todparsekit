@@ -22,41 +22,43 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     primaryExpr          = predicate | negatedPredicate;
     negatedPredicate     = not predicate;
 
-    predicate            = aggregateOp? actualPredicate;
+    predicate            = actualPredicate;
     actualPredicate      = boolPredicate | comparisonPredicate | stringTestPredicate | collectionTestPredicate;
 
 
 # values
-    value = keyPath | string | num | bool | array;
+    value   = keyPath | string | num | bool | array;
 
-    string = QuotedString;
-    num = Num;
-    bool = true | false;
-    true = 'true'.discard;
-    false = 'false'.discard;
+    string  = QuotedString;
+    num     = Num;
+    bool    = true | false;
+    true    = 'true'.discard;
+    false   = 'false'.discard;
 
 # arrays
-    array = '{' arrayContentsOpt '}'.discard;
-    arrayContentsOpt = Empty | arrayContents;
-    arrayContents = value commaValue*;
-    commaValue = ','.discard value;
+    array               = '{' arrayContentsOpt '}'.discard;
+    arrayContentsOpt    = Empty | arrayContents;
+    arrayContents       = value commaValue*;
+    commaValue          = ','.discard value;
 
 
 # keyPaths
     keyPath = Word;
 
-#    keyPath = key dotKey*;
-#    key = name memberAccess?;
-#    name = Word;
-#    dotKey = '.' key;
-#    memberAccess = '[' (num | 'FIRST' | 'LAST' | 'SIZE') ']';
+#    keyPath        = key dotKey*;
+#    key            = name memberAccess?;
+#    name           = Word;
+#    dotKey         = '.' key;
+#    memberAccess   = '[' (num | 'FIRST' | 'LAST' | 'SIZE') ']';
 
 
 # Comparison Tests
-    comparisonPredicate = comparisonValue comparisonOp comparisonValue;
-    comparisonValue = keyPath | num;
+    comparisonPredicate     = numComparisonPredicate | collectionComparisonPredicate;
 
-    comparisonOp = eq | gt | lt | gtEq | ltEq | notEq | between;
+    numComparisonPredicate  = numComparisonValue comparisonOp numComparisonValue;
+    numComparisonValue      = keyPath | num;
+
+    comparisonOp            = eq | gt | lt | gtEq | ltEq | notEq | between;
 
     eq      = '=' | '==';
     gt      = '>';
@@ -65,6 +67,18 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     ltEq    = '<=' | '=<';
     notEq   = '!=' | '<>';
     between = 'BETWEEN';
+
+# breaking these out to make the assembler callbacks simpler
+    collectionComparisonPredicate   = collectionLtPredicate | collectionGtPredicate | collectionLtEqPredicate | collectionGtEqPredicate | collectionEqPredicate | collectionNotEqPredicate;
+    
+    collectionLtPredicate           = aggregateOp collection lt value;
+    collectionGtPredicate           = aggregateOp collection gt value;
+    collectionLtEqPredicate         = aggregateOp collection ltEq value;
+    collectionGtEqPredicate         = aggregateOp collection gtEq value;
+    collectionEqPredicate           = aggregateOp collection eq value;
+    collectionNotEqPredicate        = aggregateOp collection notEq value;
+    
+
 
 # Boolean Value Predicates
     boolPredicate  = truePredicate | falsePredicate;
