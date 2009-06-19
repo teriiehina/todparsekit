@@ -181,7 +181,34 @@
     res = [eval.parser completeMatchFor:a];
     TDEqualObjects(@"[1]1/IN/{/1/}^", [res description]);
 }    
+
+
+- (void)testCollectionComparison {
+    t.string = @"ANY {3} < 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
     
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]ANY/{/3/}/</4^", [res description]);
+
+    t.string = @"SOME {3} < 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]SOME/{/3/}/</4^", [res description]);
+    
+    t.string = @"NONE {3} < 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[0]NONE/{/3/}/</4^", [res description]);
+    
+    t.string = @"ALL {3} < 4";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    
+    res = [eval.parser completeMatchFor:a];
+    TDEqualObjects(@"[1]ALL/{/3/}/</4^", [res description]);
+}    
+
 
 - (void)testOr {
     t.string = @"TRUEPREDICATE OR FALSEPREDICATE";

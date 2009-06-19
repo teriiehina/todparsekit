@@ -52,7 +52,7 @@
 }
 
 
-- (void)workOnComparisonPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNumComparisonPredicateAssembly:(TDAssembly *)a {
     CGFloat n2 = [[a pop] floatValue];
     NSString *op = [[a pop] stringValue];
     CGFloat n1 = [[a pop] floatValue];
@@ -70,6 +70,42 @@
         result = n1 >= n2;
     } else if ([op isEqualToString:@"!="] || [op isEqualToString:@"<>"]) {
         result = n1 != n2;
+    }
+    
+    [a push:[NSNumber numberWithBool:result]];
+}
+
+
+- (void)workOnCollectionLtPredicateAssembly:(TDAssembly *)a {
+    id value = [a pop];
+    [a pop]; // discard op
+    NSArray *array = [a pop];
+    NSString *aggOp = [[a pop] stringValue];
+    
+    BOOL isAny = NSOrderedSame == [aggOp caseInsensitiveCompare:@"ANY"];
+    BOOL isSome = NSOrderedSame == [aggOp caseInsensitiveCompare:@"SOME"];
+    BOOL isNone = NSOrderedSame == [aggOp caseInsensitiveCompare:@"NONE"];
+    BOOL isAll = NSOrderedSame == [aggOp caseInsensitiveCompare:@"ALL"];
+    
+    BOOL result = NO;
+    if (isAny || isSome || isNone) {
+        for (id obj in array) {
+            if (NSOrderedAscending == [obj compare:value]) {
+                result = YES;
+                break;
+            }
+        }
+    } else if (isAll) {
+        for (id obj in array) {
+            if (NSOrderedAscending != [obj compare:value]) {
+                break;
+            }
+        }
+        result = YES;
+    }
+    
+    if (isNone) {
+        result = !result;
     }
     
     [a push:[NSNumber numberWithBool:result]];
