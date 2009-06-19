@@ -132,7 +132,7 @@
 
 
 - (void)workOnStringAssembly:(TDAssembly *)a {
-    NSString*s = [[[a pop] stringValue] stringByTrimmingQuotes];
+    NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
