@@ -12,6 +12,8 @@
 #import "NSArray+TDParseKitAdditions.h"
 
 @interface TDNSPredicateEvaluator ()
+- (void)workOnCollectionPredicateAssembly:(TDAssembly *)a ordered:(NSComparisonResult)ordered;
+
 @property (nonatomic, assign) id <TDKeyPathResolver>resolver;
 @property (nonatomic, retain) TDToken *openCurly;
 @end
@@ -77,6 +79,21 @@
 
 
 - (void)workOnCollectionLtPredicateAssembly:(TDAssembly *)a {
+    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedAscending];
+}
+
+
+- (void)workOnCollectionGtPredicateAssembly:(TDAssembly *)a {
+    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedDescending];
+}
+
+
+- (void)workOnCollectionEqPredicateAssembly:(TDAssembly *)a {
+    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedSame];
+}
+
+
+- (void)workOnCollectionPredicateAssembly:(TDAssembly *)a ordered:(NSComparisonResult)ordered {
     id value = [a pop];
     [a pop]; // discard op
     NSArray *array = [a pop];
@@ -90,14 +107,14 @@
     BOOL result = NO;
     if (isAny || isSome || isNone) {
         for (id obj in array) {
-            if (NSOrderedAscending == [obj compare:value]) {
+            if (ordered == [obj compare:value]) {
                 result = YES;
                 break;
             }
         }
     } else if (isAll) {
         for (id obj in array) {
-            if (NSOrderedAscending != [obj compare:value]) {
+            if (ordered != [obj compare:value]) {
                 break;
             }
         }
