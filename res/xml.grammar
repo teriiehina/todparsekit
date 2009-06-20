@@ -1,6 +1,6 @@
 @start = document;
 
-@symbols = '</' '/>' '<?' '?>' '<![CDATA[', '<![' ']]>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '#PCDATA' '<!ATTLIST' '#REQUIRED' '#IMPLIED' '#FIXED' ')*'
+@symbols = '&#' '</' '/>' '<?' '?>' '<![CDATA[', '<![' ']]>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '#PCDATA' '<!ATTLIST' '#REQUIRED' '#IMPLIED' '#FIXED' ')*'
             '<!--' '-->';
 
 @delimitState = '<';
@@ -85,7 +85,7 @@ misc = comment | pi | S;
 doctypedecl = '<!DOCTYPE' S name (S externaID)? S? ('[' intSubset ']' S?)? '>';
 
 # [28a]   	DeclSep	   ::=   	 PEReference | S
-declSep = peReference | S; # TODO
+declSep = peReference | S;
 
 # [28b]   	intSubset	   ::=   	(markupdecl | DeclSep)*
 intSubset = (markupdecl | declSep)*;
@@ -162,36 +162,74 @@ enumeratedType = notationType | enumeration;
 # [58]   	NotationType	   ::=   	'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'
 notationType = 'NOTATION' S '(' S? name (S? '|' S? name)* S? ')';
 
-[59]   	Enumeration	   ::=   	'(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')'
-[60]   	DefaultDecl	   ::=   	'#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? AttValue)	
+# [59]   	Enumeration	   ::=   	'(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')'
+enumeration	= '(' S? nmtoken (S? '|' S? nmtoken)* S? ')';
 
-[61]   	conditionalSect	   ::=   	 includeSect | ignoreSect
-[62]   	includeSect	   ::=   	'<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>'	
-[63]   	ignoreSect	   ::=   	'<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>'	
-[64]   	ignoreSectContents	   ::=   	 Ignore ('<![' ignoreSectContents ']]>' Ignore)*
-[65]   	Ignore	   ::=   	 Char* - (Char* ('<![' | ']]>') Char*)
+# [60]   	DefaultDecl	   ::=   	'#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? AttValue)	
+defaultDecl = '#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? attValue);
 
-[66]   	CharRef	   ::=   	'&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
+# [61]   	conditionalSect	   ::=   	 includeSect | ignoreSect
+conditionalSect = includeSect | ignoreSect;
 
-[67]   	Reference	   ::=   	 EntityRef | CharRef
-[68]   	EntityRef	   ::=   	'&' Name ';'
-[69]   	PEReference	   ::=   	'%' Name ';'
+# [62]   	includeSect	   ::=   	'<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>'	
+includeSect = '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>';
 
-[70]   	EntityDecl	   ::=   	 GEDecl | PEDecl
-[71]   	GEDecl	   ::=   	'<!ENTITY' S Name S EntityDef S? '>'
-[72]   	PEDecl	   ::=   	'<!ENTITY' S '%' S Name S PEDef S? '>'
-[73]   	EntityDef	   ::=   	 EntityValue | (ExternalID NDataDecl?)
-[74]   	PEDef	   ::=   	 EntityValue | ExternalID
+# [63]   	ignoreSect	   ::=   	'<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>'	
+ignoreSect = '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>';
 
-[75]   	ExternalID	   ::=   	'SYSTEM' S SystemLiteral | 'PUBLIC' S PubidLiteral S SystemLiteral
-[76]   	NDataDecl	   ::=   	 S 'NDATA' S Name
+# [64]   	ignoreSectContents	   ::=   	 Ignore ('<![' ignoreSectContents ']]>' Ignore)*
+ignoreSectContents = ignore ('<![' ignoreSectContents ']]>' ignore)*;
 
-[77]   	TextDecl	   ::=   	'<?xml' VersionInfo? EncodingDecl S? '?>'
+# [65]   	Ignore	   ::=   	 Char* - (Char* ('<![' | ']]>') Char*)
+ignore = Word; # TODO 
 
-[78]   	extParsedEnt	   ::=   	 TextDecl? content
+# [66]   	CharRef	   ::=   	'&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
+charRef = '&#' /[0-9]+/ ';' | '&#x' /[0-9a-fA-F]+/ ';';
 
-[80]   	EncodingDecl	   ::=   	 S 'encoding' Eq ('"' EncName '"' | "'" EncName "'" )
-[81]   	EncName	   ::=   	[A-Za-z] ([A-Za-z0-9._] | '-')*
+# [67]   	Reference	   ::=   	 EntityRef | CharRef
+reference = entityRef | charRef;
 
-[82]   	NotationDecl	   ::=   	'<!NOTATION' S Name S (ExternalID | PublicID) S? '>'	
-[83]   	PublicID	   ::=   	'PUBLIC' S PubidLiteral
+# [68]   	EntityRef	   ::=   	'&' Name ';'
+entityRef = '&' name ';';
+
+# [69]   	PEReference	   ::=   	'%' Name ';'
+peReference = '%' name ';';
+
+# [70]   	EntityDecl	   ::=   	 GEDecl | PEDecl
+entityDecl = geDecl | peDecl;
+
+# [71]   	GEDecl	   ::=   	'<!ENTITY' S Name S EntityDef S? '>'
+geDecl = '<!ENTITY' S name S entityDef S? '>';
+
+# [72]   	PEDecl	   ::=   	'<!ENTITY' S '%' S Name S PEDef S? '>'
+peDecl = '<!ENTITY' S '%' S name S peDef S? '>';
+
+# [73]   	EntityDef	   ::=   	 EntityValue | (ExternalID NDataDecl?)
+entityDef = entityValue | (externalID nDataDecl?);
+
+# [74]   	PEDef	   ::=   	 EntityValue | ExternalID
+peDef = entityValue | externalID;
+
+# [75]   	ExternalID	   ::=   	'SYSTEM' S SystemLiteral | 'PUBLIC' S PubidLiteral S SystemLiteral
+externalID = 'SYSTEM' S systemLiteral | 'PUBLIC' S pubidLiteral S systemLiteral;
+
+# [76]   	NDataDecl	   ::=   	 S 'NDATA' S Name
+nDataDecl = S 'NDATA' S name;
+
+# [77]   	TextDecl	   ::=   	'<?xml' VersionInfo? EncodingDecl S? '?>'
+textDecl = '<?xml' versionInfo? encodingDecl S? '?>';
+
+# [78]   	extParsedEnt	   ::=   	 TextDecl? content
+extParsedEnt = textDecl? content;
+
+# [80]   	EncodingDecl	   ::=   	 S 'encoding' Eq ('"' EncName '"' | "'" EncName "'" )
+encodingDecl = S 'encoding' eq QuotedString; # TODO
+
+# [81]   	EncName	   ::=   	[A-Za-z] ([A-Za-z0-9._] | '-')*
+encName	= Word; # TODO
+
+# [82]   	NotationDecl	   ::=   	'<!NOTATION' S Name S (ExternalID | PublicID) S? '>'	
+notationDecl = '<!NOTATION' S name S (externalID | publicID) S? '>';
+
+# [83]   	PublicID	   ::=   	'PUBLIC' S PubidLiteral
+publicID = 'PUBLIC' S pubidLiteral;
