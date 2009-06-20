@@ -67,25 +67,25 @@ cdSect = DelimitedString('<![CDATA[', ']]>');
 prolog = xmlDecl? misc* (doctypedecl misc*)?;
 
 # [23]   	XMLDecl	   ::=   	'<?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
-xmlDecl = '<?xml' versionInfo encodingDecl? '?>';
+xmlDecl = '<?xml' versionInfo encodingDecl? S? '?>';
 
 # [24]   	VersionInfo	   ::=   	 S 'version' Eq ("'" VersionNum "'" | '"' VersionNum '"')
-versionInfo = 'version' eq versionNum;
+versionInfo = S 'version' eq versionNum;
 
 # [25]   	Eq	   ::=   	 S? '=' S?
-eq = '=';
+eq = S? '=' S?;
 
 # [26]   	VersionNum	   ::=   	'1.' [0-9]+
 versionNum = /(['"])1\.[0-9]\1/; # TODO
 
 # [27]   	Misc	   ::=   	 Comment | PI | S
-misc = comment | pi;
+misc = comment | pi | S;
 
 # [28]   	doctypedecl	   ::=   	'<!DOCTYPE' S Name (S ExternalID)? S? ('[' intSubset ']' S?)? '>'
-doctypedecl = '<!DOCTYPE' name externaID? ('[' intSubset ']')? '>';
+doctypedecl = '<!DOCTYPE' S name (S externaID)? S? ('[' intSubset ']' S?)? '>';
 
 # [28a]   	DeclSep	   ::=   	 PEReference | S
-declSep = peReference?; # TODO
+declSep = peReference | S; # TODO
 
 # [28b]   	intSubset	   ::=   	(markupdecl | DeclSep)*
 intSubset = (markupdecl | declSep)*;
@@ -100,28 +100,28 @@ extSubset = textDecl? extSubsetDecl;
 extSubsetDecl = ( markupdecl | conditionalSect | declSep)*;
 
 # [32]   	SDDecl	   ::=   	 S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
-sDDecl = 'standalone' eq /(["'])(yes|no)\1/; # TODO
+sDDecl = S 'standalone' eq /(["'])(yes|no)\1/; # TODO
 
 # [39]   	element	   ::=   	 EmptyElemTag | STag content ETag
 element = emptyElemTag | sTag content eTag;
 
 # [40]   	STag	   ::=   	'<' Name (S Attribute)* S? '>'
-sTag = '<' name attribute* '>';
+sTag = '<' name (S attribute)* '>';
 
 # [41]   	Attribute	   ::=   	 Name Eq AttValue
 attribute = name eq attValue;
 
 # [42]   	ETag	   ::=   	'</' Name S? '>'
-eTag = '</' name '>';
+eTag = '</' name S? '>';
 
 # [43]   	content	   ::=   	 CharData? ((element | Reference | CDSect | PI | Comment) CharData?)*
 content = charData? ((element | reference | cdSect | pi | comment) charData?)*;
 
 # [44]   	EmptyElemTag	   ::=   	'<' Name (S Attribute)* S? '/>'
-emptyElemTag = '<' name attribute* '/>';
+emptyElemTag = '<' name (S attribute)* '/>';
 
 # [45]   	elementdecl	   ::=   	'<!ELEMENT' S Name S contentspec S? '>'
-elementdecl = '<!ELEMENT' name contentspec '>';
+elementdecl = '<!ELEMENT' S name S contentspec '>';
 
 # [46]   	contentspec	   ::=   	'EMPTY' | 'ANY' | Mixed | children
 contentspec = 'EMPTY' | 'ANY' | mixed | children;
@@ -133,19 +133,19 @@ children = (choice | seq) ('?' | '*' | '+')?;
 cp = (name | choice | seq) ('?' | '*' | '+')?;
 
 # [49]   	choice	   ::=   	'(' S? cp ( S? '|' S? cp )+ S? ')'
-choice = '(' cp ( '|' cp )+ ')';
+choice = '(' S? cp ( S? '|' S? cp )+ S? ')';
 
 # [50]   	seq	   ::=   	'(' S? cp ( S? ',' S? cp )* S? ')'
-seq = '(' cp ( ',' cp )* ')';
+seq = '(' S? cp ( S? ',' S? cp )* S? ')';
 
 # [51]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? Name)* S? ')*' | '(' S? '#PCDATA' S? ')'
-mixed = '(' '#PCDATA' ('|' Name)* ')*' | '(' '#PCDATA' ')';
+mixed = '(' S? '#PCDATA' (S? '|' S? Name)* S? ')*' | '(' S? '#PCDATA' S? ')';
 
 # [52]   	AttlistDecl	   ::=   	'<!ATTLIST' S Name AttDef* S? '>'
-attlistDecl	= '<!ATTLIST' name attDef* '>';
+attlistDecl	= '<!ATTLIST' S name attDef* S? '>';
 
 # AttDef	   ::=   	 S Name S AttType S DefaultDecl
-attlistDecl = '<!ATTLIST' name attDef* '>';
+attDef = S name S attType S defaultDecl;
 
 # [54]   	AttType	   ::=   	 StringType | TokenizedType | EnumeratedType
 attType = stringType | tokenizedType | enumeratedType;
@@ -160,7 +160,7 @@ tokenizedType = 'ID' | 'IDREF' | 'IDREFS' | 'ENTITY' | 'ENTITIES' | 'NMTOKEN' | 
 enumeratedType = notationType | enumeration;
 
 # [58]   	NotationType	   ::=   	'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'
-notationType = 'NOTATION' '(' name ('|' name)* ')';
+notationType = 'NOTATION' S '(' S? name (S? '|' S? name)* S? ')';
 
 [59]   	Enumeration	   ::=   	'(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')'
 [60]   	DefaultDecl	   ::=   	'#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? AttValue)	
