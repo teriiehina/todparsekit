@@ -286,6 +286,37 @@
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDNil(res);
+
+    g = @"@start = 'foo' S '+' S 'bar';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo + bar";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+
+    g = @"@reportsWhitespaceTokens = NO; @start = 'foo' S '+' S 'bar';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo + bar";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+
+
+    g = @"@reportsWhitespaceTokens = YES; @start = 'foo' S '+' S 'bar';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo  \t \t +  bar";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo,   \t \t , +,   , bar]foo/  \t \t /+/  /bar^", [res description]);
 }    
 
 @end
