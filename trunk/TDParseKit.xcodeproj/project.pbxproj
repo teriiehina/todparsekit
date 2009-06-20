@@ -444,6 +444,10 @@
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
 		D3B69D330E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
+		D3BBBC980FEC9722007DF30D /* TDXMLParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */; };
+		D3BBBC9D0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
+		D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
+		D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8800FEB36A1006A91A4 /* xml.grammar */; };
 		D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */; };
 		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
@@ -979,6 +983,10 @@
 		D3B43FB60F76E99C0072AF40 /* TDJavaScriptParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJavaScriptParserTest.m; path = test/TDJavaScriptParserTest.m; sourceTree = "<group>"; };
 		D3B473840E48C9CF008AFBDD /* yahoo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = yahoo.json; path = res/yahoo.json; sourceTree = "<group>"; };
 		D3B69D310E80249900D70C41 /* nonascii.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nonascii.html; path = res/nonascii.html; sourceTree = "<group>"; };
+		D3BBBC960FEC9722007DF30D /* TDXMLParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXMLParserTest.h; path = test/TDXMLParserTest.h; sourceTree = "<group>"; };
+		D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXMLParserTest.m; path = test/TDXMLParserTest.m; sourceTree = "<group>"; };
+		D3BBBC9B0FEC9756007DF30D /* TDXMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXMLParser.h; path = test/TDXMLParser.h; sourceTree = "<group>"; };
+		D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXMLParser.m; path = test/TDXMLParser.m; sourceTree = "<group>"; };
 		D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWordTest.h; path = test/TDLowercaseWordTest.h; sourceTree = "<group>"; };
 		D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWordTest.m; path = test/TDLowercaseWordTest.m; sourceTree = "<group>"; };
 		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1694,6 +1702,35 @@
 			name = Whitespace;
 			sourceTree = "<group>";
 		};
+		D3BBBC9A0FEC9739007DF30D /* old */ = {
+			isa = PBXGroup;
+			children = (
+				D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */,
+				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
+				D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */,
+				D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */,
+				D31FE5AF0E60E64900A0803E /* TDXmlTokenizerTest.h */,
+				D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */,
+				D36EA1440E5CF38100496BD3 /* tokenizer */,
+				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
+				D3521F520E5FA1B0009681F9 /* XMLReader.h */,
+				D3521F530E5FA1B0009681F9 /* XMLReader.m */,
+				D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */,
+				D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */,
+				D31FE5F20E60E6B500A0803E /* TDXmlName.h */,
+				D31FE5F30E60E6B500A0803E /* TDXmlName.m */,
+				D31FE5F40E60E6B500A0803E /* TDXmlNameState.h */,
+				D31FE5F50E60E6B500A0803E /* TDXmlNameState.m */,
+				D31FE5F60E60E6B500A0803E /* TDXmlNameTest.h */,
+				D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */,
+				D31FE5F80E60E6B500A0803E /* TDXmlNmtoken.h */,
+				D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */,
+				D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */,
+				D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */,
+			);
+			name = old;
+			sourceTree = "<group>";
+		};
 		D3C0309C0EF34DD200C5ABEB /* grammar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1726,7 +1763,6 @@
 				D3DDDA860F0779FD00A58000 /* TDSyntaxHighlighter.m */,
 				D353899B0FEAC94400926552 /* c.grammar */,
 				D353899D0FEAC96B00926552 /* objc.grammar */,
-				D355C8800FEB36A1006A91A4 /* xml.grammar */,
 				D355C8830FEB4B94006A91A4 /* proto.grammar */,
 			);
 			name = grammar;
@@ -1928,28 +1964,12 @@
 		D3D647CE0E2C7569009BF5CD /* xml */ = {
 			isa = PBXGroup;
 			children = (
-				D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */,
-				D36E9FB40E5A944A00496BD3 /* apple-boss.xml */,
-				D31FE5AD0E60E64900A0803E /* TDXmlTokenAssembly.h */,
-				D31FE5AE0E60E64900A0803E /* TDXmlTokenAssembly.m */,
-				D31FE5AF0E60E64900A0803E /* TDXmlTokenizerTest.h */,
-				D31FE5B00E60E64900A0803E /* TDXmlTokenizerTest.m */,
-				D36EA1440E5CF38100496BD3 /* tokenizer */,
-				D36EA1400E5CF19F00496BD3 /* xml token terminals */,
-				D3521F520E5FA1B0009681F9 /* XMLReader.h */,
-				D3521F530E5FA1B0009681F9 /* XMLReader.m */,
-				D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */,
-				D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */,
-				D31FE5F20E60E6B500A0803E /* TDXmlName.h */,
-				D31FE5F30E60E6B500A0803E /* TDXmlName.m */,
-				D31FE5F40E60E6B500A0803E /* TDXmlNameState.h */,
-				D31FE5F50E60E6B500A0803E /* TDXmlNameState.m */,
-				D31FE5F60E60E6B500A0803E /* TDXmlNameTest.h */,
-				D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */,
-				D31FE5F80E60E6B500A0803E /* TDXmlNmtoken.h */,
-				D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */,
-				D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */,
-				D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */,
+				D3BBBC960FEC9722007DF30D /* TDXMLParserTest.h */,
+				D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */,
+				D3BBBC9B0FEC9756007DF30D /* TDXMLParser.h */,
+				D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */,
+				D355C8800FEB36A1006A91A4 /* xml.grammar */,
+				D3BBBC9A0FEC9739007DF30D /* old */,
 			);
 			name = xml;
 			sourceTree = "<group>";
@@ -2416,6 +2436,7 @@
 				D3FD79210F4CC87900BAD816 /* rubyhash.grammar in Resources */,
 				D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */,
 				D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */,
+				D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2583,6 +2604,7 @@
 				D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */,
 				D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
 				D355C62E0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
+				D3BBBC9D0FEC9756007DF30D /* TDXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2795,6 +2817,8 @@
 				D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */,
 				D355C62D0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
 				D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */,
+				D3BBBC980FEC9722007DF30D /* TDXMLParserTest.m in Sources */,
+				D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
