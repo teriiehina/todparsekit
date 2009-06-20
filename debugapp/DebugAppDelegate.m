@@ -439,11 +439,18 @@
 
 
 - (void)doNSPredicateEvaluator {
-    
     TDNSPredicateEvaluator *eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:nil] autorelease];
-    
-    
 }
+
+
+- (void)doXMLParser {
+	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
+	NSString *g = [NSString stringWithContentsOfFile:path];
+    TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
+    TDTokenizer *t = p.tokenizer;	
+}
+
+
 
 
 - (IBAction)run:(id)sender {
@@ -475,7 +482,8 @@
     
 //    [self doFactory];
     
-    [self doNSPredicateEvaluator];
+	[self doXMLParser];
+//    [self doNSPredicateEvaluator];
     
     [pool drain];
 }

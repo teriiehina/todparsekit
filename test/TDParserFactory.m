@@ -178,10 +178,10 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
-    [self gatherParserClassNamesFromTokens];
-
     TDTokenizer *t = [self tokenizerFromGrammarSettings];
-        
+
+    [self gatherParserClassNamesFromTokens];
+    
     TDParser *start = [self expandedParserForName:@"@start"];
     
     assembler = nil;
@@ -269,12 +269,19 @@ void TDReleaseSubparserTree(TDParser *p) {
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
+	[parserTokensTable removeObjectForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
+	[parserTokensTable removeObjectForKey:@"@numberState"];
     [self setTokenizerState:t.quoteState onTokenizer:t forTokensForKey:@"@quoteState"];
+	[parserTokensTable removeObjectForKey:@"@quoteState"];
     [self setTokenizerState:t.delimitState onTokenizer:t forTokensForKey:@"@delimitState"];
+	[parserTokensTable removeObjectForKey:@"@delimitState"];
     [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
+	[parserTokensTable removeObjectForKey:@"@symbolState"];
     [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
+	[parserTokensTable removeObjectForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
+	[parserTokensTable removeObjectForKey:@"@shitespaceState"];
     
     NSArray *toks = nil;
     
@@ -285,6 +292,8 @@ void TDReleaseSubparserTree(TDParser *p) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
         }
     }
+	[parserTokensTable removeObjectForKey:@"@symbols"];
+
     
     // wordChars
     toks = [parserTokensTable objectForKey:@"@wordChars"];
@@ -297,6 +306,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
+	[parserTokensTable removeObjectForKey:@"@wordChars"];
     
     // whitespaceChars
     toks = [parserTokensTable objectForKey:@"@whitespaceChars"];
@@ -309,6 +319,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
+	[parserTokensTable removeObjectForKey:@"whitespaceChars"];
     
     // single-line comments
     toks = [parserTokensTable objectForKey:@"@singleLineComments"];
@@ -319,6 +330,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             [t.symbolState add:s];
         }
     }
+	[parserTokensTable removeObjectForKey:@"singleLineComments"];
     
     // multi-line comments
     toks = [parserTokensTable objectForKey:@"@multiLineComments"];
@@ -336,6 +348,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+	[parserTokensTable removeObjectForKey:@"multiLineComments"];
 
     // delimited strings
     toks = [parserTokensTable objectForKey:@"@delimitedStrings"];
@@ -357,6 +370,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+	[parserTokensTable removeObjectForKey:@"delimitedStrings"];
     
     return t;
 }
