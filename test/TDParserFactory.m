@@ -970,6 +970,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         p = [TDUppercaseWord word];
     } else if ([s isEqualToString:@"Num"]) {
         p = [TDNum num];
+    } else if ([s isEqualToString:@"S"]) {
+        p = [TDWhitespace whitespace];
     } else if ([s isEqualToString:@"QuotedString"]) {
         p = [TDQuotedString quotedString];
     } else if ([s isEqualToString:@"Symbol"]) {

@@ -174,6 +174,8 @@
 		D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
 		D355C8810FEB36A1006A91A4 /* xml.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8800FEB36A1006A91A4 /* xml.grammar */; };
 		D355C8840FEB4B94006A91A4 /* proto.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8830FEB4B94006A91A4 /* proto.grammar */; };
+		D355C8880FEC6C7D006A91A4 /* TDWhitespace.h in Headers */ = {isa = PBXBuildFile; fileRef = D355C8860FEC6C7D006A91A4 /* TDWhitespace.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D355C8890FEC6C7D006A91A4 /* TDWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D355C8870FEC6C7D006A91A4 /* TDWhitespace.m */; };
 		D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D6A5FE840307C02AAC07 /* AppKit.framework */; };
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
@@ -788,6 +790,8 @@
 		D355C6300FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateEvaluatorTest.m; path = test/TDNSPredicateEvaluatorTest.m; sourceTree = "<group>"; };
 		D355C8800FEB36A1006A91A4 /* xml.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xml.grammar; path = res/xml.grammar; sourceTree = "<group>"; };
 		D355C8830FEB4B94006A91A4 /* proto.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = proto.grammar; path = res/proto.grammar; sourceTree = "<group>"; };
+		D355C8860FEC6C7D006A91A4 /* TDWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDWhitespace.h; path = src/TDWhitespace.h; sourceTree = "<group>"; };
+		D355C8870FEC6C7D006A91A4 /* TDWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDWhitespace.m; path = src/TDWhitespace.m; sourceTree = "<group>"; };
 		D36568A50EEF9FE900226554 /* TDPlistParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParser.h; path = test/TDPlistParser.h; sourceTree = "<group>"; };
 		D36568A60EEF9FE900226554 /* TDPlistParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParser.m; path = test/TDPlistParser.m; sourceTree = "<group>"; };
 		D36568A80EEFA05300226554 /* TDPlistParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPlistParserTest.h; path = test/TDPlistParserTest.h; sourceTree = "<group>"; };
@@ -1915,6 +1919,8 @@
 				D31FE6790E60E80600A0803E /* TDLiteral.m */,
 				D31FE68C0E60E82300A0803E /* TDCaseInsensitiveLiteral.h */,
 				D31FE68D0E60E82300A0803E /* TDCaseInsensitiveLiteral.m */,
+				D355C8860FEC6C7D006A91A4 /* TDWhitespace.h */,
+				D355C8870FEC6C7D006A91A4 /* TDWhitespace.m */,
 			);
 			name = "token terminals";
 			sourceTree = "<group>";
@@ -2095,6 +2101,7 @@
 				D3A881C40FC637C200A40BEF /* TDDelimitedString.h in Headers */,
 				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
 				D36C56020FD361AD00141CB7 /* TDPattern.h in Headers */,
+				D355C8880FEC6C7D006A91A4 /* TDWhitespace.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2537,6 +2544,7 @@
 				D3A881C50FC637C200A40BEF /* TDDelimitedString.m in Sources */,
 				D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */,
 				D36C56030FD361AD00141CB7 /* TDPattern.m in Sources */,
+				D355C8890FEC6C7D006A91A4 /* TDWhitespace.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
