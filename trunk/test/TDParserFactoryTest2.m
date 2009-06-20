@@ -270,5 +270,22 @@
 }
 
 
+- (void)testWhitespace {
+    g = @"@reportsWhitespaceTokens = YES; @start = 'foo' S '+' S 'bar';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+
+    s = @"foo + bar";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo,  , +,  , bar]foo/ /+/ /bar^", [res description]);
+
+    s = @"foo +bar";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}    
 
 @end
