@@ -141,13 +141,27 @@ seq = '(' cp ( ',' cp )* ')';
 # [51]   	Mixed	   ::=   	'(' S? '#PCDATA' (S? '|' S? Name)* S? ')*' | '(' S? '#PCDATA' S? ')'
 mixed = '(' '#PCDATA' ('|' Name)* ')*' | '(' '#PCDATA' ')';
 
-[52]   	AttlistDecl	   ::=   	'<!ATTLIST' S Name AttDef* S? '>'
-[53]   	AttDef	   ::=   	 S Name S AttType S DefaultDecl
-[54]   	AttType	   ::=   	 StringType | TokenizedType | EnumeratedType
-[55]   	StringType	   ::=   	'CDATA'
-[56]   	TokenizedType	   ::=   	'ID' | 'IDREF' | 'IDREFS' | 'ENTITY' | 'ENTITIES' | 'NMTOKEN' | 'NMTOKENS'
-[57]   	EnumeratedType	   ::=   	 NotationType | Enumeration
-[58]   	NotationType	   ::=   	'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'
+# [52]   	AttlistDecl	   ::=   	'<!ATTLIST' S Name AttDef* S? '>'
+attlistDecl	= '<!ATTLIST' name attDef* '>';
+
+# AttDef	   ::=   	 S Name S AttType S DefaultDecl
+attlistDecl = '<!ATTLIST' name attDef* '>';
+
+# [54]   	AttType	   ::=   	 StringType | TokenizedType | EnumeratedType
+attType = stringType | tokenizedType | enumeratedType;
+
+# [55]   	StringType	   ::=   	'CDATA'
+stringType = 'CDATA';
+
+# [56]   	TokenizedType	   ::=   	'ID' | 'IDREF' | 'IDREFS' | 'ENTITY' | 'ENTITIES' | 'NMTOKEN' | 'NMTOKENS'
+tokenizedType = 'ID' | 'IDREF' | 'IDREFS' | 'ENTITY' | 'ENTITIES' | 'NMTOKEN' | 'NMTOKENS';
+
+# [57]   	EnumeratedType	   ::=   	 NotationType | Enumeration
+enumeratedType = notationType | enumeration;
+
+# [58]   	NotationType	   ::=   	'NOTATION' S '(' S? Name (S? '|' S? Name)* S? ')'
+notationType = 'NOTATION' '(' name ('|' name)* ')';
+
 [59]   	Enumeration	   ::=   	'(' S? Nmtoken (S? '|' S? Nmtoken)* S? ')'
 [60]   	DefaultDecl	   ::=   	'#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? AttValue)	
 
