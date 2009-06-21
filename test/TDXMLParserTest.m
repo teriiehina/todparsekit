@@ -12,8 +12,9 @@
 
 - (void)setUp {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
-	NSString *g = [NSString stringWithContentsOfFile:path];
-	p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
+	g = [NSString stringWithContentsOfFile:path];
+    factory = [TDParserFactory factory];
+	p = [factory parserFromGrammar:g assembler:self];
     t = p.tokenizer;
 }
 
@@ -22,6 +23,41 @@
 	t.string = @"<foo>";
     res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+
+	t.string = @"<foo >";
+    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    
+	t.string = @"<foo \t>";
+    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    
+	t.string = @"<foo \n >";
+    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    
+	t.string = @"<foo bar='baz'>";
+    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//	TDEqualObjects(@"[<, foo, bar, =, 'baz', >]</foo/bar/=/'baz'/>^", [res description]);
+}
+
+
+- (void)testSmallSTagGrammar {
+    g = @"@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
+    p = [factory parserFromGrammar:g assembler:nil];
+    t = p.tokenizer;
+
+    t.string = @"<foo>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+}
+
+
+- (void)testETag {
+	t.string = @"</foo>";
+//    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	//TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 

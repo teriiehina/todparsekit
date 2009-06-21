@@ -11,6 +11,8 @@
 
 @interface TDXMLParserTest : SenTestCase {
     NSString *s;
+    NSString *g;
+    TDParserFactory *factory;
     TDTokenAssembly *a;
     TDAssembly *res;
     TDParser *p;
