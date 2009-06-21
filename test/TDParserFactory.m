@@ -524,7 +524,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
-// pattern              = DelimitedString('/', '', nil)
+// pattern              = DelimitedString('/', '/')
 
 
 // satement             = declaration '=' expression
@@ -546,7 +546,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // declaration          = productionName callback?
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
-        self.declarationParser = [TDSequence sequence];
+        self.declarationParser = [TDTrack track];
         declarationParser.name = @"declaration";
         [declarationParser add:[TDWord word]];
         [declarationParser add:[self zeroOrOne:self.callbackParser]];
@@ -721,7 +721,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // cardinality          = '{' Num '}'
 - (TDCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
-        self.cardinalityParser = [TDSequence sequence];
+        self.cardinalityParser = [TDTrack track];
         cardinalityParser.name = @"cardinality";
         [cardinalityParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
         [cardinalityParser add:[TDNum num]];
@@ -755,7 +755,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // discard              = '.' 'discard'
 - (TDCollectionParser *)discardParser {
     if (!discardParser) {
-        self.discardParser = [TDSequence sequence];
+        self.discardParser = [TDTrack track];
         discardParser.name = @"discardParser";
         [discardParser add:[[TDSymbol symbolWithString:@"."] discard]];
         [discardParser add:[[TDLiteral literalWithString:@"discard"] discard]];
@@ -765,7 +765,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = DelimitedString('/', '/')
+// pattern              = DelimitedString('/', '/');
 - (TDParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
@@ -814,7 +814,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.delimitedStringParser = [TDTrack track];
         delimitedStringParser.name = @"delimitedString";
         
-        TDSequence *secondArg = [TDSequence sequence];
+        TDSequence *secondArg = [TDTrack track];
         [secondArg add:[[TDSymbol symbolWithString:@","] discard]];
         [secondArg add:[TDQuotedString quotedString]]; // endMarker
         
