@@ -88,6 +88,21 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [eTag bestMatchFor:a];
 	TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+    
+    t.string = @"</foo >";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [eTag bestMatchFor:a];
+	TDEqualObjects(@"[</, foo,  , >]<//foo/ />^", [res description]);
+    
+    t.string = @"</ foo>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [eTag bestMatchFor:a];
+	TDNil(res);
+
+    t.string = @"< /foo>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [eTag bestMatchFor:a];
+	TDNil(res);
 }
     
     
@@ -108,4 +123,26 @@
     TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 }
 
+
+- (void)testSmallEmptyElemTagGrammar {
+    g = @"@delimitState='<';@symbols='/>';@reportsWhitespaceTokens=YES;@start=emptyElemTag;emptyElemTag='<' name (S attribute)* S? '/>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
+    TDParser *emptyElemTag = [factory parserFromGrammar:g assembler:nil];
+    t = emptyElemTag.tokenizer;
+    
+    t.string = @"<foo/>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [emptyElemTag bestMatchFor:a];
+	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+    
+    t.string = @"<foo />";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [emptyElemTag bestMatchFor:a];
+	TDEqualObjects(@"[<, foo,  , />]</foo/ //>^", [res description]);
+    
+    t.string = @"<foo bar='baz'/>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [emptyElemTag bestMatchFor:a];
+	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', />]</foo/ /bar/=/'baz'//>^", [res description]);
+    
+}    
 @end
