@@ -20,8 +20,13 @@
 
 - (void)testSTag {
 	t.string = @"<foo>";
-    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+	NSLog(@"p: %@", p);
+//    NSLog(@"document: %@", [p parserNamed:@"document"]);
+//    NSLog(@"comment: %@", [p parserNamed:@"comment"]);
+//    NSLog(@"content: %@", [p parserNamed:@"content"]);
+////	NSLog(@"sTag: %@", [p parserNamed:@"sTag"]);
+//    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+////	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 }
 
 
@@ -30,8 +35,8 @@
 //    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 //    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
 
-	t.string = @"<foo/>";
-    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//	t.string = @"<foo/>";
+//    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 //    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 
 }
