@@ -106,7 +106,7 @@ sdDecl = S 'standalone' eq QuotedString; # /(["'])(yes|no)\1/; # TODO
 element = emptyElemTag | sTag content eTag;
 
 # [40]       STag       ::=       '<' Name (S Attribute)* S? '>'
-sTag = '<' name (S attribute)* '>';
+sTag = '<' name (S attribute)* S? '>';
 
 # [41]       Attribute       ::=        Name Eq AttValue
 attribute = name eq attValue;
