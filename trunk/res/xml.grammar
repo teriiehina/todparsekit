@@ -1,5 +1,7 @@
 @start = document;
 
+@reportsWhitespaceTokens = YES;
+
 @symbols = '&#' '&#x' '</' '/>' '<![' 
             '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST'
             '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';

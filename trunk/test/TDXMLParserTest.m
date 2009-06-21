@@ -26,24 +26,24 @@
 
 	t.string = @"<foo >";
     res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
     
 	t.string = @"<foo \t>";
     res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+	TDEqualObjects(@"[<, foo,  \t, >]</foo/ \t/>^", [res description]);
     
 	t.string = @"<foo \n >";
     res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+	TDEqualObjects(@"[<, foo,  \n , >]</foo/ \n />^", [res description]);
     
 	t.string = @"<foo bar='baz'>";
     res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//	TDEqualObjects(@"[<, foo, bar, =, 'baz', >]</foo/bar/=/'baz'/>^", [res description]);
+	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', >]</foo/ /bar/=/'baz'/>^", [res description]);
 }
 
 
 - (void)testSmallSTagGrammar {
-    g = @"@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
+    g = @"@reportsWhitespaceTokens=YES;@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
     p = [factory parserFromGrammar:g assembler:nil];
     t = p.tokenizer;
 
@@ -51,6 +51,21 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [p bestMatchFor:a];
 	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+
+    t.string = @"<foo >";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
+
+    t.string = @"<foo \n>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+	TDEqualObjects(@"[<, foo,  \n, >]</foo/ \n/>^", [res description]);
+
+    t.string = @"< foo>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+	TDNil(res);
 }
 
 
