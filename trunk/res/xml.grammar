@@ -100,7 +100,7 @@ markupdecl = elementdecl | attlistDecl | entityDecl | notationDecl | pi | commen
 # extSubsetDecl = (markupdecl | conditionalSect | declSep)*;
 
 # [32]       SDDecl       ::=        S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
-sdDecl = S 'standalone' eq /(["'])(yes|no)\1/; # TODO
+sdDecl = S 'standalone' eq QuotedString; # /(["'])(yes|no)\1/; # TODO
 
 # [39]       element       ::=        EmptyElemTag | STag content ETag
 element = emptyElemTag | sTag content eTag;
@@ -115,7 +115,7 @@ attribute = name eq attValue;
 eTag = '</' name S? '>';
 
 # [43]       content       ::=        CharData? ((element | Reference | CDSect | PI | Comment) CharData?)*
-content = charData? ((element | reference | cdSect | pi | comment) charData?)*;
+content = Empty | (element | reference | cdSect | pi | comment | charData)+;
 
 # [44]       EmptyElemTag       ::=       '<' Name (S Attribute)* S? '/>'
 emptyElemTag = '<' name (S attribute)* S? '/>';
@@ -130,7 +130,7 @@ contentspec = 'EMPTY' | 'ANY' | mixed | children;
 children = (choice | seq) ('?' | '*' | '+')?;
 
 # [48]       cp       ::=       (Name | choice | seq) ('?' | '*' | '+')?
-cp = (name | choice | seq) ('?' | '*' | '+')?;
+cp = (name) ('?' | '*' | '+')?; # TODO !!!!!!!!!!!!!!
 
 # [49]       choice       ::=       '(' S? cp ( S? '|' S? cp )+ S? ')'
 choice = '(' S? cp ( S? '|' S? cp )+ S? ')';
