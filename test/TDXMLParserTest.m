@@ -79,6 +79,18 @@
 }
 
 
+- (void)testSmallETagGrammar {
+    g = @"@symbols='</';@delimitState='<';@reportsWhitespaceTokens=YES;@start=eTag;eTag = '</' name S? '>';name=/[^-:\\.]\\w+/;";
+    TDParser *eTag = [factory parserFromGrammar:g assembler:nil];
+    t = eTag.tokenizer;
+    
+    t.string = @"</foo>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [eTag bestMatchFor:a];
+	TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+}
+    
+    
 - (void)testETag {
 	t.string = @"</foo>";
 //    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
