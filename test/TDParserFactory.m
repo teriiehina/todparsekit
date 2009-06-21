@@ -370,7 +370,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
-	[parserTokensTable removeObjectForKey:@"delimitedStrings"];
+	[parserTokensTable removeObjectForKey:@"@delimitedStrings"];
     
     return t;
 }
@@ -811,7 +811,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // delimitedString = 'DelimitedString' '(' QuotedString (',' QuotedString)? ')'
 - (TDCollectionParser *)delimitedStringParser {
     if (!delimitedStringParser) {
-        self.delimitedStringParser = [TDSequence sequence];
+        self.delimitedStringParser = [TDTrack track];
         delimitedStringParser.name = @"delimitedString";
         
         TDSequence *secondArg = [TDSequence sequence];
