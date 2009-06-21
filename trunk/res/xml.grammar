@@ -1,9 +1,13 @@
 @start = document;
 
-@symbols = '&#' '</' '/>' '<?' '?>' '<![CDATA[', '<![' ']]>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '#PCDATA' '<!ATTLIST' '#REQUIRED' '#IMPLIED' '#FIXED' ')*'
-            '<!--' '-->';
+@symbols = '&#' '&#x' '</' '/>' '<![' 
+			'<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST'
+			'#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
 
 @delimitState = '<';
+@delimitedStrings = '<!--' '-->' nil 
+					'<?' '?>' nil
+					'<![CDATA[' ']]>' nil;
 
 # @commentState = '<';
 # @multiLineComments = '<!--' '-->';
@@ -22,13 +26,13 @@ document = prolog element misc*;
 name = /[^-:\.]\w+/;
 
 # [6]   	Names	   ::=   	Name (#x20 Name)*
-names = name+;
+# names = name (S name)*;
 
 # [7]   	Nmtoken	   ::=   	(NameChar)+
 nmtoken = Word;
 
 # [8]   	Nmtokens	   ::=   	Nmtoken (#x20 Nmtoken)*
-nmtokens = nmtoken+;
+# nmtokens = nmtoken (S nmtoken)*;
 
 # [9]   	EntityValue	   ::=   	'"' ([^%&"] | PEReference | Reference)* '"' |  "'" ([^%&'] | PEReference | Reference)* "'"
 entityValue = QuotedString; # TODO
@@ -44,16 +48,14 @@ systemLiteral = QuotedString;
 pubidLiteral = QuotedString; # TODO
 
 # [14]   	CharData	   ::=   	[^<&]* - ([^<&]* ']]>' [^<&]*)
-charData = /[^<&].+/; #TODO
+charData = /[^<&]+/; # TODO
 
 # [15]   	Comment	   ::=   	'<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
-comment = Comment;
+comment = DelimitedString('<!--', '-->');
 
 # [16]   	PI	   ::=   	'<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
-pi = DelimitedString('<?', '?>');
-
 # [17]   	PITarget	   ::=   	 Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
-piTarget = Word; # TODO
+pi = DelimitedString('<?', '?>');
 
 # [18]   	CDSect	   ::=   	 CDStart CData CDEnd
 # [19]   	CDStart	   ::=   	'<![CDATA['
@@ -65,7 +67,7 @@ cdSect = DelimitedString('<![CDATA[', ']]>');
 prolog = xmlDecl? misc* (doctypedecl misc*)?;
 
 # [23]   	XMLDecl	   ::=   	'<?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
-xmlDecl = '<?xml' versionInfo encodingDecl? S? '?>';
+xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
 
 # [24]   	VersionInfo	   ::=   	 S 'version' Eq ("'" VersionNum "'" | '"' VersionNum '"')
 # [26]   	VersionNum	   ::=   	'1.' [0-9]+
@@ -91,13 +93,13 @@ intSubset = (markupdecl | declSep)*;
 markupdecl = elementdecl | attlistDecl | entityDecl | notationDecl | pi | comment;
 
 # [30]   	extSubset	   ::=   	 TextDecl? extSubsetDecl
-extSubset = textDecl? extSubsetDecl;
+# extSubset = textDecl? extSubsetDecl;
 
 # [31]   	extSubsetDecl	   ::=   	( markupdecl | conditionalSect | DeclSep)*
-extSubsetDecl = (markupdecl | conditionalSect | declSep)*;
+# extSubsetDecl = (markupdecl | conditionalSect | declSep)*;
 
 # [32]   	SDDecl	   ::=   	 S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
-sDDecl = S 'standalone' eq /(["'])(yes|no)\1/; # TODO
+sdDecl = S 'standalone' eq /(["'])(yes|no)\1/; # TODO
 
 # [39]   	element	   ::=   	 EmptyElemTag | STag content ETag
 element = emptyElemTag | sTag content eTag;
@@ -115,10 +117,10 @@ eTag = '</' name S? '>';
 content = charData? ((element | reference | cdSect | pi | comment) charData?)*;
 
 # [44]   	EmptyElemTag	   ::=   	'<' Name (S Attribute)* S? '/>'
-emptyElemTag = '<' name (S attribute)* '/>';
+emptyElemTag = '<' name (S attribute)* S? '/>';
 
 # [45]   	elementdecl	   ::=   	'<!ELEMENT' S Name S contentspec S? '>'
-elementdecl = '<!ELEMENT' S name S contentspec '>';
+elementdecl = '<!ELEMENT' S name S contentspec S? '>';
 
 # [46]   	contentspec	   ::=   	'EMPTY' | 'ANY' | Mixed | children
 contentspec = 'EMPTY' | 'ANY' | mixed | children;
@@ -166,19 +168,19 @@ enumeration	= '(' S? nmtoken (S? '|' S? nmtoken)* S? ')';
 defaultDecl = '#REQUIRED' | '#IMPLIED' | (('#FIXED' S)? attValue);
 
 # [61]   	conditionalSect	   ::=   	 includeSect | ignoreSect
-conditionalSect = includeSect | ignoreSect;
+# conditionalSect = includeSect | ignoreSect;
 
 # [62]   	includeSect	   ::=   	'<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>'	
-includeSect = '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>';
+# includeSect = '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>';
 
 # [63]   	ignoreSect	   ::=   	'<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>'	
-ignoreSect = '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>';
+# ignoreSect = '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>';
 
 # [64]   	ignoreSectContents	   ::=   	 Ignore ('<![' ignoreSectContents ']]>' Ignore)*
-ignoreSectContents = ignore ('<![' ignoreSectContents ']]>' ignore)*;
+# ignoreSectContents = ignore ('<![' ignoreSectContents ']]>' ignore)*;
 
 # [65]   	Ignore	   ::=   	 Char* - (Char* ('<![' | ']]>') Char*)
-ignore = Word; # TODO 
+# ignore = Word; # TODO 
 
 # [66]   	CharRef	   ::=   	'&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
 charRef = '&#' /[0-9]+/ ';' | '&#x' /[0-9a-fA-F]+/ ';';
@@ -214,16 +216,14 @@ externalID = 'SYSTEM' S systemLiteral | 'PUBLIC' S pubidLiteral S systemLiteral;
 nDataDecl = S 'NDATA' S name;
 
 # [77]   	TextDecl	   ::=   	'<?xml' VersionInfo? EncodingDecl S? '?>'
-textDecl = '<?xml' versionInfo? encodingDecl S? '?>';
+# textDecl = '<?xml' versionInfo? encodingDecl S? '?>';
 
 # [78]   	extParsedEnt	   ::=   	 TextDecl? content
-extParsedEnt = textDecl? content;
+# extParsedEnt = textDecl? content;
 
 # [80]   	EncodingDecl	   ::=   	 S 'encoding' Eq ('"' EncName '"' | "'" EncName "'" )
-encodingDecl = S 'encoding' eq QuotedString; # TODO
-
 # [81]   	EncName	   ::=   	[A-Za-z] ([A-Za-z0-9._] | '-')*
-encName	= Word; # TODO
+encodingDecl = S 'encoding' eq QuotedString; # TODO
 
 # [82]   	NotationDecl	   ::=   	'<!NOTATION' S Name S (ExternalID | PublicID) S? '>'	
 notationDecl = '<!NOTATION' S name S (externalID | publicID) S? '>';
