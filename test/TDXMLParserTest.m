@@ -20,25 +20,19 @@
 
 - (void)testSTag {
 	t.string = @"<foo>";
-	NSLog(@"p: %@", p);
-//    NSLog(@"document: %@", [p parserNamed:@"document"]);
-//    NSLog(@"comment: %@", [p parserNamed:@"comment"]);
-//    NSLog(@"content: %@", [p parserNamed:@"content"]);
-////	NSLog(@"sTag: %@", [p parserNamed:@"sTag"]);
-//    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-////	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 }
 
 
 - (void)test1 {
-//	t.string = @"<foo></foo>";
-//    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	t.string = @"<foo></foo>";
+    res = [[p parserNamed:@"element"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 //    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
 
-//	t.string = @"<foo/>";
-//    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
-
+	t.string = @"<foo/>";
+    res = [[p parserNamed:@"emptyElemTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 }
 
 @end
