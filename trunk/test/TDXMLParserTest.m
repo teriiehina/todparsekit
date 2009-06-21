@@ -20,51 +20,61 @@
 
 
 - (void)testSTag {
+    TDParser *sTag = [p parserNamed:@"sTag"];
+    
 	t.string = @"<foo>";
-    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 
 	t.string = @"<foo >";
-    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
     
 	t.string = @"<foo \t>";
-    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo,  \t, >]</foo/ \t/>^", [res description]);
     
 	t.string = @"<foo \n >";
-    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo,  \n , >]</foo/ \n />^", [res description]);
     
 	t.string = @"<foo bar='baz'>";
-    res = [[p parserNamed:@"sTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', >]</foo/ /bar/=/'baz'/>^", [res description]);
+
+	t.string = @"<foo bar='baz' baz='bat'>";
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/'bat'/>^", [res description]);
+    
+	t.string = @"<foo bar='baz' baz=\t'bat'>";
+    res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+	TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, \t, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/\t/'bat'/>^", [res description]);
 }
 
 
 - (void)testSmallSTagGrammar {
-    g = @"@reportsWhitespaceTokens=YES;@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
-    p = [factory parserFromGrammar:g assembler:nil];
-    t = p.tokenizer;
+    g = @"@delimitState='<';@reportsWhitespaceTokens=YES;@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
+    TDParser *sTag = [factory parserFromGrammar:g assembler:nil];
+    t = sTag.tokenizer;
 
     t.string = @"<foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    res = [p bestMatchFor:a];
+    res = [sTag bestMatchFor:a];
 	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 
     t.string = @"<foo >";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    res = [p bestMatchFor:a];
+    res = [sTag bestMatchFor:a];
 	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
 
     t.string = @"<foo \n>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    res = [p bestMatchFor:a];
+    res = [sTag bestMatchFor:a];
 	TDEqualObjects(@"[<, foo,  \n, >]</foo/ \n/>^", [res description]);
 
     t.string = @"< foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    res = [p bestMatchFor:a];
+    res = [sTag bestMatchFor:a];
 	TDNil(res);
 }
 
@@ -72,7 +82,7 @@
 - (void)testETag {
 	t.string = @"</foo>";
 //    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	//TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+//    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 
