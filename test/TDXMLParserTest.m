@@ -143,6 +143,41 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [emptyElemTag bestMatchFor:a];
 	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', />]</foo/ /bar/=/'baz'//>^", [res description]);
+}
+
+
+
+- (void)testSmallElementGrammar {
+    g = 
+        @"@symbols = '</' '/>';"
+        @"@delimitState = '<';"
+        @"@reportsWhitespaceTokens = YES;"
+        @"@start = element;"
+        @"element = emptyElemTag | (sTag content eTag);"
+        @"sTag = '<' name (S attribute)* S? '>';"
+        @"eTag = '</' name S? '>';"
+        @"emptyElemTag = '<' name (S attribute)* S? '/>';"
+        //@"content = Empty | (element | reference | cdSect | pi | comment | charData)+;"
+        @"content = Empty | (charData)+;"
+        @"name = /[^-:\\.]\\w+/;"
+        @"attribute = name eq attValue;"
+        @"eq=S? '=' S?;"
+        @"attValue = QuotedString;"
+        @"charData = /[^<&]+/;";
     
-}    
+    NSLog(@"g: %@", g);
+    TDParser *element = [factory parserFromGrammar:g assembler:nil];
+    t = element.tokenizer;
+    
+    t.string = @"<foo/>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [element bestMatchFor:a];
+	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+
+
+//	t.string = @"<foo></foo>";
+//    res = [content bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    //    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
+}
+
 @end
