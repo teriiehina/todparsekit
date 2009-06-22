@@ -1100,9 +1100,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         if ([obj isKindOfClass:[TDParser class]]) {
             [parsers addObject:obj];
         } else {
-            //if (![obj isEqual:paren]) {
-                [a push:obj];
-            //}
+            [a push:obj];
             break;
         }
     }
