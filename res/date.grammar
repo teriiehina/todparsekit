@@ -1,0 +1,38 @@
+"""
+
+    TDParseKit Grammar Syntax now supports regular expressions (powered by RegExKit Lite)
+    
+    So, as a trivial (and useless) example, the following TDPK grammar 
+    specifies a tiny language which allows dates in the format of:
+    
+    2009-06-21
+
+"""
+
+@start  = date;                             # the 'date' production is the outermost production in this grammar
+
+date    = /\d{4}/ '-' /\d{2}/ '-' /\d{2}/;  # will match any sequence of tokens whose `stringValue` property matches these regexes
+                                            # separated by two '-' chars
+                                            
+                                            
+
+
+
+
+"""
+An equivalent grammar could be expressed in many ways. Here's another style with explicit ObjC assembler callbacks added:
+
+
+@start  = date;
+
+dash    = '-';
+date    = year dash month dash day;
+
+year  (matchedYear:)    = /\d{4}/;      # when matched, your specified `assembler` object (think delegate) will receive a
+                                        # callback to it's `-matchedYear:` method with a `TDAssembly` argument.
+                                        # the token matched by the regex will on the top of the assebly's stack ready for you
+
+month (matchedMonth:)   = /\d{2}/;
+day   (matchedDay:)     = /\d{2}/;
+
+"""
