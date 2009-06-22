@@ -108,15 +108,15 @@
     
 - (void)testETag {
 	t.string = @"</foo>";
-//    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+    //res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    //TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 
 - (void)test1 {
 	t.string = @"<foo></foo>";
     res = [[p parserNamed:@"element"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
+    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
 
 	t.string = @"<foo/>";
     res = [[p parserNamed:@"emptyElemTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -153,12 +153,12 @@
         @"@delimitState = '<';"
         @"@reportsWhitespaceTokens = YES;"
         @"@start = element;"
-        @"element = emptyElemTag | (sTag content eTag);"
+        @"element = emptyElemTag | sTag content eTag;"
         @"sTag = '<' name (S attribute)* S? '>';"
         @"eTag = '</' name S? '>';"
         @"emptyElemTag = '<' name (S attribute)* S? '/>';"
         //@"content = Empty | (element | reference | cdSect | pi | comment | charData)+;"
-        @"content = Empty | (charData)+;"
+        @"content = Empty | (element | charData)+;"
         @"name = /[^-:\\.]\\w+/;"
         @"attribute = name eq attValue;"
         @"eq=S? '=' S?;"
@@ -175,9 +175,9 @@
 	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 
 
-//	t.string = @"<foo></foo>";
-//    res = [content bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-    //    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
+	t.string = @"<foo></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
 }
 
 @end
