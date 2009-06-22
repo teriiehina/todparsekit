@@ -38,6 +38,12 @@
     if ([name isEqualToString:s]) {
         return self;
     } else {
+        // do bredth-first search
+        for (TDParser *p in subparsers) {
+            if ([p.name isEqualToString:s]) {
+                return p;
+            }
+        }
         for (TDParser *p in subparsers) {
             TDParser *sub = [p parserNamed:s];
             if (sub) {
