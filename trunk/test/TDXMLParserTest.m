@@ -146,6 +146,24 @@
 }
 
 
+- (void)testSmallCharDataGrammar {
+    g = @"@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';"
+        @"@delimitState = '<';"
+        @"@delimitedStrings = '<!--' '-->' nil  '<?' '?>' nil  '<![CDATA[' ']]>' nil;"
+        @"@reportsWhitespaceTokens = YES;"
+        @"@start = charData;"
+        @"charData = /[^<\\&]+/;";
+
+    TDParser *charData = [factory parserFromGrammar:g assembler:nil];
+    t = charData.tokenizer;
+
+    t.string = @" ";
+    res = [charData bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[ ] ^", [res description]);
+}
+
+
+
 - (void)testSmallElementGrammar {
     g = @"@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';"
         @"@delimitState = '<';"
@@ -162,7 +180,7 @@
         @"attribute = name eq attValue;"
         @"eq=S? '=' S?;"
         @"attValue = QuotedString;"
-        @"charData = /[^<&]+/;"
+        @"charData = /[^<\\&]+/;"
         @"reference = entityRef | charRef;"
         @"entityRef = '&' name ';';"
         @"charRef = '&#' /[0-9]+/ ';' | '&#x' /[0-9a-fA-F]+/ ';';"
@@ -183,9 +201,9 @@
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
     
-//	t.string = @"<foo> </foo>";
-//    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, >,  , </, foo, >]</foo/>/ /<//foo/>^", [res description]);
+	t.string = @"<foo> </foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >,  , </, foo, >]</foo/>/ /<//foo/>^", [res description]);
     
 	t.string = @"<foo>&bar;</foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -199,9 +217,9 @@
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, </, foo, >]</foo/>/&#x/FF20/;/<//foo/>^", [res description]);
 
-//	t.string = @"<foo>&#xFF20; </foo>";
-//    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , </, foo, >]</foo/>/&#x/FF20/;/ /<//foo/>^", [res description]);
+	t.string = @"<foo>&#xFF20; </foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , </, foo, >]</foo/>/&#x/FF20/;/ /<//foo/>^", [res description]);
     
 	t.string = @"<foo><![CDATA[bar]]></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -211,9 +229,9 @@
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/<![CDATA[bar]]>/<//foo/>^", [res description]);
 
-//	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
-//    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[, bar, ]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[/bar/]]>/<//foo/>^", [res description]);
+	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[bar]]>/<//foo/>^", [res description]);
 }
 
 @end

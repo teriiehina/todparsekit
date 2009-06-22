@@ -49,7 +49,7 @@ systemLiteral = QuotedString;
 pubidLiteral = QuotedString; # TODO
 
 # [14]       CharData       ::=       [^<&]* - ([^<&]* ']]>' [^<&]*)
-charData = /[^<&]+/; # TODO
+charData = /[^<\&]+/; # TODO why does this need to escape the amp ?
 
 # [15]       Comment       ::=       '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
 comment = DelimitedString('<!--', '-->');
