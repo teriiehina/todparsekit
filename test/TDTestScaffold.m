@@ -112,6 +112,7 @@
                            @"TDNSPredicateEvaluatorTest",
                            @"TDNSPredicateBuilderTest",
                            @"TDJavaScriptParserTest",
+                           @"TDXMLParserTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];

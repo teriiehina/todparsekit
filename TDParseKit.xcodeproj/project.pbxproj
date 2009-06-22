@@ -435,6 +435,7 @@
 		D389FBCD0F1B25E200558235 /* ParserTest.html in Resources */ = {isa = PBXBuildFile; fileRef = D389FBCC0F1B25E200558235 /* ParserTest.html */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
+		D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */; };
 		D3A8812B0FC5443300A40BEF /* TDDelimitState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881290FC5443300A40BEF /* TDDelimitState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3A8812C0FC5443300A40BEF /* TDDelimitState.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A8812A0FC5443300A40BEF /* TDDelimitState.m */; };
 		D3A881C40FC637C200A40BEF /* TDDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881C20FC637C200A40BEF /* TDDelimitedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -444,7 +445,6 @@
 		D3B473850E48C9CF008AFBDD /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D3B69D320E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
 		D3B69D330E80249900D70C41 /* nonascii.html in Resources */ = {isa = PBXBuildFile; fileRef = D3B69D310E80249900D70C41 /* nonascii.html */; };
-		D3BBBC980FEC9722007DF30D /* TDXMLParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */; };
 		D3BBBC9D0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
 		D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
 		D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8800FEB36A1006A91A4 /* xml.grammar */; };
@@ -2817,8 +2817,8 @@
 				D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */,
 				D355C62D0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
 				D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */,
-				D3BBBC980FEC9722007DF30D /* TDXMLParserTest.m in Sources */,
 				D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */,
+				D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

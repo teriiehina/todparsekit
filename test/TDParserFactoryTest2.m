@@ -15,6 +15,53 @@
 }
 
 
+- (void)testOrVsAndPrecendence {
+    g = @"@start = Word | Num Symbol;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+    
+    s = @"foo %";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+    g = @"@start = Word Num | Symbol;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo 3";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo, 3]foo/3^", [res description]);
+    
+    s = @"%";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[%]%^", [res description]);
+
+    s = @"foo %";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+    g = @"@start = Word (Num | Symbol);";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo 3";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo, 3]foo/3^", [res description]);
+    
+    s = @"foo";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+    s = @"foo %";
+    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[foo, %]foo/%^", [res description]);
+}
+
+
 - (void)test1 {
     g = @"@start = (Word | Num)*;";
     lp = [factory parserFromGrammar:g assembler:nil];
