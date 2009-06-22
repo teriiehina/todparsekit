@@ -80,7 +80,14 @@
 
 
 - (void)testSmallETagGrammar {
-    g = @"@symbols='</';@delimitState='<';@reportsWhitespaceTokens=YES;@start=eTag;eTag='</' name S? '>';name=/[^-:\\.]\\w+/;";
+    g = @"@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';"
+        @"@delimitState = '<';"
+        @"@delimitedStrings = '<!--' '-->' nil  '<?' '?>' nil  '<![CDATA[' ']]>' nil;"
+        @"@reportsWhitespaceTokens = YES;"
+        @"@start = eTag;"
+        @"eTag='</' name S? '>';"
+        @"name=/[^-:\\.]\\w+/;";
+    
     TDParser *eTag = [factory parserFromGrammar:g assembler:nil];
     t = eTag.tokenizer;
     
@@ -108,8 +115,8 @@
     
 - (void)testETag {
 	t.string = @"</foo>";
-    //res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-    //TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+//    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 
@@ -151,7 +158,7 @@
         @"@delimitState = '<';"
         @"@delimitedStrings = '<!--' '-->' nil  '<?' '?>' nil  '<![CDATA[' ']]>' nil;"
         @"@reportsWhitespaceTokens = YES;"
-        @"@start = charData;"
+        @"@start = charData+;"
         @"charData = /[^<\\&]+/;";
 
     TDParser *charData = [factory parserFromGrammar:g assembler:nil];
@@ -160,6 +167,14 @@
     t.string = @" ";
     res = [charData bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[ ] ^", [res description]);
+
+    t.string = @"foo % 1";
+    res = [charData bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo,  , %,  , 1]foo/ /%/ /1^", [res description]);
+
+    t.string = @"foo & 1";
+    res = [charData bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo,  ]foo/ ^&/ /1", [res description]);
 }
 
 
@@ -171,8 +186,8 @@
         @"@reportsWhitespaceTokens = YES;"
         @"@start = element;"
         @"element = emptyElemTag | sTag content eTag;"
-        @"sTag = '<' name (S attribute)* S? '>';"
         @"eTag = '</' name S? '>';"
+        @"sTag = '<' name (S attribute)* S? '>';"
         @"emptyElemTag = '<' name (S attribute)* S? '/>';"
         //@"content = Empty | (element | reference | cdSect | pi | comment | charData)+;"
         @"content = Empty | (element | reference | cdSect | charData)+;"
@@ -195,7 +210,6 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [element bestMatchFor:a];
 	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
-
 
 	t.string = @"<foo></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
