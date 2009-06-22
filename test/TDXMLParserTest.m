@@ -115,8 +115,8 @@
     
 - (void)testETag {
 	t.string = @"</foo>";
-//    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-//    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+    res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 
@@ -176,7 +176,6 @@
     res = [charData bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[foo,  ]foo/ ^&/ /1", [res description]);
 }
-
 
 
 - (void)testSmallElementGrammar {
