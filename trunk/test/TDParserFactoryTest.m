@@ -893,7 +893,6 @@
     TDTrue([TDEmpty class] == [e class]);
     
     alt = [alt.subparsers objectAtIndex:1];
-    NSLog(@"alt: %@", [alt debugDescription]);
     TDEqualObjects([alt class], [TDAlternation class]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     

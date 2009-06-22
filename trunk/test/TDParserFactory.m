@@ -661,7 +661,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         [s add:[TDSymbol symbolWithString:@"("]];
         [s add:self.expressionParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
-//        [s setAssembler:self selector:@selector(workOnCompoundExprAssembly:)];
         
         [phraseParser add:s];
     }
@@ -885,11 +884,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDToken *selNameTok = [a pop];
     NSString *selName = [NSString stringWithFormat:@"%@:", selNameTok.stringValue];
     [a push:selName];
-}
-
-
-- (void)workOnCompoundExprAssembly:(TDAssembly *)a {
-    [a pop]; // pop '('
 }
 
 
