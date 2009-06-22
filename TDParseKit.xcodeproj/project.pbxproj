@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
-		D315DF530FEF518D00D876C8 /* xml_with_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF520FEF518D00D876C8 /* xml_with_comments.grammar */; };
-		D315DF540FEF519200D876C8 /* xml_with_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF520FEF518D00D876C8 /* xml_with_comments.grammar */; };
+		D315DF6D0FEF539B00D876C8 /* xml_no_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF6C0FEF539B00D876C8 /* xml_no_comments.grammar */; };
+		D315DF6E0FEF539B00D876C8 /* xml_no_comments.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF6C0FEF539B00D876C8 /* xml_no_comments.grammar */; };
 		D31A13360F6D8513002AFDF1 /* TDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D31A13350F6D8513002AFDF1 /* TDTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
 		D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
@@ -573,7 +573,7 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* TDParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D315DF520FEF518D00D876C8 /* xml_with_comments.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xml_with_comments.grammar; path = res/xml_with_comments.grammar; sourceTree = "<group>"; };
+		D315DF6C0FEF539B00D876C8 /* xml_no_comments.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xml_no_comments.grammar; path = res/xml_no_comments.grammar; sourceTree = "<group>"; };
 		D31A13350F6D8513002AFDF1 /* TDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTypes.h; path = src/TDTypes.h; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
@@ -1972,7 +1972,7 @@
 				D3BBBC9B0FEC9756007DF30D /* TDXMLParser.h */,
 				D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */,
 				D355C8800FEB36A1006A91A4 /* xml.grammar */,
-				D315DF520FEF518D00D876C8 /* xml_with_comments.grammar */,
+				D315DF6C0FEF539B00D876C8 /* xml_no_comments.grammar */,
 				D3BBBC9A0FEC9739007DF30D /* old */,
 			);
 			name = xml;
@@ -2441,7 +2441,7 @@
 				D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */,
 				D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */,
 				D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */,
-				D315DF540FEF519200D876C8 /* xml_with_comments.grammar in Resources */,
+				D315DF6E0FEF539B00D876C8 /* xml_no_comments.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2498,7 +2498,7 @@
 				D353899E0FEAC96B00926552 /* objc.grammar in Resources */,
 				D355C8810FEB36A1006A91A4 /* xml.grammar in Resources */,
 				D355C8840FEB4B94006A91A4 /* proto.grammar in Resources */,
-				D315DF530FEF518D00D876C8 /* xml_with_comments.grammar in Resources */,
+				D315DF6D0FEF539B00D876C8 /* xml_no_comments.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
