@@ -2,9 +2,7 @@
 
 @reportsWhitespaceTokens = YES;
 
-@symbols = '&#' '&#x' '</' '/>' '<![' 
-            '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST'
-            '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
+@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
 
 @delimitState = '<';
 
