@@ -49,6 +49,49 @@
 	t.string = @"<foo bar='baz' baz=\t'bat'>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
 	TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, \t, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/\t/'bat'/>^", [res description]);
+    
+    TDParser *element = [p parserNamed:@"element"];
+
+    t.string = @"<foo/>";
+    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    res = [element bestMatchFor:a];
+	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+    
+	t.string = @"<foo></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
+    
+	t.string = @"<foo> </foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >,  , </, foo, >]</foo/>/ /<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&bar;</foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &, bar, ;, </, foo, >]</foo/>/&/bar/;/<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&#20;</foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#, 20, ;, </, foo, >]</foo/>/&#/20/;/<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&#xFF20;</foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, </, foo, >]</foo/>/&#x/FF20/;/<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&#xFF20; </foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , </, foo, >]</foo/>/&#x/FF20/;/ /<//foo/>^", [res description]);
+    
+	t.string = @"<foo><![CDATA[bar]]></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, <![CDATA[bar]]>, </, foo, >]</foo/>/<![CDATA[bar]]>/<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&#xFF20;<![CDATA[bar]]></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/<![CDATA[bar]]>/<//foo/>^", [res description]);
+    
+	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
+    res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[bar]]>/<//foo/>^", [res description]);    
 }
 
 
