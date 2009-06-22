@@ -19,8 +19,11 @@ date    = /\d{4}/ '-' /\d{2}/ '-' /\d{2}/;  # will match any sequence of tokens 
 
 
 
+
+
 """
-An equivalent grammar could be expressed in many ways. Here's another style with explicit ObjC assembler callbacks added:
+NOTE:
+An equivalent grammar could be expressed in many ways. Here's an equivalent grammar with explicit ObjC assembler callbacks added:
 
 
 @start  = date;
