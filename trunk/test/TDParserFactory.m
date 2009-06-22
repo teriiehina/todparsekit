@@ -601,6 +601,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         termParser.name = @"term";
         [termParser add:self.factorParser];
         [termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
+        [termParser setAssembler:self selector:@selector(workOnAndAssembly:)];
     }
     return termParser;
 }
@@ -611,7 +612,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!orTermParser) {
         self.orTermParser = [TDTrack track];
         orTermParser.name = @"orTerm";
-        [orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
+        [orTermParser add:[TDSymbol symbolWithString:@"|"]]; // preserve as fence
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
     }
@@ -660,6 +661,8 @@ void TDReleaseSubparserTree(TDParser *p) {
         [s add:[TDSymbol symbolWithString:@"("]];
         [s add:self.expressionParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
+//        [s setAssembler:self selector:@selector(workOnCompoundExprAssembly:)];
+        
         [phraseParser add:s];
     }
     return phraseParser;
@@ -885,6 +888,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
+- (void)workOnCompoundExprAssembly:(TDAssembly *)a {
+    [a pop]; // pop '('
+}
+
+
 - (void)workOnExpressionAssembly:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
@@ -1076,11 +1084,39 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnOrAssembly:(TDAssembly *)a {
     id second = [a pop];
+    [a pop]; // pop '|'
     id first = [a pop];
     TDAlternation *p = [TDAlternation alternation];
     [p add:first];
     [p add:second];
     [a push:p];
+}
+
+
+- (void)workOnAndAssembly:(TDAssembly *)a {
+    NSMutableArray *parsers = [NSMutableArray array];
+    while (![a isStackEmpty]) {
+        id obj = [a pop];
+        if ([obj isKindOfClass:[TDParser class]]) {
+            [parsers addObject:obj];
+        } else {
+            //if (![obj isEqual:paren]) {
+                [a push:obj];
+            //}
+            break;
+        }
+    }
+    
+    if (parsers.count > 1) {
+        TDSequence *seq = [TDSequence sequence];
+        for (TDParser *p in [parsers reverseObjectEnumerator]) {
+            [seq add:p];
+        }
+        
+        [a push:seq];
+    } else if (1 == parsers.count) {
+        [a push:[parsers objectAtIndex:0]];
+    }
 }
 
 @synthesize assembler;
