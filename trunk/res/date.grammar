@@ -26,10 +26,9 @@ NOTE:
 An equivalent grammar could be expressed in many ways. Here's an equivalent grammar with explicit ObjC assembler callbacks added:
 
 
-@start  = date;
+@start  = year dash month dash day;
 
 dash    = '-';
-date    = year dash month dash day;
 
 year  (matchedYear:)    = /\d{4}/;      # when matched, your specified `assembler` object (think delegate) will receive a
                                         # callback to it's `-matchedYear:` method with a `TDAssembly` argument.
