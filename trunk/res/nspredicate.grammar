@@ -18,7 +18,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     orTerm               = andTerm andAndTerm*;
     andAndTerm           = and andTerm;
     andTerm              = primaryExpr | compoundExpr; 
-    compoundExpr         = '('.discard expr ')'.discard;
+    compoundExpr         = ^'(' expr ^')';
     primaryExpr          = predicate | negatedPredicate;
     negatedPredicate     = not predicate;
 
@@ -31,14 +31,14 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     string  = QuotedString;
     num     = Num;
     bool    = true | false;
-    true    = 'true'.discard;
-    false   = 'false'.discard;
+    true    = ^'true';
+    false   = ^'false';
 
 # arrays
-    array               = '{' arrayContentsOpt '}'.discard;
+    array               = '{' arrayContentsOpt ^'}';
     arrayContentsOpt    = Empty | arrayContents;
     arrayContents       = value commaValue*;
-    commaValue          = ','.discard value;
+    commaValue          = ^',' value;
 
 
 # keyPaths
@@ -82,15 +82,15 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 # Boolean Value Predicates
     boolPredicate  = truePredicate | falsePredicate;
 
-    truePredicate  = 'TRUEPREDICATE'.discard;
-    falsePredicate = 'FALSEPREDICATE'.discard;
+    truePredicate  = ^'TRUEPREDICATE';
+    falsePredicate = ^'FALSEPREDICATE';
 
 
 
 # Compound Expressions
-    and = 'AND'.discard | '&&'.discard;
-    or  = 'OR'.discard  | '||'.discard;
-    not = 'NOT'.discard | '!'.discard;
+    and = ^'AND' | ^'&&';
+    or  = ^'OR'  | ^'||';
+    not = ^'NOT' | ^'!';
 
 
 
@@ -109,7 +109,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
 # Collection Tests
     collectionTestPredicate = value in collection;
     collection              = keyPath | array;
-    in                      = 'IN'.discard;
+    in                      = ^'IN';
 
 
 # Aggregate Operators

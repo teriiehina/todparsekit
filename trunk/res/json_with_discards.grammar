@@ -22,18 +22,18 @@
 
 @start        = Empty | array | object;
 
-object        = '{' objectContent '}'.discard;
+object        = '{' objectContent ^'}';
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
-commaProperty = ','.discard property;
-property      = QuotedString ':'.discard value;         # NOTE: property names are quoted in JSON
+commaProperty = ^',' property;
+property      = QuotedString ^':' value;         # NOTE: property names are quoted in JSON
 
-array         = '[' arrayContent ']'.discard;
+array         = '[' arrayContent ^']';
 arrayContent  = Empty | actualArray;
 actualArray   = value commaValue*;
-commaValue    = ','.discard value;
+commaValue    = ^',' value;
 
 value         = null | true | false | array | object | Num | QuotedString;
-null          = 'null'.discard;
-true          = 'true'.discard;
-false         = 'false'.discard;
+null          = ^'null';
+true          = ^'true';
+false         = ^'false';

@@ -90,6 +90,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
+@property (nonatomic, retain) TDToken *caret;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
@@ -125,8 +126,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (id)init {
     if (self = [super init]) {
         self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.curly  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.caret  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
         self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -145,6 +147,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
+    self.caret = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -519,8 +522,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num '}'
-// atomicValue          = (literal | variable | constant | pattern | delimitedString) discard?
-// discard              = '.' 'discard'
+// atomicValue          = discard? (literal | variable | constant | pattern | delimitedString)
+// discard              = '^'
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord
@@ -739,6 +742,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
         atomicValueParser.name = @"atomicValue";
+
+        [atomicValueParser add:[self zeroOrOne:self.discardParser]];
         
         TDAlternation *a = [TDAlternation alternation];
         [a add:self.patternParser];
@@ -747,20 +752,17 @@ void TDReleaseSubparserTree(TDParser *p) {
         [a add:self.constantParser];
         [a add:self.delimitedStringParser];
         [atomicValueParser add:a];
-
-        [atomicValueParser add:[self zeroOrOne:self.discardParser]];
     }
     return atomicValueParser;
 }
 
 
-// discard              = '.' 'discard'
+// discard              = '^'
 - (TDCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [TDTrack track];
         discardParser.name = @"discardParser";
-        [discardParser add:[[TDSymbol symbolWithString:@"."] discard]];
-        [discardParser add:[[TDLiteral literalWithString:@"discard"] discard]];
+        [discardParser add:[TDSymbol symbolWithString:@"^"]]; // preserve
         [discardParser setAssembler:self selector:@selector(workOnDiscardAssembly:)];
     }
     return discardParser;
@@ -905,11 +907,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnDiscardAssembly:(TDAssembly *)a {
-    TDTerminal *t = [a pop];
-    NSAssert([t isKindOfClass:[TDTerminal class]], @"");
-
-    [t discard]; // tell terminal to discard itself when matched
-    [a push:t];
+//    TDTerminal *t = [a pop];
+//    NSAssert([t isKindOfClass:[TDTerminal class]], @"");
+//
+//    [t discard]; // tell terminal to discard itself when matched
+//    [a push:t];
 }
 
 
@@ -948,8 +950,20 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnLiteralAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
+
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
-    [a push:[TDCaseInsensitiveLiteral literalWithString:s]];
+    TDTerminal *t = [TDCaseInsensitiveLiteral literalWithString:s];
+
+    if (![a isStackEmpty]) {
+        id obj = [a pop];
+        if ([obj isEqual:caret]) {
+            [t discard];
+        } else {
+            [a push:obj];
+        }
+    }
+    
+    [a push:t];
 }
 
 
@@ -1118,6 +1132,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
+@synthesize caret;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
