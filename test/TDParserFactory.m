@@ -71,7 +71,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 - (void)workOnCallbackAssembly:(TDAssembly *)a;
 - (void)workOnExpressionAssembly:(TDAssembly *)a;
-- (void)workOnDiscardAssembly:(TDAssembly *)a;
 - (void)workOnLiteralAssembly:(TDAssembly *)a;
 - (void)workOnVariableAssembly:(TDAssembly *)a;
 - (void)workOnConstantAssembly:(TDAssembly *)a;
@@ -113,7 +112,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
-@property (nonatomic, retain) TDParser *numParser;
 @end
 
 @implementation TDParserFactory
@@ -170,7 +168,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.variableParser = nil;
     self.constantParser = nil;
     self.delimitedStringParser = nil;
-    self.numParser = nil;
     [super dealloc];
 }
 
@@ -763,7 +760,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.discardParser = [TDTrack track];
         discardParser.name = @"discardParser";
         [discardParser add:[TDSymbol symbolWithString:@"^"]]; // preserve
-        [discardParser setAssembler:self selector:@selector(workOnDiscardAssembly:)];
     }
     return discardParser;
 }
@@ -834,14 +830,16 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// num = Num
-- (TDParser *)numParser {
-    if (!numParser) {
-        self.numParser = [TDNum num];
-        numParser.name = @"num";
-        [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
+- (BOOL)shouldDiscard:(TDAssembly *)a {
+    if (![a isStackEmpty]) {
+        id obj = [a pop];
+        if ([obj isEqual:caret]) {
+            return YES;
+        } else {
+            [a push:obj];
+        }
     }
-    return numParser;
+    return NO;
 }
 
 
@@ -906,15 +904,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnDiscardAssembly:(TDAssembly *)a {
-//    TDTerminal *t = [a pop];
-//    NSAssert([t isKindOfClass:[TDTerminal class]], @"");
-//
-//    [t discard]; // tell terminal to discard itself when matched
-//    [a push:t];
-}
-
-
 - (void)workOnPatternAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSAssert(tok.isDelimitedString, @"");
@@ -944,7 +933,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 //        opts |= TDPatternOptionsUnicodeWordBoundaries;
 //    }
     
-    [a push:[TDPattern patternWithString:re options:opts tokenType:TDTokenTypeAny]];
+    TDTerminal *t = [TDPattern patternWithString:re options:opts tokenType:TDTokenTypeAny];
+    
+    if ([self shouldDiscard:a]) {
+        [t discard];
+    }
+    
+    [a push:t];
 }
 
 
@@ -954,13 +949,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     TDTerminal *t = [TDCaseInsensitiveLiteral literalWithString:s];
 
-    if (![a isStackEmpty]) {
-        id obj = [a pop];
-        if ([obj isEqual:caret]) {
-            [t discard];
-        } else {
-            [a push:obj];
-        }
+    if ([self shouldDiscard:a]) {
+        [t discard];
     }
     
     [a push:t];
@@ -1036,14 +1026,20 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (toks.count > 1) {
         end = [[[toks objectAtIndex:0] stringValue] stringByTrimmingQuotes];
     }
-    TDDelimitedString *ds = [TDDelimitedString delimitedStringWithStartMarker:start endMarker:end];
-    [a push:ds];
+
+    TDTerminal *t = [TDDelimitedString delimitedStringWithStartMarker:start endMarker:end];
+    
+    if ([self shouldDiscard:a]) {
+        [t discard];
+    }
+    
+    [a push:t];
 }
 
 
 - (void)workOnNumAssembly:(TDAssembly *)a {
     TDToken *tok = [a pop];
-    [a push:[TDLiteral literalWithString:tok.stringValue]];
+    [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
@@ -1155,6 +1151,5 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize variableParser;
 @synthesize constantParser;
 @synthesize delimitedStringParser;
-@synthesize numParser;
 @synthesize assemblerSettingBehavior;
 @end
