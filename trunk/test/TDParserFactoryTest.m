@@ -1016,6 +1016,53 @@
 }
 
 
+- (void)testExprNumCardinality2 {
+    s = @"Num{2,3}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [exprSeq bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[Sequence]Num/{/2/,/3/}^", [res description]);
+    TDSequence *seq = [res pop];
+    TDEqualObjects([seq class], [TDSequence class]);
+    
+    TDEquals((NSUInteger)3, seq.subparsers.count);
+
+    TDNum *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [TDNum class]);
+    
+    n = [seq.subparsers objectAtIndex:1];
+    TDEqualObjects([n class], [TDNum class]);
+    
+    n = [seq.subparsers objectAtIndex:2];
+    TDEqualObjects([n class], [TDAlternation class]);
+    
+    // use the result parser
+    lp = [factory parserFromExpression:s];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    
+    s = @"333 444";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[333, 444]333/444^", [res description]);
+    
+    s = @"1.1 2.2 3.3";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[1.1, 2.2, 3.3]1.1/2.2/3.3^", [res description]);
+    
+    s = @"1.1 2.2 3.3 4";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[1.1, 2.2, 3.3]1.1/2.2/3.3^4", [res description]);
+    
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDNil(res);
+}
+
+
 - (void)testExprNumPlus {
     s = @"Num+";
     // use the result parser

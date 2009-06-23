@@ -725,8 +725,14 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!cardinalityParser) {
         self.cardinalityParser = [TDTrack track];
         cardinalityParser.name = @"cardinality";
+        
+        TDTrack *commaNum = [TDTrack track];
+        [commaNum add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaNum add:[TDNum num]];
+        
         [cardinalityParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
         [cardinalityParser add:[TDNum num]];
+        [cardinalityParser add:[self zeroOrOne:commaNum]];
         [cardinalityParser add:[[TDSymbol symbolWithString:@"}"] discard]];
         [cardinalityParser setAssembler:self selector:@selector(workOnCardinalityAssembly:)];
     }
@@ -1067,11 +1073,18 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDParser *p = [a pop];
     TDSequence *s = [TDSequence sequence];
     
+    NSInteger start = r.location;
+    NSInteger end = r.length;
+    
     NSInteger i = 0;
-    for ( ; i < r.length; i++) {
+    for ( ; i < start; i++) {
         [s add:p];
     }
-
+    
+    for ( ; i < end; i++) {
+        [s add:[self zeroOrOne:p]];
+    }
+    
     [a push:s];
 }
 
@@ -1080,8 +1093,17 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
 
-    TDToken *start = [toks objectAtIndex:0];
-    NSRange r = NSMakeRange(start.floatValue, start.floatValue);
+    NSAssert(toks.count > 0, @"");
+    
+    CGFloat start = [[toks lastObject] floatValue];
+    CGFloat end = start;
+    if (toks.count > 1) {
+        end = [[toks objectAtIndex:0] floatValue];
+    }
+    
+    NSAssert(start <= end, @"");
+    
+    NSRange r = NSMakeRange(start, end);
     [a push:[NSValue valueWithRange:r]];
 }
 
