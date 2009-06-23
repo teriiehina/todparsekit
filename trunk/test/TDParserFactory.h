@@ -55,7 +55,6 @@ typedef enum {
     TDParser *variableParser;
     TDParser *constantParser;
     TDCollectionParser *delimitedStringParser;
-    TDParser *numParser;
 }
 + (id)factory;
 
