@@ -366,4 +366,37 @@
     TDEqualObjects(@"[foo,   \t \t , +,   , bar]foo/  \t \t /+/  /bar^", [res description]);
 }    
 
+
+- (void)testDiscard {
+    g = @"@start = ^'foo';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[]foo^", [res description]);
+
+    g = @"@start = ^/foo/;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[]foo^", [res description]);
+
+    g = @"@delimitState='<'; @delimitedStrings='<%' '%>' nil; @start=^DelimitedString('<%', '%>');";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"<% foo %>";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[]<% foo %>^", [res description]);
+}
+    
 @end
