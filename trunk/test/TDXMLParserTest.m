@@ -338,6 +338,14 @@
 	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
+
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
+	t.string = [NSString stringWithContentsOfFile:path];
+    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNotNil(res);
+//    NSLog(@"%@", [res description]);
+    TDTrue([[res description] hasSuffix:@"^"]);
 }
 
 
