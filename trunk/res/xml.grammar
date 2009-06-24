@@ -11,82 +11,116 @@
 @delimitedString = '<![CDATA[' ']]>' nil;
 
 
-# [1]       document       ::=        prolog element Misc*
-document = prolog element misc*;
+# [1]       document        ::=        prolog element Misc*
+    
+    document = prolog element misc*;
 
-# [2]       Char       ::=       #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]    /* any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. */
-# [3]       S       ::=       (#x20 | #x9 | #xD | #xA)+
-# [4]       NameStartChar       ::=       ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
-# [4a]       NameChar       ::=       NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
-# [5]       Name       ::=       NameStartChar (NameChar)*
 
-@wordState = ':' '.' '-' '_';
-@wordChars = ':' '.' '-' '_';
-name = /[^-:\.]\w+/;
+# [2]       Char            ::=       #x9 | #xA | #xD | [#x20-#xD7FF] | [#xE000-#xFFFD] | [#x10000-#x10FFFF]    /* any Unicode character, excluding the surrogate blocks, FFFE, and FFFF. */
+# [3]       S               ::=       (#x20 | #x9 | #xD | #xA)+
 
-# [6]       Names       ::=       Name (#x20 Name)*
-# names = name (S name)*;
+#    @whitespaceChars = '#x20' '#x9' '#xD' '#xA';
+    
 
-# [7]       Nmtoken       ::=       (NameChar)+
-nmtoken = Word;
+# [4]       NameStartChar   ::=       ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
+# [4a]      NameChar        ::=       NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
+# [5]       Name            ::=       NameStartChar (NameChar)*
+# [6]       Names           ::=       Name (#x20 Name)*
+# [7]       Nmtoken         ::=       (NameChar)+
+# [8]       Nmtokens        ::=       Nmtoken (#x20 Nmtoken)*
 
-# [8]       Nmtokens       ::=       Nmtoken (#x20 Nmtoken)*
-# nmtokens = nmtoken (S nmtoken)*;
+    @wordState = ':' '.' '-' '_';
+    @wordChars = ':' '.' '-' '_';
 
-# [9]       EntityValue       ::=       '"' ([^%&"] | PEReference | Reference)* '"' |  "'" ([^%&'] | PEReference | Reference)* "'"
-entityValue = QuotedString; # TODO
+    nmtoken = Word;
 
-# [10]       AttValue       ::=       '"' ([^<&"] | Reference)* '"' |  "'" ([^<&'] | Reference)* "'"
-attValue = QuotedString; # TODO
+    name = /[^-:\.].*/;    
 
-# [11]       SystemLiteral       ::=       ('"' [^"]* '"') | ("'" [^']* "'")
-systemLiteral = QuotedString;
+    # names = name (S name)*;
+    # nmtokens = nmtoken (S nmtoken)*;
+
+
+
+# [9]       EntityValue         ::=       '"' ([^%&"] | PEReference | Reference)* '"' |  "'" ([^%&'] | PEReference | Reference)* "'"
+# [10]      AttValue            ::=       '"' ([^<&"] | Reference)* '"' |  "'" ([^<&'] | Reference)* "'"
+# [11]      SystemLiteral       ::=       ('"' [^"]* '"') | ("'" [^']* "'")
+
+    entityValue = QuotedString; # TODO
+    attValue = QuotedString; # TODO
+    systemLiteral = QuotedString;
+
 
 # [12]       PubidLiteral       ::=       '"' PubidChar* '"' | "'" (PubidChar - "'")* "'"
-# [13]       PubidChar       ::=       #x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%]
-pubidLiteral = QuotedString; # TODO
+# [13]       PubidChar          ::=       #x20 | #xD | #xA | [a-zA-Z0-9] | [-'()+,./:=?;!*#@$_%]
+    
+    pubidLiteral = QuotedString; # TODO
+
 
 # [14]       CharData       ::=       [^<&]* - ([^<&]* ']]>' [^<&]*)
-charData = /[^<\&]+/; # TODO why does this need to escape the amp ?
+    
+    charData = /[^<\&]+/; # TODO why does this need to escape the amp ?
+
 
 # [15]       Comment       ::=       '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
-comment = DelimitedString('<!--', '-->');
+    
+    comment = DelimitedString('<!--', '-->');
+
 
 # [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 # [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
-pi = '<?' /[^?][^>]/+ '?>';
+    
+    pi = '<?' /[^?][^>]/+ '?>';
+
 
 # [18]       CDSect       ::=        CDStart CData CDEnd
 # [19]       CDStart       ::=       '<![CDATA['
 # [20]       CData       ::=       (Char* - (Char* ']]>' Char*))
 # [21]       CDEnd       ::=       ']]>'
-cdSect = DelimitedString('<![CDATA[', ']]>');
+    
+    cdSect = DelimitedString('<![CDATA[', ']]>');
+
 
 # [22]       prolog       ::=        XMLDecl? Misc* (doctypedecl Misc*)?
-prolog = xmlDecl? misc* (doctypedecl misc*)?;
+    
+    prolog = xmlDecl? misc* (doctypedecl misc*)?;
+
 
 # [23]       XMLDecl       ::=       '<?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
-xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+
+    xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+
 
 # [24]       VersionInfo       ::=        S 'version' Eq ("'" VersionNum "'" | '"' VersionNum '"')
 # [26]       VersionNum       ::=       '1.' [0-9]+
-# versionNum = /(['"])1\.[0-9]\1/; # TODO
-versionInfo = S 'version' eq QuotedString; #TODO
+    
+    # versionNum = /(['"])1\.[0-9]\1/; # TODO
+    versionInfo = S 'version' eq QuotedString; #TODO
+
 
 # [25]       Eq       ::=        S? '=' S?
-eq = S? '=' S?;
+    
+    eq = S? '=' S?;
+
 
 # [27]       Misc       ::=        Comment | PI | S
-misc = comment | pi | S;
+    
+    misc = comment | pi | S;
+
 
 # [28]       doctypedecl       ::=       '<!DOCTYPE' S Name (S ExternalID)? S? ('[' intSubset ']' S?)? '>'
-doctypedecl = '<!DOCTYPE' S name (S externaID)? S? ('[' intSubset ']' S?)? '>';
+    
+    doctypedecl = '<!DOCTYPE' S name (S externaID)? S? ('[' intSubset ']' S?)? '>';
+
 
 # [28a]       DeclSep       ::=        PEReference | S
-declSep = peReference | S;
+    
+    declSep = peReference | S;
+
 
 # [28b]       intSubset       ::=       (markupdecl | DeclSep)*
-intSubset = (markupdecl | declSep)*;
+    
+    intSubset = (markupdecl | declSep)*;
+
 
 # [29]       markupdecl       ::=        elementdecl | AttlistDecl | EntityDecl | NotationDecl | PI | Comment
 markupdecl = elementdecl | attlistDecl | entityDecl | notationDecl | pi | comment;

@@ -207,10 +207,6 @@
     res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>^", [res description]);    
 
-    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
-    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
 }
 
 
@@ -328,6 +324,26 @@
 	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[bar]]>/<//foo/>^", [res description]);
+}
+
+
+// [1]
+- (void)testDocument {
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
+    res = [[p parserNamed:@"document"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
+
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
+    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
+}
+
+
+// [2]
+- (void)test {
+    
 }
 
 @end
