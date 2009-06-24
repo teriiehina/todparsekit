@@ -7,14 +7,20 @@
 //
 
 #import <TDParseKit/TDTokenizerState.h>
+#import <TDParseKit/TDTokenizer.h>
 #import <TDParseKit/TDReader.h>
 #import <TDParseKit/TDTypes.h>
+
+@interface TDTokenizer ()
+- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+@end
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
 - (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
+- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t;
 
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @property (nonatomic) NSUInteger offset;
@@ -24,6 +30,7 @@
 
 - (void)dealloc {
     self.stringbuf = nil;
+    self.fallbackState = nil;
     [super dealloc];
 }
 
@@ -56,6 +63,16 @@
     return [[stringbuf copy] autorelease];
 }
 
+
+- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t {
+    if (fallbackState) {
+        return fallbackState;
+    } else {
+        return [t defaultTokenizerStateFor:c];
+    }
+}
+
 @synthesize stringbuf;
 @synthesize offset;
+@synthesize fallbackState;
 @end

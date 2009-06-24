@@ -124,7 +124,7 @@
 
     if (!startMarker.length || ![startMarkers containsObject:startMarker]) {
         [r unread:startMarker.length - 1];
-        return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+        return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
     
     [self resetWithReader:r];
@@ -154,7 +154,7 @@
             // if only the start marker was matched, dont return delimited string token. instead, defer tokenization
             if ([startMarker isEqualToString:[self bufferedString]]) {
                 [r unread:startMarker.length - 1];
-                return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+                return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
             }
             // else, return delimited string tok
             break;
@@ -183,7 +183,7 @@
             } else {
                 // if not, unwind and return a symbol tok for cin
                 [r unread:[[self bufferedString] length]];
-                return [[t defaultTokenizerStateFor:cin] nextTokenFromReader:r startingWith:cin tokenizer:t];
+                return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
             }
         }
         
