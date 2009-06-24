@@ -314,8 +314,13 @@ void TDReleaseSubparserTree(TDParser *p) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
 			if (s.length) {
-				NSInteger c = [s characterAtIndex:0];
-				[t.whitespaceState setWhitespaceChars:YES from:c to:c];
+                NSInteger c = 0;
+                if ([s hasPrefix:@"#x"]) {
+                    c = [s integerValue];
+                } else {
+                    c = [s characterAtIndex:0];
+                }
+                [t.whitespaceState setWhitespaceChars:YES from:c to:c];
 			}
         }
     }
