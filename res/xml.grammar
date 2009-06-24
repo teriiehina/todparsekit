@@ -5,9 +5,8 @@
 @symbols = '&#' '&#x' '</' '/>' '<![' '<?' '?>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
 
 @delimitState = '<';
-
-@delimitedStrings = '<!--' '-->' nil 
-                    '<![CDATA[' ']]>' nil;
+@delimitedString = '<!--' '-->' nil;
+@delimitedString = '<![CDATA[' ']]>' nil;
 
 # @commentState = '<';
 # @multiLineComments = '<!--' '-->';
