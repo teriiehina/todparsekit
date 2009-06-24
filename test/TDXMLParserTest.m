@@ -165,10 +165,38 @@
 	t.string = @"<foo></foo>";
     res = [[p parserNamed:@"element"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
-
+    
 	t.string = @"<foo/>";
     res = [[p parserNamed:@"emptyElemTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+}
+
+
+- (void)testXmlDecl {
+    // versionInfo = S 'version' eq QuotedString; #TODO
+	t.string = @" version='1.0'";
+    res = [[p parserNamed:@"versionInfo"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[ , version, =, '1.0'] /version/=/'1.0'^", [res description]);
+    
+    // encodingDecl = S 'encoding' eq QuotedString; # TODO
+	t.string = @" encoding='UTF-8'";
+    res = [[p parserNamed:@"encodingDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[ , encoding, =, 'UTF-8'] /encoding/=/'UTF-8'^", [res description]);
+    
+    // sdDecl = S 'standalone' eq QuotedString; # /(["'])(yes|no)\1/; # TODO
+	t.string = @" standalone='no'";
+    res = [[p parserNamed:@"sdDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[ , standalone, =, 'no'] /standalone/=/'no'^", [res description]);
+    
+	t.string = @"<?xml";
+    TDToken *tok = [t nextToken];
+    TDEqualObjects(@"<?xml", tok.stringValue);
+    
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0'?>";
+    res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0', ?>]<?xml/ /version/=/'1.0'/?>^", [res description]);
+    
 }
 
 

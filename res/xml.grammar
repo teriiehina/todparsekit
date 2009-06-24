@@ -2,12 +2,11 @@
 
 @reportsWhitespaceTokens = YES;
 
-@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
+@symbols = '&#' '&#x' '</' '/>' '<![' '<?' '?>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
 
 @delimitState = '<';
 
 @delimitedStrings = '<!--' '-->' nil 
-                    '<?' '?>' nil
                     '<![CDATA[' ']]>' nil;
 
 # @commentState = '<';
@@ -56,7 +55,7 @@ comment = DelimitedString('<!--', '-->');
 
 # [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 # [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
-pi = DelimitedString('<?', '?>');
+pi = '<?' /[^?][^>]/+ '?>';
 
 # [18]       CDSect       ::=        CDStart CData CDEnd
 # [19]       CDStart       ::=       '<![CDATA['
