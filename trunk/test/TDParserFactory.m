@@ -206,16 +206,28 @@ void TDReleaseSubparserTree(TDParser *p) {
     [t setTokenizerState:t.wordState from:'@' to:'@'];
 
     // customize tokenizer for Pattern regexes
-    [t setTokenizerState:t.delimitState from:'/' to:'/'];
-    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
-
-    // customize tokenizer for comments
-    [t setTokenizerState:t.commentState from:'#' to:'#'];
-    [t setTokenizerState:t.commentState from:'"' to:'"'];
-    [t.commentState removeSingleLineStartMarker:@"//"];
-    [t.commentState removeMultiLineStartMarker:@"/*"];
-    [t.commentState addSingleLineStartMarker:@"#"];
-    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
+//    [t setTokenizerState:t.delimitState from:'/' to:'/'];
+//    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
+//
+//    // customize tokenizer for comments
+//    [t setTokenizerState:t.commentState from:'#' to:'#'];
+//    [t setTokenizerState:t.commentState from:'"' to:'"'];
+//
+//    [t.commentState removeSingleLineStartMarker:@"//"];
+//    [t.commentState removeMultiLineStartMarker:@"/*"];
+//    [t.commentState addSingleLineStartMarker:@"#"];
+//    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
+    
+    // setup comments
+    [t setTokenizerState:t.commentState from:'/' to:'/'];
+    [t.commentState addSingleLineStartMarker:@"//"];
+    [t.commentState addMultiLineStartMarker:@"/*" endMarker:@"*/"];
+    
+    // comment state should fallback to delimit state to match regex delimited strings
+    t.commentState.fallbackState = t.delimitState;
+    
+    // regex delimited strings
+    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];    
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table

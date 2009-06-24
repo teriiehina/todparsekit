@@ -1,4 +1,4 @@
-"""
+/*
     A Grammar for JSON which specifies which tokens should be discarded
     
     Feed this to -[TDParserFactory parserFromGrammar:assembler:] along with a reference
@@ -18,7 +18,7 @@
     Each callback method must accept a single TDAssembly argument. The provided assembly
     will contain information about the progress made on the the string currently being parsed.
     Also the assembly's stack will contain the tokens parsed so far in the current statement.
-"""
+*/
 
 @start        = Empty | array | object;
 
@@ -26,7 +26,7 @@ object        = '{' objectContent ^'}';
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
 commaProperty = ^',' property;
-property      = QuotedString ^':' value;         # NOTE: property names are quoted in JSON
+property      = QuotedString ^':' value;         // NOTE: property names are quoted in JSON
 
 array         = '[' arrayContent ^']';
 arrayContent  = Empty | actualArray;

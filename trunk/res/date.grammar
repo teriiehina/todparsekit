@@ -1,4 +1,4 @@
-"""
+/*
 
     TDParseKit Grammar Syntax now supports regular expressions (powered by RegExKit Lite)
     
@@ -7,12 +7,12 @@
     
     2009-06-21
 
-"""
+*/
 
-@start  = date;                             # the 'date' production is the outermost production in this grammar
+@start  = date;                             // the 'date' production is the outermost production in this grammar
 
-date    = /\d{4}/ '-' /\d{2}/ '-' /\d{2}/;  # will match any sequence of tokens whose `stringValue` property matches these regexes
-                                            # separated by two '-' chars
+date    = /\d{4}/ '-' /\d{2}/ '-' /\d{2}/;  // will match any sequence of tokens whose `stringValue` property matches these regexes
+                                            // separated by two '-' chars
                                             
                                             
 
@@ -21,7 +21,7 @@ date    = /\d{4}/ '-' /\d{2}/ '-' /\d{2}/;  # will match any sequence of tokens 
 
 
 
-"""
+/*
 NOTE:
 An equivalent grammar could be expressed in many ways. Here's an equivalent grammar with explicit ObjC assembler callbacks added:
 
@@ -30,11 +30,11 @@ An equivalent grammar could be expressed in many ways. Here's an equivalent gram
 
 dash    = '-';
 
-year  (matchedYear:)    = /\d{4}/;      # when matched, your specified `assembler` object (think delegate) will receive a
-                                        # callback to it's `-matchedYear:` method with a `TDAssembly` argument.
-                                        # the token matched by the regex will on the top of the assebly's stack ready for you
+year  (matchedYear:)    = /\d{4}/;      // when matched, your specified `assembler` object (think delegate) will receive a
+                                        // callback to it's `-matchedYear:` method with a `TDAssembly` argument.
+                                        // the token matched by the regex will on the top of the assebly's stack ready for you
 
 month (matchedMonth:)   = /\d{2}/;
 day   (matchedDay:)     = /\d{2}/;
 
-"""
+*/

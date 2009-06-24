@@ -21,6 +21,7 @@
 @interface TDTokenizerState : NSObject {
     NSMutableString *stringbuf;
     NSUInteger offset;
+    TDTokenizerState *fallbackState;
 }
 
 /*!
@@ -31,4 +32,10 @@
     @result     a token that represents a logical piece of the reader
 */
 - (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t;
+
+/*!
+    @property   fallbackState
+    @brief      The state this tokenizer defers to if it starts, but ultimately aborts recognizing a token
+*/
+@property (nonatomic, retain) TDTokenizerState *fallbackState;
 @end
