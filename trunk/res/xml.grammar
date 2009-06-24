@@ -2,14 +2,14 @@
 
 @reportsWhitespaceTokens = YES;
 
-@symbols = '&#' '&#x' '</' '/>' '<![' '<?' '?>' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
+@symbols = '&#' '&#x' '</' '/>' '<![' '<?' '?>' '<?xml';
+@symbols = '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST';
+@symbols = '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';
 
 @delimitState = '<';
 @delimitedString = '<!--' '-->' nil;
 @delimitedString = '<![CDATA[' ']]>' nil;
 
-# @commentState = '<';
-# @multiLineComments = '<!--' '-->';
 
 # [1]       document       ::=        prolog element Misc*
 document = prolog element misc*;
