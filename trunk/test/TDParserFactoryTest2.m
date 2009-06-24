@@ -272,7 +272,7 @@
 
 
 - (void)test12 {
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$', '%');";
+    g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '%');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -283,7 +283,7 @@
     TDEqualObjects(@"[$foo%]$foo%^", [res description]);
     
     
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' nil; @start = DelimitedString('$', '');";
+    g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -294,7 +294,7 @@
     TDEqualObjects(@"[$foo%]$foo%^", [res description]);
     
     
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' 'fo'; @start = DelimitedString('$', '%');";
+    g = @"@delimitState = '$'; @delimitedString = '$' '%' 'fo'; @start = DelimitedString('$', '%');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -305,7 +305,7 @@
     TDEqualObjects(@"[$foo%]$foo%^", [res description]);
 
     
-    g = @"@delimitState = '$'; @delimitedStrings = '$' '%' 'f'; @start = DelimitedString('$', '%');";
+    g = @"@delimitState = '$'; @delimitedString = '$' '%' 'f'; @start = DelimitedString('$', '%');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     

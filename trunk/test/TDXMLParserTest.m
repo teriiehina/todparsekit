@@ -123,7 +123,7 @@
 - (void)testSmallETagGrammar {
     g = @"@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';"
         @"@delimitState = '<';"
-        @"@delimitedStrings = '<!--' '-->' nil  '<?' '?>' nil  '<![CDATA[' ']]>' nil;"
+        @"@delimitedString='<!--' '-->' nil; @delimitedString='<?' '?>' nil; @delimitedString='<![CDATA[' ']]>' nil;"
         @"@reportsWhitespaceTokens = YES;"
         @"@start = eTag;"
         @"eTag='</' name S? '>';"
@@ -239,7 +239,7 @@
 - (void)testSmallCharDataGrammar {
     g = @"@symbols = '&#' '&#x' '</' '/>' '<![' '<?xml' '<!DOCTYPE' '<!ELEMENT' '<!ATTLIST' '#PCDATA' '#REQUIRED' '#IMPLIED' '#FIXED' ')*';"
         @"@delimitState = '<';"
-        @"@delimitedStrings = '<!--' '-->' nil  '<?' '?>' nil  '<![CDATA[' ']]>' nil;"
+        @"@delimitedString='<!--' '-->' nil '<?' '?>' nil '<![CDATA[' ']]>' nil;"
         @"@reportsWhitespaceTokens = YES;"
         @"@start = charData+;"
         @"charData = /[^<\\&]+/;";

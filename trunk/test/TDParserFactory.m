@@ -286,17 +286,17 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSArray *toks = nil;
     
     // muli-char symbols
-    toks = [parserTokensTable objectForKey:@"@symbols"];
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@symbol"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@symbols"]];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
         }
     }
-	[parserTokensTable removeObjectForKey:@"@symbols"];
-
     
     // wordChars
-    toks = [parserTokensTable objectForKey:@"@wordChars"];
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@wordChar"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@wordChars"]];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -306,10 +306,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
-	[parserTokensTable removeObjectForKey:@"@wordChars"];
     
     // whitespaceChars
-    toks = [parserTokensTable objectForKey:@"@whitespaceChars"];
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@whitespaceChar"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@whitespaceChars"]];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -319,10 +319,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
-	[parserTokensTable removeObjectForKey:@"whitespaceChars"];
     
     // single-line comments
-    toks = [parserTokensTable objectForKey:@"@singleLineComments"];
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@singleLineComment"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@singleLineComments"]];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -330,10 +330,11 @@ void TDReleaseSubparserTree(TDParser *p) {
             [t.symbolState add:s];
         }
     }
-	[parserTokensTable removeObjectForKey:@"singleLineComments"];
     
     // multi-line comments
-    toks = [parserTokensTable objectForKey:@"@multiLineComments"];
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@multiLineComment"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@multiLineComments"]];
+    NSAssert(0 == toks.count % 2, @"@multiLineComments must be specified as quoted strings in multiples of 2");
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 1; i++) {
@@ -348,11 +349,11 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
-	[parserTokensTable removeObjectForKey:@"multiLineComments"];
 
     // delimited strings
-    toks = [parserTokensTable objectForKey:@"@delimitedStrings"];
-    NSAssert(0 == toks.count % 3, @"@delimitedStrings must be specified as quoted strings in multiples of 3");
+    toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@delimitedString"]];
+    toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@delimitedStrings"]];
+    NSAssert(0 == toks.count % 3, @"@delimitedString must be specified as quoted strings in multiples of 3");
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 2; i++) {
@@ -370,7 +371,6 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
-	[parserTokensTable removeObjectForKey:@"@delimitedStrings"];
     
     return t;
 }
@@ -869,6 +869,14 @@ void TDReleaseSubparserTree(TDParser *p) {
     }
 	NSMutableDictionary *d = a.target;
     NSAssert(toks.count, @"");
+    
+    // support for multiple @delimitedString = ... tokenizer directives
+    if ([parserName hasPrefix:@"@"]) {
+        NSArray *existingToks = [d objectForKey:parserName];
+        if (existingToks.count) {
+            toks = [toks arrayByAddingObjectsFromArray:existingToks];
+        }
+    }
     [d setObject:toks forKey:parserName];
 }
 
