@@ -196,7 +196,21 @@
 	t.string = @"<?xml version='1.0'?>";
     res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0', ?>]<?xml/ /version/=/'1.0'/?>^", [res description]);
+
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0' encoding='utf-8'?>";
+    res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8', ?>]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/?>^", [res description]);
     
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?>";
+    res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>^", [res description]);    
+
+    // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
+	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
+    res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
 }
 
 
