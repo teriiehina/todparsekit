@@ -398,5 +398,39 @@
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[]<% foo %>^", [res description]);
 }
+
+
+- (void)testDiscard2 {
+    g = @"@reportsWhitespaceTokens=YES;@start=^S;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
     
+    s = @" ";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[] ^", [res description]);
+    
+    g = @"@start=^Any;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[]foo^", [res description]);
+    
+    g = @"@start=^Word;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[]foo^", [res description]);
+    
+}
+
 @end

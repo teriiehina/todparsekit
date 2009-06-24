@@ -1018,6 +1018,12 @@ void TDReleaseSubparserTree(TDParser *p) {
         [NSException raise:@"Grammar Exception" format:
          @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Num, Symbol, Empty.", s];
     }
+    
+    if ([p isKindOfClass:[TDTerminal class]] && [self shouldDiscard:a]) {
+        TDTerminal *t = (TDTerminal *)p;
+        [t discard];
+    }
+    
     [a push:p];
 }
 
