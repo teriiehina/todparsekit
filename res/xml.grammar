@@ -1,3 +1,18 @@
+/**
+
+    This is a relatively complete XML 1.0 TDParseKit grammar derived from the XML specification:
+    
+    http://www.w3.org/TR/REC-xml/
+    
+    There are certainly bugs (especially in the DTD stuff), but I have it running successfully on some
+    non-trivial real-world XML documents.
+    
+    I have some tests, but am working on more:
+    
+    
+
+*/
+
 @start = document;
 
 @reportsWhitespaceTokens = YES;

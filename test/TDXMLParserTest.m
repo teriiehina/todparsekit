@@ -11,10 +11,10 @@
 @implementation TDXMLParserTest
 
 - (void)setUp {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
-	g = [NSString stringWithContentsOfFile:path];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
+    g = [NSString stringWithContentsOfFile:path];
     factory = [TDParserFactory factory];
-	p = [factory parserFromGrammar:g assembler:self];
+    p = [factory parserFromGrammar:g assembler:self];
     t = p.tokenizer;
 }
 
@@ -22,72 +22,72 @@
 - (void)testSTag {
     TDParser *sTag = [p parserNamed:@"sTag"];
     
-	t.string = @"<foo>";
+    t.string = @"<foo>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 
-	t.string = @"<foo >";
+    t.string = @"<foo >";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
+    TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
     
-	t.string = @"<foo \t>";
+    t.string = @"<foo \t>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  \t, >]</foo/ \t/>^", [res description]);
+    TDEqualObjects(@"[<, foo,  \t, >]</foo/ \t/>^", [res description]);
     
-	t.string = @"<foo \n >";
+    t.string = @"<foo \n >";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  \n , >]</foo/ \n />^", [res description]);
+    TDEqualObjects(@"[<, foo,  \n , >]</foo/ \n />^", [res description]);
     
-	t.string = @"<foo bar='baz'>";
+    t.string = @"<foo bar='baz'>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', >]</foo/ /bar/=/'baz'/>^", [res description]);
+    TDEqualObjects(@"[<, foo,  , bar, =, 'baz', >]</foo/ /bar/=/'baz'/>^", [res description]);
 
-	t.string = @"<foo bar='baz' baz='bat'>";
+    t.string = @"<foo bar='baz' baz='bat'>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/'bat'/>^", [res description]);
+    TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/'bat'/>^", [res description]);
     
-	t.string = @"<foo bar='baz' baz=\t'bat'>";
+    t.string = @"<foo bar='baz' baz=\t'bat'>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
-	TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, \t, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/\t/'bat'/>^", [res description]);
+    TDEqualObjects(@"[<, foo,  , bar, =, 'baz',  , baz, =, \t, 'bat', >]</foo/ /bar/=/'baz'/ /baz/=/\t/'bat'/>^", [res description]);
     
     t.string = @"<foo/>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [p bestMatchFor:a];
-	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
     
-	t.string = @"<foo></foo>";
+    t.string = @"<foo></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
     
-	t.string = @"<foo> </foo>";
+    t.string = @"<foo> </foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >,  , </, foo, >]</foo/>/ /<//foo/>^", [res description]);
     
-	t.string = @"<foo>&bar;</foo>";
+    t.string = @"<foo>&bar;</foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &, bar, ;, </, foo, >]</foo/>/&/bar/;/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#20;</foo>";
+    t.string = @"<foo>&#20;</foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#, 20, ;, </, foo, >]</foo/>/&#/20/;/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#xFF20;</foo>";
+    t.string = @"<foo>&#xFF20;</foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, </, foo, >]</foo/>/&#x/FF20/;/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#xFF20; </foo>";
+    t.string = @"<foo>&#xFF20; </foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , </, foo, >]</foo/>/&#x/FF20/;/ /<//foo/>^", [res description]);
     
-	t.string = @"<foo><![CDATA[bar]]></foo>";
+    t.string = @"<foo><![CDATA[bar]]></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, <![CDATA[bar]]>, </, foo, >]</foo/>/<![CDATA[bar]]>/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#xFF20;<![CDATA[bar]]></foo>";
+    t.string = @"<foo>&#xFF20;<![CDATA[bar]]></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/<![CDATA[bar]]>/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
+    t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[bar]]>/<//foo/>^", [res description]);    
 }
@@ -101,22 +101,22 @@
     t.string = @"<foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [sTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
+    TDEqualObjects(@"[<, foo, >]</foo/>^", [res description]);
 
     t.string = @"<foo >";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [sTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
+    TDEqualObjects(@"[<, foo,  , >]</foo/ />^", [res description]);
 
     t.string = @"<foo \n>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [sTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo,  \n, >]</foo/ \n/>^", [res description]);
+    TDEqualObjects(@"[<, foo,  \n, >]</foo/ \n/>^", [res description]);
 
     t.string = @"< foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [sTag bestMatchFor:a];
-	TDNil(res);
+    TDNil(res);
 }
 
 
@@ -135,38 +135,38 @@
     t.string = @"</foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [eTag bestMatchFor:a];
-	TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
+    TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
     
     t.string = @"</foo >";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [eTag bestMatchFor:a];
-	TDEqualObjects(@"[</, foo,  , >]<//foo/ />^", [res description]);
+    TDEqualObjects(@"[</, foo,  , >]<//foo/ />^", [res description]);
     
     t.string = @"</ foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [eTag bestMatchFor:a];
-	TDNil(res);
+    TDNil(res);
 
     t.string = @"< /foo>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [eTag bestMatchFor:a];
-	TDNil(res);
+    TDNil(res);
 }
     
     
 - (void)testETag {
-	t.string = @"</foo>";
+    t.string = @"</foo>";
     res = [[p parserNamed:@"eTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[</, foo, >]<//foo/>^", [res description]);
 }
 
 
 - (void)test1 {
-	t.string = @"<foo></foo>";
+    t.string = @"<foo></foo>";
     res = [[p parserNamed:@"element"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
     
-	t.string = @"<foo/>";
+    t.string = @"<foo/>";
     res = [[p parserNamed:@"emptyElemTag"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 }
@@ -174,36 +174,36 @@
 
 - (void)testXmlDecl {
     // versionInfo = S 'version' eq QuotedString; #TODO
-	t.string = @" version='1.0'";
+    t.string = @" version='1.0'";
     res = [[p parserNamed:@"versionInfo"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[ , version, =, '1.0'] /version/=/'1.0'^", [res description]);
     
     // encodingDecl = S 'encoding' eq QuotedString; # TODO
-	t.string = @" encoding='UTF-8'";
+    t.string = @" encoding='UTF-8'";
     res = [[p parserNamed:@"encodingDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[ , encoding, =, 'UTF-8'] /encoding/=/'UTF-8'^", [res description]);
     
     // sdDecl = S 'standalone' eq QuotedString; # /(["'])(yes|no)\1/; # TODO
-	t.string = @" standalone='no'";
+    t.string = @" standalone='no'";
     res = [[p parserNamed:@"sdDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[ , standalone, =, 'no'] /standalone/=/'no'^", [res description]);
     
-	t.string = @"<?xml";
+    t.string = @"<?xml";
     TDToken *tok = [t nextToken];
     TDEqualObjects(@"<?xml", tok.stringValue);
     
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0'?>";
+    t.string = @"<?xml version='1.0'?>";
     res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0', ?>]<?xml/ /version/=/'1.0'/?>^", [res description]);
 
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0' encoding='utf-8'?>";
+    t.string = @"<?xml version='1.0' encoding='utf-8'?>";
     res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8', ?>]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/?>^", [res description]);
     
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?>";
+    t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?>";
     res = [[p parserNamed:@"xmlDecl"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>^", [res description]);    
 
@@ -218,17 +218,17 @@
     t.string = @"<foo/>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [emptyElemTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
     
     t.string = @"<foo />";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [emptyElemTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo,  , />]</foo/ //>^", [res description]);
+    TDEqualObjects(@"[<, foo,  , />]</foo/ //>^", [res description]);
     
     t.string = @"<foo bar='baz'/>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [emptyElemTag bestMatchFor:a];
-	TDEqualObjects(@"[<, foo,  , bar, =, 'baz', />]</foo/ /bar/=/'baz'//>^", [res description]);
+    TDEqualObjects(@"[<, foo,  , bar, =, 'baz', />]</foo/ /bar/=/'baz'//>^", [res description]);
 }
 
 
@@ -287,41 +287,41 @@
     t.string = @"<foo/>";
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     res = [element bestMatchFor:a];
-	TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
+    TDEqualObjects(@"[<, foo, />]</foo//>^", [res description]);
 
-	t.string = @"<foo></foo>";
+    t.string = @"<foo></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, </, foo, >]</foo/>/<//foo/>^", [res description]);
     
-	t.string = @"<foo> </foo>";
+    t.string = @"<foo> </foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >,  , </, foo, >]</foo/>/ /<//foo/>^", [res description]);
     
-	t.string = @"<foo>&bar;</foo>";
+    t.string = @"<foo>&bar;</foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &, bar, ;, </, foo, >]</foo/>/&/bar/;/<//foo/>^", [res description]);
 
-	t.string = @"<foo>&#20;</foo>";
+    t.string = @"<foo>&#20;</foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#, 20, ;, </, foo, >]</foo/>/&#/20/;/<//foo/>^", [res description]);
     
-	t.string = @"<foo>&#xFF20;</foo>";
+    t.string = @"<foo>&#xFF20;</foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, </, foo, >]</foo/>/&#x/FF20/;/<//foo/>^", [res description]);
 
-	t.string = @"<foo>&#xFF20; </foo>";
+    t.string = @"<foo>&#xFF20; </foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , </, foo, >]</foo/>/&#x/FF20/;/ /<//foo/>^", [res description]);
     
-	t.string = @"<foo><![CDATA[bar]]></foo>";
+    t.string = @"<foo><![CDATA[bar]]></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, <![CDATA[bar]]>, </, foo, >]</foo/>/<![CDATA[bar]]>/<//foo/>^", [res description]);
 
-	t.string = @"<foo>&#xFF20;<![CDATA[bar]]></foo>";
+    t.string = @"<foo>&#xFF20;<![CDATA[bar]]></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;, <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/<![CDATA[bar]]>/<//foo/>^", [res description]);
 
-	t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
+    t.string = @"<foo>&#xFF20; <![CDATA[bar]]></foo>";
     res = [element bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<, foo, >, &#x, FF20, ;,  , <![CDATA[bar]]>, </, foo, >]</foo/>/&#x/FF20/;/ /<![CDATA[bar]]>/<//foo/>^", [res description]);
 }
@@ -330,18 +330,18 @@
 // [1]
 - (void)testDocument {
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
+    t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
     res = [[p parserNamed:@"document"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
 
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
-	t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
+    t.string = @"<?xml version='1.0' encoding='utf-8' standalone='no'?><foo></foo>";
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?xml,  , version, =, '1.0',  , encoding, =, 'utf-8',  , standalone, =, 'no', ?>, <, foo, >, </, foo, >]<?xml/ /version/=/'1.0'/ /encoding/=/'utf-8'/ /standalone/=/'no'/?>/</foo/>/<//foo/>^", [res description]);    
 
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
-	t.string = [NSString stringWithContentsOfFile:path];
+    t.string = [NSString stringWithContentsOfFile:path];
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDNotNil(res);
 //    NSLog(@"%@", [res description]);
