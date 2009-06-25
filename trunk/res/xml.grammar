@@ -19,16 +19,17 @@
     
     This parser is running successfully on some non-trivial real-world XML documents, 
     but i'm sure there are bugs (espcially in the DTD stuff). 
-    It's also a little too lenient about a few quoted string values in the spec.
+    
+    It's also a little too lenient about a few quoted string values in the spec, and doesnt yet forbid some chars it should.
     
     I have some tests, But will need many more if this is to be a serious parser:
 
     http://code.google.com/p/todparsekit/source/browse/trunk/test/TDXMLParserTest.m
     
     
-    Also, I'd like to write an ObjC SAX interface to this parser
-    
-    (is this the first XML parser implemented directly in Objective-C?)
+    (I'd like to write an ObjC SAX interface to this parser)
+
+    (Is this the first XML parser implemented directly in Objective-C?)
 */
 
 @start = document;
