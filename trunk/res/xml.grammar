@@ -4,13 +4,17 @@
     
     http://www.w3.org/TR/REC-xml/
     
-    There are certainly bugs (especially in the DTD stuff), but I have it running successfully on some
+    There are certainly bugs (especially in the DTD stuff prolly), but I have it running successfully on some
     non-trivial real-world XML documents.
     
-    I have some tests, but am working on more:
-    
-    
+    I have some tests, But will need many more if this is to be a serious parser:
 
+    http://code.google.com/p/todparsekit/source/browse/trunk/test/TDXMLParserTest.m
+    
+    
+    I'd like to write an ObjC SAX interface to this parser. 
+    
+    also: is this the first XML parser implemented directly in Objective-C?
 */
 
 @start = document;
