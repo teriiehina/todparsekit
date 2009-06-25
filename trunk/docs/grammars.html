@@ -61,8 +61,9 @@
     @start = sentence+;
     sentence = adjectives 'beer' '.';
     adjectives = cold adjective*;
-    adjective = cold | 'freezing';
-    cold = 'cold';</pre>
+    adjective = cold | freezing;
+    cold = 'cold';
+    freezing = 'freezing';</pre>
     </div>
     
     <p>As shown above, the TDPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of Objective-C. So a commented <b>Cold Beer</b> grammar may appear as:</p>
@@ -77,7 +78,8 @@
     sentence = adjectives 'beer' '.';
     adjectives = cold adjective*;
     adjective = cold | 'freezing';
-    cold = 'cold';</pre>
+    cold = 'cold';
+    freezing = 'freezing';</pre>
     </div>
     
     <a name="production-syntax"></a>
@@ -108,8 +110,9 @@
 
     <div class="code">
     <pre>
-    adjective = cold | 'freezing';
-    cold = 'cold';</pre>
+    adjective = cold | freezing;
+    cold = 'cold';
+    freezing = 'freezing';</pre>
     </div>
     
     <p>The <tt>adjective</tt> production is an <em>alternation</em> of either an instance of the <tt>cold</tt> production or the literal string <tt>freezing</tt>, and <tt>cold</tt> is the literal string <tt>cold</tt>.</p>
@@ -129,17 +132,33 @@
     <a name="instantiating"></a>
     <h3>Instantiating Grammar Parsers in Objective-C</h3>
     
+    <p>Create an Objective-C <tt>TDParser</tt> object by providing the grammar as an <tt>NSString</tt> and an <tt>assembler</tt> object (in this example, <tt>self</tt>).</p>
+    
     <div class="code">
     <pre>
   NSString *g = ... // fetch your grammar from a file on disk
   
-  TDParser *parser = nil;
-  parser = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+  TDParser *<b>parser</b> = nil;
+  parser = [[TDParserFactory factory] parserFromGrammar:g assembler:<b>self</b>];
   
   NSString *s = @"cold freezing cold beer.";
-  id result = [parser parse:s];</pre>
+  <b>[parser parse:s]</b>;</pre>
     </div>
     
+    <p>The provided <tt>assembler</tt> object will receive callbacks whenever one of the language grammar productions is matched -- if the callback method is implemented in the assembler object.</p>
+    
+    <p>For example, an assembler for the <b>Cold Beer</b> language grammar above will receive the following callbacks if implemented:</p>
+    
+      <div class="code">
+      <pre>
+    - (void)workOnSentenceAssembly:(TDAssembly *)a;
+    - (void)workOnAdjectivesAssembly:(TDAssembly *)a;
+    - (void)workOnAdjectiveAssembly:(TDAssembly *)a;
+    - (void)workOnColdAssembly:(TDAssembly *)a;
+    - (void)workOnFreezingAssembly:(TDAssembly *)a;</pre>
+      </div>
+      
+     <p>The <tt>TDAssembly</tt> argument will have the most-recently matched tokens on the top of its stack.</p>
     
 </div>
 </body>
