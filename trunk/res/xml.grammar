@@ -1,20 +1,34 @@
 /**
-
-    This is a relatively complete XML 1.0 TDParseKit grammar derived from the XML specification:
+    This is a relatively complete TDParseKit grammar for XML 1.0 derived from the XML specification:
     
     http://www.w3.org/TR/REC-xml/
     
-    There are certainly bugs (especially in the DTD stuff prolly), but I have it running successfully on some
-    non-trivial real-world XML documents.
+    You can create the parser in ObjC like:
+    
+        NSString *g = .. // fetch this grammar from disk or wherever
+        TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
+
+        NSString *XMLString = .. // fetch some XML 
+        [p parse:XMLString];
+        
+    If implemented, your assembler object will receive callbacks for each production in this grammar, like:
+        
+        - (void)workOnElementAssembly:(TDAssembly *)a;
+        - (void)workOnAttributeAssembly:(TDAssembly *)a;
+    
+    
+    This parser is running successfully on some non-trivial real-world XML documents, 
+    but i'm sure there are bugs (espcially in the DTD stuff). 
+    It's also a little too lenient about a few quoted string values in the spec.
     
     I have some tests, But will need many more if this is to be a serious parser:
 
     http://code.google.com/p/todparsekit/source/browse/trunk/test/TDXMLParserTest.m
     
     
-    I'd like to write an ObjC SAX interface to this parser. 
+    Also, I'd like to write an ObjC SAX interface to this parser
     
-    also: is this the first XML parser implemented directly in Objective-C?
+    (is this the first XML parser implemented directly in Objective-C?)
 */
 
 @start = document;
