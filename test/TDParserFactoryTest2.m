@@ -434,17 +434,42 @@
 }
 
 
-- (void)testFallbackState {
+- (void)testComments {
     g = 
-        @"@delimitState = '/';"
-        @"@delimitedString = '/' '/' nil;"
+        @"@commentState = '/';"
         @"@singleLineComments = '//';"
-        @"@start = ( DelimitedString('/', '/') | Symbol | Comment )+;";
+        @"@reportsCommentTokens = YES;"
+        @"@start = Any+;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
+
+    s = @"# // foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[#, // foo]#/// foo^", [res description]);
+
+    TDToken *tok = [res pop];
+    TDTrue(tok.isComment);
+
+}    
     
+
+
+- (void)testFallbackState {
+    g = 
+        @"@commentState = '/';"
+        @"@commentState.fallbackState = delimitState;"
+        @"@delimitedString = '/' '/' nil;"
+        @"@singleLineComments = '//';"
+        @"@multiLineComments = '/*' '*/';"
+        @"@start = Any+;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+
     s = @"/ %";
     t = lp.tokenizer;
+
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[/, %]//%^", [res description]);
@@ -466,6 +491,15 @@
     TDEqualObjects(@"[/foo/]/foo/^", [res description]);
     tok = [res pop];
     TDTrue(tok.isDelimitedString);
+
+    s = @"# // foo";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[#]#^", [res description]);
+    tok = [res pop];
+    TDTrue(tok.isSymbol);
+    
 }
 
 @end

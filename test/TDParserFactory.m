@@ -55,6 +55,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDTokenizer *)tokenizerFromGrammarSettings;
 - (BOOL)boolForTokenForKey:(NSString *)key;
 - (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
+- (void)setFallbackStateOn:(TDTokenizerState *)state withTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 
 - (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
@@ -205,18 +206,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     // customize tokenizer to find tokenizer customization directives
     [t setTokenizerState:t.wordState from:'@' to:'@'];
 
-    // customize tokenizer for Pattern regexes
-//    [t setTokenizerState:t.delimitState from:'/' to:'/'];
-//    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
-//
-//    // customize tokenizer for comments
-//    [t setTokenizerState:t.commentState from:'#' to:'#'];
-//    [t setTokenizerState:t.commentState from:'"' to:'"'];
-//
-//    [t.commentState removeSingleLineStartMarker:@"//"];
-//    [t.commentState removeMultiLineStartMarker:@"/*"];
-//    [t.commentState addSingleLineStartMarker:@"#"];
-//    [t.commentState addMultiLineStartMarker:@"\"\"\"" endMarker:@"\"\"\""];
+    // add support for tokenizer directives like @commentState.fallbackState
+    [t.wordState setWordChars:YES from:'.' to:'.'];
     
     // setup comments
     [t setTokenizerState:t.commentState from:'/' to:'/'];
@@ -281,19 +272,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
-	[parserTokensTable removeObjectForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
-	[parserTokensTable removeObjectForKey:@"@numberState"];
     [self setTokenizerState:t.quoteState onTokenizer:t forTokensForKey:@"@quoteState"];
-	[parserTokensTable removeObjectForKey:@"@quoteState"];
     [self setTokenizerState:t.delimitState onTokenizer:t forTokensForKey:@"@delimitState"];
-	[parserTokensTable removeObjectForKey:@"@delimitState"];
     [self setTokenizerState:t.symbolState onTokenizer:t forTokensForKey:@"@symbolState"];
-	[parserTokensTable removeObjectForKey:@"@symbolState"];
     [self setTokenizerState:t.commentState onTokenizer:t forTokensForKey:@"@commentState"];
-	[parserTokensTable removeObjectForKey:@"@commentState"];
     [self setTokenizerState:t.whitespaceState onTokenizer:t forTokensForKey:@"@whitespaceState"];
-	[parserTokensTable removeObjectForKey:@"@shitespaceState"];
+    
+    [self setFallbackStateOn:t.commentState withTokenizer:t forTokensForKey:@"@commentState.fallbackState"];
+    [self setFallbackStateOn:t.delimitState withTokenizer:t forTokensForKey:@"@delimitState.fallbackState"];
     
     NSArray *toks = nil;
     
@@ -344,7 +331,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
             [t.commentState addSingleLineStartMarker:s];
-            [t.symbolState add:s];
         }
     }
     
@@ -361,8 +347,6 @@ void TDReleaseSubparserTree(TDParser *p) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
                 [t.commentState addMultiLineStartMarker:start endMarker:end];
-                [t.symbolState add:start];
-                [t.symbolState add:end];
             }
         }
     }
@@ -414,6 +398,20 @@ void TDReleaseSubparserTree(TDParser *p) {
             if (1 == s.length) {
                 NSInteger c = [s characterAtIndex:0];
                 [t setTokenizerState:state from:c to:c];
+            }
+        }
+    }
+}
+
+
+- (void)setFallbackStateOn:(TDTokenizerState *)state withTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key {
+    NSArray *toks = [parserTokensTable objectForKey:key];
+    if (toks.count) {
+        TDToken *tok = [toks objectAtIndex:0];
+        if (tok.isWord) {
+            TDTokenizerState *fallbackState = [t valueForKey:tok.stringValue];
+            if (state != fallbackState) {
+                state.fallbackState = fallbackState;
             }
         }
     }
