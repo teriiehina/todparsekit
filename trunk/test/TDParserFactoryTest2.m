@@ -433,4 +433,39 @@
     
 }
 
+
+- (void)testFallbackState {
+    g = 
+        @"@delimitState = '/';"
+        @"@delimitedString = '/' '/' nil;"
+        @"@singleLineComments = '//';"
+        @"@start = ( DelimitedString('/', '/') | Symbol | Comment )+;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"/ %";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[/, %]//%^", [res description]);
+    TDToken *tok = [res pop];
+    TDTrue(tok.isSymbol);
+
+    s = @"/ /";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[/ /]/ /^", [res description]);
+    tok = [res pop];
+    TDTrue(tok.isDelimitedString);
+
+    s = @"/foo/";
+    t = lp.tokenizer;
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[/foo/]/foo/^", [res description]);
+    tok = [res pop];
+    TDTrue(tok.isDelimitedString);
+}
+
 @end

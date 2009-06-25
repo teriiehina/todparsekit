@@ -143,6 +143,9 @@
         if (TDEOF == c) {
             if (balancesEOFTerminatedStrings && endMarker) {
                 [self appendString:endMarker];
+            } else if (endMarker && !allowsUnbalancedStrings) {
+                [r unread:[[self bufferedString] length] - 1];
+                return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
             }
             break;
         }

@@ -547,8 +547,18 @@
     [delimitState addStartMarker:@"$$" endMarker:@"$#" allowedCharacterSet:cs];
     
     tok = [t nextToken];
-    TDTrue(tok.isDelimitedString);
-    TDEqualObjects(tok.stringValue, s);
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
+    TDEquals(tok.floatValue, (CGFloat)0.0);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(tok.stringValue, @"$");
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
