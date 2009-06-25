@@ -124,9 +124,12 @@
 
 
 // [30]       extSubset       ::=        TextDecl? extSubsetDecl
-// extSubset = textDecl? extSubsetDecl;
+    
+    extSubset = textDecl? extSubsetDecl;
+
 // [31]       extSubsetDecl       ::=       ( markupdecl | conditionalSect | DeclSep)*
-// extSubsetDecl = (markupdecl | conditionalSect | declSep)*;
+    
+    extSubsetDecl = (markupdecl | conditionalSect | declSep)*;
 
 
 // [32]       SDDecl       ::=        S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
@@ -244,15 +247,28 @@
 
 
 // [61]       conditionalSect       ::=        includeSect | ignoreSect
-// conditionalSect = includeSect | ignoreSect;
+    
+    conditionalSect = includeSect | ignoreSect;
+
+
 // [62]       includeSect       ::=       '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>'    
-// includeSect = '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>';
+
+    includeSect = '<![' S? 'INCLUDE' S? '[' extSubsetDecl ']]>';
+    
+    
 // [63]       ignoreSect       ::=       '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>'    
-// ignoreSect = '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>';
+
+    ignoreSect = '<![' S? 'IGNORE' S? '[' ignoreSectContents* ']]>';
+
+
 // [64]       ignoreSectContents       ::=        Ignore ('<![' ignoreSectContents ']]>' Ignore)*
-// ignoreSectContents = ignore ('<![' ignoreSectContents ']]>' ignore)*;
+    
+    ignoreSectContents = ignore ('<![' ignoreSectContents ']]>' ignore)*;
+
+
 // [65]       Ignore       ::=        Char* - (Char* ('<![' | ']]>') Char*)
-// ignore = Word; // TODO 
+    
+    ignore = Word; // TODO 
 
 
 // [66]       CharRef       ::=       '&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
@@ -311,9 +327,15 @@
 
 
 // [77]       TextDecl       ::=       '<?xml' VersionInfo? EncodingDecl S? '?>'
-// textDecl = '<?xml' versionInfo? encodingDecl S? '?>';
+
+    textDecl = '<?xml' versionInfo? encodingDecl S? '?>';
+
+
 // [78]       extParsedEnt       ::=        TextDecl? content
-// extParsedEnt = textDecl? content;
+
+    extParsedEnt = textDecl? content;
+
+
 // [80]       EncodingDecl       ::=        S 'encoding' Eq ('"' EncName '"' | "'" EncName "'" )
 // [81]       EncName       ::=       [A-Za-z] ([A-Za-z0-9._] | '-')*
 
