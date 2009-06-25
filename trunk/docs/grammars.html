@@ -65,15 +65,15 @@
     cold = 'cold';</pre>
     </div>
     
-    <p>As shown above, the TDPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of the Python programming language. So a commented <b>Cold Beer</b> grammar may appear as:</p>
+    <p>As shown above, the TDPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of Objective-C. So a commented <b>Cold Beer</b> grammar may appear as:</p>
     
     <div class="code">
     <pre>
-    """
+    /*
         A Grammar for the Cold Beer Language
         by Todd Ditchendorf
-    """
-    @start = sentence+;     # outermost production
+    */
+    @start = sentence+;     // outermost production
     sentence = adjectives 'beer' '.';
     adjectives = cold adjective*;
     adjective = cold | 'freezing';
