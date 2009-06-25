@@ -18,12 +18,9 @@
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizer ()
-- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
-@end
-
 @interface TDTokenizerState ()
 - (void)resetWithReader:(TDReader *)r;
+- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t;
 @end
 
 @interface TDCommentState ()
