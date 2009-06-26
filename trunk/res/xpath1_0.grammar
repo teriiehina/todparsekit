@@ -27,8 +27,7 @@
 
 
 // [3] RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | AbbreviatedRelativeLocationPath
-// avoiding left recursion by changing to this
-// [3] RelativeLocationPath ::= Step SlashStep* | AbbreviatedRelativeLocationPath
+// avoiding left recursion
 
     relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath;
 
