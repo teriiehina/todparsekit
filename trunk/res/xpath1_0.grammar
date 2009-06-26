@@ -1,218 +1,241 @@
-// [1]        LocationPath                        ::=       RelativeLocationPath | AbsoluteLocationPath
-locationPath = relativeLocationPath | absoluteLocationPath;
+/*
+    An XPath 1.0 grammar derived from the XPath 1.0 Specification:
+ 
+    http://www.w3.org/TR/xpath
+
+*/
+
+@start = locationPath;
+
+@symbols =  '//'
+            '..'
+            '!='
+            '::'
+            '<='
+            '>=';
 
 
-// [2]        AbsoluteLocationPath                ::=       '/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath    
-absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath;
+// [1] LocationPath ::= RelativeLocationPath | AbsoluteLocationPath
+ 
+    locationPath = relativeLocationPath | absoluteLocationPath;
 
 
-// [3] RelativeLocationPath ::= Step    | RelativeLocationPath '/' Step    | AbbreviatedRelativeLocationPath
+
+// [2] AbsoluteLocationPath ::= '/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath 
+
+    absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath;
+
+
+// [3] RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | AbbreviatedRelativeLocationPath
 // avoiding left recursion by changing to this
-// [3] RelativeLocationPath ::= Step SlashStep*    | AbbreviatedRelativeLocationPath
-relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath;
+// [3] RelativeLocationPath ::= Step SlashStep* | AbbreviatedRelativeLocationPath
+
+    relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath;
 
 
-// [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
-step = axisSpecifier nodeTest predicate* | abbreviatedStep;
+// [4] Step ::= AxisSpecifier NodeTest Predicate* | AbbreviatedStep 
+    
+    step = axisSpecifier nodeTest predicate* | abbreviatedStep;
 
 
-// [5]    AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
-axisSpecifier = axisName '::' | abbreviatedAxisSpecifier;
+// [5] AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
+    
+    axisSpecifier = axisName '::' | abbreviatedAxisSpecifier;
 
 
 // [6] AxisName ::= 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
-//            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
-axisName = 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
-            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self';
+// | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
+
+    axisName = 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
+                | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self';
 
 
-// [7]  NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
-nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')';
+// [7] NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
+    
+    nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')';
 
 
-// [8]  Predicate ::=  '[' PredicateExpr ']'
-predicate = '[' predicateExpr ']';
+// [8] Predicate ::= '[' PredicateExpr ']'
+    
+    predicate = '[' predicateExpr ']';
 
 
-// [9]  PredicateExpr    ::=       Expr
-predicateExpr = expr;
+// [9] PredicateExpr ::= Expr
+    
+    predicateExpr = expr;
 
 
-// [10]  AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath    
-abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
-
-// [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step    
-abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
-
-// [12] AbbreviatedStep    ::=       '.'    | '..'
-AbbreviatedStep = '.' | '..';
-
-// [13] AbbreviatedAxisSpecifier ::=       '@'?
-abbreviatedAxisSpecifier = '@'?;
+// [10] AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath 
+    
+    abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
 
 
-// [14]       Expr ::=       OrExpr    
-expr = orExpr;
+// [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step 
+
+    abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
 
 
-// [15] PrimaryExpr    ::=  VariableReference    
-//                    | '(' Expr ')'    
-//                    | Literal    
-//                    | Number    
-//                    | FunctionCall
-primaryExpr = variableReference | '(' expr ')' | Word | Num | functionCall
+// [12] AbbreviatedStep ::= '.' | '..'
+    
+    abbreviatedStep = '.' | '..';
 
 
+// [13] AbbreviatedAxisSpecifier ::= '@'?
 
-// [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'    
-
-// commaArg ::= ',' Argument
-// [16] FunctionCall ::= FunctionName '(' ( Argument commaArg* )? ')'    
-
-commaArg = ',' argument;
-functionCall ::= functionName '(' (argument commaArg*)? ')'    
+    abbreviatedAxisSpecifier = '@'?;
 
 
-// [17] Argument ::=       Expr
-argument = expr;
+// [14] Expr ::= OrExpr 
+    
+    expr = orExpr;
 
 
-// [18]  UnionExpr ::=       PathExpr | UnionExpr '|' PathExpr    
-unionExpr = pathExpr | unionExpr '|' pathExpr;
+// [15] PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number | FunctionCall
+
+    primaryExpr = variableReference | '(' expr ')' | literal | Num | functionCall;
 
 
 
-// pipePathExpr :: = | PathExpr
-// [18]  UnionExpr ::=       PathExpr PipePathExpr*
+// [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'
 
-pipePathExpr = | pathExpr;
-unionExpr = pathExpr pipePathExpr*;
+    functionCall ::= functionName '(' (argument (',' argument)* )? ')';
 
 
-
-// [19]       PathExpr ::= LocationPath    
-//                    | FilterExpr    
-//                    | FilterExpr '/' RelativeLocationPath    
-//                    | FilterExpr '//' RelativeLocationPath    
-pathExpr = locationPath | filterExpr | filterExpr '/' relativeLocationPath | filterExpr '//' relativeLocationPath;
+// [17] Argument ::= Expr
+    
+    argument = expr;
 
 
-//pragma mark Left Recursion????????????
-// [20]  FilterExpr     ::=       PrimaryExpr    | FilterExpr Predicate
-// [20]  FilterExpr     ::=       PrimaryExpr Predicate?
+// [18] UnionExpr ::= PathExpr | UnionExpr '|' PathExpr
+// avoiding Left recursion
 
-filterExpr = primaryExpr predicate?
-
-
-// #pragma mark Left Recursion
-// [21] OrExpr ::= AndExpr    | OrExpr 'or' AndExpr
-// orAndExpr ::= 'or' AndExpr
-// me: AndExpr orAndExpr*
-
-orExpr = andExpr orAndExpr*;
-orAndExpr = 'or' AndExpr;
+    unionExpr = pathExpr ('|' pathExpr)*;
 
 
+// [19] PathExpr ::= LocationPath 
+//  | FilterExpr 
+//  | FilterExpr '/' RelativeLocationPath 
+//  | FilterExpr '//' RelativeLocationPath 
 
-// #pragma mark Left Recursion
-// [22] AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr    
-// andEqualityExpr
-// EqualityExpr andEqualityExpr
-
-andEqualityExpr = 'and' equalityExpr;
-andExpr = equalityExpr andEqualityExpr;
+    pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
 
 
+// [20] FilterExpr ::= PrimaryExpr | FilterExpr Predicate
+// avoiding Left recursion ??
+
+    filterExpr = primaryExpr predicate?
 
 
-//pragma mark Left Recursion
-// [23] EqualityExpr ::= RelationalExpr    
-//            | EqualityExpr '=' RelationalExpr
-//            | EqualityExpr '!=' RelationalExpr    
+// [21] OrExpr ::= AndExpr | OrExpr 'or' AndExpr
+// avoiding Left recursion
 
-// RelationalExpr (equalsRelationalExpr | notEqualsRelationalExpr)?
+    orExpr = andExpr ('or' andExpr)*;
 
 
+// [22] AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr
+// avoiding Left recursion
+
+    andExpr = equalityExpr ('and' equalityExpr)*;
 
 
+// [23] EqualityExpr ::= RelationalExpr | EqualityExpr '=' RelationalExpr | EqualityExpr '!=' RelationalExpr
+// avoiding Left recursion
 
+    equalityExpr = relationalExpr (('='|'!=') relationalExpr)?; 
+    // TODO repetition or alternation?
 
-//pragma mark Left Recursion
 
 // [24] RelationalExpr ::= AdditiveExpr
-//                        | RelationalExpr '<' AdditiveExpr    
-//                        | RelationalExpr '>' AdditiveExpr    
-//                        | RelationalExpr '<=' AdditiveExpr    
-//                        | RelationalExpr '>=' AdditiveExpr
+//  | RelationalExpr '<' AdditiveExpr 
+//  | RelationalExpr '>' AdditiveExpr 
+//  | RelationalExpr '<=' AdditiveExpr 
+//  | RelationalExpr '>=' AdditiveExpr
+// avoiding Left recursion
 
-// RelationalExpr = AdditiveExpr (ltAdditiveExpr | gtAdditiveExpr | lteAdditiveExpr | gteAdditiveExpr)?
-
-
-
-//pragma mark Left Recursion
-
-// [25] AdditiveExpr ::= MultiplicativeExpr    
-//                        | AdditiveExpr '+' MultiplicativeExpr    
-//                        | AdditiveExpr '-' MultiplicativeExpr    
-
-// AdditiveExpr ::= MultiplicativeExpr (plusMultiplicativeExpr | minusMultiplicativeExpr)?
+    relationalExpr = additiveExpr ('<' additiveExpr | '>' additiveExpr | '<=' additiveExpr | '>=' additiveExpr)?;
 
 
+// [25] AdditiveExpr ::= MultiplicativeExpr 
+//  | AdditiveExpr '+' MultiplicativeExpr 
+//  | AdditiveExpr '-' MultiplicativeExpr 
+// avoiding Left recursion
 
-//pragma mark Left Recursion
-
-// [26] MultiplicativeExpr ::= UnaryExpr    
-//                            | MultiplicativeExpr MultiplyOperator UnaryExpr    
-//                            | MultiplicativeExpr 'div' UnaryExpr    
-//                            | MultiplicativeExpr 'mod' UnaryExpr
-
-// MultiplicativeExpr :: = UnaryExpr (multiplyUnaryExpr | divUnaryExpr | modUnaryExpr)? 
+    additiveExpr = multiplicativeExpr ('+' multiplicativeExpr | '-' multiplicativeExpr)?;
 
 
+// [26] MultiplicativeExpr ::= UnaryExpr 
+//  | MultiplicativeExpr MultiplyOperator UnaryExpr 
+//  | MultiplicativeExpr 'div' UnaryExpr 
+//  | MultiplicativeExpr 'mod' UnaryExpr
+// avoiding Left recursion
 
-//pragma mark Left Recursion
+    multiplicativeExpr = unaryExpr (multiplyOperator unaryExpr | 'div' unaryExpr | 'mod' unaryExpr)?;
+
 
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
+// avoiding Left recursion
 
-// UnaryExpr ::= '-'? UnionExpr
+    unaryExpr = '-'? unionExpr;
+
 
 // [28] ExprToken ::= '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
-//                    | NameTest    
-//                    | NodeType    
-//                    | Operator    
-//                    | FunctionName    
-//                    | AxisName    
-//                    | Literal    
-//                    | Number    
-//                    | VariableReference    
+//  | NameTest 
+//  | NodeType 
+//  | Operator 
+//  | FunctionName 
+//  | AxisName 
+//  | Literal 
+//  | Number 
+//  | VariableReference 
+
+    exprToken = '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
+        | nameTest 
+        | nodeType 
+        | operator 
+        | functionName 
+        | axisName 
+        | literal 
+        | number
+        | variableReference;
 
 
-// [32] Operator ::= OperatorName    
-//                    | MultiplyOperator    
-//                    | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>='    
+// [32] Operator ::= OperatorName | MultiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=' 
+
+    operator ::= operatorName | multiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=';
+    
+
+// [33] OperatorName ::= 'and' | 'or' | 'mod' | 'div' 
+
+    operatorName = 'and' | 'or' | 'mod' | 'div';
 
 
-// [33] OperatorName ::=       'and' | 'or' | 'mod' | 'div'    
+// [34] MultiplyOperator  ::= '*' 
 
-// [34]       MultiplyOperator                    ::=       '*'    
-
-
-// [7]       QName       ::=   PrefixedName| UnprefixedName
-// [8]       PrefixedName ::=        Prefix ':' LocalPart
-// [9]       UnprefixedName     ::=        LocalPart
-// [10]       Prefix       ::=       NCName
-// [11]       LocalPart       ::=       NCName
+    multiplyOperator = '*';
 
 
-// [35] FunctionName ::= QName - NodeType    
+// [7] QName ::= PrefixedName| UnprefixedName
+// [8] PrefixedName ::= Prefix ':' LocalPart
+// [9] UnprefixedName ::= LocalPart
+// [10] Prefix ::= NCName
+    
+    prefix = /[^:]+/;
 
-// [36]  VariableReference ::=       '$' QName    
+
+// [11] LocalPart ::= NCName
+
+    localPart = /[^:]+/;
 
 
-// [37] NameTest ::= '*' | NCName ':' '*' | QName    
+// [35] FunctionName ::= QName - NodeType 
+
+// [36] VariableReference ::= '$' QName 
 
 
-// [38] NodeType ::= 'comment'    
-//                    | 'text'    
-//                    | 'processing-instruction'    
-//                    | 'node'
+// [37] NameTest ::= '*' | NCName ':' '*' | QName 
+
+
+// [38] NodeType ::= 'comment' 
+//  | 'text' 
+//  | 'processing-instruction' 
+//  | 'node'
