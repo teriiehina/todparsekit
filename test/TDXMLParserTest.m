@@ -355,9 +355,10 @@
         @"@symbols='<?' '?>';"
         @"@symbolState = '<';"
         @"name=/[^-:\\.]\\w+/;"
+        @"piTarget = /[^?Xx][^>Mm]?[^Ll]?.*/;"
         @"@wordState = ':' '.' '-' '_';"
         @"@wordChars = ':' '.' '-' '_';"
-        @"@start = '<?' name /[^?][^>]?.*/* '?>';";
+        @"@start = '<?' piTarget /[^?][^>]?.*/* '?>';";
     TDParser *pi = [[TDParserFactory factory] parserFromGrammar:gram assembler:nil];
     pi.tokenizer.string = @"<?foo bar='baz'?>";
     res = [pi bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:pi.tokenizer]];
@@ -366,6 +367,10 @@
     t.string = @"<?foo bar='baz'?>";
     res = [[p parserNamed:@"pi"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[<?, foo,  , bar, =, 'baz', ?>]<?/foo/ /bar/=/'baz'/?>^", [res description]);    
+    
+    t.string = @"<?f bar='baz'?>";
+    res = [[p parserNamed:@"pi"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[<?, f,  , bar, =, 'baz', ?>]<?/f/ /bar/=/'baz'/?>^", [res description]);    
     
 }
 
