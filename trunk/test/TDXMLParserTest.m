@@ -379,7 +379,9 @@
 // [23]       XMLDecl       ::=       '<?xml' VersionInfo EncodingDecl? SDDecl? S? '?>'
 // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
 - (void)testXmlDecl {
-    // versionInfo = S 'version' eq QuotedString; #TODO
+//    versionNum = /(['"])1\.[0-9]\1/;
+//    versionInfo = S 'version' eq versionNum;
+    
     t.string = @" version='1.0'";
     res = [[p parserNamed:@"versionInfo"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[ , version, =, '1.0'] /version/=/'1.0'^", [res description]);
