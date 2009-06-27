@@ -214,27 +214,53 @@
 
 
 // [7] QName ::= PrefixedName| UnprefixedName
+
+    qName = prefixedName | unprefixedName;
+    
+    
 // [8] PrefixedName ::= Prefix ':' LocalPart
+    
+    prefixedName = prefix ':' locaPart;
+
+
 // [9] UnprefixedName ::= LocalPart
+
+    unprefixedName = localPart;
+    
+
 // [10] Prefix ::= NCName
     
-    prefix = /[^:]+/;
+    prefix = ncName;
 
 
 // [11] LocalPart ::= NCName
 
-    localPart = /[^:]+/;
+    localPart = ncName;
+    
+
+    ncName = Word(/[^:]+/);
 
 
 // [35] FunctionName ::= QName - NodeType 
+    
+    functionName = qName;
+
 
 // [36] VariableReference ::= '$' QName 
 
+    variableReferece = '$' qName;
+
 
 // [37] NameTest ::= '*' | NCName ':' '*' | QName 
+
+    nameTest = '*' | ncName ':' '*' | qName;
 
 
 // [38] NodeType ::= 'comment' 
 //  | 'text' 
 //  | 'processing-instruction' 
 //  | 'node'
+
+    nodeType = 'comment' | 'text' | 'processing-instruction' | 'node';
+    
+    
