@@ -23,6 +23,10 @@
 @property (nonatomic, readwrite, retain) TDParser *subparser;
 @end
 
+@interface TDPattern ()
+@property (nonatomic, assign) TDTokenType tokenType;
+@end
+
 void TDReleaseSubparserTree(TDParser *p) {
     if ([p isKindOfClass:[TDCollectionParser class]]) {
         TDCollectionParser *c = (TDCollectionParser *)p;
@@ -111,6 +115,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
+@property (nonatomic, retain) TDCollectionParser *fullConstantParser;
 @property (nonatomic, retain) TDParser *constantParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
 @end
@@ -533,12 +538,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 // phrasePlus           = phrase '+'
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
-// cardinality          = '{' Num '}'
-// atomicValue          = discard? (literal | variable | constant | pattern | delimitedString)
+// cardinality          = '{' Num (',' Num)? '}'
+// atomicValue          = discard? (literal | variable | fullConstant | pattern | delimitedString)
 // discard              = '^'
 // literal              = QuotedString
 // variable             = LowercaseWord
-// constant             = UppercaseWord
+// fullConstant         = constant ('(' pattern ')')?
+// constant             = UppercaseWord 
 // pattern              = DelimitedString('/', '/')
 
 
@@ -735,7 +741,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// cardinality          = '{' Num '}'
+// cardinality          = '{' Num (',' Num)? '}'
 - (TDCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
         self.cardinalityParser = [TDTrack track];
@@ -767,7 +773,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [a add:self.patternParser];
         [a add:self.literalParser];
         [a add:self.variableParser];
-        [a add:self.constantParser];
+        [a add:self.fullConstantParser];
         [a add:self.delimitedStringParser];
         [atomicValueParser add:a];
     }
@@ -815,6 +821,25 @@ void TDReleaseSubparserTree(TDParser *p) {
         [variableParser setAssembler:self selector:@selector(workOnVariableAssembly:)];
     }
     return variableParser;
+}
+
+
+// fullConstant = constant ('(' pattern? ')')?
+- (TDCollectionParser *)fullConstantParser {
+    if (!fullConstantParser) {
+        self.fullConstantParser = [TDSequence sequence];
+        fullConstantParser.name = @"fullConstant";
+        [fullConstantParser add:self.constantParser];
+        
+        TDSequence *s = [TDSequence sequence];
+        [s add:[TDSymbol symbolWithString:@"("]]; // fence
+        [s add:[self zeroOrOne:self.patternParser]];
+        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        [s setAssembler:self selector:@selector(workOnFullConstantAssembly:)];
+        
+        [fullConstantParser add:[self zeroOrOne:s]];
+    }
+    return fullConstantParser;
 }
 
 
@@ -1004,6 +1029,38 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     }
     [a push:p];
+}
+
+
+- (void)workOnFullConstantAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:paren];
+    [a pop]; // discard '('
+
+    if (objs.count) {
+        TDPattern *p = [objs objectAtIndex:0];
+        TDTerminal *t = [a pop];
+
+        NSAssert([p isKindOfClass:[TDPattern class]], @"");
+        NSAssert([t isKindOfClass:[TDTerminal class]], @"");
+        
+        TDTokenType tt = TDTokenTypeAny;
+        if ([t isKindOfClass:[TDWord class]]) {
+            tt = TDTokenTypeWord;
+        } else if ([t isKindOfClass:[TDNum class]]) {
+            tt = TDTokenTypeNumber;
+        } else if ([t isKindOfClass:[TDSymbol class]]) {
+            tt = TDTokenTypeSymbol;
+        } else if ([t isKindOfClass:[TDWhitespace class]]) {
+            tt = TDTokenTypeWhitespace;
+        } else if ([t isKindOfClass:[TDQuotedString class]]) {
+            tt = TDTokenTypeQuotedString;
+        } else if ([t isKindOfClass:[TDComment class]]) {
+            tt = TDTokenTypeComment;
+        }
+        
+        p.tokenType = tt;
+        [a push:p];
+    }
 }
 
 
@@ -1200,6 +1257,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize patternParser;
 @synthesize literalParser;
 @synthesize variableParser;
+@synthesize fullConstantParser;
 @synthesize constantParser;
 @synthesize delimitedStringParser;
 @synthesize assemblerSettingBehavior;

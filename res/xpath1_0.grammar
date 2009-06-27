@@ -200,7 +200,7 @@
 
 // [32] Operator ::= OperatorName | MultiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=' 
 
-    operator ::= operatorName | multiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=';
+    operator = operatorName | multiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=';
     
 
 // [33] OperatorName ::= 'and' | 'or' | 'mod' | 'div' 
