@@ -88,7 +88,7 @@ static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRe
     TDParser *data = JSObjectGetPrivate(this);
     TDJSAssemblerAdapter *adapter = [[TDJSAssemblerAdapter alloc] init]; // retained. released in TDParser_finalize
     [adapter setAssemblerFunction:(JSObjectRef)value fromContext:ctx];
-    [data setAssembler:adapter selector:@selector(workOnAssembly:)];
+    [data setAssembler:adapter selector:@selector(workOn:)];
     return true;
 }
 

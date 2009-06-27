@@ -15,7 +15,7 @@
     JSContextRef ctx;
     JSObjectRef assemblerFunction;
 }
-- (void)workOnAssembly:(TDAssembly *)a;
+- (void)workOn:(TDAssembly *)a;
 
 - (JSObjectRef)assemblerFunction;
 - (void)setAssemblerFunction:(JSObjectRef)f fromContext:(JSContextRef)c;

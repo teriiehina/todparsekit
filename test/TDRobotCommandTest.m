@@ -69,7 +69,7 @@
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"from"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnPickCommandAssembly:)];
+    [s setAssembler:self selector:@selector(workOnPickCommand:)];
     return s;
 }
 
@@ -80,7 +80,7 @@
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"at"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnPlaceCommandAssembly:)];
+    [s setAssembler:self selector:@selector(workOnPlaceCommand:)];
     return s;
 }
 
@@ -89,7 +89,7 @@
     TDSequence *s = [TDSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnScanCommandAssembly:)];
+    [s setAssembler:self selector:@selector(workOnScanCommand:)];
     return s;
 }
 
@@ -151,7 +151,7 @@
 }
 
 
-- (void)workOnPickCommandAssembly:(TDAssembly *)a {
+- (void)workOnPickCommand:(TDAssembly *)a {
     RobotPickCommand *c = [[[RobotPickCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;
@@ -159,7 +159,7 @@
 }
 
 
-- (void)workOnPlaceCommandAssembly:(TDAssembly *)a {
+- (void)workOnPlaceCommand:(TDAssembly *)a {
     RobotPlaceCommand *c = [[[RobotPlaceCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;
@@ -167,7 +167,7 @@
 }
 
 
-- (void)workOnScanCommandAssembly:(TDAssembly *)a {
+- (void)workOnScanCommand:(TDAssembly *)a {
     RobotScanCommand *c = [[[RobotScanCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;

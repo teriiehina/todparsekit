@@ -86,7 +86,7 @@
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
         if (shouldAssemble) {
-            [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+            [stringParser setAssembler:self selector:@selector(workOnString:)];
         }
     }
     return stringParser;
@@ -97,7 +97,7 @@
     if (!numberParser) {
         self.numberParser = [TDNum num];
         if (shouldAssemble) {
-            [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
+            [numberParser setAssembler:self selector:@selector(workOnNumber:)];
         }
     }
     return numberParser;
@@ -108,7 +108,7 @@
     if (!nullParser) {
         self.nullParser = [[TDLiteral literalWithString:@"null"] discard];
         if (shouldAssemble) {
-            [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
+            [nullParser setAssembler:self selector:@selector(workOnNull:)];
         }
     }
     return nullParser;
@@ -121,7 +121,7 @@
         [booleanParser add:[TDLiteral literalWithString:@"true"]];
         [booleanParser add:[TDLiteral literalWithString:@"false"]];
         if (shouldAssemble) {
-            [booleanParser setAssembler:self selector:@selector(workOnBooleanAssembly:)];
+            [booleanParser setAssembler:self selector:@selector(workOnBoolean:)];
         }
     }
     return booleanParser;
@@ -149,7 +149,7 @@
         [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
         
         if (shouldAssemble) {
-            [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
+            [arrayParser setAssembler:self selector:@selector(workOnArray:)];
         }
     }
     return arrayParser;
@@ -179,7 +179,7 @@
         [objectParser add:[[TDSymbol symbolWithString:@"}"] discard]];
 
         if (shouldAssemble) {
-            [objectParser setAssembler:self selector:@selector(workOnObjectAssembly:)];
+            [objectParser setAssembler:self selector:@selector(workOnObject:)];
         }
     }
     return objectParser;
@@ -217,7 +217,7 @@
         [propertyParser add:[[TDSymbol symbolWithString:@":"] discard]];
         [propertyParser add:self.valueParser];
         if (shouldAssemble) {
-            [propertyParser setAssembler:self selector:@selector(workOnPropertyAssembly:)];
+            [propertyParser setAssembler:self selector:@selector(workOnProperty:)];
         }
     }
     return propertyParser;
@@ -234,30 +234,30 @@
 }
 
 
-- (void)workOnNullAssembly:(TDAssembly *)a {
+- (void)workOnNull:(TDAssembly *)a {
     [a push:[NSNull null]];
 }
 
 
-- (void)workOnNumberAssembly:(TDAssembly *)a {
+- (void)workOnNumber:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnString:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnBooleanAssembly:(TDAssembly *)a {
+- (void)workOnBoolean:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithBool:[tok.stringValue isEqualToString:@"true"] ? YES : NO]];
 }
 
 
-- (void)workOnArrayAssembly:(TDAssembly *)a {
+- (void)workOnArray:(TDAssembly *)a {
     NSArray *elements = [a objectsAbove:self.bracket];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
     
@@ -271,7 +271,7 @@
 }
 
 
-- (void)workOnObjectAssembly:(TDAssembly *)a {
+- (void)workOnObject:(TDAssembly *)a {
     NSArray *elements = [a objectsAbove:self.curly];
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:elements.count / 2.];
     
@@ -289,7 +289,7 @@
 }
 
 
-- (void)workOnPropertyAssembly:(TDAssembly *)a {
+- (void)workOnProperty:(TDAssembly *)a {
     id value = [a pop];
     TDToken *tok = [a pop];
     NSString *key = [tok.stringValue stringByTrimmingQuotes];

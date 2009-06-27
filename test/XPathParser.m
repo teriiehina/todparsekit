@@ -179,7 +179,7 @@
         [step add:s];
         [step add:self.abbreviatedStep];
         
-        [step setAssembler:xpathAssembler selector:@selector(workOnStepAssembly:)];
+        [step setAssembler:xpathAssembler selector:@selector(workOnStep:)];
     }
     return step;
 }
@@ -198,7 +198,7 @@
         
         [axisSpecifier add:s];
         [axisSpecifier add:self.abbreviatedAxisSpecifier];
-        [axisSpecifier setAssembler:xpathAssembler selector:@selector(workOnAxisSpecifierAssembly:)];
+        [axisSpecifier setAssembler:xpathAssembler selector:@selector(workOnAxisSpecifier:)];
     }
     return axisSpecifier;
 }

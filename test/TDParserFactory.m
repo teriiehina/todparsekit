@@ -977,7 +977,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         prefix = @"workOn";
     }
     NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
-    return [NSString stringWithFormat:@"%@%@Assembly:", prefix, s];
+    return [NSString stringWithFormat:@"%@%@:", prefix, s];
 }
 
 

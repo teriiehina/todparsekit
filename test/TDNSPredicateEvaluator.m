@@ -48,13 +48,13 @@
 }
 
 
-- (void)workOnNegatedPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNegatedPredicate:(TDAssembly *)a {
     BOOL b = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:!b]];
 }
 
 
-- (void)workOnNumComparisonPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNumComparisonPredicate:(TDAssembly *)a {
     CGFloat n2 = [[a pop] floatValue];
     NSString *op = [[a pop] stringValue];
     CGFloat n1 = [[a pop] floatValue];
@@ -78,17 +78,17 @@
 }
 
 
-- (void)workOnCollectionLtPredicateAssembly:(TDAssembly *)a {
+- (void)workOnCollectionLtPredicate:(TDAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedAscending];
 }
 
 
-- (void)workOnCollectionGtPredicateAssembly:(TDAssembly *)a {
+- (void)workOnCollectionGtPredicate:(TDAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedDescending];
 }
 
 
-- (void)workOnCollectionEqPredicateAssembly:(TDAssembly *)a {
+- (void)workOnCollectionEqPredicate:(TDAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedSame];
 }
 
@@ -131,13 +131,13 @@
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnString:(TDAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnStringTestPredicateAssembly:(TDAssembly *)a {
+- (void)workOnStringTestPredicate:(TDAssembly *)a {
     NSString *s2 = [a pop];
     NSString *op = [[a pop] stringValue];
     NSString *s1 = [a pop];
@@ -159,28 +159,28 @@
 }
 
 
-- (void)workOnAndAndTermAssembly:(TDAssembly *)a {
+- (void)workOnAndAndTerm:(TDAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 && b2]];
 }
 
 
-- (void)workOnOrOrTermAssembly:(TDAssembly *)a {
+- (void)workOnOrOrTerm:(TDAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 || b2]];
 }
 
 
-- (void)workOnArrayAssembly:(TDAssembly *)a {
+- (void)workOnArray:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:openCurly];
     [a pop]; // discard '{'
     [a push:[objs reversedArray]];
 }
 
 
-- (void)workOnCollectionTestPredicateAssembly:(TDAssembly *)a {
+- (void)workOnCollectionTestPredicate:(TDAssembly *)a {
     NSArray *array = [a pop];
     NSAssert([array isKindOfClass:[NSArray class]], @"");
     id value = [a pop];
@@ -188,33 +188,33 @@
 }
 
 
-- (void)workOnKeyPathAssembly:(TDAssembly *)a {
+- (void)workOnKeyPath:(TDAssembly *)a {
     NSString *keyPath = [[a pop] stringValue];
     [a push:[resolver resolvedValueForKeyPath:keyPath]];
 }
 
 
-- (void)workOnNumAssembly:(TDAssembly *)a {
+- (void)workOnNum:(TDAssembly *)a {
     [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
 }
 
 
-- (void)workOnTrueAssembly:(TDAssembly *)a {
+- (void)workOnTrue:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalseAssembly:(TDAssembly *)a {
+- (void)workOnFalse:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnTruePredicateAssembly:(TDAssembly *)a {
+- (void)workOnTruePredicate:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalsePredicateAssembly:(TDAssembly *)a {
+- (void)workOnFalsePredicate:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 

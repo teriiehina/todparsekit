@@ -103,51 +103,51 @@
 }
 
 
-- (void)workOnSymbolCharAssembly:(TDAssembly *)a {
+- (void)workOnSymbolChar:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:objectAttrs];
 }
 
 
-- (void)workOnPropertyNameAssembly:(TDAssembly *)a {
+- (void)workOnPropertyName:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:propertyNameAttrs];
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnString:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:arrayAttrs];
 }
 
 
-- (void)workOnNumberAssembly:(TDAssembly *)a {
+- (void)workOnNumber:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:valueAttrs];
 }
 
 
-- (void)workOnConstantAssembly:(TDAssembly *)a {
+- (void)workOnConstant:(TDAssembly *)a {
     NSArray *objs = [NSArray arrayWithObject:[a pop]];
     [self consumeWhitespaceFrom:a];
     [self appendAttributedStringForObjects:objs withAttrs:constantAttrs];
 }
 
 
-- (void)workOnNullAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
-- (void)workOnTrueAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
-- (void)workOnFalseAssembly:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+- (void)workOnNull:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+- (void)workOnTrue:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
+- (void)workOnFalse:(TDAssembly *)a { [self workOnConstantAssembly:a]; }
 
-- (void)workOnColonAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-- (void)workOnCommaAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-- (void)workOnOpenCurlyAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-- (void)workOnCloseCurlyAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-- (void)workOnOpenBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
-- (void)workOnCloseBracketAssembly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnColon:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnComma:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnOpenCurly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnCloseCurly:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnOpenBracket:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
+- (void)workOnCloseBracket:(TDAssembly *)a { [self workOnSymbolCharAssembly:a]; }
 
 @synthesize displayString;
 @synthesize defaultAttrs;

@@ -27,11 +27,11 @@
 #import <OCMock/OCMock.h>
 
 @protocol TDMockAssember
-- (void)workOnFooAssembly:(TDAssembly *)a;
-- (void)workOnBazAssembly:(TDAssembly *)a;
+- (void)workOnFoo:(TDAssembly *)a;
+- (void)workOnBaz:(TDAssembly *)a;
 - (void)workOnStart:(TDAssembly *)a;
-- (void)workOnStartAssembly:(TDAssembly *)a;
-- (void)workOn_StartAssembly:(TDAssembly *)a;
+- (void)workOnStart:(TDAssembly *)a;
+- (void)workOn_Start:(TDAssembly *)a;
 @end
 
 @interface TDParserFactory ()

@@ -31,7 +31,7 @@
 }
 
 
-- (void)workOnAxisSpecifierAssembly:(TDAssembly *)a {
+- (void)workOnAxisSpecifier:(TDAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
     
     //TDToken *tok = [a pop];
@@ -39,17 +39,17 @@
 }
 
 
-- (void)workOnNodeTestAssembly:(TDAssembly *)a {
+- (void)workOnNodeTest:(TDAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 
-- (void)workOnPredicateAssembly:(TDAssembly *)a {
+- (void)workOnPredicate:(TDAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 // [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
-- (void)workOnStepAssembly:(TDAssembly *)a {
+- (void)workOnStep:(TDAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 

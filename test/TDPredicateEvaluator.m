@@ -102,7 +102,7 @@
         self.orTermParser = [TDSequence sequence];
         [orTermParser add:[[TDCaseInsensitiveLiteral literalWithString:@"or"] discard]];
         [orTermParser add:self.termParser];
-        [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
+        [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
     return orTermParser;
 }
@@ -125,7 +125,7 @@
         self.andPrimaryExprParser = [TDSequence sequence];
         [andPrimaryExprParser add:[[TDCaseInsensitiveLiteral literalWithString:@"and"] discard]];
         [andPrimaryExprParser add:self.primaryExprParser];
-        [andPrimaryExprParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+        [andPrimaryExprParser setAssembler:self selector:@selector(workOnAnd:)];
     }
     return andPrimaryExprParser;
 }
@@ -165,7 +165,7 @@
         self.negatedPredicateParser = [TDSequence sequence];
         [negatedPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"not"] discard]];
         [negatedPredicateParser add:self.predicateParser];
-        [negatedPredicateParser setAssembler:self selector:@selector(workOnNegatedValueAssembly:)];
+        [negatedPredicateParser setAssembler:self selector:@selector(workOnNegatedValue:)];
     }
     return negatedPredicateParser;
 }
@@ -201,7 +201,7 @@
         self.attrParser = [TDAlternation alternation];
         [attrParser add:self.tagParser];
         [attrParser add:[TDWord word]];
-        [attrParser setAssembler:self selector:@selector(workOnAttrAssembly:)];
+        [attrParser setAssembler:self selector:@selector(workOnAttr:)];
     }
     return attrParser;
 }
@@ -225,7 +225,7 @@
         [eqStringPredicateParser add:self.attrParser];
         [eqStringPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
         [eqStringPredicateParser add:self.stringParser];
-        [eqStringPredicateParser setAssembler:self selector:@selector(workOnEqStringPredicateAssembly:)];
+        [eqStringPredicateParser setAssembler:self selector:@selector(workOnEqStringPredicate:)];
     }
     return eqStringPredicateParser;
 }
@@ -237,7 +237,7 @@
         [eqNumberPredicateParser add:self.attrParser];
         [eqNumberPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
         [eqNumberPredicateParser add:self.numberParser];
-        [eqNumberPredicateParser setAssembler:self selector:@selector(workOnEqNumberPredicateAssembly:)];
+        [eqNumberPredicateParser setAssembler:self selector:@selector(workOnEqNumberPredicate:)];
     }
     return eqNumberPredicateParser;
 }
@@ -249,7 +249,7 @@
         [eqBoolPredicateParser add:self.attrParser];
         [eqBoolPredicateParser add:[[TDSymbol symbolWithString:@"="] discard]];
         [eqBoolPredicateParser add:self.boolParser];
-        [eqBoolPredicateParser setAssembler:self selector:@selector(workOnEqBoolPredicateAssembly:)];
+        [eqBoolPredicateParser setAssembler:self selector:@selector(workOnEqBoolPredicate:)];
     }
     return eqBoolPredicateParser;
 }
@@ -262,7 +262,7 @@
         [neStringPredicateParser add:self.attrParser];
         [neStringPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
         [neStringPredicateParser add:self.stringParser];
-        [neStringPredicateParser setAssembler:self selector:@selector(workOnNeStringPredicateAssembly:)];
+        [neStringPredicateParser setAssembler:self selector:@selector(workOnNeStringPredicate:)];
     }
     return neStringPredicateParser;
 }
@@ -274,7 +274,7 @@
         [neNumberPredicateParser add:self.attrParser];
         [neNumberPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
         [neNumberPredicateParser add:self.numberParser];
-        [neNumberPredicateParser setAssembler:self selector:@selector(workOnNeNumberPredicateAssembly:)];
+        [neNumberPredicateParser setAssembler:self selector:@selector(workOnNeNumberPredicate:)];
     }
     return neNumberPredicateParser;
 }
@@ -286,7 +286,7 @@
         [neBoolPredicateParser add:self.attrParser];
         [neBoolPredicateParser add:[[TDSymbol symbolWithString:@"!="] discard]];
         [neBoolPredicateParser add:self.boolParser];
-        [neBoolPredicateParser setAssembler:self selector:@selector(workOnNeBoolPredicateAssembly:)];
+        [neBoolPredicateParser setAssembler:self selector:@selector(workOnNeBoolPredicate:)];
     }
     return neBoolPredicateParser;
 }
@@ -299,7 +299,7 @@
         [gtPredicateParser add:self.attrParser];
         [gtPredicateParser add:[[TDSymbol symbolWithString:@">"] discard]];
         [gtPredicateParser add:self.valueParser];
-        [gtPredicateParser setAssembler:self selector:@selector(workOnGtPredicateAssembly:)];
+        [gtPredicateParser setAssembler:self selector:@selector(workOnGtPredicate:)];
     }
     return gtPredicateParser;
 }
@@ -312,7 +312,7 @@
         [gteqPredicateParser add:self.attrParser];
         [gteqPredicateParser add:[[TDSymbol symbolWithString:@">="] discard]];
         [gteqPredicateParser add:self.valueParser];
-        [gteqPredicateParser setAssembler:self selector:@selector(workOnGteqPredicateAssembly:)];
+        [gteqPredicateParser setAssembler:self selector:@selector(workOnGteqPredicate:)];
     }
     return gteqPredicateParser;
 }
@@ -325,7 +325,7 @@
         [ltPredicateParser add:self.attrParser];
         [ltPredicateParser add:[[TDSymbol symbolWithString:@"<"] discard]];
         [ltPredicateParser add:self.valueParser];
-        [ltPredicateParser setAssembler:self selector:@selector(workOnLtPredicateAssembly:)];
+        [ltPredicateParser setAssembler:self selector:@selector(workOnLtPredicate:)];
     }
     return ltPredicateParser;
 }
@@ -338,7 +338,7 @@
         [lteqPredicateParser add:self.attrParser];
         [lteqPredicateParser add:[[TDSymbol symbolWithString:@"<="] discard]];
         [lteqPredicateParser add:self.valueParser];
-        [lteqPredicateParser setAssembler:self selector:@selector(workOnLteqPredicateAssembly:)];
+        [lteqPredicateParser setAssembler:self selector:@selector(workOnLteqPredicate:)];
     }
     return lteqPredicateParser;
 }
@@ -351,7 +351,7 @@
         [beginswithPredicateParser add:self.attrParser];
         [beginswithPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"beginswith"] discard]];
         [beginswithPredicateParser add:self.valueParser];
-        [beginswithPredicateParser setAssembler:self selector:@selector(workOnBeginswithPredicateAssembly:)];
+        [beginswithPredicateParser setAssembler:self selector:@selector(workOnBeginswithPredicate:)];
     }
     return beginswithPredicateParser;
 }
@@ -364,7 +364,7 @@
         [containsPredicateParser add:self.attrParser];
         [containsPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"contains"] discard]];
         [containsPredicateParser add:self.valueParser];
-        [containsPredicateParser setAssembler:self selector:@selector(workOnContainsPredicateAssembly:)];
+        [containsPredicateParser setAssembler:self selector:@selector(workOnContainsPredicate:)];
     }
     return containsPredicateParser;
 }
@@ -377,7 +377,7 @@
         [endswithPredicateParser add:self.attrParser];
         [endswithPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"endswith"] discard]];
         [endswithPredicateParser add:self.valueParser];
-        [endswithPredicateParser setAssembler:self selector:@selector(workOnEndswithPredicateAssembly:)];
+        [endswithPredicateParser setAssembler:self selector:@selector(workOnEndswithPredicate:)];
     }
     return endswithPredicateParser;
 }
@@ -390,7 +390,7 @@
         [matchesPredicateParser add:self.attrParser];
         [matchesPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"matches"] discard]];
         [matchesPredicateParser add:self.valueParser];
-        [matchesPredicateParser setAssembler:self selector:@selector(workOnMatchesPredicateAssembly:)];
+        [matchesPredicateParser setAssembler:self selector:@selector(workOnMatchesPredicate:)];
     }
     return matchesPredicateParser;
 }
@@ -413,7 +413,7 @@
         self.boolParser = [TDAlternation alternation];
         [boolParser add:self.trueParser];
         [boolParser add:self.falseParser];
-        [boolParser setAssembler:self selector:@selector(workOnBoolAssembly:)];
+        [boolParser setAssembler:self selector:@selector(workOnBool:)];
     }
     return boolParser;
 }
@@ -422,7 +422,7 @@
 - (TDParser *)trueParser {
     if (!trueParser) {
         self.trueParser = [[TDCaseInsensitiveLiteral literalWithString:@"true"] discard];
-        [trueParser setAssembler:self selector:@selector(workOnTrueAssembly:)];
+        [trueParser setAssembler:self selector:@selector(workOnTrue:)];
     }
     return trueParser;
 }
@@ -431,7 +431,7 @@
 - (TDParser *)falseParser {
     if (!falseParser) {
         self.falseParser = [[TDCaseInsensitiveLiteral literalWithString:@"false"] discard];
-        [falseParser setAssembler:self selector:@selector(workOnFalseAssembly:)];
+        [falseParser setAssembler:self selector:@selector(workOnFalse:)];
     }
     return falseParser;
 }
@@ -440,7 +440,7 @@
 - (TDParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
-        [stringParser setAssembler:self selector:@selector(workOnStringAssembly:)];
+        [stringParser setAssembler:self selector:@selector(workOnString:)];
     }
     return stringParser;
 }
@@ -449,13 +449,13 @@
 - (TDParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
-        [numberParser setAssembler:self selector:@selector(workOnNumberAssembly:)];
+        [numberParser setAssembler:self selector:@selector(workOnNumber:)];
     }
     return numberParser;
 }
 
 
-- (void)workOnAndAssembly:(TDAssembly *)a {
+- (void)workOnAnd:(TDAssembly *)a {
     NSNumber *b2 = [a pop];
     NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] && [b2 boolValue]);
@@ -463,7 +463,7 @@
 }
 
 
-- (void)workOnOrAssembly:(TDAssembly *)a {
+- (void)workOnOr:(TDAssembly *)a {
     NSNumber *b2 = [a pop];
     NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] || [b2 boolValue]);
@@ -471,7 +471,7 @@
 }
 
 
-- (void)workOnEqStringPredicateAssembly:(TDAssembly *)a {
+- (void)workOnEqStringPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
@@ -479,7 +479,7 @@
 }
 
 
-- (void)workOnEqNumberPredicateAssembly:(TDAssembly *)a {
+- (void)workOnEqNumberPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
@@ -487,7 +487,7 @@
 }
 
 
-- (void)workOnEqBoolPredicateAssembly:(TDAssembly *)a {
+- (void)workOnEqBoolPredicate:(TDAssembly *)a {
     NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ([delegate boolForAttributeKey:attrKey] == [b boolValue]);
@@ -495,7 +495,7 @@
 }
 
 
-- (void)workOnNeStringPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNeStringPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     
@@ -504,7 +504,7 @@
 }
 
 
-- (void)workOnNeNumberPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNeNumberPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ![value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
@@ -512,7 +512,7 @@
 }
 
 
-- (void)workOnNeBoolPredicateAssembly:(TDAssembly *)a {
+- (void)workOnNeBoolPredicate:(TDAssembly *)a {
     NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ([delegate boolForAttributeKey:attrKey] != [b boolValue]);
@@ -520,7 +520,7 @@
 }
 
 
-- (void)workOnGtPredicateAssembly:(TDAssembly *)a {
+- (void)workOnGtPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedDescending == [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -528,7 +528,7 @@
 }
 
 
-- (void)workOnGteqPredicateAssembly:(TDAssembly *)a {
+- (void)workOnGteqPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedAscending != [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -536,7 +536,7 @@
 }
 
 
-- (void)workOnLtPredicateAssembly:(TDAssembly *)a {
+- (void)workOnLtPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedAscending == [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -544,7 +544,7 @@
 }
 
 
-- (void)workOnLteqPredicateAssembly:(TDAssembly *)a {
+- (void)workOnLteqPredicate:(TDAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedDescending != [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -552,7 +552,7 @@
 }
 
 
-- (void)workOnBeginswithPredicateAssembly:(TDAssembly *)a {
+- (void)workOnBeginswithPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
@@ -560,7 +560,7 @@
 }
 
 
-- (void)workOnContainsPredicateAssembly:(TDAssembly *)a {
+- (void)workOnContainsPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
@@ -569,7 +569,7 @@
 }
 
 
-- (void)workOnEndswithPredicateAssembly:(TDAssembly *)a {
+- (void)workOnEndswithPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
@@ -577,7 +577,7 @@
 }
 
 
-- (void)workOnMatchesPredicateAssembly:(TDAssembly *)a {
+- (void)workOnMatchesPredicate:(TDAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
@@ -585,40 +585,40 @@
 }
 
 
-- (void)workOnAttrAssembly:(TDAssembly *)a {
+- (void)workOnAttr:(TDAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
 
 
-- (void)workOnNegatedValueAssembly:(TDAssembly *)a {
+- (void)workOnNegatedValue:(TDAssembly *)a {
     NSNumber *b = [a pop];
     [a push:[NSNumber numberWithBool:![b boolValue]]];
 }
 
 
-- (void)workOnBoolAssembly:(TDAssembly *)a {
+- (void)workOnBool:(TDAssembly *)a {
     NSNumber *b = [a pop];
     [a push:[NSNumber numberWithBool:[b boolValue]]];
 }
 
 
-- (void)workOnTrueAssembly:(TDAssembly *)a {
+- (void)workOnTrue:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalseAssembly:(TDAssembly *)a {
+- (void)workOnFalse:(TDAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnString:(TDAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnNumberAssembly:(TDAssembly *)a {
+- (void)workOnNumber:(TDAssembly *)a {
     NSNumber *b = [NSNumber numberWithFloat:[[a pop] floatValue]];
     [a push:b];
 }

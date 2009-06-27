@@ -9,13 +9,13 @@
 #import "TDRegularParser.h"
 
 @interface TDRegularParser ()
-- (void)workOnCharAssembly:(TDAssembly *)a;
-- (void)workOnStarAssembly:(TDAssembly *)a;
-- (void)workOnPlusAssembly:(TDAssembly *)a;
-- (void)workOnQuestionAssembly:(TDAssembly *)a;
-//- (void)workOnAndAssembly:(TDAssembly *)a;
-- (void)workOnOrAssembly:(TDAssembly *)a;
-- (void)workOnExpressionAssembly:(TDAssembly *)a;
+- (void)workOnChar:(TDAssembly *)a;
+- (void)workOnStar:(TDAssembly *)a;
+- (void)workOnPlus:(TDAssembly *)a;
+- (void)workOnQuestion:(TDAssembly *)a;
+//- (void)workOnAnd:(TDAssembly *)a;
+- (void)workOnOr:(TDAssembly *)a;
+- (void)workOnExpression:(TDAssembly *)a;
 @end
 
 @implementation TDRegularParser
@@ -70,7 +70,7 @@
         expressionParser.name = @"expression";
         [expressionParser add:self.termParser];
         [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
-        [expressionParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
+        [expressionParser setAssembler:self selector:@selector(workOnExpression:)];
     }
     return expressionParser;
 }
@@ -95,7 +95,7 @@
         orTermParser.name = @"orTerm";
         [orTermParser add:[[TDSpecificChar specificCharWithChar:'|'] discard]];
         [orTermParser add:self.termParser];
-        [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
+        [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
     return orTermParser;
 }
@@ -124,7 +124,7 @@
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phrasePlusParser];
         [nextFactorParser add:self.phraseQuestionParser];
-//        [nextFactorParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+//        [nextFactorParser setAssembler:self selector:@selector(workOnAnd:)];
     }
     return nextFactorParser;
 }
@@ -154,7 +154,7 @@
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[TDSpecificChar specificCharWithChar:'*'] discard]];
-        [phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
+        [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
     }
     return phraseStarParser;
 }
@@ -167,7 +167,7 @@
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[TDSpecificChar specificCharWithChar:'+'] discard]];
-        [phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
+        [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
     }
     return phrasePlusParser;
 }
@@ -180,7 +180,7 @@
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[TDSpecificChar specificCharWithChar:'?'] discard]];
-        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
+        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
     }
     return phraseQuestionParser;
 }
@@ -193,13 +193,13 @@
         letterOrDigitParser.name = @"letterOrDigit";
         [letterOrDigitParser add:[TDLetter letter]];
         [letterOrDigitParser add:[TDDigit digit]];
-        [letterOrDigitParser setAssembler:self selector:@selector(workOnCharAssembly:)];
+        [letterOrDigitParser setAssembler:self selector:@selector(workOnChar:)];
     }
     return letterOrDigitParser;
 }
 
 
-- (void)workOnCharAssembly:(TDAssembly *)a {
+- (void)workOnChar:(TDAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id obj = [a pop];
@@ -209,7 +209,7 @@
 }
 
 
-- (void)workOnStarAssembly:(TDAssembly *)a {
+- (void)workOnStar:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -219,7 +219,7 @@
 }
 
 
-- (void)workOnPlusAssembly:(TDAssembly *)a {
+- (void)workOnPlus:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -231,7 +231,7 @@
 }
 
 
-- (void)workOnQuestionAssembly:(TDAssembly *)a {
+- (void)workOnQuestion:(TDAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -243,7 +243,7 @@
 }
 
 
-//- (void)workOnAndAssembly:(TDAssembly *)a {
+//- (void)workOnAnd:(TDAssembly *)a {
 ////    NSLog(@"%s", _cmd);
 ////    NSLog(@"a: %@", a);
 //    id second = [a pop];
@@ -257,7 +257,7 @@
 //}
 
 
-- (void)workOnExpressionAssembly:(TDAssembly *)a {
+- (void)workOnExpression:(TDAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     
@@ -285,7 +285,7 @@
 }
 
 
-- (void)workOnOrAssembly:(TDAssembly *)a {
+- (void)workOnOr:(TDAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id second = [a pop];
