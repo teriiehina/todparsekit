@@ -124,8 +124,8 @@
 // [24]       VersionInfo       ::=        S 'version' Eq ("'" VersionNum "'" | '"' VersionNum '"')
 // [26]       VersionNum       ::=       '1.' [0-9]+
     
-    // versionNum = /(['"])1\.[0-9]\1/; // TODO
-    versionInfo = S 'version' eq QuotedString; //TODO
+    versionNum = /(['"])1\.[0-9]\1/;
+    versionInfo = S 'version' eq versionNum;
 
 
 // [25]       Eq       ::=        S? '=' S?
@@ -169,7 +169,7 @@
 
 // [32]       SDDecl       ::=        S 'standalone' Eq (("'" ('yes' | 'no') "'") | ('"' ('yes' | 'no') '"'))
     
-    sdDecl = S 'standalone' eq QuotedString; // /(["'])(yes|no)\1/; // TODO
+    sdDecl = S 'standalone' eq /(["'])(yes|no)\1/;
 
 // [39]       element       ::=        EmptyElemTag | STag content ETag
 
@@ -303,7 +303,7 @@
 
 // [65]       Ignore       ::=        Char* - (Char* ('<![' | ']]>') Char*)
     
-    ignore = Word; // TODO 
+    ignore = Word - /[^<]*(<![|]]>).*/;
 
 
 // [66]       CharRef       ::=       '&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
@@ -374,7 +374,8 @@
 // [80]       EncodingDecl       ::=        S 'encoding' Eq ('"' EncName '"' | "'" EncName "'" )
 // [81]       EncName       ::=       [A-Za-z] ([A-Za-z0-9._] | '-')*
 
-    encodingDecl = S 'encoding' eq QuotedString; // TODO
+    encName = /[A-Za-z][-A-Za-z0-9._]*/+;
+    encodingDecl = S 'encoding' eq QuotedString;
 
 
 // [82]       NotationDecl       ::=       '<!NOTATION' S Name S (ExternalID | PublicID) S? '>'    
