@@ -242,7 +242,6 @@
         @"cdSect = DelimitedString('<![CDATA[', ']]>');"
     ;
     
-    //NSLog(@"g: %@", g);
     TDParser *element = [factory parserFromGrammar:g assembler:nil];
     t = element.tokenizer;
     
@@ -306,7 +305,6 @@
     t.string = [NSString stringWithContentsOfFile:path];
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDNotNil(res);
-//    NSLog(@"%@", [res description]);
     TDTrue([[res description] hasSuffix:@"^"]);
 }
 
