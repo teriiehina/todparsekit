@@ -449,7 +449,7 @@
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[#, // foo]#/// foo^", [res description]);
 
-    TDToken *tok = [res pop];
+    tok = [res pop];
     TDTrue(tok.isComment);
 
 }    
@@ -473,7 +473,7 @@
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[/, %]//%^", [res description]);
-    TDToken *tok = [res pop];
+    tok = [res pop];
     TDTrue(tok.isSymbol);
 
     s = @"/ /";
@@ -504,7 +504,7 @@
 
 
 - (void)testConstantPattern {
-    g = @"@wordChar = ':'; @start = Word();";
+    g = @"@wordChar = ':'; @start = Word;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -514,10 +514,10 @@
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[foo:bar]foo:bar^", [res description]);
-    TDToken *tok = [res pop];
-    TDTrue(tok.isWord);
-    
-    g = @"@wordChar = ':'; @start = Word(/[^:]+/);";
+    tok = [res pop];
+    TDTrue(tok.isWord);    
+
+    g = @"@wordChar = ':'; @start = Word[/[^:]+/];";
 
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);

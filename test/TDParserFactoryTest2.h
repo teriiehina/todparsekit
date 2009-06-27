@@ -17,6 +17,7 @@
     TDAssembly *res;
     TDParser *lp; // language parser
     TDTokenizer *t;
+    TDToken *tok;
 }
 
 @end
