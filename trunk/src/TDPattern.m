@@ -9,6 +9,10 @@
 #import <TDParseKit/TDPattern.h>
 #import "RegexKitLite.h"
 
+@interface TDPattern ()
+@property (nonatomic, assign) TDTokenType tokenType;
+@end
+
 @implementation TDPattern
 
 + (id)patternWithString:(NSString *)s {
@@ -58,4 +62,5 @@
     return pattern;
 }
 
+@synthesize tokenType;
 @end

@@ -502,4 +502,38 @@
     
 }
 
+
+- (void)testConstantPattern {
+    g = @"@wordChar = ':'; @start = Word();";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"foo:bar";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo:bar]foo:bar^", [res description]);
+    TDToken *tok = [res pop];
+    TDTrue(tok.isWord);
+    
+    g = @"@wordChar = ':'; @start = Word(/[^:]+/);";
+
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+    tok = [res pop];
+    TDTrue(tok.isWord);
+
+    s = @"foo:bar";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}
+
 @end
