@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDParserFactoryTest2"
+#define SOLO_TEST_CASE @"TDExclusionTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
@@ -108,6 +108,7 @@
                            @"TDArithmeticParserTest",
                            @"TDScientificNumberStateTest",
                            @"TDTokenArraySourceTest",
+                           @"TDExclusionTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];

@@ -29,6 +29,7 @@
 #import <TDParseKit/TDParser.h>
 #import <TDParseKit/TDAssembly.h>
 #import <TDParseKit/TDSequence.h>
+#import <TDParseKit/TDExclusion.h>
 #import <TDParseKit/TDCollectionParser.h>
 #import <TDParseKit/TDAlternation.h>
 #import <TDParseKit/TDRepetition.h>
