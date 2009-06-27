@@ -35,9 +35,11 @@
     TDCollectionParser *stringParser;
     TDParser *quotedStringParser;
     TDCollectionParser *unquotedStringParser;
-    TDPattern *reservedWordParser;
-    TDPattern *nonReservedWordParser;
+    TDCollectionParser *reservedWordParser;
+    TDCollectionParser *nonReservedWordParser;
+    TDPattern *reservedWordPattern;
     TDParser *numberParser;
+
 }
 - (NSPredicate *)buildFrom:(NSString *)s;
 
@@ -67,7 +69,8 @@
 @property (nonatomic, retain) TDCollectionParser *stringParser;
 @property (nonatomic, retain) TDParser *quotedStringParser;
 @property (nonatomic, retain) TDCollectionParser *unquotedStringParser;
-@property (nonatomic, retain) TDPattern *reservedWordParser;
-@property (nonatomic, retain) TDPattern *nonReservedWordParser;
+@property (nonatomic, retain) TDCollectionParser *reservedWordParser;
+@property (nonatomic, retain) TDCollectionParser *nonReservedWordParser;
+@property (nonatomic, retain) TDPattern *reservedWordPattern;
 @property (nonatomic, retain) TDParser *numberParser;
 @end

@@ -74,6 +74,7 @@
     self.unquotedStringParser = nil;
     self.reservedWordParser = nil;
     self.nonReservedWordParser = nil;
+    self.reservedWordPattern = nil;
     self.numberParser = nil;
     [super dealloc];
 }
@@ -248,7 +249,7 @@
         self.attrParser = [TDAlternation alternation];
         attrParser.name = @"attr";
         [attrParser add:self.tagParser];
-        [attrParser add:[self.reservedWordParser invertedPattern]];
+        [attrParser add:self.nonReservedWordParser];
         [attrParser setAssembler:self selector:@selector(workOnAttr:)];
     }
     return attrParser;
@@ -369,24 +370,34 @@
 }
 
 
-- (TDPattern *)reservedWordParser {
+- (TDCollectionParser *)reservedWordParser {
     if (!reservedWordParser) {
-        NSString *s = @"true|false|and|or|not|contains|beginswith|endswith|matches";
-        self.reservedWordParser = [TDPattern patternWithString:s options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord];
+        self.reservedWordParser = [TDInclusion inclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
         reservedWordParser.name = @"reservedWord";
+        [reservedWordParser setAssembler:self selector:@selector(workOnReservedWord:)];
     }
     return reservedWordParser;
 }
 
 
 // nonReservedWord      = Word
-- (TDPattern *)nonReservedWordParser {
+- (TDCollectionParser *)nonReservedWordParser {
     if (!nonReservedWordParser) {
-        self.nonReservedWordParser = [self.reservedWordParser invertedPattern];
+        self.nonReservedWordParser = [TDExclusion exclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
         nonReservedWordParser.name = @"nonReservedWord";
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWord:)];
     }
     return nonReservedWordParser;
+}
+
+
+- (TDPattern *)reservedWordPattern {
+    if (!reservedWordPattern) {
+        NSString *s = @"true|false|and|or|not|contains|beginswith|endswith|matches";
+        self.reservedWordPattern = [TDPattern patternWithString:s options:TDPatternOptionsIgnoreCase];
+        reservedWordPattern.name = @"reservedWordPattern";
+    }
+    return reservedWordPattern;
 }
 
 
@@ -488,10 +499,16 @@
 }
 
 
+- (void)workOnReservedWord:(TDAssembly *)a {
+//    TDToken *tok = [a pop];
+//    [a push:tok.stringValue];
+}
+
+
 - (void)workOnNonReservedWord:(TDAssembly *)a {
-    TDToken *tok = [a pop];
-    [a push:nonReservedWordFence];
-    [a push:tok.stringValue];
+//    id obj = [a pop];
+//    [a push:nonReservedWordFence];
+//    [a push:obj];
 }
 
 
@@ -563,5 +580,6 @@
 @synthesize unquotedStringParser;
 @synthesize reservedWordParser;
 @synthesize nonReservedWordParser;
+@synthesize reservedWordPattern;
 @synthesize numberParser;
 @end

@@ -1060,7 +1060,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 //        opts |= TDPatternOptionsUnicodeWordBoundaries;
 //    }
     
-    TDTerminal *t = [TDPattern patternWithString:re options:opts tokenType:TDTokenTypeAny];
+    TDTerminal *t = [TDPattern patternWithString:re options:opts];
     
     if ([self shouldDiscard:a]) {
         [t discard];

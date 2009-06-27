@@ -21,16 +21,15 @@ typedef enum {
 
 @interface TDPattern : TDTerminal {
     TDPatternOptions options;
-    TDTokenType tokenType;
     BOOL inverted;
 }
 + (id)patternWithString:(NSString *)s;
 
 + (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts;
 
-+ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
+- (id)initWithString:(NSString *)s;
 
-- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts tokenType:(TDTokenType)t;
+- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts;
 
 - (id)invertedPattern;
 @end

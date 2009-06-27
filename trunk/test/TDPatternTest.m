@@ -21,7 +21,7 @@
 
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo" options:0];
+    p = [TDPattern patternWithString:@"foo"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -29,16 +29,20 @@
     
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeWord];
-    a = [p completeMatchFor:a];
+    p = [TDPattern patternWithString:@"foo"];
+
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDWord word]];
+    a = [inc completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[foo]foo^");
         
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo" options:0 tokenType:TDTokenTypeSymbol];
-    a = [p completeMatchFor:a];
+    p = [TDPattern patternWithString:@"foo"];
+
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
+    a = [inc completeMatchFor:a];
     
     TDNil(a);
     
@@ -81,8 +85,10 @@
     t = [TDTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
-    a = [p completeMatchFor:a];
+    p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
+    
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
+    a = [inc completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[/foo/]/foo/^");
@@ -90,9 +96,11 @@
     t = [TDTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [TDTokenAssembly assemblyWithTokenizer:t];
-    p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone tokenType:TDTokenTypeQuotedString];
-    a = [p completeMatchFor:a];
-    
+    p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
+
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
+    a = [inc completeMatchFor:a];
+
     TDNotNil(a);
     TDEqualObjects([a description], @"[/foo/]/foo/^");
 }
@@ -187,8 +195,10 @@
 
     s = @"NOT";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeWord];
-    a = [p completeMatchFor:a];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDWord word]];
+    a = [inc completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[NOT]NOT^");
@@ -200,8 +210,10 @@
 
     s = @"oR";
     a = [TDTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase tokenType:TDTokenTypeSymbol];
-    a = [p completeMatchFor:a];
+    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    
+    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
+    a = [inc completeMatchFor:a];
     
     TDNil(a);
 }    
