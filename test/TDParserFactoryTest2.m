@@ -503,7 +503,7 @@
 }
 
 
-- (void)testConstantPattern {
+- (void)testPatternPredicate1 {
     g = @"@wordChar = ':'; @start = Word;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
@@ -516,9 +516,9 @@
     TDEqualObjects(@"[foo:bar]foo:bar^", [res description]);
     tok = [res pop];
     TDTrue(tok.isWord);    
-
+    
     g = @"@wordChar = ':'; @start = Word[/[^:]+/];";
-
+    
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     t = lp.tokenizer;
@@ -529,7 +529,28 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
     tok = [res pop];
     TDTrue(tok.isWord);
+    
+    s = @"foo:bar";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}
 
+
+- (void)testPatternPredicate2 {
+    g = @"@wordChar = ':'; @start=ncName+; name=Word; ncName=name[/[^:]+/];";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+    tok = [res pop];
+    TDTrue(tok.isWord);
+    
     s = @"foo:bar";
     t.string = s;
     res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -561,7 +582,7 @@
 }
 
 
-- (void)testAlt {
+- (void)testExclusionAlt {
     g = @"@start = ex; m = ('foo'|'bar'); ex = Word - m;";
 
     lp = [factory parserFromGrammar:g assembler:nil];
@@ -585,7 +606,7 @@
 }
 
 
-- (void)testAlt2 {
+- (void)testExclusionAlt2 {
     g = @"@start = ex; ex = Word - ('foo'|'bar');";
     
     lp = [factory parserFromGrammar:g assembler:nil];
@@ -609,7 +630,7 @@
 }
 
 
-- (void)testAlt3 {
+- (void)testExclusionAlt3 {
     g = @"@start = ex; s = 'foo'|'baz'; m = ('foo'|'bar'); ex = s - m;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
@@ -633,7 +654,7 @@
 }
 
 
-- (void)testAlt4 {
+- (void)testExclusionAlt4 {
     g = @"@start = ex; m = ('foo'|'bar'); ex = ('foo'|'baz') - m;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
@@ -657,7 +678,7 @@
 }
 
 
-- (void)testAlt5 {
+- (void)testExclusionAlt5 {
     g = @"@start = ex; ex = ('foo'|'baz') - ('foo'|'bar');";
     
     lp = [factory parserFromGrammar:g assembler:nil];

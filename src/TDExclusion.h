@@ -7,17 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDParser.h>
+#import <TDParseKit/TDInclusion.h>
 
-@interface TDExclusion : TDParser {
-    TDParser *subparser;
-    TDParser *minus;
+@interface TDExclusion : TDInclusion {
+
 }
 
-+ (id)exclusionWithSubparser:(TDParser *)p minus:(TDParser *)m;
++ (id)exclusionWithSubparser:(TDParser *)p predicate:(TDParser *)p;
 
-- (id)initWithSubparser:(TDParser *)p minus:(TDParser *)m;
-
-@property (nonatomic, retain, readonly) TDParser *subparser;
-@property (nonatomic, retain, readonly) TDParser *minus;
 @end

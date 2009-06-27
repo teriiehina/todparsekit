@@ -13,7 +13,7 @@
 - (void)testFoo {
     TDWord *word = [TDWord word];
     TDLiteral *foo = [TDLiteral literalWithString:@"foo"];
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word minus:foo];
+    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word predicate:foo];
     
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -38,7 +38,7 @@
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word minus:list];
+    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word predicate:list];
     
     s = @"baz";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -66,7 +66,7 @@
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:ok minus:list];
+    TDExclusion *ex = [TDExclusion exclusionWithSubparser:ok predicate:list];
     
     s = @"baz";
     a = [TDTokenAssembly assemblyWithString:s];
