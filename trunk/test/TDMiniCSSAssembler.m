@@ -50,37 +50,37 @@
 //    string      = QuotedString;
 //    constants   = 'bold' | 'normal' | 'italic';
 
-- (void)workOnPropertyAssembly:(TDAssembly *)a {
+- (void)workOnProperty:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnStringAssembly:(TDAssembly *)a {
+- (void)workOnString:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnConstantAssembly:(TDAssembly *)a {
+- (void)workOnConstant:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnNumAssembly:(TDAssembly *)a {
+- (void)workOnNum:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnPixelValueAssembly:(TDAssembly *)a {
+- (void)workOnPixelValue:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnRgbAssembly:(TDAssembly *)a {
+- (void)workOnRgb:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
     CGFloat blue  = [[objs objectAtIndex:0] floatValue]/255.0;
@@ -90,7 +90,7 @@
 }
 
 
-- (void)workOnActualDeclsAssembly:(TDAssembly *)a {
+- (void)workOnActualDecls:(TDAssembly *)a {
     id d = [NSMutableDictionary dictionary];
     NSArray *objs = [a objectsAbove:curly];
     [a pop]; // discard curly
@@ -107,7 +107,7 @@
 }
 
 
-- (void)workOnRulesetAssembly:(TDAssembly *)a {
+- (void)workOnRuleset:(TDAssembly *)a {
     id props = [a pop];
     [self gatherPropertiesIn:props];
 
@@ -162,7 +162,7 @@
 //    return i;
 //}
 //
-//- (void)workOnHexcolorAssembly:(TDAssembly *)a {
+//- (void)workOnHexcolor:(TDAssembly *)a {
 //    TDToken *tok = [a pop];
 //    NSString *s = tok.stringValue;
 //    NSColor *color = nil;

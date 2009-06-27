@@ -28,7 +28,7 @@
 }
 
 
-- (void)workOnAssembly:(TDAssembly *)a {
+- (void)workOn:(TDAssembly *)a {
     JSValueRef arg = NULL;
     if ([a isMemberOfClass:[TDTokenAssembly class]]) {
         arg = (JSValueRef)TDTokenAssembly_new(ctx, a);

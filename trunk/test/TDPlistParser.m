@@ -125,7 +125,7 @@ static NSString *kTDPlistNullString = @"<null>";
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
         [dictParser add:[TDRepetition repetitionWithSubparser:self.keyValuePairParser]];
         [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
-        [dictParser setAssembler:self selector:@selector(workOnDictAssembly:)];
+        [dictParser setAssembler:self selector:@selector(workOnDict:)];
     }
     return dictParser;
 }
@@ -162,7 +162,7 @@ static NSString *kTDPlistNullString = @"<null>";
         [arrayContent add:actualArray];
         [arrayParser add:arrayContent];
         [arrayParser add:[[TDSymbol symbolWithString:@")"] discard]];
-        [arrayParser setAssembler:self selector:@selector(workOnArrayAssembly:)];
+        [arrayParser setAssembler:self selector:@selector(workOnArray:)];
     }
     return arrayParser;
 }
@@ -211,12 +211,12 @@ static NSString *kTDPlistNullString = @"<null>";
         
         // we have to remove the quotes from QuotedString string values. so set an assembler method to do that
         TDParser *quotedString = [TDQuotedString quotedString];
-        [quotedString setAssembler:self selector:@selector(workOnQuotedStringAssembly:)];
+        [quotedString setAssembler:self selector:@selector(workOnQuotedString:)];
         [stringParser add:quotedString];
 
         // handle non-quoted string values (Words) in a separate assembler method for simplicity.
         TDParser *word = [TDWord word];
-        [word setAssembler:self selector:@selector(workOnWordAssembly:)];
+        [word setAssembler:self selector:@selector(workOnWord:)];
         [stringParser add:word];
     }
     return stringParser;
@@ -226,7 +226,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (TDParser *)numParser {
     if (!numParser) {
         self.numParser = [TDNum num];
-        [numParser setAssembler:self selector:@selector(workOnNumAssembly:)];
+        [numParser setAssembler:self selector:@selector(workOnNum:)];
     }
     return numParser;
 }
@@ -237,13 +237,13 @@ static NSString *kTDPlistNullString = @"<null>";
     if (!nullParser) {
         // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
         self.nullParser = [TDSymbol symbolWithString:kTDPlistNullString];
-        [nullParser setAssembler:self selector:@selector(workOnNullAssembly:)];
+        [nullParser setAssembler:self selector:@selector(workOnNull:)];
     }
     return nullParser;
 }
 
 
-- (void)workOnDictAssembly:(TDAssembly *)a {
+- (void)workOnDict:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:self.curly];
     NSInteger count = objs.count;
     NSAssert1(0 == count % 2, @"in -%s, the assembly's stack's count should be a multiple of 2", _cmd);
@@ -263,7 +263,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (void)workOnArrayAssembly:(TDAssembly *)a {
+- (void)workOnArray:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:self.paren];
     NSMutableArray *res = [NSMutableArray arrayWithCapacity:objs.count];
     
@@ -276,25 +276,25 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (void)workOnQuotedStringAssembly:(TDAssembly *)a {
+- (void)workOnQuotedString:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnWordAssembly:(TDAssembly *)a {
+- (void)workOnWord:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnNumAssembly:(TDAssembly *)a {
+- (void)workOnNum:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnNullAssembly:(TDAssembly *)a {
+- (void)workOnNull:(TDAssembly *)a {
     [a pop]; // discard '<null>' tok
     [a push:[NSNull null]];
 }

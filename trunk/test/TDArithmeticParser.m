@@ -91,7 +91,7 @@
         self.plusTermParser = [TDSequence sequence];
         [plusTermParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [plusTermParser add:self.termParser];
-        [plusTermParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
+        [plusTermParser setAssembler:self selector:@selector(workOnPlus:)];
     }
     return plusTermParser;
 }
@@ -103,7 +103,7 @@
         self.minusTermParser = [TDSequence sequence];
         [minusTermParser add:[[TDSymbol symbolWithString:@"-"] discard]];
         [minusTermParser add:self.termParser];
-        [minusTermParser setAssembler:self selector:@selector(workOnMinusAssembly:)];
+        [minusTermParser setAssembler:self selector:@selector(workOnMinus:)];
     }
     return minusTermParser;
 }
@@ -131,7 +131,7 @@
         self.timesFactorParser = [TDSequence sequence];
         [timesFactorParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [timesFactorParser add:self.factorParser];
-        [timesFactorParser setAssembler:self selector:@selector(workOnTimesAssembly:)];
+        [timesFactorParser setAssembler:self selector:@selector(workOnTimes:)];
     }
     return timesFactorParser;
 }
@@ -143,7 +143,7 @@
         self.divFactorParser = [TDSequence sequence];
         [divFactorParser add:[[TDSymbol symbolWithString:@"/"] discard]];
         [divFactorParser add:self.factorParser];
-        [divFactorParser setAssembler:self selector:@selector(workOnDivideAssembly:)];
+        [divFactorParser setAssembler:self selector:@selector(workOnDivide:)];
     }
     return divFactorParser;
 }
@@ -155,7 +155,7 @@
         self.exponentFactorParser = [TDSequence sequence];
         [exponentFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
         [exponentFactorParser add:self.factorParser];
-        [exponentFactorParser setAssembler:self selector:@selector(workOnExpAssembly:)];
+        [exponentFactorParser setAssembler:self selector:@selector(workOnExp:)];
     }
     return exponentFactorParser;
 }
@@ -183,35 +183,35 @@
 #pragma mark -
 #pragma mark Assembler
 
-- (void)workOnPlusAssembly:(TDAssembly *)a {
+- (void)workOnPlus:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue + tok2.floatValue]];
 }
 
 
-- (void)workOnMinusAssembly:(TDAssembly *)a {
+- (void)workOnMinus:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue - tok2.floatValue]];
 }
 
 
-- (void)workOnTimesAssembly:(TDAssembly *)a {
+- (void)workOnTimes:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue * tok2.floatValue]];
 }
 
 
-- (void)workOnDivideAssembly:(TDAssembly *)a {
+- (void)workOnDivide:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue / tok2.floatValue]];
 }
 
 
-- (void)workOnExpAssembly:(TDAssembly *)a {
+- (void)workOnExp:(TDAssembly *)a {
     TDToken *tok2 = [a pop];
     TDToken *tok1 = [a pop];
     
