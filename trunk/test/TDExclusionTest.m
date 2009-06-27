@@ -24,6 +24,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
+
+    s = @"wee";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [ex bestMatchFor:a];
+    TDEqualObjects(@"[wee]wee^", [res description]);
 }
 
 
@@ -44,6 +49,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
+
+    s = @"wee";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [ex bestMatchFor:a];
+    TDEqualObjects(@"[wee]wee^", [res description]);
 }
 
 
@@ -64,6 +74,11 @@
     TDEqualObjects(@"[baz]baz^", [res description]);
     
     s = @"foo";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [ex bestMatchFor:a];
+    TDNil(res);
+
+    s = @"wee";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
