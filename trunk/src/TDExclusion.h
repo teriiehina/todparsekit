@@ -14,5 +14,4 @@
 }
 
 + (id)exclusionWithSubparser:(TDParser *)p predicate:(TDParser *)p;
-
 @end
