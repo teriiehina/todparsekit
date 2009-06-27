@@ -5,14 +5,17 @@
 
 */
 
-@start = locationPath;
+@start = expr;
 
-@symbols =  '//'
-            '..'
-            '!='
-            '::'
-            '<='
-            '>=';
+@symbols =  '//' '..' '!=' '::' '<=' '>=';
+            
+@wordState = '_';
+@wordChars = '_' '.' ':' '-';
+
+name = Word;
+
+ncName = name[/[^:]+/];
+
 
 
 // [1] LocationPath ::= RelativeLocationPath | AbsoluteLocationPath
@@ -140,8 +143,7 @@
 // [23] EqualityExpr ::= RelationalExpr | EqualityExpr '=' RelationalExpr | EqualityExpr '!=' RelationalExpr
 // avoiding Left recursion
 
-    equalityExpr = relationalExpr (('='|'!=') relationalExpr)?; 
-    // TODO repetition or alternation?
+    equalityExpr = relationalExpr (('=' | '!=') relationalExpr)*; 
 
 
 // [24] RelationalExpr ::= AdditiveExpr
@@ -151,7 +153,7 @@
 //  | RelationalExpr '>=' AdditiveExpr
 // avoiding Left recursion
 
-    relationalExpr = additiveExpr ('<' additiveExpr | '>' additiveExpr | '<=' additiveExpr | '>=' additiveExpr)?;
+    relationalExpr = additiveExpr (('<' | '>' | '<=' | '>=') additiveExpr)*;
 
 
 // [25] AdditiveExpr ::= MultiplicativeExpr 
@@ -159,7 +161,7 @@
 //  | AdditiveExpr '-' MultiplicativeExpr 
 // avoiding Left recursion
 
-    additiveExpr = multiplicativeExpr ('+' multiplicativeExpr | '-' multiplicativeExpr)?;
+    additiveExpr = multiplicativeExpr (('+' | '-') multiplicativeExpr)*;
 
 
 // [26] MultiplicativeExpr ::= UnaryExpr 
@@ -168,7 +170,7 @@
 //  | MultiplicativeExpr 'mod' UnaryExpr
 // avoiding Left recursion
 
-    multiplicativeExpr = unaryExpr (multiplyOperator unaryExpr | 'div' unaryExpr | 'mod' unaryExpr)?;
+    multiplicativeExpr = unaryExpr ((multiplyOperator | 'div' | 'mod') unaryExpr)*;
 
 
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
@@ -187,25 +189,25 @@
 //  | Number 
 //  | VariableReference 
 
-    exprToken = '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
-        | nameTest 
-        | nodeType 
-        | operator 
-        | functionName 
-        | axisName 
-        | literal 
-        | number
-        | variableReference;
+//    exprToken = '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
+//        | nameTest 
+//        | nodeType 
+//        | operator 
+//        | functionName 
+//        | axisName 
+//        | literal 
+//        | number
+//        | variableReference;
 
 
 // [32] Operator ::= OperatorName | MultiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=' 
 
-    operator = operatorName | multiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=';
+//    operator = operatorName | multiplyOperator | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>=';
     
 
 // [33] OperatorName ::= 'and' | 'or' | 'mod' | 'div' 
 
-    operatorName = 'and' | 'or' | 'mod' | 'div';
+//    operatorName = 'and' | 'or' | 'mod' | 'div';
 
 
 // [34] MultiplyOperator  ::= '*' 
@@ -213,7 +215,7 @@
     multiplyOperator = '*';
 
 
-// [7] QName ::= PrefixedName| UnprefixedName
+// [7] QName ::= PrefixedName | UnprefixedName
 
     qName = prefixedName | unprefixedName;
     
@@ -236,8 +238,6 @@
 // [11] LocalPart ::= NCName
 
     localPart = ncName;
-
-    ncName = Word[/[^:]+/];
 
 
 // [35] FunctionName ::= QName - NodeType 
