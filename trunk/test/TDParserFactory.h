@@ -50,13 +50,14 @@ typedef enum {
     TDCollectionParser *phraseCardinalityParser;
     TDCollectionParser *cardinalityParser;
     TDCollectionParser *primaryExprParser;
+    TDCollectionParser *predicateParser;
+    TDCollectionParser *inclusionParser;
+    TDCollectionParser *exclusionParser;
     TDCollectionParser *atomicValueParser;
-    TDCollectionParser *minusPrimaryExprParser;
     TDCollectionParser *discardParser;
     TDParser *patternParser;
     TDParser *literalParser;
     TDParser *variableParser;
-    TDCollectionParser *fullConstantParser;
     TDParser *constantParser;
     TDCollectionParser *delimitedStringParser;
 }

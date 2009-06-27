@@ -7,81 +7,25 @@
 //
 
 #import "TDExclusion.h"
-#import <TDParseKit/TDAssembly.h>
 
-@interface TDParser ()
-- (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
-- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
-@end
-
-@interface TDExclusion ()
-@property (nonatomic, retain, readwrite) TDParser *subparser;
-@property (nonatomic, retain, readwrite) TDParser *minus;
+@interface TDInclusion ()
+- (BOOL)isPredicateMatch:(NSSet *)assemblies;
 @end
 
 @implementation TDExclusion
 
-+ (id)exclusionWithSubparser:(TDParser *)p minus:(TDParser *)m {
-    return [[[self alloc] initWithSubparser:p minus:m] autorelease];
-}
-
-
-- (id)initWithSubparser:(TDParser *)p minus:(TDParser *)m {
-    if (self = [super init]) {
-        self.subparser = p;
-        self.minus = m;
-    }
-    return self;
++ (id)exclusionWithSubparser:(TDParser *)s predicate:(TDParser *)p {
+    return [[[self alloc] initWithSubparser:s predicate:p] autorelease];
 }
 
 
 - (void)dealloc {
-    self.subparser = nil;
-    self.minus = nil;
     [super dealloc];
 }
 
 
-- (TDParser *)parserNamed:(NSString *)s {
-    if ([name isEqualToString:s]) {
-        return self;
-        
-        // do breadth-first search
-    } else if ([subparser.name isEqualToString:s]) {
-        return subparser;
-    } else if ([minus.name isEqualToString:s]) {
-        return minus;
-    } else {
-        id sub = [subparser parserNamed:s];
-        if (sub) {
-            return sub;
-        }
-        sub = [minus parserNamed:s];
-        if (sub) {
-            return sub;
-        }
-    }
-    return nil;
+- (BOOL)isPredicateMatch:(NSSet *)assemblies {
+    return !assemblies.count;
 }
 
-
-- (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-    NSParameterAssert(inAssemblies);
-    NSSet *outAssemblies = [[inAssemblies copy] autorelease];
-    
-    outAssemblies = [subparser matchAndAssemble:outAssemblies];
-    if (outAssemblies.count) {
-        NSSet *minusAssemblies = [[inAssemblies copy] autorelease];
-        minusAssemblies = [minus allMatchesFor:minusAssemblies];
-        
-        if (minusAssemblies.count) {
-            outAssemblies = [NSSet set];
-        }
-    }
-    
-    return outAssemblies;
-}
-
-@synthesize subparser;
-@synthesize minus;
 @end

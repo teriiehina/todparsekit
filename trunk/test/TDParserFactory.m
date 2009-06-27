@@ -76,6 +76,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 - (void)workOnCallbackAssembly:(TDAssembly *)a;
 - (void)workOnExpressionAssembly:(TDAssembly *)a;
+- (void)workOnInclusionAssembly:(TDAssembly *)a;    
+- (void)workOnExclusionAssembly:(TDAssembly *)a;
 - (void)workOnLiteralAssembly:(TDAssembly *)a;
 - (void)workOnVariableAssembly:(TDAssembly *)a;
 - (void)workOnConstantAssembly:(TDAssembly *)a;
@@ -112,13 +114,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *phraseCardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *primaryExprParser;
+@property (nonatomic, retain) TDCollectionParser *predicateParser;
+@property (nonatomic, retain) TDCollectionParser *inclusionParser;
+@property (nonatomic, retain) TDCollectionParser *exclusionParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
-@property (nonatomic, retain) TDCollectionParser *minusPrimaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
 @property (nonatomic, retain) TDParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
-@property (nonatomic, retain) TDCollectionParser *fullConstantParser;
 @property (nonatomic, retain) TDParser *constantParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
 @end
@@ -173,8 +176,10 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.phraseCardinalityParser = nil;
     self.cardinalityParser = nil;
     self.primaryExprParser = nil;
+    self.predicateParser = nil;
+    self.inclusionParser = nil;
+    self.exclusionParser = nil;
     self.atomicValueParser = nil;
-    self.minusPrimaryExprParser = nil;
     self.patternParser = nil;
     self.discardParser = nil;
     self.literalParser = nil;
@@ -540,20 +545,20 @@ void TDReleaseSubparserTree(TDParser *p) {
 // orTerm               = '|' term
 // factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
 // nextFactor           = factor
-// phrase               = primaryExpr minusPrimaryExpr*
+// phrase               = primaryExpr predicate*
+// predicate            = inclusion | exclusion;
 // primaryExpr          = atomicValue | '(' expr ')'
-// minusPrimaryExpr     = '-' primaryExpr
+// inclusion            = '[' primaryExpr ']'
+// exclusion            = '-' primaryExpr
 // phraseStar           = phrase '*'
 // phrasePlus           = phrase '+'
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num (',' Num)? '}'
-// atomicValue          = discard? (literal | variable | fullConstant | pattern | delimitedString)
-// minusAtomicValue     = '-' phrase
+// atomicValue          = discard? (literal | variable | constant | pattern | delimitedString)
 // discard              = '^'
 // literal              = QuotedString
 // variable             = LowercaseWord
-// fullConstant         = constant ('(' pattern ')')?
 // constant             = UppercaseWord 
 // pattern              = DelimitedString('/', '/')
 
@@ -681,13 +686,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phrase               = primaryExpr minusPrimaryExpr*
+// phrase               = primaryExpr predicate*
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDSequence sequence];
         phraseParser.name = @"phrase";
         [phraseParser add:self.primaryExprParser];
-        [phraseParser add:[TDRepetition repetitionWithSubparser:self.minusPrimaryExprParser]];
+        [phraseParser add:[TDRepetition repetitionWithSubparser:self.predicateParser]];
     }
     return phraseParser;
 }
@@ -711,15 +716,42 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// minusPrimaryExpr     = '-' primaryExpr
-- (TDCollectionParser *)minusPrimaryExprParser {
-    if (!minusPrimaryExprParser) {
-        self.minusPrimaryExprParser = [TDTrack track];
-        [minusPrimaryExprParser add:[[TDSymbol symbolWithString:@"-"] discard]];
-        [minusPrimaryExprParser add:self.primaryExprParser];
-        [minusPrimaryExprParser setAssembler:self selector:@selector(workOnMinusPrimaryExprParser:)];
+// predicate            = inclusion | exclusion
+- (TDCollectionParser *)predicateParser {
+    if (!predicateParser) {
+        self.predicateParser = [TDAlternation alternation];
+        predicateParser.name = @"predicate";
+        [predicateParser add:self.inclusionParser];
+        [predicateParser add:self.exclusionParser];
     }
-    return minusPrimaryExprParser;
+    return predicateParser;
+}
+
+
+// inclusion            = '[' primaryExpr ']'
+- (TDCollectionParser *)inclusionParser {
+    if (!inclusionParser) {
+        self.inclusionParser = [TDTrack track];
+        inclusionParser.name = @"inclusion";
+        [inclusionParser add:[TDSymbol symbolWithString:@"["]]; // fence
+        [inclusionParser add:self.primaryExprParser];
+        [inclusionParser add:[[TDSymbol symbolWithString:@"]"] discard]];
+        [inclusionParser setAssembler:self selector:@selector(workOnInclusionAssembly:)];
+    }
+    return inclusionParser;
+}
+
+
+// exclusion            = '-' primaryExpr
+- (TDCollectionParser *)exclusionParser {
+    if (!exclusionParser) {
+        self.exclusionParser = [TDTrack track];
+        inclusionParser.name = @"exclusion";
+        [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [exclusionParser add:self.primaryExprParser];
+        [exclusionParser setAssembler:self selector:@selector(workOnExclusionAssembly:)];
+    }
+    return exclusionParser;
 }
 
 
@@ -795,7 +827,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// atomicValue          = (pattern | literal | variable | fullConstant | delimitedString) discard?
+// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString)
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
@@ -807,7 +839,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [a add:self.patternParser];
         [a add:self.literalParser];
         [a add:self.variableParser];
-        [a add:self.fullConstantParser];
+        [a add:self.constantParser];
         [a add:self.delimitedStringParser];
         [atomicValueParser add:a];
     }
@@ -855,25 +887,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         [variableParser setAssembler:self selector:@selector(workOnVariableAssembly:)];
     }
     return variableParser;
-}
-
-
-// fullConstant = constant ('[' pattern ']')?
-- (TDCollectionParser *)fullConstantParser {
-    if (!fullConstantParser) {
-        self.fullConstantParser = [TDSequence sequence];
-        fullConstantParser.name = @"fullConstant";
-        [fullConstantParser add:self.constantParser];
-        
-        TDSequence *s = [TDSequence sequence];
-        [s add:[TDSymbol symbolWithString:@"["]]; // fence
-        [s add:self.patternParser];
-        [s add:[[TDSymbol symbolWithString:@"]"] discard]];
-        [s setAssembler:self selector:@selector(workOnFullConstantAssembly:)];
-        
-        [fullConstantParser add:[self zeroOrOne:s]];
-    }
-    return fullConstantParser;
 }
 
 
@@ -992,13 +1005,29 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnMinusPrimaryExprParser:(TDAssembly *)a {
-    TDParser *minus = [a pop];
+- (void)workOnExclusionAssembly:(TDAssembly *)a {
+    TDParser *predicate = [a pop];
     TDParser *sub = [a pop];
-    NSAssert([minus isKindOfClass:[TDParser class]], @"");
+    NSAssert([predicate isKindOfClass:[TDParser class]], @"");
     NSAssert([sub isKindOfClass:[TDParser class]], @"");
     
-    [a push:[TDExclusion exclusionWithSubparser:sub minus:minus]];
+    [a push:[TDExclusion exclusionWithSubparser:sub predicate:predicate]];
+}
+
+
+- (void)workOnInclusionAssembly:(TDAssembly *)a {
+    NSArray *objs = [a objectsAbove:bracket];
+    [a pop]; // discard '['
+    
+    if (objs.count) {
+        TDParser *predicate = [objs objectAtIndex:0];
+        TDParser *sub = [a pop];
+        
+        NSAssert([predicate isKindOfClass:[TDParser class]], @"");
+        NSAssert([sub isKindOfClass:[TDParser class]], @"");
+        
+        [a push:[TDInclusion inclusionWithSubparser:sub predicate:predicate]];
+    }
 }
 
 
@@ -1073,38 +1102,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         }
     }
     [a push:p];
-}
-
-
-- (void)workOnFullConstantAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:bracket];
-    [a pop]; // discard '['
-
-    if (objs.count) {
-        TDPattern *p = [objs objectAtIndex:0];
-        TDTerminal *t = [a pop];
-
-        NSAssert([p class] == [TDPattern class], @"");
-        NSAssert([t isKindOfClass:[TDTerminal class]], @"");
-        
-        TDTokenType tt = TDTokenTypeAny;
-        if ([t isKindOfClass:[TDWord class]]) {
-            tt = TDTokenTypeWord;
-        } else if ([t isKindOfClass:[TDNum class]]) {
-            tt = TDTokenTypeNumber;
-        } else if ([t isKindOfClass:[TDSymbol class]]) {
-            tt = TDTokenTypeSymbol;
-        } else if ([t isKindOfClass:[TDWhitespace class]]) {
-            tt = TDTokenTypeWhitespace;
-        } else if ([t isKindOfClass:[TDQuotedString class]]) {
-            tt = TDTokenTypeQuotedString;
-        } else if ([t isKindOfClass:[TDComment class]]) {
-            tt = TDTokenTypeComment;
-        }
-        
-        p.tokenType = tt;
-        [a push:p];
-    }
 }
 
 
@@ -1298,13 +1295,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize phraseCardinalityParser;
 @synthesize cardinalityParser;
 @synthesize primaryExprParser;
+@synthesize predicateParser;
+@synthesize inclusionParser;
+@synthesize exclusionParser;
 @synthesize atomicValueParser;
-@synthesize minusPrimaryExprParser;
 @synthesize discardParser;
 @synthesize patternParser;
 @synthesize literalParser;
 @synthesize variableParser;
-@synthesize fullConstantParser;
 @synthesize constantParser;
 @synthesize delimitedStringParser;
 @synthesize assemblerSettingBehavior;
