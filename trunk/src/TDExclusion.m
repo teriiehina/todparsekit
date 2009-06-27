@@ -11,6 +11,7 @@
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
+- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
 @interface TDExclusion ()
@@ -45,7 +46,7 @@
     if ([name isEqualToString:s]) {
         return self;
         
-        // do breadth search first
+        // do breadth-first search
     } else if ([subparser.name isEqualToString:s]) {
         return subparser;
     } else if ([minus.name isEqualToString:s]) {
@@ -66,23 +67,20 @@
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    
     NSSet *outAssemblies = [[inAssemblies copy] autorelease];
     
     outAssemblies = [subparser matchAndAssemble:outAssemblies];
     if (outAssemblies.count) {
-
-        NSSet *negAssemblies = [[inAssemblies copy] autorelease];
-        negAssemblies = [minus matchAndAssemble:negAssemblies];
+        NSSet *minusAssemblies = [[inAssemblies copy] autorelease];
+        minusAssemblies = [minus allMatchesFor:minusAssemblies];
         
-        if (negAssemblies.count) {
+        if (minusAssemblies.count) {
             outAssemblies = [NSSet set];
         }
     }
     
     return outAssemblies;
 }
-
 
 @synthesize subparser;
 @synthesize minus;
