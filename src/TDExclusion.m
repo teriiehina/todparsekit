@@ -25,7 +25,7 @@
 
 
 - (BOOL)isPredicateMatch:(NSSet *)assemblies {
-    return !assemblies.count;
+    return ![super isPredicateMatch:assemblies];
 }
 
 @end
