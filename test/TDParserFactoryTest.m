@@ -11,7 +11,7 @@
 
 @interface TDParserFactory ()
 - (TDSequence *)parserFromExpression:(NSString *)s;
-@property (retain) TDCollectionParser *expressionParser;
+@property (retain) TDCollectionParser *exprParser;
 @end
 
 @protocol TDMockAssember
@@ -27,7 +27,7 @@
 - (void)setUp {
     factory = [TDParserFactory factory];
     TDSequence *seq = [TDSequence sequence];
-    [seq add:factory.expressionParser];
+    [seq add:factory.exprParser];
     exprSeq = seq;
 }
 

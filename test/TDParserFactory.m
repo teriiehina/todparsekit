@@ -100,7 +100,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
 @property (nonatomic, retain) TDCollectionParser *callbackParser;
 @property (nonatomic, retain) TDCollectionParser *selectorParser;
-@property (nonatomic, retain) TDCollectionParser *expressionParser;
+@property (nonatomic, retain) TDCollectionParser *exprParser;
 @property (nonatomic, retain) TDCollectionParser *termParser;
 @property (nonatomic, retain) TDCollectionParser *orTermParser;
 @property (nonatomic, retain) TDCollectionParser *factorParser;
@@ -111,7 +111,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
 @property (nonatomic, retain) TDCollectionParser *phraseCardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
+@property (nonatomic, retain) TDCollectionParser *primaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) TDCollectionParser *minusPrimaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
 @property (nonatomic, retain) TDParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
@@ -145,7 +147,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     assembler = nil; // appease clang static analyzer
     
     TDReleaseSubparserTree(statementParser);
-    TDReleaseSubparserTree(expressionParser);
+    TDReleaseSubparserTree(exprParser);
     
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
@@ -159,7 +161,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.declarationParser = nil;
     self.callbackParser = nil;
     self.selectorParser = nil;
-    self.expressionParser = nil;
+    self.exprParser = nil;
     self.termParser = nil;
     self.orTermParser = nil;
     self.factorParser = nil;
@@ -170,7 +172,9 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.phraseQuestionParser = nil;
     self.phraseCardinalityParser = nil;
     self.cardinalityParser = nil;
+    self.primaryExprParser = nil;
     self.atomicValueParser = nil;
+    self.minusPrimaryExprParser = nil;
     self.patternParser = nil;
     self.discardParser = nil;
     self.literalParser = nil;
@@ -260,7 +264,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks {
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    a = [self.expressionParser completeMatchFor:a];
+    a = [self.exprParser completeMatchFor:a];
     TDParser *res = [a pop];
     a.target = nil;
     return [res className];
@@ -488,7 +492,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks {	
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    a = [self.expressionParser completeMatchFor:a];
+    a = [self.exprParser completeMatchFor:a];
     TDParser *res = [a pop];
     if ([p isKindOfClass:[TDCollectionParser class]]) {
         TDCollectionParser *cp = (TDCollectionParser *)p;
@@ -505,7 +509,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    a = [self.expressionParser completeMatchFor:a];
+    a = [self.exprParser completeMatchFor:a];
     return [a pop];
 }
 
@@ -527,22 +531,25 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 // @start               = statement*
-// satement             = declaration '=' expression
+// satement             = declaration '=' expr
 // declaration          = Word callback?
 // callback             = '(' selector ')'
 // selector             = Word ':'
-// expression           = term orTerm*
+// expr                 = term orTerm*
 // term                 = factor nextFactor*
 // orTerm               = '|' term
 // factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
 // nextFactor           = factor
-// phrase               = atomicValue | '(' expression ')'
+// phrase               = primaryExpr minusPrimaryExpr*
+// primaryExpr          = atomicValue | '(' expr ')'
+// minusPrimaryExpr     = '-' primaryExpr
 // phraseStar           = phrase '*'
 // phrasePlus           = phrase '+'
 // phraseQuestion       = phrase '?'
 // phraseCardinality    = phrase cardinality
 // cardinality          = '{' Num (',' Num)? '}'
 // atomicValue          = discard? (literal | variable | fullConstant | pattern | delimitedString)
+// minusAtomicValue     = '-' phrase
 // discard              = '^'
 // literal              = QuotedString
 // variable             = LowercaseWord
@@ -551,7 +558,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // pattern              = DelimitedString('/', '/')
 
 
-// satement             = declaration '=' expression
+// satement             = declaration '=' expr
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDTrack track];
@@ -605,16 +612,16 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// expression        = term orTerm*
-- (TDCollectionParser *)expressionParser {
-    if (!expressionParser) {
-        self.expressionParser = [TDSequence sequence];
-        expressionParser.name = @"expression";
-        [expressionParser add:self.termParser];
-        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
-        [expressionParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
+// expr        = term orTerm*
+- (TDCollectionParser *)exprParser {
+    if (!exprParser) {
+        self.exprParser = [TDSequence sequence];
+        exprParser.name = @"expr";
+        [exprParser add:self.termParser];
+        [exprParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+        [exprParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
     }
-    return expressionParser;
+    return exprParser;
 }
 
 
@@ -674,21 +681,45 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phrase            = atomicValue | '(' expression ')'
+// phrase               = primaryExpr minusPrimaryExpr*
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
-        self.phraseParser = [TDAlternation alternation];
+        self.phraseParser = [TDSequence sequence];
         phraseParser.name = @"phrase";
-        [phraseParser add:self.atomicValueParser];
+        [phraseParser add:self.primaryExprParser];
+        [phraseParser add:[TDRepetition repetitionWithSubparser:self.minusPrimaryExprParser]];
+    }
+    return phraseParser;
+}
+
+
+// primaryExpr          = atomicValue | '(' expr ')'
+- (TDCollectionParser *)primaryExprParser {
+    if (!primaryExprParser) {
+        self.primaryExprParser = [TDAlternation alternation];
+        primaryExprParser.name = @"primaryExpr";
+        [primaryExprParser add:self.atomicValueParser];
 
         TDSequence *s = [TDSequence sequence];
         [s add:[TDSymbol symbolWithString:@"("]];
-        [s add:self.expressionParser];
+        [s add:self.exprParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
         
-        [phraseParser add:s];
+        [primaryExprParser add:s];
     }
-    return phraseParser;
+    return primaryExprParser;
+}
+
+
+// minusPrimaryExpr     = '-' primaryExpr
+- (TDCollectionParser *)minusPrimaryExprParser {
+    if (!minusPrimaryExprParser) {
+        self.minusPrimaryExprParser = [TDTrack track];
+        [minusPrimaryExprParser add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [minusPrimaryExprParser add:self.primaryExprParser];
+        [minusPrimaryExprParser setAssembler:self selector:@selector(workOnMinusPrimaryExprParser:)];
+    }
+    return minusPrimaryExprParser;
 }
 
 
@@ -958,6 +989,16 @@ void TDReleaseSubparserTree(TDParser *p) {
     } else if (objs.count) {
         [a push:[objs objectAtIndex:0]];
     }
+}
+
+
+- (void)workOnMinusPrimaryExprParser:(TDAssembly *)a {
+    TDParser *minus = [a pop];
+    TDParser *sub = [a pop];
+    NSAssert([minus isKindOfClass:[TDParser class]], @"");
+    NSAssert([sub isKindOfClass:[TDParser class]], @"");
+    
+    [a push:[TDExclusion exclusionWithSubparser:sub minus:minus]];
 }
 
 
@@ -1246,7 +1287,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize declarationParser;
 @synthesize callbackParser;
 @synthesize selectorParser;
-@synthesize expressionParser;
+@synthesize exprParser;
 @synthesize termParser;
 @synthesize orTermParser;
 @synthesize factorParser;
@@ -1257,7 +1298,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize phraseQuestionParser;
 @synthesize phraseCardinalityParser;
 @synthesize cardinalityParser;
+@synthesize primaryExprParser;
 @synthesize atomicValueParser;
+@synthesize minusPrimaryExprParser;
 @synthesize discardParser;
 @synthesize patternParser;
 @synthesize literalParser;

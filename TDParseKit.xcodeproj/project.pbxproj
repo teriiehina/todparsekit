@@ -160,7 +160,7 @@
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
-		D338E5B70FF5DD97003DE6AA /* TDExclusion.h in Headers */ = {isa = PBXBuildFile; fileRef = D338E5B50FF5DD97003DE6AA /* TDExclusion.h */; };
+		D338E5B70FF5DD97003DE6AA /* TDExclusion.h in Headers */ = {isa = PBXBuildFile; fileRef = D338E5B50FF5DD97003DE6AA /* TDExclusion.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D338E5B80FF5DD97003DE6AA /* TDExclusion.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5B60FF5DD97003DE6AA /* TDExclusion.m */; };
 		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };

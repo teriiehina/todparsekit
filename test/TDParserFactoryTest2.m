@@ -536,4 +536,148 @@
     TDNil(res);
 }
 
+
+- (void)testExclusionFoo {
+    g = @"@start = ex; ex = Word - 'foo';";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"bar";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[wee]wee^", [res description]);    
+}
+
+
+- (void)testAlt {
+    g = @"@start = ex; m = ('foo'|'bar'); ex = Word - m;";
+
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"baz";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[baz]baz^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[wee]wee^", [res description]);
+}
+
+
+- (void)testAlt2 {
+    g = @"@start = ex; ex = Word - ('foo'|'bar');";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"baz";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[baz]baz^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[wee]wee^", [res description]);
+}
+
+
+- (void)testAlt3 {
+    g = @"@start = ex; s = 'foo'|'baz'; m = ('foo'|'bar'); ex = s - m;";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"baz";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[baz]baz^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}
+
+
+- (void)testAlt4 {
+    g = @"@start = ex; m = ('foo'|'bar'); ex = ('foo'|'baz') - m;";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"baz";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[baz]baz^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}
+
+
+- (void)testAlt5 {
+    g = @"@start = ex; ex = ('foo'|'baz') - ('foo'|'bar');";
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    s = @"baz";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[baz]baz^", [res description]);
+    
+    s = @"foo";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    s = @"wee";
+    t.string = s;
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+}
+
 @end
