@@ -72,22 +72,22 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDAlternation *)zeroOrOne:(TDParser *)p;
 - (TDSequence *)oneOrMore:(TDParser *)p;
     
-- (void)workOnStatementAssembly:(TDAssembly *)a;
+- (void)workOnStatement:(TDAssembly *)a;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
-- (void)workOnCallbackAssembly:(TDAssembly *)a;
-- (void)workOnExpressionAssembly:(TDAssembly *)a;
-- (void)workOnInclusionAssembly:(TDAssembly *)a;    
-- (void)workOnExclusionAssembly:(TDAssembly *)a;
-- (void)workOnLiteralAssembly:(TDAssembly *)a;
-- (void)workOnVariableAssembly:(TDAssembly *)a;
-- (void)workOnConstantAssembly:(TDAssembly *)a;
-- (void)workOnNumAssembly:(TDAssembly *)a;
-- (void)workOnStarAssembly:(TDAssembly *)a;
-- (void)workOnPlusAssembly:(TDAssembly *)a;
-- (void)workOnQuestionAssembly:(TDAssembly *)a;
-- (void)workOnPhraseCardinalityAssembly:(TDAssembly *)a;
-- (void)workOnCardinalityAssembly:(TDAssembly *)a;
-- (void)workOnOrAssembly:(TDAssembly *)a;
+- (void)workOnCallback:(TDAssembly *)a;
+- (void)workOnExpression:(TDAssembly *)a;
+- (void)workOnInclusion:(TDAssembly *)a;    
+- (void)workOnExclusion:(TDAssembly *)a;
+- (void)workOnLiteral:(TDAssembly *)a;
+- (void)workOnVariable:(TDAssembly *)a;
+- (void)workOnConstant:(TDAssembly *)a;
+- (void)workOnNum:(TDAssembly *)a;
+- (void)workOnStar:(TDAssembly *)a;
+- (void)workOnPlus:(TDAssembly *)a;
+- (void)workOnQuestion:(TDAssembly *)a;
+- (void)workOnPhraseCardinality:(TDAssembly *)a;
+- (void)workOnCardinality:(TDAssembly *)a;
+- (void)workOnOr:(TDAssembly *)a;
 
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
@@ -573,7 +573,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
         // accept any tokens in the parser expr the first time around. just gather tokens for later
         [statementParser add:[self oneOrMore:[TDAny any]]];
-        [statementParser setAssembler:self selector:@selector(workOnStatementAssembly:)];
+        [statementParser setAssembler:self selector:@selector(workOnStatement:)];
     }
     return statementParser;
 }
@@ -599,7 +599,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
         [callbackParser add:self.selectorParser];
         [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
-        [callbackParser setAssembler:self selector:@selector(workOnCallbackAssembly:)];
+        [callbackParser setAssembler:self selector:@selector(workOnCallback:)];
     }
     return callbackParser;
 }
@@ -624,7 +624,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         exprParser.name = @"expr";
         [exprParser add:self.termParser];
         [exprParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
-        [exprParser setAssembler:self selector:@selector(workOnExpressionAssembly:)];
+        [exprParser setAssembler:self selector:@selector(workOnExpression:)];
     }
     return exprParser;
 }
@@ -637,7 +637,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         termParser.name = @"term";
         [termParser add:self.factorParser];
         [termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
-        [termParser setAssembler:self selector:@selector(workOnAndAssembly:)];
+        [termParser setAssembler:self selector:@selector(workOnAnd:)];
     }
     return termParser;
 }
@@ -650,7 +650,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         orTermParser.name = @"orTerm";
         [orTermParser add:[TDSymbol symbolWithString:@"|"]]; // preserve as fence
         [orTermParser add:self.termParser];
-        [orTermParser setAssembler:self selector:@selector(workOnOrAssembly:)];
+        [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
     return orTermParser;
 }
@@ -736,7 +736,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [inclusionParser add:[TDSymbol symbolWithString:@"["]]; // fence
         [inclusionParser add:self.primaryExprParser];
         [inclusionParser add:[[TDSymbol symbolWithString:@"]"] discard]];
-        [inclusionParser setAssembler:self selector:@selector(workOnInclusionAssembly:)];
+        [inclusionParser setAssembler:self selector:@selector(workOnInclusion:)];
     }
     return inclusionParser;
 }
@@ -749,7 +749,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         inclusionParser.name = @"exclusion";
         [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
         [exclusionParser add:self.primaryExprParser];
-        [exclusionParser setAssembler:self selector:@selector(workOnExclusionAssembly:)];
+        [exclusionParser setAssembler:self selector:@selector(workOnExclusion:)];
     }
     return exclusionParser;
 }
@@ -762,7 +762,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
-        [phraseStarParser setAssembler:self selector:@selector(workOnStarAssembly:)];
+        [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
     }
     return phraseStarParser;
 }
@@ -775,7 +775,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
-        [phrasePlusParser setAssembler:self selector:@selector(workOnPlusAssembly:)];
+        [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
     }
     return phrasePlusParser;
 }
@@ -788,7 +788,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
-        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestionAssembly:)];
+        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
     }
     return phraseQuestionParser;
 }
@@ -801,7 +801,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         phraseCardinalityParser.name = @"phraseCardinality";
         [phraseCardinalityParser add:self.phraseParser];
         [phraseCardinalityParser add:self.cardinalityParser];
-        [phraseCardinalityParser setAssembler:self selector:@selector(workOnPhraseCardinalityAssembly:)];
+        [phraseCardinalityParser setAssembler:self selector:@selector(workOnPhraseCardinality:)];
     }
     return phraseCardinalityParser;
 }
@@ -821,7 +821,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [cardinalityParser add:[TDNum num]];
         [cardinalityParser add:[self zeroOrOne:commaNum]];
         [cardinalityParser add:[[TDSymbol symbolWithString:@"}"] discard]];
-        [cardinalityParser setAssembler:self selector:@selector(workOnCardinalityAssembly:)];
+        [cardinalityParser setAssembler:self selector:@selector(workOnCardinality:)];
     }
     return cardinalityParser;
 }
@@ -863,7 +863,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!patternParser) {
         patternParser.name = @"pattern";
         self.patternParser = [TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"];
-        [patternParser setAssembler:self selector:@selector(workOnPatternAssembly:)];
+        [patternParser setAssembler:self selector:@selector(workOnPattern:)];
     }
     return patternParser;
 }
@@ -873,7 +873,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDParser *)literalParser {
     if (!literalParser) {
         self.literalParser = [TDQuotedString quotedString];
-        [literalParser setAssembler:self selector:@selector(workOnLiteralAssembly:)];
+        [literalParser setAssembler:self selector:@selector(workOnLiteral:)];
     }
     return literalParser;
 }
@@ -884,7 +884,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!variableParser) {
         self.variableParser = [TDLowercaseWord word];
         variableParser.name = @"variable";
-        [variableParser setAssembler:self selector:@selector(workOnVariableAssembly:)];
+        [variableParser setAssembler:self selector:@selector(workOnVariable:)];
     }
     return variableParser;
 }
@@ -895,7 +895,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!constantParser) {
         self.constantParser = [TDUppercaseWord word];
         constantParser.name = @"constant";
-        [constantParser setAssembler:self selector:@selector(workOnConstantAssembly:)];
+        [constantParser setAssembler:self selector:@selector(workOnConstant:)];
     }
     return constantParser;
 }
@@ -917,7 +917,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [delimitedStringParser add:[self zeroOrOne:secondArg]];
         [delimitedStringParser add:[[TDSymbol symbolWithString:@")"] discard]];
 
-        [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedStringAssembly:)];
+        [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedString:)];
     }
     return delimitedStringParser;
 }
@@ -936,7 +936,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnStatementAssembly:(TDAssembly *)a {
+- (void)workOnStatement:(TDAssembly *)a {
     NSArray *toks = [[a objectsAbove:equals] reversedArray];
     [a pop]; // discard '=' tok
 
@@ -981,14 +981,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnCallbackAssembly:(TDAssembly *)a {
+- (void)workOnCallback:(TDAssembly *)a {
     TDToken *selNameTok = [a pop];
     NSString *selName = [NSString stringWithFormat:@"%@:", selNameTok.stringValue];
     [a push:selName];
 }
 
 
-- (void)workOnExpressionAssembly:(TDAssembly *)a {
+- (void)workOnExpression:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
     
@@ -1005,7 +1005,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnExclusionAssembly:(TDAssembly *)a {
+- (void)workOnExclusion:(TDAssembly *)a {
     TDParser *predicate = [a pop];
     TDParser *sub = [a pop];
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
@@ -1015,7 +1015,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnInclusionAssembly:(TDAssembly *)a {
+- (void)workOnInclusion:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:bracket];
     [a pop]; // discard '['
     
@@ -1031,7 +1031,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnPatternAssembly:(TDAssembly *)a {
+- (void)workOnPattern:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSAssert(tok.isDelimitedString, @"");
 
@@ -1070,7 +1070,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnLiteralAssembly:(TDAssembly *)a {
+- (void)workOnLiteral:(TDAssembly *)a {
     TDToken *tok = [a pop];
 
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -1084,7 +1084,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnVariableAssembly:(TDAssembly *)a {
+- (void)workOnVariable:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSString *parserName = tok.stringValue;
     TDParser *p = nil;
@@ -1105,7 +1105,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnConstantAssembly:(TDAssembly *)a {
+- (void)workOnConstant:(TDAssembly *)a {
     TDToken *tok = [a pop];
     NSString *s = tok.stringValue;
     id p = nil;
@@ -1149,7 +1149,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnDelimitedStringAssembly:(TDAssembly *)a {
+- (void)workOnDelimitedString:(TDAssembly *)a {
     NSArray *toks = [a objectsAbove:paren];
     [a pop]; // discard '(' fence
     
@@ -1170,32 +1170,32 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnNumAssembly:(TDAssembly *)a {
+- (void)workOnNum:(TDAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnStarAssembly:(TDAssembly *)a {
+- (void)workOnStar:(TDAssembly *)a {
     id top = [a pop];
     TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
     [a push:rep];
 }
 
 
-- (void)workOnPlusAssembly:(TDAssembly *)a {
+- (void)workOnPlus:(TDAssembly *)a {
     id top = [a pop];
     [a push:[self oneOrMore:top]];
 }
 
 
-- (void)workOnQuestionAssembly:(TDAssembly *)a {
+- (void)workOnQuestion:(TDAssembly *)a {
     id top = [a pop];
     [a push:[self zeroOrOne:top]];
 }
 
 
-- (void)workOnPhraseCardinalityAssembly:(TDAssembly *)a {
+- (void)workOnPhraseCardinality:(TDAssembly *)a {
     NSRange r = [[a pop] rangeValue];
     TDParser *p = [a pop];
     TDSequence *s = [TDSequence sequence];
@@ -1216,7 +1216,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnCardinalityAssembly:(TDAssembly *)a {
+- (void)workOnCardinality:(TDAssembly *)a {
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
 
@@ -1235,7 +1235,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnOrAssembly:(TDAssembly *)a {
+- (void)workOnOr:(TDAssembly *)a {
     id second = [a pop];
     [a pop]; // pop '|'
     id first = [a pop];
@@ -1246,7 +1246,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnAndAssembly:(TDAssembly *)a {
+- (void)workOnAnd:(TDAssembly *)a {
     NSMutableArray *parsers = [NSMutableArray array];
     while (![a isStackEmpty]) {
         id obj = [a pop];
