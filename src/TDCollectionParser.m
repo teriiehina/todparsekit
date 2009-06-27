@@ -30,6 +30,7 @@
 
 - (void)add:(TDParser *)p {
     NSParameterAssert(p);
+    //NSParameterAssert([p isKindOfClass:[TDParser class]]);
     [subparsers addObject:p];
 }
 

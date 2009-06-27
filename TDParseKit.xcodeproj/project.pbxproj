@@ -160,6 +160,9 @@
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
+		D338E5B70FF5DD97003DE6AA /* TDExclusion.h in Headers */ = {isa = PBXBuildFile; fileRef = D338E5B50FF5DD97003DE6AA /* TDExclusion.h */; };
+		D338E5B80FF5DD97003DE6AA /* TDExclusion.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5B60FF5DD97003DE6AA /* TDExclusion.m */; };
+		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
 		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
@@ -779,6 +782,10 @@
 		D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluator.m; path = test/TDPredicateEvaluator.m; sourceTree = "<group>"; };
 		D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluatorTest.h; path = test/TDPredicateEvaluatorTest.h; sourceTree = "<group>"; };
 		D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluatorTest.m; path = test/TDPredicateEvaluatorTest.m; sourceTree = "<group>"; };
+		D338E5B50FF5DD97003DE6AA /* TDExclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusion.h; path = src/TDExclusion.h; sourceTree = "<group>"; };
+		D338E5B60FF5DD97003DE6AA /* TDExclusion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusion.m; path = src/TDExclusion.m; sourceTree = "<group>"; };
+		D338E5B90FF5DDCB003DE6AA /* TDExclusionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusionTest.h; path = test/TDExclusionTest.h; sourceTree = "<group>"; };
+		D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusionTest.m; path = test/TDExclusionTest.m; sourceTree = "<group>"; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
@@ -1879,6 +1886,8 @@
 				D31FE61F0E60E75300A0803E /* TDTrack.m */,
 				D331B5A10EA5293A0020BF01 /* TDTrackException.h */,
 				D331B5A20EA5293A0020BF01 /* TDTrackException.m */,
+				D338E5B50FF5DD97003DE6AA /* TDExclusion.h */,
+				D338E5B60FF5DD97003DE6AA /* TDExclusion.m */,
 				D31FE6140E60E75300A0803E /* TDEmpty.h */,
 				D31FE6150E60E75300A0803E /* TDEmpty.m */,
 				D31FE61C0E60E75300A0803E /* TDTerminal.h */,
@@ -1932,6 +1941,8 @@
 				D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */,
 				D36C56290FD365DB00141CB7 /* TDPatternTest.h */,
 				D36C562A0FD365DB00141CB7 /* TDPatternTest.m */,
+				D338E5B90FF5DDCB003DE6AA /* TDExclusionTest.h */,
+				D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";
@@ -2126,6 +2137,7 @@
 				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
 				D36C56020FD361AD00141CB7 /* TDPattern.h in Headers */,
 				D355C8880FEC6C7D006A91A4 /* TDWhitespace.h in Headers */,
+				D338E5B70FF5DD97003DE6AA /* TDExclusion.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2572,6 +2584,7 @@
 				D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */,
 				D36C56030FD361AD00141CB7 /* TDPattern.m in Sources */,
 				D355C8890FEC6C7D006A91A4 /* TDWhitespace.m in Sources */,
+				D338E5B80FF5DD97003DE6AA /* TDExclusion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2825,6 +2838,7 @@
 				D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */,
 				D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */,
 				D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */,
+				D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
