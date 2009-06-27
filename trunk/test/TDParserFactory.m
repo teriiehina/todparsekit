@@ -94,6 +94,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
+@property (nonatomic, retain) TDToken *bracket;
 @property (nonatomic, retain) TDToken *caret;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
@@ -129,10 +130,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (id)init {
     if (self = [super init]) {
-        self.equals = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
-        self.curly  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.paren  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.caret  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
+        self.equals  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
+        self.curly   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
+        self.caret   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
         self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -151,6 +153,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
+    self.bracket = nil;
     self.caret = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
@@ -761,7 +764,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// atomicValue          = (pattern | literal | variable | constant  | delimitedString) discard?
+// atomicValue          = (pattern | literal | variable | fullConstant | delimitedString) discard?
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
@@ -824,7 +827,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// fullConstant = constant ('(' pattern? ')')?
+// fullConstant = constant ('[' pattern ']')?
 - (TDCollectionParser *)fullConstantParser {
     if (!fullConstantParser) {
         self.fullConstantParser = [TDSequence sequence];
@@ -832,9 +835,9 @@ void TDReleaseSubparserTree(TDParser *p) {
         [fullConstantParser add:self.constantParser];
         
         TDSequence *s = [TDSequence sequence];
-        [s add:[TDSymbol symbolWithString:@"("]]; // fence
-        [s add:[self zeroOrOne:self.patternParser]];
-        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        [s add:[TDSymbol symbolWithString:@"["]]; // fence
+        [s add:self.patternParser];
+        [s add:[[TDSymbol symbolWithString:@"]"] discard]];
         [s setAssembler:self selector:@selector(workOnFullConstantAssembly:)];
         
         [fullConstantParser add:[self zeroOrOne:s]];
@@ -1033,14 +1036,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnFullConstantAssembly:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:paren];
-    [a pop]; // discard '('
+    NSArray *objs = [a objectsAbove:bracket];
+    [a pop]; // discard '['
 
     if (objs.count) {
         TDPattern *p = [objs objectAtIndex:0];
         TDTerminal *t = [a pop];
 
-        NSAssert([p isKindOfClass:[TDPattern class]], @"");
+        NSLog(@"a: %@", a);
+        NSAssert([p class] == [TDPattern class], @"");
         NSAssert([t isKindOfClass:[TDTerminal class]], @"");
         
         TDTokenType tt = TDTokenTypeAny;
@@ -1236,6 +1240,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
+@synthesize bracket;
 @synthesize caret;
 @synthesize statementParser;
 @synthesize declarationParser;
