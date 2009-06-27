@@ -64,7 +64,7 @@
 
     nmtoken = Word;
 
-    name = /[^-:\.].*/;    
+    name = Word[ /[^-:\.].*/ ];
 
     // names = name (S name)*;
     // nmtokens = nmtoken (S nmtoken)*;
@@ -88,7 +88,7 @@
 
 // [14]       CharData       ::=       [^<&]* - ([^<&]* ']]>' [^<&]*)
     
-    charData = /[^<\&]+/; // TODO why does this need to escape the amp ?
+    charData = /[^<\&]+/ - (/[^\]]*\]\]>[^<\&]*/);
 
 
 // [15]       Comment       ::=       '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
@@ -99,7 +99,8 @@
 // [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 // [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
     
-    pi = '<?' name /[^?][^>]?.*/* '?>';
+    pi = '<?' piTarget (Any - /?>/)* '?>';
+    piTarget = name - 'xml';
 
 
 // [18]       CDSect       ::=        CDStart CData CDEnd
