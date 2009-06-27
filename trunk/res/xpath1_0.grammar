@@ -236,14 +236,13 @@
 // [11] LocalPart ::= NCName
 
     localPart = ncName;
-    
 
-    ncName = Word(/[^:]+/);
+    ncName = Word[/[^:]+/];
 
 
 // [35] FunctionName ::= QName - NodeType 
     
-    functionName = qName;
+    functionName = qName - nodeType;
 
 
 // [36] VariableReference ::= '$' QName 

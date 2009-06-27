@@ -200,7 +200,7 @@
         @"@delimitedString='<!--' '-->' nil '<?' '?>' nil '<![CDATA[' ']]>' nil;"
         @"@reportsWhitespaceTokens = YES;"
         @"@start = charData+;"
-        @"charData = /[^<\\&]+/;";
+        @"charData = /[^<\\&]+/ - (/[^\\]]*\\]\\]>[^<\\&]*/);";
 
     TDParser *charData = [factory parserFromGrammar:g assembler:nil];
     t = charData.tokenizer;
@@ -235,7 +235,7 @@
         @"attribute = name eq attValue;"
         @"eq=S? '=' S?;"
         @"attValue = QuotedString;"
-        @"charData = /[^<\\&]+/;"
+        @"charData = /[^<\\&]+/ - (/[^\\]]*\\]\\]>[^<\\&]*/);"
         @"reference = entityRef | charRef;"
         @"entityRef = '&' name ';';"
         @"charRef = '&#' /[0-9]+/ ';' | '&#x' /[0-9a-fA-F]+/ ';';"
@@ -316,7 +316,7 @@
 
 
 // [14]       CharData       ::=       [^<&]* - ([^<&]* ']]>' [^<&]*)
-// charData = /[^<\&]+/; // TODO why does this need to escape the amp ?
+// charData = /[^<\&]+/ - (/[^\]]*\]\]>[^<\&]*/);
 - (void)testCharData {
     t.string = @"foo";
     res = [[p parserNamed:@"charData"] bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -346,17 +346,20 @@
 
 // [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 // [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
-// pi = '<?' name /[^?][^>]/* '?>';
+// pi = '<?' piTarget (Any - /?>/)* '?>';
+// piTarget = name - 'xml';
+
 - (void)testPI {
     NSString *gram = 
         @"@reportsWhitespaceTokens=YES;"
         @"@symbols='<?' '?>';"
         @"@symbolState = '<';"
         @"name=/[^-:\\.]\\w+/;"
-        @"piTarget = /[^?Xx][^>Mm]?[^Ll]?.*/;"
+        @"piTarget = name - 'xml';"
         @"@wordState = ':' '.' '-' '_';"
         @"@wordChars = ':' '.' '-' '_';"
-        @"@start = '<?' piTarget /[^?][^>]?.*/* '?>';";
+        @"pi = '<?' piTarget (Any - /?>/)* '?>';"
+        @"@start = pi;";
     TDParser *pi = [[TDParserFactory factory] parserFromGrammar:gram assembler:nil];
     pi.tokenizer.string = @"<?foo bar='baz'?>";
     res = [pi bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:pi.tokenizer]];
