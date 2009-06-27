@@ -1084,7 +1084,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         TDPattern *p = [objs objectAtIndex:0];
         TDTerminal *t = [a pop];
 
-        NSLog(@"a: %@", a);
         NSAssert([p class] == [TDPattern class], @"");
         NSAssert([t isKindOfClass:[TDTerminal class]], @"");
         
