@@ -88,7 +88,7 @@
 
 // [14]       CharData       ::=       [^<&]* - ([^<&]* ']]>' [^<&]*)
     
-    charData = /[^<\&]+/ ~ (/[^\]]*\]\]>[^<\&]*/);
+    charData = /[^<\&]+/ - (/[^\]]*\]\]>[^<\&]*/);
 
 
 // [15]       Comment       ::=       '<!--' ((Char - '-') | ('-' (Char - '-')))* '-->'
@@ -99,8 +99,8 @@
 // [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 // [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
     
-    pi = '<?' piTarget (Any ~ /?>/)* '?>';
-    piTarget = name ~ /xml/i;
+    pi = '<?' piTarget (Any - /?>/)* '?>';
+    piTarget = name - /xml/i;
 
 
 // [18]       CDSect       ::=        CDStart CData CDEnd
@@ -303,7 +303,7 @@
 
 // [65]       Ignore       ::=        Char* - (Char* ('<![' | ']]>') Char*)
     
-    ignore = Word ~ /[^<]*(<![|]]>).*/;
+    ignore = Word - /[^<]*(<![|]]>).*/;
 
 
 // [66]       CharRef       ::=       '&#' [0-9]+ ';' | '&#x' [0-9a-fA-F]+ ';'
