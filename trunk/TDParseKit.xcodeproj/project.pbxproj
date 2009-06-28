@@ -465,6 +465,7 @@
 		D3D01CAC0EFDB8A100C24DDE /* json_with_discards.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */; };
 		D3D6E4E30EF625D700292EE6 /* TDAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D3D6E4E10EF625D700292EE6 /* TDAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3D6E4E40EF625D700292EE6 /* TDAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D6E4E20EF625D700292EE6 /* TDAny.m */; };
+		D3D703590FF747EA00F7A7E0 /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D3D703580FF747EA00F7A7E0 /* TDParserFactoryTest3.m */; };
 		D3DCB3730EF5E5D600DE5110 /* OCMock.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3DCB35C0EF5E52500DE5110 /* OCMock.framework */; };
 		D3DCB4C30EF6015300DE5110 /* json.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3DCB4C20EF6015300DE5110 /* json.grammar */; };
@@ -1013,6 +1014,8 @@
 		D3D01CA90EFDB89900C24DDE /* json_with_discards.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json_with_discards.grammar; path = res/json_with_discards.grammar; sourceTree = "<group>"; };
 		D3D6E4E10EF625D700292EE6 /* TDAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAny.h; path = src/TDAny.h; sourceTree = "<group>"; };
 		D3D6E4E20EF625D700292EE6 /* TDAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDAny.m; path = src/TDAny.m; sourceTree = "<group>"; };
+		D3D703570FF747EA00F7A7E0 /* TDParserFactoryTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDParserFactoryTest3.h; sourceTree = "<group>"; };
+		D3D703580FF747EA00F7A7E0 /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDParserFactoryTest3.m; sourceTree = "<group>"; };
 		D3DCB35C0EF5E52500DE5110 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = frameworks/OCMock.framework; sourceTree = "<group>"; };
 		D3DCB4C20EF6015300DE5110 /* json.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = json.grammar; path = res/json.grammar; sourceTree = "<group>"; };
 		D3DDDA850F0779FD00A58000 /* TDSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSyntaxHighlighter.h; path = test/TDSyntaxHighlighter.h; sourceTree = "<group>"; };
@@ -2077,6 +2080,8 @@
 				D380BA600F0F06CD0009EC13 /* TDParserFactoryTest.m */,
 				D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */,
 				D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */,
+				D3D703570FF747EA00F7A7E0 /* TDParserFactoryTest3.h */,
+				D3D703580FF747EA00F7A7E0 /* TDParserFactoryTest3.m */,
 				D3AF49760FDB122E0032F4DC /* TDParserFactoryPatternTest.h */,
 				D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */,
 			);
@@ -2847,6 +2852,7 @@
 				D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */,
 				D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */,
 				D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */,
+				D3D703590FF747EA00F7A7E0 /* TDParserFactoryTest3.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

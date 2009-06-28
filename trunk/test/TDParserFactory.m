@@ -52,6 +52,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 @interface TDParserFactory ()
+- (TDTokenizer *)tokenizerForParsingGrammar;
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
@@ -64,6 +65,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks;
 - (TDParser *)expandedParserForName:(NSString *)parserName;
 - (void)setAssemblerForParser:(TDParser *)p;
+- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 // this is only for unit tests? can it go away?
@@ -73,7 +75,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDSequence *)oneOrMore:(TDParser *)p;
     
 - (void)workOnStatement:(TDAssembly *)a;
-- (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 - (void)workOnCallback:(TDAssembly *)a;
 - (void)workOnExpression:(TDAssembly *)a;
 - (void)workOnInclusion:(TDAssembly *)a;    
@@ -124,6 +125,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
+@property (nonatomic, retain) TDParser *whitespaceParser;
+@property (nonatomic, retain) TDCollectionParser *optionalWhitespaceParser;
 @end
 
 @implementation TDParserFactory
@@ -186,6 +189,8 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.variableParser = nil;
     self.constantParser = nil;
     self.delimitedStringParser = nil;
+    self.whitespaceParser = nil;
+    self.optionalWhitespaceParser = nil;
     [super dealloc];
 }
 
@@ -217,14 +222,17 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+- (TDTokenizer *)tokenizerForParsingGrammar {
+    TDTokenizer *t = [TDTokenizer tokenizer];
+    
+    t.whitespaceState.reportsWhitespaceTokens = YES;
     
     // customize tokenizer to find tokenizer customization directives
     [t setTokenizerState:t.wordState from:'@' to:'@'];
-
+    
     // add support for tokenizer directives like @commentState.fallbackState
     [t.wordState setWordChars:YES from:'.' to:'.'];
+    [t.wordState setWordChars:NO from:'-' to:'-'];
     
     // setup comments
     [t setTokenizerState:t.commentState from:'/' to:'/'];
@@ -235,17 +243,26 @@ void TDReleaseSubparserTree(TDParser *p) {
     t.commentState.fallbackState = t.delimitState;
     
     // regex delimited strings
-    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];    
+    [t.delimitState addStartMarker:@"/" endMarker:@"/" allowedCharacterSet:[[NSCharacterSet whitespaceCharacterSet] invertedSet]];
+    
+    return t;
+}
+
+
+- (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
+    TDTokenizer *t = [self tokenizerForParsingGrammar];
+    t.string = s;
     
     TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
-        TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+        TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+        //a.preservesWhitespaceTokens = YES;
         a.target = target;
-        a = [self.statementParser completeMatchFor:a];
-        target = a.target;
+        TDAssembly *res = [self.statementParser completeMatchFor:a];
+        target = res.target;
     }
 
     [src release];
@@ -259,7 +276,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     // discover the actual parser class types
     for (NSString *parserName in parserTokensTable) {
         NSString *className = [self parserClassNameFromTokenArray:[parserTokensTable objectForKey:parserName]];
-        NSAssert(className.length, @"");
+        NSAssert1(className.length, @"Could not build ClassName from token array for parserName: %@", parserName);
         [parserClassTable setObject:className forKey:parserName];
     }
     isGatheringClasses = NO;
@@ -309,6 +326,8 @@ void TDReleaseSubparserTree(TDParser *p) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
         }
     }
+    [parserTokensTable removeObjectForKey:@"@symbol"];
+    [parserTokensTable removeObjectForKey:@"@symbols"];
     
     // wordChars
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@wordChar"]];
@@ -322,6 +341,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
+    [parserTokensTable removeObjectForKey:@"wordChar"];
+    [parserTokensTable removeObjectForKey:@"wordChars"];
     
     // whitespaceChars
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@whitespaceChar"]];
@@ -340,6 +361,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
+    [parserTokensTable removeObjectForKey:@"@whitespaceChar"];
+    [parserTokensTable removeObjectForKey:@"@whitespaceChars"];
     
     // single-line comments
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@singleLineComment"]];
@@ -350,6 +373,8 @@ void TDReleaseSubparserTree(TDParser *p) {
             [t.commentState addSingleLineStartMarker:s];
         }
     }
+    [parserTokensTable removeObjectForKey:@"@singleLineComment"];
+    [parserTokensTable removeObjectForKey:@"@singleLineComments"];
     
     // multi-line comments
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@multiLineComment"]];
@@ -367,6 +392,8 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+    [parserTokensTable removeObjectForKey:@"@multiLineComment"];
+    [parserTokensTable removeObjectForKey:@"@multiLineComments"];
 
     // delimited strings
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@delimitedString"]];
@@ -389,6 +416,8 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+    [parserTokensTable removeObjectForKey:@"@delimitedString"];
+    [parserTokensTable removeObjectForKey:@"@delimitedStrings"];
     
     return t;
 }
@@ -403,6 +432,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             result = YES;
         }
     }
+    [parserTokensTable removeObjectForKey:key];
     return result;
 }
 
@@ -418,6 +448,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+    [parserTokensTable removeObjectForKey:key];
 }
 
 
@@ -432,6 +463,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
+    [parserTokensTable removeObjectForKey:key];
 }
 
 
@@ -511,7 +543,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 // this is just a utility for unit-testing
 - (TDSequence *)parserFromExpression:(NSString *)s {
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    TDTokenizer *t = [self tokenizerForParsingGrammar];
+    t.string = s;
     TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [self.exprParser completeMatchFor:a];
@@ -563,12 +596,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 // pattern              = DelimitedString('/', '/')
 
 
-// satement             = declaration '=' expr
+// satement             = S? declaration S? '=' expr
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
-        self.statementParser = [TDTrack track];
+        self.statementParser = [TDSequence sequence];
         statementParser.name = @"statement";
+        [statementParser add:self.optionalWhitespaceParser];
         [statementParser add:self.declarationParser];
+        [statementParser add:self.optionalWhitespaceParser];
         [statementParser add:[TDSymbol symbolWithString:@"="]];
 
         // accept any tokens in the parser expr the first time around. just gather tokens for later
@@ -582,7 +617,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // declaration          = productionName callback?
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
-        self.declarationParser = [TDTrack track];
+        self.declarationParser = [TDSequence sequence];
         declarationParser.name = @"declaration";
         [declarationParser add:[TDWord word]];
         [declarationParser add:[self zeroOrOne:self.callbackParser]];
@@ -591,13 +626,16 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// callback             = '(' selector ')'
+// callback             = S? '(' S? selector S? ')'
 - (TDCollectionParser *)callbackParser {
     if (!callbackParser) {
-        self.callbackParser = [TDTrack track];
+        self.callbackParser = [TDSequence sequence];
         callbackParser.name = @"callback";
+        [callbackParser add:self.optionalWhitespaceParser];
         [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
+        [callbackParser add:self.optionalWhitespaceParser];
         [callbackParser add:self.selectorParser];
+        [callbackParser add:self.optionalWhitespaceParser];
         [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
         [callbackParser setAssembler:self selector:@selector(workOnCallback:)];
     }
@@ -617,13 +655,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// expr        = term orTerm*
+// expr        = S? term orTerm* S?
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         exprParser.name = @"expr";
+        [exprParser add:self.optionalWhitespaceParser];
         [exprParser add:self.termParser];
         [exprParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+        [exprParser add:self.optionalWhitespaceParser];
         [exprParser setAssembler:self selector:@selector(workOnExpression:)];
     }
     return exprParser;
@@ -643,12 +683,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// orTerm            = '|' term
+// orTerm            = S? '|' S? term
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
-        self.orTermParser = [TDTrack track];
+        self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
+        [orTermParser add:self.optionalWhitespaceParser];
         [orTermParser add:[TDSymbol symbolWithString:@"|"]]; // preserve as fence
+        [orTermParser add:self.optionalWhitespaceParser];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
@@ -671,16 +713,21 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// nextFactor        = factor
+// nextFactor        = S factor
 - (TDCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
-        self.nextFactorParser = [TDAlternation alternation];
+        self.nextFactorParser = [TDSequence sequence];
         nextFactorParser.name = @"nextFactor";
-        [nextFactorParser add:self.phraseParser];
-        [nextFactorParser add:self.phraseStarParser];
-        [nextFactorParser add:self.phrasePlusParser];
-        [nextFactorParser add:self.phraseQuestionParser];
-        [nextFactorParser add:self.phraseCardinalityParser];
+        [nextFactorParser add:self.whitespaceParser];
+
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:self.phraseParser];
+        [a add:self.phraseStarParser];
+        [a add:self.phrasePlusParser];
+        [a add:self.phraseQuestionParser];
+        [a add:self.phraseCardinalityParser];
+
+        [nextFactorParser add:a];
     }
     return nextFactorParser;
 }
@@ -716,25 +763,32 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// predicate            = inclusion | exclusion
+// predicate            = S? (inclusion | exclusion)
 - (TDCollectionParser *)predicateParser {
     if (!predicateParser) {
-        self.predicateParser = [TDAlternation alternation];
+        self.predicateParser = [TDSequence sequence];
         predicateParser.name = @"predicate";
-        [predicateParser add:self.inclusionParser];
-        [predicateParser add:self.exclusionParser];
+        [predicateParser add:self.optionalWhitespaceParser];
+
+        TDAlternation *a = [TDAlternation alternation];
+        [a add:self.inclusionParser];
+        [a add:self.exclusionParser];
+
+        [predicateParser add:a];
     }
     return predicateParser;
 }
 
 
-// inclusion            = '[' primaryExpr ']'
+// inclusion            = '[' S? primaryExpr S? ']'
 - (TDCollectionParser *)inclusionParser {
     if (!inclusionParser) {
         self.inclusionParser = [TDTrack track];
         inclusionParser.name = @"inclusion";
         [inclusionParser add:[TDSymbol symbolWithString:@"["]]; // fence
+        [inclusionParser add:self.optionalWhitespaceParser];
         [inclusionParser add:self.primaryExprParser];
+        [inclusionParser add:self.optionalWhitespaceParser];
         [inclusionParser add:[[TDSymbol symbolWithString:@"]"] discard]];
         [inclusionParser setAssembler:self selector:@selector(workOnInclusion:)];
     }
@@ -742,12 +796,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// exclusion            = '-' primaryExpr
+// exclusion            = '-' S? primaryExpr
 - (TDCollectionParser *)exclusionParser {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
         inclusionParser.name = @"exclusion";
         [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [exclusionParser add:self.optionalWhitespaceParser];
         [exclusionParser add:self.primaryExprParser];
         [exclusionParser setAssembler:self selector:@selector(workOnExclusion:)];
     }
@@ -755,12 +810,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseStar        = phrase '*'
+// phraseStar        = phrase S? '*'
 - (TDCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
         self.phraseStarParser = [TDSequence sequence];
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
+        [phraseStarParser add:self.optionalWhitespaceParser];
         [phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
     }
@@ -768,12 +824,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phrasePlus        = phrase '+'
+// phrasePlus        = phrase S? '+'
 - (TDCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
         self.phrasePlusParser = [TDSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
+        [phrasePlusParser add:self.optionalWhitespaceParser];
         [phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
     }
@@ -781,12 +838,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseQuestion       = phrase '?'
+// phraseQuestion       = phrase S? '?'
 - (TDCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
+        [phraseQuestionParser add:self.optionalWhitespaceParser];
         [phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
     }
@@ -794,12 +852,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseCardinality    = phrase cardinality
+// phraseCardinality    = phrase S? cardinality
 - (TDCollectionParser *)phraseCardinalityParser {
     if (!phraseCardinalityParser) {
         self.phraseCardinalityParser = [TDSequence sequence];
         phraseCardinalityParser.name = @"phraseCardinality";
         [phraseCardinalityParser add:self.phraseParser];
+        [phraseCardinalityParser add:self.optionalWhitespaceParser];
         [phraseCardinalityParser add:self.cardinalityParser];
         [phraseCardinalityParser setAssembler:self selector:@selector(workOnPhraseCardinality:)];
     }
@@ -807,19 +866,23 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// cardinality          = '{' Num (',' Num)? '}'
+// cardinality          = '{' S? Num (S? ',' S? Num)? S? '}'
 - (TDCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
-        self.cardinalityParser = [TDTrack track];
+        self.cardinalityParser = [TDSequence sequence];
         cardinalityParser.name = @"cardinality";
         
-        TDTrack *commaNum = [TDTrack track];
+        TDTrack *commaNum = [TDSequence sequence];
+        [commaNum add:self.optionalWhitespaceParser];
         [commaNum add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaNum add:self.optionalWhitespaceParser];
         [commaNum add:[TDNum num]];
         
         [cardinalityParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
+        [cardinalityParser add:self.optionalWhitespaceParser];
         [cardinalityParser add:[TDNum num]];
         [cardinalityParser add:[self zeroOrOne:commaNum]];
+        [cardinalityParser add:self.optionalWhitespaceParser];
         [cardinalityParser add:[[TDSymbol symbolWithString:@"}"] discard]];
         [cardinalityParser setAssembler:self selector:@selector(workOnCardinality:)];
     }
@@ -847,12 +910,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// discard              = '^'
+// discard              = '^' S?
 - (TDCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [TDTrack track];
         discardParser.name = @"discardParser";
         [discardParser add:[TDSymbol symbolWithString:@"^"]]; // preserve
+        [discardParser add:self.optionalWhitespaceParser];
     }
     return discardParser;
 }
@@ -901,25 +965,50 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// delimitedString = 'DelimitedString' '(' QuotedString (',' QuotedString)? ')'
+// delimitedString = 'DelimitedString' S? '(' S? QuotedString (S? ',' QuotedString)? S? ')'
 - (TDCollectionParser *)delimitedStringParser {
     if (!delimitedStringParser) {
         self.delimitedStringParser = [TDTrack track];
         delimitedStringParser.name = @"delimitedString";
         
         TDSequence *secondArg = [TDTrack track];
+        [secondArg add:self.optionalWhitespaceParser];
         [secondArg add:[[TDSymbol symbolWithString:@","] discard]];
+        [secondArg add:self.optionalWhitespaceParser];
         [secondArg add:[TDQuotedString quotedString]]; // endMarker
         
         [delimitedStringParser add:[[TDLiteral literalWithString:@"DelimitedString"] discard]];
+        [delimitedStringParser add:self.optionalWhitespaceParser];
         [delimitedStringParser add:[TDSymbol symbolWithString:@"("]]; // preserve as fence
+        [delimitedStringParser add:self.optionalWhitespaceParser];
         [delimitedStringParser add:[TDQuotedString quotedString]]; // startMarker
         [delimitedStringParser add:[self zeroOrOne:secondArg]];
+        [delimitedStringParser add:self.optionalWhitespaceParser];
         [delimitedStringParser add:[[TDSymbol symbolWithString:@")"] discard]];
 
         [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedString:)];
     }
     return delimitedStringParser;
+}
+
+
+- (TDParser *)whitespaceParser {
+    return [[TDWhitespace whitespace] discard];
+//    if (!whitespaceParser) {
+//        self.whitespaceParser = [[TDWhitespace whitespace] discard];
+//        whitespaceParser.name = @"whitespace";
+//    }
+//    return whitespaceParser;
+}
+
+
+- (TDCollectionParser *)optionalWhitespaceParser {
+    return [TDRepetition repetitionWithSubparser:self.whitespaceParser];
+//    if (!optionalWhitespaceParser) {
+//        self.optionalWhitespaceParser = [self zeroOrOne:self.whitespaceParser];
+//        optionalWhitespaceParser.name = @"optionalWhitespace";
+//    }
+//    return optionalWhitespaceParser;
 }
 
 
@@ -959,12 +1048,29 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     // support for multiple @delimitedString = ... tokenizer directives
     if ([parserName hasPrefix:@"@"]) {
+        // remove whitespace toks from tokenizer directives
+        if (![parserName isEqualToString:@"@start"]) {
+            toks = [self tokens:toks byRemovingTokensOfType:TDTokenTypeWhitespace];
+        }
+        
         NSArray *existingToks = [d objectForKey:parserName];
         if (existingToks.count) {
             toks = [toks arrayByAddingObjectsFromArray:existingToks];
         }
     }
+    
     [d setObject:toks forKey:parserName];
+}
+
+
+- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt {
+    NSMutableArray *res = [NSMutableArray array];
+    for (TDToken *tok in toks) {
+        if (TDTokenTypeWhitespace != tok.tokenType) {
+            [res addObject:tok];
+        }
+    }
+    return res;
 }
 
 
@@ -991,7 +1097,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnExpression:(TDAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
-    
     [a pop]; // pop '('
     if (objs.count > 1) {
         TDSequence *seq = [TDSequence sequence];
@@ -1305,5 +1410,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize variableParser;
 @synthesize constantParser;
 @synthesize delimitedStringParser;
+@synthesize whitespaceParser;
+@synthesize optionalWhitespaceParser;
 @synthesize assemblerSettingBehavior;
 @end
