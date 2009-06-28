@@ -1427,11 +1427,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize atomicValueParser;
 @synthesize discardParser;
 @synthesize patternParser;
+@synthesize delimitedStringParser;
 @synthesize literalParser;
 @synthesize variableParser;
 @synthesize constantParser;
-@synthesize delimitedStringParser;
-@synthesize whitespaceParser;
-@synthesize optionalWhitespaceParser;
 @synthesize assemblerSettingBehavior;
 @end
