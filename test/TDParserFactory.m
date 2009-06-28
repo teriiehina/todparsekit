@@ -811,7 +811,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
         inclusionParser.name = @"exclusion";
-        [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [exclusionParser add:[[TDSymbol symbolWithString:@"~"] discard]];
         [exclusionParser add:self.optionalWhitespaceParser];
         [exclusionParser add:self.primaryExprParser];
         [exclusionParser setAssembler:self selector:@selector(workOnExclusion:)];
