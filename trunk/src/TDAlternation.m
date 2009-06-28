@@ -11,6 +11,7 @@
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
+- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
 @implementation TDAlternation

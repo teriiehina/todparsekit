@@ -391,13 +391,20 @@
 ////    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
 ////    [mock verify];
     
-    NSString *g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '%');";
-    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
-
-    NSString *s = @"$foo%";
-    TDTokenizer *t = lp.tokenizer;
-    t.string = s;
-    TDAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//    NSString *g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '%');";
+//    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+//
+//    NSString *s = @"$foo%";
+//    TDTokenizer *t = lp.tokenizer;
+//    t.string = s;
+//    TDAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    
+    TDExclusion *ex = [TDExclusion exclusion];
+    [ex add:[TDWord word]];
+    [ex add:[TDLiteral literalWithString:@"foo"]];
+    
+    NSString *s = @"foo";
+    [ex completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
         
 }
 

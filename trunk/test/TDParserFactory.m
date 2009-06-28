@@ -940,10 +940,12 @@ void TDReleaseSubparserTree(TDParser *p) {
         [patternParser add:[TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
         
         TDParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
-        TDParser *inc = [TDUnion inclusionWithSubparser:[TDWord word] predicate:opts];
-        [inc setAssembler:self selector:@selector(workOnPatternOptions:)];
+        TDIntersection *inter = [TDIntersection intersection];
+        [inter add:[TDWord word]];
+        [inter add:opts];
+        [inter setAssembler:self selector:@selector(workOnPatternOptions:)];
         
-        [patternParser add:[self zeroOrOne:inc]];
+        [patternParser add:[self zeroOrOne:inter]];
         [patternParser setAssembler:self selector:@selector(workOnPattern:)];
     }
     return patternParser;
@@ -1123,7 +1125,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
     NSAssert([sub isKindOfClass:[TDParser class]], @"");
     
-    [a push:[TDExclusion exclusionWithSubparser:sub predicate:predicate]];
+    TDExclusion *ex = [TDExclusion exclusion];
+    [ex add:sub];
+    [ex add:predicate];
+
+    [a push:ex];
 }
 
 
@@ -1133,7 +1139,11 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
     NSAssert([sub isKindOfClass:[TDParser class]], @"");
     
-    [a push:[TDUnion inclusionWithSubparser:sub predicate:predicate]];
+    TDIntersection *inter = [TDIntersection intersection];
+    [inter add:sub];
+    [inter add:predicate];
+    
+    [a push:inter];
 }
 
 

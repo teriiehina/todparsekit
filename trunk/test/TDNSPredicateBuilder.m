@@ -372,7 +372,9 @@
 
 - (TDCollectionParser *)reservedWordParser {
     if (!reservedWordParser) {
-        self.reservedWordParser = [TDUnion inclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
+        self.reservedWordParser = [TDIntersection intersection];
+        [reservedWordParser add:[TDWord word]];
+        [reservedWordParser add:self.reservedWordPattern];
         reservedWordParser.name = @"reservedWord";
         [reservedWordParser setAssembler:self selector:@selector(workOnReservedWord:)];
     }
@@ -383,7 +385,9 @@
 // nonReservedWord      = Word
 - (TDCollectionParser *)nonReservedWordParser {
     if (!nonReservedWordParser) {
-        self.nonReservedWordParser = [TDExclusion exclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
+        self.nonReservedWordParser = [TDExclusion exclusion];
+        [nonReservedWordParser add:[TDWord word]];
+        [nonReservedWordParser add:self.reservedWordPattern];
         nonReservedWordParser.name = @"nonReservedWord";
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWord:)];
     }
