@@ -63,22 +63,22 @@
 
 
 - (void)testOptions {
-//    g = @"@start = /foo/i;";
-//    lp = [factory parserFromGrammar:g assembler:nil];
-//    TDNotNil(lp);
-//    
-//    s = @"FOO";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[FOO]FOO^", [res description]);
-//    
-//    
-//    g = @"@start = /foo/i;";
-//    lp = [factory parserFromGrammar:g assembler:nil];
-//    TDNotNil(lp);
-//    
-//    s = @"FoO";
-//    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
-//    TDEqualObjects(@"[FoO]FoO^", [res description]);
+    g = @"@start = /foo/i;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"FOO";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FOO]FOO^", [res description]);
+    
+    
+    g = @"@start = /foo/i;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"FoO";
+    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[FoO]FoO^", [res description]);
 }
 
 @end

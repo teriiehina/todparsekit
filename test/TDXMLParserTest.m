@@ -303,7 +303,9 @@
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
     t.string = [NSString stringWithContentsOfFile:path];
+    NSDate *d = [NSDate date];
     res = [p bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    NSLog(@"time: %d", [d timeIntervalSinceNow]);
     TDNotNil(res);
     TDTrue([[res description] hasSuffix:@"^"]);
 }
