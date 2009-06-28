@@ -16,9 +16,9 @@
 @implementation NSMutableSet (TDIntersectionAdditions)
 
 - (void)intersectSetTestingEquality:(NSSet *)s {
-    for (TDAssembly *a1 in self) {
+    for (id a1 in self) {
         BOOL found = NO;
-        for (TDAssembly *a2 in s) {
+        for (id a2 in s) {
             if ([a1 isEqualTo:a2 ]) {
                 found = YES;
                 break;
