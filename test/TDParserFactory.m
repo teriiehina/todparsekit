@@ -53,6 +53,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 @interface TDParserFactory ()
 - (TDTokenizer *)tokenizerForParsingGrammar;
+- (BOOL)isAllWhitespace:(NSArray *)toks;
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
@@ -249,6 +250,16 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
+- (BOOL)isAllWhitespace:(NSArray *)toks {
+    for (TDToken *tok in toks) {
+        if (TDTokenTypeWhitespace != tok.tokenType) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
+
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
     TDTokenizer *t = [self tokenizerForParsingGrammar];
     t.string = s;
@@ -258,11 +269,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
-        TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
-        //a.preservesWhitespaceTokens = YES;
-        a.target = target;
-        TDAssembly *res = [self.statementParser completeMatchFor:a];
-        target = res.target;
+        if (![self isAllWhitespace:toks]) {
+            TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+            //a.preservesWhitespaceTokens = YES;
+            a.target = target;
+            TDAssembly *res = [self.statementParser completeMatchFor:a];
+            target = res.target;
+        }
     }
 
     [src release];
@@ -341,8 +354,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
-    [parserTokensTable removeObjectForKey:@"wordChar"];
-    [parserTokensTable removeObjectForKey:@"wordChars"];
+    [parserTokensTable removeObjectForKey:@"@wordChar"];
+    [parserTokensTable removeObjectForKey:@"@wordChars"];
     
     // whitespaceChars
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@whitespaceChar"]];
