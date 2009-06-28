@@ -16,6 +16,7 @@
     TDAssembly *res;
 
     TDSequence *exprSeq;
+    TDTokenizer *t;
     TDParser *lp; // language parser
 }
 

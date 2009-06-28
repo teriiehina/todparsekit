@@ -390,6 +390,15 @@
 ////    res = [lp completeMatchFor:a];
 ////    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
 ////    [mock verify];
+    
+    NSString *g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '%');";
+    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+
+    NSString *s = @"$foo%";
+    TDTokenizer *t = lp.tokenizer;
+    t.string = s;
+    TDAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+        
 }
 
 
@@ -480,9 +489,9 @@
 //    [self doMultiLineComment];
 //    [self doDelimitedString];
     
-//    [self doFactory];
+    [self doFactory];
     
-	[self doXMLParser];
+//	[self doXMLParser];
 //    [self doNSPredicateEvaluator];
     
     [pool drain];
