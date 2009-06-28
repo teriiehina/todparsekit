@@ -792,16 +792,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// inclusion            = '[' S? primaryExpr S? ']'
+// inclusion            = '&' S? primaryExpr
 - (TDCollectionParser *)inclusionParser {
     if (!inclusionParser) {
         self.inclusionParser = [TDTrack track];
         inclusionParser.name = @"inclusion";
-        [inclusionParser add:[TDSymbol symbolWithString:@"["]]; // fence
+        [inclusionParser add:[[TDSymbol symbolWithString:@"&"] discard]];
         [inclusionParser add:self.optionalWhitespaceParser];
         [inclusionParser add:self.primaryExprParser];
-        [inclusionParser add:self.optionalWhitespaceParser];
-        [inclusionParser add:[[TDSymbol symbolWithString:@"]"] discard]];
         [inclusionParser setAssembler:self selector:@selector(workOnInclusion:)];
     }
     return inclusionParser;
@@ -1130,18 +1128,12 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnInclusion:(TDAssembly *)a {
-    NSArray *objs = [a objectsAbove:bracket];
-    [a pop]; // discard '['
+    TDParser *predicate = [a pop];
+    TDParser *sub = [a pop];
+    NSAssert([predicate isKindOfClass:[TDParser class]], @"");
+    NSAssert([sub isKindOfClass:[TDParser class]], @"");
     
-    if (objs.count) {
-        TDParser *predicate = [objs objectAtIndex:0];
-        TDParser *sub = [a pop];
-        
-        NSAssert([predicate isKindOfClass:[TDParser class]], @"");
-        NSAssert([sub isKindOfClass:[TDParser class]], @"");
-        
-        [a push:[TDInclusion inclusionWithSubparser:sub predicate:predicate]];
-    }
+    [a push:[TDInclusion inclusionWithSubparser:sub predicate:predicate]];
 }
 
 

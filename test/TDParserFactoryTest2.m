@@ -517,7 +517,7 @@
     tok = [res pop];
     TDTrue(tok.isWord);    
     
-    g = @"@wordChar = ':'; @start = Word[/[^:]+/];";
+    g = @"@wordChar = ':'; @start = Word & /[^:]+/;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -538,7 +538,7 @@
 
 
 - (void)testPatternPredicate2 {
-    g = @"@wordChar = ':'; @start=ncName+; name=Word; ncName=name[/[^:]+/];";
+    g = @"@wordChar = ':'; @start=ncName+; name=Word; ncName=name & /[^:]+/;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
