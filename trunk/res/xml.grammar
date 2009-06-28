@@ -64,7 +64,7 @@
 
     nmtoken = Word;
 
-    name = Word[ /[^-:\.].*/ ];
+    name = Word & /[^-:\.].*/;
 
     // names = name (S name)*;
     // nmtokens = nmtoken (S nmtoken)*;
