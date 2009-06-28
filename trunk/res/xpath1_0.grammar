@@ -14,7 +14,7 @@
 
 name = Word;
 
-ncName = name[/[^:]+/];
+ncName = name & /[^:]+/;
 
 
 
