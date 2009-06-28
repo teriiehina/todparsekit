@@ -559,7 +559,7 @@
 
 
 - (void)testExclusionFoo {
-    g = @"@start = ex; ex = Word ~ 'foo';";
+    g = @"@start = ex; ex = Word - 'foo';";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -583,7 +583,7 @@
 
 
 - (void)testExclusionAlt {
-    g = @"@start = ex; m = ('foo'|'bar'); ex = Word ~ m;";
+    g = @"@start = ex; m = ('foo'|'bar'); ex = Word - m;";
 
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -607,7 +607,7 @@
 
 
 - (void)testExclusionAlt2 {
-    g = @"@start = ex; ex = Word ~ ('foo'|'bar');";
+    g = @"@start = ex; ex = Word - ('foo'|'bar');";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -631,7 +631,7 @@
 
 
 - (void)testExclusionAlt3 {
-    g = @"@start = ex; s = 'foo'|'baz'; m = ('foo'|'bar'); ex = s ~ m;";
+    g = @"@start = ex; s = 'foo'|'baz'; m = ('foo'|'bar'); ex = s - m;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -655,7 +655,7 @@
 
 
 - (void)testExclusionAlt4 {
-    g = @"@start = ex; m = ('foo'|'bar'); ex = ('foo'|'baz') ~ m;";
+    g = @"@start = ex; m = ('foo'|'bar'); ex = ('foo'|'baz') - m;";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -679,7 +679,7 @@
 
 
 - (void)testExclusionAlt5 {
-    g = @"@start = ex; ex = ('foo'|'baz') ~ ('foo'|'bar');";
+    g = @"@start = ex; ex = ('foo'|'baz') - ('foo'|'bar');";
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
