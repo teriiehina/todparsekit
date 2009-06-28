@@ -78,7 +78,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnStatement:(TDAssembly *)a;
 - (void)workOnCallback:(TDAssembly *)a;
 - (void)workOnExpression:(TDAssembly *)a;
-- (void)workOnInclusion:(TDAssembly *)a;    
+- (void)workOnIntersection:(TDAssembly *)a;    
 - (void)workOnExclusion:(TDAssembly *)a;
 - (void)workOnLiteral:(TDAssembly *)a;
 - (void)workOnVariable:(TDAssembly *)a;
@@ -117,7 +117,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *cardinalityParser;
 @property (nonatomic, retain) TDCollectionParser *primaryExprParser;
 @property (nonatomic, retain) TDCollectionParser *predicateParser;
-@property (nonatomic, retain) TDCollectionParser *inclusionParser;
+@property (nonatomic, retain) TDCollectionParser *intersectionParser;
 @property (nonatomic, retain) TDCollectionParser *exclusionParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
@@ -182,7 +182,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.cardinalityParser = nil;
     self.primaryExprParser = nil;
     self.predicateParser = nil;
-    self.inclusionParser = nil;
+    self.intersectionParser = nil;
     self.exclusionParser = nil;
     self.atomicValueParser = nil;
     self.discardParser = nil;
@@ -591,8 +591,8 @@ void TDReleaseSubparserTree(TDParser *p) {
 // nextFactor           = S factor;
 // phrase               = primaryExpr predicate*;
 // primaryExpr          = atomicValue | '(' expr ')';
-// predicate            = S* (inclusion | exclusion);
-// inclusion            = '&' S* primaryExpr;
+// predicate            = S* (intersection | exclusion);
+// intersection         = '&' S* primaryExpr;
 // exclusion            = '-' S* primaryExpr;
 // phraseStar           = phrase S* '*';
 // phrasePlus           = phrase S* '+';
@@ -775,7 +775,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// predicate            = S* (inclusion | exclusion);
+// predicate            = S* (intersection | exclusion);
 - (TDCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDSequence sequence];
@@ -783,7 +783,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [predicateParser add:self.optionalWhitespaceParser];
 
         TDAlternation *a = [TDAlternation alternation];
-        [a add:self.inclusionParser];
+        [a add:self.intersectionParser];
         [a add:self.exclusionParser];
 
         [predicateParser add:a];
@@ -792,17 +792,17 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// inclusion            = '&' S* primaryExpr;
-- (TDCollectionParser *)inclusionParser {
-    if (!inclusionParser) {
-        self.inclusionParser = [TDTrack track];
-        inclusionParser.name = @"inclusion";
-        [inclusionParser add:[[TDSymbol symbolWithString:@"&"] discard]];
-        [inclusionParser add:self.optionalWhitespaceParser];
-        [inclusionParser add:self.primaryExprParser];
-        [inclusionParser setAssembler:self selector:@selector(workOnInclusion:)];
+// intersection         = '&' S* primaryExpr;
+- (TDCollectionParser *)intersectionParser {
+    if (!intersectionParser) {
+        self.intersectionParser = [TDTrack track];
+        intersectionParser.name = @"intersection";
+        [intersectionParser add:[[TDSymbol symbolWithString:@"&"] discard]];
+        [intersectionParser add:self.optionalWhitespaceParser];
+        [intersectionParser add:self.primaryExprParser];
+        [intersectionParser setAssembler:self selector:@selector(workOnIntersection:)];
     }
-    return inclusionParser;
+    return intersectionParser;
 }
 
 
@@ -810,7 +810,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDCollectionParser *)exclusionParser {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
-        inclusionParser.name = @"exclusion";
+        intersectionParser.name = @"exclusion";
         [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
         [exclusionParser add:self.optionalWhitespaceParser];
         [exclusionParser add:self.primaryExprParser];
@@ -1133,7 +1133,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnInclusion:(TDAssembly *)a {
+- (void)workOnIntersection:(TDAssembly *)a {
     TDParser *predicate = [a pop];
     TDParser *sub = [a pop];
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
@@ -1432,7 +1432,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize cardinalityParser;
 @synthesize primaryExprParser;
 @synthesize predicateParser;
-@synthesize inclusionParser;
+@synthesize intersectionParser;
 @synthesize exclusionParser;
 @synthesize atomicValueParser;
 @synthesize discardParser;
