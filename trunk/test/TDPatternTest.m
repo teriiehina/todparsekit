@@ -31,7 +31,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDWord word]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDWord word]];
     a = [inc completeMatchFor:a];
     
     TDNotNil(a);
@@ -41,7 +41,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
     a = [inc completeMatchFor:a];
     
     TDNil(a);
@@ -87,7 +87,7 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
     
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
     a = [inc completeMatchFor:a];
     
     TDNotNil(a);
@@ -98,7 +98,7 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
 
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
     a = [inc completeMatchFor:a];
 
     TDNotNil(a);
@@ -197,7 +197,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
 
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDWord word]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDWord word]];
     a = [inc completeMatchFor:a];
     
     TDNotNil(a);
@@ -212,7 +212,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     
-    inc = [TDInclusion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
+    inc = [TDUnion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
     a = [inc completeMatchFor:a];
     
     TDNil(a);

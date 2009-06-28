@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDInclusion.h>
+#import <TDParseKit/TDUnion.h>
 
-@interface TDExclusion : TDInclusion {
+@interface TDExclusion : TDUnion {
 
 }
 

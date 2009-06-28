@@ -8,7 +8,7 @@
 
 #import "TDExclusion.h"
 
-@interface TDInclusion ()
+@interface TDUnion ()
 - (BOOL)isPredicateMatch:(NSSet *)assemblies;
 @end
 

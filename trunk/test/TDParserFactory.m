@@ -940,7 +940,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [patternParser add:[TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
         
         TDParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
-        TDParser *inc = [TDInclusion inclusionWithSubparser:[TDWord word] predicate:opts];
+        TDParser *inc = [TDUnion inclusionWithSubparser:[TDWord word] predicate:opts];
         [inc setAssembler:self selector:@selector(workOnPatternOptions:)];
         
         [patternParser add:[self zeroOrOne:inc]];
@@ -1133,7 +1133,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
     NSAssert([sub isKindOfClass:[TDParser class]], @"");
     
-    [a push:[TDInclusion inclusionWithSubparser:sub predicate:predicate]];
+    [a push:[TDUnion inclusionWithSubparser:sub predicate:predicate]];
 }
 
 

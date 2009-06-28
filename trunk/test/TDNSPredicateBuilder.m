@@ -372,7 +372,7 @@
 
 - (TDCollectionParser *)reservedWordParser {
     if (!reservedWordParser) {
-        self.reservedWordParser = [TDInclusion inclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
+        self.reservedWordParser = [TDUnion inclusionWithSubparser:[TDWord word] predicate:self.reservedWordPattern];
         reservedWordParser.name = @"reservedWord";
         [reservedWordParser setAssembler:self selector:@selector(workOnReservedWord:)];
     }
