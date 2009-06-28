@@ -126,8 +126,9 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
-@property (nonatomic, retain) TDParser *whitespaceParser;
-@property (nonatomic, retain) TDCollectionParser *optionalWhitespaceParser;
+
+@property (nonatomic, retain, readonly) TDParser *whitespaceParser;
+@property (nonatomic, retain, readonly) TDCollectionParser *optionalWhitespaceParser;
 @end
 
 @implementation TDParserFactory
@@ -190,8 +191,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.variableParser = nil;
     self.constantParser = nil;
     self.delimitedStringParser = nil;
-    self.whitespaceParser = nil;
-    self.optionalWhitespaceParser = nil;
     [super dealloc];
 }
 
@@ -1007,21 +1006,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (TDParser *)whitespaceParser {
     return [[TDWhitespace whitespace] discard];
-//    if (!whitespaceParser) {
-//        self.whitespaceParser = [[TDWhitespace whitespace] discard];
-//        whitespaceParser.name = @"whitespace";
-//    }
-//    return whitespaceParser;
 }
 
 
 - (TDCollectionParser *)optionalWhitespaceParser {
     return [TDRepetition repetitionWithSubparser:self.whitespaceParser];
-//    if (!optionalWhitespaceParser) {
-//        self.optionalWhitespaceParser = [self zeroOrOne:self.whitespaceParser];
-//        optionalWhitespaceParser.name = @"optionalWhitespace";
-//    }
-//    return optionalWhitespaceParser;
 }
 
 
