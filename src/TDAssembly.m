@@ -69,6 +69,19 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
         return NO;
     }
     
+    TDAssembly *a = (TDAssembly *)obj;
+    if (a.length != self.length) {
+        return NO;
+    }
+
+    if (a->index != index) {
+        return NO;
+    }
+    
+    if (a.stack.count != stack.count) {
+        return NO;
+    }
+    
     return [[self description] isEqualToString:[obj description]];
 }
 
