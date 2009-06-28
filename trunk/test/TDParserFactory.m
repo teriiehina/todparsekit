@@ -121,7 +121,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *exclusionParser;
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
-@property (nonatomic, retain) TDParser *patternParser;
+@property (nonatomic, retain) TDCollectionParser *patternParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
@@ -333,17 +333,19 @@ void TDReleaseSubparserTree(TDParser *p) {
     // muli-char symbols
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@symbol"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@symbols"]];
+    [parserTokensTable removeObjectForKey:@"@symbol"];
+    [parserTokensTable removeObjectForKey:@"@symbols"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
         }
     }
-    [parserTokensTable removeObjectForKey:@"@symbol"];
-    [parserTokensTable removeObjectForKey:@"@symbols"];
     
     // wordChars
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@wordChar"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@wordChars"]];
+    [parserTokensTable removeObjectForKey:@"@wordChar"];
+    [parserTokensTable removeObjectForKey:@"@wordChars"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -353,12 +355,12 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
-    [parserTokensTable removeObjectForKey:@"@wordChar"];
-    [parserTokensTable removeObjectForKey:@"@wordChars"];
     
     // whitespaceChars
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@whitespaceChar"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@whitespaceChars"]];
+    [parserTokensTable removeObjectForKey:@"@whitespaceChar"];
+    [parserTokensTable removeObjectForKey:@"@whitespaceChars"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -373,25 +375,25 @@ void TDReleaseSubparserTree(TDParser *p) {
 			}
         }
     }
-    [parserTokensTable removeObjectForKey:@"@whitespaceChar"];
-    [parserTokensTable removeObjectForKey:@"@whitespaceChars"];
     
     // single-line comments
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@singleLineComment"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@singleLineComments"]];
+    [parserTokensTable removeObjectForKey:@"@singleLineComment"];
+    [parserTokensTable removeObjectForKey:@"@singleLineComments"];
     for (TDToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
             [t.commentState addSingleLineStartMarker:s];
         }
     }
-    [parserTokensTable removeObjectForKey:@"@singleLineComment"];
-    [parserTokensTable removeObjectForKey:@"@singleLineComments"];
     
     // multi-line comments
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@multiLineComment"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@multiLineComments"]];
     NSAssert(0 == toks.count % 2, @"@multiLineComments must be specified as quoted strings in multiples of 2");
+    [parserTokensTable removeObjectForKey:@"@multiLineComment"];
+    [parserTokensTable removeObjectForKey:@"@multiLineComments"];
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 1; i++) {
@@ -404,13 +406,13 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
-    [parserTokensTable removeObjectForKey:@"@multiLineComment"];
-    [parserTokensTable removeObjectForKey:@"@multiLineComments"];
 
     // delimited strings
     toks = [NSArray arrayWithArray:[parserTokensTable objectForKey:@"@delimitedString"]];
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@delimitedStrings"]];
     NSAssert(0 == toks.count % 3, @"@delimitedString must be specified as quoted strings in multiples of 3");
+    [parserTokensTable removeObjectForKey:@"@delimitedString"];
+    [parserTokensTable removeObjectForKey:@"@delimitedStrings"];
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 2; i++) {
@@ -428,8 +430,6 @@ void TDReleaseSubparserTree(TDParser *p) {
             }
         }
     }
-    [parserTokensTable removeObjectForKey:@"@delimitedString"];
-    [parserTokensTable removeObjectForKey:@"@delimitedStrings"];
     
     return t;
 }
@@ -593,7 +593,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // phrase               = primaryExpr predicate*
 // predicate            = inclusion | exclusion;
 // primaryExpr          = atomicValue | '(' expr ')'
-// inclusion            = '[' primaryExpr ']'
+// inclusion            = '&' primaryExpr
 // exclusion            = '-' primaryExpr
 // phraseStar           = phrase '*'
 // phrasePlus           = phrase '+'
@@ -605,7 +605,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // literal              = QuotedString
 // variable             = LowercaseWord
 // constant             = UppercaseWord 
-// pattern              = DelimitedString('/', '/')
+// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?
 
 
 // satement             = S? declaration S? '=' expr
@@ -934,11 +934,18 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = DelimitedString('/', '/');
-- (TDParser *)patternParser {
+// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?
+- (TDCollectionParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
-        self.patternParser = [TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"];
+        self.patternParser = [TDSequence sequence];
+        [patternParser add:[TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
+        
+        TDParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
+        TDParser *inc = [TDInclusion inclusionWithSubparser:[TDWord word] predicate:opts];
+        [inc setAssembler:self selector:@selector(workOnPatternOptions:)];
+        
+        [patternParser add:[self zeroOrOne:inc]];
         [patternParser setAssembler:self selector:@selector(workOnPattern:)];
     }
     return patternParser;
@@ -1138,8 +1145,45 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnPattern:(TDAssembly *)a {
+- (void)workOnPatternOptions:(TDAssembly *)a {
     TDToken *tok = [a pop];
+    NSAssert(tok.isWord, @"");
+
+    NSString *s = tok.stringValue;
+    NSAssert(s.length > 0, @"");
+
+    TDPatternOptions opts = TDPatternOptionsNone;
+    if (NSNotFound != [s rangeOfString:@"i"].location) {
+        opts |= TDPatternOptionsIgnoreCase;
+    }
+    if (NSNotFound != [s rangeOfString:@"m"].location) {
+        opts |= TDPatternOptionsMultiline;
+    }
+    if (NSNotFound != [s rangeOfString:@"x"].location) {
+        opts |= TDPatternOptionsComments;
+    }
+    if (NSNotFound != [s rangeOfString:@"s"].location) {
+        opts |= TDPatternOptionsDotAll;
+    }
+    if (NSNotFound != [s rangeOfString:@"w"].location) {
+        opts |= TDPatternOptionsUnicodeWordBoundaries;
+    }
+    
+    [a push:[NSNumber numberWithInteger:opts]];
+}
+
+
+- (void)workOnPattern:(TDAssembly *)a {
+    id obj = [a pop]; // opts (as Number*) or DelimitedString('/', '/')
+    
+    TDPatternOptions opts = TDPatternOptionsNone;
+    if ([obj isKindOfClass:[NSNumber class]]) {
+        opts = [obj integerValue];
+        obj = [a pop];
+    }
+    
+    NSAssert([obj isMemberOfClass:[TDToken class]], @"");
+    TDToken *tok = (TDToken *)obj;
     NSAssert(tok.isDelimitedString, @"");
 
     NSString *s = tok.stringValue;
@@ -1149,23 +1193,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSAssert([s hasSuffix:@"/"], @"");
 
     NSString *re = [s stringByTrimmingQuotes];
-
-    TDPatternOptions opts = TDPatternOptionsNone;
-//    if (NSNotFound != [optsString rangeOfString:@"i"].location) {
-//        opts |= TDPatternOptionsIgnoreCase;
-//    }
-//    if (NSNotFound != [optsString rangeOfString:@"m"].location) {
-//        opts |= TDPatternOptionsMultiline;
-//    }
-//    if (NSNotFound != [optsString rangeOfString:@"x"].location) {
-//        opts |= TDPatternOptionsComments;
-//    }
-//    if (NSNotFound != [optsString rangeOfString:@"s"].location) {
-//        opts |= TDPatternOptionsDotAll;
-//    }
-//    if (NSNotFound != [optsString rangeOfString:@"w"].location) {
-//        opts |= TDPatternOptionsUnicodeWordBoundaries;
-//    }
     
     TDTerminal *t = [TDPattern patternWithString:re options:opts];
     
