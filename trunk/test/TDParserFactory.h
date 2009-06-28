@@ -56,10 +56,10 @@ typedef enum {
     TDCollectionParser *atomicValueParser;
     TDCollectionParser *discardParser;
     TDCollectionParser *patternParser;
+    TDCollectionParser *delimitedStringParser;
     TDParser *literalParser;
     TDParser *variableParser;
     TDParser *constantParser;
-    TDCollectionParser *delimitedStringParser;
 }
 + (id)factory;
 
