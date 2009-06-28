@@ -122,10 +122,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *atomicValueParser;
 @property (nonatomic, retain) TDCollectionParser *discardParser;
 @property (nonatomic, retain) TDCollectionParser *patternParser;
+@property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
 @property (nonatomic, retain) TDParser *literalParser;
 @property (nonatomic, retain) TDParser *variableParser;
 @property (nonatomic, retain) TDParser *constantParser;
-@property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
 
 @property (nonatomic, retain, readonly) TDParser *whitespaceParser;
 @property (nonatomic, retain, readonly) TDCollectionParser *optionalWhitespaceParser;
@@ -185,12 +185,12 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.inclusionParser = nil;
     self.exclusionParser = nil;
     self.atomicValueParser = nil;
-    self.patternParser = nil;
     self.discardParser = nil;
+    self.patternParser = nil;
+    self.delimitedStringParser = nil;
     self.literalParser = nil;
     self.variableParser = nil;
     self.constantParser = nil;
-    self.delimitedStringParser = nil;
     [super dealloc];
 }
 
@@ -580,35 +580,35 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// @start               = statement*
-// satement             = declaration '=' expr
-// declaration          = Word callback?
-// callback             = '(' selector ')'
-// selector             = Word ':'
-// expr                 = term orTerm*
-// term                 = factor nextFactor*
-// orTerm               = '|' term
-// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
-// nextFactor           = factor
-// phrase               = primaryExpr predicate*
-// predicate            = inclusion | exclusion;
-// primaryExpr          = atomicValue | '(' expr ')'
-// inclusion            = '&' primaryExpr
-// exclusion            = '-' primaryExpr
-// phraseStar           = phrase '*'
-// phrasePlus           = phrase '+'
-// phraseQuestion       = phrase '?'
-// phraseCardinality    = phrase cardinality
-// cardinality          = '{' Num (',' Num)? '}'
-// atomicValue          = discard? (literal | variable | constant | pattern | delimitedString)
-// discard              = '^'
-// literal              = QuotedString
-// variable             = LowercaseWord
-// constant             = UppercaseWord 
-// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?
+// @start               = statement*;
+// satement             = S* declaration S* '=' expr;
+// callback             = S* '(' S* selector S* ')';
+// selector             = Word ':';
+// expr                 = S* term orTerm* S*;
+// term                 = factor nextFactor*;
+// orTerm               = S* '|' S* term;
+// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
+// nextFactor           = S factor;
+// phrase               = primaryExpr predicate*;
+// primaryExpr          = atomicValue | '(' expr ')';
+// predicate            = S* (inclusion | exclusion);
+// inclusion            = '&' S* primaryExpr;
+// exclusion            = '-' S* primaryExpr;
+// phraseStar           = phrase S* '*';
+// phrasePlus           = phrase S* '+';
+// phraseQuestion       = phrase S* '?';
+// phraseCardinality    = phrase S* cardinality;
+// cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
+// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString);
+// discard              = '^' S*;
+// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
+// delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
+// literal              = QuotedString;
+// variable             = LowercaseWord;
+// constant             = UppercaseWord;
 
 
-// satement             = S? declaration S? '=' expr
+// satement             = S* declaration S* '=' expr;
 - (TDCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDSequence sequence];
@@ -626,7 +626,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// declaration          = productionName callback?
+// declaration          = Word callback?;
 - (TDCollectionParser *)declarationParser {
     if (!declarationParser) {
         self.declarationParser = [TDSequence sequence];
@@ -638,7 +638,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// callback             = S? '(' S? selector S? ')'
+// callback             = S* '(' S* selector S* ')';
 - (TDCollectionParser *)callbackParser {
     if (!callbackParser) {
         self.callbackParser = [TDSequence sequence];
@@ -655,7 +655,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// selector             = Word ':'
+// selector             = Word ':';
 - (TDCollectionParser *)selectorParser {
     if (!selectorParser) {
         self.selectorParser = [TDTrack track];
@@ -667,7 +667,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// expr        = S? term orTerm* S?
+// expr        = S* term orTerm* S*;
 - (TDCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
@@ -682,7 +682,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// term                = factor nextFactor*
+// term                = factor nextFactor*;
 - (TDCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
@@ -695,7 +695,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// orTerm            = S? '|' S? term
+// orTerm               = S* '|' S* term;
 - (TDCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
@@ -710,7 +710,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// factor            = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality
+// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
 - (TDCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
@@ -725,7 +725,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// nextFactor        = S factor
+// nextFactor           = S factor;
 - (TDCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
         self.nextFactorParser = [TDSequence sequence];
@@ -745,7 +745,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phrase               = primaryExpr predicate*
+// phrase               = primaryExpr predicate*;
 - (TDCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDSequence sequence];
@@ -757,7 +757,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// primaryExpr          = atomicValue | '(' expr ')'
+// primaryExpr          = atomicValue | '(' expr ')';
 - (TDCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
@@ -775,7 +775,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// predicate            = S? (inclusion | exclusion)
+// predicate            = S* (inclusion | exclusion);
 - (TDCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDSequence sequence];
@@ -792,7 +792,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// inclusion            = '&' S? primaryExpr
+// inclusion            = '&' S* primaryExpr;
 - (TDCollectionParser *)inclusionParser {
     if (!inclusionParser) {
         self.inclusionParser = [TDTrack track];
@@ -806,7 +806,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// exclusion            = '-' S? primaryExpr
+// exclusion            = '-' S* primaryExpr;
 - (TDCollectionParser *)exclusionParser {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
@@ -820,7 +820,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseStar        = phrase S? '*'
+// phraseStar           = phrase S* '*';
 - (TDCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
         self.phraseStarParser = [TDSequence sequence];
@@ -834,7 +834,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phrasePlus        = phrase S? '+'
+// phrasePlus           = phrase S* '+';
 - (TDCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
         self.phrasePlusParser = [TDSequence sequence];
@@ -848,7 +848,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseQuestion       = phrase S? '?'
+// phraseQuestion       = phrase S* '?';
 - (TDCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
@@ -862,7 +862,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// phraseCardinality    = phrase S? cardinality
+// phraseCardinality    = phrase S* cardinality;
 - (TDCollectionParser *)phraseCardinalityParser {
     if (!phraseCardinalityParser) {
         self.phraseCardinalityParser = [TDSequence sequence];
@@ -876,7 +876,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// cardinality          = '{' S? Num (S? ',' S? Num)? S? '}'
+// cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
 - (TDCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
         self.cardinalityParser = [TDSequence sequence];
@@ -900,7 +900,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString)
+// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString);
 - (TDCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
@@ -920,7 +920,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// discard              = '^' S?
+// discard              = '^' S*;
 - (TDCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [TDTrack track];
@@ -932,7 +932,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?
+// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
 - (TDCollectionParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
@@ -950,39 +950,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-// literal = QuotedString
-- (TDParser *)literalParser {
-    if (!literalParser) {
-        self.literalParser = [TDQuotedString quotedString];
-        [literalParser setAssembler:self selector:@selector(workOnLiteral:)];
-    }
-    return literalParser;
-}
-
-
-// variable = LowercaseWord
-- (TDParser *)variableParser {
-    if (!variableParser) {
-        self.variableParser = [TDLowercaseWord word];
-        variableParser.name = @"variable";
-        [variableParser setAssembler:self selector:@selector(workOnVariable:)];
-    }
-    return variableParser;
-}
-
-
-// constant = UppercaseWord
-- (TDParser *)constantParser {
-    if (!constantParser) {
-        self.constantParser = [TDUppercaseWord word];
-        constantParser.name = @"constant";
-        [constantParser setAssembler:self selector:@selector(workOnConstant:)];
-    }
-    return constantParser;
-}
-
-
-// delimitedString = 'DelimitedString' S? '(' S? QuotedString (S? ',' QuotedString)? S? ')'
+// delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
 - (TDCollectionParser *)delimitedStringParser {
     if (!delimitedStringParser) {
         self.delimitedStringParser = [TDTrack track];
@@ -1002,10 +970,42 @@ void TDReleaseSubparserTree(TDParser *p) {
         [delimitedStringParser add:[self zeroOrOne:secondArg]];
         [delimitedStringParser add:self.optionalWhitespaceParser];
         [delimitedStringParser add:[[TDSymbol symbolWithString:@")"] discard]];
-
+        
         [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedString:)];
     }
     return delimitedStringParser;
+}
+
+
+// literal              = QuotedString;
+- (TDParser *)literalParser {
+    if (!literalParser) {
+        self.literalParser = [TDQuotedString quotedString];
+        [literalParser setAssembler:self selector:@selector(workOnLiteral:)];
+    }
+    return literalParser;
+}
+
+
+// variable             = LowercaseWord;
+- (TDParser *)variableParser {
+    if (!variableParser) {
+        self.variableParser = [TDLowercaseWord word];
+        variableParser.name = @"variable";
+        [variableParser setAssembler:self selector:@selector(workOnVariable:)];
+    }
+    return variableParser;
+}
+
+
+// constant             = UppercaseWord;
+- (TDParser *)constantParser {
+    if (!constantParser) {
+        self.constantParser = [TDUppercaseWord word];
+        constantParser.name = @"constant";
+        [constantParser setAssembler:self selector:@selector(workOnConstant:)];
+    }
+    return constantParser;
 }
 
 
