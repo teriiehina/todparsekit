@@ -1157,27 +1157,27 @@
 }
 
 
-//- (void)testRubyHash {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//  
-////    s = @"{\"brand\"=>{\"name\"=>\"something\","
-////    @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
-////    @"\"summary\"=>\"wee\", \"content\"=>\"woopy doo\"}, \"commit\"=>\"Save\","
-////    @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
-////    @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
-//
-//    lp.tokenizer.string = @"{'foo'=> {'logo' => #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4> } }";
-//    
-//    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', =>, {, 'logo', =>, #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>, }, }]{/'foo'/=>/{/'logo'/=>/#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>/}/}^", [res description]);
-//}
-//
+- (void)testRubyHash {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+  
+//    s = @"{\"brand\"=>{\"name\"=>\"something\","
+//    @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
+//    @"\"summary\"=>\"wee\", \"content\"=>\"woopy doo\"}, \"commit\"=>\"Save\","
+//    @"\"authenticity_token\"=>\"43a94d60304a7fb13a4ff61a5960461ce714e92b\","
+//    @"\"action\"=>\"create\", \"controller\"=>\"admin/brands\"}";
+
+    lp.tokenizer.string = @"{'foo'=> {'logo' => #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4> } }";
+    
+    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', =>, {, 'logo', =>, #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>, }, }]{/'foo'/=>/{/'logo'/=>/#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>/}/}^", [res description]);
+}
+
 
 - (void)testSymbolState {
 	s = @"@symbolState = 'b'; @start = ('b'|'ar')*;";
