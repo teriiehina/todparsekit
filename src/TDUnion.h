@@ -1,5 +1,5 @@
 //
-//  TDInclusion.h
+//  TDUnion.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/27/09.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <TDParseKit/TDParser.h>
 
-@interface TDInclusion : TDParser {
+@interface TDUnion : TDParser {
     TDParser *subparser;
     TDParser *predicate;
 }

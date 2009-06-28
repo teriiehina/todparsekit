@@ -1,12 +1,12 @@
 //
-//  TDInclusion.m
+//  TDUnion.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/27/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDInclusion.h"
+#import "TDUnion.h"
 #import <TDParseKit/TDAssembly.h>
 
 @interface TDParser ()
@@ -14,14 +14,14 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
-@interface TDInclusion ()
+@interface TDUnion ()
 - (BOOL)isPredicateMatch:(NSSet *)assemblies;
 
 @property (nonatomic, retain, readwrite) TDParser *subparser;
 @property (nonatomic, retain, readwrite) TDParser *predicate;
 @end
 
-@implementation TDInclusion
+@implementation TDUnion
 
 + (id)inclusionWithSubparser:(TDParser *)s predicate:(TDParser *)p {
     return [[[self alloc] initWithSubparser:s predicate:p] autorelease];
