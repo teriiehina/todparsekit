@@ -13,7 +13,9 @@
 - (void)testFoo {
     TDWord *word = [TDWord word];
     TDLiteral *foo = [TDLiteral literalWithString:@"foo"];
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word predicate:foo];
+    TDExclusion *ex = [TDExclusion exclusion];
+    [ex add:word];
+    [ex add:foo];
     
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -23,6 +25,7 @@
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
+    NSLog(@"res: %@", res);
     TDNil(res);
 
     s = @"wee";
@@ -38,7 +41,9 @@
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:word predicate:list];
+    TDExclusion *ex = [TDExclusion exclusion];
+    [ex add:word];
+    [ex add:list];
     
     s = @"baz";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -66,7 +71,9 @@
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusionWithSubparser:ok predicate:list];
+    TDExclusion *ex = [TDExclusion exclusion];
+    [ex add:ok];
+    [ex add:list];
     
     s = @"baz";
     a = [TDTokenAssembly assemblyWithString:s];

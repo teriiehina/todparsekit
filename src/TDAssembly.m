@@ -64,6 +64,15 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 }
 
 
+- (BOOL)isEqual:(id)obj {
+    if (![obj isMemberOfClass:[self class]]) {
+        return NO;
+    }
+    
+    return [[self description] isEqualToString:[obj description]];
+}
+
+
 - (id)next {
     NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
     return nil;

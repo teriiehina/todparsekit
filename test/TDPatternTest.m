@@ -31,8 +31,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDWord word]];
-    a = [inc completeMatchFor:a];
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDWord word]];
+
+    a = [inter completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[foo]foo^");
@@ -41,8 +44,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
-    a = [inc completeMatchFor:a];
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDSymbol symbol]];
+
+    a = [inter completeMatchFor:a];
     
     TDNil(a);
     
@@ -87,8 +93,11 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
     
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
-    a = [inc completeMatchFor:a];
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDQuotedString quotedString]];
+
+    a = [inter completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[/foo/]/foo/^");
@@ -98,9 +107,12 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
 
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDQuotedString quotedString]];
-    a = [inc completeMatchFor:a];
-
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDQuotedString quotedString]];
+    
+    a = [inter completeMatchFor:a];
+    
     TDNotNil(a);
     TDEqualObjects([a description], @"[/foo/]/foo/^");
 }
@@ -197,8 +209,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
 
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDWord word]];
-    a = [inc completeMatchFor:a];
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDWord word]];
+    
+    a = [inter completeMatchFor:a];
     
     TDNotNil(a);
     TDEqualObjects([a description], @"[NOT]NOT^");
@@ -212,8 +227,11 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     
-    inc = [TDUnion inclusionWithSubparser:p predicate:[TDSymbol symbol]];
-    a = [inc completeMatchFor:a];
+    inter = [TDIntersection intersection];
+    [inter add:p];
+    [inter add:[TDSymbol symbol]];
+    
+    a = [inter completeMatchFor:a];
     
     TDNil(a);
 }    
