@@ -2924,10 +2924,7 @@
 				);
 				PRODUCT_NAME = TDParseKit;
 				SDKROOT = "";
-				WARNING_CFLAGS = (
-					"-Wstrict-selector-match",
-					"-Wundeclared-selector",
-				);
+				WARNING_CFLAGS = "-Wundeclared-selector";
 				WRAPPER_EXTENSION = framework;
 				ZERO_LINK = YES;
 			};
