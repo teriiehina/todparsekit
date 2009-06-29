@@ -614,12 +614,16 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.statementParser = [TDSequence sequence];
         statementParser.name = @"statement";
         [statementParser add:self.optionalWhitespaceParser];
-        [statementParser add:self.declarationParser];
-        [statementParser add:self.optionalWhitespaceParser];
-        [statementParser add:[TDSymbol symbolWithString:@"="]];
+        
+        TDTrack *tr = [TDTrack track];
+        [tr add:self.declarationParser];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:[TDSymbol symbolWithString:@"="]];
 
         // accept any tokens in the parser expr the first time around. just gather tokens for later
-        [statementParser add:[self oneOrMore:[TDAny any]]];
+        [tr add:[self oneOrMore:[TDAny any]]];
+        
+        [statementParser add:tr];
         [statementParser setAssembler:self selector:@selector(workOnStatement:)];
     }
     return statementParser;
@@ -644,11 +648,15 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.callbackParser = [TDSequence sequence];
         callbackParser.name = @"callback";
         [callbackParser add:self.optionalWhitespaceParser];
-        [callbackParser add:[[TDSymbol symbolWithString:@"("] discard]];
-        [callbackParser add:self.optionalWhitespaceParser];
-        [callbackParser add:self.selectorParser];
-        [callbackParser add:self.optionalWhitespaceParser];
-        [callbackParser add:[[TDSymbol symbolWithString:@")"] discard]];
+        
+        TDTrack *tr = [TDTrack track];
+        [tr add:[[TDSymbol symbolWithString:@"("] discard]];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:self.selectorParser];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:[[TDSymbol symbolWithString:@")"] discard]];
+        
+        [callbackParser add:tr];
         [callbackParser setAssembler:self selector:@selector(workOnCallback:)];
     }
     return callbackParser;
@@ -701,9 +709,13 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
         [orTermParser add:self.optionalWhitespaceParser];
-        [orTermParser add:[TDSymbol symbolWithString:@"|"]]; // preserve as fence
-        [orTermParser add:self.optionalWhitespaceParser];
-        [orTermParser add:self.termParser];
+        
+        TDTrack *tr = [TDTrack track];
+        [tr add:[TDSymbol symbolWithString:@"|"]]; // preserve as fence
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:self.termParser];
+        
+        [orTermParser add:tr];
         [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
     return orTermParser;
@@ -797,9 +809,13 @@ void TDReleaseSubparserTree(TDParser *p) {
     if (!intersectionParser) {
         self.intersectionParser = [TDTrack track];
         intersectionParser.name = @"intersection";
-        [intersectionParser add:[[TDSymbol symbolWithString:@"&"] discard]];
-        [intersectionParser add:self.optionalWhitespaceParser];
-        [intersectionParser add:self.primaryExprParser];
+        
+        TDTrack *tr = [TDTrack track];
+        [tr add:[[TDSymbol symbolWithString:@"&"] discard]];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:self.primaryExprParser];
+        
+        [intersectionParser add:tr];
         [intersectionParser setAssembler:self selector:@selector(workOnIntersection:)];
     }
     return intersectionParser;
@@ -810,10 +826,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDCollectionParser *)exclusionParser {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
-        intersectionParser.name = @"exclusion";
-        [exclusionParser add:[[TDSymbol symbolWithString:@"-"] discard]];
-        [exclusionParser add:self.optionalWhitespaceParser];
-        [exclusionParser add:self.primaryExprParser];
+        exclusionParser.name = @"exclusion";
+
+        TDTrack *tr = [TDTrack track];
+        [tr add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:self.primaryExprParser];
+        
+        [exclusionParser add:tr];
         [exclusionParser setAssembler:self selector:@selector(workOnExclusion:)];
     }
     return exclusionParser;
@@ -888,12 +908,15 @@ void TDReleaseSubparserTree(TDParser *p) {
         [commaNum add:self.optionalWhitespaceParser];
         [commaNum add:[TDNum num]];
         
-        [cardinalityParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
-        [cardinalityParser add:self.optionalWhitespaceParser];
-        [cardinalityParser add:[TDNum num]];
-        [cardinalityParser add:[self zeroOrOne:commaNum]];
-        [cardinalityParser add:self.optionalWhitespaceParser];
-        [cardinalityParser add:[[TDSymbol symbolWithString:@"}"] discard]];
+        TDTrack *tr = [TDTrack track];
+        [tr add:[TDSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:[TDNum num]];
+        [tr add:[self zeroOrOne:commaNum]];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:[[TDSymbol symbolWithString:@"}"] discard]];
+        
+        [cardinalityParser add:tr];
         [cardinalityParser setAssembler:self selector:@selector(workOnCardinality:)];
     }
     return cardinalityParser;
@@ -923,7 +946,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 // discard              = '^' S*;
 - (TDCollectionParser *)discardParser {
     if (!discardParser) {
-        self.discardParser = [TDTrack track];
+        self.discardParser = [TDSequence sequence];
         discardParser.name = @"discardParser";
         [discardParser add:[TDSymbol symbolWithString:@"^"]]; // preserve
         [discardParser add:self.optionalWhitespaceParser];
@@ -958,11 +981,14 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.delimitedStringParser = [TDTrack track];
         delimitedStringParser.name = @"delimitedString";
         
-        TDSequence *secondArg = [TDTrack track];
+        TDSequence *secondArg = [TDSequence sequence];
         [secondArg add:self.optionalWhitespaceParser];
-        [secondArg add:[[TDSymbol symbolWithString:@","] discard]];
-        [secondArg add:self.optionalWhitespaceParser];
-        [secondArg add:[TDQuotedString quotedString]]; // endMarker
+        
+        TDTrack *tr = [TDTrack track];
+        [tr add:[[TDSymbol symbolWithString:@","] discard]];
+        [tr add:self.optionalWhitespaceParser];
+        [tr add:[TDQuotedString quotedString]]; // endMarker
+        [secondArg add:tr];
         
         [delimitedStringParser add:[[TDLiteral literalWithString:@"DelimitedString"] discard]];
         [delimitedStringParser add:self.optionalWhitespaceParser];
