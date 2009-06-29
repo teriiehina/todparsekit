@@ -102,7 +102,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDToken *equals;
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
-@property (nonatomic, retain) TDToken *bracket;
 @property (nonatomic, retain) TDToken *caret;
 @property (nonatomic, retain) TDCollectionParser *statementParser;
 @property (nonatomic, retain) TDCollectionParser *declarationParser;
@@ -147,7 +146,6 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.equals  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
         self.caret   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
         self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
@@ -167,7 +165,6 @@ void TDReleaseSubparserTree(TDParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
-    self.bracket = nil;
     self.caret = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
@@ -1443,7 +1440,6 @@ void TDReleaseSubparserTree(TDParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
-@synthesize bracket;
 @synthesize caret;
 @synthesize statementParser;
 @synthesize declarationParser;
