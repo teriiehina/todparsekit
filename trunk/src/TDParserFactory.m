@@ -78,11 +78,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnStatement:(TDAssembly *)a;
 - (void)workOnCallback:(TDAssembly *)a;
 - (void)workOnExpression:(TDAssembly *)a;
+- (void)workOnAnd:(TDAssembly *)a;
 - (void)workOnIntersection:(TDAssembly *)a;    
 - (void)workOnExclusion:(TDAssembly *)a;
+- (void)workOnPatternOptions:(TDAssembly *)a;
+- (void)workOnPattern:(TDAssembly *)a;
 - (void)workOnLiteral:(TDAssembly *)a;
 - (void)workOnVariable:(TDAssembly *)a;
 - (void)workOnConstant:(TDAssembly *)a;
+- (void)workOnDelimitedString:(TDAssembly *)a;
 - (void)workOnNum:(TDAssembly *)a;
 - (void)workOnStar:(TDAssembly *)a;
 - (void)workOnPlus:(TDAssembly *)a;
