@@ -479,7 +479,7 @@
 
 //    [self doJSParser];
     
-//    [self doProf];
+    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
@@ -496,7 +496,7 @@
 //    [self doMultiLineComment];
 //    [self doDelimitedString];
     
-    [self doFactory];
+//    [self doFactory];
     
 //	[self doXMLParser];
 //    [self doNSPredicateEvaluator];
