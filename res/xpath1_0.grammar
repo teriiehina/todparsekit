@@ -32,7 +32,8 @@ ncName = name & /[^:]+/;
 // [3] RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | AbbreviatedRelativeLocationPath
 // avoiding left recursion
 
-    relativeLocationPath = step slashStep* | abbreviatedRelativeLocationPath;
+    // avoiding infinite loop
+    relativeLocationPath = step slashStep*; // | abbreviatedRelativeLocationPath;
 
 
 // [4] Step ::= AxisSpecifier NodeTest Predicate* | AbbreviatedStep 
