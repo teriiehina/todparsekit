@@ -79,3 +79,7 @@
 #import <TDParseKit/TDScientificNumberState.h>
 #import <TDParseKit/TDUppercaseWord.h>
 #import <TDParseKit/TDLowercaseWord.h>
+
+// grammar
+#import <TDParseKit/TDParserFactory.h>
+
