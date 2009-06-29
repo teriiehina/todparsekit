@@ -33,528 +33,582 @@
     t = [factory tokenizerForParsingGrammar];
 }
 
-//
-//- (void)testJavaScript {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"javascript" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    s = @"var foo = 'bar';";
-//    lp.tokenizer.string = s;
-//    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
-////    res = [lp bestMatchFor:a];
-////    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
+
+- (void)testJavaScript {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"javascript" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"var foo = 'bar';";
+    lp.tokenizer.string = s;
+    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+//    res = [lp bestMatchFor:a];
+//    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
+}
+
+
+- (void)testCSS2_1 {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css2_1" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+//    s = @"foo {font-size:12px}";
+//    a = [TDTokenAssembly assemblyWithString:s];
+//    res = [lp bestMatchFor:a];
+//    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', ;, }]foo/{/font-family/:/'helvetica'/;/}^", [res description]);
+}    
+
+
+- (void)testCSS {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    TDParser *selectorParser = [lp parserNamed:@"selector"];
+    TDNotNil(selectorParser);
+    TDEqualObjects(selectorParser.name, @"selector");
+    TDEqualObjects([selectorParser class], [TDLowercaseWord class]);
+
+    TDParser *declParser = [lp parserNamed:@"decl"];
+    TDNotNil(declParser);
+    TDEqualObjects(declParser.name, @"decl");
+    TDEqualObjects([declParser class], [TDSequence class]);
+
+    TDParser *rulesetParser = [lp parserNamed:@"ruleset"];
+    TDNotNil(rulesetParser);
+    TDEqualObjects(rulesetParser, [(TDRepetition *)lp subparser]);
+    TDEqualObjects(rulesetParser.name, @"ruleset");
+    TDEqualObjects([rulesetParser class], [TDSequence class]);
+    
+    TDParser *startParser = [lp parserNamed:@"@start"];
+    TDNotNil(startParser);
+    TDEqualObjects(startParser, lp);
+    TDEqualObjects(startParser.name, @"@start");
+    TDEqualObjects([startParser class], [TDRepetition class]);
+    
+    s = @"foo {font-family:'helvetica';}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/;/}^", [res description]);
+    
+    s = @"foo {font-family:'helvetica'}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/}^", [res description]);
+    
+    s = @"bar {color:rgb(1, 255, 255); font-size:13px;}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar, {, color, (, 1, 255, 255, font-size, 13]bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/13/px/;/}^", [res description]);
+    
+    s = @"bar {color:rgb(1, 255, 47.0); font-family:'Helvetica'}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar, {, color, (, 1, 255, 47.0, font-family, 'Helvetica']bar/{/color/:/rgb/(/1/,/255/,/47.0/)/;/font-family/:/'Helvetica'/}^", [res description]);
+    
+    s = @"foo {font-family:'Lucida Grande'} bar {color:rgb(1, 255, 255); font-size:9px;}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[foo, {, font-family, 'Lucida Grande', bar, {, color, (, 1, 255, 255, font-size, 9]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/9/px/;/}^", [res description]);
+}
+
+
+- (void)testJSON {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"{'foo':'bar'}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', :, 'bar', }]{/'foo'/:/'bar'/}^", [res description]);
+    
+    s = @"{'foo':{}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', :, {, }, }]{/'foo'/:/{/}/}^", [res description]);
+    
+    s = @"{'foo':{'bar':[]}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', :, {, 'bar', :, [, ], }, }]{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
+    
+    s = @"['foo', true, null]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, 'foo', ,, true, ,, null, ]][/'foo'/,/true/,/null/]^", [res description]);
+    
+    s = @"[[]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [, ], ]][/[/]/]^", [res description]);
+    
+    s = @"[[[1]]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [, [, 1, ], ], ]][/[/[/1/]/]/]^", [res description]);
+}
+
+
+- (void)testJSONWithDiscards {
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
+    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"{'foo':'bar'}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', 'bar']{/'foo'/:/'bar'/}^", [res description]);
+    
+    s = @"{'foo':{}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', {]{/'foo'/:/{/}/}^", [res description]);
+    
+    s = @"{'foo':{'bar':[]}}";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[{, 'foo', {, 'bar', []{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
+    
+    s = @"['foo', true, null]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, 'foo'][/'foo'/,/true/,/null/]^", [res description]);
+    
+    s = @"[[]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [][/[/]/]^", [res description]);
+    
+    s = @"[[[1]]]";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[[, [, [, 1][/[/[/1/]/]/]^", [res description]);
+}
+
+
+- (void)testStartLiteral {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = 'bar';";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo*; foo = 'bar';";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    s = @"bar bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved2 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)*; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    [[mock expect] workOnBaz:OCMOCK_ANY];
+    s = @"bar bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved3 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    [[mock expect] workOnBaz:OCMOCK_ANY];
+    s = @"bar bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralNonReserved4 {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    [[mock expect] workOnBaz:OCMOCK_ANY];
+    [[mock expect] workOnBaz:OCMOCK_ANY];
+    s = @"bar bat bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat, bat]bar/bat/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorDefault {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorOnAll {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
+    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+    
+    [[mock expect] workOn_Start:OCMOCK_ANY];
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorOnTerminals {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
+    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDNil(lp.assembler);
+    TDNil(NSStringFromSelector(lp.selector));
+    
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorOnExplicit {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo|baz; foo (workOnFoo:) = 'bar'; baz (workOnBaz:) = 'bat'";
+    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDNil(lp.assembler);
+    TDNil(NSStringFromSelector(lp.selector));
+    
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorOnExplicitNone {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
+    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDNil(lp.assembler);
+    TDNil(NSStringFromSelector(lp.selector));
+    
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testAssemblerSettingBehaviorOnExplicitOrTerminal {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start = (foo|baz)+; foo (workOnFoo:) = 'bar'; baz = 'bat'";
+    factory.assemblerSettingBehavior = (TDParserFactoryAssemblerSettingBehaviorOnExplicit | TDParserFactoryAssemblerSettingBehaviorOnTerminals);
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDNil(lp.assembler);
+    TDNil(NSStringFromSelector(lp.selector));
+    
+    [[mock expect] workOnFoo:OCMOCK_ANY];
+    [[mock expect] workOnBaz:OCMOCK_ANY];
+    s = @"bar bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp completeMatchFor:a];
+    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartLiteralWithCallback {
+    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
+    s = @"@start (workOnStart:) = 'bar';";
+    lp = [factory parserFromGrammar:s assembler:mock];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    TDEqualObjects(lp.name, @"@start");
+    TDTrue(lp.assembler == mock);
+    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
+
+    [[mock expect] workOnStart:OCMOCK_ANY];
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+    [mock verify];
+}
+
+
+- (void)testStartRefToLiteral {
+    s = @" @start = foo; foo = 'bar';";
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+    
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
+
+
+- (void)testStartRefToLiteral3 {
+    s = @" @start = foo|baz; baz = 'bat'; foo = 'bar';";
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
+
+
+- (void)testStartRefToLiteral2 {
+    s = @"foo = 'bar'; baz = 'bat'; @start = (foo | baz)*;";
+    lp = [factory parserFromGrammar:s assembler:nil];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDParser class]]);
+
+    s = @"bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+
+    s = @"bat bat";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bat, bat]bat/bat^", [res description]);
+
+    s = @"bat bat bat bat bar";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[bat, bat, bat, bat, bar]bat/bat/bat/bat/bar^", [res description]);
+}
+
+
+- (void)testStmtTrackException {
+    s = @"@start =";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    
+    s = @"@start";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testCallbackTrackException {
+    s = @"@start ( = 'foo';";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    
+    s = @"@start (foo: = 'foo'";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testSelectorTrackException {
+    s = @"@start (foo) = 'foo';";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testOrTrackException {
+    s = @"@start = 'foo'|;";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+//- (void)testExprTrackException {
+//    s = @"@start=(foo;";
+//    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
 //}
-//
-//
-//- (void)testCSS2_1 {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"css2_1" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-////    s = @"foo {font-size:12px}";
-////    a = [TDTokenAssembly assemblyWithString:s];
-////    res = [lp bestMatchFor:a];
-////    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', ;, }]foo/{/font-family/:/'helvetica'/;/}^", [res description]);
-//}    
-//
-//
-//- (void)testCSS {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    TDParser *selectorParser = [lp parserNamed:@"selector"];
-//    TDNotNil(selectorParser);
-//    TDEqualObjects(selectorParser.name, @"selector");
-//    TDEqualObjects([selectorParser class], [TDLowercaseWord class]);
-//
-//    TDParser *declParser = [lp parserNamed:@"decl"];
-//    TDNotNil(declParser);
-//    TDEqualObjects(declParser.name, @"decl");
-//    TDEqualObjects([declParser class], [TDSequence class]);
-//
-//    TDParser *rulesetParser = [lp parserNamed:@"ruleset"];
-//    TDNotNil(rulesetParser);
-//    TDEqualObjects(rulesetParser, [(TDRepetition *)lp subparser]);
-//    TDEqualObjects(rulesetParser.name, @"ruleset");
-//    TDEqualObjects([rulesetParser class], [TDSequence class]);
-//    
-//    TDParser *startParser = [lp parserNamed:@"@start"];
-//    TDNotNil(startParser);
-//    TDEqualObjects(startParser, lp);
-//    TDEqualObjects(startParser.name, @"@start");
-//    TDEqualObjects([startParser class], [TDRepetition class]);
-//    
-//    s = @"foo {font-family:'helvetica';}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/;/}^", [res description]);
-//    
-//    s = @"foo {font-family:'helvetica'}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/}^", [res description]);
-//    
-//    s = @"bar {color:rgb(1, 255, 255); font-size:13px;}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar, {, color, (, 1, 255, 255, font-size, 13]bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/13/px/;/}^", [res description]);
-//    
-//    s = @"bar {color:rgb(1, 255, 47.0); font-family:'Helvetica'}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar, {, color, (, 1, 255, 47.0, font-family, 'Helvetica']bar/{/color/:/rgb/(/1/,/255/,/47.0/)/;/font-family/:/'Helvetica'/}^", [res description]);
-//    
-//    s = @"foo {font-family:'Lucida Grande'} bar {color:rgb(1, 255, 255); font-size:9px;}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[foo, {, font-family, 'Lucida Grande', bar, {, color, (, 1, 255, 255, font-size, 9]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/9/px/;/}^", [res description]);
-//}
-//
-//
-//- (void)testJSON {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    s = @"{'foo':'bar'}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', :, 'bar', }]{/'foo'/:/'bar'/}^", [res description]);
-//    
-//    s = @"{'foo':{}}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', :, {, }, }]{/'foo'/:/{/}/}^", [res description]);
-//    
-//    s = @"{'foo':{'bar':[]}}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', :, {, 'bar', :, [, ], }, }]{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
-//    
-//    s = @"['foo', true, null]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, 'foo', ,, true, ,, null, ]][/'foo'/,/true/,/null/]^", [res description]);
-//    
-//    s = @"[[]]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, [, ], ]][/[/]/]^", [res description]);
-//    
-//    s = @"[[[1]]]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, [, [, 1, ], ], ]][/[/[/1/]/]/]^", [res description]);
-//}
-//
-//
-//- (void)testJSONWithDiscards {
-//    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
-//    s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    s = @"{'foo':'bar'}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', 'bar']{/'foo'/:/'bar'/}^", [res description]);
-//    
-//    s = @"{'foo':{}}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', {]{/'foo'/:/{/}/}^", [res description]);
-//    
-//    s = @"{'foo':{'bar':[]}}";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[{, 'foo', {, 'bar', []{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
-//    
-//    s = @"['foo', true, null]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, 'foo'][/'foo'/,/true/,/null/]^", [res description]);
-//    
-//    s = @"[[]]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, [][/[/]/]^", [res description]);
-//    
-//    s = @"[[[1]]]";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[[, [, [, 1][/[/[/1/]/]/]^", [res description]);
-//}
-//
-//
-//- (void)testStartLiteral {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = 'bar';";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartLiteralNonReserved {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo*; foo = 'bar';";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    s = @"bar bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartLiteralNonReserved2 {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = (foo|baz)*; foo = 'bar'; baz = 'bat'";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    [[mock expect] workOnBaz:OCMOCK_ANY];
-//    s = @"bar bat";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartLiteralNonReserved3 {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    [[mock expect] workOnBaz:OCMOCK_ANY];
-//    s = @"bar bat";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartLiteralNonReserved4 {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = (foo|baz)+; foo = 'bar'; baz = 'bat'";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    [[mock expect] workOnBaz:OCMOCK_ANY];
-//    [[mock expect] workOnBaz:OCMOCK_ANY];
-//    s = @"bar bat bat";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar, bat, bat]bar/bat/bat^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorDefault {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorOnAll {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-//    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
-//    
-//    [[mock expect] workOn_Start:OCMOCK_ANY];
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorOnTerminals {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-//    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDNil(lp.assembler);
-//    TDNil(NSStringFromSelector(lp.selector));
-//    
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorOnExplicit {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo|baz; foo (workOnFoo:) = 'bar'; baz (workOnBaz:) = 'bat'";
-//    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDNil(lp.assembler);
-//    TDNil(NSStringFromSelector(lp.selector));
-//    
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorOnExplicitNone {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-//    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDNil(lp.assembler);
-//    TDNil(NSStringFromSelector(lp.selector));
-//    
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testAssemblerSettingBehaviorOnExplicitOrTerminal {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start = (foo|baz)+; foo (workOnFoo:) = 'bar'; baz = 'bat'";
-//    factory.assemblerSettingBehavior = (TDParserFactoryAssemblerSettingBehaviorOnExplicit | TDParserFactoryAssemblerSettingBehaviorOnTerminals);
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDNil(lp.assembler);
-//    TDNil(NSStringFromSelector(lp.selector));
-//    
-//    [[mock expect] workOnFoo:OCMOCK_ANY];
-//    [[mock expect] workOnBaz:OCMOCK_ANY];
-//    s = @"bar bat";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp completeMatchFor:a];
-//    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartLiteralWithCallback {
-//    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
-//    s = @"@start (workOnStart:) = 'bar';";
-//    lp = [factory parserFromGrammar:s assembler:mock];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    TDEqualObjects(lp.name, @"@start");
-//    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
-//
-//    [[mock expect] workOnStart:OCMOCK_ANY];
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//    [mock verify];
-//}
-//
-//
-//- (void)testStartRefToLiteral {
-//    s = @" @start = foo; foo = 'bar';";
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//    
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//}
-//
-//
-//- (void)testStartRefToLiteral3 {
-//    s = @" @start = foo|baz; baz = 'bat'; foo = 'bar';";
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//}
-//
-//
-//- (void)testStartRefToLiteral2 {
-//    s = @"foo = 'bar'; baz = 'bat'; @start = (foo | baz)*;";
-//    lp = [factory parserFromGrammar:s assembler:nil];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDParser class]]);
-//
-//    s = @"bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bar]bar^", [res description]);
-//
-//    s = @"bat bat";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bat, bat]bat/bat^", [res description]);
-//
-//    s = @"bat bat bat bat bar";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[bat, bat, bat, bat, bar]bat/bat/bat/bat/bar^", [res description]);
-//}
-//
-//
-////- (void)testStmtTrackException {
-////    s = @"@start = ";
-////    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
-////
-////    s = @"@start";
-////    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
-////}
-//
-//
-////- (void)testExprTrackException {
-////    s = @"(foo";
-////    STAssertThrowsSpecificNamed([factory parserFromExpression:s], TDTrackException, TDTrackExceptionName, @"");
-////
-////    s = @"foo|";
-////    STAssertThrowsSpecificNamed([factory parserFromExpression:s], TDTrackException, TDTrackExceptionName, @"");
-////}
-//
-//
-//- (void)testExprHelloPlus {
-//    s = @"'hello'+";
-//    // use the result parser
-//    lp = [factory parserFromExpression:s];
-//    TDNotNil(lp);
-//    TDTrue([lp isKindOfClass:[TDSequence class]]);
-//    s = @"hello hello";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
-//}
-//
-//
-//- (void)testExprHelloStar {
-//    s = @"'hello'*";
-//    // use the result parser
-//    lp = [factory parserFromExpression:s];
-//    TDNotNil(lp);
-//    TDEqualObjects([lp class], [TDRepetition class]);
-//
-//    s = @"hello hello hello";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);
-//}
-//
-//
-//- (void)testExprHelloQuestion {
-//    s = @"'hello'?";
-//    // use the result parser
-//    lp = [factory parserFromExpression:s];
-//    TDNotNil(lp);
-//    TDEqualObjects([lp class], [TDAlternation class]);
-//
-//    s = @"hello hello hello";
-//    a = [TDTokenAssembly assemblyWithString:s];
-//    res = [lp bestMatchFor:a];
-//    TDEqualObjects(@"[hello]hello^hello/hello", [res description]);
-//}
-//
+
+
+- (void)testIntersectionTrackException {
+    s = @"@start='foo' &;";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testExclusionTrackException {
+    s = @"@start='foo' -;";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testDelimitedStringTrackException {
+    s = @"@start=DelimitedString('/';";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"@start=DelimitedString('/', ;";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testCardinalityTrackException {
+    s = @"@start='foo'{;";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+
+    s = @"@start='foo'{};";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    
+    s = @"@start='foo'{,};";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    
+    s = @"@start='foo'{m};";
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+}
+
+
+- (void)testExprHelloPlus {
+    s = @"'hello'+";
+    // use the result parser
+    lp = [factory parserFromExpression:s];
+    TDNotNil(lp);
+    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    s = @"hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
+}
+
+
+- (void)testExprHelloStar {
+    s = @"'hello'*";
+    // use the result parser
+    lp = [factory parserFromExpression:s];
+    TDNotNil(lp);
+    TDEqualObjects([lp class], [TDRepetition class]);
+
+    s = @"hello hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);
+}
+
+
+- (void)testExprHelloQuestion {
+    s = @"'hello'?";
+    // use the result parser
+    lp = [factory parserFromExpression:s];
+    TDNotNil(lp);
+    TDEqualObjects([lp class], [TDAlternation class]);
+
+    s = @"hello hello hello";
+    a = [TDTokenAssembly assemblyWithString:s];
+    res = [lp bestMatchFor:a];
+    TDEqualObjects(@"[hello]hello^hello/hello", [res description]);
+}
+
 
 - (void)testExprOhHaiThereQuestion {
     s = @"'oh'? 'hai'? 'there'?";
