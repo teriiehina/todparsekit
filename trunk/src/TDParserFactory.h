@@ -31,7 +31,6 @@ typedef enum {
     TDToken *equals;
     TDToken *curly;
     TDToken *paren;
-    TDToken *bracket;
     TDToken *caret;
     BOOL isGatheringClasses;
     TDCollectionParser *statementParser;
