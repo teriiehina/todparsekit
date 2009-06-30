@@ -39,7 +39,7 @@
         self.defaultAttr = @"content";
         self.defaultRelation = @"=";
         self.defaultValue = @"";
-        self.nonReservedWordFence = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
+        self.nonReservedWordFence = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"." floatValue:0.0];
     }
     return self;
 }

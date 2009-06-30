@@ -69,8 +69,8 @@ static NSString *kTDPlistNullString = @"<null>";
         // add '<null>' as a multichar symbol
         [tokenizer.symbolState add:kTDPlistNullString];
         
-        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
-        self.paren = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
+        self.curly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.];
+        self.paren = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.];
         [self add:[PKEmpty empty]];
         [self add:self.arrayParser];
         [self add:self.dictParser];

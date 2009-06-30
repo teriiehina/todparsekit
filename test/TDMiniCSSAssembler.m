@@ -19,8 +19,8 @@
 - (id)init {
     if (self = [super init]) {
         self.attributes = [NSMutableDictionary dictionary];
-        self.paren = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.curly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
     }
     return self;
 }

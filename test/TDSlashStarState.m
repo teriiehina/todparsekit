@@ -63,7 +63,7 @@
     }
     
     if (reportTokens) {
-        return [PKToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+        return [PKToken tokenWithTokenType:PKTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
     } else {
         return [t nextToken];
     }

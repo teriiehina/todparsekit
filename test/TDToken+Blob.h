@@ -8,7 +8,7 @@
 
 #import <ParseKit/PKToken.h>
 
-extern const NSInteger TDTokenTypeBlob;
+extern const NSInteger PKTokenTypeBlob;
 
 @interface PKToken (Blob)
 - (BOOL)isBlob;

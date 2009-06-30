@@ -86,7 +86,7 @@
     NSMutableArray *toks = nil;
     PKToken *tok = nil;
     while (tok = [a pop]) {
-        if (TDTokenTypeWhitespace != tok.tokenType) {
+        if (PKTokenTypeWhitespace != tok.tokenType) {
             if (!toks) toks = [NSMutableArray array];
             [toks addObject:tok];
         } else {
@@ -119,7 +119,7 @@
     NSMutableArray *whitespaceToks = nil;
     PKToken *tok = nil;
     while (tok = [a pop]) {
-        if (TDTokenTypeWhitespace == tok.tokenType) {
+        if (PKTokenTypeWhitespace == tok.tokenType) {
             if (!whitespaceToks) {
                 whitespaceToks = [NSMutableArray array];
             }

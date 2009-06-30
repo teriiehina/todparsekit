@@ -8,12 +8,12 @@
 
 #import "TDNCName.h"
 
-const NSInteger TDTokenTypeNCName = 300;
+const NSInteger PKTokenTypeNCName = 300;
 
 @implementation PKToken (NCNameAdditions)
 
 - (BOOL)isNCName {
-    return self.tokenType == TDTokenTypeNCName;
+    return self.tokenType == PKTokenTypeNCName;
 }
 
 @end

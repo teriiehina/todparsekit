@@ -51,9 +51,9 @@
 
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:defaultAttrs] autorelease];
         
-        self.comma = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"," floatValue:0];
-        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
-        self.bracket = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0];
+        self.comma = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"," floatValue:0];
+        self.curly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0];
+        self.bracket = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0];
     }
     return self;
 }
@@ -88,7 +88,7 @@
     PKToken *tok = nil;
     while (1) {
         tok = [a pop];
-        if (TDTokenTypeWhitespace == tok.tokenType) {
+        if (PKTokenTypeWhitespace == tok.tokenType) {
             [whitespaceToks addObject:tok];
         } else {
             [a push:tok];
