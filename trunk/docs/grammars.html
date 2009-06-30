@@ -115,7 +115,7 @@
     freezing = 'freezing';</pre>
     </div>
     
-    <p>The <tt>adjective</tt> production is an <em>alternation</em> of either an instance of the <tt>cold</tt> production or the literal string <tt>freezing</tt>, and <tt>cold</tt> is the literal string <tt>cold</tt>.</p>
+    <p>The <tt>adjective</tt> production is an <em>alternation</em> of either an instance of the <tt>cold</tt> or the <tt>freezing</tt> production. The <tt>cold</tt> production is the literal string <tt>cold</tt> and <tt>freezing</tt> the literal string <tt>freezing</tt>.</p>
 
     <a name="grouping"></a>
     <h3>Grouping</h3>
@@ -151,15 +151,24 @@
     
       <div class="code">
       <pre>
-    - (void)workOnSentenceAssembly:(PKAssembly *)a;
-    - (void)workOnAdjectivesAssembly:(PKAssembly *)a;
-    - (void)workOnAdjectiveAssembly:(PKAssembly *)a;
-    - (void)workOnColdAssembly:(PKAssembly *)a;
-    - (void)workOnFreezingAssembly:(PKAssembly *)a;</pre>
+    - (void)workOnSentence:(PKAssembly *)a;
+    - (void)workOnAdjectives:(PKAssembly *)a;
+    - (void)workOnAdjective:(PKAssembly *)a;
+    - (void)workOnCold:(PKAssembly *)a;
+    - (void)workOnFreezing:(PKAssembly *)a;</pre>
       </div>
       
      <p>The <tt>PKAssembly</tt> argument will have the most-recently matched tokens on the top of its stack.</p>
     
 </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-600478-9");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 </body>
 </html>
