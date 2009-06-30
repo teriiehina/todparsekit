@@ -7,7 +7,7 @@
 //
 
 #import <TDJSParseKit/TDJSParseKit.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDToken.h>
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
 #import "TDJSTokenizer.h"

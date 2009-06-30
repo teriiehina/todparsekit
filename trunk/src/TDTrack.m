@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDTrack.h>
-#import <TDParseKit/TDAssembly.h>
-#import <TDParseKit/TDTrackException.h>
+#import <ParseKit/TDTrack.h>
+#import <ParseKit/TDAssembly.h>
+#import <ParseKit/TDTrackException.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;

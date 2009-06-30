@@ -6,12 +6,12 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDSlashState.h>
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDSlashSlashState.h>
-#import <TDParseKit/TDSlashStarState.h>
+#import <ParseKit/TDSlashState.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/TDSlashSlashState.h>
+#import <ParseKit/TDSlashStarState.h>
 
 @interface TDSlashState ()
 @property (nonatomic, retain) TDSlashSlashState *slashSlashState;

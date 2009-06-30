@@ -9,7 +9,7 @@
 #import "TDJSDelimitState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <TDParseKit/TDDelimitState.h>
+#import <ParseKit/TDDelimitState.h>
 
 #pragma mark -
 #pragma mark Methods

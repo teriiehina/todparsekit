@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDParser.h>
+#import <ParseKit/TDParser.h>
 
 @class TDToken;
 

@@ -7,7 +7,7 @@
 //
 
 #import "XPathAssembler.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 #import "XPathContext.h"
 
 @implementation XPathAssembler

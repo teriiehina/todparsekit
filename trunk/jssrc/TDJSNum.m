@@ -9,7 +9,7 @@
 #import "TDJSNum.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <TDParseKit/TDNum.h>
+#import <ParseKit/TDNum.h>
 
 #pragma mark -
 #pragma mark Methods

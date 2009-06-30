@@ -10,8 +10,8 @@
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
 #import "TDJSAssembly.h"
-#import <TDParseKit/TDTokenAssembly.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDTokenAssembly.h>
+#import <ParseKit/TDToken.h>
 
 #pragma mark -
 #pragma mark Methods

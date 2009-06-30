@@ -9,7 +9,7 @@
 #import "TDJSWordState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <TDParseKit/TDWordState.h>
+#import <ParseKit/TDWordState.h>
 
 #pragma mark -
 #pragma mark Methods

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDSymbolNode.h>
+#import <ParseKit/TDSymbolNode.h>
 
 @class TDReader;
 

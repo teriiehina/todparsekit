@@ -7,7 +7,7 @@
 //
 
 #import "DebugAppDelegate.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 #import "TDParserFactory.h"
 #import "TDJsonParser.h"
 #import "TDFastJsonParser.h"

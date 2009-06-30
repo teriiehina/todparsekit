@@ -9,7 +9,7 @@
 #import "TDJSTrack.h"
 #import "TDJSUtils.h"
 #import "TDJSSequence.h"
-#import <TDParseKit/TDTrack.h>
+#import <ParseKit/TDTrack.h>
 
 #pragma mark -
 #pragma mark Methods

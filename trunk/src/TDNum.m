@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDNum.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDNum.h>
+#import <ParseKit/TDToken.h>
 
 @implementation TDNum
 

@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDPattern.h>
+#import <ParseKit/TDPattern.h>
 #import "RegexKitLite.h"
 
 @implementation TDPattern

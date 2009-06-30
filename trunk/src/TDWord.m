@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDWord.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDWord.h>
+#import <ParseKit/TDToken.h>
 
 @implementation TDWord
 

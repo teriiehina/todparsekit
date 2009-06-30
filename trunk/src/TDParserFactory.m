@@ -7,7 +7,7 @@
 //
 
 #import "TDParserFactory.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
 

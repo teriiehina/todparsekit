@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDLiteral.h>
+#import <ParseKit/TDLiteral.h>
 
 /*!
     @class      TDCaseInsensitiveLiteral 

@@ -6,12 +6,12 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDNumberState.h>
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDSymbolState.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDNumberState.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDSymbolState.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDToken ()
 @property (nonatomic, readwrite) NSUInteger offset;

@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDTerminal.h>
-#import <TDParseKit/TDAssembly.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDTerminal.h>
+#import <ParseKit/TDAssembly.h>
+#import <ParseKit/TDToken.h>
 
 @interface TDTerminal ()
 - (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly;

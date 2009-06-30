@@ -8,7 +8,7 @@
 
 #import "TDHtmlSyntaxHighlighter.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @interface TDHtmlSyntaxHighlighter ()
 - (void)workOnTag;

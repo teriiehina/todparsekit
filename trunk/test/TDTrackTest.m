@@ -7,7 +7,7 @@
 //
 
 #import "TDTrackTest.h"
-#import "TDParseKit.h"
+#import "ParseKit.h"
 
 
 @implementation TDTrackTest

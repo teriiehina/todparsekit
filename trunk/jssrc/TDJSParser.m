@@ -12,10 +12,10 @@
 #import "TDJSAssembly.h"
 #import "TDJSTokenAssembly.h"
 #import "TDJSCharacterAssembly.h"
-#import <TDParseKit/TDParser.h>
-#import <TDParseKit/TDAssembly.h>
-#import <TDParseKit/TDTokenAssembly.h>
-#import <TDParseKit/TDCharacterAssembly.h>
+#import <ParseKit/TDParser.h>
+#import <ParseKit/TDAssembly.h>
+#import <ParseKit/TDTokenAssembly.h>
+#import <ParseKit/TDCharacterAssembly.h>
 
 #pragma mark -
 #pragma mark Methods

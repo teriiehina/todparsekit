@@ -7,8 +7,8 @@
 //
 
 #import "TDBlobState.h"
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDReader.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/TDReader.h>
 #import "TDToken+Blob.h"
 
 @interface TDToken ()

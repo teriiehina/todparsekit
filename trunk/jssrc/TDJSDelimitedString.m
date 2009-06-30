@@ -9,7 +9,7 @@
 #import "TDJSDelimitedString.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <TDParseKit/TDDelimitedString.h>
+#import <ParseKit/TDDelimitedString.h>
 
 #pragma mark -
 #pragma mark Methods

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDTokenEOF : TDToken {}
 + (TDTokenEOF *)instance;

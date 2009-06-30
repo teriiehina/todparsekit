@@ -9,7 +9,7 @@
 #import "TDJSTerminal.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <TDParseKit/TDTerminal.h>
+#import <ParseKit/TDTerminal.h>
 
 #pragma mark -
 #pragma mark Methods

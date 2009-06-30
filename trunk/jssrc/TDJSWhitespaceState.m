@@ -9,7 +9,7 @@
 #import "TDJSWhitespaceState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <TDParseKit/TDWhitespaceState.h>
+#import <ParseKit/TDWhitespaceState.h>
 
 #pragma mark -
 #pragma mark Methods

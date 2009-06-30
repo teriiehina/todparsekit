@@ -1,5 +1,5 @@
 //
-//  TDParseKit.h
+//  ParseKit.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/PKTypes.h>
 
 @class TDToken;
 @class TDTokenizerState;

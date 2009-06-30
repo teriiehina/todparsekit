@@ -8,9 +8,9 @@
 
 #import "TDJSAssemblerAdapter.h"
 #import "TDJSUtils.h"
-#import <TDParseKit/TDAssembly.h>
-#import <TDParseKit/TDTokenAssembly.h>
-#import <TDParseKit/TDCharacterAssembly.h>
+#import <ParseKit/TDAssembly.h>
+#import <ParseKit/TDTokenAssembly.h>
+#import <ParseKit/TDCharacterAssembly.h>
 
 @implementation TDJSAssemblerAdapter
 
