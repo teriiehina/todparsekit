@@ -11,13 +11,13 @@
 #import <ParseKit/PKTypes.h>
 
 @interface TDTokenizerState ()
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 @end
 
 @interface TDNumberState ()
 - (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)isFraction;
 - (void)parseRightSideFromReader:(PKReader *)r;
-- (void)reset:(TDUniChar)cin;
+- (void)reset:(PKUniChar)cin;
 - (CGFloat)value;
 @end
 
@@ -27,7 +27,7 @@
     NSParameterAssert(r);
     [super parseRightSideFromReader:r];
     if ('e' == c || 'E' == c) {
-        TDUniChar e = c;
+        PKUniChar e = c;
         c = [r read];
         
         BOOL hasExp = isdigit(c);
@@ -38,7 +38,7 @@
             c = [r read];
             hasExp = isdigit(c);
         }
-        if (TDEOF != c) {
+        if (PKEOF != c) {
             [r unread];
         }
         if (hasExp) {
@@ -55,7 +55,7 @@
 }
 
 
-- (void)reset:(TDUniChar)cin {
+- (void)reset:(PKUniChar)cin {
     [super reset:cin];
     exp = (CGFloat)0.0;
     negativeExp = NO;

@@ -32,12 +32,12 @@
     @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
     @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
-- (void)setWordChars:(BOOL)yn from:(TDUniChar)start to:(TDUniChar)end;
+- (void)setWordChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end;
 
 /*!
     @brief      Informs whether the given character is recognized as a word character by this state.
     @param      cin the character to check
     @result     true if the given chracter is recognized as a word character
 */
-- (BOOL)isWordChar:(TDUniChar)c;
+- (BOOL)isWordChar:(PKUniChar)c;
 @end

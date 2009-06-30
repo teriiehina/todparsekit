@@ -29,7 +29,7 @@
 - (void)testReadCharsMatch {
     TDNotNil(reader);
     NSInteger len = [string length];
-    TDUniChar c;
+    PKUniChar c;
     NSInteger i = 0;
     for ( ; i < len; i++) {
         c = [string characterAtIndex:i];
@@ -44,34 +44,34 @@
     for ( ; i < len; i++) {
         [reader read];
     }
-    TDEquals(TDEOF, [reader read]);
+    TDEquals(PKEOF, [reader read]);
 }
 
 
 - (void)testUnread {
     [reader read];
     [reader unread];
-    TDUniChar a = 'a';
+    PKUniChar a = 'a';
     TDEquals(a, [reader read]);
 
     [reader read];
     [reader read];
     [reader unread];
-    TDUniChar c = 'c';
+    PKUniChar c = 'c';
     TDEquals(c, [reader read]);
 }
 
 
 - (void)testUnreadTooFar {
     [reader unread];
-    TDUniChar a = 'a';
+    PKUniChar a = 'a';
     TDEquals(a, [reader read]);
 
     [reader unread];
     [reader unread];
     [reader unread];
     [reader unread];
-    TDUniChar a2 = 'a';
+    PKUniChar a2 = 'a';
     TDEquals(a2, [reader read]);
 }
 

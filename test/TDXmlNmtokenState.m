@@ -13,24 +13,24 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDXmlNameState ()
-+ (BOOL)isNameChar:(TDUniChar)c;
-+ (BOOL)isValidStartSymbolChar:(TDUniChar)c;
++ (BOOL)isNameChar:(PKUniChar)c;
++ (BOOL)isValidStartSymbolChar:(PKUniChar)c;
 @end
 
 // NameChar       ::=        Letter | Digit | '.' | '-' | '_' | ':' | CombiningChar | Extender
 @implementation TDXmlNmtokenState
 
-+ (BOOL)isValidStartSymbolChar:(TDUniChar)c {
++ (BOOL)isValidStartSymbolChar:(PKUniChar)c {
     return ('_' == c || ':' == c || '-' == c || '.' == c);
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     [self resetWithReader:r];
     
     NSInteger c = cin;
@@ -39,7 +39,7 @@
         c = [r read];
     } while ([[self class] isNameChar:c]);
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

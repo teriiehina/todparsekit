@@ -20,10 +20,10 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
-- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t;
+- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
 @end
 
 @interface TDDelimitState ()
@@ -113,7 +113,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -131,16 +131,16 @@
     NSString *endMarker = nil;
     NSCharacterSet *characterSet = [self allowedCharacterSetForStartMarker:startMarker];
     
-    TDUniChar c, e;
+    PKUniChar c, e;
     if ([NSNull null] == endMarkerOrNull) {
-        e = TDEOF;
+        e = PKEOF;
     } else {
         endMarker = endMarkerOrNull;
         e = [endMarker characterAtIndex:0];
     }
     while (1) {
         c = [r read];
-        if (TDEOF == c) {
+        if (PKEOF == c) {
             if (balancesEOFTerminatedStrings && endMarker) {
                 [self appendString:endMarker];
             } else if (endMarker && !allowsUnbalancedStrings) {
@@ -190,7 +190,7 @@
         [self append:c];
     }
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

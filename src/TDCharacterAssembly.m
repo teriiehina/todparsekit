@@ -44,7 +44,7 @@
     if (index >= string.length) {
         return nil;
     }
-    TDUniChar c = [string characterAtIndex:index];
+    PKUniChar c = [string characterAtIndex:index];
     return [NSNumber numberWithInt:c];
 }
 

@@ -175,6 +175,8 @@
 		D34BAE2D0FF9CE0E00D7773A /* PKTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */; };
 		D34BAE300FF9CE6000D7773A /* PKAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE2E0FF9CE6000D7773A /* PKAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAE310FF9CE6000D7773A /* PKAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE2F0FF9CE6000D7773A /* PKAny.m */; };
+		D34BAE8C0FF9D15100D7773A /* PKTokenAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE8A0FF9D15100D7773A /* PKTokenAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAE8D0FF9D15100D7773A /* PKTokenAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE8B0FF9D15100D7773A /* PKTokenAssembly.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -767,6 +769,8 @@
 		D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTrackException.m; path = src/PKTrackException.m; sourceTree = "<group>"; };
 		D34BAE2E0FF9CE6000D7773A /* PKAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKAny.h; path = src/PKAny.h; sourceTree = "<group>"; };
 		D34BAE2F0FF9CE6000D7773A /* PKAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAny.m; path = src/PKAny.m; sourceTree = "<group>"; };
+		D34BAE8A0FF9D15100D7773A /* PKTokenAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTokenAssembly.h; path = src/PKTokenAssembly.h; sourceTree = "<group>"; };
+		D34BAE8B0FF9D15100D7773A /* PKTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenAssembly.m; path = src/PKTokenAssembly.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1816,6 +1820,8 @@
 		D3C7D8740A411F8E005DD154 /* tokens */ = {
 			isa = PBXGroup;
 			children = (
+				D34BAE8A0FF9D15100D7773A /* PKTokenAssembly.h */,
+				D34BAE8B0FF9D15100D7773A /* PKTokenAssembly.m */,
 				D341846A0E5209A60081B0DC /* tokenizer */,
 				D3541F870DFB105900429B4F /* states */,
 				D3D642270E2AC426009BF5CD /* token terminals */,
@@ -2122,6 +2128,7 @@
 				D34BAE2A0FF9CE0E00D7773A /* PKTrack.h in Headers */,
 				D34BAE2C0FF9CE0E00D7773A /* PKTrackException.h in Headers */,
 				D34BAE300FF9CE6000D7773A /* PKAny.h in Headers */,
+				D34BAE8C0FF9D15100D7773A /* PKTokenAssembly.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2554,6 +2561,7 @@
 				D34BAE2B0FF9CE0E00D7773A /* PKTrack.m in Sources */,
 				D34BAE2D0FF9CE0E00D7773A /* PKTrackException.m in Sources */,
 				D34BAE310FF9CE6000D7773A /* PKAny.m in Sources */,
+				D34BAE8D0FF9D15100D7773A /* PKTokenAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

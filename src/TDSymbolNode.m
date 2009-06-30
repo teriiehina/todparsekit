@@ -13,7 +13,7 @@
 @property (nonatomic, readwrite, retain) NSString *ancestry;
 @property (nonatomic, assign) TDSymbolNode *parent;  // this must be 'assign' to avoid retain loop leak
 @property (nonatomic, retain) NSMutableDictionary *children;
-@property (nonatomic) TDUniChar character;
+@property (nonatomic) PKUniChar character;
 @property (nonatomic, retain) NSString *string;
 
 - (void)determineAncestry;
@@ -21,7 +21,7 @@
 
 @implementation TDSymbolNode
 
-- (id)initWithParent:(TDSymbolNode *)p character:(TDUniChar)c {
+- (id)initWithParent:(TDSymbolNode *)p character:(PKUniChar)c {
     if (self = [super init]) {
         self.parent = p;
         self.character = c;
@@ -47,13 +47,13 @@
 
 
 - (void)determineAncestry {
-    if (TDEOF == parent.character) { // optimization for sinlge-char symbol (parent is symbol root node)
+    if (PKEOF == parent.character) { // optimization for sinlge-char symbol (parent is symbol root node)
         self.ancestry = string;
     } else {
         NSMutableString *result = [NSMutableString string];
         
         TDSymbolNode *n = self;
-        while (TDEOF != n.character) {
+        while (PKEOF != n.character) {
             [result insertString:n.string atIndex:0];
             n = n.parent;
         }

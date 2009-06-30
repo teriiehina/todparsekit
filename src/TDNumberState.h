@@ -18,7 +18,7 @@
     BOOL allowsTrailingDot;
     BOOL gotADigit;
     BOOL negative;
-    TDUniChar c;
+    PKUniChar c;
     CGFloat floatValue;
 }
 

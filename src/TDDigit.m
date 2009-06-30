@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDUniChar c = [obj intValue];
+    PKUniChar c = [obj intValue];
     return isdigit(c);
 }
 

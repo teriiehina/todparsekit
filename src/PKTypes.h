@@ -8,6 +8,6 @@
  */
 
 // a UTF-16 character. signed so that it may represent -1 as well
-typedef SInt32      TDUniChar;
+typedef SInt32      PKUniChar;
 
-#define TDEOF       (TDUniChar)-1
+#define PKEOF       (PKUniChar)-1

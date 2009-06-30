@@ -14,8 +14,8 @@
 @end
 
 @interface TDTokenizer ()
-- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
-- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+- (TDTokenizerState *)tokenizerStateFor:(PKUniChar)c;
+- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
 @property (nonatomic, retain) PKReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 @end
@@ -86,11 +86,11 @@
 
 
 - (TDToken *)nextToken {
-    TDUniChar c = [reader read];
+    PKUniChar c = [reader read];
     
     TDToken *result = nil;
     
-    if (TDEOF == c) {
+    if (PKEOF == c) {
         result = [TDToken EOFToken];
     } else {
         TDTokenizerState *state = [self tokenizerStateFor:c];
@@ -105,7 +105,7 @@
 }
 
 
-- (void)setTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end {
+- (void)setTokenizerState:(TDTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end {
     NSParameterAssert(state);
 
     NSInteger i = start;
@@ -135,7 +135,7 @@
 
 #pragma mark -
 
-- (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c {
+- (TDTokenizerState *)tokenizerStateFor:(PKUniChar)c {
     if (c < 0 || c > 255) {
         // customization above 255 is not supported, so fetch default.
         return [self defaultTokenizerStateFor:c];
@@ -145,7 +145,7 @@
     }
 }
 
-- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c {
+- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c {
     if (c >= 0 && c <= ' ') {            // From:  0 to: 32    From:0x00 to:0x20
         return whitespaceState;
     } else if (c == 33) {

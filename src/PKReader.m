@@ -45,9 +45,9 @@
 }
 
 
-- (TDUniChar)read {
+- (PKUniChar)read {
     if (0 == length || offset > length - 1) {
-        return TDEOF;
+        return PKEOF;
     }
     return [string characterAtIndex:offset++];
 }

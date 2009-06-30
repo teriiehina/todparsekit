@@ -21,12 +21,12 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDWordState () 
-- (BOOL)isWordChar:(TDUniChar)c;
+- (BOOL)isWordChar:(PKUniChar)c;
 
 @property (nonatomic, retain) NSMutableArray *wordChars;
 @end
@@ -59,7 +59,7 @@
 }
 
 
-- (void)setWordChars:(BOOL)yn from:(TDUniChar)start to:(TDUniChar)end {
+- (void)setWordChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = wordChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin1 set (under 256)"];
@@ -73,8 +73,8 @@
 }
 
 
-- (BOOL)isWordChar:(TDUniChar)c {    
-    if (c > TDEOF && c < wordChars.count - 1) {
+- (BOOL)isWordChar:(PKUniChar)c {    
+    if (c > PKEOF && c < wordChars.count - 1) {
         return (TDTRUE == [wordChars objectAtIndex:c]);
     }
 
@@ -96,17 +96,17 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     [self resetWithReader:r];
     
-    TDUniChar c = cin;
+    PKUniChar c = cin;
     do {
         [self append:c];
         c = [r read];
     } while ([self isWordChar:c]);
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

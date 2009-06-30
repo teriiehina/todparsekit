@@ -11,12 +11,12 @@
 
 @implementation TDSpecificChar
 
-+ (id)specificCharWithChar:(TDUniChar)c {
++ (id)specificCharWithChar:(PKUniChar)c {
     return [[[self alloc] initWithSpecificChar:c] autorelease];
 }
 
 
-- (id)initWithSpecificChar:(TDUniChar)c {
+- (id)initWithSpecificChar:(PKUniChar)c {
     self = [super initWithString:[NSString stringWithFormat:@"%C", c]];
     if (self) {
     }
@@ -25,7 +25,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDUniChar c = [obj intValue];
+    PKUniChar c = [obj intValue];
     return c == [string characterAtIndex:0];
 }
 
