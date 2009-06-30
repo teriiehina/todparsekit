@@ -14,7 +14,7 @@
 - (void)setUp {
     t = [[PKTokenizer alloc] init];
     r = [[PKReader alloc] init];
-    numberState = [[TDScientificNumberState alloc] init];
+    numberState = [[PKScientificNumberState alloc] init];
     t.numberState = numberState;
     [t setTokenizerState:numberState from:'0' to:'9'];
     [t setTokenizerState:numberState from:'.' to:'.'];

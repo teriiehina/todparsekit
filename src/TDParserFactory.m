@@ -669,7 +669,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     if (!selectorParser) {
         self.selectorParser = [PKTrack track];
         selectorParser.name = @"selector";
-        [selectorParser add:[TDLowercaseWord word]];
+        [selectorParser add:[PKLowercaseWord word]];
         [selectorParser add:[[PKSymbol symbolWithString:@":"] discard]];
     }
     return selectorParser;
@@ -1019,7 +1019,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 // variable             = LowercaseWord;
 - (PKParser *)variableParser {
     if (!variableParser) {
-        self.variableParser = [TDLowercaseWord word];
+        self.variableParser = [PKLowercaseWord word];
         variableParser.name = @"variable";
         [variableParser setAssembler:self selector:@selector(workOnVariable:)];
     }
@@ -1030,7 +1030,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 // constant             = UppercaseWord;
 - (PKParser *)constantParser {
     if (!constantParser) {
-        self.constantParser = [TDUppercaseWord word];
+        self.constantParser = [PKUppercaseWord word];
         constantParser.name = @"constant";
         [constantParser setAssembler:self selector:@selector(workOnConstant:)];
     }
@@ -1276,9 +1276,9 @@ void TDReleaseSubparserTree(PKParser *p) {
     if ([s isEqualToString:@"Word"]) {
         p = [PKWord word];
     } else if ([s isEqualToString:@"LowercaseWord"]) {
-        p = [TDLowercaseWord word];
+        p = [PKLowercaseWord word];
     } else if ([s isEqualToString:@"UppercaseWord"]) {
-        p = [TDUppercaseWord word];
+        p = [PKUppercaseWord word];
     } else if ([s isEqualToString:@"Num"]) {
         p = [PKNum num];
     } else if ([s isEqualToString:@"S"]) {

@@ -9,7 +9,7 @@
 #import "TDJSLowercaseWord.h"
 #import "TDJSUtils.h"
 #import "TDJSWord.h"
-#import <ParseKit/TDLowercaseWord.h>
+#import <ParseKit/PKLowercaseWord.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,10 +58,10 @@ JSObjectRef TDLowercaseWord_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDLowercaseWord_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDLowercaseWord");
+    TDPreconditionConstructorArgc(1, "PKLowercaseWord");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDLowercaseWord *data = [[TDLowercaseWord alloc] initWithString:s];
+    PKLowercaseWord *data = [[PKLowercaseWord alloc] initWithString:s];
     return TDLowercaseWord_new(ctx, data);
 }

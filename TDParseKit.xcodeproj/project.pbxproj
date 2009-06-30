@@ -70,10 +70,6 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6950E60E85800A0803E /* TDLowercaseWord.m */; };
-		D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */; };
 		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
 		D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -92,8 +88,6 @@
 		D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E9F860E5A795400496BD3 /* libxml2.dylib */; };
 		D31FE7400E60F40300A0803E /* XPathAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E97AF0E589DAE00496BD3 /* XPathAssembler.m */; };
 		D31FE7420E60F40900A0803E /* XPathContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D36E98210E58A3A800496BD3 /* XPathContext.m */; };
-		D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D32365200E92F327008CB5C4 /* TDScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D32365210E92F327008CB5C4 /* TDScientificNumberState.m */; };
 		D3252F7B0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */; };
 		D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
@@ -195,6 +189,12 @@
 		D34BAF580FF9E19700D7773A /* PKSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF480FF9E19700D7773A /* PKSymbol.m */; };
 		D34BAF590FF9E19700D7773A /* PKWhitespace.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF490FF9E19700D7773A /* PKWhitespace.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAF5A0FF9E19700D7773A /* PKWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF4A0FF9E19700D7773A /* PKWhitespace.m */; };
+		D34BAF960FF9E6C000D7773A /* PKScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF940FF9E6C000D7773A /* PKScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAF970FF9E6C000D7773A /* PKScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */; };
+		D34BAF9C0FF9E6D100D7773A /* PKLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF980FF9E6D100D7773A /* PKLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */; };
+		D34BAF9E0FF9E6D100D7773A /* PKUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF9A0FF9E6D100D7773A /* PKUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -239,23 +239,17 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
-		D37D38310FE77860008C2E4D /* TDLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6940E60E85800A0803E /* TDLowercaseWord.h */; };
-		D37D38320FE77860008C2E4D /* TDUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */; };
 		D37D38330FE77860008C2E4D /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; };
 		D37D38340FE77860008C2E4D /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; };
 		D37D38350FE77860008C2E4D /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; };
 		D37D38360FE77860008C2E4D /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; };
 		D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; };
-		D37D38390FE77860008C2E4D /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D32365200E92F327008CB5C4 /* TDScientificNumberState.h */; };
 		D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */; };
-		D37D38610FE7786F008C2E4D /* TDLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6950E60E85800A0803E /* TDLowercaseWord.m */; };
-		D37D38620FE7786F008C2E4D /* TDUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */; };
 		D37D38630FE7786F008C2E4D /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
 		D37D38640FE7786F008C2E4D /* TDChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A90E60E87D00A0803E /* TDChar.m */; };
 		D37D38650FE7786F008C2E4D /* TDDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AB0E60E87D00A0803E /* TDDigit.m */; };
 		D37D38660FE7786F008C2E4D /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
 		D37D38670FE7786F008C2E4D /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
-		D37D38680FE7786F008C2E4D /* TDScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D32365210E92F327008CB5C4 /* TDScientificNumberState.m */; };
 		D37D38720FE7786F008C2E4D /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C55FD0FD3617B00141CB7 /* RegexKitLite.m */; };
 		D37D38FA0FE7787C008C2E4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		D37D38FB0FE7787C008C2E4D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C560B0FD363D500141CB7 /* libicucore.dylib */; };
@@ -619,10 +613,6 @@
 		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
 		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
 		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
-		D31FE6940E60E85800A0803E /* TDLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWord.h; path = src/TDLowercaseWord.h; sourceTree = "<group>"; };
-		D31FE6950E60E85800A0803E /* TDLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWord.m; path = src/TDLowercaseWord.m; sourceTree = "<group>"; };
-		D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDUppercaseWord.h; path = src/TDUppercaseWord.h; sourceTree = "<group>"; };
-		D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDUppercaseWord.m; path = src/TDUppercaseWord.m; sourceTree = "<group>"; };
 		D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharacterAssembly.h; path = src/TDCharacterAssembly.h; sourceTree = "<group>"; };
 		D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharacterAssembly.m; path = src/TDCharacterAssembly.m; sourceTree = "<group>"; };
 		D31FE6A80E60E87D00A0803E /* TDChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDChar.h; path = src/TDChar.h; sourceTree = "<group>"; };
@@ -634,8 +624,6 @@
 		D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSpecificChar.h; path = src/TDSpecificChar.h; sourceTree = "<group>"; };
 		D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSpecificChar.m; path = src/TDSpecificChar.m; sourceTree = "<group>"; };
 		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
-		D32365200E92F327008CB5C4 /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = src/TDScientificNumberState.h; sourceTree = "<group>"; };
-		D32365210E92F327008CB5C4 /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = src/TDScientificNumberState.m; sourceTree = "<group>"; };
 		D3252F780FCE1A7E005EF059 /* TDNSPredicateBuilderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilderTest.h; path = test/TDNSPredicateBuilderTest.h; sourceTree = "<group>"; };
 		D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilderTest.m; path = test/TDNSPredicateBuilderTest.m; sourceTree = "<group>"; };
 		D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilder.h; path = test/TDNSPredicateBuilder.h; sourceTree = "<group>"; };
@@ -741,6 +729,12 @@
 		D34BAF480FF9E19700D7773A /* PKSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSymbol.m; path = src/PKSymbol.m; sourceTree = "<group>"; };
 		D34BAF490FF9E19700D7773A /* PKWhitespace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKWhitespace.h; path = src/PKWhitespace.h; sourceTree = "<group>"; };
 		D34BAF4A0FF9E19700D7773A /* PKWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKWhitespace.m; path = src/PKWhitespace.m; sourceTree = "<group>"; };
+		D34BAF940FF9E6C000D7773A /* PKScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKScientificNumberState.h; path = src/PKScientificNumberState.h; sourceTree = "<group>"; };
+		D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKScientificNumberState.m; path = src/PKScientificNumberState.m; sourceTree = "<group>"; };
+		D34BAF980FF9E6D100D7773A /* PKLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKLowercaseWord.h; path = src/PKLowercaseWord.h; sourceTree = "<group>"; };
+		D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKLowercaseWord.m; path = src/PKLowercaseWord.m; sourceTree = "<group>"; };
+		D34BAF9A0FF9E6D100D7773A /* PKUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKUppercaseWord.h; path = src/PKUppercaseWord.h; sourceTree = "<group>"; };
+		D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKUppercaseWord.m; path = src/PKUppercaseWord.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1229,10 +1223,10 @@
 		D34A1F400E54F6E800A4A0BF /* token terminals */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6940E60E85800A0803E /* TDLowercaseWord.h */,
-				D31FE6950E60E85800A0803E /* TDLowercaseWord.m */,
-				D31FE69A0E60E85800A0803E /* TDUppercaseWord.h */,
-				D31FE69B0E60E85800A0803E /* TDUppercaseWord.m */,
+				D34BAF980FF9E6D100D7773A /* PKLowercaseWord.h */,
+				D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */,
+				D34BAF9A0FF9E6D100D7773A /* PKUppercaseWord.h */,
+				D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */,
 			);
 			name = "token terminals";
 			sourceTree = "<group>";
@@ -1240,8 +1234,8 @@
 		D34A1F410E54F6F800A4A0BF /* states */ = {
 			isa = PBXGroup;
 			children = (
-				D32365200E92F327008CB5C4 /* TDScientificNumberState.h */,
-				D32365210E92F327008CB5C4 /* TDScientificNumberState.m */,
+				D34BAF940FF9E6C000D7773A /* PKScientificNumberState.h */,
+				D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */,
 			);
 			name = states;
 			sourceTree = "<group>";
@@ -2026,14 +2020,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE69C0E60E85800A0803E /* TDLowercaseWord.h in Headers */,
-				D31FE6A20E60E85800A0803E /* TDUppercaseWord.h in Headers */,
 				D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */,
 				D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */,
 				D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */,
 				D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */,
 				D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */,
-				D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */,
 				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
 				D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */,
 				D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */,
@@ -2081,6 +2072,9 @@
 				D34BAF550FF9E19700D7773A /* PKQuotedString.h in Headers */,
 				D34BAF570FF9E19700D7773A /* PKSymbol.h in Headers */,
 				D34BAF590FF9E19700D7773A /* PKWhitespace.h in Headers */,
+				D34BAF960FF9E6C000D7773A /* PKScientificNumberState.h in Headers */,
+				D34BAF9C0FF9E6D100D7773A /* PKLowercaseWord.h in Headers */,
+				D34BAF9E0FF9E6D100D7773A /* PKUppercaseWord.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2088,14 +2082,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38310FE77860008C2E4D /* TDLowercaseWord.h in Headers */,
-				D37D38320FE77860008C2E4D /* TDUppercaseWord.h in Headers */,
 				D37D38330FE77860008C2E4D /* TDCharacterAssembly.h in Headers */,
 				D37D38340FE77860008C2E4D /* TDChar.h in Headers */,
 				D37D38350FE77860008C2E4D /* TDDigit.h in Headers */,
 				D37D38360FE77860008C2E4D /* TDLetter.h in Headers */,
 				D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */,
-				D37D38390FE77860008C2E4D /* TDScientificNumberState.h in Headers */,
 				D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2438,14 +2429,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE69D0E60E85800A0803E /* TDLowercaseWord.m in Sources */,
-				D31FE6A30E60E85800A0803E /* TDUppercaseWord.m in Sources */,
 				D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */,
 				D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */,
 				D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */,
 				D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */,
 				D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */,
-				D32365240E92F327008CB5C4 /* TDScientificNumberState.m in Sources */,
 				D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */,
 				D34BAC1C0FF87F3300D7773A /* NSArray+TDParseKitAdditions.m in Sources */,
 				D34BAC1E0FF87F3300D7773A /* NSString+TDParseKitAdditions.m in Sources */,
@@ -2490,6 +2478,9 @@
 				D34BAF560FF9E19700D7773A /* PKQuotedString.m in Sources */,
 				D34BAF580FF9E19700D7773A /* PKSymbol.m in Sources */,
 				D34BAF5A0FF9E19700D7773A /* PKWhitespace.m in Sources */,
+				D34BAF970FF9E6C000D7773A /* PKScientificNumberState.m in Sources */,
+				D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */,
+				D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2533,14 +2524,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38610FE7786F008C2E4D /* TDLowercaseWord.m in Sources */,
-				D37D38620FE7786F008C2E4D /* TDUppercaseWord.m in Sources */,
 				D37D38630FE7786F008C2E4D /* TDCharacterAssembly.m in Sources */,
 				D37D38640FE7786F008C2E4D /* TDChar.m in Sources */,
 				D37D38650FE7786F008C2E4D /* TDDigit.m in Sources */,
 				D37D38660FE7786F008C2E4D /* TDLetter.m in Sources */,
 				D37D38670FE7786F008C2E4D /* TDSpecificChar.m in Sources */,
-				D37D38680FE7786F008C2E4D /* TDScientificNumberState.m in Sources */,
 				D37D38720FE7786F008C2E4D /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

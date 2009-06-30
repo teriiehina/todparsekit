@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKWord.h>
 
-@interface TDUppercaseWord : PKWord {
+@interface PKUppercaseWord : PKWord {
 
 }
 

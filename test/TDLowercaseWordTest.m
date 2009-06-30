@@ -14,7 +14,7 @@
     NSString *s = @"Foobar";
     PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
-    PKParser *p = [TDLowercaseWord word];
+    PKParser *p = [PKLowercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);
@@ -25,7 +25,7 @@
     NSString *s = @"foobar";
     PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
-    PKParser *p = [TDLowercaseWord word];
+    PKParser *p = [PKLowercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
@@ -37,7 +37,7 @@
     NSString *s = @"123";
     PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
-    PKParser *p = [TDLowercaseWord word];
+    PKParser *p = [PKLowercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);
@@ -48,7 +48,7 @@
     NSString *s = @"%Foobar";
     PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
-    PKParser *p = [TDLowercaseWord word];
+    PKParser *p = [PKLowercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);

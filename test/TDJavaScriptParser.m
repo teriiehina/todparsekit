@@ -24,7 +24,7 @@
         self.tokenizer = [PKTokenizer tokenizer];
         
         // JS supports scientific number notation (exponents like 4E+12 or 2.0e-42)
-        tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];
+        tokenizer.numberState = [[[PKScientificNumberState alloc] init] autorelease];
 
         // Nums cannot end with '.' (e.g. 32. must be 32.0)
         tokenizer.numberState.allowsTrailingDot = NO;

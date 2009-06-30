@@ -9,12 +9,12 @@
 #import <ParseKit/PKNumberState.h>
 
 /*!
-    @class      TDScientificNumberState 
-    @brief      A <tt>TDScientificNumberState</tt> object returns a number from a reader.
+    @class      PKScientificNumberState 
+    @brief      A <tt>PKScientificNumberState</tt> object returns a number from a reader.
     @details    <p>This state's idea of a number expands on its superclass, allowing an 'e' followed by an integer to represent 10 to the indicated power. For example, this state will recognize <tt>1e2</tt> as equaling <tt>100</tt>.</p>
                 <p>This class exists primarily to show how to introduce a new tokenizing state.</p>
 */
-@interface TDScientificNumberState : PKNumberState {
+@interface PKScientificNumberState : PKNumberState {
     CGFloat exp;
     BOOL negativeExp;
 }
