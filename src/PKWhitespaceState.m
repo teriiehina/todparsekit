@@ -12,8 +12,8 @@
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-#define TDTRUE (id)kCFBooleanTrue
-#define TDFALSE (id)kCFBooleanFalse
+#define PKTRUE (id)kCFBooleanTrue
+#define PKFALSE (id)kCFBooleanFalse
 
 @interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
@@ -37,7 +37,7 @@
         self.whitespaceChars = [NSMutableArray arrayWithCapacity:len];
         NSUInteger i = 0;
         for ( ; i <= len; i++) {
-            [whitespaceChars addObject:TDFALSE];
+            [whitespaceChars addObject:PKFALSE];
         }
         
         [self setWhitespaceChars:YES from:0 to:' '];
@@ -55,10 +55,10 @@
 - (void)setWhitespaceChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"PKWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
+        [NSException raise:@"PKWhitespaceStateNotSupportedException" format:@"PKWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
 
-    id obj = yn ? TDTRUE : TDFALSE;
+    id obj = yn ? PKTRUE : PKFALSE;
     NSUInteger i = start;
     for ( ; i <= end; i++) {
         [whitespaceChars replaceObjectAtIndex:i withObject:obj];
@@ -70,7 +70,7 @@
     if (cin < 0 || cin > whitespaceChars.count - 1) {
         return NO;
     }
-    return TDTRUE == [whitespaceChars objectAtIndex:cin];
+    return PKTRUE == [whitespaceChars objectAtIndex:cin];
 }
 
 
@@ -92,7 +92,7 @@
     }
     
     if (reportsWhitespaceTokens) {
-        PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
+        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
         tok.offset = offset;
         return tok;
     } else {

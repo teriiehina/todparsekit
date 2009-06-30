@@ -132,7 +132,7 @@
     self.currentStartMarker = nil;
 
     if (reportTokens) {
-        PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
         tok.offset = offset;
         return tok;
     } else {

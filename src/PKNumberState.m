@@ -79,7 +79,7 @@
         floatValue = -floatValue;
     }
     
-    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
+    PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
     tok.offset = offset;
     return tok;
 }

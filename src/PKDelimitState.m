@@ -194,7 +194,7 @@
         [r unread];
     }
     
-    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
+    PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
     tok.offset = offset;
     return tok;
 }

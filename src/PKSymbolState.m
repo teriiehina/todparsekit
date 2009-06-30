@@ -51,12 +51,12 @@
     NSUInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:symbol floatValue:0.0];
+        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:symbol floatValue:0.0];
         tok.offset = offset;
         return tok;
     } else {
         [r unread:len - 1];
-        PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
+        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
         tok.offset = offset;
         return tok;
     }
