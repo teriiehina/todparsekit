@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSpecificChar.h>
+#import <ParseKit/PKSpecificChar.h>
 #import <ParseKit/PKTypes.h>
 
-@implementation TDSpecificChar
+@implementation PKSpecificChar
 
 + (id)specificCharWithChar:(PKUniChar)c {
     return [[[self alloc] initWithSpecificChar:c] autorelease];

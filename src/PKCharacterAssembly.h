@@ -9,10 +9,10 @@
 #import <ParseKit/PKAssembly.h>
 
 /*!
-    @class      TDCharacterAssembly 
-    @brief      A <tt>TDCharacterAssembly</tt> is a <tt>PKAssembly</tt> whose elements are characters.
+    @class      PKCharacterAssembly 
+    @brief      A <tt>PKCharacterAssembly</tt> is a <tt>PKAssembly</tt> whose elements are characters.
 */
-@interface TDCharacterAssembly : PKAssembly {
+@interface PKCharacterAssembly : PKAssembly {
 
 }
 

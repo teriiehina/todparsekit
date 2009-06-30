@@ -70,16 +70,6 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
-		D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A90E60E87D00A0803E /* TDChar.m */; };
-		D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AB0E60E87D00A0803E /* TDDigit.m */; };
-		D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
-		D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
 		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
 		D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
 		D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
@@ -195,6 +185,16 @@
 		D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */; };
 		D34BAF9E0FF9E6D100D7773A /* PKUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF9A0FF9E6D100D7773A /* PKUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */; };
+		D34BAFB10FF9E7F300D7773A /* PKCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFAF0FF9E7F300D7773A /* PKCharacterAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFB20FF9E7F300D7773A /* PKCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */; };
+		D34BAFBB0FF9E80300D7773A /* PKChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFB30FF9E80300D7773A /* PKChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFBC0FF9E80300D7773A /* PKChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB40FF9E80300D7773A /* PKChar.m */; };
+		D34BAFBD0FF9E80300D7773A /* PKDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFB50FF9E80300D7773A /* PKDigit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFBE0FF9E80300D7773A /* PKDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB60FF9E80300D7773A /* PKDigit.m */; };
+		D34BAFBF0FF9E80300D7773A /* PKLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFB70FF9E80300D7773A /* PKLetter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFC00FF9E80300D7773A /* PKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB80FF9E80300D7773A /* PKLetter.m */; };
+		D34BAFC10FF9E80300D7773A /* PKSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFB90FF9E80300D7773A /* PKSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFC20FF9E80300D7773A /* PKSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFBA0FF9E80300D7773A /* PKSpecificChar.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -239,17 +239,7 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
-		D37D38330FE77860008C2E4D /* TDCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */; };
-		D37D38340FE77860008C2E4D /* TDChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6A80E60E87D00A0803E /* TDChar.h */; };
-		D37D38350FE77860008C2E4D /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; };
-		D37D38360FE77860008C2E4D /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; };
-		D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; };
 		D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */; };
-		D37D38630FE7786F008C2E4D /* TDCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */; };
-		D37D38640FE7786F008C2E4D /* TDChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6A90E60E87D00A0803E /* TDChar.m */; };
-		D37D38650FE7786F008C2E4D /* TDDigit.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AB0E60E87D00A0803E /* TDDigit.m */; };
-		D37D38660FE7786F008C2E4D /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
-		D37D38670FE7786F008C2E4D /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
 		D37D38720FE7786F008C2E4D /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C55FD0FD3617B00141CB7 /* RegexKitLite.m */; };
 		D37D38FA0FE7787C008C2E4D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0867D69BFE84028FC02AAC07 /* Foundation.framework */; };
 		D37D38FB0FE7787C008C2E4D /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C560B0FD363D500141CB7 /* libicucore.dylib */; };
@@ -613,16 +603,6 @@
 		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
 		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
 		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
-		D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDCharacterAssembly.h; path = src/TDCharacterAssembly.h; sourceTree = "<group>"; };
-		D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCharacterAssembly.m; path = src/TDCharacterAssembly.m; sourceTree = "<group>"; };
-		D31FE6A80E60E87D00A0803E /* TDChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDChar.h; path = src/TDChar.h; sourceTree = "<group>"; };
-		D31FE6A90E60E87D00A0803E /* TDChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDChar.m; path = src/TDChar.m; sourceTree = "<group>"; };
-		D31FE6AA0E60E87D00A0803E /* TDDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDigit.h; path = src/TDDigit.h; sourceTree = "<group>"; };
-		D31FE6AB0E60E87D00A0803E /* TDDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDigit.m; path = src/TDDigit.m; sourceTree = "<group>"; };
-		D31FE6AC0E60E87D00A0803E /* TDLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLetter.h; path = src/TDLetter.h; sourceTree = "<group>"; };
-		D31FE6AD0E60E87D00A0803E /* TDLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLetter.m; path = src/TDLetter.m; sourceTree = "<group>"; };
-		D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSpecificChar.h; path = src/TDSpecificChar.h; sourceTree = "<group>"; };
-		D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSpecificChar.m; path = src/TDSpecificChar.m; sourceTree = "<group>"; };
 		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
 		D3252F780FCE1A7E005EF059 /* TDNSPredicateBuilderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilderTest.h; path = test/TDNSPredicateBuilderTest.h; sourceTree = "<group>"; };
 		D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilderTest.m; path = test/TDNSPredicateBuilderTest.m; sourceTree = "<group>"; };
@@ -735,6 +715,16 @@
 		D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKLowercaseWord.m; path = src/PKLowercaseWord.m; sourceTree = "<group>"; };
 		D34BAF9A0FF9E6D100D7773A /* PKUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKUppercaseWord.h; path = src/PKUppercaseWord.h; sourceTree = "<group>"; };
 		D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKUppercaseWord.m; path = src/PKUppercaseWord.m; sourceTree = "<group>"; };
+		D34BAFAF0FF9E7F300D7773A /* PKCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKCharacterAssembly.h; path = src/PKCharacterAssembly.h; sourceTree = "<group>"; };
+		D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKCharacterAssembly.m; path = src/PKCharacterAssembly.m; sourceTree = "<group>"; };
+		D34BAFB30FF9E80300D7773A /* PKChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKChar.h; path = src/PKChar.h; sourceTree = "<group>"; };
+		D34BAFB40FF9E80300D7773A /* PKChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKChar.m; path = src/PKChar.m; sourceTree = "<group>"; };
+		D34BAFB50FF9E80300D7773A /* PKDigit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKDigit.h; path = src/PKDigit.h; sourceTree = "<group>"; };
+		D34BAFB60FF9E80300D7773A /* PKDigit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKDigit.m; path = src/PKDigit.m; sourceTree = "<group>"; };
+		D34BAFB70FF9E80300D7773A /* PKLetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKLetter.h; path = src/PKLetter.h; sourceTree = "<group>"; };
+		D34BAFB80FF9E80300D7773A /* PKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKLetter.m; path = src/PKLetter.m; sourceTree = "<group>"; };
+		D34BAFB90FF9E80300D7773A /* PKSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKSpecificChar.h; path = src/PKSpecificChar.h; sourceTree = "<group>"; };
+		D34BAFBA0FF9E80300D7773A /* PKSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSpecificChar.m; path = src/PKSpecificChar.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1941,8 +1931,8 @@
 		D3E785F10E550F63008C7D61 /* chars */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6A40E60E86F00A0803E /* TDCharacterAssembly.h */,
-				D31FE6A50E60E86F00A0803E /* TDCharacterAssembly.m */,
+				D34BAFAF0FF9E7F300D7773A /* PKCharacterAssembly.h */,
+				D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */,
 				D3E7861F0E55363F008C7D61 /* char terminals */,
 			);
 			name = chars;
@@ -1962,14 +1952,14 @@
 		D3E7861F0E55363F008C7D61 /* char terminals */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6A80E60E87D00A0803E /* TDChar.h */,
-				D31FE6A90E60E87D00A0803E /* TDChar.m */,
-				D31FE6AA0E60E87D00A0803E /* TDDigit.h */,
-				D31FE6AB0E60E87D00A0803E /* TDDigit.m */,
-				D31FE6AC0E60E87D00A0803E /* TDLetter.h */,
-				D31FE6AD0E60E87D00A0803E /* TDLetter.m */,
-				D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */,
-				D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */,
+				D34BAFB30FF9E80300D7773A /* PKChar.h */,
+				D34BAFB40FF9E80300D7773A /* PKChar.m */,
+				D34BAFB50FF9E80300D7773A /* PKDigit.h */,
+				D34BAFB60FF9E80300D7773A /* PKDigit.m */,
+				D34BAFB70FF9E80300D7773A /* PKLetter.h */,
+				D34BAFB80FF9E80300D7773A /* PKLetter.m */,
+				D34BAFB90FF9E80300D7773A /* PKSpecificChar.h */,
+				D34BAFBA0FF9E80300D7773A /* PKSpecificChar.m */,
 			);
 			name = "char terminals";
 			sourceTree = "<group>";
@@ -2020,11 +2010,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE6A60E60E86F00A0803E /* TDCharacterAssembly.h in Headers */,
-				D31FE6B00E60E87D00A0803E /* TDChar.h in Headers */,
-				D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */,
-				D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */,
-				D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */,
 				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
 				D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */,
 				D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */,
@@ -2075,6 +2060,11 @@
 				D34BAF960FF9E6C000D7773A /* PKScientificNumberState.h in Headers */,
 				D34BAF9C0FF9E6D100D7773A /* PKLowercaseWord.h in Headers */,
 				D34BAF9E0FF9E6D100D7773A /* PKUppercaseWord.h in Headers */,
+				D34BAFB10FF9E7F300D7773A /* PKCharacterAssembly.h in Headers */,
+				D34BAFBB0FF9E80300D7773A /* PKChar.h in Headers */,
+				D34BAFBD0FF9E80300D7773A /* PKDigit.h in Headers */,
+				D34BAFBF0FF9E80300D7773A /* PKLetter.h in Headers */,
+				D34BAFC10FF9E80300D7773A /* PKSpecificChar.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2082,11 +2072,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38330FE77860008C2E4D /* TDCharacterAssembly.h in Headers */,
-				D37D38340FE77860008C2E4D /* TDChar.h in Headers */,
-				D37D38350FE77860008C2E4D /* TDDigit.h in Headers */,
-				D37D38360FE77860008C2E4D /* TDLetter.h in Headers */,
-				D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */,
 				D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2429,11 +2414,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE6A70E60E86F00A0803E /* TDCharacterAssembly.m in Sources */,
-				D31FE6B10E60E87D00A0803E /* TDChar.m in Sources */,
-				D31FE6B30E60E87D00A0803E /* TDDigit.m in Sources */,
-				D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */,
-				D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */,
 				D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */,
 				D34BAC1C0FF87F3300D7773A /* NSArray+TDParseKitAdditions.m in Sources */,
 				D34BAC1E0FF87F3300D7773A /* NSString+TDParseKitAdditions.m in Sources */,
@@ -2481,6 +2461,11 @@
 				D34BAF970FF9E6C000D7773A /* PKScientificNumberState.m in Sources */,
 				D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */,
 				D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */,
+				D34BAFB20FF9E7F300D7773A /* PKCharacterAssembly.m in Sources */,
+				D34BAFBC0FF9E80300D7773A /* PKChar.m in Sources */,
+				D34BAFBE0FF9E80300D7773A /* PKDigit.m in Sources */,
+				D34BAFC00FF9E80300D7773A /* PKLetter.m in Sources */,
+				D34BAFC20FF9E80300D7773A /* PKSpecificChar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2524,11 +2509,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38630FE7786F008C2E4D /* TDCharacterAssembly.m in Sources */,
-				D37D38640FE7786F008C2E4D /* TDChar.m in Sources */,
-				D37D38650FE7786F008C2E4D /* TDDigit.m in Sources */,
-				D37D38660FE7786F008C2E4D /* TDLetter.m in Sources */,
-				D37D38670FE7786F008C2E4D /* TDSpecificChar.m in Sources */,
 				D37D38720FE7786F008C2E4D /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

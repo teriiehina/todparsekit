@@ -40,11 +40,11 @@
 #import <ParseKit/PKTrackException.h>
 
 //chars
-#import <ParseKit/TDCharacterAssembly.h>
-#import <ParseKit/TDChar.h>
-#import <ParseKit/TDSpecificChar.h>
-#import <ParseKit/TDLetter.h>
-#import <ParseKit/TDDigit.h>
+#import <ParseKit/PKCharacterAssembly.h>
+#import <ParseKit/PKChar.h>
+#import <ParseKit/PKSpecificChar.h>
+#import <ParseKit/PKLetter.h>
+#import <ParseKit/PKDigit.h>
 
 // tokens
 #import <ParseKit/PKToken.h>

@@ -45,7 +45,7 @@
 
 + (id)parserFromGrammar:(NSString *)s {
     TDRegularParser *p = [TDRegularParser parser];
-    PKAssembly *a = [TDCharacterAssembly assemblyWithString:s];
+    PKAssembly *a = [PKCharacterAssembly assemblyWithString:s];
     a = [p completeMatchFor:a];
     return [a pop];
 }
@@ -93,7 +93,7 @@
     if (!orTermParser) {
         self.orTermParser = [PKSequence sequence];
         orTermParser.name = @"orTerm";
-        [orTermParser add:[[TDSpecificChar specificCharWithChar:'|'] discard]];
+        [orTermParser add:[[PKSpecificChar specificCharWithChar:'|'] discard]];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
@@ -134,9 +134,9 @@
 - (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         PKSequence *s = [PKSequence sequence];
-        [s add:[[TDSpecificChar specificCharWithChar:'('] discard]];
+        [s add:[[PKSpecificChar specificCharWithChar:'('] discard]];
         [s add:self.expressionParser];
-        [s add:[[TDSpecificChar specificCharWithChar:')'] discard]];
+        [s add:[[PKSpecificChar specificCharWithChar:')'] discard]];
 
         self.phraseParser = [PKAlternation alternation];
         phraseParser.name = @"phrase";
@@ -153,7 +153,7 @@
         self.phraseStarParser = [PKSequence sequence];
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
-        [phraseStarParser add:[[TDSpecificChar specificCharWithChar:'*'] discard]];
+        [phraseStarParser add:[[PKSpecificChar specificCharWithChar:'*'] discard]];
         [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
     }
     return phraseStarParser;
@@ -166,7 +166,7 @@
         self.phrasePlusParser = [PKSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
-        [phrasePlusParser add:[[TDSpecificChar specificCharWithChar:'+'] discard]];
+        [phrasePlusParser add:[[PKSpecificChar specificCharWithChar:'+'] discard]];
         [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
     }
     return phrasePlusParser;
@@ -179,7 +179,7 @@
         self.phraseQuestionParser = [PKSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
-        [phraseQuestionParser add:[[TDSpecificChar specificCharWithChar:'?'] discard]];
+        [phraseQuestionParser add:[[PKSpecificChar specificCharWithChar:'?'] discard]];
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
     }
     return phraseQuestionParser;
@@ -191,8 +191,8 @@
     if (!letterOrDigitParser) {
         self.letterOrDigitParser = [PKAlternation alternation];
         letterOrDigitParser.name = @"letterOrDigit";
-        [letterOrDigitParser add:[TDLetter letter]];
-        [letterOrDigitParser add:[TDDigit digit]];
+        [letterOrDigitParser add:[PKLetter letter]];
+        [letterOrDigitParser add:[PKDigit digit]];
         [letterOrDigitParser setAssembler:self selector:@selector(workOnChar:)];
     }
     return letterOrDigitParser;
@@ -205,7 +205,7 @@
     id obj = [a pop];
     NSAssert([obj isKindOfClass:[NSNumber class]], @"");
     NSInteger c = [obj integerValue];
-    [a push:[TDSpecificChar specificCharWithChar:c]];
+    [a push:[PKSpecificChar specificCharWithChar:c]];
 }
 
 

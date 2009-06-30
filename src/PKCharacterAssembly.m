@@ -6,14 +6,14 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDCharacterAssembly.h>
+#import <ParseKit/PKCharacterAssembly.h>
 #import <ParseKit/PKTypes.h>
 
 @interface PKAssembly ()
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 
-@implementation TDCharacterAssembly
+@implementation PKCharacterAssembly
 
 - (id)init {
     return [self initWithString:nil];
@@ -35,7 +35,7 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    TDCharacterAssembly *a = (TDCharacterAssembly *)[super copyWithZone:zone];
+    PKCharacterAssembly *a = (PKCharacterAssembly *)[super copyWithZone:zone];
     return a;
 }
 

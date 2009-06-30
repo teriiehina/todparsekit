@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDLetter.h>
+#import <ParseKit/PKLetter.h>
 #import <ParseKit/PKTypes.h>
 
-@implementation TDLetter
+@implementation PKLetter
 
 + (id)letter {
     return [[[self alloc] initWithString:nil] autorelease];

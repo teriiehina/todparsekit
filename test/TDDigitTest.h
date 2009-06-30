@@ -11,8 +11,8 @@
 
 @interface TDDigitTest : SenTestCase {
     NSString *s;
-    TDCharacterAssembly *a;
-    TDDigit *p;
+    PKCharacterAssembly *a;
+    PKDigit *p;
     PKAssembly *result;
 }
 

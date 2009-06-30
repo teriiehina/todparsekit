@@ -10,7 +10,7 @@
 #import "TDJSUtils.h"
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTokenAssembly.h>
-#import <ParseKit/TDCharacterAssembly.h>
+#import <ParseKit/PKCharacterAssembly.h>
 
 @implementation TDJSAssemblerAdapter
 
@@ -32,7 +32,7 @@
     JSValueRef arg = NULL;
     if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         arg = (JSValueRef)TDTokenAssembly_new(ctx, a);
-    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+    } else if ([a isMemberOfClass:[PKCharacterAssembly class]]) {
         arg = (JSValueRef)TDCharacterAssembly_new(ctx, a);
     } else {
         NSAssert(0, @"Should not reach here.");
