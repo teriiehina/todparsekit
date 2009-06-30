@@ -7,7 +7,7 @@
 //
 
 #import "TDJSTerminal.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSParser.h"
 #import <ParseKit/PKTerminal.h>
 

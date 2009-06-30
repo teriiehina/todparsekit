@@ -7,7 +7,7 @@
 //
 
 #import "TDJSWordState.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTokenizerState.h"
 #import <ParseKit/PKWordState.h>
 

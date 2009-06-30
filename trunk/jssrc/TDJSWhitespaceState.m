@@ -7,7 +7,7 @@
 //
 
 #import "TDJSWhitespaceState.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTokenizerState.h"
 #import <ParseKit/PKWhitespaceState.h>
 

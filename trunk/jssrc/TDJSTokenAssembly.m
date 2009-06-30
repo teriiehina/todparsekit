@@ -8,8 +8,8 @@
 
 #import "TDJSTokenAssembly.h"
 #import "TDJSToken.h"
-#import "TDJSUtils.h"
-#import "TDJSAssembly.h"
+#import "PKJSUtils.h"
+#import "PKJSAssembly.h"
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKToken.h>
 

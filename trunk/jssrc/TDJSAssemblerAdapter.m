@@ -7,7 +7,7 @@
 //
 
 #import "TDJSAssemblerAdapter.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKCharacterAssembly.h>

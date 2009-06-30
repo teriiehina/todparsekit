@@ -7,7 +7,7 @@
 //
 
 #import "TDJSCommentState.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTokenizerState.h"
 #import <ParseKit/PKCommentState.h>
 

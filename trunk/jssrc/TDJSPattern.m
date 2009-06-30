@@ -7,7 +7,7 @@
 //
 
 #import "TDJSPattern.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTerminal.h"
 #import <ParseKit/PKPattern.h>
 

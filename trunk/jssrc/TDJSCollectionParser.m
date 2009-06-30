@@ -7,7 +7,7 @@
 //
 
 #import "PKCollectionParser.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSParser.h"
 #import <ParseKit/PKCollectionParser.h>
 

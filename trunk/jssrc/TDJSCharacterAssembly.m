@@ -7,8 +7,8 @@
 //
 
 #import "TDJSCharacterAssembly.h"
-#import "TDJSUtils.h"
-#import "TDJSAssembly.h"
+#import "PKJSUtils.h"
+#import "PKJSAssembly.h"
 #import <ParseKit/PKCharacterAssembly.h>
 
 #pragma mark -

@@ -7,7 +7,7 @@
 //
 
 #import "TDJSSequence.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSCollectionParser.h"
 #import <ParseKit/PKSequence.h>
 
