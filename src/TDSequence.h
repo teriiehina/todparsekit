@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
 /*!
     @class      TDSequence 
     @brief      A <tt>TDSequence</tt> object is a collection of parsers, all of which must in turn match against an assembly for this parser to successfully match.
 */
-@interface TDSequence : TDCollectionParser {
+@interface TDSequence : PKCollectionParser {
 
 }
 

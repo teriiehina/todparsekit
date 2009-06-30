@@ -1,18 +1,18 @@
 //
-//  TDCollectionParser.m
+//  PKCollectionParser.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
-@interface TDCollectionParser ()
+@interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
-@implementation TDCollectionParser
+@implementation PKCollectionParser
 
 - (id)init {
     if (self = [super init]) {

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
-@interface TDIntersection : TDCollectionParser {
+@interface TDIntersection : PKCollectionParser {
 
 }
 

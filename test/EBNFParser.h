@@ -9,38 +9,38 @@
 #import <ParseKit/ParseKit.h>
 
 @interface EBNFParser : TDRepetition {
-    TDCollectionParser *statementParser;
-    TDCollectionParser *exprOrAssignmentParser;
-    TDCollectionParser *assignmentParser;
-    TDCollectionParser *declarationParser;
-    TDCollectionParser *variableParser;
-    TDCollectionParser *expressionParser;
-    TDCollectionParser *termParser;
-    TDCollectionParser *orTermParser;
-    TDCollectionParser *factorParser;
-    TDCollectionParser *nextFactorParser;
-    TDCollectionParser *phraseParser;
-    TDCollectionParser *phraseStarParser;
-    TDCollectionParser *phraseQuestionParser;
-    TDCollectionParser *phrasePlusParser;
-    TDCollectionParser *atomicValueParser;
+    PKCollectionParser *statementParser;
+    PKCollectionParser *exprOrAssignmentParser;
+    PKCollectionParser *assignmentParser;
+    PKCollectionParser *declarationParser;
+    PKCollectionParser *variableParser;
+    PKCollectionParser *expressionParser;
+    PKCollectionParser *termParser;
+    PKCollectionParser *orTermParser;
+    PKCollectionParser *factorParser;
+    PKCollectionParser *nextFactorParser;
+    PKCollectionParser *phraseParser;
+    PKCollectionParser *phraseStarParser;
+    PKCollectionParser *phraseQuestionParser;
+    PKCollectionParser *phrasePlusParser;
+    PKCollectionParser *atomicValueParser;
 }
 - (id)parse:(NSString *)s;
 
 @property (nonatomic, retain, readonly) TDTokenizer *tokenizer;
-@property (nonatomic, retain) TDCollectionParser *statementParser;
-@property (nonatomic, retain) TDCollectionParser *exprOrAssignmentParser;
-@property (nonatomic, retain) TDCollectionParser *assignmentParser;
-@property (nonatomic, retain) TDCollectionParser *declarationParser;
-@property (nonatomic, retain) TDCollectionParser *variableParser;
-@property (nonatomic, retain) TDCollectionParser *expressionParser;
-@property (nonatomic, retain) TDCollectionParser *termParser;
-@property (nonatomic, retain) TDCollectionParser *orTermParser;
-@property (nonatomic, retain) TDCollectionParser *factorParser;
-@property (nonatomic, retain) TDCollectionParser *nextFactorParser;
-@property (nonatomic, retain) TDCollectionParser *phraseParser;
-@property (nonatomic, retain) TDCollectionParser *phraseStarParser;
-@property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
-@property (nonatomic, retain) TDCollectionParser *phrasePlusParser;
-@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
+@property (nonatomic, retain) PKCollectionParser *statementParser;
+@property (nonatomic, retain) PKCollectionParser *exprOrAssignmentParser;
+@property (nonatomic, retain) PKCollectionParser *assignmentParser;
+@property (nonatomic, retain) PKCollectionParser *declarationParser;
+@property (nonatomic, retain) PKCollectionParser *variableParser;
+@property (nonatomic, retain) PKCollectionParser *expressionParser;
+@property (nonatomic, retain) PKCollectionParser *termParser;
+@property (nonatomic, retain) PKCollectionParser *orTermParser;
+@property (nonatomic, retain) PKCollectionParser *factorParser;
+@property (nonatomic, retain) PKCollectionParser *nextFactorParser;
+@property (nonatomic, retain) PKCollectionParser *phraseParser;
+@property (nonatomic, retain) PKCollectionParser *phraseStarParser;
+@property (nonatomic, retain) PKCollectionParser *phraseQuestionParser;
+@property (nonatomic, retain) PKCollectionParser *phrasePlusParser;
+@property (nonatomic, retain) PKCollectionParser *atomicValueParser;
 @end

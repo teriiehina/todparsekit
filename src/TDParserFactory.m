@@ -15,7 +15,7 @@
 - (void)setTokenizer:(TDTokenizer *)t;
 @end
 
-@interface TDCollectionParser ()
+@interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
@@ -28,8 +28,8 @@
 @end
 
 void TDReleaseSubparserTree(PKParser *p) {
-    if ([p isKindOfClass:[TDCollectionParser class]]) {
-        TDCollectionParser *c = (TDCollectionParser *)p;
+    if ([p isKindOfClass:[PKCollectionParser class]]) {
+        PKCollectionParser *c = (PKCollectionParser *)p;
         NSArray *subs = c.subparsers;
         if (subs) {
             [subs retain];
@@ -103,35 +103,35 @@ void TDReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) TDToken *curly;
 @property (nonatomic, retain) TDToken *paren;
 @property (nonatomic, retain) TDToken *caret;
-@property (nonatomic, retain) TDCollectionParser *statementParser;
-@property (nonatomic, retain) TDCollectionParser *declarationParser;
-@property (nonatomic, retain) TDCollectionParser *callbackParser;
-@property (nonatomic, retain) TDCollectionParser *selectorParser;
-@property (nonatomic, retain) TDCollectionParser *exprParser;
-@property (nonatomic, retain) TDCollectionParser *termParser;
-@property (nonatomic, retain) TDCollectionParser *orTermParser;
-@property (nonatomic, retain) TDCollectionParser *factorParser;
-@property (nonatomic, retain) TDCollectionParser *nextFactorParser;
-@property (nonatomic, retain) TDCollectionParser *phraseParser;
-@property (nonatomic, retain) TDCollectionParser *phraseStarParser;
-@property (nonatomic, retain) TDCollectionParser *phrasePlusParser;
-@property (nonatomic, retain) TDCollectionParser *phraseQuestionParser;
-@property (nonatomic, retain) TDCollectionParser *phraseCardinalityParser;
-@property (nonatomic, retain) TDCollectionParser *cardinalityParser;
-@property (nonatomic, retain) TDCollectionParser *primaryExprParser;
-@property (nonatomic, retain) TDCollectionParser *predicateParser;
-@property (nonatomic, retain) TDCollectionParser *intersectionParser;
-@property (nonatomic, retain) TDCollectionParser *exclusionParser;
-@property (nonatomic, retain) TDCollectionParser *atomicValueParser;
-@property (nonatomic, retain) TDCollectionParser *discardParser;
-@property (nonatomic, retain) TDCollectionParser *patternParser;
-@property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
+@property (nonatomic, retain) PKCollectionParser *statementParser;
+@property (nonatomic, retain) PKCollectionParser *declarationParser;
+@property (nonatomic, retain) PKCollectionParser *callbackParser;
+@property (nonatomic, retain) PKCollectionParser *selectorParser;
+@property (nonatomic, retain) PKCollectionParser *exprParser;
+@property (nonatomic, retain) PKCollectionParser *termParser;
+@property (nonatomic, retain) PKCollectionParser *orTermParser;
+@property (nonatomic, retain) PKCollectionParser *factorParser;
+@property (nonatomic, retain) PKCollectionParser *nextFactorParser;
+@property (nonatomic, retain) PKCollectionParser *phraseParser;
+@property (nonatomic, retain) PKCollectionParser *phraseStarParser;
+@property (nonatomic, retain) PKCollectionParser *phrasePlusParser;
+@property (nonatomic, retain) PKCollectionParser *phraseQuestionParser;
+@property (nonatomic, retain) PKCollectionParser *phraseCardinalityParser;
+@property (nonatomic, retain) PKCollectionParser *cardinalityParser;
+@property (nonatomic, retain) PKCollectionParser *primaryExprParser;
+@property (nonatomic, retain) PKCollectionParser *predicateParser;
+@property (nonatomic, retain) PKCollectionParser *intersectionParser;
+@property (nonatomic, retain) PKCollectionParser *exclusionParser;
+@property (nonatomic, retain) PKCollectionParser *atomicValueParser;
+@property (nonatomic, retain) PKCollectionParser *discardParser;
+@property (nonatomic, retain) PKCollectionParser *patternParser;
+@property (nonatomic, retain) PKCollectionParser *delimitedStringParser;
 @property (nonatomic, retain) PKParser *literalParser;
 @property (nonatomic, retain) PKParser *variableParser;
 @property (nonatomic, retain) PKParser *constantParser;
 
 @property (nonatomic, retain, readonly) PKParser *whitespaceParser;
-@property (nonatomic, retain, readonly) TDCollectionParser *optionalWhitespaceParser;
+@property (nonatomic, retain, readonly) PKCollectionParser *optionalWhitespaceParser;
 @end
 
 @implementation TDParserFactory
@@ -544,8 +544,8 @@ void TDReleaseSubparserTree(PKParser *p) {
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
-    if ([p isKindOfClass:[TDCollectionParser class]]) {
-        TDCollectionParser *cp = (TDCollectionParser *)p;
+    if ([p isKindOfClass:[PKCollectionParser class]]) {
+        PKCollectionParser *cp = (PKCollectionParser *)p;
         [cp add:res];
         return cp;
     } else {
@@ -610,7 +610,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // satement             = S* declaration S* '=' expr;
-- (TDCollectionParser *)statementParser {
+- (PKCollectionParser *)statementParser {
     if (!statementParser) {
         self.statementParser = [TDSequence sequence];
         statementParser.name = @"statement";
@@ -632,7 +632,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // declaration          = Word callback?;
-- (TDCollectionParser *)declarationParser {
+- (PKCollectionParser *)declarationParser {
     if (!declarationParser) {
         self.declarationParser = [TDSequence sequence];
         declarationParser.name = @"declaration";
@@ -644,7 +644,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // callback             = S* '(' S* selector S* ')';
-- (TDCollectionParser *)callbackParser {
+- (PKCollectionParser *)callbackParser {
     if (!callbackParser) {
         self.callbackParser = [TDSequence sequence];
         callbackParser.name = @"callback";
@@ -665,7 +665,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // selector             = Word ':';
-- (TDCollectionParser *)selectorParser {
+- (PKCollectionParser *)selectorParser {
     if (!selectorParser) {
         self.selectorParser = [TDTrack track];
         selectorParser.name = @"selector";
@@ -677,7 +677,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // expr        = S* term orTerm* S*;
-- (TDCollectionParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         exprParser.name = @"expr";
@@ -692,7 +692,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // term                = factor nextFactor*;
-- (TDCollectionParser *)termParser {
+- (PKCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         termParser.name = @"term";
@@ -705,7 +705,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // orTerm               = S* '|' S* term;
-- (TDCollectionParser *)orTermParser {
+- (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
@@ -724,7 +724,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
-- (TDCollectionParser *)factorParser {
+- (PKCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
         factorParser.name = @"factor";
@@ -739,7 +739,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // nextFactor           = S factor;
-- (TDCollectionParser *)nextFactorParser {
+- (PKCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
         self.nextFactorParser = [TDSequence sequence];
         nextFactorParser.name = @"nextFactor";
@@ -759,7 +759,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // phrase               = primaryExpr predicate*;
-- (TDCollectionParser *)phraseParser {
+- (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDSequence sequence];
         phraseParser.name = @"phrase";
@@ -771,7 +771,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // primaryExpr          = atomicValue | '(' expr ')';
-- (TDCollectionParser *)primaryExprParser {
+- (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
@@ -789,7 +789,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // predicate            = S* (intersection | exclusion);
-- (TDCollectionParser *)predicateParser {
+- (PKCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDSequence sequence];
         predicateParser.name = @"predicate";
@@ -806,7 +806,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // intersection         = '&' S* primaryExpr;
-- (TDCollectionParser *)intersectionParser {
+- (PKCollectionParser *)intersectionParser {
     if (!intersectionParser) {
         self.intersectionParser = [TDTrack track];
         intersectionParser.name = @"intersection";
@@ -824,7 +824,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // exclusion            = '-' S* primaryExpr;
-- (TDCollectionParser *)exclusionParser {
+- (PKCollectionParser *)exclusionParser {
     if (!exclusionParser) {
         self.exclusionParser = [TDTrack track];
         exclusionParser.name = @"exclusion";
@@ -842,7 +842,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // phraseStar           = phrase S* '*';
-- (TDCollectionParser *)phraseStarParser {
+- (PKCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
         self.phraseStarParser = [TDSequence sequence];
         phraseStarParser.name = @"phraseStar";
@@ -856,7 +856,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // phrasePlus           = phrase S* '+';
-- (TDCollectionParser *)phrasePlusParser {
+- (PKCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
         self.phrasePlusParser = [TDSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
@@ -870,7 +870,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // phraseQuestion       = phrase S* '?';
-- (TDCollectionParser *)phraseQuestionParser {
+- (PKCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
@@ -884,7 +884,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // phraseCardinality    = phrase S* cardinality;
-- (TDCollectionParser *)phraseCardinalityParser {
+- (PKCollectionParser *)phraseCardinalityParser {
     if (!phraseCardinalityParser) {
         self.phraseCardinalityParser = [TDSequence sequence];
         phraseCardinalityParser.name = @"phraseCardinality";
@@ -898,7 +898,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
-- (TDCollectionParser *)cardinalityParser {
+- (PKCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
         self.cardinalityParser = [TDSequence sequence];
         cardinalityParser.name = @"cardinality";
@@ -925,7 +925,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString);
-- (TDCollectionParser *)atomicValueParser {
+- (PKCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [TDSequence sequence];
         atomicValueParser.name = @"atomicValue";
@@ -945,7 +945,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // discard              = '^' S*;
-- (TDCollectionParser *)discardParser {
+- (PKCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [TDSequence sequence];
         discardParser.name = @"discardParser";
@@ -957,7 +957,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
-- (TDCollectionParser *)patternParser {
+- (PKCollectionParser *)patternParser {
     if (!patternParser) {
         patternParser.name = @"pattern";
         self.patternParser = [TDSequence sequence];
@@ -977,7 +977,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 // delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
-- (TDCollectionParser *)delimitedStringParser {
+- (PKCollectionParser *)delimitedStringParser {
     if (!delimitedStringParser) {
         self.delimitedStringParser = [TDTrack track];
         delimitedStringParser.name = @"delimitedString";
@@ -1043,7 +1043,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (TDCollectionParser *)optionalWhitespaceParser {
+- (PKCollectionParser *)optionalWhitespaceParser {
     return [TDRepetition repetitionWithSubparser:self.whitespaceParser];
 }
 

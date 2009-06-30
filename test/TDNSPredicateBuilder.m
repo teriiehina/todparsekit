@@ -87,7 +87,7 @@
 
 
 // expression       = term orTerm*
-- (TDCollectionParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         [exprParser add:self.termParser];
@@ -98,7 +98,7 @@
 
 
 // orTerm           = 'or' term
-- (TDCollectionParser *)orTermParser {
+- (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
@@ -111,7 +111,7 @@
 
 
 // term             = primaryExpr andPrimaryExpr*
-- (TDCollectionParser *)termParser {
+- (PKCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         termParser.name = @"term";
@@ -123,7 +123,7 @@
 
 
 // andPrimaryExpr        = 'and' primaryExpr
-- (TDCollectionParser *)andPrimaryExprParser {
+- (PKCollectionParser *)andPrimaryExprParser {
     if (!andPrimaryExprParser) {
         self.andPrimaryExprParser = [TDSequence sequence];
         andPrimaryExprParser.name = @"andPrimaryExpr";
@@ -136,7 +136,7 @@
 
 
 // primaryExpr           = phrase | '(' expression ')'
-- (TDCollectionParser *)primaryExprParser {
+- (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
@@ -154,7 +154,7 @@
 
 
 // phrase      = predicate | negatedPredicate
-- (TDCollectionParser *)phraseParser {
+- (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDAlternation alternation];
         phraseParser.name = @"phrase";
@@ -166,7 +166,7 @@
 
 
 // negatedPredicate      = 'not' predicate
-- (TDCollectionParser *)negatedPredicateParser {
+- (PKCollectionParser *)negatedPredicateParser {
     if (!negatedPredicateParser) {
         self.negatedPredicateParser = [TDSequence sequence];
         negatedPredicateParser.name = @"negatedPredicate";
@@ -179,7 +179,7 @@
 
 
 // predicate         = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
-- (TDCollectionParser *)predicateParser {
+- (PKCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDAlternation alternation];
         predicateParser.name = @"predicate";
@@ -194,7 +194,7 @@
 
 
 // completePredicate    = attribute relation value
-- (TDCollectionParser *)completePredicateParser {
+- (PKCollectionParser *)completePredicateParser {
     if (!completePredicateParser) {
         self.completePredicateParser = [TDSequence sequence];
         completePredicateParser.name = @"completePredicate";
@@ -207,7 +207,7 @@
 
 
 // attrValuePredicate    = attribute value
-- (TDCollectionParser *)attrValuePredicateParser {
+- (PKCollectionParser *)attrValuePredicateParser {
     if (!attrValuePredicateParser) {
         self.attrValuePredicateParser = [TDSequence sequence];
         attrValuePredicateParser.name = @"attrValuePredicate";
@@ -220,7 +220,7 @@
 
 
 // attrPredicate        = attribute
-- (TDCollectionParser *)attrPredicateParser {
+- (PKCollectionParser *)attrPredicateParser {
     if (!attrPredicateParser) {
         self.attrPredicateParser = [TDSequence sequence];
         attrPredicateParser.name = @"attrPredicate";
@@ -232,7 +232,7 @@
 
 
 // valuePredicate        = value
-- (TDCollectionParser *)valuePredicateParser {
+- (PKCollectionParser *)valuePredicateParser {
     if (!valuePredicateParser) {
         self.valuePredicateParser = [TDSequence sequence];
         valuePredicateParser.name = @"valuePredicate";
@@ -244,7 +244,7 @@
 
     
 // attr                 = tag | 'uniqueid' | 'line' | 'type' | 'isgroupheader' | 'level' | 'index' | 'content' | 'parent' | 'project' | 'countofchildren'
-- (TDCollectionParser *)attrParser {
+- (PKCollectionParser *)attrParser {
     if (!attrParser) {
         self.attrParser = [TDAlternation alternation];
         attrParser.name = @"attr";
@@ -257,7 +257,7 @@
 
 
 // relation                = '=' | '!=' | '>' | '>=' | '<' | '<=' | 'beginswith' | 'contains' | 'endswith' | 'matches'
-- (TDCollectionParser *)relationParser {
+- (PKCollectionParser *)relationParser {
     if (!relationParser) {
         self.relationParser = [TDAlternation alternation];
         relationParser.name = @"relation";
@@ -278,7 +278,7 @@
 
 
 // tag                  = '@' Word
-- (TDCollectionParser *)tagParser {
+- (PKCollectionParser *)tagParser {
     if (!tagParser) {
         self.tagParser = [TDSequence sequence];
         tagParser.name = @"tag";
@@ -290,7 +290,7 @@
 
 
 // value                = QuotedString | Num | bool
-- (TDCollectionParser *)valueParser {
+- (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
         valueParser.name = @"value";
@@ -302,7 +302,7 @@
 }
 
 
-- (TDCollectionParser *)boolParser {
+- (PKCollectionParser *)boolParser {
     if (!boolParser) {
         self.boolParser = [TDAlternation alternation];
         boolParser.name = @"bool";
@@ -335,7 +335,7 @@
 
 
 // string               = quotedString | unquotedString
-- (TDCollectionParser *)stringParser {
+- (PKCollectionParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDAlternation alternation];
         stringParser.name = @"string";
@@ -358,7 +358,7 @@
 
 
 // unquotedString       = nonReservedWord+
-- (TDCollectionParser *)unquotedStringParser {
+- (PKCollectionParser *)unquotedStringParser {
     if (!unquotedStringParser) {
         self.unquotedStringParser = [TDSequence sequence];
         unquotedStringParser.name = @"unquotedString";
@@ -370,7 +370,7 @@
 }
 
 
-- (TDCollectionParser *)reservedWordParser {
+- (PKCollectionParser *)reservedWordParser {
     if (!reservedWordParser) {
         self.reservedWordParser = [TDIntersection intersection];
         [reservedWordParser add:[TDWord word]];
@@ -383,7 +383,7 @@
 
 
 // nonReservedWord      = Word
-- (TDCollectionParser *)nonReservedWordParser {
+- (PKCollectionParser *)nonReservedWordParser {
     if (!nonReservedWordParser) {
         self.nonReservedWordParser = [TDExclusion exclusion];
         [nonReservedWordParser add:[TDWord word]];

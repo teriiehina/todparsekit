@@ -12,7 +12,7 @@
 @interface TDParserFactory ()
 - (TDTokenizer *)tokenizerForParsingGrammar;
 - (TDSequence *)parserFromExpression:(NSString *)s;
-@property (retain) TDCollectionParser *exprParser;
+@property (retain) PKCollectionParser *exprParser;
 @end
 
 @protocol TDMockAssember

@@ -94,7 +94,7 @@
 //selfIdentHeader ::= '#ABNF' #x20 VersionNumber (#x20 CharEncoding)? ';'
 //VersionNumber    ::= '1.0'
 //CharEncoding     ::= Nmtoken
-- (TDCollectionParser *)selfIdentHeader {
+- (PKCollectionParser *)selfIdentHeader {
     if (!selfIdentHeader) {
         self.selfIdentHeader = [TDSequence sequence];
         selfIdentHeader.name = @"selfIdentHeader";
@@ -116,7 +116,7 @@
 
 //RuleName         ::= '$' ConstrainedName 
 //ConstrainedName  ::= Name - (Char* ('.' | ':' | '-') Char*)
-- (TDCollectionParser *)ruleName {
+- (PKCollectionParser *)ruleName {
     if (!ruleName) {
         self.ruleName = [TDSequence sequence];
         [ruleName add:[TDSymbol symbolWithString:@"$"]];
@@ -126,7 +126,7 @@
 }
 
 //TagFormat ::= ABNF_URI
-- (TDCollectionParser *)tagFormat {
+- (PKCollectionParser *)tagFormat {
     if (!tagFormat) {
         self.tagFormat = self.ABNF_URI;
     }
@@ -135,7 +135,7 @@
 
 
 //LexiconURI ::= ABNF_URI | ABNF_URI_with_Media_Type
-- (TDCollectionParser *)lexiconURI {
+- (PKCollectionParser *)lexiconURI {
     if (!lexiconURI) {
         self.lexiconURI = [TDAlternation alternation];
         [lexiconURI add:self.ABNF_URI];
@@ -146,7 +146,7 @@
 
 
 //Weight ::= '/' Number '/'
-- (TDCollectionParser *)weight {
+- (PKCollectionParser *)weight {
     if (!weight) {
         self.weight = [TDSequence sequence];
         [weight add:[TDSymbol symbolWithString:@"/"]];
@@ -158,7 +158,7 @@
 
 
 //Repeat ::= [0-9]+ ('-' [0-9]*)?
-- (TDCollectionParser *)repeat {
+- (PKCollectionParser *)repeat {
     if (!repeat) {
         self.repeat = [TDSequence sequence];
         [repeat add:[TDNum num]];
@@ -178,7 +178,7 @@
 
 
 //Probability      ::= '/' Number '/'
-- (TDCollectionParser *)probability {
+- (PKCollectionParser *)probability {
     if (!probability) {
         self.probability = [TDSequence sequence];
         [probability add:[TDSymbol symbolWithString:@"/"]];
@@ -191,7 +191,7 @@
 
 
 //ExternalRuleRef  ::= '$' ABNF_URI | '$' ABNF_URI_with_Media_Type
-- (TDCollectionParser *)externalRuleRef {
+- (PKCollectionParser *)externalRuleRef {
     if (!externalRuleRef) {
         self.externalRuleRef = [TDAlternation alternation];
         
@@ -210,7 +210,7 @@
 
 
 //Token  ::= Nmtoken | DoubleQuotedCharacters
-- (TDCollectionParser *)token {
+- (PKCollectionParser *)token {
     if (!token) {
         self.token = [TDAlternation alternation];
         [token add:[TDWord word]];
@@ -221,7 +221,7 @@
 
 
 //LanguageAttachment ::= '!' LanguageCode
-- (TDCollectionParser *)languageAttachment {
+- (PKCollectionParser *)languageAttachment {
     if (!languageAttachment) {
         self.languageAttachment = [TDSequence sequence];
         [languageAttachment add:[TDSymbol symbolWithString:@"!"]];
@@ -232,7 +232,7 @@
 
 
 //Tag ::= '{' [^}]* '}' | '{!{' (Char* - (Char* '}!}' Char*)) '}!}'
-- (TDCollectionParser *)tag {
+- (PKCollectionParser *)tag {
     if (!tag) {
         self.tag = [TDAlternation alternation];
 
@@ -267,7 +267,7 @@
 #pragma mark Grammar
 
 // grammar ::= selfIdentHeader declaration* ruleDefinition*
-- (TDCollectionParser *)grammar {
+- (PKCollectionParser *)grammar {
     if (!grammar) {
         self.grammar = [TDSequence sequence];
         [grammar add:self.selfIdentHeader];
@@ -278,7 +278,7 @@
 }
 
 // declaration ::= baseDecl | languageDecl | modeDecl | rootRuleDecl | tagFormatDecl | lexiconDecl | metaDecl | tagDecl
-- (TDCollectionParser *)declaration {
+- (PKCollectionParser *)declaration {
     if (!declaration) {
         self.declaration = [TDAlternation alternation];
         [declaration add:self.baseDecl];
@@ -293,7 +293,7 @@
 }
 
 // baseDecl ::= 'base' BaseURI ';'
-- (TDCollectionParser *)baseDecl {
+- (PKCollectionParser *)baseDecl {
     if (!baseDecl) {
         self.baseDecl = [TDSequence sequence];
         [baseDecl add:[TDLiteral literalWithString:@"base"]];
@@ -304,7 +304,7 @@
 }
 
 // languageDecl    ::= 'language' LanguageCode ';'
-- (TDCollectionParser *)languageDecl {
+- (PKCollectionParser *)languageDecl {
     if (!languageDecl) {
         self.languageDecl = [TDSequence sequence];
         [languageDecl add:[TDLiteral literalWithString:@"language"]];
@@ -317,7 +317,7 @@
 
 
 // modeDecl        ::= 'mode' 'voice' ';' | 'mode' 'dtmf' ';'
-- (TDCollectionParser *)modeDecl {
+- (PKCollectionParser *)modeDecl {
     if (!modeDecl) {
         self.modeDecl = [TDAlternation alternation];
         
@@ -338,7 +338,7 @@
 
 
 // rootRuleDecl    ::= 'root' RuleName ';'
-- (TDCollectionParser *)rootRuleDecl {
+- (PKCollectionParser *)rootRuleDecl {
     if (!rootRuleDecl) {
         self.rootRuleDecl = [TDSequence sequence];
         [rootRuleDecl add:[TDLiteral literalWithString:@"root"]];
@@ -350,7 +350,7 @@
 
 
 // tagFormatDecl   ::=     'tag-format' TagFormat ';'
-- (TDCollectionParser *)tagFormatDecl {
+- (PKCollectionParser *)tagFormatDecl {
     if (!tagFormatDecl) {
         self.tagFormatDecl = [TDSequence sequence];
         [tagFormatDecl add:[TDLiteral literalWithString:@"tag-format"]];
@@ -363,7 +363,7 @@
 
 
 // lexiconDecl     ::= 'lexicon' LexiconURI ';'
-- (TDCollectionParser *)lexiconDecl {
+- (PKCollectionParser *)lexiconDecl {
     if (!lexiconDecl) {
         self.lexiconDecl = [TDSequence sequence];
         [lexiconDecl add:[TDLiteral literalWithString:@"lexicon"]];
@@ -377,7 +377,7 @@
 // metaDecl        ::=
 //    'http-equiv' QuotedCharacters 'is' QuotedCharacters ';'
 //    | 'meta' QuotedCharacters 'is' QuotedCharacters ';'
-- (TDCollectionParser *)metaDecl {
+- (PKCollectionParser *)metaDecl {
     if (!metaDecl) {
         self.metaDecl = [TDAlternation alternation];
         
@@ -403,7 +403,7 @@
 
 
 // tagDecl  ::=  Tag ';'
-- (TDCollectionParser *)tagDecl {
+- (PKCollectionParser *)tagDecl {
     if (!tagDecl) {
         self.tagDecl = [TDSequence sequence];
         [tagDecl add:self.tag];
@@ -414,7 +414,7 @@
 
 
 // ruleDefinition  ::= scope? RuleName '=' ruleExpansion ';'
-- (TDCollectionParser *)ruleDefinition {
+- (PKCollectionParser *)ruleDefinition {
     if (!ruleDefinition) {
         self.ruleDefinition = [TDSequence sequence];
         
@@ -432,7 +432,7 @@
 }
 
 // scope ::=  'private' | 'public'
-- (TDCollectionParser *)scope {
+- (PKCollectionParser *)scope {
     if (!scope) {
         self.scope = [TDAlternation alternation];
         [scope add:[TDLiteral literalWithString:@"private"]];
@@ -443,7 +443,7 @@
 
 
 // ruleExpansion   ::= ruleAlternative ( '|' ruleAlternative )*
-- (TDCollectionParser *)ruleExpansion {
+- (PKCollectionParser *)ruleExpansion {
     if (!ruleExpansion) {
         self.ruleExpansion = [TDSequence sequence];
         [ruleExpansion add:self.ruleAlternative];
@@ -458,7 +458,7 @@
 
 
 // ruleAlternative ::= Weight? sequenceElement+
-- (TDCollectionParser *)ruleAlternative {
+- (PKCollectionParser *)ruleAlternative {
     if (!ruleAlternative) {
         self.ruleAlternative = [TDSequence sequence];
         
@@ -477,7 +477,7 @@
 
 // me: changing to: 
 // sequenceElement ::= subexpansion repeatOperator?
-- (TDCollectionParser *)sequenceElement {
+- (PKCollectionParser *)sequenceElement {
     if (!sequenceElement) {
 //        self.sequenceElement = [TDAlternation alternation];
 //        [sequenceElement add:self.subexpansion];
@@ -507,7 +507,7 @@
 //     | '(' ')'
 //     | '(' ruleExpansion ')' LanguageAttachment?
 //     | '[' ruleExpansion ']' LanguageAttachment?
-- (TDCollectionParser *)subexpansion {
+- (PKCollectionParser *)subexpansion {
     if (!subexpansion) {
         self.subexpansion = [TDAlternation alternation];
         
@@ -552,7 +552,7 @@
 
 
 // ruleRef  ::= localRuleRef | ExternalRuleRef | specialRuleRef
-- (TDCollectionParser *)ruleRef {
+- (PKCollectionParser *)ruleRef {
     if (!ruleRef) {
         self.ruleRef = [TDAlternation alternation];
         [ruleRef add:self.localRuleRef];
@@ -563,7 +563,7 @@
 }
 
 // localRuleRef    ::= RuleName
-- (TDCollectionParser *)localRuleRef {
+- (PKCollectionParser *)localRuleRef {
     if (!localRuleRef) {
         self.localRuleRef = self.ruleName;
     }
@@ -572,7 +572,7 @@
 
 
 // specialRuleRef  ::= '$NULL' | '$VOID' | '$GARBAGE'
-- (TDCollectionParser *)specialRuleRef {
+- (PKCollectionParser *)specialRuleRef {
     if (!specialRuleRef) {
         self.specialRuleRef = [TDAlternation alternation];
         [specialRuleRef add:[TDLiteral literalWithString:@"$NULL"]];
@@ -584,7 +584,7 @@
 
 
 // repeatOperator  ::='<' Repeat Probability? '>'
-- (TDCollectionParser *)repeatOperator {
+- (PKCollectionParser *)repeatOperator {
     if (!repeatOperator) {
         self.repeatOperator = [TDSequence sequence];
         [repeatOperator add:[TDSymbol symbolWithString:@"<"]];
@@ -602,7 +602,7 @@
 
 
 //BaseURI ::= ABNF_URI
-- (TDCollectionParser *)baseURI {
+- (PKCollectionParser *)baseURI {
     if (!baseURI) {
         self.baseURI = [TDWord word];
     }
@@ -611,7 +611,7 @@
 
 
 //LanguageCode ::= Nmtoken
-- (TDCollectionParser *)languageCode {
+- (PKCollectionParser *)languageCode {
     if (!languageCode) {
         self.languageCode = [TDSequence sequence];
         [languageCode add:[TDWord word]];
@@ -622,7 +622,7 @@
 }
 
 
-- (TDCollectionParser *)ABNF_URI {
+- (PKCollectionParser *)ABNF_URI {
     if (!ABNF_URI) {
         self.ABNF_URI = [TDWord word];
     }
@@ -630,7 +630,7 @@
 }
 
 
-- (TDCollectionParser *)ABNF_URI_with_Media_Type {
+- (PKCollectionParser *)ABNF_URI_with_Media_Type {
     if (!ABNF_URI_with_Media_Type) {
         self.ABNF_URI_with_Media_Type = [TDWord word];
     }

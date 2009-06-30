@@ -36,7 +36,7 @@
 
 @interface TDParserFactory ()
 - (TDSequence *)parserFromExpression:(NSString *)s;
-@property (retain) TDCollectionParser *expressionParser;
+@property (retain) PKCollectionParser *expressionParser;
 @end
 
 @implementation DebugAppDelegate

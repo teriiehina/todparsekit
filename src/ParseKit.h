@@ -31,7 +31,7 @@
 #import <ParseKit/TDSequence.h>
 #import <ParseKit/TDExclusion.h>
 #import <ParseKit/TDIntersection.h>
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 #import <ParseKit/TDAlternation.h>
 #import <ParseKit/TDRepetition.h>
 #import <ParseKit/TDEmpty.h>

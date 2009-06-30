@@ -20,7 +20,7 @@
 }
 
 // topLevel ::= decl* (pattern | grammarContent*)
-- (TDCollectionParser *)topLevelParser {
+- (PKCollectionParser *)topLevelParser {
 	if (!topLevelParser) {
 		self.topLevelParser = [TDSequence sequence];
 		
@@ -40,7 +40,7 @@
 // decl ::= "namespace" identifierOrKeyword "=" namespaceURILiteral
 // | "default" "namespace" [identifierOrKeyword] "=" namespaceURILiteral
 // | "datatypes" identifierOrKeyword "=" literal
-- (TDCollectionParser *)declParser {
+- (PKCollectionParser *)declParser {
 	if (!declParser) {
 		self.declParser = [TDAlternation alternation];
 		
@@ -70,7 +70,7 @@
 }
 
 
-- (TDCollectionParser *)atLeastOneOf:(PKParser *)p {
+- (PKCollectionParser *)atLeastOneOf:(PKParser *)p {
 	TDSequence *s = [TDSequence sequence];
 	[s add:p];
 	[s add:[TDRepetition repetitionWithSubparser:p]];
@@ -98,7 +98,7 @@
 // | "external" anyURILiteral [inherit]
 // | "grammar" "{" grammarContent* "}"
 // | "(" pattern ")"
-- (TDCollectionParser *)patternParser {
+- (PKCollectionParser *)patternParser {
 	if (!patternParser) {
 		self.patternParser = [TDAlternation alternation];
 		[patternParser add:self.elementPatternParser];
@@ -126,7 +126,7 @@
 }
 
 // elementPattern := "element" nameClass "{" pattern "}"
-- (TDCollectionParser *)elementPatternParser {
+- (PKCollectionParser *)elementPatternParser {
 	if (!elementPatternParser) {
 		self.elementPatternParser = [TDSequence sequence];
 		[elementPatternParser add:[TDLiteral literalWithString:@"element"]];
@@ -140,7 +140,7 @@
 
 
 // attributePattern := "attribute" nameClass "{" pattern "}"
-- (TDCollectionParser *)attributePatternParser {
+- (PKCollectionParser *)attributePatternParser {
 	if (!attributePatternParser) {
 		attributePatternParser = [TDSequence sequence];
 		[attributePatternParser add:[TDLiteral literalWithString:@"attribute"]];
@@ -154,7 +154,7 @@
 
 
 // commaPattern := "," pattern
-- (TDCollectionParser *)commaPatternParser {
+- (PKCollectionParser *)commaPatternParser {
 	if (!commaPatternParser) {
 		self.commaPatternParser = [TDSequence sequence];
 		[commaPatternParser add:[TDSymbol symbolWithString:@","]];
@@ -165,7 +165,7 @@
 
 
 // andPattern := "&" pattern
-- (TDCollectionParser *)andPatternParser {
+- (PKCollectionParser *)andPatternParser {
 	if (!andPatternParser) {
 		self.andPatternParser = [TDSequence sequence];
 		[andPatternParser add:[TDSymbol symbolWithString:@"&"]];
@@ -176,7 +176,7 @@
 
 
 // orPattern := "|" pattern
-- (TDCollectionParser *)orPatternParser {
+- (PKCollectionParser *)orPatternParser {
 	if (!orPatternParser) {
 		self.orPatternParser = [TDSequence sequence];
 		[orPatternParser add:[TDSymbol symbolWithString:@"|"]];
@@ -187,7 +187,7 @@
 
 
 // patternQuestion := pattern "?"
-- (TDCollectionParser *)patternQuestionParser {
+- (PKCollectionParser *)patternQuestionParser {
 	if (!patternQuestionParser) {
 		self.patternQuestionParser = [TDSequence sequence];
 		[patternQuestionParser add:self.patternParser];
@@ -198,7 +198,7 @@
 
 
 // patternQuestion := pattern "*"
-- (TDCollectionParser *)patternStarParser {
+- (PKCollectionParser *)patternStarParser {
 	if (!patternStarParser) {
 		self.patternStarParser = [TDSequence sequence];
 		[patternStarParser add:self.patternParser];
@@ -209,7 +209,7 @@
 
 
 // patternQuestion := pattern "+"
-- (TDCollectionParser *)patternPlusParser {
+- (PKCollectionParser *)patternPlusParser {
 	if (!patternPlusParser) {
 		self.patternPlusParser = [TDSequence sequence];
 		[patternPlusParser add:self.patternParser];
@@ -219,7 +219,7 @@
 }
 
 // | "list" "{" pattern "}"
-- (TDCollectionParser *)listPatternParser {
+- (PKCollectionParser *)listPatternParser {
 	if (!listPatternParser) {
 		self.listPatternParser = [TDSequence sequence];
 		[listPatternParser add:[TDLiteral literalWithString:@"list"]];
@@ -231,7 +231,7 @@
 }
 
 // | "mixed" "{" pattern "}"
-- (TDCollectionParser *)mixedPatternParser {
+- (PKCollectionParser *)mixedPatternParser {
 	if (!mixedPatternParser) {
 		self.mixedPatternParser = [TDSequence sequence];
 		[mixedPatternParser add:[TDLiteral literalWithString:@"mixed"]];
@@ -243,7 +243,7 @@
 }
 
 // | "parent" identifier
-- (TDCollectionParser *)parentParser {
+- (PKCollectionParser *)parentParser {
 	if (!parentParser) {
 		self.parentParser = [TDSequence sequence];
 		[parentParser add:[TDLiteral literalWithString:@"parent"]];
@@ -254,7 +254,7 @@
 
 
 // param ::= identifierOrKeyword "=" literal
-- (TDCollectionParser *)paramParser {
+- (PKCollectionParser *)paramParser {
 	if (!paramParser) {
 		self.paramParser = [TDSequence sequence];
 		[paramParser add:self.identifierOrKeywordParser];
@@ -265,7 +265,7 @@
 }
 
 // exceptPattern ::= "-" pattern
-- (TDCollectionParser *)exceptPatternParser {
+- (PKCollectionParser *)exceptPatternParser {
 	if (!exceptPattern) {
 		self.exceptPattern = [TDSequence sequence];
 		[exceptPattern add:[TDSymbol symbolWithString:@"-"]];
@@ -278,7 +278,7 @@
 //    grammarContent ::= start | define | "element" "{" grammarContent* "}" | "include" anyURILiteral [inherit] ["{" includeContent* "}"]
 //
 //    includeContent ::= define | start | elementIncludeContent
-- (TDCollectionParser *)includeContentParser {
+- (PKCollectionParser *)includeContentParser {
 	if (!includeContentParser) {
 		self.includeContentParser = [TDAlternation alternation];
 		[includeContentParser add:self.defineParser];
@@ -289,7 +289,7 @@
 }
 
 // elementIncludeContent ::= "element" "{" includeContent* "}"
-- (TDCollectionParser *)elementIncludeContentParser {
+- (PKCollectionParser *)elementIncludeContentParser {
 	if (!elementIncludeContentParser) {
 		self.elementIncludeContentParser = [TDSequence sequence];
 		[s add:self.elementKeywordParser];
@@ -305,7 +305,7 @@
 
 //
 //    start ::= "start" assignMethod pattern
-- (TDCollectionParser *)startParser {
+- (PKCollectionParser *)startParser {
 	if (!startParser) {
 		self.startParser = [TDSequence sequence];
 		[startParser add:self.startKeywordParser];
@@ -318,7 +318,7 @@
 
 //
 //    define ::= identifier assignMethod pattern
-- (TDCollectionParser *)defineParser {
+- (PKCollectionParser *)defineParser {
 	if (!defineParser) {
 		self.defineParser = [TDSequence sequence];
 		[defineParser add:self.identifierParser];
@@ -331,7 +331,7 @@
 
 //
 //    assignMethod ::= "=" | "|=" | "&="
-- (TDCollectionParser *)assignMethodParser {
+- (PKCollectionParser *)assignMethodParser {
 	if (!assignMethodParser) {
 		self.assignMethodParser = [TDAlternation alternation];
 		[assignMethodParser add:[TDSymbol symbolWithString:@"="]];
@@ -349,7 +349,7 @@
 //    | "(" nameClass ")"
 //
 //    name ::= identifierOrKeyword | CName
-- (TDCollectionParser *)nameParser {
+- (PKCollectionParser *)nameParser {
 	if (!nameParser) {
 		self.nameParser = [TDAlternation alternation];
 		[nameParser add:self.identifierOrKeywordParser];
@@ -360,7 +360,7 @@
 
 //
 //    exceptNameClass ::= "-" nameClass
-- (TDCollectionParser *)exceptNameClassParser {
+- (PKCollectionParser *)exceptNameClassParser {
 	if (!exceptNameClassParser) {
 		self.exceptNameClassParser = [TDSequence sequence];
 		[nameParser add:[TDSymbol symbolWithString:@"-"]];
@@ -371,7 +371,7 @@
 
 //
 //    datatypeName ::= CName | "string" | "token"
-- (TDCollectionParser *)datatypeNameParser {
+- (PKCollectionParser *)datatypeNameParser {
 	if (!datatypeNameParser) {
 		self.datatypeNameParser = [TDAlternation alternation];
 		[datatypeNameParser add:self.CNameParser];
@@ -384,7 +384,7 @@
 
 //
 //    datatypeValue ::= literal
-- (TDCollectionParser *)datatypeValueParser {
+- (PKCollectionParser *)datatypeValueParser {
 	if (!datatypeValueParser) {
 		self.datatypeValueParser = self.literalParser;
 	}
@@ -394,7 +394,7 @@
 
 //
 //    anyURILiteral ::= literal
-- (TDCollectionParser *)anyURILiteralParser {
+- (PKCollectionParser *)anyURILiteralParser {
 	if (!anyURILiteralParser) {
 		self.anyURILiteralParser = self.literalParser;
 	}

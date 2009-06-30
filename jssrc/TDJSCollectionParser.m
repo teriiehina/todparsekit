@@ -6,10 +6,10 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDCollectionParser.h"
+#import "PKCollectionParser.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -18,7 +18,7 @@ static JSValueRef TDCollectionParser_add(JSContextRef ctx, JSObjectRef function,
     TDPreconditionInstaceOf(TDCollectionParser_class, "add");
     TDPreconditionMethodArgc(1, "add");
     
-    TDCollectionParser *data = JSObjectGetPrivate(this);
+    PKCollectionParser *data = JSObjectGetPrivate(this);
     
     JSObjectRef arg = (JSObjectRef)argv[0];
     PKParser *p = (PKParser *)JSObjectGetPrivate(arg);

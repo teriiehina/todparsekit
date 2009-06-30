@@ -10,7 +10,7 @@
 #import "ParseKit.h"
 #import "NSString+TDParseKitAdditions.h"
 
-@interface TDCollectionParser ()
+@interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
@@ -115,7 +115,7 @@
 }
 
 
-- (TDCollectionParser *)booleanParser {
+- (PKCollectionParser *)booleanParser {
     if (!booleanParser) {
         self.booleanParser = [TDAlternation alternation];
         [booleanParser add:[TDLiteral literalWithString:@"true"]];
@@ -128,7 +128,7 @@
 }
 
 
-- (TDCollectionParser *)arrayParser {
+- (PKCollectionParser *)arrayParser {
     if (!arrayParser) {
 
         // array = '[' content ']'
@@ -156,7 +156,7 @@
 }
 
 
-- (TDCollectionParser *)objectParser {
+- (PKCollectionParser *)objectParser {
     if (!objectParser) {
         
         // object = '{' content '}'
@@ -186,7 +186,7 @@
 }
 
 
-- (TDCollectionParser *)valueParser {
+- (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
         [valueParser add:self.stringParser];
@@ -200,7 +200,7 @@
 }
 
 
-- (TDCollectionParser *)commaValueParser {
+- (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
         self.commaValueParser = [TDTrack sequence];
         [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
@@ -210,7 +210,7 @@
 }
 
 
-- (TDCollectionParser *)propertyParser {
+- (PKCollectionParser *)propertyParser {
     if (!propertyParser) {
         self.propertyParser = [TDSequence sequence];
         [propertyParser add:[TDQuotedString quotedString]];
@@ -224,7 +224,7 @@
 }
 
 
-- (TDCollectionParser *)commaPropertyParser {
+- (PKCollectionParser *)commaPropertyParser {
     if (!commaPropertyParser) {
         self.commaPropertyParser = [TDTrack sequence];
         [commaPropertyParser add:[[TDSymbol symbolWithString:@","] discard]];

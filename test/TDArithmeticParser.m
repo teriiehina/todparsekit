@@ -54,7 +54,7 @@
 
 
 // expr            = term (plusTerm | minusTerm)*
-- (TDCollectionParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         [exprParser add:self.termParser];
@@ -70,7 +70,7 @@
 
 
 // term            = factor (timesFactor | divFactor)*
-- (TDCollectionParser *)termParser {
+- (PKCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         [termParser add:self.factorParser];
@@ -86,7 +86,7 @@
 
 
 // plusTerm        = '+' term
-- (TDCollectionParser *)plusTermParser {
+- (PKCollectionParser *)plusTermParser {
     if (!plusTermParser) {
         self.plusTermParser = [TDSequence sequence];
         [plusTermParser add:[[TDSymbol symbolWithString:@"+"] discard]];
@@ -98,7 +98,7 @@
 
 
 // minusTerm    = '-' term
-- (TDCollectionParser *)minusTermParser {
+- (PKCollectionParser *)minusTermParser {
     if (!minusTermParser) {
         self.minusTermParser = [TDSequence sequence];
         [minusTermParser add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -110,7 +110,7 @@
 
 
 // factor        = phrase exponentFactor | phrase
-- (TDCollectionParser *)factorParser {
+- (PKCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
         
@@ -126,7 +126,7 @@
 
 
 // timesFactor    = '*' factor
-- (TDCollectionParser *)timesFactorParser {
+- (PKCollectionParser *)timesFactorParser {
     if (!timesFactorParser) {
         self.timesFactorParser = [TDSequence sequence];
         [timesFactorParser add:[[TDSymbol symbolWithString:@"*"] discard]];
@@ -138,7 +138,7 @@
 
 
 // divFactor    = '/' factor
-- (TDCollectionParser *)divFactorParser {
+- (PKCollectionParser *)divFactorParser {
     if (!divFactorParser) {
         self.divFactorParser = [TDSequence sequence];
         [divFactorParser add:[[TDSymbol symbolWithString:@"/"] discard]];
@@ -150,7 +150,7 @@
 
 
 // exponentFactor    = '^' factor
-- (TDCollectionParser *)exponentFactorParser {
+- (PKCollectionParser *)exponentFactorParser {
     if (!exponentFactorParser) {
         self.exponentFactorParser = [TDSequence sequence];
         [exponentFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
@@ -162,7 +162,7 @@
 
 
 // phrase        = '(' expr ')' | Num
-- (TDCollectionParser *)phraseParser {
+- (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDAlternation alternation];
         

@@ -1,5 +1,5 @@
 //
-//  TDCollectionParser.h
+//  PKCollectionParser.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
@@ -10,10 +10,10 @@
 #import <ParseKit/PKParser.h>
 
 /*!
-    @class      TDCollectionParser 
+    @class      PKCollectionParser 
     @brief      An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
-@interface TDCollectionParser : PKParser {
+@interface PKCollectionParser : PKParser {
     NSMutableArray *subparsers;
 }
 

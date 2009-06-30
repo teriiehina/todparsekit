@@ -9,13 +9,13 @@
 #import <ParseKit/ParseKit.h>
 
 @interface TDPlistParser : TDAlternation {
-    TDCollectionParser *dictParser;
-    TDCollectionParser *keyValuePairParser;
-    TDCollectionParser *arrayParser;
-    TDCollectionParser *commaValueParser;
-    TDCollectionParser *keyParser;
-    TDCollectionParser *valueParser;
-    TDCollectionParser *stringParser;
+    PKCollectionParser *dictParser;
+    PKCollectionParser *keyValuePairParser;
+    PKCollectionParser *arrayParser;
+    PKCollectionParser *commaValueParser;
+    PKCollectionParser *keyParser;
+    PKCollectionParser *valueParser;
+    PKCollectionParser *stringParser;
     PKParser *numParser;
     PKParser *nullParser;
     TDToken *curly;
@@ -24,13 +24,13 @@
 - (id)parse:(NSString *)s;
 
 @property (nonatomic, readonly, retain) TDTokenizer *tokenizer;
-@property (nonatomic, retain) TDCollectionParser *dictParser;
-@property (nonatomic, retain) TDCollectionParser *keyValuePairParser;
-@property (nonatomic, retain) TDCollectionParser *arrayParser;
-@property (nonatomic, retain) TDCollectionParser *commaValueParser;
-@property (nonatomic, retain) TDCollectionParser *keyParser;
-@property (nonatomic, retain) TDCollectionParser *valueParser;
-@property (nonatomic, retain) TDCollectionParser *stringParser;
+@property (nonatomic, retain) PKCollectionParser *dictParser;
+@property (nonatomic, retain) PKCollectionParser *keyValuePairParser;
+@property (nonatomic, retain) PKCollectionParser *arrayParser;
+@property (nonatomic, retain) PKCollectionParser *commaValueParser;
+@property (nonatomic, retain) PKCollectionParser *keyParser;
+@property (nonatomic, retain) PKCollectionParser *valueParser;
+@property (nonatomic, retain) PKCollectionParser *stringParser;
 @property (nonatomic, retain) PKParser *numParser;
 @property (nonatomic, retain) PKParser *nullParser;
 @end
