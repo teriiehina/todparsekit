@@ -111,6 +111,6 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "PKComment", TDComment_class(ctx), TDComment_construct, &ex);
     setUpConstructor(ctx, "PKLiteral", TDLiteral_class(ctx), TDLiteral_construct, &ex);
     setUpConstructor(ctx, "PKCaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
-    setUpConstructor(ctx, "TDUppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
-    setUpConstructor(ctx, "TDLowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
+    setUpConstructor(ctx, "PKUppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
+    setUpConstructor(ctx, "PKLowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
 }

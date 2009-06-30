@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDScientificNumberState.h"
+#import "PKScientificNumberState.h"
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
@@ -21,7 +21,7 @@
 - (CGFloat)value;
 @end
 
-@implementation TDScientificNumberState
+@implementation PKScientificNumberState
 
 - (void)parseRightSideFromReader:(PKReader *)r {
     NSParameterAssert(r);

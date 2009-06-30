@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDLowercaseWord.h>
+#import <ParseKit/PKLowercaseWord.h>
 #import <ParseKit/PKToken.h>
 
-@implementation TDLowercaseWord
+@implementation PKLowercaseWord
 
 - (BOOL)qualifies:(id)obj {
     PKToken *tok = (PKToken *)obj;

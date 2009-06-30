@@ -76,9 +76,9 @@
 #import <ParseKit/PKPattern.h>
 
 // ext
-#import <ParseKit/TDScientificNumberState.h>
-#import <ParseKit/TDUppercaseWord.h>
-#import <ParseKit/TDLowercaseWord.h>
+#import <ParseKit/PKScientificNumberState.h>
+#import <ParseKit/PKUppercaseWord.h>
+#import <ParseKit/PKLowercaseWord.h>
 
 // grammar
 #import <ParseKit/TDParserFactory.h>

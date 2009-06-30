@@ -9,7 +9,7 @@
 #import "TDJSUppercaseWord.h"
 #import "TDJSUtils.h"
 #import "TDJSWord.h"
-#import <ParseKit/TDUppercaseWord.h>
+#import <ParseKit/PKUppercaseWord.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,10 +58,10 @@ JSObjectRef TDUppercaseWord_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDUppercaseWord_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDUppercaseWord");
+    TDPreconditionConstructorArgc(1, "PKUppercaseWord");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDUppercaseWord *data = [[TDUppercaseWord alloc] initWithString:s];
+    PKUppercaseWord *data = [[PKUppercaseWord alloc] initWithString:s];
     return TDUppercaseWord_new(ctx, data);
 }
