@@ -1,5 +1,5 @@
 //
-//  TDAssembly.h
+//  PKAssembly.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 
 /*!
-    @class      TDAssembly 
-    @brief      An Abstract class. A <tt>TDAssembly</tt> maintains a stream of language elements along with stack and target objects.
+    @class      PKAssembly 
+    @brief      An Abstract class. A <tt>PKAssembly</tt> maintains a stream of language elements along with stack and target objects.
     @details    <p>Parsers use assemblers to record progress at recognizing language elements from assembly's string.</p>
-                <p>Note that <tt>TDAssembly</tt> is an abstract class and may not be instantiated directly. Subclasses include <tt>TDTokenAssembly</tt> and <tt>TDCharAssembly</tt>.</p>
+                <p>Note that <tt>PKAssembly</tt> is an abstract class and may not be instantiated directly. Subclasses include <tt>TDTokenAssembly</tt> and <tt>TDCharAssembly</tt>.</p>
 */
-@interface TDAssembly : NSObject <NSCopying> {
+@interface PKAssembly : NSObject <NSCopying> {
     NSMutableArray *stack;
     id target;
     NSUInteger index;
@@ -39,14 +39,14 @@
 
 /*!
     @brief      Shows the next object in the assembly, without removing it
-    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
+    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
     @result     the next object in the assembly.
 */
 - (id)peek;
 
 /*!
     @brief      Returns the next object in the assembly.
-    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
+    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
     @result     the next object in the assembly.
 */
 - (id)next;
@@ -73,7 +73,7 @@
 
 /*!
     @brief      Removes the object at the top of this assembly's stack and returns it.
-    @details    Note this returns an object from this assembly's stack, not from its stream of elements (tokens or chars depending on the type of concrete <tt>TDAssembly</tt> subclass of this object).
+    @details    Note this returns an object from this assembly's stack, not from its stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
     @result     the object at the top of this assembly's stack
 */
 - (id)pop;

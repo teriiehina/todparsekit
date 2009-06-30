@@ -109,7 +109,7 @@ static NSString *kTDPlistNullString = @"<null>";
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     
     // parse
-    TDAssembly *res = [self completeMatchFor:a];
+    PKAssembly *res = [self completeMatchFor:a];
 
     // pop the built result off the assembly's stack and return.
     // this will be an array or a dictionary or nil
@@ -243,7 +243,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (void)workOnDict:(TDAssembly *)a {
+- (void)workOnDict:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:self.curly];
     NSInteger count = objs.count;
     NSAssert1(0 == count % 2, @"in -%s, the assembly's stack's count should be a multiple of 2", _cmd);
@@ -263,7 +263,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (void)workOnArray:(TDAssembly *)a {
+- (void)workOnArray:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:self.paren];
     NSMutableArray *res = [NSMutableArray arrayWithCapacity:objs.count];
     
@@ -276,25 +276,25 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (void)workOnQuotedString:(TDAssembly *)a {
+- (void)workOnQuotedString:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnWord:(TDAssembly *)a {
+- (void)workOnWord:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnNum:(TDAssembly *)a {
+- (void)workOnNum:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnNull:(TDAssembly *)a {
+- (void)workOnNull:(PKAssembly *)a {
     [a pop]; // discard '<null>' tok
     [a push:[NSNull null]];
 }

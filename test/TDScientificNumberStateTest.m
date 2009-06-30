@@ -13,7 +13,7 @@
 
 - (void)setUp {
     t = [[TDTokenizer alloc] init];
-    r = [[TDReader alloc] init];
+    r = [[PKReader alloc] init];
     numberState = [[TDScientificNumberState alloc] init];
     t.numberState = numberState;
     [t setTokenizerState:numberState from:'0' to:'9'];
@@ -31,8 +31,8 @@
 - (void)testScientificNumberStringArithmetic {
     t.string = @"1e2 + 1e1 + 1e0 + 1e-1 + 1e-2 + 1e-3";
     TDArithmeticParser *p = [[[TDArithmeticParser alloc] init] autorelease];
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
-    TDAssembly *res = [p bestMatchFor:a];
+    PKAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKAssembly *res = [p bestMatchFor:a];
     TDToken *tok = [res pop];
     TDEquals((CGFloat)111.111, tok.floatValue);
 }

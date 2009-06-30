@@ -11,7 +11,7 @@
 @implementation TDSlashStateTest
 
 - (void)setUp {
-    r = [[TDReader alloc] init];
+    r = [[PKReader alloc] init];
     t = [[TDTokenizer alloc] init];
     slashState = t.slashState;
 }

@@ -31,7 +31,7 @@ An equivalent grammar could be expressed in many ways. Here's an equivalent gram
 dash    = '-';
 
 year  (matchedYear:)    = /\d{4}/;      // when matched, your specified `assembler` object (think delegate) will receive a
-                                        // callback to it's `-matchedYear:` method with a `TDAssembly` argument.
+                                        // callback to it's `-matchedYear:` method with a `PKAssembly` argument.
                                         // the token matched by the regex will on the top of the assebly's stack ready for you
 
 month (matchedMonth:)   = /\d{2}/;

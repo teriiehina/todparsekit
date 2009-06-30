@@ -13,7 +13,7 @@
     NSString *s;
     TDCharacterAssembly *a;
     TDRegularParser *p;
-    TDAssembly *res;
+    PKAssembly *res;
 }
 
 @end

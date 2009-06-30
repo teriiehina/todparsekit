@@ -7,7 +7,7 @@
 //
 
 #import "TDIntersection.h"
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 @interface NSMutableSet (TDIntersectionAdditions)
 - (void)intersectSetTestingEquality:(NSSet *)s;

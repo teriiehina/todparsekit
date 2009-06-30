@@ -25,7 +25,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo]foo/-^", [result description]);
@@ -41,7 +41,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, foo]foo/foo/-^", [result description]);
@@ -57,7 +57,7 @@
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, foo]foo/-/foo^", [result description]);
@@ -72,7 +72,7 @@
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo]-/foo^", [result description]);
@@ -88,7 +88,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo]-/foo/-^", [result description]);
@@ -105,7 +105,7 @@
     [p add:[[TDSymbol symbolWithString:@"+"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, foo]-/foo/+/foo^", [result description]);
@@ -121,7 +121,7 @@
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
@@ -137,7 +137,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNil(result);
 }
@@ -152,7 +152,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
 }
 
@@ -166,7 +166,7 @@
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
@@ -182,7 +182,7 @@
     [p add:[TDWord word]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
@@ -198,7 +198,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -212,7 +212,7 @@
     [p add:[TDNum num]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -226,7 +226,7 @@
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
 }

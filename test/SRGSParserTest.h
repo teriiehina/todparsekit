@@ -13,8 +13,8 @@
 @interface SRGSParserTest : SenTestCase {
     NSString *s;
     SRGSParser *p;
-    TDAssembly *a;
-    TDAssembly *result;
+    PKAssembly *a;
+    PKAssembly *result;
 }
 
 @end

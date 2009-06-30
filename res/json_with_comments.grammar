@@ -60,7 +60,7 @@ colon         = ':';
     -workOnOpenCurlyAssembly:
     etc.
     
-    Each callback method must accept a single TDAssembly argument. This assembly argument
+    Each callback method must accept a single PKAssembly argument. This assembly argument
     will contain information about the progress made on the the string currently being parsed.
     Also the assembly's stack will contain the tokens parsed so far in the current statement.
 

@@ -48,7 +48,7 @@
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }
@@ -60,7 +60,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
 
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar]foo/bar^123", [result description]);
 }
@@ -117,7 +117,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [result description]);
 }    
@@ -129,7 +129,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }    
 
@@ -140,7 +140,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }    
 
@@ -151,7 +151,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDNum num]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }    
 
@@ -176,7 +176,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDNum num]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123, 456]123/456^baz", [result description]);
@@ -189,7 +189,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDNum num]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123]123^", [result description]);
@@ -202,7 +202,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);
 }    
@@ -214,7 +214,7 @@
     
     p = [[TDRepetition alloc] initWithSubparser:[TDWord word]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foo]foo^", [result description]);
 }

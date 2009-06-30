@@ -47,7 +47,7 @@
     TDCollectionParser *ABNF_URI_with_Media_Type;
 }
 - (id)parse:(NSString *)s;
-- (TDAssembly *)assemblyWithString:(NSString *)s;
+- (PKAssembly *)assemblyWithString:(NSString *)s;
 
 @property (nonatomic, retain) TDCollectionParser *selfIdentHeader;
 @property (nonatomic, retain) TDCollectionParser *ruleName;

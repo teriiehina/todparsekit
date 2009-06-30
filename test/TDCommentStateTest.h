@@ -10,7 +10,7 @@
 
 @interface TDCommentStateTest : SenTestCase {
     TDCommentState *commentState;
-    TDReader *r;
+    PKReader *r;
     TDTokenizer *t;
     NSString *s;
     TDToken *tok;

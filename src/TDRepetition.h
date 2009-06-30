@@ -58,7 +58,7 @@
 /*!
     @property   preAssemlerSelector
     @brief      The method of <tt>preassembler</tt> this parser will call to work on an assembly.
-    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
+    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL preassemblerSelector;
 @end

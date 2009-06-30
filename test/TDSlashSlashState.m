@@ -8,20 +8,20 @@
 
 #import <ParseKit/TDSlashSlashState.h>
 #import <ParseKit/TDSlashState.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 #import <ParseKit/TDTokenizer.h>
 #import <ParseKit/TDToken.h>
 #import <ParseKit/PKTypes.h>
 
 @interface TDTokenizerState ()
-- (void)resetWithReader:(TDReader *)r;
+- (void)resetWithReader:(PKReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @implementation TDSlashSlashState
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     

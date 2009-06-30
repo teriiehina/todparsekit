@@ -23,7 +23,7 @@
 
 - (void)testDot {
     s = @".";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
@@ -34,7 +34,7 @@
 
 - (void)testDotA {
     s = @".a";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
@@ -45,7 +45,7 @@
 
 - (void)testDotSpace {
     s = @". ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
@@ -56,7 +56,7 @@
 
 - (void)testDotDot {
     s = @"..";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@".", tok.stringValue);
     TDEqualObjects(@".", tok.value);
@@ -69,7 +69,7 @@
 - (void)testAddDotDot {
     s = @"..";
     [symbolState add:s];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@"..", tok.stringValue);
     TDEqualObjects(@"..", tok.value);
@@ -81,7 +81,7 @@
 - (void)testAddDotDotSpace {
     s = @".. ";
     [symbolState add:@".."];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@"..", tok.stringValue);
     TDEqualObjects(@"..", tok.value);
@@ -93,7 +93,7 @@
 - (void)testAddColonEqual {
     s = @":=";
     [symbolState add:s];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@":=", tok.stringValue);
     TDEqualObjects(@":=", tok.value);
@@ -105,7 +105,7 @@
 - (void)testAddColonEqualSpace {
     s = @":= ";
     [symbolState add:@":="];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@":=", tok.stringValue);
     TDEqualObjects(@":=", tok.value);
@@ -117,7 +117,7 @@
 - (void)testAddGtEqualLtSpace {
     s = @">=< ";
     [symbolState add:@">=<"];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@">=<", tok.stringValue);
     TDEqualObjects(@">=<", tok.value);
@@ -129,7 +129,7 @@
 - (void)testAddGtEqualLt {
     s = @">=<";
     [symbolState add:s];
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [symbolState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@">=<", tok.stringValue);
     TDEqualObjects(@">=<", tok.value);

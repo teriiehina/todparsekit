@@ -24,7 +24,7 @@
 
 - (void)testSpace {
     s = @" ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -33,7 +33,7 @@
 
 - (void)testTwoSpaces {
     s = @"  ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -42,7 +42,7 @@
 
 - (void)testNil {
     s = nil;
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -51,7 +51,7 @@
 
 - (void)testNull {
     s = NULL;
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -60,7 +60,7 @@
 
 - (void)testEmptyString {
     s = @"";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -69,7 +69,7 @@
 
 - (void)testTab {
     s = @"\t";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -78,7 +78,7 @@
 
 - (void)testNewLine {
     s = @"\n";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -87,7 +87,7 @@
 
 - (void)testCarriageReturn {
     s = @"\r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -96,7 +96,7 @@
 
 - (void)testSpaceCarriageReturn {
     s = @" \r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -105,7 +105,7 @@
 
 - (void)testSpaceTabNewLineSpace {
     s = @" \t\n ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok);
     TDEquals(TDEOF, [r read]);
@@ -114,7 +114,7 @@
 
 - (void)testSpaceA {
     s = @" a";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -122,7 +122,7 @@
 
 - (void)testSpaceASpace {
     s = @" a ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -131,7 +131,7 @@
 
 - (void)testTabA {
     s = @"\ta";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -140,7 +140,7 @@
 
 - (void)testNewLineA {
     s = @"\na";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -149,7 +149,7 @@
 
 - (void)testCarriageReturnA {
     s = @"\ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -158,7 +158,7 @@
 
 - (void)testNewLineSpaceCarriageReturnA {
     s = @"\n \ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNil(tok.stringValue);
     TDEquals((TDUniChar)'a', [r read]);
@@ -171,7 +171,7 @@
 - (void)testSignificantSpace {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -182,7 +182,7 @@
 - (void)testSignificantTwoSpaces {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"  ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -193,7 +193,7 @@
 - (void)testSignificantEmptyString {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -204,7 +204,7 @@
 - (void)testSignificantTab {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\t";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -215,7 +215,7 @@
 - (void)testSignificantNewLine {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -226,7 +226,7 @@
 - (void)testSignificantCarriageReturn {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -237,7 +237,7 @@
 - (void)testSignificantSpaceCarriageReturn {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -248,7 +248,7 @@
 - (void)testSignificantSpaceTabNewLineSpace {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" \t\n ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(s, tok.stringValue);
@@ -259,7 +259,7 @@
 - (void)testSignificantSpaceA {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@" ", tok.stringValue);
@@ -270,7 +270,7 @@
 - (void)testSignificantSpaceASpace {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @" a ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@" ", tok.stringValue);
@@ -281,7 +281,7 @@
 - (void)testSignificantTabA {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ta";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@"\t", tok.stringValue);
@@ -292,7 +292,7 @@
 - (void)testSignificantNewLineA {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\na";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@"\n", tok.stringValue);
@@ -303,7 +303,7 @@
 - (void)testSignificantCarriageReturnA {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@"\r", tok.stringValue);
@@ -314,7 +314,7 @@
 - (void)testSignificantNewLineSpaceCarriageReturnA {
     whitespaceState.reportsWhitespaceTokens = YES;
     s = @"\n \ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDNotNil(tok);
     TDEqualObjects(@"\n \r", tok.stringValue);

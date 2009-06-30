@@ -10,7 +10,7 @@
 
 @interface TDWordStateTest : SenTestCase {
     TDWordState *wordState;
-    TDReader *r;
+    PKReader *r;
     NSString *s;
 }
 @end

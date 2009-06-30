@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDParserTest : SenTestCase {
-    TDAssembly *a;
+    PKAssembly *a;
     NSString *s;
     TDParser *p;
 }

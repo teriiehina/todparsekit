@@ -24,7 +24,7 @@
 
 - (void)testSpace {
     s = @" ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -34,7 +34,7 @@
 
 - (void)testTwoSpaces {
     s = @"  ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -44,7 +44,7 @@
 
 - (void)testEmptyString {
     s = @"";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -54,7 +54,7 @@
 
 - (void)testTab {
     s = @"\t";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -64,7 +64,7 @@
 
 - (void)testNewLine {
     s = @"\n";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -74,7 +74,7 @@
 
 - (void)testCarriageReturn {
     s = @"\r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -84,7 +84,7 @@
 
 - (void)testSpaceCarriageReturn {
     s = @" \r";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -94,7 +94,7 @@
 
 - (void)testSpaceTabNewLineSpace {
     s = @" \t\n ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(s, t.stringValue, @"");
@@ -104,7 +104,7 @@
 
 - (void)testSpaceA {
     s = @" a";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@" ", t.stringValue, @"");
@@ -113,7 +113,7 @@
 
 - (void)testSpaceASpace {
     s = @" a ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@" ", t.stringValue, @"");
@@ -123,7 +123,7 @@
 
 - (void)testTabA {
     s = @"\ta";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\t", t.stringValue, @"");
@@ -133,7 +133,7 @@
 
 - (void)testNewLineA {
     s = @"\na";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\n", t.stringValue, @"");
@@ -143,7 +143,7 @@
 
 - (void)testCarriageReturnA {
     s = @"\ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\r", t.stringValue, @"");
@@ -153,7 +153,7 @@
 
 - (void)testNewLineSpaceCarriageReturnA {
     s = @"\n \ra";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *t = [whitespaceState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     STAssertNotNil(t, @"");
     STAssertEqualObjects(@"\n \r", t.stringValue, @"");

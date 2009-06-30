@@ -9,7 +9,7 @@
 #import <ParseKit/TDCharacterAssembly.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDAssembly ()
+@interface PKAssembly ()
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 

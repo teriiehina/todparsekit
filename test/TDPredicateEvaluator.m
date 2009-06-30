@@ -80,7 +80,7 @@
 
 
 - (BOOL)evaluate:(NSString *)s {
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     return [[[self.exprParser completeMatchFor:a] pop] boolValue];
 }
 
@@ -455,7 +455,7 @@
 }
 
 
-- (void)workOnAnd:(TDAssembly *)a {
+- (void)workOnAnd:(PKAssembly *)a {
     NSNumber *b2 = [a pop];
     NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] && [b2 boolValue]);
@@ -463,7 +463,7 @@
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
     NSNumber *b2 = [a pop];
     NSNumber *b1 = [a pop];
     BOOL yn = ([b1 boolValue] || [b2 boolValue]);
@@ -471,7 +471,7 @@
 }
 
 
-- (void)workOnEqStringPredicate:(TDAssembly *)a {
+- (void)workOnEqStringPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value];
@@ -479,7 +479,7 @@
 }
 
 
-- (void)workOnEqNumberPredicate:(TDAssembly *)a {
+- (void)workOnEqNumberPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
@@ -487,7 +487,7 @@
 }
 
 
-- (void)workOnEqBoolPredicate:(TDAssembly *)a {
+- (void)workOnEqBoolPredicate:(PKAssembly *)a {
     NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ([delegate boolForAttributeKey:attrKey] == [b boolValue]);
@@ -495,7 +495,7 @@
 }
 
 
-- (void)workOnNeStringPredicate:(TDAssembly *)a {
+- (void)workOnNeStringPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     
@@ -504,7 +504,7 @@
 }
 
 
-- (void)workOnNeNumberPredicate:(TDAssembly *)a {
+- (void)workOnNeNumberPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ![value isEqualToNumber:[delegate valueForAttributeKey:attrKey]];
@@ -512,7 +512,7 @@
 }
 
 
-- (void)workOnNeBoolPredicate:(TDAssembly *)a {
+- (void)workOnNeBoolPredicate:(PKAssembly *)a {
     NSNumber *b = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = ([delegate boolForAttributeKey:attrKey] != [b boolValue]);
@@ -520,7 +520,7 @@
 }
 
 
-- (void)workOnGtPredicate:(TDAssembly *)a {
+- (void)workOnGtPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedDescending == [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -528,7 +528,7 @@
 }
 
 
-- (void)workOnGteqPredicate:(TDAssembly *)a {
+- (void)workOnGteqPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedAscending != [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -536,7 +536,7 @@
 }
 
 
-- (void)workOnLtPredicate:(TDAssembly *)a {
+- (void)workOnLtPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedAscending == [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -544,7 +544,7 @@
 }
 
 
-- (void)workOnLteqPredicate:(TDAssembly *)a {
+- (void)workOnLteqPredicate:(PKAssembly *)a {
     NSNumber *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = (NSOrderedDescending != [[delegate valueForAttributeKey:attrKey] compare:value]);
@@ -552,7 +552,7 @@
 }
 
 
-- (void)workOnBeginswithPredicate:(TDAssembly *)a {
+- (void)workOnBeginswithPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasPrefix:value];
@@ -560,7 +560,7 @@
 }
 
 
-- (void)workOnContainsPredicate:(TDAssembly *)a {
+- (void)workOnContainsPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     NSRange r = [[delegate valueForAttributeKey:attrKey] rangeOfString:value];
@@ -569,7 +569,7 @@
 }
 
 
-- (void)workOnEndswithPredicate:(TDAssembly *)a {
+- (void)workOnEndswithPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] hasSuffix:value];
@@ -577,7 +577,7 @@
 }
 
 
-- (void)workOnMatchesPredicate:(TDAssembly *)a {
+- (void)workOnMatchesPredicate:(PKAssembly *)a {
     NSString *value = [a pop];
     NSString *attrKey = [a pop];
     BOOL yn = [[delegate valueForAttributeKey:attrKey] isEqual:value]; // TODO should this be a regex match?
@@ -585,40 +585,40 @@
 }
 
 
-- (void)workOnAttr:(TDAssembly *)a {
+- (void)workOnAttr:(PKAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
 
 
-- (void)workOnNegatedValue:(TDAssembly *)a {
+- (void)workOnNegatedValue:(PKAssembly *)a {
     NSNumber *b = [a pop];
     [a push:[NSNumber numberWithBool:![b boolValue]]];
 }
 
 
-- (void)workOnBool:(TDAssembly *)a {
+- (void)workOnBool:(PKAssembly *)a {
     NSNumber *b = [a pop];
     [a push:[NSNumber numberWithBool:[b boolValue]]];
 }
 
 
-- (void)workOnTrue:(TDAssembly *)a {
+- (void)workOnTrue:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalse:(TDAssembly *)a {
+- (void)workOnFalse:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnString:(TDAssembly *)a {
+- (void)workOnString:(PKAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnNumber:(TDAssembly *)a {
+- (void)workOnNumber:(PKAssembly *)a {
     NSNumber *b = [NSNumber numberWithFloat:[[a pop] floatValue]];
     [a push:b];
 }

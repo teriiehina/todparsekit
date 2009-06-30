@@ -12,7 +12,7 @@
     TDTokenizer *t;
     TDPattern *p;
     TDIntersection *inter;
-    TDAssembly *a;
+    PKAssembly *a;
     NSString *s;
 }
 

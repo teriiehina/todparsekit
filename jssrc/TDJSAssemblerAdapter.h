@@ -9,13 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
-@class TDAssembly;
+@class PKAssembly;
 
 @interface TDJSAssemblerAdapter : NSObject {
     JSContextRef ctx;
     JSObjectRef assemblerFunction;
 }
-- (void)workOn:(TDAssembly *)a;
+- (void)workOn:(PKAssembly *)a;
 
 - (JSObjectRef)assemblerFunction;
 - (void)setAssemblerFunction:(JSObjectRef)f fromContext:(JSContextRef)c;

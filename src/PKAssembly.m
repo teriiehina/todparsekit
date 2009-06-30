@@ -1,23 +1,23 @@
 //
-//  TDAssembly.m
+//  PKAssembly.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
-static NSString * const TDAssemblyDefaultDelimiter = @"/";
+static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
-@interface TDAssembly ()
+@interface PKAssembly ()
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, retain) NSString *string;
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
 @end
 
-@implementation TDAssembly
+@implementation PKAssembly
 
 + (id)assemblyWithString:(NSString *)s {
     return [[[self alloc] initWithString:s] autorelease];
@@ -50,7 +50,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 - (id)copyWithZone:(NSZone *)zone {
     // use of NSAllocateObject() below is a *massive* optimization over calling the designated initializer -initWithString: here.
     // this line (and this method in general) is *vital* to the overall performance of the framework. dont fuck with it.
-    TDAssembly *a = NSAllocateObject([self class], 0, zone);
+    PKAssembly *a = NSAllocateObject([self class], 0, zone);
     a->stack = [stack mutableCopyWithZone:zone];
     a->string = [string retain];
     if (defaultDelimiter) {
@@ -69,7 +69,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
         return NO;
     }
     
-    TDAssembly *a = (TDAssembly *)obj;
+    PKAssembly *a = (PKAssembly *)obj;
     if (a.length != self.length) {
         return NO;
     }
@@ -87,49 +87,49 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
 
 
 - (id)next {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return nil;
 }
 
 
 - (BOOL)hasMore {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return NO;
 }
 
 
 - (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return nil;
 }
 
 
 - (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return nil;
 }
 
 
 - (NSUInteger)length {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return 0;
 }
 
 
 - (NSUInteger)objectsConsumed {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return 0;
 }
 
 
 - (NSUInteger)objectsRemaining {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return 0;
 }
 
 
 - (id)peek {
-    NSAssert1(0, @"-[TDAssembly %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKAssembly %s] must be overriden", _cmd);
     return nil;
 }
 
@@ -190,7 +190,7 @@ static NSString * const TDAssemblyDefaultDelimiter = @"/";
     
     [s appendString:@"]"];
     
-    NSString *d = defaultDelimiter ? defaultDelimiter : TDAssemblyDefaultDelimiter;
+    NSString *d = defaultDelimiter ? defaultDelimiter : PKAssemblyDefaultDelimiter;
     [s appendString:[self consumedObjectsJoinedByString:d]];
     [s appendString:@"^"];
     [s appendString:[self remainingObjectsJoinedByString:d]];

@@ -10,7 +10,7 @@
 
 @interface TDSlashStateTest : SenTestCase {
     TDSlashState *slashState;
-    TDReader *r;
+    PKReader *r;
     TDTokenizer *t;
     NSString *s;
 }

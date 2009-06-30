@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDAlternation.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;

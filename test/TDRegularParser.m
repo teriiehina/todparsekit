@@ -9,13 +9,13 @@
 #import "TDRegularParser.h"
 
 @interface TDRegularParser ()
-- (void)workOnChar:(TDAssembly *)a;
-- (void)workOnStar:(TDAssembly *)a;
-- (void)workOnPlus:(TDAssembly *)a;
-- (void)workOnQuestion:(TDAssembly *)a;
-//- (void)workOnAnd:(TDAssembly *)a;
-- (void)workOnOr:(TDAssembly *)a;
-- (void)workOnExpression:(TDAssembly *)a;
+- (void)workOnChar:(PKAssembly *)a;
+- (void)workOnStar:(PKAssembly *)a;
+- (void)workOnPlus:(PKAssembly *)a;
+- (void)workOnQuestion:(PKAssembly *)a;
+//- (void)workOnAnd:(PKAssembly *)a;
+- (void)workOnOr:(PKAssembly *)a;
+- (void)workOnExpression:(PKAssembly *)a;
 @end
 
 @implementation TDRegularParser
@@ -45,7 +45,7 @@
 
 + (id)parserFromGrammar:(NSString *)s {
     TDRegularParser *p = [TDRegularParser parser];
-    TDAssembly *a = [TDCharacterAssembly assemblyWithString:s];
+    PKAssembly *a = [TDCharacterAssembly assemblyWithString:s];
     a = [p completeMatchFor:a];
     return [a pop];
 }
@@ -199,7 +199,7 @@
 }
 
 
-- (void)workOnChar:(TDAssembly *)a {
+- (void)workOnChar:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id obj = [a pop];
@@ -209,7 +209,7 @@
 }
 
 
-- (void)workOnStar:(TDAssembly *)a {
+- (void)workOnStar:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -219,7 +219,7 @@
 }
 
 
-- (void)workOnPlus:(TDAssembly *)a {
+- (void)workOnPlus:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -231,7 +231,7 @@
 }
 
 
-- (void)workOnQuestion:(TDAssembly *)a {
+- (void)workOnQuestion:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -243,7 +243,7 @@
 }
 
 
-//- (void)workOnAnd:(TDAssembly *)a {
+//- (void)workOnAnd:(PKAssembly *)a {
 ////    NSLog(@"%s", _cmd);
 ////    NSLog(@"a: %@", a);
 //    id second = [a pop];
@@ -257,7 +257,7 @@
 //}
 
 
-- (void)workOnExpression:(TDAssembly *)a {
+- (void)workOnExpression:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     
@@ -285,7 +285,7 @@
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id second = [a pop];

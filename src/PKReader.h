@@ -1,5 +1,5 @@
 //
-//  TDReader.h
+//  PKReader.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/21/06.
@@ -10,10 +10,10 @@
 #import <ParseKit/PKTypes.h>
 
 /*!
-    @class      TDReader 
+    @class      PKReader 
     @brief      A character-stream reader that allows characters to be pushed back into the stream.
 */
-@interface TDReader : NSObject {
+@interface PKReader : NSObject {
     NSString *string;
     NSUInteger offset;
     NSUInteger length;

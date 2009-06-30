@@ -6,16 +6,16 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 @class TDTokenizer;
 
 /*!
     @class      TDTokenAssembly 
-    @brief      A <tt>TDTokenAssembly</tt> is a <tt>TDAssembly</tt> whose elements are <tt>TDToken</tt>s.
+    @brief      A <tt>TDTokenAssembly</tt> is a <tt>PKAssembly</tt> whose elements are <tt>TDToken</tt>s.
     @details    <tt>TDToken</tt>s are, roughly, the chunks of text that a <tt>TDTokenizer</tt> returns.
 */
-@interface TDTokenAssembly : TDAssembly <NSCopying> {
+@interface TDTokenAssembly : PKAssembly <NSCopying> {
     TDTokenizer *tokenizer;
     NSArray *tokens;
     BOOL preservesWhitespaceTokens;

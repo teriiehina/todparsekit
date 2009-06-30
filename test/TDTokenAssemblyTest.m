@@ -70,7 +70,7 @@
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[foobar]foobar^", [result description]);
     TDFalse(result == a);
 
@@ -88,7 +88,7 @@
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDEqualObjects(@"[foobar]foobar^", [result description]);
     TDFalse(result == a);
 }
@@ -102,7 +102,7 @@
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar", [result description]);
     TDFalse(result == a);
 }
@@ -116,7 +116,7 @@
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -129,7 +129,7 @@
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
 }
 
@@ -142,7 +142,7 @@
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -155,7 +155,7 @@
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
 }
 
@@ -166,7 +166,7 @@
     
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
@@ -181,7 +181,7 @@
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^", [result description]);
     TDFalse(result == a);
 }
@@ -195,7 +195,7 @@
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^", [result description]);
     TDFalse(result == a);
 }
@@ -209,7 +209,7 @@
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^456", [result description]);
     TDFalse(result == a);
 }
@@ -223,7 +223,7 @@
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -236,7 +236,7 @@
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[foobar]foobar^123", [result description]);
     TDFalse(result == a);
 }
@@ -250,7 +250,7 @@
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[TDWord alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -263,7 +263,7 @@
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^456/foobar", [result description]);
     TDFalse(result == a);
 }
@@ -277,7 +277,7 @@
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[TDNum alloc] init];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 

@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDNumberState.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 #import <ParseKit/TDToken.h>
 #import <ParseKit/TDTokenizer.h>
 #import <ParseKit/TDSymbolState.h>
@@ -18,16 +18,16 @@
 @end
 
 @interface TDTokenizerState ()
-- (void)resetWithReader:(TDReader *)r;
+- (void)resetWithReader:(PKReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDNumberState ()
-- (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)fraction;
+- (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)fraction;
 - (CGFloat)value;
-- (void)parseLeftSideFromReader:(TDReader *)r;
-- (void)parseRightSideFromReader:(TDReader *)r;
+- (void)parseLeftSideFromReader:(PKReader *)r;
+- (void)parseRightSideFromReader:(PKReader *)r;
 - (void)reset:(TDUniChar)cin;
 @end
 
@@ -38,7 +38,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
@@ -90,7 +90,7 @@
 }
 
 
-- (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction {
+- (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)isFraction {
     CGFloat divideBy = 1.0;
     CGFloat v = 0.0;
     
@@ -116,12 +116,12 @@
 }
 
 
-- (void)parseLeftSideFromReader:(TDReader *)r {
+- (void)parseLeftSideFromReader:(PKReader *)r {
     floatValue = [self absorbDigitsFromReader:r isFraction:NO];
 }
 
 
-- (void)parseRightSideFromReader:(TDReader *)r {
+- (void)parseRightSideFromReader:(PKReader *)r {
     if ('.' == c) {
         TDUniChar n = [r read];
         BOOL nextIsDigit = isdigit(n);

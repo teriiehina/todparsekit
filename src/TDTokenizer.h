@@ -19,7 +19,7 @@
 @class TDWhitespaceState;
 @class TDWordState;
 @class TDDelimitState;
-@class TDReader;
+@class PKReader;
 
 /*!
     @class      TDTokenizer
@@ -45,7 +45,7 @@
 */
 @interface TDTokenizer : NSObject {
     NSString *string;
-    TDReader *reader;
+    PKReader *reader;
     
     NSMutableArray *tokenizerStates;
     

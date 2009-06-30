@@ -12,7 +12,7 @@
 @interface TDPredicateEvaluatorTest : SenTestCase <TDPredicateEvaluatorDelegate> {
     TDPredicateEvaluator *p;
     NSString *s;
-    TDAssembly *a;
+    PKAssembly *a;
     
     NSMutableDictionary *d;
 }

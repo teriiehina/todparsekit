@@ -17,7 +17,7 @@
     TDMiniCSSAssembler *ass;
     TDParserFactory *factory;
     TDParser *lp;
-    TDAssembly *a;
+    PKAssembly *a;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <ParseKit/TDTokenizerState.h>
 #import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
 @interface TDTokenizer ()
@@ -16,7 +16,7 @@
 @end
 
 @interface TDTokenizerState ()
-- (void)resetWithReader:(TDReader *)r;
+- (void)resetWithReader:(PKReader *)r;
 - (void)append:(TDUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
@@ -35,13 +35,13 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSAssert1(0, @"TDTokenizerState is an abstract classs. %s must be overriden", _cmd);
     return nil;
 }
 
 
-- (void)resetWithReader:(TDReader *)r {
+- (void)resetWithReader:(PKReader *)r {
     self.stringbuf = [NSMutableString string];
     self.offset = r.offset - 1;
 }

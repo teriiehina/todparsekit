@@ -10,7 +10,7 @@
 
 @interface TDSymbolTest : SenTestCase {
     TDParser *p;
-    TDAssembly *a;
+    PKAssembly *a;
     NSString *s;
 }
 

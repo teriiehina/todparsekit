@@ -12,7 +12,7 @@
 @interface TDCharacterAssemblyTest : SenTestCase {
     NSString *s;
     TDCharacterAssembly *a;
-    TDAssembly *result;
+    PKAssembly *result;
 }
 
 @end

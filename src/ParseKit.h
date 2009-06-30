@@ -23,11 +23,11 @@
 
 // io
 #import <ParseKit/PKTypes.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 
 // parse
 #import <ParseKit/TDParser.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDSequence.h>
 #import <ParseKit/TDExclusion.h>
 #import <ParseKit/TDIntersection.h>

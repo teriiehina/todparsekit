@@ -8,5 +8,5 @@
 
 #import <JavaScriptCore/JavaScriptCore.h>
 
-JSObjectRef TDAssembly_new(JSContextRef ctx, void *data);
-JSClassRef TDAssembly_class(JSContextRef ctx);
+JSObjectRef PKAssembly_new(JSContextRef ctx, void *data);
+JSClassRef PKAssembly_class(JSContextRef ctx);

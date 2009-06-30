@@ -13,8 +13,8 @@
 @interface TDJsonParserTest : SenTestCase {
     TDJsonParser *p;
     NSString *s;
-    TDAssembly *a;
-    TDAssembly *result;
+    PKAssembly *a;
+    PKAssembly *result;
 }
 
 @end

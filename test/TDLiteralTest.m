@@ -20,7 +20,7 @@
     NSLog(@"a: %@", a);
     
     p = [TDNum num];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     // -[TDParser completeMatchFor:]
     // -[TDParser bestMatchFor:]
@@ -41,7 +41,7 @@
     a = [[TDTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"123"];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
     TDEqualObjects(@"[]^1234", [a description]);
 }
@@ -52,7 +52,7 @@
     a = [[TDTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"Foo"];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[Foo]Foo^", [result description]);
 }
@@ -63,7 +63,7 @@
     a = [[TDTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"foo"];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -73,7 +73,7 @@
     a = [[TDTokenAssembly alloc] initWithString:s];
     
     p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
 
@@ -83,7 +83,7 @@
     a = [[TDTokenAssembly alloc] initWithString:s];
         
     p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[Foo]Foo^", [result description]);
 }

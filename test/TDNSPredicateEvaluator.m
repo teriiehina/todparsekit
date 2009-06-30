@@ -12,7 +12,7 @@
 #import "NSArray+TDParseKitAdditions.h"
 
 @interface TDNSPredicateEvaluator ()
-- (void)workOnCollectionPredicateAssembly:(TDAssembly *)a ordered:(NSComparisonResult)ordered;
+- (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered;
 
 @property (nonatomic, assign) id <TDKeyPathResolver>resolver;
 @property (nonatomic, retain) TDToken *openCurly;
@@ -48,13 +48,13 @@
 }
 
 
-- (void)workOnNegatedPredicate:(TDAssembly *)a {
+- (void)workOnNegatedPredicate:(PKAssembly *)a {
     BOOL b = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:!b]];
 }
 
 
-- (void)workOnNumComparisonPredicate:(TDAssembly *)a {
+- (void)workOnNumComparisonPredicate:(PKAssembly *)a {
     CGFloat n2 = [[a pop] floatValue];
     NSString *op = [[a pop] stringValue];
     CGFloat n1 = [[a pop] floatValue];
@@ -78,22 +78,22 @@
 }
 
 
-- (void)workOnCollectionLtPredicate:(TDAssembly *)a {
+- (void)workOnCollectionLtPredicate:(PKAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedAscending];
 }
 
 
-- (void)workOnCollectionGtPredicate:(TDAssembly *)a {
+- (void)workOnCollectionGtPredicate:(PKAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedDescending];
 }
 
 
-- (void)workOnCollectionEqPredicate:(TDAssembly *)a {
+- (void)workOnCollectionEqPredicate:(PKAssembly *)a {
     [self workOnCollectionPredicateAssembly:a ordered:NSOrderedSame];
 }
 
 
-- (void)workOnCollectionPredicateAssembly:(TDAssembly *)a ordered:(NSComparisonResult)ordered {
+- (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered {
     id value = [a pop];
     [a pop]; // discard op
     NSArray *array = [a pop];
@@ -131,13 +131,13 @@
 }
 
 
-- (void)workOnString:(TDAssembly *)a {
+- (void)workOnString:(PKAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnStringTestPredicate:(TDAssembly *)a {
+- (void)workOnStringTestPredicate:(PKAssembly *)a {
     NSString *s2 = [a pop];
     NSString *op = [[a pop] stringValue];
     NSString *s1 = [a pop];
@@ -159,28 +159,28 @@
 }
 
 
-- (void)workOnAndAndTerm:(TDAssembly *)a {
+- (void)workOnAndAndTerm:(PKAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 && b2]];
 }
 
 
-- (void)workOnOrOrTerm:(TDAssembly *)a {
+- (void)workOnOrOrTerm:(PKAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 || b2]];
 }
 
 
-- (void)workOnArray:(TDAssembly *)a {
+- (void)workOnArray:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:openCurly];
     [a pop]; // discard '{'
     [a push:[objs reversedArray]];
 }
 
 
-- (void)workOnCollectionTestPredicate:(TDAssembly *)a {
+- (void)workOnCollectionTestPredicate:(PKAssembly *)a {
     NSArray *array = [a pop];
     NSAssert([array isKindOfClass:[NSArray class]], @"");
     id value = [a pop];
@@ -188,33 +188,33 @@
 }
 
 
-- (void)workOnKeyPath:(TDAssembly *)a {
+- (void)workOnKeyPath:(PKAssembly *)a {
     NSString *keyPath = [[a pop] stringValue];
     [a push:[resolver resolvedValueForKeyPath:keyPath]];
 }
 
 
-- (void)workOnNum:(TDAssembly *)a {
+- (void)workOnNum:(PKAssembly *)a {
     [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
 }
 
 
-- (void)workOnTrue:(TDAssembly *)a {
+- (void)workOnTrue:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalse:(TDAssembly *)a {
+- (void)workOnFalse:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnTruePredicate:(TDAssembly *)a {
+- (void)workOnTruePredicate:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalsePredicate:(TDAssembly *)a {
+- (void)workOnFalsePredicate:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 

@@ -58,9 +58,9 @@
     
     for (NSString *s in test) {
         //NSLog(@"\n----testing: %@", s);
-        TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+        PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
         @try {
-            TDAssembly *result = [list completeMatchFor:a];
+            PKAssembly *result = [list completeMatchFor:a];
             if (!result) {
                 //NSLog(@"[list completeMatchFor:] returns nil");
             } else {
@@ -80,7 +80,7 @@
     [track add:[TDSymbol symbolWithString:@"("]];
     [track add:[TDSymbol symbolWithString:@")"]];
     
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:@"("];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:@"("];
     STAssertThrowsSpecificNamed([track completeMatchFor:a], TDTrackException, TDTrackExceptionName, @"");
     
     @try {

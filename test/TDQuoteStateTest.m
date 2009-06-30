@@ -13,7 +13,7 @@
 
 - (void)setUp {
     quoteState = [[TDQuoteState alloc] init];
-    r = [[TDReader alloc] init];
+    r = [[PKReader alloc] init];
 }
 
 

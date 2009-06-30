@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/TDSymbolNode.h>
 
-@class TDReader;
+@class PKReader;
 
 /*!
     @class      TDSymbolRootNode 
@@ -38,5 +38,5 @@
     @param      cin the character from witch to start
     @result     a symbol string from a reader
 */
-- (NSString *)nextSymbol:(TDReader *)r startingWith:(TDUniChar)cin;
+- (NSString *)nextSymbol:(PKReader *)r startingWith:(TDUniChar)cin;
 @end

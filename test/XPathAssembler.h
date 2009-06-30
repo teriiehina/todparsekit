@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class XPathContext;
-@class TDReader;
+@class PKReader;
 
 @interface XPathAssembler : NSObject {
     XPathContext *context;
 }
-- (void)resetWithReader:(TDReader *)r;
+- (void)resetWithReader:(PKReader *)r;
 @property (retain) XPathContext *context;
 @end

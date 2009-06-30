@@ -10,7 +10,7 @@
 
 @interface TDRepetitionTest : SenTestCase {
     TDParser *p;
-    TDAssembly *a;
+    PKAssembly *a;
     NSString *s;
 }
 

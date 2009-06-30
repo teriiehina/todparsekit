@@ -11,7 +11,7 @@
 
 @interface TDSignificantWhitespaceStateTest : SenTestCase {
     TDSignificantWhitespaceState *whitespaceState;
-    TDReader *r;
+    PKReader *r;
     NSString *s;    
 }
 

@@ -11,13 +11,13 @@
 #import <ParseKit/ParseKit.h>
 
 @interface TDGenericAssembler ()
-- (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a;
+- (void)workOnTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
-- (NSMutableArray *)popWhitespaceTokensFrom:(TDAssembly *)a;
+- (NSMutableArray *)popWhitespaceTokensFrom:(PKAssembly *)a;
 - (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks;
 - (void)consumeWhitespaceToken:(TDToken *)whitespaceTok;
-- (void)consumeWhitespaceFrom:(TDAssembly *)a;
+- (void)consumeWhitespaceFrom:(PKAssembly *)a;
     
 @property (nonatomic, retain) NSString *prefix;
 @property (nonatomic, retain) NSString *suffix;
@@ -76,7 +76,7 @@
 }
 
 
-- (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a {
+- (void)workOnTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a {
     //NSLog(@"%@ : %@", name, a);
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
 
@@ -115,7 +115,7 @@
 }
 
 
-- (NSMutableArray *)popWhitespaceTokensFrom:(TDAssembly *)a {
+- (NSMutableArray *)popWhitespaceTokensFrom:(PKAssembly *)a {
     NSMutableArray *whitespaceToks = nil;
     TDToken *tok = nil;
     while (tok = [a pop]) {
@@ -146,7 +146,7 @@
 }
 
 
-- (void)consumeWhitespaceFrom:(TDAssembly *)a {
+- (void)consumeWhitespaceFrom:(PKAssembly *)a {
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
     if (whitespaceToks) {
         [self consumeWhitespaceTokens:whitespaceToks];

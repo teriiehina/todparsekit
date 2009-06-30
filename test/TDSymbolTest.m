@@ -21,7 +21,7 @@
     
     p = [TDSymbol symbolWithString:s];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[-]-^", [result description]);
@@ -34,7 +34,7 @@
     
     p = [TDSymbol symbolWithString:@"+"];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
 }
 
@@ -45,7 +45,7 @@
     
     p = [TDSymbol symbol];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[-]-^", [result description]);
@@ -58,7 +58,7 @@
     
     p = [[TDSymbol symbolWithString:s] discard];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[]-^", [result description]);

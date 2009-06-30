@@ -7,13 +7,13 @@
 //
 
 #import <ParseKit/TDParser.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDTokenAssembly.h>
 #import <ParseKit/TDTokenizer.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
-- (TDAssembly *)best:(NSSet *)inAssemblies;
+- (PKAssembly *)best:(NSSet *)inAssemblies;
 @end
 
 @interface TDParser (TDParserFactoryAdditionsFriend)
@@ -65,7 +65,7 @@
 }
 
 
-- (TDAssembly *)bestMatchFor:(TDAssembly *)a {
+- (PKAssembly *)bestMatchFor:(PKAssembly *)a {
     NSParameterAssert(a);
     NSSet *initialState = [NSSet setWithObject:a];
     NSSet *finalState = [self matchAndAssemble:initialState];
@@ -73,9 +73,9 @@
 }
 
 
-- (TDAssembly *)completeMatchFor:(TDAssembly *)a {
+- (PKAssembly *)completeMatchFor:(PKAssembly *)a {
     NSParameterAssert(a);
-    TDAssembly *best = [self bestMatchFor:a];
+    PKAssembly *best = [self bestMatchFor:a];
     if (best && ![best hasMore]) {
         return best;
     }
@@ -88,7 +88,7 @@
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
     if (assembler) {
         NSAssert2([assembler respondsToSelector:selector], @"provided assembler %@ should respond to %s", assembler, selector);
-        for (TDAssembly *a in outAssemblies) {
+        for (PKAssembly *a in outAssemblies) {
             [assembler performSelector:selector withObject:a];
         }
     }
@@ -96,11 +96,11 @@
 }
 
 
-- (TDAssembly *)best:(NSSet *)inAssemblies {
+- (PKAssembly *)best:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    TDAssembly *best = nil;
+    PKAssembly *best = nil;
     
-    for (TDAssembly *a in inAssemblies) {
+    for (PKAssembly *a in inAssemblies) {
         if (![a hasMore]) {
             best = a;
             break;
@@ -136,7 +136,7 @@
         t = [TDTokenizer tokenizer];
     }
     t.string = s;
-    TDAssembly *a = [self completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    PKAssembly *a = [self completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     if (a.target) {
         return a.target;
     } else {
