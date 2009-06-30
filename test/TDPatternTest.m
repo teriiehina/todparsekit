@@ -91,7 +91,7 @@
     t = [PKTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [PKTokenAssembly assemblyWithTokenizer:t];
-    p = [PKPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
+    p = [PKPattern patternWithString:@"/foo/" options:PKPatternOptionsNone];
     
     inter = [PKIntersection intersection];
     [inter add:p];
@@ -105,7 +105,7 @@
     t = [PKTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [PKTokenAssembly assemblyWithTokenizer:t];
-    p = [PKPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
+    p = [PKPattern patternWithString:@"/[^/]+/" options:PKPatternOptionsNone];
 
     inter = [PKIntersection intersection];
     [inter add:p];
@@ -194,7 +194,7 @@
 
     s = @"TRUE";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:PKPatternOptionsIgnoreCase];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -207,7 +207,7 @@
 
     s = @"NOT";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:PKPatternOptionsIgnoreCase];
 
     inter = [PKIntersection intersection];
     [inter add:p];
@@ -225,7 +225,7 @@
 
     s = @"oR";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:PKPatternOptionsIgnoreCase];
     
     inter = [PKIntersection intersection];
     [inter add:p];

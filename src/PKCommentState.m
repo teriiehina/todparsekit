@@ -23,7 +23,7 @@
 - (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 @end
 
-@interface TDCommentState ()
+@interface PKCommentState ()
 @property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @property (nonatomic, retain) PKSingleLineCommentState *singleLineState;
 @property (nonatomic, retain) PKMultiLineCommentState *multiLineState;
@@ -44,7 +44,7 @@
 @property (nonatomic, copy) NSString *currentStartMarker;
 @end
 
-@implementation TDCommentState
+@implementation PKCommentState
 
 - (id)init {
     if (self = [super init]) {

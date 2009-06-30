@@ -14,11 +14,11 @@
 @class PKMultiLineCommentState;
 
 /*!
-    @class      TDCommentState
+    @class      PKCommentState
     @brief      This state will either delegate to a comment-handling state, or return a <tt>PKSymbol</tt> token with just the first char in it.
     @details    By default, C and C++ style comments. (<tt>//</tt> to end of line and <tt>/&0x002A; &0x002A;/</tt>)
 */
-@interface TDCommentState : PKTokenizerState {
+@interface PKCommentState : PKTokenizerState {
     PKSymbolRootNode *rootNode;
     PKSingleLineCommentState *singleLineState;
     PKMultiLineCommentState *multiLineState;
