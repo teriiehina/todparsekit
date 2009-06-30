@@ -12,7 +12,7 @@
 
 - (void)testAbc {
     s = @"abc";
-    a = [TDCharacterAssembly assemblyWithString:s];
+    a = [PKCharacterAssembly assemblyWithString:s];
 
     TDNotNil(a);
     TDEquals((NSUInteger)3, s.length);

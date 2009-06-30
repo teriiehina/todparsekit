@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDDigit.h>
+#import <ParseKit/PKDigit.h>
 #import <ParseKit/PKTypes.h>
 
-@implementation TDDigit
+@implementation PKDigit
 
 + (id)digit {
     return [[[self alloc] initWithString:nil] autorelease];

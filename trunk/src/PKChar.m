@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDChar.h>
+#import <ParseKit/PKChar.h>
 
-@implementation TDChar
+@implementation PKChar
 
 + (id)char {
     return [[[self alloc] initWithString:nil] autorelease];

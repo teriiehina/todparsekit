@@ -13,10 +13,10 @@
 
 - (void)test123 {
     s = @"123";
-    a = [TDCharacterAssembly assemblyWithString:s];
+    a = [PKCharacterAssembly assemblyWithString:s];
     
     TDEqualObjects(@"[]^123", [a description]);
-    p = [TDSpecificChar specificCharWithChar:'1'];
+    p = [PKSpecificChar specificCharWithChar:'1'];
     
     result = [p bestMatchFor:a];
     TDNotNil(a);
@@ -27,10 +27,10 @@
 
 - (void)testAbc {
     s = @"abc";
-    a = [TDCharacterAssembly assemblyWithString:s];
+    a = [PKCharacterAssembly assemblyWithString:s];
     
     TDEqualObjects(@"[]^abc", [a description]);
-    p = [TDSpecificChar specificCharWithChar:'1'];
+    p = [PKSpecificChar specificCharWithChar:'1'];
     
     result = [p bestMatchFor:a];
     TDNotNil(a);
@@ -41,10 +41,10 @@
 
 - (void)testRepetition {
     s = @"aaa";
-    a = [TDCharacterAssembly assemblyWithString:s];
+    a = [PKCharacterAssembly assemblyWithString:s];
     
     TDEqualObjects(@"[]^aaa", [a description]);
-    p = [TDSpecificChar specificCharWithChar:'a'];
+    p = [PKSpecificChar specificCharWithChar:'a'];
     PKParser *r = [PKRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];

@@ -15,7 +15,7 @@
 #import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTokenAssembly.h>
-#import <ParseKit/TDCharacterAssembly.h>
+#import <ParseKit/PKCharacterAssembly.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -39,7 +39,7 @@ static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSO
     JSObjectRef result = NULL;
     if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         result = TDTokenAssembly_new(ctx, a);
-    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+    } else if ([a isMemberOfClass:[PKCharacterAssembly class]]) {
         result = TDCharacterAssembly_new(ctx, a);
     }
 
@@ -59,7 +59,7 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
     JSObjectRef result = NULL;
     if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         result = TDTokenAssembly_new(ctx, a);
-    } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
+    } else if ([a isMemberOfClass:[PKCharacterAssembly class]]) {
         result = TDCharacterAssembly_new(ctx, a);
     }
     

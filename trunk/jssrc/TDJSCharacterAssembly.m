@@ -9,14 +9,14 @@
 #import "TDJSCharacterAssembly.h"
 #import "TDJSUtils.h"
 #import "TDJSAssembly.h"
-#import <ParseKit/TDCharacterAssembly.h>
+#import <ParseKit/PKCharacterAssembly.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDCharacterAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDCharacterAssembly_class, "toString");
-    TDCharacterAssembly *data = JSObjectGetPrivate(this);
+    PKCharacterAssembly *data = JSObjectGetPrivate(this);
     JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
     JSValueRef res = JSValueMakeString(ctx, resStr);
     JSStringRelease(resStr);
@@ -25,18 +25,18 @@ static JSValueRef TDCharacterAssembly_toString(JSContextRef ctx, JSObjectRef fun
 
 static JSValueRef TDCharacterAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDCharacterAssembly_class, "pop");
-    TDCharacterAssembly *data = JSObjectGetPrivate(this);
+    PKCharacterAssembly *data = JSObjectGetPrivate(this);
     NSNumber *obj = [data pop];
     return JSValueMakeNumber(ctx, [obj doubleValue]);
 }
 
 static JSValueRef TDCharacterAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDCharacterAssembly_class, "push");
-    TDPreconditionMethodArgc(1, "TDCharacterAssembly.push");
+    TDPreconditionMethodArgc(1, "PKCharacterAssembly.push");
     
     JSValueRef v = argv[0];
     
-    TDCharacterAssembly *data = JSObjectGetPrivate(this);
+    PKCharacterAssembly *data = JSObjectGetPrivate(this);
     id obj = TDJSValueGetId(ctx, v, ex);
     [data push:obj];
     
@@ -45,11 +45,11 @@ static JSValueRef TDCharacterAssembly_push(JSContextRef ctx, JSObjectRef functio
 
 static JSValueRef TDCharacterAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDCharacterAssembly_class, "objectsAbove");
-    TDPreconditionMethodArgc(1, "TDCharacterAssembly.objectsAbove");
+    TDPreconditionMethodArgc(1, "PKCharacterAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
-    TDCharacterAssembly *data = JSObjectGetPrivate(this);
+    PKCharacterAssembly *data = JSObjectGetPrivate(this);
     id obj = TDJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
@@ -60,7 +60,7 @@ static JSValueRef TDCharacterAssembly_objectsAbove(JSContextRef ctx, JSObjectRef
 #pragma mark Properties
 
 static JSValueRef TDCharacterAssembly_getLength(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDCharacterAssembly *data = JSObjectGetPrivate(this);
+    PKCharacterAssembly *data = JSObjectGetPrivate(this);
     return JSValueMakeNumber(ctx, data.length);
 }
 
@@ -113,11 +113,11 @@ JSObjectRef TDCharacterAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDCharacterAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDCharacterAssembly");
+    TDPreconditionConstructorArgc(1, "PKCharacterAssembly");
     
     JSValueRef s = argv[0];
     NSString *string = TDJSValueGetNSString(ctx, s, ex);
     
-    TDCharacterAssembly *data = [[TDCharacterAssembly alloc] initWithString:string];
+    PKCharacterAssembly *data = [[PKCharacterAssembly alloc] initWithString:string];
     return TDCharacterAssembly_new(ctx, data);
 }
