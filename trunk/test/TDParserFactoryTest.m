@@ -331,7 +331,7 @@
 - (void)testAssemblerSettingBehaviorOnAll {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
+    factory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKParser class]]);
@@ -352,7 +352,7 @@
 - (void)testAssemblerSettingBehaviorOnTerminals {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
+    factory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnTerminals;
     lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKParser class]]);
@@ -372,7 +372,7 @@
 - (void)testAssemblerSettingBehaviorOnExplicit {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo|baz; foo (workOnFoo:) = 'bar'; baz (workOnBaz:) = 'bat'";
-    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
+    factory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnExplicit;
     lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKParser class]]);
@@ -392,7 +392,7 @@
 - (void)testAssemblerSettingBehaviorOnExplicitNone {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = foo|baz; foo = 'bar'; baz = 'bat'";
-    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
+    factory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnExplicit;
     lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKParser class]]);
@@ -411,7 +411,7 @@
 - (void)testAssemblerSettingBehaviorOnExplicitOrTerminal {
     id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
     s = @"@start = (foo|baz)+; foo (workOnFoo:) = 'bar'; baz = 'bat'";
-    factory.assemblerSettingBehavior = (TDParserFactoryAssemblerSettingBehaviorOnExplicit | TDParserFactoryAssemblerSettingBehaviorOnTerminals);
+    factory.assemblerSettingBehavior = (PKParserFactoryAssemblerSettingBehaviorOnExplicit | PKParserFactoryAssemblerSettingBehaviorOnTerminals);
     lp = [factory parserFromGrammar:s assembler:mock];
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKParser class]]);

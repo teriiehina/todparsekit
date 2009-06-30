@@ -27,7 +27,7 @@
 @property (nonatomic, assign) TDTokenType tokenType;
 @end
 
-void TDReleaseSubparserTree(PKParser *p) {
+void PKReleaseSubparserTree(PKParser *p) {
     if ([p isKindOfClass:[PKCollectionParser class]]) {
         PKCollectionParser *c = (PKCollectionParser *)p;
         NSArray *subs = c.subparsers;
@@ -35,7 +35,7 @@ void TDReleaseSubparserTree(PKParser *p) {
             [subs retain];
             c.subparsers = nil;
             for (PKParser *s in subs) {
-                TDReleaseSubparserTree(s);
+                PKReleaseSubparserTree(s);
             }
             [subs release];
         }
@@ -45,7 +45,7 @@ void TDReleaseSubparserTree(PKParser *p) {
         if (sub) {
             [sub retain];
             r.subparser = nil;
-            TDReleaseSubparserTree(sub);
+            PKReleaseSubparserTree(sub);
             [sub release];
         }
     }
@@ -147,7 +147,7 @@ void TDReleaseSubparserTree(PKParser *p) {
         self.curly   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
         self.caret   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
-        self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
+        self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
 }
@@ -156,8 +156,8 @@ void TDReleaseSubparserTree(PKParser *p) {
 - (void)dealloc {
     assembler = nil; // appease clang static analyzer
     
-    TDReleaseSubparserTree(statementParser);
-    TDReleaseSubparserTree(exprParser);
+    PKReleaseSubparserTree(statementParser);
+    PKReleaseSubparserTree(exprParser);
     
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
@@ -507,19 +507,19 @@ void TDReleaseSubparserTree(PKParser *p) {
     NSString *parserName = p.name;
     NSString *selName = [selectorTable objectForKey:parserName];
 
-    BOOL setOnAll = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnAll);
+    BOOL setOnAll = (assemblerSettingBehavior & PKParserFactoryAssemblerSettingBehaviorOnAll);
 
     if (setOnAll) {
         // continue
     } else {
-        BOOL setOnExplicit = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnExplicit);
+        BOOL setOnExplicit = (assemblerSettingBehavior & PKParserFactoryAssemblerSettingBehaviorOnExplicit);
         if (setOnExplicit && selName) {
             // continue
         } else {
             BOOL isTerminal = [p isKindOfClass:[PKTerminal class]];
             if (!isTerminal && !setOnExplicit) return;
             
-            BOOL setOnTerminals = (assemblerSettingBehavior & TDParserFactoryAssemblerSettingBehaviorOnTerminals);
+            BOOL setOnTerminals = (assemblerSettingBehavior & PKParserFactoryAssemblerSettingBehaviorOnTerminals);
             if (setOnTerminals && isTerminal) {
                 // continue
             } else {

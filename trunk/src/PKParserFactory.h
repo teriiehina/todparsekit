@@ -13,17 +13,17 @@
 @class PKParser;
 @class PKCollectionParser;
 
-void TDReleaseSubparserTree(PKParser *p);
+void PKReleaseSubparserTree(PKParser *p);
 
 typedef enum {
-    TDParserFactoryAssemblerSettingBehaviorOnNone       = 0,
-    TDParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 1, // Default
-    TDParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 2,
-    TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 3
-} TDParserFactoryAssemblerSettingBehavior;
+    PKParserFactoryAssemblerSettingBehaviorOnNone       = 0,
+    PKParserFactoryAssemblerSettingBehaviorOnAll        = 1 << 1, // Default
+    PKParserFactoryAssemblerSettingBehaviorOnTerminals  = 1 << 2,
+    PKParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 3
+} PKParserFactoryAssemblerSettingBehavior;
 
 @interface PKParserFactory : NSObject {
-    TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
+    PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
     id assembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
@@ -64,5 +64,5 @@ typedef enum {
 
 - (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 
-@property (nonatomic) TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
+@property (nonatomic) PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
 @end
