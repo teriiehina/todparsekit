@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>TDParseKit - Cocoa Objective-C Framework for parsing and tokenzing</title>
+	<title>ParseKit - Cocoa Objective-C Framework for parsing, tokenizing and laguage processing</title>
 	<style>
 		#content {width:675px; margin:60px auto 30px; text-align:justify;}
 		body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
@@ -16,12 +16,12 @@
 <body>
 <div id="content">
 	
-<h1>TDParseKit</h1>
+<h1>ParseKit</h1>
 
 <h2>About</h2>
-<p>TDParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java"</a> by Steven John Metsker. TDParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
+<p>ParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java"</a> by Steven John Metsker. ParseKit includes some significant additions beyond the designs from the book (many of them hinted at in the book itself) in order to enhance the framework's feature set, usefulness and ease-of-use. Other changes have been made to the designs in the book to match common Cocoa/Objective-C design patterns and conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
 
-<p>The TDParseKit Source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
+<p>The ParseKit Source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
 
 <p>More documentation:</p>
 <ul>
@@ -31,44 +31,44 @@
 	<li><a href="grammars.html">Language Parsing via Grammars</a></li>
 </ul>
 
-<p>Projects using TDParseKit:</p>
+<p>Projects using ParseKit:</p>
 <ul>
 	<li><a href="http://lucidmac.com/products/spike">Spike</a>: A Rails log file viewer/analyzer by Matt Mower</li>
 	<li><a href="http://github.com/ccgus/jstalk/tree/master">JSTalk</a>: Interprocess Cocoa scripting with JavaScript by Gus Mueller</li>
-	<li><a href="http://github.com/boucher/tdparsekit/tree/master">Objective-J Port</a> of TDParseKit by Ross Boucher</li>
+	<li><a href="http://github.com/boucher/tdparsekit/tree/master">Objective-J Port</a> of ParseKit by Ross Boucher</li>
 	<li><a href="http://tr.im/http">HTTP Client</a>: HTTP debugging/testing tool</li>
 	<li><a href="http://fluidapp.com">Fluid</a>: Site-Specific Browser for Mac OS X</li>
 	<li><a href="http://cruzapp.com">Cruz</a>: Social Browser for Mac OS X</li>
 </ul>
 
 <h2>Xcode Project</h2>
-<p>The TDParseKit Xcode project consists of 6 targets:</p>
+<p>The ParseKit Xcode project consists of 6 targets:</p>
 
 <ol>
-<li><b>TDParseKit</b> : the TDParseKit Objective-C framework. The central feature/codebase of this project.</li>
+<li><b>ParseKit</b> : the ParseKit Objective-C framework. The central feature/codebase of this project.</li>
 <li><b>Tests</b> : a UnitTest Bundle containing hundreds of unit tests (actually, more correctly, interaction tests) for the framework as well as some example classes that serve as real-world uses of the framework.</li>
-<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the TDTokenizer class.</li>
+<li><b>DemoApp</b> : A simple Cocoa demo app that gives a visual presentation of the results of tokenizing text using the PKTokenizer class.</li>
 <li><b>DebugApp</b> : A simple Cocoa app that exists only to run arbitrary test code thru GDB with breakpoints for debugging (I was not able to do that with the UnitTest bundle).</li>
-<li><b>TDJSParseKit</b> : A JavaScriptCore-based scripting interface to TDParseKit which can be used to expose the entire framework to JavaScript environments.</li>
-<li><b>JSDemoApp</b>: A simple Cocoa application used for exercising the JavaScript interface provided by TDJSParseKit. Note that this is the only target which links to the WebKit framework. Neither TDParseKit nor TDJSParseKit requires WebKit.</li>
+<li><b>PKJSParseKit</b> : A JavaScriptCore-based scripting interface to ParseKit which can be used to expose the entire framework to JavaScript environments.</li>
+<li><b>JSDemoApp</b>: A simple Cocoa application used for exercising the JavaScript interface provided by PKJSParseKit. Note that this is the only target which links to the WebKit framework. Neither ParseKit nor PKJSParseKit requires WebKit.</li>
 </ol>
 
 
 
-<h2>TDParseKit Framework</h2>
+<h2>ParseKit Framework</h2>
 
-<p>The TDParseKit Framework offers 3 basic services of general interest to Cocoa developers:</p>
+<p>The ParseKit Framework offers 3 basic services of general interest to Cocoa developers:</p>
 
 <ol>
-<li><b>String Tokenization</b> via the Objective-C <tt>TDTokenizer</tt> and <tt>TDToken</tt> classes.</li>
-<li><b>Language Parsing via Objective-C</b> - An Objective-C parser-building API (the <tt>TDParser</tt> class and sublcasses).</li>
+<li><b>String Tokenization</b> via the Objective-C <tt>PKTokenizer</tt> and <tt>PKToken</tt> classes.</li>
+<li><b>Language Parsing via Objective-C</b> - An Objective-C parser-building API (the <tt>PKParser</tt> class and sublcasses).</li>
 <li><b>Language Parsing via Grammars</b> - Describe custom languages and parsers using a high-level grammar syntax (very similar to yacc or ANTLR).</li>
 </ol>
 
 <hr/>
 <h3>Tokenization</h3>
 
-<p>The API for tokenization is provided by the <tt>TDTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>TDTokenizer</tt> class is simpler and more powerful for many use cases.</p>
+<p>The API for tokenization is provided by the <tt>PKTokenizer</tt> class. Cocoa developers will be familiar with the <tt>NSScanner</tt> class provided by the Foundation Framework which provides a similar service. However, the <tt>PKTokenizer</tt> class is simpler and more powerful for many use cases.</p>
 
 <p>Example usage:</p>
 
@@ -76,10 +76,10 @@
 <pre>
 NSString *s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
               @"and &lt;= 3.5 'ticks' later /* wince */, it's blast-off!";
-TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
 
-TDToken *eof = [TDToken EOFToken];
-TDToken *tok = nil;
+PKToken *eof = [PKToken EOFToken];
+PKToken *tok = nil;
 
 while ((tok = [t nextToken]) != eof) {
     NSLog(@" (%@)", tok);
@@ -106,7 +106,7 @@ while ((tok = [t nextToken]) != eof) {
 </pre>
 </div>
 
-<p>Each token produced is an object of class <tt>TDToken</tt>. <tt>TDToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
+<p>Each token produced is an object of class <tt>PKToken</tt>. <tt>PKToken</tt>s have a <tt>tokenType</tt> (<tt>Word</tt>, <tt>Symbol</tt>, <tt>Num</tt>, <tt>QuotedString</tt>, etc.) and both a <tt>stringValue</tt> and a <tt>floatValue</tt>.</p>
 
 <p>More information about a token can be easily discovered using the <tt>-debugDescription</tt> method instead of the default <tt>-description</tt>. Replace the line containing <tt>NSLog</tt> above with this line:</p>
 
@@ -137,7 +137,7 @@ NSLog(@" (%@)", [tok debugDescription]);
 </div>
 
 
-<p>As you can see from the output, <tt>TDTokenzier</tt> is configured by default to properly group characters into tokens including:</p>
+<p>As you can see from the output, <tt>PKTokenzier</tt> is configured by default to properly group characters into tokens including:</p>
 
 <ul>
 <li>single- and double-quoted string tokens</li>
@@ -148,7 +148,7 @@ NSLog(@" (%@)", [tok debugDescription]);
 </ul>
 
 
-<p>The TDTokenizer class is very flexible, and <b>all</b> of those features are configurable. TDTokenizer may be configured to:</p>
+<p>The PKTokenizer class is very flexible, and <b>all</b> of those features are configurable. PKTokenizer may be configured to:</p>
 
 <ul>
 <li>recognize more (or fewer) multi-char symbols. ex: <div class="code"><pre>[t.symbolState add:@"!="];</pre></div>
@@ -212,13 +212,13 @@ NSLog(@" (%@)", [tok debugDescription]);
 <hr/>
 <h3>Parsing</h3>
 
-<p>TDParseKit also includes a collection of token parser subclasses (of the abstract <tt>TDParser</tt> class) including collection parsers such as <tt>TDAlternation</tt>, <tt>TDSequence</tt>, and <tt>TDRepetition</tt> as well as terminal parsers including <tt>TDWord</tt>, <tt>TDNum</tt>, <tt>TDSymbol</tt>, <tt>TDQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>TDChar</tt>, <tt>TDDigit</tt>, and <tt>TDSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
+<p>ParseKit also includes a collection of token parser subclasses (of the abstract <tt>PKParser</tt> class) including collection parsers such as <tt>PKAlternation</tt>, <tt>PKSequence</tt>, and <tt>PKRepetition</tt> as well as terminal parsers including <tt>PKWord</tt>, <tt>PKNum</tt>, <tt>PKSymbol</tt>, <tt>PKQuotedString</tt>, etc. Also included are parser subclasses which work in individual chars such as <tt>PKChar</tt>, <tt>PKDigit</tt>, and <tt>PKSpecificChar</tt>. These char parsers are useful for things like RegEx parsing. Generally speaking though, the token parsers will be more useful and interesting.</p>
 
 <p>The parser classes represent a <b>Composite</b> pattern. Programs can build a composite parser, in <b>Objective-C</b> (rather than a separate language like with lex&amp;yacc), from a collection of terminal parsers composed into alternations, sequences, and repetitions to represent an infinite number of languages.</p>
 
-<p>Parsers built from TDParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
+<p>Parsers built from ParseKit are <b>non-deterministic, recursive descent parsers</b>, which basically means they trade some performance for ease of user programming and simplicity of implementation.</p>
 
-<p>Here is an example of how one might build a parser for a simple voice-search command language (note: TDParseKit does not include any kind of speech recognition technology). The language consists of:</p>
+<p>Here is an example of how one might build a parser for a simple voice-search command language (note: ParseKit does not include any kind of speech recognition technology). The language consists of:</p>
 
 <div class="code">
 <pre>search google for? &lt;search-term&gt;</pre>
@@ -232,22 +232,22 @@ NSLog(@" (%@)", [tok debugDescription]);
 ...
 	
 - (void)parseString:(NSString *)s {
-	TDSequence *parser = [TDSequence sequence];
+	PKSequence *parser = [PKSequence sequence];
 
-	[parser add:[[TDLiteral literalWithString:@"search"] discard]];
-	[parser add:[[TDLiteral literalWithString:@"google"] discard]];
+	[parser add:[[PKLiteral literalWithString:@"search"] discard]];
+	[parser add:[[PKLiteral literalWithString:@"google"] discard]];
 
-	TDAlternation *optionalFor = [TDAlternation alternation];
-	[optionalFor add:[TDEmpty empty]];
-	[optionalFor add:[TDLiteral literalWithString:@"for"]];
+	PKAlternation *optionalFor = [PKAlternation alternation];
+	[optionalFor add:[PKEmpty empty]];
+	[optionalFor add:[PKLiteral literalWithString:@"for"]];
 
 	[parser add:[optionalFor discard]];
 
-	TDParser *searchTerm = [TDQuotedString quotedString];
+	PKParser *searchTerm = [PKQuotedString quotedString];
 	[searchTerm setAssembler:self selector:@selector(workOnSearchTermAssembly:)];
 	[parser add:searchTerm];
 
-	TDAssembly *result = [parser bestMatchFor:[TDTokenAssembly assmeblyWithString:s]];
+	PKAssembly *result = [parser bestMatchFor:[PKTokenAssembly assmeblyWithString:s]];
 	
 	NSLog(@" %@", result);
 
@@ -257,8 +257,8 @@ NSLog(@" (%@)", [tok debugDescription]);
 
 ...
 
-- (void)workOnSearchTermAssembly:(TDAssembly *)a {
-	TDToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
+- (void)workOnSearchTermAssembly:(PKAssembly *)a {
+	PKToken *t = [a pop]; // a QuotedString token with a stringValue of 'iphone'
 	[self doGoogleSearchForTerm:t.stringValue];
 }
 
@@ -266,5 +266,14 @@ NSLog(@" (%@)", [tok debugDescription]);
 </div>
 
 </div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-600478-9");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 </body>
 </html>
