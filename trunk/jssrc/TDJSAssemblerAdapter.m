@@ -9,7 +9,7 @@
 #import "TDJSAssemblerAdapter.h"
 #import "TDJSUtils.h"
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDTokenAssembly.h>
+#import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/TDCharacterAssembly.h>
 
 @implementation TDJSAssemblerAdapter
@@ -30,7 +30,7 @@
 
 - (void)workOn:(PKAssembly *)a {
     JSValueRef arg = NULL;
-    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+    if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         arg = (JSValueRef)TDTokenAssembly_new(ctx, a);
     } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
         arg = (JSValueRef)TDCharacterAssembly_new(ctx, a);

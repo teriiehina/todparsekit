@@ -8,8 +8,8 @@
 
 #import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDTokenAssembly.h>
-#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/PKTokenAssembly.h>
+#import <ParseKit/PKTokenizer.h>
 
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
@@ -17,7 +17,7 @@
 @end
 
 @interface PKParser (PKParserFactoryAdditionsFriend)
-- (void)setTokenizer:(TDTokenizer *)t;
+- (void)setTokenizer:(PKTokenizer *)t;
 @end
 
 @implementation PKParser
@@ -131,12 +131,12 @@
 @implementation PKParser (PKParserFactoryAdditions)
 
 - (id)parse:(NSString *)s {
-    TDTokenizer *t = self.tokenizer;
+    PKTokenizer *t = self.tokenizer;
     if (!t) {
-        t = [TDTokenizer tokenizer];
+        t = [PKTokenizer tokenizer];
     }
     t.string = s;
-    PKAssembly *a = [self completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    PKAssembly *a = [self completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     if (a.target) {
         return a.target;
     } else {
@@ -145,12 +145,12 @@
 }
 
 
-- (TDTokenizer *)tokenizer {
+- (PKTokenizer *)tokenizer {
     return tokenizer;
 }
 
 
-- (void)setTokenizer:(TDTokenizer *)t {
+- (void)setTokenizer:(PKTokenizer *)t {
     if (tokenizer != t) {
         [tokenizer autorelease];
         tokenizer = [t retain];

@@ -80,12 +80,12 @@
 
 
 - (PKAssembly *)assemblyWithString:(NSString *)s {
-    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    PKTokenizer *t = [[[PKTokenizer alloc] initWithString:s] autorelease];
     [t setTokenizerState:t.symbolState from: '-' to: '-'];
     [t setTokenizerState:t.symbolState from: '.' to: '.'];
     //[t.wordState setWordChars:YES from:'-' to:'-'];
 
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
     //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
     return a;
 }
@@ -645,7 +645,7 @@
 - (void)workOnWord:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
@@ -653,7 +653,7 @@
 - (void)workOnNum:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
@@ -661,12 +661,12 @@
 - (void)workOnQuotedString:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     
     PKSequence *p = [PKSequence sequence];
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDToken *eof = [TDToken EOFToken];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
+    PKToken *eof = [PKToken EOFToken];
     while (eof != (tok = [t nextToken])) {
         [p add:[TDLiteral literalWithString:tok.stringValue]];
     }
@@ -721,7 +721,7 @@
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id val = [a pop];
-    TDToken *keyTok = [a pop];
+    PKToken *keyTok = [a pop];
     
     NSMutableDictionary *table = [NSMutableDictionary dictionaryWithDictionary:a.target];
     [table setObject:val forKey:keyTok.stringValue];
@@ -732,7 +732,7 @@
 - (void)workOnVariable:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDToken *keyTok = [a pop];
+    PKToken *keyTok = [a pop];
     id val = [a.target objectForKey:keyTok.stringValue];
     
 //    PKParser *p = nil;

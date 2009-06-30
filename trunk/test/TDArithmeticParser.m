@@ -45,7 +45,7 @@
 
 
 - (CGFloat)parse:(NSString *)s {
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     a = [self completeMatchFor:a];
 //    NSLog(@"\n\na: %@\n\n", a);
     NSNumber *n = [a pop];
@@ -184,36 +184,36 @@
 #pragma mark Assembler
 
 - (void)workOnPlus:(PKAssembly *)a {
-    TDToken *tok2 = [a pop];
-    TDToken *tok1 = [a pop];
+    PKToken *tok2 = [a pop];
+    PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue + tok2.floatValue]];
 }
 
 
 - (void)workOnMinus:(PKAssembly *)a {
-    TDToken *tok2 = [a pop];
-    TDToken *tok1 = [a pop];
+    PKToken *tok2 = [a pop];
+    PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue - tok2.floatValue]];
 }
 
 
 - (void)workOnTimes:(PKAssembly *)a {
-    TDToken *tok2 = [a pop];
-    TDToken *tok1 = [a pop];
+    PKToken *tok2 = [a pop];
+    PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue * tok2.floatValue]];
 }
 
 
 - (void)workOnDivide:(PKAssembly *)a {
-    TDToken *tok2 = [a pop];
-    TDToken *tok1 = [a pop];
+    PKToken *tok2 = [a pop];
+    PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue / tok2.floatValue]];
 }
 
 
 - (void)workOnExp:(PKAssembly *)a {
-    TDToken *tok2 = [a pop];
-    TDToken *tok1 = [a pop];
+    PKToken *tok2 = [a pop];
+    PKToken *tok1 = [a pop];
     
     CGFloat n1 = tok1.floatValue;
     CGFloat n2 = tok2.floatValue;

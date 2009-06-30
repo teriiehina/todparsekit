@@ -101,7 +101,7 @@
     // parse CSS
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     [self.miniCSSParser bestMatchFor:a]; // produce dict of attributes from the CSS
     return self.miniCSSAssembler.attributes;
 }
@@ -145,7 +145,7 @@
     parser.tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
     parser.tokenizer.commentState.reportsCommentTokens = YES;
 
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:parser.tokenizer];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:parser.tokenizer];
     a.preservesWhitespaceTokens = YES;
     
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString

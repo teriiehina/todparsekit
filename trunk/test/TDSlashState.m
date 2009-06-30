@@ -8,8 +8,8 @@
 
 #import <ParseKit/TDSlashState.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/TDSlashSlashState.h>
 #import <ParseKit/TDSlashStarState.h>
 
@@ -36,7 +36,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -49,7 +49,7 @@
         if (-1 != c) {
             [r unread];
         }
-        return [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
+        return [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
     }
 }
 

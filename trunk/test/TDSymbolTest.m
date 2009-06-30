@@ -17,7 +17,7 @@
 
 - (void)testDash {
     s = @"-";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [TDSymbol symbolWithString:s];
     
@@ -30,7 +30,7 @@
 
 - (void)testFalseDash {
     s = @"-";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [TDSymbol symbolWithString:@"+"];
     
@@ -41,7 +41,7 @@
 
 - (void)testTrueDash {
     s = @"-";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [TDSymbol symbol];
     
@@ -54,7 +54,7 @@
 
 - (void)testDiscardDash {
     s = @"-";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [[TDSymbol symbolWithString:s] discard];
     

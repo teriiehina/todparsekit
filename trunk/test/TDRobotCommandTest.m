@@ -106,7 +106,7 @@
 - (void)testPick {
     NSString *s1 = @"pick carrier from LINE_IN";
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s1];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithString:s1];
     PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
 
@@ -122,7 +122,7 @@
 - (void)testPlace {
     NSString *s2 = @"place carrier at LINE_OUT";
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s2];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithString:s2];
     PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -138,7 +138,7 @@
 - (void)testScan {
     NSString *s3 = @"scan DB101_OUT";
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s3];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithString:s3];
     PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -153,7 +153,7 @@
 
 - (void)workOnPickCommand:(PKAssembly *)a {
     RobotPickCommand *c = [[[RobotPickCommand alloc] init] autorelease];
-    TDToken *location = [a pop];
+    PKToken *location = [a pop];
     c.location = location.stringValue;
     a.target = c;
 }
@@ -161,7 +161,7 @@
 
 - (void)workOnPlaceCommand:(PKAssembly *)a {
     RobotPlaceCommand *c = [[[RobotPlaceCommand alloc] init] autorelease];
-    TDToken *location = [a pop];
+    PKToken *location = [a pop];
     c.location = location.stringValue;
     a.target = c;
 }
@@ -169,7 +169,7 @@
 
 - (void)workOnScanCommand:(PKAssembly *)a {
     RobotScanCommand *c = [[[RobotScanCommand alloc] init] autorelease];
-    TDToken *location = [a pop];
+    PKToken *location = [a pop];
     c.location = location.stringValue;
     a.target = c;
 }

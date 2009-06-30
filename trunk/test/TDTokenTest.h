@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDTokenTest : SenTestCase {
-    TDToken *eof;
+    PKToken *eof;
 }
 
 @end

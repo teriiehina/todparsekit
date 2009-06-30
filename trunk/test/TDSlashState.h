@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 @class TDSlashSlashState;
 @class TDSlashStarState;
@@ -16,7 +16,7 @@
     @class      TDSlashState 
     @brief      This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
 */
-@interface TDSlashState : TDTokenizerState {
+@interface TDSlashState : PKTokenizerState {
     TDSlashSlashState *slashSlashState;
     TDSlashStarState *slashStarState;
     BOOL reportsCommentTokens;

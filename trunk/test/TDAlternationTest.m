@@ -17,7 +17,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz {
     s = @"foo baz bar";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -33,7 +33,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz1 {
     s = @"123 baz bar";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"bar"]];
@@ -49,7 +49,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz2 {
     s = @"123 baz bar";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
     [p add:[TDWord word]];
@@ -65,7 +65,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz3 {
     s = @"123 baz bar";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
     [p add:[TDWord word]];
@@ -81,7 +81,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz4 {
     s = @"123 baz bar";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"foo"]];

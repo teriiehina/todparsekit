@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 /*!
     @class      TDNumberState 
     @brief      A number state returns a number from a reader.
     @details    This state's idea of a number allows an optional, initial minus sign, followed by one or more digits. A decimal point and another string of digits may follow these digits.
 */
-@interface TDNumberState : TDTokenizerState {
+@interface TDNumberState : PKTokenizerState {
     BOOL allowsTrailingDot;
     BOOL gotADigit;
     BOOL negative;

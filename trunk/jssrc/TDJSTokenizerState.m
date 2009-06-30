@@ -9,8 +9,8 @@
 #import "TDJSTokenizerState.h"
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
-#import <ParseKit/TDTokenizerState.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenizerState.h>
+#import <ParseKit/PKToken.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -26,7 +26,7 @@ static void TDTokenizerState_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDTokenizerState_finalize(JSObjectRef this) {
-    TDTokenizerState *data = (TDTokenizerState *)JSObjectGetPrivate(this);
+    PKTokenizerState *data = (PKTokenizerState *)JSObjectGetPrivate(this);
     [data autorelease];
 }
 

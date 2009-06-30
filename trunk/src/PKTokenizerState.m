@@ -1,32 +1,32 @@
 //
-//  TDTokenizerState.m
+//  PKTokenizerState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTokenizerState.h>
-#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/PKTokenizerState.h>
+#import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDTokenizer ()
-- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
+@interface PKTokenizer ()
+- (PKTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
 @end
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
-- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @property (nonatomic) NSUInteger offset;
 @end
 
-@implementation TDTokenizerState
+@implementation PKTokenizerState
 
 - (void)dealloc {
     self.stringbuf = nil;
@@ -35,8 +35,8 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
-    NSAssert1(0, @"TDTokenizerState is an abstract classs. %s must be overriden", _cmd);
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
+    NSAssert1(0, @"PKTokenizerState is an abstract classs. %s must be overriden", _cmd);
     return nil;
 }
 
@@ -64,7 +64,7 @@
 }
 
 
-- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t {
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t {
     if (fallbackState) {
         return fallbackState;
     } else {

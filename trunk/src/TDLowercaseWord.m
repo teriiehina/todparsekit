@@ -7,12 +7,12 @@
 //
 
 #import <ParseKit/TDLowercaseWord.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation TDLowercaseWord
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     if (!tok.isWord) {
         return NO;
     }

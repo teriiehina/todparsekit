@@ -8,22 +8,22 @@
 
 #import <ParseKit/TDDelimitState.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/TDWhitespaceState.h>
 #import <ParseKit/TDSymbolRootNode.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDToken ()
+@interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
-- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 @end
 
 @interface TDDelimitState ()
@@ -113,7 +113,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -194,7 +194,7 @@
         [r unread];
     }
     
-    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
+    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeDelimitedString stringValue:[self bufferedString] floatValue:0.0];
     tok.offset = offset;
     return tok;
 }

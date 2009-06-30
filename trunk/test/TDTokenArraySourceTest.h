@@ -9,10 +9,10 @@
 #import "TDTestScaffold.h"
 
 @interface TDTokenArraySourceTest : SenTestCase {
-    TDTokenizer *t;
+    PKTokenizer *t;
     NSString *d;
     NSString *s;
-    TDTokenArraySource *tas;
+    PKTokenArraySource *tas;
 }
 
 @end

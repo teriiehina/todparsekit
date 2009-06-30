@@ -9,7 +9,7 @@
 #import "TDJavaScriptParser.h"
 
 @interface PKParser ()
-- (void)setTokenizer:(TDTokenizer *)t;
+- (void)setTokenizer:(PKTokenizer *)t;
 @end
 
 @interface TDJavaScriptParser ()
@@ -21,7 +21,7 @@
 
 - (id)init {
     if (self = [super initWithSubparser:self.elementParser]) {
-        self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [PKTokenizer tokenizer];
         
         // JS supports scientific number notation (exponents like 4E+12 or 2.0e-42)
         tokenizer.numberState = [[[TDScientificNumberState alloc] init] autorelease];

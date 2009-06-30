@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class PKParser;
-@class TDTokenizer;
+@class PKTokenizer;
 @class TDParserFactory;
 @class TDMiniCSSAssembler;
 @class TDGenericAssembler;

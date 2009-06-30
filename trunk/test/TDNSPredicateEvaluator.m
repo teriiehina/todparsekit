@@ -15,7 +15,7 @@
 - (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered;
 
 @property (nonatomic, assign) id <TDKeyPathResolver>resolver;
-@property (nonatomic, retain) TDToken *openCurly;
+@property (nonatomic, retain) PKToken *openCurly;
 @end
 
 @implementation TDNSPredicateEvaluator
@@ -24,7 +24,7 @@
     if (self = [super init]) {
         self.resolver = r;
 
-        self.openCurly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
+        self.openCurly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
 
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nspredicate" ofType:@"grammar"];
         NSString *s = [NSString stringWithContentsOfFile:path];

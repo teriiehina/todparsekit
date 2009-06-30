@@ -12,7 +12,7 @@
 
 - (void)setUp {
     r = [[PKReader alloc] init];
-    t = [[TDTokenizer alloc] init];
+    t = [[PKTokenizer alloc] init];
     slashState = t.slashState;
 }
 
@@ -27,7 +27,7 @@
     s = @" ";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals(PKEOF, [r read]);
@@ -38,7 +38,7 @@
     s = @"/";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals(PKEOF, [r read]);
@@ -51,7 +51,7 @@
     t.string = s;
     
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals(PKEOF, [r read]);
@@ -64,7 +64,7 @@
     t.string = s;
     
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, s);
     TDTrue(tok.isComment);
     TDEquals(PKEOF, [r read]);
@@ -77,7 +77,7 @@
     t.string = s;
     
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, s);
     TDTrue(tok.isComment);
     TDEquals(PKEOF, [r read]);
@@ -88,7 +88,7 @@
     s = @"/abc";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals((PKUniChar)'a', [r read]);
@@ -100,7 +100,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals((PKUniChar)'a', [r read]);
@@ -111,7 +111,7 @@
     s = @"/ abc";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals((PKUniChar)' ', [r read]);
@@ -123,7 +123,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDEqualObjects(tok.stringValue, @"/");
     TDTrue(tok.isSymbol);
     TDEquals((PKUniChar)' ', [r read]);
@@ -134,8 +134,8 @@
     s = @"//abc";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -145,7 +145,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -156,8 +156,8 @@
     s = @"// abc";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -167,7 +167,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -178,8 +178,8 @@
     s = @"/*abc*/";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -189,7 +189,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -201,7 +201,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -213,7 +213,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/*a**/");
     TDEquals((PKUniChar)' ', [r read]);
@@ -225,7 +225,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/*abc**/");
     TDEquals((PKUniChar)' ', [r read]);
@@ -237,7 +237,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -249,7 +249,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -261,7 +261,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/**/");
     TDEquals((PKUniChar)' ', [r read]);
@@ -273,7 +273,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/*abc* */");
     TDEquals((PKUniChar)' ', [r read]);
@@ -284,8 +284,8 @@
     s = @"/*abc";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -295,7 +295,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -306,8 +306,8 @@
     s = @"/*abc*";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -316,8 +316,8 @@
     s = @"/*abc* ";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -327,7 +327,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -338,8 +338,8 @@
     s = @"/*abc/";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -348,8 +348,8 @@
     s = @"/*abc/ ";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -359,7 +359,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);
@@ -370,8 +370,8 @@
     s = @"/*abc\n";
     r.string = s;
     t.string = s;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(PKEOF, [r read]);
 }
 
@@ -381,7 +381,7 @@
     r.string = s;
     t.string = s;
     slashState.reportsCommentTokens = YES;
-    TDToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
+    PKToken *tok = [slashState nextTokenFromReader:r startingWith:[r read] tokenizer:t];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(PKEOF, [r read]);

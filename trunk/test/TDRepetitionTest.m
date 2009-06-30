@@ -28,7 +28,7 @@
 
 - (void)testWordRepetitionAllMatchesForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -43,7 +43,7 @@
 
 - (void)testWordRepetitionBestMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -56,7 +56,7 @@
 
 - (void)testWordRepetitionBestMatchForFooSpaceBarSpace123 {
     s = @"foo bar 123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
 
@@ -68,7 +68,7 @@
 
 - (void)testWordRepetitionAllMatchesForFooSpaceBarSpace123 {
     s = @"foo bar 123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -83,7 +83,7 @@
 
 - (void)testWordRepetitionAllMatchesFooSpace123SpaceBaz {
     s = @"foo 123 baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -98,7 +98,7 @@
 
 - (void)testNumRepetitionAllMatchesForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDNum num]];
     
@@ -113,7 +113,7 @@
 
 - (void)testWordRepetitionCompleteMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -125,7 +125,7 @@
 
 - (void)testWordRepetitionCompleteMatchForFooSpaceBarSpace123 {
     s = @"foo bar 123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -136,7 +136,7 @@
 
 - (void)testWordRepetitionCompleteMatchFor456SpaceBarSpace123 {
     s = @"456 bar 123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -147,7 +147,7 @@
 
 - (void)testNumRepetitionCompleteMatchFor456SpaceBarSpace123 {
     s = @"456 bar 123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDNum num]];
     
@@ -158,7 +158,7 @@
 
 - (void)testNumRepetitionAllMatchesFor123Space456SpaceBaz {
     s = @"123 456 baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDNum num]];
     
@@ -172,7 +172,7 @@
 
 - (void)testNumRepetitionBestMatchFor123Space456SpaceBaz {
     s = @"123 456 baz";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDNum num]];
     
@@ -185,7 +185,7 @@
 
 - (void)testNumRepetitionCompleteMatchFor123 {
     s = @"123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDNum num]];
     
@@ -198,7 +198,7 @@
 
 - (void)testWordRepetitionCompleteMatchFor123 {
     s = @"123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     
@@ -210,7 +210,7 @@
 
 - (void)testWordRepetitionBestMatchForFoo {
     s = @"foo";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
     

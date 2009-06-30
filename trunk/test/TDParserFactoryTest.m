@@ -10,7 +10,7 @@
 #import <OCMock/OCMock.h>
 
 @interface TDParserFactory ()
-- (TDTokenizer *)tokenizerForParsingGrammar;
+- (PKTokenizer *)tokenizerForParsingGrammar;
 - (PKSequence *)parserFromExpression:(NSString *)s;
 @property (retain) PKCollectionParser *exprParser;
 @end
@@ -43,7 +43,7 @@
     
     s = @"var foo = 'bar';";
     lp.tokenizer.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
 //    res = [lp bestMatchFor:a];
 //    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
 }
@@ -57,7 +57,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     
 //    s = @"foo {font-size:12px}";
-//    a = [TDTokenAssembly assemblyWithString:s];
+//    a = [PKTokenAssembly assemblyWithString:s];
 //    res = [lp bestMatchFor:a];
 //    TDEqualObjects(@"[foo, {, font-family, :, 'helvetica', ;, }]foo/{/font-family/:/'helvetica'/;/}^", [res description]);
 }    
@@ -93,27 +93,27 @@
     TDEqualObjects([startParser class], [PKRepetition class]);
     
     s = @"foo {font-family:'helvetica';}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/;/}^", [res description]);
     
     s = @"foo {font-family:'helvetica'}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, {, font-family, 'helvetica']foo/{/font-family/:/'helvetica'/}^", [res description]);
     
     s = @"bar {color:rgb(1, 255, 255); font-size:13px;}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar, {, color, (, 1, 255, 255, font-size, 13]bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/13/px/;/}^", [res description]);
     
     s = @"bar {color:rgb(1, 255, 47.0); font-family:'Helvetica'}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar, {, color, (, 1, 255, 47.0, font-family, 'Helvetica']bar/{/color/:/rgb/(/1/,/255/,/47.0/)/;/font-family/:/'Helvetica'/}^", [res description]);
     
     s = @"foo {font-family:'Lucida Grande'} bar {color:rgb(1, 255, 255); font-size:9px;}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, {, font-family, 'Lucida Grande', bar, {, color, (, 1, 255, 255, font-size, 9]foo/{/font-family/:/'Lucida Grande'/}/bar/{/color/:/rgb/(/1/,/255/,/255/)/;/font-size/:/9/px/;/}^", [res description]);
 }
@@ -127,32 +127,32 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     
     s = @"{'foo':'bar'}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', :, 'bar', }]{/'foo'/:/'bar'/}^", [res description]);
     
     s = @"{'foo':{}}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', :, {, }, }]{/'foo'/:/{/}/}^", [res description]);
     
     s = @"{'foo':{'bar':[]}}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', :, {, 'bar', :, [, ], }, }]{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
     
     s = @"['foo', true, null]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, 'foo', ,, true, ,, null, ]][/'foo'/,/true/,/null/]^", [res description]);
     
     s = @"[[]]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [, ], ]][/[/]/]^", [res description]);
     
     s = @"[[[1]]]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [, [, 1, ], ], ]][/[/[/1/]/]/]^", [res description]);
 }
@@ -166,32 +166,32 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     
     s = @"{'foo':'bar'}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', 'bar']{/'foo'/:/'bar'/}^", [res description]);
     
     s = @"{'foo':{}}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', {]{/'foo'/:/{/}/}^", [res description]);
     
     s = @"{'foo':{'bar':[]}}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', {, 'bar', []{/'foo'/:/{/'bar'/:/[/]/}/}^", [res description]);
     
     s = @"['foo', true, null]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, 'foo'][/'foo'/,/true/,/null/]^", [res description]);
     
     s = @"[[]]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [][/[/]/]^", [res description]);
     
     s = @"[[[1]]]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[[, [, [, 1][/[/[/1/]/]/]^", [res description]);
 }
@@ -209,7 +209,7 @@
     
     [[mock expect] workOn_Start:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -232,7 +232,7 @@
     [[mock expect] workOnFoo:OCMOCK_ANY];
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
     [mock verify];
@@ -255,7 +255,7 @@
     [[mock expect] workOnFoo:OCMOCK_ANY];
     [[mock expect] workOnBaz:OCMOCK_ANY];
     s = @"bar bat";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
     [mock verify];
@@ -277,7 +277,7 @@
     [[mock expect] workOnFoo:OCMOCK_ANY];
     [[mock expect] workOnBaz:OCMOCK_ANY];
     s = @"bar bat";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
     [mock verify];
@@ -301,7 +301,7 @@
     [[mock expect] workOnBaz:OCMOCK_ANY];
     [[mock expect] workOnBaz:OCMOCK_ANY];
     s = @"bar bat bat";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar, bat, bat]bar/bat/bat^", [res description]);
     [mock verify];
@@ -321,7 +321,7 @@
     [[mock expect] workOn_Start:OCMOCK_ANY];
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -342,7 +342,7 @@
     [[mock expect] workOn_Start:OCMOCK_ANY];
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -362,7 +362,7 @@
     
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -382,7 +382,7 @@
     
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -401,7 +401,7 @@
     TDNil(NSStringFromSelector(lp.selector));
     
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -422,7 +422,7 @@
     [[mock expect] workOnFoo:OCMOCK_ANY];
     [[mock expect] workOnBaz:OCMOCK_ANY];
     s = @"bar bat";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp completeMatchFor:a];
     TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
     [mock verify];
@@ -441,7 +441,7 @@
 
     [[mock expect] workOnStart:OCMOCK_ANY];
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     [mock verify];
@@ -455,7 +455,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 }
@@ -468,7 +468,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
 
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 }
@@ -481,17 +481,17 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
 
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 
     s = @"bat bat";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bat, bat]bat/bat^", [res description]);
 
     s = @"bat bat bat bat bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bat, bat, bat, bat, bar]bat/bat/bat/bat/bar^", [res description]);
 }
@@ -576,7 +576,7 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
 }
@@ -590,7 +590,7 @@
     TDEqualObjects([lp class], [PKRepetition class]);
 
     s = @"hello hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[hello, hello, hello]hello/hello/hello^", [res description]);
 }
@@ -604,7 +604,7 @@
     TDEqualObjects([lp class], [PKAlternation class]);
 
     s = @"hello hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[hello]hello^hello/hello", [res description]);
 }
@@ -617,7 +617,7 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"there";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[there]there^", [res description]);
 }
@@ -626,7 +626,7 @@
 - (void)testExprFooBar {
     s = @"'foo' 'bar'";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
 
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
@@ -647,7 +647,7 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, bar]foo/bar^", [res description]);
 }
@@ -656,7 +656,7 @@
 - (void)testExprFooBarBaz {
     s = @"'foo' 'bar' 'baz'";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]'foo'/ /'bar'/ /'baz'^", [res description]);
@@ -679,7 +679,7 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, bar, baz]foo/bar/baz^", [res description]);
 }
@@ -688,7 +688,7 @@
 - (void)testExprFooOrBar {
     s = @"'foo'|'bar'";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'^", [res description]);
@@ -710,12 +710,12 @@
     TDEqualObjects([lp class], [PKAlternation class]);
 
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
 
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 }
@@ -724,7 +724,7 @@
 - (void)testExprFooOrBarStar {
     s = @"'foo'|'bar'*";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/*^", [res description]);
@@ -749,17 +749,17 @@
     TDTrue([lp isKindOfClass:[PKAlternation class]]);
 
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 
     s = @"foo foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^foo", [res description]);
     
     s = @"bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar, bar]bar/bar^", [res description]);
 }
@@ -768,7 +768,7 @@
 - (void)testExprFooOrBarPlus {
     s = @"'foo'|'bar'+";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/+^", [res description]);
@@ -799,22 +799,22 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKAlternation class]]);
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^", [res description]);
 
     s = @"foo foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^foo", [res description]);
     
     s = @"foo bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar", [res description]);
 
     s = @"bar bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar, bar, bar]bar/bar/bar^", [res description]);
 }
@@ -823,7 +823,7 @@
 - (void)testExprFooOrBarQuestion {
     s = @"'foo'|'bar'?";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/?^", [res description]);
@@ -850,12 +850,12 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKAlternation class]]);
     s = @"bar bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^bar/bar", [res description]);
     
     s = @"foo bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar/bar", [res description]);
 }
@@ -864,7 +864,7 @@
 - (void)testExprParenFooOrBarParenStar {
     s = @"('foo'|'bar')*";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Repetition](/'foo'/|/'bar'/)/*^", [res description]);
@@ -888,7 +888,7 @@
     TDNotNil(lp);
     TDEqualObjects([lp class], [PKRepetition class]);
     s = @"foo bar bar foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, bar, bar, foo]foo/bar/bar/foo^", [res description]);
 }
@@ -897,7 +897,7 @@
 - (void)testExprParenFooOrBooParenPlus {
     s = @"('foo'|'bar')+";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence](/'foo'/|/'bar'/)/+^", [res description]);
@@ -937,7 +937,7 @@
     TDNotNil(lp);
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo foo bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo, foo, bar, bar]foo/foo/bar/bar^", [res description]);
 }
@@ -946,7 +946,7 @@
 - (void)testExprParenFooOrBarParenQuestion {
     s = @"('foo'|'bar')?";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation](/'foo'/|/'bar'/)/?^", [res description]);
@@ -974,12 +974,12 @@
     TDNotNil(lp);
     TDEqualObjects([lp class], [PKAlternation class]);
     s = @"foo bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[foo]foo^bar", [res description]);
 
     s = @"bar bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^bar", [res description]);
 }
@@ -988,7 +988,7 @@
 - (void)testExprWord {
     s = @"Word";
     t.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:t];
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Word]Word^", [res description]);
@@ -1000,7 +1000,7 @@
     TDNotNil(lp);
     TDEqualObjects([lp class], [TDWord class]);
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[hello]hello^hello", [res description]);
 }
@@ -1012,7 +1012,7 @@
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[hello, hello]hello/hello^", [res description]);
 }
@@ -1020,7 +1020,7 @@
 
 - (void)testExprNum {
     s = @"Num";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Num]Num^", [res description]);
@@ -1033,12 +1033,12 @@
     TDTrue([lp isKindOfClass:[TDNum class]]);
     
     s = @"333 444";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[333]333^444", [res description]);
     
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDNil(res);
 }
@@ -1046,7 +1046,7 @@
 
 - (void)testExprNumCardinality {
     s = @"Num{2}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]Num/{/2/}^", [res description]);
@@ -1066,17 +1066,17 @@
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     
     s = @"333 444";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[333, 444]333/444^", [res description]);
     
     s = @"1.1 2.2 3.3";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[1.1, 2.2]1.1/2.2^3.3", [res description]);
     
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDNil(res);
 }
@@ -1084,7 +1084,7 @@
 
 - (void)testExprNumCardinality2 {
     s = @"Num{2,3}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]Num/{/2/,/3/}^", [res description]);
@@ -1108,22 +1108,22 @@
     TDTrue([lp isKindOfClass:[PKSequence class]]);
     
     s = @"333 444";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[333, 444]333/444^", [res description]);
     
     s = @"1.1 2.2 3.3";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[1.1, 2.2, 3.3]1.1/2.2/3.3^", [res description]);
     
     s = @"1.1 2.2 3.3 4";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[1.1, 2.2, 3.3]1.1/2.2/3.3^4", [res description]);
     
     s = @"hello hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDNil(res);
 }
@@ -1135,7 +1135,7 @@
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
     s = @"333 444";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[333, 444]333/444^", [res description]);
 }
@@ -1143,7 +1143,7 @@
 
 - (void)testExprSymbol {
     s = @"Symbol";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Symbol]Symbol^", [res description]);
@@ -1156,12 +1156,12 @@
     TDTrue([lp isKindOfClass:[TDSymbol class]]);
     
     s = @"? #";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[?]?^#", [res description]);
     
     s = @"hello";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDNil(res);
 }
@@ -1173,7 +1173,7 @@
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
     s = @"% *";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[%, *]%/*^", [res description]);
 }
@@ -1181,7 +1181,7 @@
 
 - (void)testExprQuotedString {
     s = @"QuotedString";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[QuotedString]QuotedString^", [res description]);
@@ -1193,7 +1193,7 @@
     TDNotNil(lp);
     TDEqualObjects([lp class], [TDQuotedString class]);
     s = @"'hello' 'hello'";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"['hello']'hello'^'hello'", [res description]);
 }
@@ -1205,7 +1205,7 @@
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
     s = @"'hello' 'hello'";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"['hello', 'hello']'hello'/'hello'^", [res description]);
 }
@@ -1227,7 +1227,7 @@
 
     lp.tokenizer.string = @"{'foo'=> {'logo' => #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4> } }";
     
-    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[{, 'foo', =>, {, 'logo', =>, #<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>, }, }]{/'foo'/=>/{/'logo'/=>/#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>/}/}^", [res description]);
 }
@@ -1241,12 +1241,12 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
 
 	lp.tokenizer.string = @"bar";
-    a = [TDTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
     res = [lp bestMatchFor:a];
     TDEqualObjects(@"[b, ar]b/ar^", [res description]);
 	[res pop]; // discar 'ar'
-	TDToken *tok = [res pop];
-	TDEqualObjects([tok class], [TDToken class]);
+	PKToken *tok = [res pop];
+	TDEqualObjects([tok class], [PKToken class]);
 	TDEqualObjects(tok.stringValue, @"b");
 	TDTrue(tok.isSymbol);
 }

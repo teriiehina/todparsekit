@@ -15,7 +15,7 @@
 //
 //- (void)test {
 //    NSString *s = @"_foob?ar _foobar 2baz";
-//    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+//    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
 //    
 //    //Name       ::=       (Letter | '_' | ':') (NameChar)*
 //    TDXmlNameState *nameState = [[[TDXmlNameState alloc] init] autorelease];

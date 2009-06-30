@@ -51,9 +51,9 @@
 
         self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:defaultAttrs] autorelease];
         
-        self.comma = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"," floatValue:0];
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
-        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0];
+        self.comma = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"," floatValue:0];
+        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
+        self.bracket = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0];
     }
     return self;
 }
@@ -85,7 +85,7 @@
 
 - (void)consumeWhitespaceFrom:(PKAssembly *)a {
     NSMutableArray *whitespaceToks = [NSMutableArray array];
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (1) {
         tok = [a pop];
         if (TDTokenTypeWhitespace == tok.tokenType) {

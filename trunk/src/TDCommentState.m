@@ -7,20 +7,20 @@
 //
 
 #import <ParseKit/TDCommentState.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/TDSymbolRootNode.h>
 #import <ParseKit/TDSingleLineCommentState.h>
 #import <ParseKit/TDMultiLineCommentState.h>
 
-@interface TDToken ()
+@interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 @end
 
 @interface TDCommentState ()
@@ -94,7 +94,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
@@ -104,14 +104,14 @@
 
     if ([multiLineState.startMarkers containsObject:symbol]) {
         multiLineState.currentStartMarker = symbol;
-        TDToken *tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        PKToken *tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
         if (tok.isComment) {
             tok.offset = offset;
         }
         return tok;
     } else if ([singleLineState.startMarkers containsObject:symbol]) {
         singleLineState.currentStartMarker = symbol;
-        TDToken *tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+        PKToken *tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
         if (tok.isComment) {
             tok.offset = offset;
         }

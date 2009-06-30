@@ -8,7 +8,7 @@
 
 #import <ParseKit/PKTerminal.h>
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @interface PKTerminal ()
 - (PKAssembly *)matchOneAssembly:(PKAssembly *)inAssembly;

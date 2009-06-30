@@ -1,29 +1,29 @@
 //
-//  TDTokenArraySource.m
+//  PKTokenArraySource.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/11/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTokenArraySource.h>
-#import <ParseKit/TDToken.h>
-#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/PKTokenArraySource.h>
+#import <ParseKit/PKToken.h>
+#import <ParseKit/PKTokenizer.h>
 
-@interface TDTokenArraySource ()
-@property (nonatomic, retain) TDTokenizer *tokenizer;
+@interface PKTokenArraySource ()
+@property (nonatomic, retain) PKTokenizer *tokenizer;
 @property (nonatomic, retain) NSString *delimiter;
-@property (nonatomic, retain) TDToken *nextToken;
+@property (nonatomic, retain) PKToken *nextToken;
 @end
 
-@implementation TDTokenArraySource
+@implementation PKTokenArraySource
 
 - (id)init {
     return [self initWithTokenizer:nil delimiter:nil];
 }
 
 
-- (id)initWithTokenizer:(TDTokenizer *)t delimiter:(NSString *)s {
+- (id)initWithTokenizer:(PKTokenizer *)t delimiter:(NSString *)s {
     NSParameterAssert(t);
     NSParameterAssert(s);
     if (self = [super init]) {
@@ -47,7 +47,7 @@
         self.nextToken = [tokenizer nextToken];
     }
 
-    return ([TDToken EOFToken] != nextToken);
+    return ([PKToken EOFToken] != nextToken);
 }
 
 
@@ -59,8 +59,8 @@
     NSMutableArray *res = [NSMutableArray arrayWithObject:nextToken];
     self.nextToken = nil;
     
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
 
     while ((tok = [tokenizer nextToken]) != eof) {
         if ([tok.stringValue isEqualToString:delimiter]) {

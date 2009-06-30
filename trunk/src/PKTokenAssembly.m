@@ -1,32 +1,32 @@
 //
-//  TDTokenAssembly.m
+//  PKTokenAssembly.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTokenAssembly.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenAssembly.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKToken.h>
 
-@interface TDTokenAssembly ()
-- (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a;
+@interface PKTokenAssembly ()
+- (id)initWithString:(NSString *)s tokenzier:(PKTokenizer *)t tokenArray:(NSArray *)a;
 - (void)tokenize;
 - (NSString *)objectsFrom:(PKUniChar)start to:(PKUniChar)end separatedBy:(NSString *)delimiter;
 
-@property (nonatomic, retain) TDTokenizer *tokenizer;
+@property (nonatomic, retain) PKTokenizer *tokenizer;
 @property (nonatomic, copy) NSArray *tokens;
 @end
 
-@implementation TDTokenAssembly
+@implementation PKTokenAssembly
 
-+ (id)assemblyWithTokenizer:(TDTokenizer *)t {
++ (id)assemblyWithTokenizer:(PKTokenizer *)t {
     return [[[self alloc] initWithTokenzier:t] autorelease];
 }
 
 
-- (id)initWithTokenzier:(TDTokenizer *)t {
+- (id)initWithTokenzier:(PKTokenizer *)t {
     return [self initWithString:t.string tokenzier:t tokenArray:nil];
 }
 
@@ -42,12 +42,12 @@
 
 
 - (id)initWithString:(NSString *)s {
-    return [self initWithTokenzier:[[[TDTokenizer alloc] initWithString:s] autorelease]];
+    return [self initWithTokenzier:[[[PKTokenizer alloc] initWithString:s] autorelease]];
 }
 
 
 // designated initializer. this method is private and should not be called from other classes
-- (id)initWithString:(NSString *)s tokenzier:(TDTokenizer *)t tokenArray:(NSArray *)a {
+- (id)initWithString:(NSString *)s tokenzier:(PKTokenizer *)t tokenArray:(NSArray *)a {
     self = [super initWithString:s];
     if (self) {
         if (t) {
@@ -68,7 +68,7 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    TDTokenAssembly *a = (TDTokenAssembly *)[super copyWithZone:zone];
+    PKTokenAssembly *a = (PKTokenAssembly *)[super copyWithZone:zone];
     if (tokens) {
         a->tokens = [tokens copyWithZone:zone];
     }
@@ -86,7 +86,7 @@
 
 
 - (id)peek {
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     NSArray *toks = self.tokens;
     
     while (1) {
@@ -157,13 +157,13 @@
 
 - (void)tokenize {
     if (!tokenizer) {
-        self.tokenizer = [TDTokenizer tokenizerWithString:string];
+        self.tokenizer = [PKTokenizer tokenizerWithString:string];
     }
     
     NSMutableArray *a = [NSMutableArray array];
     
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     while ((tok = [tokenizer nextToken]) != eof) {
         [a addObject:tok];
     }
@@ -178,7 +178,7 @@
 
     NSInteger i = start;
     for ( ; i < end; i++) {
-        TDToken *tok = [toks objectAtIndex:i];
+        PKToken *tok = [toks objectAtIndex:i];
         [s appendString:tok.stringValue];
         if (end - 1 != i) {
             [s appendString:delimiter];

@@ -8,7 +8,7 @@
 
 #import <ParseKit/TDNonReservedWord.h>
 #import <ParseKit/TDReservedWord.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @interface TDReservedWord ()
 + (NSArray *)reservedWords;
@@ -17,7 +17,7 @@
 @implementation TDNonReservedWord
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     if (!tok.isWord) {
         return NO;
     }

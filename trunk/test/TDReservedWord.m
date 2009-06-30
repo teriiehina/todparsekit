@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDReservedWord.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 static NSArray *sTDReservedWords = nil;
 
@@ -31,7 +31,7 @@ static NSArray *sTDReservedWords = nil;
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     if (!tok.isWord) {
         return NO;
     }

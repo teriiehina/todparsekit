@@ -7,10 +7,10 @@
 //
 
 #import <ParseKit/TDSymbol.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @interface TDSymbol ()
-@property (nonatomic, retain) TDToken *symbol;
+@property (nonatomic, retain) PKToken *symbol;
 @end
 
 @implementation TDSymbol
@@ -29,7 +29,7 @@
     self = [super initWithString:s];
     if (self) {
         if (s.length) {
-            self.symbol = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0];
+            self.symbol = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0];
         }
     }
     return self;
@@ -46,7 +46,7 @@
     if (symbol) {
         return [symbol isEqual:obj];
     } else {
-        TDToken *tok = (TDToken *)obj;
+        PKToken *tok = (PKToken *)obj;
         return tok.isSymbol;
     }
 }

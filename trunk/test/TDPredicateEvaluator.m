@@ -80,7 +80,7 @@
 
 
 - (BOOL)evaluate:(NSString *)s {
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     return [[[self.exprParser completeMatchFor:a] pop] boolValue];
 }
 

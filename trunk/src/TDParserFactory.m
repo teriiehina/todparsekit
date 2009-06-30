@@ -12,7 +12,7 @@
 #import "NSArray+TDParseKitAdditions.h"
 
 @interface PKParser (TDParserFactoryAdditionsFriend)
-- (void)setTokenizer:(TDTokenizer *)t;
+- (void)setTokenizer:(PKTokenizer *)t;
 @end
 
 @interface PKCollectionParser ()
@@ -52,16 +52,16 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 @interface TDParserFactory ()
-- (TDTokenizer *)tokenizerForParsingGrammar;
+- (PKTokenizer *)tokenizerForParsingGrammar;
 - (BOOL)isAllWhitespace:(NSArray *)toks;
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
 - (void)gatherParserClassNamesFromTokens;
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks;
 
-- (TDTokenizer *)tokenizerFromGrammarSettings;
+- (PKTokenizer *)tokenizerFromGrammarSettings;
 - (BOOL)boolForTokenForKey:(NSString *)key;
-- (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
-- (void)setFallbackStateOn:(TDTokenizerState *)state withTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
+- (void)setTokenizerState:(PKTokenizerState *)state onTokenizer:(PKTokenizer *)t forTokensForKey:(NSString *)key;
+- (void)setFallbackStateOn:(PKTokenizerState *)state withTokenizer:(PKTokenizer *)t forTokensForKey:(NSString *)key;
 
 - (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks;
 - (PKParser *)expandedParserForName:(NSString *)parserName;
@@ -99,10 +99,10 @@ void TDReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
 @property (nonatomic, retain) NSMutableDictionary *selectorTable;
-@property (nonatomic, retain) TDToken *equals;
-@property (nonatomic, retain) TDToken *curly;
-@property (nonatomic, retain) TDToken *paren;
-@property (nonatomic, retain) TDToken *caret;
+@property (nonatomic, retain) PKToken *equals;
+@property (nonatomic, retain) PKToken *curly;
+@property (nonatomic, retain) PKToken *paren;
+@property (nonatomic, retain) PKToken *caret;
 @property (nonatomic, retain) PKCollectionParser *statementParser;
 @property (nonatomic, retain) PKCollectionParser *declarationParser;
 @property (nonatomic, retain) PKCollectionParser *callbackParser;
@@ -143,10 +143,10 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 - (id)init {
     if (self = [super init]) {
-        self.equals  = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
-        self.curly   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.paren   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.caret   = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
+        self.equals  = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
+        self.curly   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.caret   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
         self.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -202,7 +202,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
 
-    TDTokenizer *t = [self tokenizerFromGrammarSettings];
+    PKTokenizer *t = [self tokenizerFromGrammarSettings];
 
     [self gatherParserClassNamesFromTokens];
     
@@ -223,8 +223,8 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (TDTokenizer *)tokenizerForParsingGrammar {
-    TDTokenizer *t = [TDTokenizer tokenizer];
+- (PKTokenizer *)tokenizerForParsingGrammar {
+    PKTokenizer *t = [PKTokenizer tokenizer];
     
     t.whitespaceState.reportsWhitespaceTokens = YES;
     
@@ -251,7 +251,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (BOOL)isAllWhitespace:(NSArray *)toks {
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (TDTokenTypeWhitespace != tok.tokenType) {
             return NO;
         }
@@ -261,16 +261,16 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s {
-    TDTokenizer *t = [self tokenizerForParsingGrammar];
+    PKTokenizer *t = [self tokenizerForParsingGrammar];
     t.string = s;
     
-    TDTokenArraySource *src = [[TDTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
+    PKTokenArraySource *src = [[PKTokenArraySource alloc] initWithTokenizer:t delimiter:@";"];
     id target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     
     while ([src hasMore]) {
         NSArray *toks = [src nextTokenArray];
         if (![self isAllWhitespace:toks]) {
-            TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+            PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
             //a.preservesWhitespaceTokens = YES;
             a.target = target;
             PKAssembly *res = [self.statementParser completeMatchFor:a];
@@ -297,7 +297,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks {
-    PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    PKAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
@@ -306,8 +306,8 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (TDTokenizer *)tokenizerFromGrammarSettings {
-    TDTokenizer *t = [TDTokenizer tokenizer];
+- (PKTokenizer *)tokenizerFromGrammarSettings {
+    PKTokenizer *t = [PKTokenizer tokenizer];
     [t.commentState removeSingleLineStartMarker:@"//"];
     [t.commentState removeMultiLineStartMarker:@"/*"];
 
@@ -336,7 +336,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@symbols"]];
     [parserTokensTable removeObjectForKey:@"@symbol"];
     [parserTokensTable removeObjectForKey:@"@symbols"];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
             [t.symbolState add:[tok.stringValue stringByTrimmingQuotes]];
         }
@@ -347,7 +347,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@wordChars"]];
     [parserTokensTable removeObjectForKey:@"@wordChar"];
     [parserTokensTable removeObjectForKey:@"@wordChars"];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
 			if (s.length) {
@@ -362,7 +362,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@whitespaceChars"]];
     [parserTokensTable removeObjectForKey:@"@whitespaceChar"];
     [parserTokensTable removeObjectForKey:@"@whitespaceChars"];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
 			if (s.length) {
@@ -382,7 +382,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     toks = [toks arrayByAddingObjectsFromArray:[parserTokensTable objectForKey:@"@singleLineComments"]];
     [parserTokensTable removeObjectForKey:@"@singleLineComment"];
     [parserTokensTable removeObjectForKey:@"@singleLineComments"];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
             [t.commentState addSingleLineStartMarker:s];
@@ -398,8 +398,8 @@ void TDReleaseSubparserTree(PKParser *p) {
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 1; i++) {
-            TDToken *startTok = [toks objectAtIndex:i];
-            TDToken *endTok = [toks objectAtIndex:++i];
+            PKToken *startTok = [toks objectAtIndex:i];
+            PKToken *endTok = [toks objectAtIndex:++i];
             if (startTok.isQuotedString && endTok.isQuotedString) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
@@ -417,9 +417,9 @@ void TDReleaseSubparserTree(PKParser *p) {
     if (toks.count > 1) {
         NSInteger i = 0;
         for ( ; i < toks.count - 2; i++) {
-            TDToken *startTok = [toks objectAtIndex:i];
-            TDToken *endTok = [toks objectAtIndex:++i];
-            TDToken *charSetTok = [toks objectAtIndex:++i];
+            PKToken *startTok = [toks objectAtIndex:i];
+            PKToken *endTok = [toks objectAtIndex:++i];
+            PKToken *charSetTok = [toks objectAtIndex:++i];
             if (startTok.isQuotedString && endTok.isQuotedString) {
                 NSString *start = [startTok.stringValue stringByTrimmingQuotes];
                 NSString *end = [endTok.stringValue stringByTrimmingQuotes];
@@ -440,7 +440,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     BOOL result = NO;
     NSArray *toks = [parserTokensTable objectForKey:key];
     if (toks.count) {
-        TDToken *tok = [toks objectAtIndex:0];
+        PKToken *tok = [toks objectAtIndex:0];
         if (tok.isWord && [tok.stringValue isEqualToString:@"YES"]) {
             result = YES;
         }
@@ -450,9 +450,9 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key {
+- (void)setTokenizerState:(PKTokenizerState *)state onTokenizer:(PKTokenizer *)t forTokensForKey:(NSString *)key {
     NSArray *toks = [parserTokensTable objectForKey:key];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
             if (1 == s.length) {
@@ -465,12 +465,12 @@ void TDReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (void)setFallbackStateOn:(TDTokenizerState *)state withTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key {
+- (void)setFallbackStateOn:(PKTokenizerState *)state withTokenizer:(PKTokenizer *)t forTokensForKey:(NSString *)key {
     NSArray *toks = [parserTokensTable objectForKey:key];
     if (toks.count) {
-        TDToken *tok = [toks objectAtIndex:0];
+        PKToken *tok = [toks objectAtIndex:0];
         if (tok.isWord) {
-            TDTokenizerState *fallbackState = [t valueForKey:tok.stringValue];
+            PKTokenizerState *fallbackState = [t valueForKey:tok.stringValue];
             if (state != fallbackState) {
                 state.fallbackState = fallbackState;
             }
@@ -540,7 +540,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks {	
-    PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    PKAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
@@ -556,9 +556,9 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 // this is just a utility for unit-testing
 - (PKSequence *)parserFromExpression:(NSString *)s {
-    TDTokenizer *t = [self tokenizerForParsingGrammar];
+    PKTokenizer *t = [self tokenizerForParsingGrammar];
     t.string = s;
-    PKAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [self.exprParser completeMatchFor:a];
     return [a pop];
@@ -1102,7 +1102,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 - (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt {
     NSMutableArray *res = [NSMutableArray array];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         if (TDTokenTypeWhitespace != tok.tokenType) {
             [res addObject:tok];
         }
@@ -1125,7 +1125,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnCallback:(PKAssembly *)a {
-    TDToken *selNameTok = [a pop];
+    PKToken *selNameTok = [a pop];
     NSString *selName = [NSString stringWithFormat:@"%@:", selNameTok.stringValue];
     [a push:selName];
 }
@@ -1176,7 +1176,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnPatternOptions:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
 
     NSString *s = tok.stringValue;
@@ -1212,8 +1212,8 @@ void TDReleaseSubparserTree(PKParser *p) {
         obj = [a pop];
     }
     
-    NSAssert([obj isMemberOfClass:[TDToken class]], @"");
-    TDToken *tok = (TDToken *)obj;
+    NSAssert([obj isMemberOfClass:[PKToken class]], @"");
+    PKToken *tok = (PKToken *)obj;
     NSAssert(tok.isDelimitedString, @"");
 
     NSString *s = tok.stringValue;
@@ -1235,7 +1235,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnLiteral:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
 
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     PKTerminal *t = [TDCaseInsensitiveLiteral literalWithString:s];
@@ -1249,7 +1249,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnVariable:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSString *parserName = tok.stringValue;
     PKParser *p = nil;
     if (isGatheringClasses) {
@@ -1270,7 +1270,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnConstant:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSString *s = tok.stringValue;
     id p = nil;
     if ([s isEqualToString:@"Word"]) {
@@ -1335,7 +1335,7 @@ void TDReleaseSubparserTree(PKParser *p) {
 
 
 - (void)workOnNum:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 

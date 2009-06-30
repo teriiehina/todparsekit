@@ -29,7 +29,7 @@
 // bool                 = 'true' | 'false';
 
 @interface TDNSPredicateBuilder ()
-@property (nonatomic, retain) TDToken *nonReservedWordFence;
+@property (nonatomic, retain) PKToken *nonReservedWordFence;
 @end
 
 @implementation TDNSPredicateBuilder
@@ -39,7 +39,7 @@
         self.defaultAttr = @"content";
         self.defaultRelation = @"=";
         self.defaultValue = @"";
-        self.nonReservedWordFence = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
+        self.nonReservedWordFence = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"." floatValue:0.0];
     }
     return self;
 }
@@ -81,7 +81,7 @@
 
 
 - (NSPredicate *)buildFrom:(NSString *)s; {
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     return [[self.exprParser completeMatchFor:a] pop];
 }
 
@@ -504,7 +504,7 @@
 
 
 - (void)workOnReservedWord:(PKAssembly *)a {
-//    TDToken *tok = [a pop];
+//    PKToken *tok = [a pop];
 //    [a push:tok.stringValue];
 }
 

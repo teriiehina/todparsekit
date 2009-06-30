@@ -8,16 +8,16 @@
 
 #import <ParseKit/TDNumberState.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDToken.h>
-#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/PKToken.h>
+#import <ParseKit/PKTokenizer.h>
 #import <ParseKit/TDSymbolState.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDToken ()
+@interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
@@ -38,7 +38,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
@@ -79,7 +79,7 @@
         floatValue = -floatValue;
     }
     
-    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
+    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeNumber stringValue:[self bufferedString] floatValue:[self value]];
     tok.offset = offset;
     return tok;
 }

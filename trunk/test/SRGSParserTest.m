@@ -52,7 +52,7 @@
 
 - (void)testWeight {
     s = @"/4.0/";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [p.weight bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);
@@ -61,7 +61,7 @@
 
 - (void)testProbability {
     s = @"/4.0/";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [p.probability bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[/, 4.0, /]//4.0//^", [result description]);

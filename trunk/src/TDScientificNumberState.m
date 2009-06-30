@@ -10,7 +10,7 @@
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)append:(PKUniChar)c;
 @end
 

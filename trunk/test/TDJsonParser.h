@@ -21,15 +21,15 @@
     PKCollectionParser *propertyParser;
     PKCollectionParser *commaPropertyParser;
     
-    TDToken *curly;
-    TDToken *bracket;
+    PKToken *curly;
+    PKToken *bracket;
 }
 
 - (id)initWithIntentToAssemble:(BOOL)shouldAssemble;
 
 - (id)parse:(NSString *)s;
 
-@property (nonatomic, retain, readonly) TDTokenizer *tokenizer;
+@property (nonatomic, retain, readonly) PKTokenizer *tokenizer;
 @property (nonatomic, retain) PKParser *stringParser;
 @property (nonatomic, retain) PKParser *numberParser;
 @property (nonatomic, retain) PKParser *nullParser;

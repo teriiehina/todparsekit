@@ -22,7 +22,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
 }
 

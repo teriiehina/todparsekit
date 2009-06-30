@@ -16,7 +16,7 @@
 
 - (void)testTrueCompleteMatchForLiteral123 {
     s = @"123";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     NSLog(@"a: %@", a);
     
     p = [TDNum num];
@@ -38,7 +38,7 @@
 
 - (void)testFalseCompleteMatchForLiteral123 {
     s = @"1234";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"123"];
     PKAssembly *result = [p completeMatchFor:a];
@@ -49,7 +49,7 @@
 
 - (void)testTrueCompleteMatchForLiteralFoo {
     s = @"Foo";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"Foo"];
     PKAssembly *result = [p completeMatchFor:a];
@@ -60,7 +60,7 @@
 
 - (void)testFalseCompleteMatchForLiteralFoo {
     s = @"Foo";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [TDLiteral literalWithString:@"foo"];
     PKAssembly *result = [p completeMatchFor:a];
@@ -70,7 +70,7 @@
 
 - (void)testFalseCompleteMatchForCaseInsensitiveLiteralFoo {
     s = @"Fool";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
     PKAssembly *result = [p completeMatchFor:a];
@@ -80,7 +80,7 @@
 
 - (void)testTrueCompleteMatchForCaseInsensitiveLiteralFoo {
     s = @"Foo";
-    a = [[TDTokenAssembly alloc] initWithString:s];
+    a = [[PKTokenAssembly alloc] initWithString:s];
         
     p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
     PKAssembly *result = [p completeMatchFor:a];

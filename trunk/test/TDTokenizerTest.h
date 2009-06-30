@@ -8,10 +8,10 @@
 
 #import "TDTestScaffold.h"
 
-@class TDTokenizer;
+@class PKTokenizer;
 
 @interface TDTokenizerTest : SenTestCase {
-    TDTokenizer *t;
+    PKTokenizer *t;
     NSString *s;
 }
 @end

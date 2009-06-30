@@ -6,9 +6,9 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
-@interface TDBlobState : TDTokenizerState {
+@interface TDBlobState : PKTokenizerState {
 
 }
 

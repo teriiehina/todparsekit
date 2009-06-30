@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 @class TDSymbolRootNode;
 @class TDSingleLineCommentState;
@@ -18,7 +18,7 @@
     @brief      This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just the first char in it.
     @details    By default, C and C++ style comments. (<tt>//</tt> to end of line and <tt>/&0x002A; &0x002A;/</tt>)
 */
-@interface TDCommentState : TDTokenizerState {
+@interface TDCommentState : PKTokenizerState {
     TDSymbolRootNode *rootNode;
     TDSingleLineCommentState *singleLineState;
     TDMultiLineCommentState *multiLineState;
@@ -58,7 +58,7 @@
 /*!
     @property   reportsCommentTokens
     @brief      if true, the tokenizer associated with this state will report comment tokens, otherwise it silently consumes comments
-    @details    if true, this state will return <tt>TDToken</tt>s of type <tt>TDTokenTypeComment</tt>.
+    @details    if true, this state will return <tt>PKToken</tt>s of type <tt>TDTokenTypeComment</tt>.
                 Otherwise, it will silently consume comment text and return the next token from another of the tokenizer's states
 */
 @property (nonatomic) BOOL reportsCommentTokens;

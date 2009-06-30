@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKTerminal.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 typedef enum {
     TDPatternOptionsNone                    = 0,

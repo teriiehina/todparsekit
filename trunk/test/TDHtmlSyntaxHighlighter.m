@@ -21,24 +21,24 @@
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
-- (TDToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e;
+- (PKToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e;
 - (void)consumeWhitespaceOnStack;
 
-@property (retain) TDTokenizer *tokenizer;
+@property (retain) PKTokenizer *tokenizer;
 @property (retain) NSMutableArray *stack;
-@property (retain) TDToken *ltToken;
-@property (retain) TDToken *gtToken;
-@property (retain) TDToken *startCommentToken;
-@property (retain) TDToken *endCommentToken;
-@property (retain) TDToken *startCDATAToken;
-@property (retain) TDToken *endCDATAToken;
-@property (retain) TDToken *startPIToken;
-@property (retain) TDToken *endPIToken;
-@property (retain) TDToken *startDoctypeToken;
-@property (retain) TDToken *fwdSlashToken;
-@property (retain) TDToken *eqToken;
-@property (retain) TDToken *scriptToken;
-@property (retain) TDToken *endScriptToken;
+@property (retain) PKToken *ltToken;
+@property (retain) PKToken *gtToken;
+@property (retain) PKToken *startCommentToken;
+@property (retain) PKToken *endCommentToken;
+@property (retain) PKToken *startCDATAToken;
+@property (retain) PKToken *endCDATAToken;
+@property (retain) PKToken *startPIToken;
+@property (retain) PKToken *endPIToken;
+@property (retain) PKToken *startDoctypeToken;
+@property (retain) PKToken *fwdSlashToken;
+@property (retain) PKToken *eqToken;
+@property (retain) PKToken *scriptToken;
+@property (retain) PKToken *endScriptToken;
 @end
 
 @implementation TDHtmlSyntaxHighlighter
@@ -51,40 +51,40 @@
 - (id)initWithAttributesForDarkBackground:(BOOL)isDark {
     if (self = [super init]) {
         isDarkBG = isDark;
-        self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [PKTokenizer tokenizer];
         
         [tokenizer setTokenizerState:tokenizer.symbolState from:'/' to:'/']; // XML doesn't have slash slash or slash star comments
         tokenizer.whitespaceState.reportsWhitespaceTokens = YES;
         [tokenizer.wordState setWordChars:YES from:':' to:':'];
         
-        self.ltToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0];
-        self.gtToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@">" floatValue:0.0];
+        self.ltToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<" floatValue:0.0];
+        self.gtToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@">" floatValue:0.0];
         
-        self.startCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!--" floatValue:0.0];
-        self.endCommentToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"-->" floatValue:0.0];
+        self.startCommentToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!--" floatValue:0.0];
+        self.endCommentToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"-->" floatValue:0.0];
         [tokenizer.symbolState add:startCommentToken.stringValue];
         [tokenizer.symbolState add:endCommentToken.stringValue];
 
-        self.startCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<![CDATA[" floatValue:0.0];
-        self.endCDATAToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"]]>" floatValue:0.0];
+        self.startCDATAToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<![CDATA[" floatValue:0.0];
+        self.endCDATAToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"]]>" floatValue:0.0];
         [tokenizer.symbolState add:startCDATAToken.stringValue];
         [tokenizer.symbolState add:endCDATAToken.stringValue];
 
-        self.startPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<?" floatValue:0.0];
-        self.endPIToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"?>" floatValue:0.0];
+        self.startPIToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<?" floatValue:0.0];
+        self.endPIToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"?>" floatValue:0.0];
         [tokenizer.symbolState add:startPIToken.stringValue];
         [tokenizer.symbolState add:endPIToken.stringValue];
 
-        self.startDoctypeToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!DOCTYPE" floatValue:0.0];
+        self.startDoctypeToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"<!DOCTYPE" floatValue:0.0];
         [tokenizer.symbolState add:startDoctypeToken.stringValue];
         
-        self.fwdSlashToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
-        self.eqToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
+        self.fwdSlashToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
+        self.eqToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
 
-        self.scriptToken = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:@"script" floatValue:0.0];
+        self.scriptToken = [PKToken tokenWithTokenType:TDTokenTypeWord stringValue:@"script" floatValue:0.0];
 
         self.endScriptToken = gtToken;
-//        self.endScriptToken = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"</script>" floatValue:0.0];
+//        self.endScriptToken = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"</script>" floatValue:0.0];
 //        [tokenizer.symbolState add:endScriptToken.stringValue];
 
         NSFont *monacoFont = [NSFont fontWithName:@"Monaco" size:11.];
@@ -181,8 +181,8 @@
     self.highlightedString = [[[NSMutableAttributedString alloc] init] autorelease];
     
     tokenizer.string = s;
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     BOOL inComment = NO;
     BOOL inCDATA = NO;
     BOOL inPI = NO;
@@ -239,7 +239,7 @@
     
     // handle case where no elements were encountered (plain text basically)
     if (!highlightedString.length) {
-        TDToken *tok = nil;
+        PKToken *tok = nil;
         while (tok = [self pop]) {
             NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];
             [highlightedString appendAttributedString:as];
@@ -254,8 +254,8 @@
 }
 
 
-- (TDToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e {
-    TDToken *tok = [e nextObject];
+- (PKToken *)nextNonWhitespaceTokenFrom:(NSEnumerator *)e {
+    PKToken *tok = [e nextObject];
     while (tok.isWhitespace) {
         NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
         [highlightedString appendAttributedString:as];
@@ -266,7 +266,7 @@
 
 
 - (void)consumeWhitespaceOnStack {
-    TDToken *tok = [self peek];
+    PKToken *tok = [self peek];
     while (tok.isWhitespace) {
         tok = [self pop];
         NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
@@ -287,7 +287,7 @@
     
     NSEnumerator *e = [toks objectEnumerator];
     
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [self nextNonWhitespaceTokenFrom:e]) {
         if ([tok isEqual:endCommentToken]) {
             break;
@@ -313,7 +313,7 @@
     
     NSEnumerator *e = [toks objectEnumerator];
     
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [self nextNonWhitespaceTokenFrom:e]) {
         if ([tok isEqual:endCDATAToken]) {
             break;
@@ -339,7 +339,7 @@
     
     NSEnumerator *e = [toks objectEnumerator];
     
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [self nextNonWhitespaceTokenFrom:e]) {
         if ([tok isEqual:endPIToken]) {
             break;
@@ -365,7 +365,7 @@
     
     NSEnumerator *e = [toks objectEnumerator];
     
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [self nextNonWhitespaceTokenFrom:e]) {
         if ([tok isEqual:gtToken]) {
             break;
@@ -387,7 +387,7 @@
     NSEnumerator *e = [toks objectEnumerator];
     NSAttributedString *as = nil;
     
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [self nextNonWhitespaceTokenFrom:e]) {
         if ([tok isEqual:endScriptToken]) {
             break;
@@ -411,7 +411,7 @@
 - (void)workOnStartTag:(NSEnumerator *)e {
     while (1) {
         // attr name or ns prefix decl "xmlns:foo" or "/" for empty element
-        TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
+        PKToken *tok = [self nextNonWhitespaceTokenFrom:e];
         if (!tok) return;
         
         NSDictionary *attrs = nil;
@@ -463,7 +463,7 @@
 
 - (void)workOnEndTag:(NSEnumerator *)e {
     // consume tagName to ">"
-    TDToken *tok = nil; 
+    PKToken *tok = nil; 
     while (tok = [e nextObject]) {
         NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:tagAttributes] autorelease];
         [highlightedString appendAttributedString:as];
@@ -484,7 +484,7 @@
     [highlightedString appendAttributedString:as];
     
     // consume whitespace to tagName or "/" for end tags or "!" for comments
-    TDToken *tok = [self nextNonWhitespaceTokenFrom:e];
+    PKToken *tok = [self nextNonWhitespaceTokenFrom:e];
 
     if (tok) {
         if ([tok isEqual:scriptToken]) {
@@ -508,7 +508,7 @@
 
 - (void)workOnText {
     NSArray *a = [self objectsAbove:gtToken];
-    for (TDToken *tok in [a reverseObjectEnumerator]) {
+    for (PKToken *tok in [a reverseObjectEnumerator]) {
         NSString *s = tok.stringValue;
         if (s) {
             NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];

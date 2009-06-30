@@ -16,7 +16,7 @@
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
 - (NSMutableArray *)popWhitespaceTokensFrom:(PKAssembly *)a;
 - (void)consumeWhitespaceTokens:(NSArray *)whitespaceToks;
-- (void)consumeWhitespaceToken:(TDToken *)whitespaceTok;
+- (void)consumeWhitespaceToken:(PKToken *)whitespaceTok;
 - (void)consumeWhitespaceFrom:(PKAssembly *)a;
     
 @property (nonatomic, retain) NSString *prefix;
@@ -84,7 +84,7 @@
     if (!props) props = defaultProperties;
     
     NSMutableArray *toks = nil;
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [a pop]) {
         if (TDTokenTypeWhitespace != tok.tokenType) {
             if (!toks) toks = [NSMutableArray array];
@@ -117,7 +117,7 @@
 
 - (NSMutableArray *)popWhitespaceTokensFrom:(PKAssembly *)a {
     NSMutableArray *whitespaceToks = nil;
-    TDToken *tok = nil;
+    PKToken *tok = nil;
     while (tok = [a pop]) {
         if (TDTokenTypeWhitespace == tok.tokenType) {
             if (!whitespaceToks) {
@@ -141,7 +141,7 @@
 }
 
 
-- (void)consumeWhitespaceToken:(TDToken *)whitespaceTok {
+- (void)consumeWhitespaceToken:(PKToken *)whitespaceTok {
     [self appendAttributedStringForObject:whitespaceTok withAttrs:nil];
 }
 

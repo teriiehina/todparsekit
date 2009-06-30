@@ -9,14 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKTerminal.h>
 
-@class TDToken;
+@class PKToken;
 
 /*!
     @class      TDLiteral 
     @brief      A <tt>TDLiteral</tt> matches a specific word from an assembly.
 */
 @interface TDLiteral : PKTerminal {
-    TDToken *literal;
+    PKToken *literal;
 }
 
 /*!

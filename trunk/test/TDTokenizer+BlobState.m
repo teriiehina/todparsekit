@@ -1,17 +1,17 @@
 //
-//  TDTokenizer+BlobState.m
+//  PKTokenizer+BlobState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/7/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDTokenizer+BlobState.h"
+#import "PKTokenizer+BlobState.h"
 #import "TDBlobState.h"
 
 static NSMutableDictionary *sBlobCache = nil;
 
-@implementation TDTokenizer (BlobState)
+@implementation PKTokenizer (BlobState)
 
 - (TDBlobState *)blobState {
     TDBlobState *bs = nil;

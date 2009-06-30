@@ -11,7 +11,7 @@
 
 @interface TDScientificNumberStateTest : SenTestCase {
     TDScientificNumberState *numberState;
-    TDTokenizer *t;
+    PKTokenizer *t;
     PKReader *r;
     NSString *s;
 }

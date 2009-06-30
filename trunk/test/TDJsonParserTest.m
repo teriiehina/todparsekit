@@ -20,10 +20,10 @@
 - (void)testForAppleBossResultTokenization {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    PKTokenizer *t = [[[PKTokenizer alloc] initWithString:s] autorelease];
     
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     while (eof != (tok = [t nextToken])) {
         //NSLog(@"tok: %@", tok);
     }
@@ -47,7 +47,7 @@
 
 - (void)testEmptyString {
     s = @"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [p bestMatchFor:a];
     TDNil(result);
 }
@@ -55,7 +55,7 @@
 
 - (void)testNum {
     s = @"456";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p numberParser] bestMatchFor:a];
     TDNotNil(result);
 
@@ -66,7 +66,7 @@
 
     
     s = @"-3.47";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p numberParser] bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[-3.47]-3.47^", [result description]);
@@ -78,7 +78,7 @@
 
 - (void)testString {
     s = @"'foobar'";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p stringParser] bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[foobar]'foobar'^", [result description]);
@@ -87,7 +87,7 @@
     TDEqualObjects(@"foobar", obj);
 
     s = @"\"baz boo boo\"";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p stringParser] bestMatchFor:a];
     TDNotNil(result);
     
@@ -100,7 +100,7 @@
 
 - (void)testBoolean {
     s = @"true";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p booleanParser] bestMatchFor:a];
     TDNotNil(result);
 
@@ -110,7 +110,7 @@
     TDEqualObjects([NSNumber numberWithBool:YES], obj);
 
     s = @"false";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p booleanParser] bestMatchFor:a];
     TDNotNil(result);
 
@@ -123,7 +123,7 @@
 
 - (void)testArray {
     s = @"[1, 2, 3]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p arrayParser] bestMatchFor:a];
     
     NSLog(@"result: %@", result);
@@ -136,7 +136,7 @@
     TDEqualObjects(@"[][/1/,/2/,/3/]^", [result description]);
 
     s = @"[true, 'garlic jazz!', .888]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p arrayParser] bestMatchFor:a];
     TDNotNil(result);
     
@@ -147,7 +147,7 @@
     TDEqualObjects([NSNumber numberWithFloat:.888], [obj objectAtIndex:2]);
 
     s = @"[1, [2, [3, 4]]]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p arrayParser] bestMatchFor:a];
     TDNotNil(result);
     //NSLog(@"result: %@", [a stack]);
@@ -157,7 +157,7 @@
 
 - (void)testObject {
     s = @"{'key': 'value'}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
     TDNotNil(result);
     
@@ -165,7 +165,7 @@
     TDEqualObjects([obj objectForKey:@"key"], @"value");
 
     s = @"{'foo': false, 'bar': true, \"baz\": -9.457}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
     TDNotNil(result);
     
@@ -175,7 +175,7 @@
     TDEqualObjects([obj objectForKey:@"baz"], [NSNumber numberWithFloat:-9.457]);
 
     s = @"{'baz': {'foo': [1,2]}}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     result = [[p objectParser] bestMatchFor:a];
     TDNotNil(result);
     
@@ -203,10 +203,10 @@
 - (void)testCrunchBaseJsonParserTokenization {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    PKTokenizer *t = [[[PKTokenizer alloc] initWithString:s] autorelease];
     
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     while (eof != (tok = [t nextToken])) {
         //NSLog(@"tok: %@", tok);
     }    

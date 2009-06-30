@@ -7,7 +7,7 @@
 //
 
 #import "TDWhitespace.h"
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation TDWhitespace
 
@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     return tok.isWhitespace;
 }
 

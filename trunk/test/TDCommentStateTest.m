@@ -12,7 +12,7 @@
 
 - (void)setUp {
     r = [[PKReader alloc] init];
-    t = [[TDTokenizer alloc] init];
+    t = [[PKTokenizer alloc] init];
     commentState = t.commentState;
 }
 
@@ -28,7 +28,7 @@
     r.string = s;
     t.string = s;
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals(tok.offset, (NSUInteger)-1);
     TDEquals([r read], PKEOF);
 }
@@ -43,7 +43,7 @@
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, s);
     TDEquals(tok.offset, (NSUInteger)0);
-    TDEqualObjects([t nextToken], [TDToken EOFToken]);
+    TDEqualObjects([t nextToken], [PKToken EOFToken]);
 }
 
 
@@ -56,7 +56,7 @@
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"// foo");
     TDEquals(tok.offset, (NSUInteger)1);
-    TDEqualObjects([t nextToken], [TDToken EOFToken]);
+    TDEqualObjects([t nextToken], [PKToken EOFToken]);
 }
 
 
@@ -106,7 +106,7 @@
     [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
     tok = [t nextToken];
-    TDTrue(tok == [TDToken EOFToken]);
+    TDTrue(tok == [PKToken EOFToken]);
     TDEquals(tok.offset, (NSUInteger)-1);
 }
 
@@ -128,7 +128,7 @@
     s = @"/* foo */";
     t.string = s;
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals([r read], PKEOF);
 }
 
@@ -137,7 +137,7 @@
     s = @"/* foo */ ";
     t.string = s;
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
     TDEquals([r read], PKEOF);
 }
 
@@ -150,7 +150,7 @@
     tok = [t nextToken];
     TDTrue(tok.isComment);
     TDEqualObjects(tok.stringValue, @"/* foo */");
-    TDEquals([t nextToken], [TDToken EOFToken]);
+    TDEquals([t nextToken], [PKToken EOFToken]);
     TDEquals(tok.offset, (NSUInteger)0);
 }
 
@@ -164,7 +164,7 @@
     TDEqualObjects(tok.stringValue, @"/* foo */");
     TDEquals(tok.offset, (NSUInteger)0);
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 
     t.string = s;
     commentState.reportsCommentTokens = YES;
@@ -433,7 +433,7 @@
     TDTrue(tok.isWord);
     TDEqualObjects(tok.stringValue, @"a");
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 @end

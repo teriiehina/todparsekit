@@ -7,10 +7,10 @@
 //
 
 #import <ParseKit/TDLiteral.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @interface TDLiteral ()
-@property (nonatomic, retain) TDToken *literal;
+@property (nonatomic, retain) PKToken *literal;
 @end
 
 @implementation TDLiteral
@@ -24,7 +24,7 @@
     //NSParameterAssert(s);
     self = [super initWithString:s];
     if (self) {
-        self.literal = [TDToken tokenWithTokenType:TDTokenTypeWord stringValue:s floatValue:0.0];
+        self.literal = [PKToken tokenWithTokenType:TDTokenTypeWord stringValue:s floatValue:0.0];
     }
     return self;
 }

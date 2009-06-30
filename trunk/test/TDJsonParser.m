@@ -15,9 +15,9 @@
 @end
 
 @interface TDJsonParser ()
-@property (nonatomic, retain, readwrite) TDTokenizer *tokenizer;
-@property (nonatomic, retain) TDToken *curly;
-@property (nonatomic, retain) TDToken *bracket;
+@property (nonatomic, retain, readwrite) PKTokenizer *tokenizer;
+@property (nonatomic, retain) PKToken *curly;
+@property (nonatomic, retain) PKToken *bracket;
 @end
 
 @implementation TDJsonParser
@@ -30,10 +30,10 @@
 - (id)initWithIntentToAssemble:(BOOL)yn {
     if (self = [super init]) {
         shouldAssemble = yn;
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
+        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.bracket = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
         
-        self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [PKTokenizer tokenizer];
         [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
         [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
         
@@ -75,7 +75,7 @@
 
 - (id)parse:(NSString *)s {
     tokenizer.string = s;
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:tokenizer];
     
     PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
@@ -240,19 +240,19 @@
 
 
 - (void)workOnNumber:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
 - (void)workOnString:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
 - (void)workOnBoolean:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithBool:[tok.stringValue isEqualToString:@"true"] ? YES : NO]];
 }
 
@@ -291,7 +291,7 @@
 
 - (void)workOnProperty:(PKAssembly *)a {
     id value = [a pop];
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSString *key = [tok.stringValue stringByTrimmingQuotes];
     
     [a push:key];

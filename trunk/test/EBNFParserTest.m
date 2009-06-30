@@ -17,7 +17,7 @@
     //NSString *s = @"foo;";
     EBNFParser *p = [[[EBNFParser alloc] init] autorelease];
     
-    //    PKAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    //    PKAssembly *a = [p bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     //    NSLog(@"a: %@", a);
     //    NSLog(@"a.target: %@", a.target);
     
@@ -29,7 +29,7 @@
     //    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
     
     s = @"bar foo bar foo";
-    PKAssembly *a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    PKAssembly *a = [res completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     NSLog(@"\n\na: %@\n\n", a);
     
 }

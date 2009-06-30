@@ -10,7 +10,7 @@
 
 const NSInteger TDTokenTypeNCName = 300;
 
-@implementation TDToken (NCNameAdditions)
+@implementation PKToken (NCNameAdditions)
 
 - (BOOL)isNCName {
     return self.tokenType == TDTokenTypeNCName;
@@ -26,7 +26,7 @@ const NSInteger TDTokenTypeNCName = 300;
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     return tok.isNCName;
 }
 

@@ -1,16 +1,16 @@
 //
-//  TDToken+Blob.m
+//  PKToken+Blob.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/7/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDToken+Blob.h"
+#import "PKToken+Blob.h"
 
 const NSInteger TDTokenTypeBlob = 200;
 
-@implementation TDToken (Blob)
+@implementation PKToken (Blob)
 
 - (BOOL)isBlob {
     return TDTokenTypeBlob == self.tokenType;

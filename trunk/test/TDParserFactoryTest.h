@@ -11,12 +11,12 @@
 
 @interface TDParserFactoryTest : SenTestCase {
     NSString *s;
-    TDTokenAssembly *a;
+    PKTokenAssembly *a;
     TDParserFactory *factory;
     PKAssembly *res;
 
     PKSequence *exprSeq;
-    TDTokenizer *t;
+    PKTokenizer *t;
     PKParser *lp; // language parser
 }
 

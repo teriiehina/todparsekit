@@ -18,7 +18,7 @@
 @interface TDNSPredicateEvaluator : NSObject {
     id <TDKeyPathResolver>resolver;
     PKParser *parser;
-    TDToken *openCurly;
+    PKToken *openCurly;
 }
 - (id)initWithKeyPathResolver:(id <TDKeyPathResolver>)r;
 

@@ -19,7 +19,7 @@
 
 - (void)testDiscard {
     s = @"foo -";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -34,7 +34,7 @@
 
 - (void)testDiscard2 {
     s = @"foo foo -";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -50,7 +50,7 @@
 
 - (void)testDiscard3 {
     s = @"foo - foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -66,7 +66,7 @@
 
 - (void)testDiscard1 {
     s = @"- foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -81,7 +81,7 @@
 
 - (void)testDiscard4 {
     s = @"- foo -";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -97,7 +97,7 @@
 
 - (void)testDiscard5 {
     s = @"- foo + foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -114,7 +114,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -130,7 +130,7 @@
 
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz1 {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -145,7 +145,7 @@
 
 - (void)testFalseLiteralBestMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -159,7 +159,7 @@
 
 - (void)testTrueLiteralCompleteMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -175,7 +175,7 @@
 
 - (void)testTrueLiteralCompleteMatchForFooSpaceBarSpaceBaz1 {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -191,7 +191,7 @@
 
 - (void)testFalseLiteralCompleteMatchForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -205,7 +205,7 @@
 
 - (void)testFalseLiteralCompleteMatchForFooSpaceBarSpaceBaz1 {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -219,7 +219,7 @@
 
 - (void)testTrueLiteralAllMatchsForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -234,7 +234,7 @@
 
 - (void)testFalseLiteralAllMatchsForFooSpaceBarSpaceBaz {
     s = @"foo bar baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];

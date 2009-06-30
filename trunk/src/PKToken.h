@@ -1,5 +1,5 @@
 //
-//  TDToken.h
+//  PKToken.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
@@ -10,7 +10,7 @@
 
 /*!
     @typedef    enum TDTokenType
-    @brief      Indicates the type of a <tt>TDToken</tt>
+    @brief      Indicates the type of a <tt>PKToken</tt>
     @var        TDTokenTypeEOF A constant indicating that the endo fo the stream has been read.
     @var        TDTokenTypeNumber A constant indicating that a token is a number, like <tt>3.14</tt>.
     @var        TDTokenTypeQuotedString A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
@@ -33,11 +33,11 @@ typedef enum {
 } TDTokenType;
 
 /*!
-    @class      TDToken
+    @class      PKToken
     @brief      A token represents a logical chunk of a string.
     @details    For example, a typical tokenizer would break the string <tt>"1.23 &lt;= 12.3"</tt> into three tokens: the number <tt>1.23</tt>, a less-than-or-equal symbol, and the number <tt>12.3</tt>. A token is a receptacle, and relies on a tokenizer to decide precisely how to divide a string into tokens.
 */
-@interface TDToken : NSObject <NSCopying> {
+@interface PKToken : NSObject <NSCopying> {
     CGFloat floatValue;
     NSString *stringValue;
     TDTokenType tokenType;
@@ -55,10 +55,10 @@ typedef enum {
 }
 
 /*!
-    @brief      Factory method for creating a singleton <tt>TDToken</tt> used to indicate that there are no more tokens.
+    @brief      Factory method for creating a singleton <tt>PKToken</tt> used to indicate that there are no more tokens.
     @result     A singleton used to indicate that there are no more tokens.
 */
-+ (TDToken *)EOFToken;
++ (PKToken *)EOFToken;
 
 /*!
     @brief      Factory convenience method for creating an autoreleased token.
@@ -79,9 +79,9 @@ typedef enum {
 - (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
-    @brief      Returns true if the supplied object is an equivalent <tt>TDToken</tt>, ignoring differences in case.
+    @brief      Returns true if the supplied object is an equivalent <tt>PKToken</tt>, ignoring differences in case.
     @param      obj the object to compare this token to.
-    @result     true if <tt>obj</tt> is an equivalent <tt>TDToken</tt>, ignoring differences in case.
+    @result     true if <tt>obj</tt> is an equivalent <tt>PKToken</tt>, ignoring differences in case.
 */
 - (BOOL)isEqualIgnoringCase:(id)obj;
 

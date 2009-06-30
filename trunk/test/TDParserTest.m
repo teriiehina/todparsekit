@@ -23,7 +23,7 @@
 
 - (void)testMath {
     s = @"2 4 6 8";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKRepetition repetitionWithSubparser:[TDNum num]];
     
@@ -35,7 +35,7 @@
 
 - (void)testMiniMath {
     s = @"4.5 - 5.6 - 222.0";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -53,7 +53,7 @@
 
 - (void)testMiniMathWithBrackets {
     s = @"[4.5 - 5.6 - 222.0]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -83,7 +83,7 @@
     [sentence add:[TDLiteral literalWithString:@"coffee"]];
 
     s = @"hot hot steaming hot coffee";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     PKAssembly *result = [sentence bestMatchFor:a];
     
@@ -109,7 +109,7 @@
     [list add:[[TDSymbol symbolWithString:@"]"] discard]];
 
     s = @"[foo, bar, baz]";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
 
     result = [list bestMatchFor:a];
     TDNotNil(result);
@@ -119,7 +119,7 @@
 
 - (void)testJavaScriptStatement {
     s = @"123 'boo'";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     PKAlternation *literals = [PKAlternation alternation];
     [literals add:[TDQuotedString quotedString]];

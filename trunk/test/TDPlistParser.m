@@ -54,9 +54,9 @@ static NSString *kTDPlistNullString = @"<null>";
 @end
 
 @interface TDPlistParser ()
-@property (nonatomic, readwrite, retain) TDTokenizer *tokenizer;
-@property (nonatomic, retain) TDToken *curly;
-@property (nonatomic, retain) TDToken *paren;
+@property (nonatomic, readwrite, retain) PKTokenizer *tokenizer;
+@property (nonatomic, retain) PKToken *curly;
+@property (nonatomic, retain) PKToken *paren;
 @end
 
 @implementation TDPlistParser
@@ -65,12 +65,12 @@ static NSString *kTDPlistNullString = @"<null>";
     self = [super init];
     if (self != nil) {
 
-        self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [PKTokenizer tokenizer];
         // add '<null>' as a multichar symbol
         [tokenizer.symbolState add:kTDPlistNullString];
         
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
-        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
+        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
+        self.paren = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
         [self add:[PKEmpty empty]];
         [self add:self.arrayParser];
         [self add:self.dictParser];
@@ -106,7 +106,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (id)parse:(NSString *)s {
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:tokenizer];
     
     // parse
     PKAssembly *res = [self completeMatchFor:a];
@@ -277,19 +277,19 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (void)workOnQuotedString:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
 - (void)workOnWord:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
 - (void)workOnNum:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 

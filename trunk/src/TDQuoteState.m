@@ -8,14 +8,14 @@
 
 #import <ParseKit/TDQuoteState.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDToken ()
+@interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
@@ -28,7 +28,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     [self resetWithReader:r];
     
@@ -47,7 +47,7 @@
         
     } while (c != cin);
     
-    TDToken *tok = [TDToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
+    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeQuotedString stringValue:[self bufferedString] floatValue:0.0];
     tok.offset = offset;
     return tok;
 }

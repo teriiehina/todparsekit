@@ -29,7 +29,7 @@
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     
     TDNotNil(cssAssember.attributes);

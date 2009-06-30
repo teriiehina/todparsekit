@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class PKAssembly;
-@class TDTokenizer;
+@class PKTokenizer;
 
 /*!
     @class      PKParser 
@@ -24,7 +24,7 @@
     [good add:[PKRepetition repetitionWithSubparser:adjective]];
     [good add:[TDLiteral literalWithString:@"coffee"]];
     NSString *s = @"hot hot steaming hot coffee";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     NSLog([good bestMatchFor:a]);
 @endcode
                 <p>This prints out:</p>
@@ -38,7 +38,7 @@
     id assembler;
     SEL selector;
     NSString *name;
-    TDTokenizer *tokenizer; // PKParserFactoryAdditions ivar
+    PKTokenizer *tokenizer; // PKParserFactoryAdditions ivar
 }
 
 /*!
@@ -112,6 +112,6 @@
 
 - (id)parse:(NSString *)s;
 
-- (TDTokenizer *)tokenizer;
+- (PKTokenizer *)tokenizer;
 @end
 

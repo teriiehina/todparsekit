@@ -8,12 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class TDTokenizer;
+@class PKTokenizer;
 
 @interface DemoAppDelegate : NSObject {
     IBOutlet NSTokenField *tokenField;
     
-    TDTokenizer *tokenizer;
+    PKTokenizer *tokenizer;
     NSString *inString;
     NSString *outString;
     NSString *tokString;
@@ -21,7 +21,7 @@
 }
 - (IBAction)parse:(id)sender;
 
-@property (retain) TDTokenizer *tokenizer;
+@property (retain) PKTokenizer *tokenizer;
 @property (retain) NSString *inString;
 @property (retain) NSString *outString;
 @property (retain) NSString *tokString;

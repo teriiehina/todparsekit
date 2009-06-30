@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDCaseInsensitiveLiteral.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation TDCaseInsensitiveLiteral
 

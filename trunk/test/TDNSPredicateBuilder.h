@@ -12,7 +12,7 @@
     NSString *defaultAttr;
     NSString *defaultRelation;
     NSString *defaultValue;
-    TDToken *nonReservedWordFence;
+    PKToken *nonReservedWordFence;
     PKCollectionParser *exprParser;
     PKCollectionParser *orTermParser;
     PKCollectionParser *termParser;

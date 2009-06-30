@@ -24,7 +24,7 @@
 
 - (void)testWordOhSpaceHaiExclamation {
     s = @"oh hai!";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
 
     TDEquals((NSUInteger)3, a.length);
 
@@ -64,7 +64,7 @@
 
 - (void)testBestMatchForWordFoobar {
     s = @"foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
 
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
@@ -82,7 +82,7 @@
 
 - (void)testCompleteMatchForWordFoobar {
     s = @"foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
@@ -96,7 +96,7 @@
 
 - (void)testBestMatchForWordFooSpaceBar {
     s = @"foo bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
@@ -110,7 +110,7 @@
 
 - (void)testCompleteMatchForWordFooSpaceBar {
     s = @"foo bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
@@ -123,7 +123,7 @@
 
 - (void)testBestMatchForNumFoobar {
     s = @"foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
@@ -136,7 +136,7 @@
 
 - (void)testCompleteMatchForNumFoobar {
     s = @"foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
@@ -149,7 +149,7 @@
 
 - (void)testBestMatchForWord123 {
     s = @"123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
@@ -162,7 +162,7 @@
 
 - (void)testCompleteMatchForWord123 {
     s = @"123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     
     p = [[TDWord alloc] init];
@@ -175,7 +175,7 @@
 
 - (void)testBestMatchForNum123 {
     s = @"123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
@@ -189,7 +189,7 @@
 
 - (void)testCompleteMatchForNum123 {
     s = @"123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
@@ -203,7 +203,7 @@
 
 - (void)testBestMatchForNum123Space456 {
     s = @"123 456";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
@@ -217,7 +217,7 @@
 
 - (void)testCompleteMatchForNum123Space456 {
     s = @"123 456";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
@@ -230,7 +230,7 @@
 
 - (void)testBestMatchForWordFoobarSpace123 {
     s = @"foobar 123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
@@ -244,7 +244,7 @@
 
 - (void)testCompleteMatchForWordFoobarSpace123 {
     s = @"foobar 123";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
@@ -257,7 +257,7 @@
 
 - (void)testBestMatchForNum123Space456Foobar {
     s = @"123 456 foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
 
     TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
@@ -271,7 +271,7 @@
 
 - (void)testCompleteMatchForNum123Space456Foobar {
     s = @"123 456 foobar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     
     TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);

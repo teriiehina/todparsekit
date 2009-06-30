@@ -7,8 +7,8 @@
 //
 
 #import "TDBlob.h"
-#import <ParseKit/TDToken.h>
-#import "TDToken+Blob.h"
+#import <ParseKit/PKToken.h>
+#import "PKToken+Blob.h"
 
 @implementation TDBlob
 
@@ -23,7 +23,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     BOOL result = tok.isBlob;
     if (self.string) {
         result = [tok.stringValue hasPrefix:self.string];

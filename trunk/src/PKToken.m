@@ -1,15 +1,15 @@
 //
-//  TDToken.m
+//  PKToken.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDTokenEOF : TDToken {}
+@interface TDTokenEOF : PKToken {}
 + (TDTokenEOF *)instance;
 @end
 
@@ -79,7 +79,7 @@ static TDTokenEOF *EOFToken = nil;
 
 @end
 
-@interface TDToken ()
+@interface PKToken ()
 - (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase;
 
 @property (nonatomic, readwrite, getter=isNumber) BOOL number;
@@ -98,9 +98,9 @@ static TDTokenEOF *EOFToken = nil;
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@implementation TDToken
+@implementation PKToken
 
-+ (TDToken *)EOFToken {
++ (PKToken *)EOFToken {
     return [TDTokenEOF instance];
 }
 
@@ -158,11 +158,11 @@ static TDTokenEOF *EOFToken = nil;
 
 
 - (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase {
-    if (![rhv isMemberOfClass:[TDToken class]]) {
+    if (![rhv isMemberOfClass:[PKToken class]]) {
         return NO;
     }
     
-    TDToken *tok = (TDToken *)rhv;
+    PKToken *tok = (PKToken *)rhv;
     if (tokenType != tok.tokenType) {
         return NO;
     }

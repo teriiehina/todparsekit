@@ -7,7 +7,7 @@
 //
 
 #import "TDXmlName.h"
-#import "TDToken.h"
+#import "PKToken.h"
 
 @implementation TDXmlName
 
@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     if (!tok.isWord) {
         return NO;
     }

@@ -10,32 +10,32 @@
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
 #import "TDJSAssembly.h"
-#import <ParseKit/TDTokenAssembly.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenAssembly.h>
+#import <ParseKit/PKToken.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDTokenAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenAssembly_class, "toString");
-    TDTokenAssembly *data = JSObjectGetPrivate(this);
+    PKTokenAssembly *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef TDTokenAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenAssembly_class, "pop");
-    TDTokenAssembly *data = JSObjectGetPrivate(this);
-    TDToken *tok = [data pop];
+    PKTokenAssembly *data = JSObjectGetPrivate(this);
+    PKToken *tok = [data pop];
     return TDToken_new(ctx, tok);
 }
 
 static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenAssembly_class, "push");
-    TDPreconditionMethodArgc(1, "TDTokenAssembly.push");
+    TDPreconditionMethodArgc(1, "PKTokenAssembly.push");
     
     JSValueRef v = argv[0];
 
-    TDTokenAssembly *data = JSObjectGetPrivate(this);
+    PKTokenAssembly *data = JSObjectGetPrivate(this);
     id obj = TDJSValueGetId(ctx, v, ex);
     [data push:obj];
     
@@ -44,11 +44,11 @@ static JSValueRef TDTokenAssembly_push(JSContextRef ctx, JSObjectRef function, J
 
 static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTokenAssembly_class, "objectsAbove");
-    TDPreconditionMethodArgc(1, "TDTokenAssembly.objectsAbove");
+    TDPreconditionMethodArgc(1, "PKTokenAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
-    TDTokenAssembly *data = JSObjectGetPrivate(this);
+    PKTokenAssembly *data = JSObjectGetPrivate(this);
     id obj = TDJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
@@ -59,7 +59,7 @@ static JSValueRef TDTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef fun
 #pragma mark Properties
 
 static JSValueRef TDTokenAssembly_getLength(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDTokenAssembly *data = JSObjectGetPrivate(this);
+    PKTokenAssembly *data = JSObjectGetPrivate(this);
     return JSValueMakeNumber(ctx, data.length);
 }
 
@@ -112,10 +112,10 @@ JSObjectRef TDTokenAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTokenAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDTokenAssembly");
+    TDPreconditionConstructorArgc(1, "PKTokenAssembly");
 
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
 
-    TDTokenAssembly *data = [[TDTokenAssembly alloc] initWithString:s];
+    PKTokenAssembly *data = [[PKTokenAssembly alloc] initWithString:s];
     return TDTokenAssembly_new(ctx, data);
 }
