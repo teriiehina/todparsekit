@@ -8,7 +8,7 @@
 
 #import "TDJsonParser.h"
 #import "ParseKit.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 @interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;

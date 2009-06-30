@@ -13,7 +13,7 @@
 - (void)setUp {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
     g = [NSString stringWithContentsOfFile:path];
-    factory = [TDParserFactory factory];
+    factory = [PKParserFactory factory];
     p = [factory parserFromGrammar:g assembler:self];
     t = p.tokenizer;
 }
@@ -362,7 +362,7 @@
         @"@wordChars = ':' '.' '-' '_';"
         @"pi = '<?' piTarget (Any - /?>/)* '?>';"
         @"@start = pi;";
-    PKParser *pi = [[TDParserFactory factory] parserFromGrammar:gram assembler:nil];
+    PKParser *pi = [[PKParserFactory factory] parserFromGrammar:gram assembler:nil];
     pi.tokenizer.string = @"<?foo bar='baz'?>";
     res = [pi bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:pi.tokenizer]];
     TDEqualObjects(@"[<?, foo,  , bar, =, 'baz', ?>]<?/foo/ /bar/=/'baz'/?>^", [res description]);    

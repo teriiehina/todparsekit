@@ -10,12 +10,12 @@
 
 @class PKParser;
 @class PKTokenizer;
-@class TDParserFactory;
+@class PKParserFactory;
 @class TDMiniCSSAssembler;
 @class TDGenericAssembler;
 
 @interface TDSyntaxHighlighter : NSObject {
-    TDParserFactory *parserFactory;
+    PKParserFactory *parserFactory;
     PKParser *miniCSSParser;
     TDMiniCSSAssembler *miniCSSAssembler;
     TDGenericAssembler *genericAssembler;

@@ -1,5 +1,5 @@
 //
-//  NSString+TDParseKitAdditions.h
+//  NSString+ParseKitAdditions.h
 //  ParseKit
 //
 //  Created by Todd Ditchendorf on 11/5/08.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (TDParseKitAdditions)
+@interface NSString (ParseKitAdditions)
 - (NSString *)stringByTrimmingQuotes;
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "TDPlistParser.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 //{
 //    0 = 0;

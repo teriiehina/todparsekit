@@ -81,5 +81,5 @@
 #import <ParseKit/PKLowercaseWord.h>
 
 // grammar
-#import <ParseKit/TDParserFactory.h>
+#import <ParseKit/PKParserFactory.h>
 

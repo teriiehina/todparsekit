@@ -7,7 +7,7 @@
 //
 
 #import "SRGSParser.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 @interface SRGSParser ()
 - (void)workOnWord:(PKAssembly *)a;

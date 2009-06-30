@@ -7,9 +7,9 @@
 //
 
 #import "TDNSPredicateEvaluator.h"
-#import "TDParserFactory.h"
-#import "NSString+TDParseKitAdditions.h"
-#import "NSArray+TDParseKitAdditions.h"
+#import "PKParserFactory.h"
+#import "NSString+ParseKitAdditions.h"
+#import "NSArray+ParseKitAdditions.h"
 
 @interface TDNSPredicateEvaluator ()
 - (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered;
@@ -28,7 +28,7 @@
 
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nspredicate" ofType:@"grammar"];
         NSString *s = [NSString stringWithContentsOfFile:path];
-        self.parser = [[TDParserFactory factory] parserFromGrammar:s assembler:self];
+        self.parser = [[PKParserFactory factory] parserFromGrammar:s assembler:self];
     }
     return self;
 }

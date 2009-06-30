@@ -7,7 +7,7 @@
 //
 
 #import "EBNFParser.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 /*
  statement			= exprOrAssignment ';'

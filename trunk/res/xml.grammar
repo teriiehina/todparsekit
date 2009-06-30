@@ -6,7 +6,7 @@
     You can create the parser in ObjC like:
     
         NSString *g = .. // fetch this grammar from disk or wherever
-        PKParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
+        PKParser *p = [[PKParserFactory factory] parserFromGrammar:g assembler:self];
 
         NSString *XMLString = .. // fetch some XML 
         [p parse:XMLString];

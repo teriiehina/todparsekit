@@ -7,7 +7,7 @@
 //
 
 #import "TDMiniCSSAssembler.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 #import <ParseKit/ParseKit.h>
 
 @interface TDMiniCSSAssembler ()

@@ -7,7 +7,7 @@
 //
 
 #import "TDTestScaffold.h"
-#import "TDParserFactory.h"
+#import "PKParserFactory.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 
@@ -16,7 +16,7 @@
     NSString *grammarString;
     NSString *s;
     TDMiniCSSAssembler *cssAssember;
-    TDParserFactory *factory;
+    PKParserFactory *factory;
     PKParser *cssParser;
     PKAssembly *a;
     TDGenericAssembler *genericAssember;

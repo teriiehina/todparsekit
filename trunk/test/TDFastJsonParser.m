@@ -8,7 +8,7 @@
 
 #import "TDFastJsonParser.h"
 #import "ParseKit.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 @interface TDFastJsonParser ()
 - (void)workOnDictionary;
