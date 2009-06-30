@@ -1,6 +1,6 @@
 //
-//  TDAlternationTest.m
-//  TDParseKit
+//  PKAlternationTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -20,9 +20,9 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"bar"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -36,9 +36,9 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
-    [p add:[TDLiteral literalWithString:@"bar"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
-    [p add:[TDNum num]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
+    [p add:[PKNum num]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -53,8 +53,8 @@
     
     p = [PKAlternation alternation];
     [p add:[PKWord word]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
-    [p add:[TDNum num]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
+    [p add:[PKNum num]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -69,8 +69,8 @@
     
     p = [PKAlternation alternation];
     [p add:[PKWord word]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDNum num]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKNum num]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -84,9 +84,9 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
-    [p add:[TDNum num]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
+    [p add:[PKNum num]];
     
     PKAssembly *result = [p bestMatchFor:a];
     

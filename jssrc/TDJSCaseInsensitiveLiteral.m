@@ -1,6 +1,6 @@
 //
-//  TDJSCaseInsensitiveCaseInsensitiveLiteral.m
-//  TDParseKit
+//  PKJSCaseInsensitiveCaseInsensitiveLiteral.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSCaseInsensitiveLiteral.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDCaseInsensitiveLiteral.h>
+#import <ParseKit/PKCaseInsensitiveLiteral.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,10 +58,10 @@ JSObjectRef TDCaseInsensitiveLiteral_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDCaseInsensitiveLiteral_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDCaseInsensitiveLiteral");
+    TDPreconditionConstructorArgc(1, "PKCaseInsensitiveLiteral");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDCaseInsensitiveLiteral *data = [[TDCaseInsensitiveLiteral alloc] initWithString:s];
+    PKCaseInsensitiveLiteral *data = [[PKCaseInsensitiveLiteral alloc] initWithString:s];
     return TDCaseInsensitiveLiteral_new(ctx, data);
 }

@@ -1,6 +1,6 @@
 //
 //  XMLReaderTest.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 8/18/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

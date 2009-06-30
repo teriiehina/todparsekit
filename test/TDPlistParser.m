@@ -1,6 +1,6 @@
 //
-//  TDPlistParser.m
-//  TDParseKit
+//  PKPlistParser.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 12/9/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -122,9 +122,9 @@ static NSString *kTDPlistNullString = @"<null>";
 - (PKCollectionParser *)dictParser {
     if (!dictParser) {
         self.dictParser = [PKTrack track];
-        [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
+        [dictParser add:[PKSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
         [dictParser add:[PKRepetition repetitionWithSubparser:self.keyValuePairParser]];
-        [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
+        [dictParser add:[[PKSymbol symbolWithString:@"}"] discard]];
         [dictParser setAssembler:self selector:@selector(workOnDict:)];
     }
     return dictParser;
@@ -136,9 +136,9 @@ static NSString *kTDPlistNullString = @"<null>";
     if (!keyValuePairParser) {
         self.keyValuePairParser = [PKTrack track];
         [keyValuePairParser add:self.keyParser];
-        [keyValuePairParser add:[[TDSymbol symbolWithString:@"="] discard]];
+        [keyValuePairParser add:[[PKSymbol symbolWithString:@"="] discard]];
         [keyValuePairParser add:self.valueParser];
-        [keyValuePairParser add:[[TDSymbol symbolWithString:@";"] discard]];
+        [keyValuePairParser add:[[PKSymbol symbolWithString:@";"] discard]];
     }
     return keyValuePairParser;
 }
@@ -150,7 +150,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (PKCollectionParser *)arrayParser {
     if (!arrayParser) {
         self.arrayParser = [PKTrack track];
-        [arrayParser add:[TDSymbol symbolWithString:@"("]]; // dont discard. serves as fence
+        [arrayParser add:[PKSymbol symbolWithString:@"("]]; // dont discard. serves as fence
         
         PKAlternation *arrayContent = [PKAlternation alternation];
         [arrayContent add:[PKEmpty empty]];
@@ -161,7 +161,7 @@ static NSString *kTDPlistNullString = @"<null>";
         
         [arrayContent add:actualArray];
         [arrayParser add:arrayContent];
-        [arrayParser add:[[TDSymbol symbolWithString:@")"] discard]];
+        [arrayParser add:[[PKSymbol symbolWithString:@")"] discard]];
         [arrayParser setAssembler:self selector:@selector(workOnArray:)];
     }
     return arrayParser;
@@ -197,7 +197,7 @@ static NSString *kTDPlistNullString = @"<null>";
 - (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
         self.commaValueParser = [PKSequence sequence];
-        [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaValueParser add:[[PKSymbol symbolWithString:@","] discard]];
         [commaValueParser add:self.valueParser];
     }
     return commaValueParser;
@@ -210,7 +210,7 @@ static NSString *kTDPlistNullString = @"<null>";
         self.stringParser = [PKAlternation alternation];
         
         // we have to remove the quotes from QuotedString string values. so set an assembler method to do that
-        PKParser *quotedString = [TDQuotedString quotedString];
+        PKParser *quotedString = [PKQuotedString quotedString];
         [quotedString setAssembler:self selector:@selector(workOnQuotedString:)];
         [stringParser add:quotedString];
 
@@ -225,7 +225,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (PKParser *)numParser {
     if (!numParser) {
-        self.numParser = [TDNum num];
+        self.numParser = [PKNum num];
         [numParser setAssembler:self selector:@selector(workOnNum:)];
     }
     return numParser;
@@ -235,8 +235,8 @@ static NSString *kTDPlistNullString = @"<null>";
 // null = '<null>'
 - (PKParser *)nullParser {
     if (!nullParser) {
-        // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
-        self.nullParser = [TDSymbol symbolWithString:kTDPlistNullString];
+        // thus must be a PKSymbol (not a PKLiteral) to match the resulting '<null>' symbol tok
+        self.nullParser = [PKSymbol symbolWithString:kTDPlistNullString];
         [nullParser setAssembler:self selector:@selector(workOnNull:)];
     }
     return nullParser;

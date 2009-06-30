@@ -1,5 +1,5 @@
 //
-//  TDSyntaxHighlighter.h
+//  PKSyntaxHighlighter.h
 //  HTTPClient
 //
 //  Created by Todd Ditchendorf on 12/26/08.

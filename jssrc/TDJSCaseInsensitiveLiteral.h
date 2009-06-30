@@ -1,6 +1,6 @@
 //
-//  TDJSCaseInsensitiveCaseInsensitiveLiteral.h
-//  TDParseKit
+//  PKJSCaseInsensitiveCaseInsensitiveLiteral.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

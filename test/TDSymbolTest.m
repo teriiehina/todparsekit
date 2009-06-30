@@ -1,6 +1,6 @@
 //
-//  TDSymbolTest.m
-//  TDParseKit
+//  PKSymbolTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -19,7 +19,7 @@
     s = @"-";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    p = [TDSymbol symbolWithString:s];
+    p = [PKSymbol symbolWithString:s];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -32,7 +32,7 @@
     s = @"-";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    p = [TDSymbol symbolWithString:@"+"];
+    p = [PKSymbol symbolWithString:@"+"];
     
     PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
@@ -43,7 +43,7 @@
     s = @"-";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    p = [TDSymbol symbol];
+    p = [PKSymbol symbol];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -56,7 +56,7 @@
     s = @"-";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    p = [[TDSymbol symbolWithString:s] discard];
+    p = [[PKSymbol symbolWithString:s] discard];
     
     PKAssembly *result = [p bestMatchFor:a];
     

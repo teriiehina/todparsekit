@@ -1,6 +1,6 @@
 //
-//  TDParserFactoryPatternTest.m
-//  TDParseKit
+//  PKParserFactoryPatternTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/6/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

@@ -4,8 +4,8 @@ try {
     // 'hot'* 'coffee'
     
     var parser = new PKSequence();
-    parser.add(new PKRepetition(new TDLiteral("hot")));
-    parser.add(new TDLiteral("coffee"));
+    parser.add(new PKRepetition(new PKLiteral("hot")));
+    parser.add(new PKLiteral("coffee"));
     
     var s = "hot hot hot coffee";
     var a = new PKTokenAssembly(s);

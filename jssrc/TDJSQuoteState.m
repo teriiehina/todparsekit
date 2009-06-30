@@ -1,6 +1,6 @@
 //
-//  TDJSQuoteState.m
-//  TDParseKit
+//  PKJSQuoteState.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/9/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

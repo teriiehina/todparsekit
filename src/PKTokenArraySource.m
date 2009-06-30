@@ -1,6 +1,6 @@
 //
 //  PKTokenArraySource.m
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 12/11/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

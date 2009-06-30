@@ -1,6 +1,6 @@
 //
 //  PKCommentState.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -15,7 +15,7 @@
 
 /*!
     @class      TDCommentState
-    @brief      This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just the first char in it.
+    @brief      This state will either delegate to a comment-handling state, or return a <tt>PKSymbol</tt> token with just the first char in it.
     @details    By default, C and C++ style comments. (<tt>//</tt> to end of line and <tt>/&0x002A; &0x002A;/</tt>)
 */
 @interface TDCommentState : PKTokenizerState {

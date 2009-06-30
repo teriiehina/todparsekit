@@ -1,6 +1,6 @@
 //
-//  TDPattern.h
-//  TDParseKit
+//  PKPattern.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/31/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -19,7 +19,7 @@ typedef enum {
     TDPatternOptionsUnicodeWordBoundaries   = 256
 } TDPatternOptions;
 
-@interface TDPattern : PKTerminal {
+@interface PKPattern : PKTerminal {
     TDPatternOptions options;
     BOOL inverted;
 }

@@ -1,6 +1,6 @@
 //
-//  TDJSDelimitedString.m
-//  TDParseKit
+//  PKJSDelimitedString.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/1/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSDelimitedString.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDDelimitedString.h>
+#import <ParseKit/PKDelimitedString.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,10 +58,10 @@ JSObjectRef TDDelimitedString_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDDelimitedString_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDDelimitedString");
+    TDPreconditionConstructorArgc(1, "PKDelimitedString");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDDelimitedString *data = [[TDDelimitedString alloc] initWithString:s];
+    PKDelimitedString *data = [[PKDelimitedString alloc] initWithString:s];
     return TDDelimitedString_new(ctx, data);
 }

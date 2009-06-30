@@ -1,6 +1,6 @@
 //
-//  TDPredicateEvaluator.h
-//  TDParseKit
+//  PKPredicateEvaluator.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/28/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

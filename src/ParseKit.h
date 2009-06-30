@@ -1,6 +1,6 @@
 //
 //  ParseKit.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/21/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -64,16 +64,16 @@
 #import <ParseKit/PKWordState.h>
 #import <ParseKit/PKWhitespaceState.h>
 #import <ParseKit/PKWord.h>
-#import <ParseKit/TDNum.h>
-#import <ParseKit/TDQuotedString.h>
-#import <ParseKit/TDWhitespace.h>
-#import <ParseKit/TDDelimitedString.h>
-#import <ParseKit/TDSymbol.h>
-#import <ParseKit/TDComment.h>
-#import <ParseKit/TDLiteral.h>
-#import <ParseKit/TDCaseInsensitiveLiteral.h>
+#import <ParseKit/PKNum.h>
+#import <ParseKit/PKQuotedString.h>
+#import <ParseKit/PKWhitespace.h>
+#import <ParseKit/PKDelimitedString.h>
+#import <ParseKit/PKSymbol.h>
+#import <ParseKit/PKComment.h>
+#import <ParseKit/PKLiteral.h>
+#import <ParseKit/PKCaseInsensitiveLiteral.h>
 #import <ParseKit/PKAny.h>
-#import <ParseKit/TDPattern.h>
+#import <ParseKit/PKPattern.h>
 
 // ext
 #import <ParseKit/TDScientificNumberState.h>

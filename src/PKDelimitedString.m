@@ -1,20 +1,20 @@
 //
-//  TDDelimitedString.m
-//  TDParseKit
+//  PKDelimitedString.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/21/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDDelimitedString.h>
+#import <ParseKit/PKDelimitedString.h>
 #import <ParseKit/PKToken.h>
 
-@interface TDDelimitedString ()
+@interface PKDelimitedString ()
 @property (nonatomic, retain) NSString *startMarker;
 @property (nonatomic, retain) NSString *endMarker;
 @end
 
-@implementation TDDelimitedString
+@implementation PKDelimitedString
 
 + (id)delimitedString {
     return [self delimitedStringWithStartMarker:nil];
@@ -27,7 +27,7 @@
 
 
 + (id)delimitedStringWithStartMarker:(NSString *)start endMarker:(NSString *)end {
-    TDDelimitedString *ds = [[[self alloc] initWithString:nil] autorelease];
+    PKDelimitedString *ds = [[[self alloc] initWithString:nil] autorelease];
     ds.startMarker = start;
     ds.endMarker = end;
     return ds;

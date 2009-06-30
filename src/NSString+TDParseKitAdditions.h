@@ -1,6 +1,6 @@
 //
 //  NSString+TDParseKitAdditions.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 11/5/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

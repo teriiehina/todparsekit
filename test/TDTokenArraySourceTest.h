@@ -1,6 +1,6 @@
 //
-//  TDTokenArraySourceTest.h
-//  TDParseKit
+//  PKTokenArraySourceTest.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

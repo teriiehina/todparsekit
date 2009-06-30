@@ -1,6 +1,6 @@
 //
-//  TDPatternTest.m
-//  TDParseKit
+//  PKPatternTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/31/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -13,7 +13,7 @@
 - (void)testFoo {
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo"];
+    p = [PKPattern patternWithString:@"foo"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -21,7 +21,7 @@
 
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo"];
+    p = [PKPattern patternWithString:@"foo"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -29,7 +29,7 @@
     
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo"];
+    p = [PKPattern patternWithString:@"foo"];
 
     inter = [PKIntersection intersection];
     [inter add:p];
@@ -42,11 +42,11 @@
         
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"foo"];
+    p = [PKPattern patternWithString:@"foo"];
 
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDSymbol symbol]];
+    [inter add:[PKSymbol symbol]];
 
     a = [inter completeMatchFor:a];
     
@@ -54,7 +54,7 @@
     
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"fo+"];
+    p = [PKPattern patternWithString:@"fo+"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -62,7 +62,7 @@
 
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"fo*"];
+    p = [PKPattern patternWithString:@"fo*"];
     a = [p completeMatchFor:a];
 
     TDNotNil(a);
@@ -70,7 +70,7 @@
 
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"fo{1,2}"];
+    p = [PKPattern patternWithString:@"fo{1,2}"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -78,7 +78,7 @@
 
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"fo{3,4}"];
+    p = [PKPattern patternWithString:@"fo{3,4}"];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -91,11 +91,11 @@
     t = [PKTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [PKTokenAssembly assemblyWithTokenizer:t];
-    p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
+    p = [PKPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
     
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDQuotedString quotedString]];
+    [inter add:[PKQuotedString quotedString]];
 
     a = [inter completeMatchFor:a];
     
@@ -105,11 +105,11 @@
     t = [PKTokenizer tokenizerWithString:s];
     [t setTokenizerState:t.quoteState from:'/' to:'/'];
     a = [PKTokenAssembly assemblyWithTokenizer:t];
-    p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
+    p = [PKPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
 
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDQuotedString quotedString]];
+    [inter add:[PKQuotedString quotedString]];
     
     a = [inter completeMatchFor:a];
     
@@ -121,7 +121,7 @@
 - (void)testAndOrOr {
     s = @"and";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or"];
+    p = [PKPattern patternWithString:@"and|or"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -129,14 +129,14 @@
     
     s = @"and";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"an|or"];
+    p = [PKPattern patternWithString:@"an|or"];
     a = [p completeMatchFor:a];
     
     TDNil(a);
     
     s = @"or";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"(and)|(or)"];
+    p = [PKPattern patternWithString:@"(and)|(or)"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -147,7 +147,7 @@
 - (void)testNotAnd {
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"[^and]+"];
+    p = [PKPattern patternWithString:@"[^and]+"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -155,7 +155,7 @@
     
     s = @"and";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"[^(and)]"];
+    p = [PKPattern patternWithString:@"[^(and)]"];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -165,7 +165,7 @@
 - (void)testInvertFoo {
     s = @"foo";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"fo+"];
+    p = [PKPattern patternWithString:@"fo+"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -181,7 +181,7 @@
 - (void)testInvertAndOrNotTrueFalse {
     s = @"true";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false"];
+    p = [PKPattern patternWithString:@"and|or|not|true|false"];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -194,7 +194,7 @@
 
     s = @"TRUE";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     a = [p completeMatchFor:a];
     
     TDNotNil(a);
@@ -207,7 +207,7 @@
 
     s = @"NOT";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
 
     inter = [PKIntersection intersection];
     [inter add:p];
@@ -225,11 +225,11 @@
 
     s = @"oR";
     a = [PKTokenAssembly assemblyWithString:s];
-    p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
+    p = [PKPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDSymbol symbol]];
+    [inter add:[PKSymbol symbol]];
     
     a = [inter completeMatchFor:a];
     

@@ -1,6 +1,6 @@
 //
-//  TDJavaScriptParser.m
-//  TDParseKit
+//  PKJavaScriptParser.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 3/17/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -1571,7 +1571,7 @@
 
 - (PKParser *)stringParser {
     if (!stringParser) {
-        self.stringParser = [TDQuotedString quotedString];
+        self.stringParser = [PKQuotedString quotedString];
         stringParser.name = @"string";
     }
     return stringParser;
@@ -1580,7 +1580,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [TDNum num];
+        self.numberParser = [PKNum num];
         numberParser.name = @"number";
     }
     return numberParser;
@@ -1592,7 +1592,7 @@
 
 - (PKParser *)ifParser {
     if (!ifParser) {
-        self.ifParser = [TDLiteral literalWithString:@"if"];
+        self.ifParser = [PKLiteral literalWithString:@"if"];
         ifParser.name = @"if";
     }
     return ifParser;
@@ -1601,7 +1601,7 @@
 
 - (PKParser *)elseParser {
     if (!elseParser) {
-        self.elseParser = [TDLiteral literalWithString:@"else"];
+        self.elseParser = [PKLiteral literalWithString:@"else"];
         elseParser.name = @"else";
     }
     return elseParser;
@@ -1610,7 +1610,7 @@
 
 - (PKParser *)whileParser {
     if (!whileParser) {
-        self.whileParser = [TDLiteral literalWithString:@"while"];
+        self.whileParser = [PKLiteral literalWithString:@"while"];
         whileParser.name = @"while";
     }
     return whileParser;
@@ -1619,7 +1619,7 @@
 
 - (PKParser *)forParser {
     if (!forParser) {
-        self.forParser = [TDLiteral literalWithString:@"for"];
+        self.forParser = [PKLiteral literalWithString:@"for"];
         forParser.name = @"for";
     }
     return forParser;
@@ -1628,7 +1628,7 @@
 
 - (PKParser *)inParser {
     if (!inParser) {
-        self.inParser = [TDLiteral literalWithString:@"in"];
+        self.inParser = [PKLiteral literalWithString:@"in"];
         inParser.name = @"in";
     }
     return inParser;
@@ -1637,7 +1637,7 @@
 
 - (PKParser *)breakParser {
     if (!breakParser) {
-        self.breakParser = [TDLiteral literalWithString:@"break"];
+        self.breakParser = [PKLiteral literalWithString:@"break"];
         breakParser.name = @"break";
     }
     return breakParser;
@@ -1646,7 +1646,7 @@
 
 - (PKParser *)continueParser {
     if (!continueParser) {
-        self.continueParser = [TDLiteral literalWithString:@"continue"];
+        self.continueParser = [PKLiteral literalWithString:@"continue"];
         continueParser.name = @"continue";
     }
     return continueParser;
@@ -1655,7 +1655,7 @@
 
 - (PKParser *)withParser {
     if (!withParser) {
-        self.withParser = [TDLiteral literalWithString:@"with"];
+        self.withParser = [PKLiteral literalWithString:@"with"];
         withParser.name = @"with";
     }
     return withParser;
@@ -1664,7 +1664,7 @@
 
 - (PKParser *)returnParser {
     if (!returnParser) {
-        self.returnParser = [TDLiteral literalWithString:@"return"];
+        self.returnParser = [PKLiteral literalWithString:@"return"];
         returnParser.name = @"return";
     }
     return returnParser;
@@ -1673,7 +1673,7 @@
 
 - (PKParser *)varParser {
     if (!varParser) {
-        self.varParser = [TDLiteral literalWithString:@"var"];
+        self.varParser = [PKLiteral literalWithString:@"var"];
         varParser.name = @"var";
     }
     return varParser;
@@ -1682,7 +1682,7 @@
 
 - (PKParser *)deleteParser {
     if (!deleteParser) {
-        self.deleteParser = [TDLiteral literalWithString:@"delete"];
+        self.deleteParser = [PKLiteral literalWithString:@"delete"];
         deleteParser.name = @"delete";
     }
     return deleteParser;
@@ -1691,7 +1691,7 @@
 
 - (PKParser *)newParser {
     if (!newParser) {
-        self.newParser = [TDLiteral literalWithString:@"new"];
+        self.newParser = [PKLiteral literalWithString:@"new"];
         newParser.name = @"new";
     }
     return newParser;
@@ -1700,7 +1700,7 @@
 
 - (PKParser *)thisParser {
     if (!thisParser) {
-        self.thisParser = [TDLiteral literalWithString:@"this"];
+        self.thisParser = [PKLiteral literalWithString:@"this"];
         thisParser.name = @"this";
     }
     return thisParser;
@@ -1709,7 +1709,7 @@
 
 - (PKParser *)falseParser {
     if (!falseParser) {
-        self.falseParser = [TDLiteral literalWithString:@"false"];
+        self.falseParser = [PKLiteral literalWithString:@"false"];
         falseParser.name = @"false";
     }
     return falseParser;
@@ -1718,7 +1718,7 @@
 
 - (PKParser *)trueParser {
     if (!trueParser) {
-        self.trueParser = [TDLiteral literalWithString:@"true"];
+        self.trueParser = [PKLiteral literalWithString:@"true"];
         trueParser.name = @"true";
     }
     return trueParser;
@@ -1727,7 +1727,7 @@
 
 - (PKParser *)nullParser {
     if (!nullParser) {
-        self.nullParser = [TDLiteral literalWithString:@"null"];
+        self.nullParser = [PKLiteral literalWithString:@"null"];
         nullParser.name = @"null";
     }
     return nullParser;
@@ -1736,7 +1736,7 @@
 
 - (PKParser *)undefinedParser {
     if (!undefinedParser) {
-        self.undefinedParser = [TDLiteral literalWithString:@"undefined"];
+        self.undefinedParser = [PKLiteral literalWithString:@"undefined"];
         undefinedParser.name = @"undefined";
     }
     return undefinedParser;
@@ -1745,7 +1745,7 @@
 
 - (PKParser *)voidParser {
     if (!voidParser) {
-        self.voidParser = [TDLiteral literalWithString:@"void"];
+        self.voidParser = [PKLiteral literalWithString:@"void"];
         voidParser.name = @"void";
     }
     return voidParser;
@@ -1754,7 +1754,7 @@
 
 - (PKParser *)typeofParser {
     if (!typeofParser) {
-        self.typeofParser = [TDLiteral literalWithString:@"typeof"];
+        self.typeofParser = [PKLiteral literalWithString:@"typeof"];
         typeofParser.name = @"typeof";
     }
     return typeofParser;
@@ -1763,7 +1763,7 @@
 
 - (PKParser *)instanceofParser {
     if (!instanceofParser) {
-        self.instanceofParser = [TDLiteral literalWithString:@"instanceof"];
+        self.instanceofParser = [PKLiteral literalWithString:@"instanceof"];
         instanceofParser.name = @"instanceof";
     }
     return instanceofParser;
@@ -1772,7 +1772,7 @@
 
 - (PKParser *)functionParser {
     if (!functionParser) {
-        self.functionParser = [TDLiteral literalWithString:@"function"];
+        self.functionParser = [PKLiteral literalWithString:@"function"];
         functionParser.name = @"function";
     }
     return functionParser;
@@ -1784,7 +1784,7 @@
 
 - (PKParser *)orParser {
     if (!orParser) {
-        self.orParser = [TDSymbol symbolWithString:@"||"];
+        self.orParser = [PKSymbol symbolWithString:@"||"];
         orParser.name = @"or";
     }
     return orParser;
@@ -1793,7 +1793,7 @@
 
 - (PKParser *)andParser {
     if (!andParser) {
-        self.andParser = [TDSymbol symbolWithString:@"&&"];
+        self.andParser = [PKSymbol symbolWithString:@"&&"];
         andParser.name = @"and";
     }
     return andParser;
@@ -1802,7 +1802,7 @@
 
 - (PKParser *)neParser {
     if (!neParser) {
-        self.neParser = [TDSymbol symbolWithString:@"!="];
+        self.neParser = [PKSymbol symbolWithString:@"!="];
         neParser.name = @"ne";
     }
     return neParser;
@@ -1811,7 +1811,7 @@
 
 - (PKParser *)isNotParser {
     if (!isNotParser) {
-        self.isNotParser = [TDSymbol symbolWithString:@"!=="];
+        self.isNotParser = [PKSymbol symbolWithString:@"!=="];
         isNotParser.name = @"isNot";
     }
     return isNotParser;
@@ -1820,7 +1820,7 @@
 
 - (PKParser *)eqParser {
     if (!eqParser) {
-        self.eqParser = [TDSymbol symbolWithString:@"=="];
+        self.eqParser = [PKSymbol symbolWithString:@"=="];
         eqParser.name = @"eq";
     }
     return eqParser;
@@ -1829,7 +1829,7 @@
 
 - (PKParser *)isParser {
     if (!isParser) {
-        self.isParser = [TDSymbol symbolWithString:@"==="];
+        self.isParser = [PKSymbol symbolWithString:@"==="];
         isParser.name = @"is";
     }
     return isParser;
@@ -1838,7 +1838,7 @@
 
 - (PKParser *)leParser {
     if (!leParser) {
-        self.leParser = [TDSymbol symbolWithString:@"<="];
+        self.leParser = [PKSymbol symbolWithString:@"<="];
         leParser.name = @"le";
     }
     return leParser;
@@ -1847,7 +1847,7 @@
 
 - (PKParser *)geParser {
     if (!geParser) {
-        self.geParser = [TDSymbol symbolWithString:@">="];
+        self.geParser = [PKSymbol symbolWithString:@">="];
         geParser.name = @"ge";
     }
     return geParser;
@@ -1856,7 +1856,7 @@
 
 - (PKParser *)plusPlusParser {
     if (!plusPlusParser) {
-        self.plusPlusParser = [TDSymbol symbolWithString:@"++"];
+        self.plusPlusParser = [PKSymbol symbolWithString:@"++"];
         plusPlusParser.name = @"plusPlus";
     }
     return plusPlusParser;
@@ -1865,7 +1865,7 @@
 
 - (PKParser *)minusMinusParser {
     if (!minusMinusParser) {
-        self.minusMinusParser = [TDSymbol symbolWithString:@"--"];
+        self.minusMinusParser = [PKSymbol symbolWithString:@"--"];
         minusMinusParser.name = @"minusMinus";
     }
     return minusMinusParser;
@@ -1874,7 +1874,7 @@
 
 - (PKParser *)plusEqParser {
     if (!plusEqParser) {
-        self.plusEqParser = [TDSymbol symbolWithString:@"+="];
+        self.plusEqParser = [PKSymbol symbolWithString:@"+="];
         plusEqParser.name = @"plusEq";
     }
     return plusEqParser;
@@ -1883,7 +1883,7 @@
 
 - (PKParser *)minusEqParser {
     if (!minusEqParser) {
-        self.minusEqParser = [TDSymbol symbolWithString:@"-="];
+        self.minusEqParser = [PKSymbol symbolWithString:@"-="];
         minusEqParser.name = @"minusEq";
     }
     return minusEqParser;
@@ -1892,7 +1892,7 @@
 
 - (PKParser *)timesEqParser {
     if (!timesEqParser) {
-        self.timesEqParser = [TDSymbol symbolWithString:@"*="];
+        self.timesEqParser = [PKSymbol symbolWithString:@"*="];
         timesEqParser.name = @"timesEq";
     }
     return timesEqParser;
@@ -1901,7 +1901,7 @@
 
 - (PKParser *)divEqParser {
     if (!divEqParser) {
-        self.divEqParser = [TDSymbol symbolWithString:@"/="];
+        self.divEqParser = [PKSymbol symbolWithString:@"/="];
         divEqParser.name = @"divEq";
     }
     return divEqParser;
@@ -1910,7 +1910,7 @@
 
 - (PKParser *)modEqParser {
     if (!modEqParser) {
-        self.modEqParser = [TDSymbol symbolWithString:@"%="];
+        self.modEqParser = [PKSymbol symbolWithString:@"%="];
         modEqParser.name = @"modEq";
     }
     return modEqParser;
@@ -1919,7 +1919,7 @@
 
 - (PKParser *)shiftLeftParser {
     if (!shiftLeftParser) {
-        self.shiftLeftParser = [TDSymbol symbolWithString:@"<<"];
+        self.shiftLeftParser = [PKSymbol symbolWithString:@"<<"];
         shiftLeftParser.name = @"shiftLeft";
     }
     return shiftLeftParser;
@@ -1928,7 +1928,7 @@
 
 - (PKParser *)shiftRightParser {
     if (!shiftRightParser) {
-        self.shiftRightParser = [TDSymbol symbolWithString:@">>"];
+        self.shiftRightParser = [PKSymbol symbolWithString:@">>"];
         shiftRightParser.name = @"shiftRight";
     }
     return shiftRightParser;
@@ -1937,7 +1937,7 @@
 
 - (PKParser *)shiftRightExtParser {
     if (!shiftRightExtParser) {
-        self.shiftRightExtParser = [TDSymbol symbolWithString:@">>>"];
+        self.shiftRightExtParser = [PKSymbol symbolWithString:@">>>"];
         shiftRightExtParser.name = @"shiftRightExt";
     }
     return shiftRightExtParser;
@@ -1946,7 +1946,7 @@
 
 - (PKParser *)shiftLeftEqParser {
     if (!shiftLeftEqParser) {
-        self.shiftLeftEqParser = [TDSymbol symbolWithString:@"<<="];
+        self.shiftLeftEqParser = [PKSymbol symbolWithString:@"<<="];
         shiftLeftEqParser.name = @"shiftLeftEq";
     }
     return shiftLeftEqParser;
@@ -1955,7 +1955,7 @@
 
 - (PKParser *)shiftRightEqParser {
     if (!shiftRightEqParser) {
-        self.shiftRightEqParser = [TDSymbol symbolWithString:@">>="];
+        self.shiftRightEqParser = [PKSymbol symbolWithString:@">>="];
         shiftRightEqParser.name = @"shiftRightEq";
     }
     return shiftRightEqParser;
@@ -1964,7 +1964,7 @@
 
 - (PKParser *)shiftRightExtEqParser {
     if (!shiftRightExtEqParser) {
-        self.shiftRightExtEqParser = [TDSymbol symbolWithString:@">>>="];
+        self.shiftRightExtEqParser = [PKSymbol symbolWithString:@">>>="];
         shiftRightExtEqParser.name = @"shiftRightExtEq";
     }
     return shiftRightExtEqParser;
@@ -1973,7 +1973,7 @@
 
 - (PKParser *)andEqParser {
     if (!andEqParser) {
-        self.andEqParser = [TDSymbol symbolWithString:@"&="];
+        self.andEqParser = [PKSymbol symbolWithString:@"&="];
         andEqParser.name = @"andEq";
     }
     return andEqParser;
@@ -1982,7 +1982,7 @@
 
 - (PKParser *)xorEqParser {
     if (!xorEqParser) {
-        self.xorEqParser = [TDSymbol symbolWithString:@"^="];
+        self.xorEqParser = [PKSymbol symbolWithString:@"^="];
         xorEqParser.name = @"xorEq";
     }
     return xorEqParser;
@@ -1991,7 +1991,7 @@
 
 - (PKParser *)orEqParser {
     if (!orEqParser) {
-        self.orEqParser = [TDSymbol symbolWithString:@"|="];
+        self.orEqParser = [PKSymbol symbolWithString:@"|="];
         orEqParser.name = @"orEq";
     }
     return orEqParser;
@@ -2003,7 +2003,7 @@
 
 - (PKParser *)openCurlyParser {
     if (!openCurlyParser) {
-        self.openCurlyParser = [TDSymbol symbolWithString:@"{"];
+        self.openCurlyParser = [PKSymbol symbolWithString:@"{"];
         openCurlyParser.name = @"openCurly";
     }
     return openCurlyParser;
@@ -2012,7 +2012,7 @@
 
 - (PKParser *)closeCurlyParser {
     if (!closeCurlyParser) {
-        self.closeCurlyParser = [TDSymbol symbolWithString:@"}"];
+        self.closeCurlyParser = [PKSymbol symbolWithString:@"}"];
         closeCurlyParser.name = @"closeCurly";
     }
     return closeCurlyParser;
@@ -2021,7 +2021,7 @@
 
 - (PKParser *)openParenParser {
     if (!openParenParser) {
-        self.openParenParser = [TDSymbol symbolWithString:@"("];
+        self.openParenParser = [PKSymbol symbolWithString:@"("];
         openParenParser.name = @"openParen";
     }
     return openParenParser;
@@ -2030,7 +2030,7 @@
 
 - (PKParser *)closeParenParser {
     if (!closeParenParser) {
-        self.closeParenParser = [TDSymbol symbolWithString:@")"];
+        self.closeParenParser = [PKSymbol symbolWithString:@")"];
         closeParenParser.name = @"closeParen";
     }
     return closeParenParser;
@@ -2039,7 +2039,7 @@
 
 - (PKParser *)openBracketParser {
     if (!openBracketParser) {
-        self.openBracketParser = [TDSymbol symbolWithString:@"["];
+        self.openBracketParser = [PKSymbol symbolWithString:@"["];
         openBracketParser.name = @"openBracket";
     }
     return openBracketParser;
@@ -2048,7 +2048,7 @@
 
 - (PKParser *)closeBracketParser {
     if (!closeBracketParser) {
-        self.closeBracketParser = [TDSymbol symbolWithString:@"]"];
+        self.closeBracketParser = [PKSymbol symbolWithString:@"]"];
         closeBracketParser.name = @"closeBracket";
     }
     return closeBracketParser;
@@ -2057,7 +2057,7 @@
 
 - (PKParser *)commaParser {
     if (!commaParser) {
-        self.commaParser = [TDSymbol symbolWithString:@","];
+        self.commaParser = [PKSymbol symbolWithString:@","];
         commaParser.name = @"comma";
     }
     return commaParser;
@@ -2066,7 +2066,7 @@
 
 - (PKParser *)dotParser {
     if (!dotParser) {
-        self.dotParser = [TDSymbol symbolWithString:@"."];
+        self.dotParser = [PKSymbol symbolWithString:@"."];
         dotParser.name = @"dot";
     }
     return dotParser;
@@ -2084,7 +2084,7 @@
 
 - (PKParser *)semiParser {
     if (!semiParser) {
-        self.semiParser = [TDSymbol symbolWithString:@";"];
+        self.semiParser = [PKSymbol symbolWithString:@";"];
         semiParser.name = @"semi";
     }
     return semiParser;
@@ -2093,7 +2093,7 @@
 
 - (PKParser *)colonParser {
     if (!colonParser) {
-        self.colonParser = [TDSymbol symbolWithString:@":"];
+        self.colonParser = [PKSymbol symbolWithString:@":"];
         colonParser.name = @"colon";
     }
     return colonParser;
@@ -2102,7 +2102,7 @@
 
 - (PKParser *)equalsParser {
     if (!equalsParser) {
-        self.equalsParser = [TDSymbol symbolWithString:@"="];
+        self.equalsParser = [PKSymbol symbolWithString:@"="];
         equalsParser.name = @"equals";
     }
     return equalsParser;
@@ -2111,7 +2111,7 @@
 
 - (PKParser *)notParser {
     if (!notParser) {
-        self.notParser = [TDSymbol symbolWithString:@"!"];
+        self.notParser = [PKSymbol symbolWithString:@"!"];
         notParser.name = @"not";
     }
     return notParser;
@@ -2120,7 +2120,7 @@
 
 - (PKParser *)ltParser {
     if (!ltParser) {
-        self.ltParser = [TDSymbol symbolWithString:@"<"];
+        self.ltParser = [PKSymbol symbolWithString:@"<"];
         ltParser.name = @"lt";
     }
     return ltParser;
@@ -2129,7 +2129,7 @@
 
 - (PKParser *)gtParser {
     if (!gtParser) {
-        self.gtParser = [TDSymbol symbolWithString:@">"];
+        self.gtParser = [PKSymbol symbolWithString:@">"];
         gtParser.name = @"gt";
     }
     return gtParser;
@@ -2138,7 +2138,7 @@
 
 - (PKParser *)ampParser {
     if (!ampParser) {
-        self.ampParser = [TDSymbol symbolWithString:@"&"];
+        self.ampParser = [PKSymbol symbolWithString:@"&"];
         ampParser.name = @"amp";
     }
     return ampParser;
@@ -2147,7 +2147,7 @@
 
 - (PKParser *)pipeParser {
     if (!pipeParser) {
-        self.pipeParser = [TDSymbol symbolWithString:@"|"];
+        self.pipeParser = [PKSymbol symbolWithString:@"|"];
         pipeParser.name = @"pipe";
     }
     return pipeParser;
@@ -2156,7 +2156,7 @@
 
 - (PKParser *)caretParser {
     if (!caretParser) {
-        self.caretParser = [TDSymbol symbolWithString:@"^"];
+        self.caretParser = [PKSymbol symbolWithString:@"^"];
         caretParser.name = @"caret";
     }
     return caretParser;
@@ -2165,7 +2165,7 @@
 
 - (PKParser *)tildeParser {
     if (!tildeParser) {
-        self.tildeParser = [TDSymbol symbolWithString:@"~"];
+        self.tildeParser = [PKSymbol symbolWithString:@"~"];
         tildeParser.name = @"tilde";
     }
     return tildeParser;
@@ -2174,7 +2174,7 @@
 
 - (PKParser *)questionParser {
     if (!questionParser) {
-        self.questionParser = [TDSymbol symbolWithString:@"?"];
+        self.questionParser = [PKSymbol symbolWithString:@"?"];
         questionParser.name = @"question";
     }
     return questionParser;
@@ -2183,7 +2183,7 @@
 
 - (PKParser *)plusParser {
     if (!plusParser) {
-        self.plusParser = [TDSymbol symbolWithString:@"+"];
+        self.plusParser = [PKSymbol symbolWithString:@"+"];
         plusParser.name = @"plus";
     }
     return plusParser;
@@ -2192,7 +2192,7 @@
 
 - (PKParser *)minusParser {
     if (!minusParser) {
-        self.minusParser = [TDSymbol symbolWithString:@"-"];
+        self.minusParser = [PKSymbol symbolWithString:@"-"];
         minusParser.name = @"minus";
     }
     return minusParser;
@@ -2201,7 +2201,7 @@
 
 - (PKParser *)timesParser {
     if (!timesParser) {
-        self.timesParser = [TDSymbol symbolWithString:@"x"];
+        self.timesParser = [PKSymbol symbolWithString:@"x"];
         timesParser.name = @"times";
     }
     return timesParser;
@@ -2210,7 +2210,7 @@
 
 - (PKParser *)divParser {
     if (!divParser) {
-        self.divParser = [TDSymbol symbolWithString:@"/"];
+        self.divParser = [PKSymbol symbolWithString:@"/"];
         divParser.name = @"div";
     }
     return divParser;
@@ -2219,7 +2219,7 @@
 
 - (PKParser *)modParser {
     if (!modParser) {
-        self.modParser = [TDSymbol symbolWithString:@"%"];
+        self.modParser = [PKSymbol symbolWithString:@"%"];
         modParser.name = @"mod";
     }
     return modParser;

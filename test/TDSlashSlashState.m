@@ -1,6 +1,6 @@
 //
-//  TDSlashSlashState.m
-//  TDParseKit
+//  PKSlashSlashState.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

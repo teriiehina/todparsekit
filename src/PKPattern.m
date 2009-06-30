@@ -1,15 +1,15 @@
 //
-//  TDPattern.m
-//  TDParseKit
+//  PKPattern.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/31/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDPattern.h>
+#import <ParseKit/PKPattern.h>
 #import "RegexKitLite.h"
 
-@implementation TDPattern
+@implementation PKPattern
 
 + (id)patternWithString:(NSString *)s {
     return [self patternWithString:s options:TDPatternOptionsNone];
@@ -49,7 +49,7 @@
 
 
 - (id)invertedPattern {
-    TDPattern *pattern = [[self class] patternWithString:self.string options:options];
+    PKPattern *pattern = [[self class] patternWithString:self.string options:options];
     pattern->inverted = !inverted;
     return pattern;
 }

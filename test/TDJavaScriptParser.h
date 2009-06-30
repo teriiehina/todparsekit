@@ -1,6 +1,6 @@
 //
-//  TDJavaScriptParser.h
-//  TDParseKit
+//  PKJavaScriptParser.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 3/17/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

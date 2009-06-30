@@ -1,19 +1,19 @@
 //
-//  TDLiteral.m
-//  TDParseKit
+//  PKLiteral.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDLiteral.h>
+#import <ParseKit/PKLiteral.h>
 #import <ParseKit/PKToken.h>
 
-@interface TDLiteral ()
+@interface PKLiteral ()
 @property (nonatomic, retain) PKToken *literal;
 @end
 
-@implementation TDLiteral
+@implementation PKLiteral
 
 + (id)literalWithString:(NSString *)s {
     return [[[self alloc] initWithString:s] autorelease];

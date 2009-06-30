@@ -1,6 +1,6 @@
 //
-//  TDNSPredicateEvaluatorTest.m
-//  TDParseKit
+//  PKNSPredicateEvaluatorTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/17/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

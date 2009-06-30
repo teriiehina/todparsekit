@@ -1,6 +1,6 @@
 //
 //  JSDemoAppDelegate.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/10/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
