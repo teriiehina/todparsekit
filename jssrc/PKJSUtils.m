@@ -200,7 +200,7 @@ JSObjectRef PKNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex
     JSObjectRef obj = (JSObjectRef)JSObjectCallAsConstructor(ctx, errConstr, 0, NULL, ex);
     
     if (nsErr) {
-        JSStringRef nameStr = JSStringCreateWithUTF8CString("PKParseKitError");
+        JSStringRef nameStr = JSStringCreateWithUTF8CString("ParseKitError");
         JSValueRef name = JSValueMakeString(ctx, nameStr);
         JSStringRelease(nameStr);
         
