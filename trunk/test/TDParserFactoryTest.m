@@ -499,73 +499,73 @@
 
 - (void)testStmtTrackException {
     s = @"@start =";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
     
     s = @"@start";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testCallbackTrackException {
     s = @"@start ( = 'foo';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
     
     s = @"@start (foo: = 'foo'";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testSelectorTrackException {
     s = @"@start (foo) = 'foo';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testOrTrackException {
     s = @"@start = 'foo'|;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 //- (void)testExprTrackException {
 //    s = @"@start=(foo;";
-//    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+//    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 //}
 
 
 - (void)testIntersectionTrackException {
     s = @"@start='foo' &;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testExclusionTrackException {
     s = @"@start='foo' -;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testDelimitedStringTrackException {
     s = @"@start=DelimitedString('/';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 
     s = @"@start=DelimitedString('/', ;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 
 - (void)testCardinalityTrackException {
     s = @"@start='foo'{;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 
     s = @"@start='foo'{};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
     
     s = @"@start='foo'{,};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
     
     s = @"@start='foo'{m};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
 
 

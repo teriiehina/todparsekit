@@ -81,14 +81,14 @@
     [track add:[PKSymbol symbolWithString:@")"]];
     
     PKAssembly *a = [PKTokenAssembly assemblyWithString:@"("];
-    STAssertThrowsSpecificNamed([track completeMatchFor:a], PKTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([track completeMatchFor:a], PKTrackException, PKTrackExceptionName, @"");
     
     @try {
         [track completeMatchFor:a];
         STAssertTrue(0, @"Should not be reached");
     } @catch (PKTrackException *e) {
         TDEqualObjects([e class], [PKTrackException class]);
-        TDEqualObjects([e name], TDTrackExceptionName);
+        TDEqualObjects([e name], PKTrackExceptionName);
         
         NSDictionary *userInfo = e.userInfo;
         TDNotNil(userInfo);
