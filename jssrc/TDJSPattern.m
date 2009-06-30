@@ -70,15 +70,11 @@ JSObjectRef TDPattern_construct(JSContextRef ctx, JSObjectRef constructor, size_
 
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     NSInteger opts = TDPatternOptionsNone;
-    TDTokenType t = TDTokenTypeAny;
     
     if (argc > 1) {
         opts = JSValueToNumber(ctx, argv[1], ex);
     }
-    if (argc > 2) {
-        t = JSValueToNumber(ctx, argv[2], ex);
-    }
 
-    PKPattern *data = [[PKPattern alloc] initWithString:s options:opts tokenType:t];
+    PKPattern *data = [[PKPattern alloc] initWithString:s options:opts];
     return TDPattern_new(ctx, data);
 }

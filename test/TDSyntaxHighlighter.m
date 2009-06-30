@@ -38,9 +38,9 @@
 
 
 - (void)dealloc {
-    TDReleaseSubparserTree(miniCSSParser);
+    PKReleaseSubparserTree(miniCSSParser);
     for (PKParser *p in parserCache) {
-        TDReleaseSubparserTree(p);
+        PKReleaseSubparserTree(p);
     }
     
     self.parserFactory = nil;
@@ -116,14 +116,14 @@
     
     if (!parser) {
         // get attributes from css && give to the generic assembler
-        parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnAll;
+        parserFactory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
         self.genericAssembler.attributes = [self attributesForGrammarNamed:grammarName];
         
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"grammar"];
         NSString *grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
         // generate a parser for the requested grammar
-        parserFactory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnTerminals;
+        parserFactory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnTerminals;
         parser = [self.parserFactory parserFromGrammar:grammarString assembler:self.genericAssembler];
         
         if (cacheParsers) {
@@ -151,7 +151,7 @@
     [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
     
     if (!cacheParsers) {
-        TDReleaseSubparserTree(parser);
+        PKReleaseSubparserTree(parser);
     }
     
     id result = [[genericAssembler.displayString copy] autorelease];
