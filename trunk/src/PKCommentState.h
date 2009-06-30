@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKTokenizerState.h>
 
-@class TDSymbolRootNode;
+@class PKSymbolRootNode;
 @class PKSingleLineCommentState;
 @class PKMultiLineCommentState;
 
@@ -19,7 +19,7 @@
     @details    By default, C and C++ style comments. (<tt>//</tt> to end of line and <tt>/&0x002A; &0x002A;/</tt>)
 */
 @interface TDCommentState : PKTokenizerState {
-    TDSymbolRootNode *rootNode;
+    PKSymbolRootNode *rootNode;
     PKSingleLineCommentState *singleLineState;
     PKMultiLineCommentState *multiLineState;
     BOOL reportsCommentTokens;

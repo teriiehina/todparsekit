@@ -9,26 +9,26 @@
 #import "TDJSDelimitState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDDelimitState.h>
+#import <ParseKit/PKDelimitState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDDelimitState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDDelimitState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDDelimitState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKDelimitState]", ex);
 }
 
 static JSValueRef TDDelimitState_add(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDDelimitState_class, "add");
-    TDPreconditionMethodArgc(4, "TDDelimitState.add");
+    TDPreconditionMethodArgc(4, "PKDelimitState.add");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     NSString *end = TDJSValueGetNSString(ctx, argv[1], ex);
     NSString *chars = TDJSValueGetNSString(ctx, argv[2], ex);
     BOOL invert = JSValueToBoolean(ctx, argv[3]);
     
-    TDDelimitState *data = JSObjectGetPrivate(this);
+    PKDelimitState *data = JSObjectGetPrivate(this);
     NSCharacterSet *cs = [NSCharacterSet characterSetWithCharactersInString:chars];
     if (invert) {
         cs = [cs invertedSet];
@@ -40,11 +40,11 @@ static JSValueRef TDDelimitState_add(JSContextRef ctx, JSObjectRef function, JSO
 
 static JSValueRef TDDelimitState_remove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDDelimitState_class, "remove");
-    TDPreconditionMethodArgc(1, "TDDelimitState.remove");
+    TDPreconditionMethodArgc(1, "PKDelimitState.remove");
     
     NSString *start = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDDelimitState *data = JSObjectGetPrivate(this);
+    PKDelimitState *data = JSObjectGetPrivate(this);
     [data removeStartMarker:start];
     
     return JSValueMakeUndefined(ctx);
@@ -97,6 +97,6 @@ JSObjectRef TDDelimitState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDDelimitState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDDelimitState *data = [[TDDelimitState alloc] init];
+    PKDelimitState *data = [[PKDelimitState alloc] init];
     return TDDelimitState_new(ctx, data);
 }

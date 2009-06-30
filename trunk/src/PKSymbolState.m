@@ -8,7 +8,7 @@
 
 #import <ParseKit/PKSymbolState.h>
 #import <ParseKit/PKToken.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 
@@ -21,7 +21,7 @@
 @end
 
 @interface PKSymbolState ()
-@property (nonatomic, retain) TDSymbolRootNode *rootNode;
+@property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *addedSymbols;
 @end
 
@@ -29,7 +29,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
+        self.rootNode = [[[PKSymbolRootNode alloc] init] autorelease];
         self.addedSymbols = [NSMutableArray array];
     }
     return self;

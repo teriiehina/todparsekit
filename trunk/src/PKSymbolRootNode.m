@@ -1,25 +1,25 @@
 //
-//  TDSymbolRootNode.m
+//  PKSymbolRootNode.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKReader.h>
 
-@interface TDSymbolNode ()
+@interface PKSymbolNode ()
 @property (nonatomic, retain) NSMutableDictionary *children;
 @end
 
-@interface TDSymbolRootNode ()
-- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p;
+@interface PKSymbolRootNode ()
+- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(PKSymbolNode *)p;
+- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(PKSymbolNode *)p;
+- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(PKSymbolNode *)p;
 @end
 
-@implementation TDSymbolRootNode
+@implementation PKSymbolRootNode
 
 - (id)init {
     self = [super initWithParent:nil character:PKEOF];
@@ -46,12 +46,12 @@
 }
 
 
-- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(PKSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
-    TDSymbolNode *child = [p.children objectForKey:key];
+    PKSymbolNode *child = [p.children objectForKey:key];
     if (!child) {
-        child = [[TDSymbolNode alloc] initWithParent:p character:c];
+        child = [[PKSymbolNode alloc] initWithParent:p character:c];
         [p.children setObject:child forKey:key];
         [child release];
     }
@@ -68,10 +68,10 @@
 }
 
 
-- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(PKSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
-    TDSymbolNode *child = [p.children objectForKey:key];
+    PKSymbolNode *child = [p.children objectForKey:key];
     if (child) {
         NSString *rest = nil;
         
@@ -93,7 +93,7 @@
 }
 
 
-- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p {
+- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(PKSymbolNode *)p {
     NSParameterAssert(p);
     NSString *result = [NSString stringWithFormat:@"%C", c];
 
@@ -120,7 +120,7 @@
 //    NSLog(@"iso: '%@'", iso);
     
     NSNumber *key = [NSNumber numberWithInteger:c];
-    TDSymbolNode *child = [p.children objectForKey:key];
+    PKSymbolNode *child = [p.children objectForKey:key];
     
     if (!child) {
         if (p == self) {
@@ -141,7 +141,7 @@
 
 
 - (NSString *)description {
-    return @"<TDSymbolRootNode>";
+    return @"<PKSymbolRootNode>";
 }
 
 @end

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKTokenizerState.h>
 
-@class TDSymbolRootNode;
+@class PKSymbolRootNode;
 
 /*!
     @class      PKSymbolState 
@@ -19,7 +19,7 @@
                 <p>By default, this state recognizes the following multi- character symbols: <tt>!=</tt>, <tt>:-</tt>, <tt><=</tt>, <tt>>=</tt></p>
 */
 @interface PKSymbolState : PKTokenizerState {
-    TDSymbolRootNode *rootNode;
+    PKSymbolRootNode *rootNode;
     NSMutableArray *addedSymbols;
 }
 

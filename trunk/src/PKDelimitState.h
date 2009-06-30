@@ -1,5 +1,5 @@
 //
-//  TDDelimitState.h
+//  PKDelimitState.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 5/21/09.
@@ -8,15 +8,15 @@
 
 #import <ParseKit/PKTokenizerState.h>
 
-@class TDSymbolRootNode;
+@class PKSymbolRootNode;
 
 /*!
-    @class      TDDelimitState 
+    @class      PKDelimitState 
     @brief      A delimit state returns a delimited string token from a reader
     @details    This state will collect characters until it sees a match to the end marker that corresponds to the start marker the tokenizer used to switch to this state.
 */
-@interface TDDelimitState : PKTokenizerState {
-    TDSymbolRootNode *rootNode;
+@interface PKDelimitState : PKTokenizerState {
+    PKSymbolRootNode *rootNode;
     BOOL balancesEOFTerminatedStrings;
     BOOL allowsUnbalancedStrings;
 

@@ -1,5 +1,5 @@
 //
-//  TDSymbolRootNode.h
+//  PKSymbolRootNode.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDSymbolNode.h>
+#import <ParseKit/PKSymbolNode.h>
 
 @class PKReader;
 
 /*!
-    @class      TDSymbolRootNode 
-    @brief      This class is a special case of a <tt>TDSymbolNode</tt>.
-    @details    This class is a special case of a <tt>TDSymbolNode</tt>. A <tt>TDSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
+    @class      PKSymbolRootNode 
+    @brief      This class is a special case of a <tt>PKSymbolNode</tt>.
+    @details    This class is a special case of a <tt>PKSymbolNode</tt>. A <tt>PKSymbolRootNode</tt> object has no symbol of its own, but has children that represent all possible symbols.
 */
-@interface TDSymbolRootNode : TDSymbolNode {
+@interface PKSymbolRootNode : PKSymbolNode {
 }
 
 /*!

@@ -1,17 +1,17 @@
 //
-//  TDDelimitState.m
+//  PKDelimitState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 5/21/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDDelimitState.h>
+#import <ParseKit/PKDelimitState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKWhitespaceState.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKTypes.h>
 
 @interface PKToken ()
@@ -26,20 +26,20 @@
 - (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 @end
 
-@interface TDDelimitState ()
+@interface PKDelimitState ()
 - (NSString *)endMarkerForStartMarker:(NSString *)startMarker;
 - (NSCharacterSet *)allowedCharacterSetForStartMarker:(NSString *)startMarker;
-@property (nonatomic, retain) TDSymbolRootNode *rootNode;
+@property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *startMarkers;
 @property (nonatomic, retain) NSMutableArray *endMarkers;
 @property (nonatomic, retain) NSMutableArray *characterSets;
 @end
 
-@implementation TDDelimitState
+@implementation PKDelimitState
 
 - (id)init {
     if (self = [super init]) {
-        self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
+        self.rootNode = [[[PKSymbolRootNode alloc] init] autorelease];
         self.startMarkers = [NSMutableArray array];
         self.endMarkers = [NSMutableArray array];
         self.characterSets = [NSMutableArray array];
