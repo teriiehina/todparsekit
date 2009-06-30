@@ -7,7 +7,7 @@
 //
 
 #import "TDScientificNumberState.h"
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
 @interface TDTokenizerState ()
@@ -15,15 +15,15 @@
 @end
 
 @interface TDNumberState ()
-- (CGFloat)absorbDigitsFromReader:(TDReader *)r isFraction:(BOOL)isFraction;
-- (void)parseRightSideFromReader:(TDReader *)r;
+- (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)isFraction;
+- (void)parseRightSideFromReader:(PKReader *)r;
 - (void)reset:(TDUniChar)cin;
 - (CGFloat)value;
 @end
 
 @implementation TDScientificNumberState
 
-- (void)parseRightSideFromReader:(TDReader *)r {
+- (void)parseRightSideFromReader:(PKReader *)r {
     NSParameterAssert(r);
     [super parseRightSideFromReader:r];
     if ('e' == c || 'E' == c) {

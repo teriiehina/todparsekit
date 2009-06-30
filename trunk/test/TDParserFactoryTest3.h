@@ -14,7 +14,7 @@
     NSString *s;
     TDTokenAssembly *a;
     TDParserFactory *factory;
-    TDAssembly *res;
+    PKAssembly *res;
     TDParser *lp; // language parser
     TDTokenizer *t;
     TDToken *tok;

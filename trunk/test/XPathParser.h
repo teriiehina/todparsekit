@@ -9,7 +9,7 @@
 #import <ParseKit/ParseKit.h>
 
 @class XPathAssembler;
-@class TDAssembly;
+@class PKAssembly;
 
 @interface XPathParser : TDSequence {
     XPathAssembler *xpathAssembler;
@@ -53,7 +53,7 @@
     TDCollectionParser *QName;
 }
 - (id)parse:(NSString *)s;
-- (TDAssembly *)assemblyWithString:(NSString *)s;
+- (PKAssembly *)assemblyWithString:(NSString *)s;
 
 @property (retain) TDCollectionParser *locationPath;
 @property (retain) TDCollectionParser *absoluteLocationPath;

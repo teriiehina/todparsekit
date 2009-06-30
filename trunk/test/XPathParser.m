@@ -71,7 +71,7 @@
 }
 
 
-- (TDAssembly *)assemblyWithString:(NSString *)s {
+- (PKAssembly *)assemblyWithString:(NSString *)s {
     TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     [t.symbolState add:@"::"];
     [t.symbolState add:@"!="];
@@ -93,7 +93,7 @@
 
 - (id)parse:(NSString *)s {
     [xpathAssembler resetWithReader:nil];
-    TDAssembly *a = [self assemblyWithString:s];
+    PKAssembly *a = [self assemblyWithString:s];
     id result = [self completeMatchFor:a];
     return result;
 }

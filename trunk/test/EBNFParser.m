@@ -35,16 +35,16 @@ static NSString * const kEBNFVariableSuffix = @"";
 @property (nonatomic, readwrite, retain) TDTokenizer *tokenizer;
 - (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
 
-- (void)workOnWord:(TDAssembly *)a;
-- (void)workOnNum:(TDAssembly *)a;
-- (void)workOnQuotedString:(TDAssembly *)a;
-- (void)workOnStar:(TDAssembly *)a;
-- (void)workOnQuestion:(TDAssembly *)a;
-- (void)workOnPlus:(TDAssembly *)a;
-- (void)workOnAnd:(TDAssembly *)a;
-- (void)workOnOr:(TDAssembly *)a;
-- (void)workOnAssignment:(TDAssembly *)a;
-- (void)workOnVariable:(TDAssembly *)a;
+- (void)workOnWord:(PKAssembly *)a;
+- (void)workOnNum:(PKAssembly *)a;
+- (void)workOnQuotedString:(PKAssembly *)a;
+- (void)workOnStar:(PKAssembly *)a;
+- (void)workOnQuestion:(PKAssembly *)a;
+- (void)workOnPlus:(PKAssembly *)a;
+- (void)workOnAnd:(PKAssembly *)a;
+- (void)workOnOr:(PKAssembly *)a;
+- (void)workOnAssignment:(PKAssembly *)a;
+- (void)workOnVariable:(PKAssembly *)a;
 @end
 
 @implementation EBNFParser
@@ -81,7 +81,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (id)parse:(NSString *)s {
     self.tokenizer.string = s;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
-    TDAssembly *result = [self completeMatchFor:a];
+    PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
 }
 
@@ -307,7 +307,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnWord:(TDAssembly *)a {
+- (void)workOnWord:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -315,7 +315,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnNum:(TDAssembly *)a {
+- (void)workOnNum:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -323,7 +323,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnQuotedString:(TDAssembly *)a {
+- (void)workOnQuotedString:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -340,7 +340,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnStar:(TDAssembly *)a {
+- (void)workOnStar:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
@@ -348,7 +348,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnQuestion:(TDAssembly *)a {
+- (void)workOnQuestion:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     TDAlternation *p = [TDAlternation alternation];
@@ -358,7 +358,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnPlus:(TDAssembly *)a {
+- (void)workOnPlus:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -369,7 +369,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnAnd:(TDAssembly *)a {
+- (void)workOnAnd:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -380,7 +380,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -393,7 +393,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnAssignment:(TDAssembly *)a {
+- (void)workOnAssignment:(PKAssembly *)a {
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
     id val = [a pop];
@@ -404,7 +404,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)workOnVariable:(TDAssembly *)a {
+- (void)workOnVariable:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *keyTok = [a pop];

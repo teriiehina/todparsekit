@@ -10,15 +10,15 @@
 #import "NSString+TDParseKitAdditions.h"
 
 @interface SRGSParser ()
-- (void)workOnWord:(TDAssembly *)a;
-- (void)workOnNum:(TDAssembly *)a;
-- (void)workOnQuotedString:(TDAssembly *)a;
-- (void)workOnStar:(TDAssembly *)a;
-- (void)workOnQuestion:(TDAssembly *)a;
-- (void)workOnAnd:(TDAssembly *)a;
-- (void)workOnOr:(TDAssembly *)a;
-- (void)workOnAssignment:(TDAssembly *)a;
-- (void)workOnVariable:(TDAssembly *)a;
+- (void)workOnWord:(PKAssembly *)a;
+- (void)workOnNum:(PKAssembly *)a;
+- (void)workOnQuotedString:(PKAssembly *)a;
+- (void)workOnStar:(PKAssembly *)a;
+- (void)workOnQuestion:(PKAssembly *)a;
+- (void)workOnAnd:(PKAssembly *)a;
+- (void)workOnOr:(PKAssembly *)a;
+- (void)workOnAssignment:(PKAssembly *)a;
+- (void)workOnVariable:(PKAssembly *)a;
 @end
 
 @implementation SRGSParser
@@ -73,13 +73,13 @@
 
 
 - (id)parse:(NSString *)s {
-    TDAssembly *a = [self assemblyWithString:s];
+    PKAssembly *a = [self assemblyWithString:s];
     a = [self completeMatchFor:a];
     return [a pop];
 }
 
 
-- (TDAssembly *)assemblyWithString:(NSString *)s {
+- (PKAssembly *)assemblyWithString:(NSString *)s {
     TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
     [t setTokenizerState:t.symbolState from: '-' to: '-'];
     [t setTokenizerState:t.symbolState from: '.' to: '.'];
@@ -642,7 +642,7 @@
 #pragma mark -
 #pragma mark Assembler Methods
 
-- (void)workOnWord:(TDAssembly *)a {
+- (void)workOnWord:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -650,7 +650,7 @@
 }
 
 
-- (void)workOnNum:(TDAssembly *)a {
+- (void)workOnNum:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -658,7 +658,7 @@
 }
 
 
-- (void)workOnQuotedString:(TDAssembly *)a {
+- (void)workOnQuotedString:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *tok = [a pop];
@@ -675,7 +675,7 @@
 }
 
 
-- (void)workOnStar:(TDAssembly *)a {
+- (void)workOnStar:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
@@ -683,7 +683,7 @@
 }
 
 
-- (void)workOnQuestion:(TDAssembly *)a {
+- (void)workOnQuestion:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDAlternation *p = [TDAlternation alternation];
@@ -693,7 +693,7 @@
 }
 
 
-- (void)workOnAnd:(TDAssembly *)a {
+- (void)workOnAnd:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -704,7 +704,7 @@
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -717,7 +717,7 @@
 }
 
 
-- (void)workOnAssignment:(TDAssembly *)a {
+- (void)workOnAssignment:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id val = [a pop];
@@ -729,7 +729,7 @@
 }
 
 
-- (void)workOnVariable:(TDAssembly *)a {
+- (void)workOnVariable:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     TDToken *keyTok = [a pop];

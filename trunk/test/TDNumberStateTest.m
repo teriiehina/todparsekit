@@ -12,7 +12,7 @@
 
 - (void)setUp {
     t = [[TDTokenizer alloc] init];
-    r = [[TDReader alloc] init];
+    r = [[PKReader alloc] init];
     numberState = t.numberState;
 }
 

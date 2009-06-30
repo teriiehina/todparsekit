@@ -16,7 +16,7 @@
 @interface TDTokenizer ()
 - (TDTokenizerState *)tokenizerStateFor:(TDUniChar)c;
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
-@property (nonatomic, retain) TDReader *reader;
+@property (nonatomic, retain) PKReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 @end
 
@@ -40,7 +40,7 @@
 - (id)initWithString:(NSString *)s {
     if (self = [super init]) {
         self.string = s;
-        self.reader = [[[TDReader alloc] init] autorelease];
+        self.reader = [[[PKReader alloc] init] autorelease];
         
         self.numberState     = [[[TDNumberState alloc] init] autorelease];
         self.quoteState      = [[[TDQuoteState alloc] init] autorelease];
@@ -115,7 +115,7 @@
 }
 
 
-- (void)setReader:(TDReader *)r {
+- (void)setReader:(PKReader *)r {
     if (reader != r) {
         [reader release];
         reader = [r retain];

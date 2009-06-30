@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDReaderTest : SenTestCase {
-    TDReader *reader;
+    PKReader *reader;
     NSString *string;
 }
 

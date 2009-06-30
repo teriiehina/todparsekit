@@ -6,13 +6,13 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 /*!
     @class      TDCharacterAssembly 
-    @brief      A <tt>TDCharacterAssembly</tt> is a <tt>TDAssembly</tt> whose elements are characters.
+    @brief      A <tt>TDCharacterAssembly</tt> is a <tt>PKAssembly</tt> whose elements are characters.
 */
-@interface TDCharacterAssembly : TDAssembly {
+@interface TDCharacterAssembly : PKAssembly {
 
 }
 

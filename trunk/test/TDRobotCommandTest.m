@@ -108,7 +108,7 @@
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s1];
     TDParser *p = [self command];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
 
     TDNotNil(result);
     TDEqualObjects(@"[]pick/carrier/from/LINE_IN^", [result description]);
@@ -124,7 +124,7 @@
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s2];
     TDParser *p = [self command];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[]place/carrier/at/LINE_OUT^", [result description]);
@@ -140,7 +140,7 @@
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s3];
     TDParser *p = [self command];
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[]scan/DB101_OUT^", [result description]);
@@ -151,7 +151,7 @@
 }
 
 
-- (void)workOnPickCommand:(TDAssembly *)a {
+- (void)workOnPickCommand:(PKAssembly *)a {
     RobotPickCommand *c = [[[RobotPickCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;
@@ -159,7 +159,7 @@
 }
 
 
-- (void)workOnPlaceCommand:(TDAssembly *)a {
+- (void)workOnPlaceCommand:(PKAssembly *)a {
     RobotPlaceCommand *c = [[[RobotPlaceCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;
@@ -167,7 +167,7 @@
 }
 
 
-- (void)workOnScanCommand:(TDAssembly *)a {
+- (void)workOnScanCommand:(PKAssembly *)a {
     RobotScanCommand *c = [[[RobotScanCommand alloc] init] autorelease];
     TDToken *location = [a pop];
     c.location = location.stringValue;

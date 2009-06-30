@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TDAssembly;
+@class PKAssembly;
 @class TDTokenizer;
 
 /*!
@@ -24,7 +24,7 @@
     [good add:[TDRepetition repetitionWithSubparser:adjective]];
     [good add:[TDLiteral literalWithString:@"coffee"]];
     NSString *s = @"hot hot steaming hot coffee";
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     NSLog([good bestMatchFor:a]);
 @endcode
                 <p>This prints out:</p>
@@ -32,7 +32,7 @@
     [hot, hot, steaming, hot, coffee]
     hot/hot/steaming/hot/coffee^
 @endcode
-                <p>The parser does not match directly against a string, it matches against a <tt>TDAssembly</tt>. The resulting assembly shows its stack, with four words on it, along with its sequence of tokens, and the index at the end of these. In practice, parsers will do some work on an assembly, based on the text they recognize.</p>
+                <p>The parser does not match directly against a string, it matches against a <tt>PKAssembly</tt>. The resulting assembly shows its stack, with four words on it, along with its sequence of tokens, and the index at the end of these. In practice, parsers will do some work on an assembly, based on the text they recognize.</p>
 */
 @interface TDParser : NSObject {
     id assembler;
@@ -49,7 +49,7 @@
 
 /*!
     @brief      Sets the object and method that will work on an assembly whenever this parser successfully matches against the assembly.
-    @details    The method represented by <tt>sel</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
+    @details    The method represented by <tt>sel</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
     @param      a the assembler this parser will use to work on an assembly
     @param      sel a selector that assembler <tt>a</tt> responds to which will work on an assembly
 */
@@ -60,14 +60,14 @@
     @param      inAssembly the assembly for which to find the best match
     @result     an assembly with the greatest possible number of elements consumed by this parser
 */
-- (TDAssembly *)bestMatchFor:(TDAssembly *)inAssembly;
+- (PKAssembly *)bestMatchFor:(PKAssembly *)inAssembly;
 
 /*!
     @brief      Returns either <tt>nil</tt>, or a completely matched version of the supplied assembly.
     @param      inAssembly the assembly for which to find the complete match
     @result     either <tt>nil</tt>, or a completely matched version of the supplied assembly
 */
-- (TDAssembly *)completeMatchFor:(TDAssembly *)inAssembly;
+- (PKAssembly *)completeMatchFor:(PKAssembly *)inAssembly;
 
 /*!
     @brief      Given a set of assemblies, this method matches this parser against all of them, and returns a new set of the assemblies that result from the matches.
@@ -96,7 +96,7 @@
 /*!
     @property   selector
     @brief      The method of <tt>assembler</tt> this parser will call to work on a matched assembly.
-    @details    The method represented by <tt>selector</tt> must accept a single <tt>TDAssembly</tt> argument. The signature of <tt>selector</tt> should be similar to: <tt>- (void)workOnAssembly:(TDAssembly *)a</tt>.
+    @details    The method represented by <tt>selector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>selector</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL selector;
 

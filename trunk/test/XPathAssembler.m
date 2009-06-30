@@ -26,12 +26,12 @@
 }
 
 
-- (void)resetWithReader:(TDReader *)r {
+- (void)resetWithReader:(PKReader *)r {
     [context resetWithCurrentNode:nil];
 }
 
 
-- (void)workOnAxisSpecifier:(TDAssembly *)a {
+- (void)workOnAxisSpecifier:(PKAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
     
     //TDToken *tok = [a pop];
@@ -39,17 +39,17 @@
 }
 
 
-- (void)workOnNodeTest:(TDAssembly *)a {
+- (void)workOnNodeTest:(PKAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 
-- (void)workOnPredicate:(TDAssembly *)a {
+- (void)workOnPredicate:(PKAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 
 // [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
-- (void)workOnStep:(TDAssembly *)a {
+- (void)workOnStep:(PKAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
 }
 

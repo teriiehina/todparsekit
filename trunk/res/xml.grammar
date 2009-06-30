@@ -13,8 +13,8 @@
         
     If implemented, your assembler object will receive callbacks for each production in this grammar, like:
         
-        - (void)workOnElement:(TDAssembly *)a;
-        - (void)workOnAttribute:(TDAssembly *)a;
+        - (void)workOnElement:(PKAssembly *)a;
+        - (void)workOnAttribute:(PKAssembly *)a;
     
     
     This parser is running successfully on some non-trivial real-world XML documents, 

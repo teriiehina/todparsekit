@@ -24,7 +24,7 @@
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[foo]foo^baz/bar", [result description]);
@@ -40,7 +40,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123]123^baz/bar", [result description]);
@@ -56,7 +56,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123]123^baz/bar", [result description]);
@@ -72,7 +72,7 @@
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDNum num]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123]123^baz/bar", [result description]);
@@ -88,7 +88,7 @@
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
     
-    TDAssembly *result = [p bestMatchFor:a];
+    PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[123]123^baz/bar", [result description]);

@@ -13,7 +13,7 @@
     TDPlistParser *p;
     NSString *s;
     TDTokenAssembly *a;
-    TDAssembly *res;
+    PKAssembly *res;
 }
 
 @end

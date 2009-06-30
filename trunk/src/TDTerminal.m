@@ -7,11 +7,11 @@
 //
 
 #import <ParseKit/TDTerminal.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDToken.h>
 
 @interface TDTerminal ()
-- (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly;
+- (PKAssembly *)matchOneAssembly:(PKAssembly *)inAssembly;
 - (BOOL)qualifies:(id)obj;
 
 @property (nonatomic, readwrite, copy) NSString *string;
@@ -42,8 +42,8 @@
     NSParameterAssert(inAssemblies);
     NSMutableSet *outAssemblies = [NSMutableSet set];
     
-    for (TDAssembly *a in inAssemblies) {
-        TDAssembly *b = [self matchOneAssembly:a];
+    for (PKAssembly *a in inAssemblies) {
+        PKAssembly *b = [self matchOneAssembly:a];
         if (b) {
             [outAssemblies addObject:b];
         }
@@ -53,13 +53,13 @@
 }
 
 
-- (TDAssembly *)matchOneAssembly:(TDAssembly *)inAssembly {
+- (PKAssembly *)matchOneAssembly:(PKAssembly *)inAssembly {
     NSParameterAssert(inAssembly);
     if (![inAssembly hasMore]) {
         return nil;
     }
     
-    TDAssembly *outAssembly = nil;
+    PKAssembly *outAssembly = nil;
     
     if ([self qualifies:[inAssembly peek]]) {
         outAssembly = [[inAssembly copy] autorelease];

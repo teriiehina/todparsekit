@@ -77,7 +77,7 @@
     tokenizer.string = s;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:tokenizer];
     
-    TDAssembly *result = [self completeMatchFor:a];
+    PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
 }
 
@@ -234,30 +234,30 @@
 }
 
 
-- (void)workOnNull:(TDAssembly *)a {
+- (void)workOnNull:(PKAssembly *)a {
     [a push:[NSNull null]];
 }
 
 
-- (void)workOnNumber:(TDAssembly *)a {
+- (void)workOnNumber:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnString:(TDAssembly *)a {
+- (void)workOnString:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnBoolean:(TDAssembly *)a {
+- (void)workOnBoolean:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithBool:[tok.stringValue isEqualToString:@"true"] ? YES : NO]];
 }
 
 
-- (void)workOnArray:(TDAssembly *)a {
+- (void)workOnArray:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.bracket];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
     
@@ -271,7 +271,7 @@
 }
 
 
-- (void)workOnObject:(TDAssembly *)a {
+- (void)workOnObject:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.curly];
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:elements.count / 2.];
     
@@ -289,7 +289,7 @@
 }
 
 
-- (void)workOnProperty:(TDAssembly *)a {
+- (void)workOnProperty:(PKAssembly *)a {
     id value = [a pop];
     TDToken *tok = [a pop];
     NSString *key = [tok.stringValue stringByTrimmingQuotes];

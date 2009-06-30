@@ -101,7 +101,7 @@
     // parse CSS
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:grammarName ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     [self.miniCSSParser bestMatchFor:a]; // produce dict of attributes from the CSS
     return self.miniCSSAssembler.attributes;
 }

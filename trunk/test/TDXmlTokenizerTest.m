@@ -44,7 +44,7 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"small-xml-file" ofType:@"xml"];
     TDXmlTokenAssembly *a = [TDXmlTokenAssembly assemblyWithString:path];
     
-    TDAssembly *result = [s bestMatchFor:a];
+    PKAssembly *result = [s bestMatchFor:a];
     NSLog(@"\n\n\n result: %@ \n\n\n", result);
 }
 

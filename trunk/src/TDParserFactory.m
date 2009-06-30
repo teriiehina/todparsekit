@@ -75,25 +75,25 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDAlternation *)zeroOrOne:(TDParser *)p;
 - (TDSequence *)oneOrMore:(TDParser *)p;
     
-- (void)workOnStatement:(TDAssembly *)a;
-- (void)workOnCallback:(TDAssembly *)a;
-- (void)workOnExpression:(TDAssembly *)a;
-- (void)workOnAnd:(TDAssembly *)a;
-- (void)workOnIntersection:(TDAssembly *)a;    
-- (void)workOnExclusion:(TDAssembly *)a;
-- (void)workOnPatternOptions:(TDAssembly *)a;
-- (void)workOnPattern:(TDAssembly *)a;
-- (void)workOnLiteral:(TDAssembly *)a;
-- (void)workOnVariable:(TDAssembly *)a;
-- (void)workOnConstant:(TDAssembly *)a;
-- (void)workOnDelimitedString:(TDAssembly *)a;
-- (void)workOnNum:(TDAssembly *)a;
-- (void)workOnStar:(TDAssembly *)a;
-- (void)workOnPlus:(TDAssembly *)a;
-- (void)workOnQuestion:(TDAssembly *)a;
-- (void)workOnPhraseCardinality:(TDAssembly *)a;
-- (void)workOnCardinality:(TDAssembly *)a;
-- (void)workOnOr:(TDAssembly *)a;
+- (void)workOnStatement:(PKAssembly *)a;
+- (void)workOnCallback:(PKAssembly *)a;
+- (void)workOnExpression:(PKAssembly *)a;
+- (void)workOnAnd:(PKAssembly *)a;
+- (void)workOnIntersection:(PKAssembly *)a;    
+- (void)workOnExclusion:(PKAssembly *)a;
+- (void)workOnPatternOptions:(PKAssembly *)a;
+- (void)workOnPattern:(PKAssembly *)a;
+- (void)workOnLiteral:(PKAssembly *)a;
+- (void)workOnVariable:(PKAssembly *)a;
+- (void)workOnConstant:(PKAssembly *)a;
+- (void)workOnDelimitedString:(PKAssembly *)a;
+- (void)workOnNum:(PKAssembly *)a;
+- (void)workOnStar:(PKAssembly *)a;
+- (void)workOnPlus:(PKAssembly *)a;
+- (void)workOnQuestion:(PKAssembly *)a;
+- (void)workOnPhraseCardinality:(PKAssembly *)a;
+- (void)workOnCardinality:(PKAssembly *)a;
+- (void)workOnOr:(PKAssembly *)a;
 
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
@@ -273,7 +273,7 @@ void TDReleaseSubparserTree(TDParser *p) {
             TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
             //a.preservesWhitespaceTokens = YES;
             a.target = target;
-            TDAssembly *res = [self.statementParser completeMatchFor:a];
+            PKAssembly *res = [self.statementParser completeMatchFor:a];
             target = res.target;
         }
     }
@@ -297,7 +297,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks {
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
     TDParser *res = [a pop];
@@ -540,7 +540,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks {	
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
+    PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
     TDParser *res = [a pop];
@@ -558,7 +558,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (TDSequence *)parserFromExpression:(NSString *)s {
     TDTokenizer *t = [self tokenizerForParsingGrammar];
     t.string = s;
-    TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
     a = [self.exprParser completeMatchFor:a];
     return [a pop];
@@ -1048,7 +1048,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (BOOL)shouldDiscard:(TDAssembly *)a {
+- (BOOL)shouldDiscard:(PKAssembly *)a {
     if (![a isStackEmpty]) {
         id obj = [a pop];
         if ([obj isEqual:caret]) {
@@ -1061,7 +1061,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnStatement:(TDAssembly *)a {
+- (void)workOnStatement:(PKAssembly *)a {
     NSArray *toks = [[a objectsAbove:equals] reversedArray];
     [a pop]; // discard '=' tok
 
@@ -1124,14 +1124,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnCallback:(TDAssembly *)a {
+- (void)workOnCallback:(PKAssembly *)a {
     TDToken *selNameTok = [a pop];
     NSString *selName = [NSString stringWithFormat:@"%@:", selNameTok.stringValue];
     [a push:selName];
 }
 
 
-- (void)workOnExpression:(TDAssembly *)a {
+- (void)workOnExpression:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
     [a pop]; // pop '('
@@ -1147,7 +1147,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnExclusion:(TDAssembly *)a {
+- (void)workOnExclusion:(PKAssembly *)a {
     TDParser *predicate = [a pop];
     TDParser *sub = [a pop];
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
@@ -1161,7 +1161,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnIntersection:(TDAssembly *)a {
+- (void)workOnIntersection:(PKAssembly *)a {
     TDParser *predicate = [a pop];
     TDParser *sub = [a pop];
     NSAssert([predicate isKindOfClass:[TDParser class]], @"");
@@ -1175,7 +1175,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnPatternOptions:(TDAssembly *)a {
+- (void)workOnPatternOptions:(PKAssembly *)a {
     TDToken *tok = [a pop];
     NSAssert(tok.isWord, @"");
 
@@ -1203,7 +1203,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnPattern:(TDAssembly *)a {
+- (void)workOnPattern:(PKAssembly *)a {
     id obj = [a pop]; // opts (as Number*) or DelimitedString('/', '/')
     
     TDPatternOptions opts = TDPatternOptionsNone;
@@ -1234,7 +1234,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnLiteral:(TDAssembly *)a {
+- (void)workOnLiteral:(PKAssembly *)a {
     TDToken *tok = [a pop];
 
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
@@ -1248,7 +1248,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnVariable:(TDAssembly *)a {
+- (void)workOnVariable:(PKAssembly *)a {
     TDToken *tok = [a pop];
     NSString *parserName = tok.stringValue;
     TDParser *p = nil;
@@ -1269,7 +1269,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnConstant:(TDAssembly *)a {
+- (void)workOnConstant:(PKAssembly *)a {
     TDToken *tok = [a pop];
     NSString *s = tok.stringValue;
     id p = nil;
@@ -1313,7 +1313,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnDelimitedString:(TDAssembly *)a {
+- (void)workOnDelimitedString:(PKAssembly *)a {
     NSArray *toks = [a objectsAbove:paren];
     [a pop]; // discard '(' fence
     
@@ -1334,32 +1334,32 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnNum:(TDAssembly *)a {
+- (void)workOnNum:(PKAssembly *)a {
     TDToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnStar:(TDAssembly *)a {
+- (void)workOnStar:(PKAssembly *)a {
     id top = [a pop];
     TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
     [a push:rep];
 }
 
 
-- (void)workOnPlus:(TDAssembly *)a {
+- (void)workOnPlus:(PKAssembly *)a {
     id top = [a pop];
     [a push:[self oneOrMore:top]];
 }
 
 
-- (void)workOnQuestion:(TDAssembly *)a {
+- (void)workOnQuestion:(PKAssembly *)a {
     id top = [a pop];
     [a push:[self zeroOrOne:top]];
 }
 
 
-- (void)workOnPhraseCardinality:(TDAssembly *)a {
+- (void)workOnPhraseCardinality:(PKAssembly *)a {
     NSRange r = [[a pop] rangeValue];
     TDParser *p = [a pop];
     TDSequence *s = [TDSequence sequence];
@@ -1380,7 +1380,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnCardinality:(TDAssembly *)a {
+- (void)workOnCardinality:(PKAssembly *)a {
     NSArray *toks = [a objectsAbove:self.curly];
     [a pop]; // discard '{' tok
 
@@ -1399,7 +1399,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
     id second = [a pop];
     [a pop]; // pop '|'
     id first = [a pop];
@@ -1410,7 +1410,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)workOnAnd:(TDAssembly *)a {
+- (void)workOnAnd:(PKAssembly *)a {
     NSMutableArray *parsers = [NSMutableArray array];
     while (![a isStackEmpty]) {
         id obj = [a pop];

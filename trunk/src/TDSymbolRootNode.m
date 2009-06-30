@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDSymbolRootNode.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 
 @interface TDSymbolNode ()
 @property (nonatomic, retain) NSMutableDictionary *children;
@@ -16,7 +16,7 @@
 @interface TDSymbolRootNode ()
 - (void)addWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
 - (void)removeWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (NSString *)nextWithFirst:(TDUniChar)c rest:(TDReader *)r parent:(TDSymbolNode *)p;
+- (NSString *)nextWithFirst:(TDUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p;
 @end
 
 @implementation TDSymbolRootNode
@@ -87,13 +87,13 @@
 }
 
 
-- (NSString *)nextSymbol:(TDReader *)r startingWith:(TDUniChar)cin {
+- (NSString *)nextSymbol:(PKReader *)r startingWith:(TDUniChar)cin {
     NSParameterAssert(r);
     return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
-- (NSString *)nextWithFirst:(TDUniChar)c rest:(TDReader *)r parent:(TDSymbolNode *)p {
+- (NSString *)nextWithFirst:(TDUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSString *result = [NSString stringWithFormat:@"%C", c];
 

@@ -12,7 +12,7 @@
 @interface TDNSPredicateBuilderTest : SenTestCase {
     TDNSPredicateBuilder *b;
     NSString *s;
-    TDAssembly *a;
+    PKAssembly *a;
 }
 
 @end

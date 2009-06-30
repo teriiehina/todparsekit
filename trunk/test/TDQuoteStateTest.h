@@ -11,7 +11,7 @@
 
 @interface TDQuoteStateTest : SenTestCase {
     TDQuoteState *quoteState;
-    TDReader *r;
+    PKReader *r;
     NSString *s;
 }
 @end

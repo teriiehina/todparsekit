@@ -10,7 +10,7 @@
 
 @interface TDWhitespaceStateTest : SenTestCase {
     TDWhitespaceState *whitespaceState;
-    TDReader *r;
+    PKReader *r;
     NSString *s;
 }
 @end

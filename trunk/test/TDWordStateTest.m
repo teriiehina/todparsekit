@@ -24,7 +24,7 @@
 
 - (void)testA {
     s = @"a";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@"a", tok.stringValue);
     TDEqualObjects(@"a", tok.value);
@@ -35,7 +35,7 @@
 
 - (void)testASpace {
     s = @"a ";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(@"a", tok.stringValue);
     TDEqualObjects(@"a", tok.value);
@@ -46,7 +46,7 @@
 
 - (void)testAb {
     s = @"ab";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
@@ -57,7 +57,7 @@
 
 - (void)testAbc {
     s = @"abc";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
@@ -68,7 +68,7 @@
 
 - (void)testItApostropheS {
     s = @"it's";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
@@ -79,7 +79,7 @@
 
 - (void)testTwentyDashFive {
     s = @"twenty-five";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
@@ -90,7 +90,7 @@
 
 - (void)testTwentyUnderscoreFive {
     s = @"twenty_five";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);
@@ -101,7 +101,7 @@
 
 - (void)testNumber1 {
     s = @"number1";
-    r = [[TDReader alloc] initWithString:s];
+    r = [[PKReader alloc] initWithString:s];
     TDToken *tok = [wordState nextTokenFromReader:r startingWith:[r read] tokenizer:nil];
     TDEqualObjects(s, tok.stringValue);
     TDEqualObjects(s, tok.value);

@@ -18,7 +18,7 @@
     TDMiniCSSAssembler *cssAssember;
     TDParserFactory *factory;
     TDParser *cssParser;
-    TDAssembly *a;
+    PKAssembly *a;
     TDGenericAssembler *genericAssember;
 }
 

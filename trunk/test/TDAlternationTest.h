@@ -10,7 +10,7 @@
 
 @interface TDAlternationTest : SenTestCase {
     TDCollectionParser *p;
-    TDAssembly *a;
+    PKAssembly *a;
     NSString *s;
 }
 

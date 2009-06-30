@@ -13,7 +13,7 @@
 #import "TDJSTokenAssembly.h"
 #import "TDJSCharacterAssembly.h"
 #import <ParseKit/TDParser.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDTokenAssembly.h>
 #import <ParseKit/TDCharacterAssembly.h>
 
@@ -33,7 +33,7 @@ static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSO
     TDParser *data = JSObjectGetPrivate(this);
 
     JSObjectRef arg = (JSObjectRef)argv[0];
-    TDAssembly *a = (TDAssembly *)JSObjectGetPrivate(arg);
+    PKAssembly *a = (PKAssembly *)JSObjectGetPrivate(arg);
     a = [data bestMatchFor:a];
     
     JSObjectRef result = NULL;
@@ -53,7 +53,7 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
     TDParser *data = JSObjectGetPrivate(this);
     
     JSObjectRef arg = (JSObjectRef)argv[0];
-    TDAssembly *a = (TDAssembly *)JSObjectGetPrivate(arg);
+    PKAssembly *a = (PKAssembly *)JSObjectGetPrivate(arg);
     a = [data completeMatchFor:a];
     
     JSObjectRef result = NULL;

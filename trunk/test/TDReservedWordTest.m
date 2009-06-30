@@ -15,10 +15,10 @@
     NSString *s = @"Foobar";
     [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
     
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
     TDParser *p = [TDReservedWord word];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[Foobar]Foobar^", [result description]);
@@ -30,10 +30,10 @@
     NSString *s = @"foobar";
     [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
     
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
     TDParser *p = [TDReservedWord word];
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);
 }

@@ -72,7 +72,7 @@ static void TDCharacterAssembly_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDCharacterAssembly_finalize(JSObjectRef this) {
-    // released in TDAssembly_finalize
+    // released in PKAssembly_finalize
 }
 
 static JSStaticFunction TDCharacterAssembly_staticFunctions[] = {
@@ -98,7 +98,7 @@ JSClassRef TDCharacterAssembly_class(JSContextRef ctx) {
     static JSClassRef jsClass = NULL;
     if (!jsClass) {                
         JSClassDefinition def = kJSClassDefinitionEmpty;
-        def.parentClass = TDAssembly_class(ctx);
+        def.parentClass = PKAssembly_class(ctx);
         def.staticFunctions = TDCharacterAssembly_staticFunctions;
         def.staticValues = TDCharacterAssembly_staticValues;
         def.initialize = TDCharacterAssembly_initialize;

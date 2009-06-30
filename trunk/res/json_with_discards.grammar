@@ -15,7 +15,7 @@
     
     whenever a grammar production of the corresponding name has been matched.
     
-    Each callback method must accept a single TDAssembly argument. The provided assembly
+    Each callback method must accept a single PKAssembly argument. The provided assembly
     will contain information about the progress made on the the string currently being parsed.
     Also the assembly's stack will contain the tokens parsed so far in the current statement.
 */

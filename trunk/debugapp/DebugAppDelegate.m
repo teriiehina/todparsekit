@@ -27,11 +27,11 @@
 #import <OCMock/OCMock.h>
 
 @protocol TDMockAssember
-- (void)workOnFoo:(TDAssembly *)a;
-- (void)workOnBaz:(TDAssembly *)a;
-- (void)workOnStart:(TDAssembly *)a;
-- (void)workOnStart:(TDAssembly *)a;
-- (void)workOn_Start:(TDAssembly *)a;
+- (void)workOnFoo:(PKAssembly *)a;
+- (void)workOnBaz:(PKAssembly *)a;
+- (void)workOnStart:(PKAssembly *)a;
+- (void)workOnStart:(PKAssembly *)a;
+- (void)workOn_Start:(PKAssembly *)a;
 @end
 
 @interface TDParserFactory ()
@@ -50,7 +50,7 @@
 - (void)doPlistParser {
     NSString *s = nil;
     TDTokenAssembly *a = nil;
-    TDAssembly *res = nil;
+    PKAssembly *res = nil;
     TDPlistParser *p = nil;
     
     p = [[[TDPlistParser alloc] init] autorelease];
@@ -137,7 +137,7 @@
     //NSString *s = @"foo;";
     EBNFParser *p = [[[EBNFParser alloc] init] autorelease];
     
-    //    TDAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    //    PKAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
     //    NSLog(@"a: %@", a);
     //    NSLog(@"a.target: %@", a.target);
     
@@ -149,7 +149,7 @@
     //    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
     
     s = @"bar foo bar foo";
-    TDAssembly *a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    PKAssembly *a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
     NSLog(@"\n\na: %@\n\n", a);
 }
 
@@ -173,7 +173,7 @@
     t.whitespaceState.reportsWhitespaceTokens = YES;
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
     a.preservesWhitespaceTokens = YES;
-    //TDAssembly *res = 
+    //PKAssembly *res = 
     [lp completeMatchFor:a];
     
     self.displayString = ass.displayString;
@@ -188,8 +188,8 @@
     
     s = @";";
     p.tokenizer.string = s;
-    //TDAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    //TDAssembly *res = [p bestMatchFor:a];
+    //PKAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    //PKAssembly *res = [p bestMatchFor:a];
     //    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
 }
 
@@ -218,7 +218,7 @@
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     start = [NSDate date];
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
 
@@ -279,7 +279,7 @@
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     TDParser *lp = [factory parserFromGrammar:s assembler:assembler];
     s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     
 }
@@ -297,7 +297,7 @@
     // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     
     // get attributes from css
@@ -397,14 +397,14 @@
 //    NSString *s = @"$foo%";
 //    TDTokenizer *t = lp.tokenizer;
 //    t.string = s;
-//    TDAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//    PKAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
     NSString *g = [NSString stringWithContentsOfFile:path];
     TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
     TDTokenizer *t = p.tokenizer;
     t.string = @"foo";
-    TDAssembly *res = [p completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    PKAssembly *res = [p completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     
 }
 

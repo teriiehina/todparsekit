@@ -13,8 +13,8 @@
 @interface XPathParserTest : SenTestCase {
     NSString *s;
     XPathParser *p;
-    TDAssembly *a;
-    TDAssembly *result;
+    PKAssembly *a;
+    PKAssembly *result;
 }
 
 @end

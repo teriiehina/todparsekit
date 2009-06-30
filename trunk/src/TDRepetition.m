@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDRepetition.h>
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 @interface TDParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
@@ -65,7 +65,7 @@
     NSParameterAssert(inAssemblies);
     if (preassembler) {
         NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
-        for (TDAssembly *a in inAssemblies) {
+        for (PKAssembly *a in inAssemblies) {
             [preassembler performSelector:preassemblerSelector withObject:a];
         }
     }

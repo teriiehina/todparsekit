@@ -16,11 +16,11 @@
 @end
 
 @protocol TDMockAssember
-- (void)workOnFoo:(TDAssembly *)a;
-- (void)workOnBaz:(TDAssembly *)a;
-- (void)workOnStart:(TDAssembly *)a;
-- (void)workOnStart:(TDAssembly *)a;
-- (void)workOn_Start:(TDAssembly *)a;
+- (void)workOnFoo:(PKAssembly *)a;
+- (void)workOnBaz:(PKAssembly *)a;
+- (void)workOnStart:(PKAssembly *)a;
+- (void)workOnStart:(PKAssembly *)a;
+- (void)workOn_Start:(PKAssembly *)a;
 @end
 
 @implementation TDParserFactoryTest

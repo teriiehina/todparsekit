@@ -27,7 +27,7 @@
     
     p = [TDRepetition repetitionWithSubparser:[TDNum num]];
     
-    TDAssembly *result = [p completeMatchFor:a];
+    PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[2, 4, 6, 8]2/4/6/8^", [result description]);
 }
@@ -45,7 +45,7 @@
     [e add:[TDNum num]];
     [e add:[TDRepetition repetitionWithSubparser:minusNum]];
     
-    TDAssembly *result = [e completeMatchFor:a];
+    PKAssembly *result = [e completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[4.5, 5.6, 222.0]4.5/-/5.6/-/222.0^", [result description]);
 }
@@ -65,7 +65,7 @@
     [e add:[TDRepetition repetitionWithSubparser:minusNum]];
     [e add:[[TDSymbol symbolWithString:@"]"] discard]];
     
-    TDAssembly *result = [e completeMatchFor:a];
+    PKAssembly *result = [e completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[4.5, 5.6, 222.0][/4.5/-/5.6/-/222.0/]^", [result description]);
 }
@@ -85,7 +85,7 @@
     s = @"hot hot steaming hot coffee";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAssembly *result = [sentence bestMatchFor:a];
+    PKAssembly *result = [sentence bestMatchFor:a];
     
     TDNotNil(result);
     TDEqualObjects(@"[hot, hot, steaming, hot, coffee]hot/hot/steaming/hot/coffee^", [result description]);
@@ -93,7 +93,7 @@
     
 
 - (void)testList {
-    TDAssembly *result = nil;
+    PKAssembly *result = nil;
 
     TDSequence *commaTerm = [TDSequence sequence];
     [commaTerm add:[[TDSymbol symbolWithString:@","] discard]];
@@ -125,7 +125,7 @@
     [literals add:[TDQuotedString quotedString]];
     [literals add:[TDNum num]];
     
-    TDAssembly *result = [literals bestMatchFor:a];
+    PKAssembly *result = [literals bestMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[123]123^'boo'", [result description]);
 }

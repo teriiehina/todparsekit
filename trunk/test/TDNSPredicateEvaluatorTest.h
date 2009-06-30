@@ -12,8 +12,8 @@
 @interface TDNSPredicateEvaluatorTest : SenTestCase <TDKeyPathResolver> {
     TDNSPredicateEvaluator *eval;
     NSString *s;
-    TDAssembly *a;
-    TDAssembly *res;
+    PKAssembly *a;
+    PKAssembly *res;
     TDTokenizer *t;
     
     NSMutableDictionary *d;

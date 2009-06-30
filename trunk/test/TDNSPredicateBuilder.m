@@ -81,7 +81,7 @@
 
 
 - (NSPredicate *)buildFrom:(NSString *)s; {
-    TDAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     return [[self.exprParser completeMatchFor:a] pop];
 }
 
@@ -415,7 +415,7 @@
 }
 
 
-- (void)workOnAnd:(TDAssembly *)a {
+- (void)workOnAnd:(PKAssembly *)a {
     NSPredicate *p2 = [a pop];
     NSPredicate *p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -423,7 +423,7 @@
 }
 
 
-- (void)workOnOr:(TDAssembly *)a {
+- (void)workOnOr:(PKAssembly *)a {
     NSPredicate *p2 = [a pop];
     NSPredicate *p1 = [a pop];
     NSArray *subs = [NSArray arrayWithObjects:p1, p2, nil];
@@ -431,7 +431,7 @@
 }
 
 
-- (void)workOnPredicate:(TDAssembly *)a {
+- (void)workOnPredicate:(PKAssembly *)a {
     id value = [a pop];
     id relation = [a pop];
     id attr = [a pop];
@@ -441,7 +441,7 @@
 }
 
 
-- (void)workOnAttrValuePredicate:(TDAssembly *)a {
+- (void)workOnAttrValuePredicate:(PKAssembly *)a {
     id value = [a pop];
     id attr = [a pop];
     [a push:attr];
@@ -450,7 +450,7 @@
 }
 
 
-- (void)workOnAttrPredicate:(TDAssembly *)a {
+- (void)workOnAttrPredicate:(PKAssembly *)a {
     id attr = [a pop];
     [a push:attr];
     [a push:defaultRelation];
@@ -458,7 +458,7 @@
 }
 
 
-- (void)workOnValuePredicate:(TDAssembly *)a {
+- (void)workOnValuePredicate:(PKAssembly *)a {
     id value = [a pop];
     [a push:defaultAttr];
     [a push:defaultRelation];
@@ -466,57 +466,57 @@
 }
 
 
-- (void)workOnAttr:(TDAssembly *)a {
+- (void)workOnAttr:(PKAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
 
 
-- (void)workOnRelation:(TDAssembly *)a {
+- (void)workOnRelation:(PKAssembly *)a {
     [a push:[[a pop] stringValue]];
 }
 
 
-- (void)workOnNegatedValue:(TDAssembly *)a {
+- (void)workOnNegatedValue:(PKAssembly *)a {
     id p = [a pop];
     [a push:[NSCompoundPredicate notPredicateWithSubpredicate:p]];
 }
 
 
-- (void)workOnBool:(TDAssembly *)a {
+- (void)workOnBool:(PKAssembly *)a {
     NSNumber *b = [a pop];
     [a push:[NSPredicate predicateWithValue:[b boolValue]]];
 }
 
 
-- (void)workOnTrue:(TDAssembly *)a {
+- (void)workOnTrue:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalse:(TDAssembly *)a {
+- (void)workOnFalse:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnQuotedString:(TDAssembly *)a {
+- (void)workOnQuotedString:(PKAssembly *)a {
     [a push:[[[a pop] stringValue] stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnReservedWord:(TDAssembly *)a {
+- (void)workOnReservedWord:(PKAssembly *)a {
 //    TDToken *tok = [a pop];
 //    [a push:tok.stringValue];
 }
 
 
-- (void)workOnNonReservedWord:(TDAssembly *)a {
+- (void)workOnNonReservedWord:(PKAssembly *)a {
 //    id obj = [a pop];
 //    [a push:nonReservedWordFence];
 //    [a push:obj];
 }
 
 
-- (void)workOnUnquotedString:(TDAssembly *)a {
+- (void)workOnUnquotedString:(PKAssembly *)a {
     NSMutableArray *wordStrings = [NSMutableArray array];
 
     while (1) {
@@ -551,7 +551,7 @@
 }
 
 
-- (void)workOnNumber:(TDAssembly *)a {
+- (void)workOnNumber:(PKAssembly *)a {
     NSNumber *n = [NSNumber numberWithFloat:[[a pop] floatValue]];
     [a push:n];
 }

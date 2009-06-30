@@ -10,7 +10,7 @@
 
 @interface TDSymbolStateTest : SenTestCase {
     TDSymbolState *symbolState;
-    TDReader *r;
+    PKReader *r;
     NSString *s;
 }
 @end

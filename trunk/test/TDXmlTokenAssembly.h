@@ -6,11 +6,11 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDAssembly.h>
+#import <ParseKit/PKAssembly.h>
 
 @class TDXmlTokenizer;
 
-@interface TDXmlTokenAssembly : TDAssembly <NSCopying> {
+@interface TDXmlTokenAssembly : PKAssembly <NSCopying> {
     TDXmlTokenizer *tokenizer;
     NSMutableArray *tokens;
 }

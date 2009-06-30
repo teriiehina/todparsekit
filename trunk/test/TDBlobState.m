@@ -8,7 +8,7 @@
 
 #import "TDBlobState.h"
 #import <ParseKit/TDToken.h>
-#import <ParseKit/TDReader.h>
+#import <ParseKit/PKReader.h>
 #import "TDToken+Blob.h"
 
 @interface TDToken ()
@@ -16,14 +16,14 @@
 @end
 
 @interface TDTokenizerState ()
-- (void)resetWithReader:(TDReader *)r;
+- (void)resetWithReader:(PKReader *)r;
 - (void)append:(TDUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @implementation TDBlobState
 
-- (TDToken *)nextTokenFromReader:(TDReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     [self resetWithReader:r];
     

@@ -12,8 +12,8 @@
     TDTokenizer *t;
     TDParser *p;
     TDParser *minus;
-    TDAssembly *a;
-    TDAssembly *res;
+    PKAssembly *a;
+    PKAssembly *res;
     NSString *s;    
 }
 

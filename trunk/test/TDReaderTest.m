@@ -14,7 +14,7 @@
 - (void)setUp {
     string = @"abcdefghijklmnopqrstuvwxyz";
     [string retain];
-    reader = [[TDReader alloc] initWithString:string];
+    reader = [[PKReader alloc] initWithString:string];
 }
 
 
