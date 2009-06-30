@@ -10,9 +10,9 @@
 
 @implementation RelaxParser
 
-- (TDTokenizer *)tokenizer {
+- (PKTokenizer *)tokenizer {
 	if (!tokenizer) {
-		self.tokenizer = [TDTokenizer tokenizer];
+		self.tokenizer = [PKTokenizer tokenizer];
 		[tokenizer.symbolState add:@"|="];
 		[tokenizer.symbolState add:@"&="];
 	}

@@ -35,7 +35,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
 
     NSRange r = NSMakeRange(0, tok.stringValue.length);
 

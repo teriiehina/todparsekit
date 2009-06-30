@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDWord.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation TDWord
 
@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     return tok.isWord;
 }
 

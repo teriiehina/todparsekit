@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@class TDToken;
-@class TDTokenizer;
+@class PKToken;
+@class PKTokenizer;
 @class PKParser;
 @class PKCollectionParser;
 
@@ -28,10 +28,10 @@ typedef enum {
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
     NSMutableDictionary *selectorTable;
-    TDToken *equals;
-    TDToken *curly;
-    TDToken *paren;
-    TDToken *caret;
+    PKToken *equals;
+    PKToken *curly;
+    PKToken *paren;
+    PKToken *caret;
     BOOL isGatheringClasses;
     PKCollectionParser *statementParser;
     PKCollectionParser *declarationParser;

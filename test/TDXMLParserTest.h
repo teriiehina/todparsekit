@@ -13,10 +13,10 @@
     NSString *s;
     NSString *g;
     TDParserFactory *factory;
-    TDTokenAssembly *a;
+    PKTokenAssembly *a;
     PKAssembly *res;
     PKParser *p;
-    TDTokenizer *t;
+    PKTokenizer *t;
 }
 
 @end

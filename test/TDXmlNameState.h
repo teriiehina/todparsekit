@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDTokenizerState.h"
+#import "PKTokenizerState.h"
 
-@interface TDXmlNameState : TDTokenizerState {
+@interface TDXmlNameState : PKTokenizerState {
 
 }
 

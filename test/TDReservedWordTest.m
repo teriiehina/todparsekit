@@ -15,7 +15,7 @@
     NSString *s = @"Foobar";
     [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
     
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDReservedWord word];
     PKAssembly *result = [p completeMatchFor:a];
@@ -30,7 +30,7 @@
     NSString *s = @"foobar";
     [TDReservedWord setReservedWords:[NSArray arrayWithObject:@"Foobar"]];
     
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDReservedWord word];
     PKAssembly *result = [p completeMatchFor:a];

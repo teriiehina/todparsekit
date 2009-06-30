@@ -11,7 +11,7 @@
 @implementation TDDelimitStateTest
 
 - (void)setUp {
-    t = [[TDTokenizer alloc] init];
+    t = [[PKTokenizer alloc] init];
     delimitState = t.delimitState;
 }
 
@@ -36,7 +36,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -55,7 +55,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -80,7 +80,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -105,7 +105,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -124,7 +124,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -153,7 +153,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -183,7 +183,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -202,7 +202,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -221,7 +221,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -255,7 +255,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -286,7 +286,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -305,7 +305,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -324,7 +324,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -362,7 +362,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -381,7 +381,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -400,7 +400,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -419,7 +419,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -438,7 +438,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -457,7 +457,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -478,7 +478,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -516,7 +516,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -534,7 +534,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -562,7 +562,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -581,7 +581,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -599,7 +599,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
 
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -617,7 +617,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -644,7 +644,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -662,7 +662,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -680,7 +680,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -698,7 +698,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -716,7 +716,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -734,7 +734,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -752,7 +752,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 
@@ -785,7 +785,7 @@
     TDEquals(tok.floatValue, (CGFloat)0.0);
     
     tok = [t nextToken];
-    TDEqualObjects(tok, [TDToken EOFToken]);
+    TDEqualObjects(tok, [PKToken EOFToken]);
 }
 
 

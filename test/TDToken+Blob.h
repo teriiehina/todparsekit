@@ -1,16 +1,16 @@
 //
-//  TDToken+Blob.h
+//  PKToken+Blob.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/7/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 extern const NSInteger TDTokenTypeBlob;
 
-@interface TDToken (Blob)
+@interface PKToken (Blob)
 - (BOOL)isBlob;
 @end
 

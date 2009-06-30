@@ -14,7 +14,7 @@
 #import "TDJSCharacterAssembly.h"
 #import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDTokenAssembly.h>
+#import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/TDCharacterAssembly.h>
 
 #pragma mark -
@@ -37,7 +37,7 @@ static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSO
     a = [data bestMatchFor:a];
     
     JSObjectRef result = NULL;
-    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+    if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         result = TDTokenAssembly_new(ctx, a);
     } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
         result = TDCharacterAssembly_new(ctx, a);
@@ -57,7 +57,7 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
     a = [data completeMatchFor:a];
     
     JSObjectRef result = NULL;
-    if ([a isMemberOfClass:[TDTokenAssembly class]]) {
+    if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         result = TDTokenAssembly_new(ctx, a);
     } else if ([a isMemberOfClass:[TDCharacterAssembly class]]) {
         result = TDCharacterAssembly_new(ctx, a);

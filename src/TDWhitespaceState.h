@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 /*!
     @class      TDWhitespaceState
     @brief      A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token.
     @details    By default, all characters from 0 to 32 are whitespace.
 */
-@interface TDWhitespaceState : TDTokenizerState {
+@interface TDWhitespaceState : PKTokenizerState {
     NSMutableArray *whitespaceChars;
     BOOL reportsWhitespaceTokens;
 }
@@ -36,7 +36,7 @@
 
 /*!
     @property   reportsWhitespaceTokens
-    @brief      determines whether a <tt>TDTokenizer</tt> associated with this state reports or silently consumes whitespace tokens. default is <tt>NO</tt> which causes silent consumption of whitespace chars
+    @brief      determines whether a <tt>PKTokenizer</tt> associated with this state reports or silently consumes whitespace tokens. default is <tt>NO</tt> which causes silent consumption of whitespace chars
 */
 @property (nonatomic) BOOL reportsWhitespaceTokens;
 @end

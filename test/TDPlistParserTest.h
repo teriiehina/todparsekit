@@ -12,7 +12,7 @@
 @interface TDPlistParserTest : SenTestCase {
     TDPlistParser *p;
     NSString *s;
-    TDTokenAssembly *a;
+    PKTokenAssembly *a;
     PKAssembly *res;
 }
 

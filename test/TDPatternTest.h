@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDPatternTest : SenTestCase {
-    TDTokenizer *t;
+    PKTokenizer *t;
     TDPattern *p;
     PKIntersection *inter;
     PKAssembly *a;

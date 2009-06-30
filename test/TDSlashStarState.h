@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 /*!
     @class      TDSlashStarState 
     @brief      A slash star state ignores everything up to a closing star and slash, and then returns the tokenizer's next token.
 */
-@interface TDSlashStarState : TDTokenizerState {
+@interface TDSlashStarState : PKTokenizerState {
     
 }
 

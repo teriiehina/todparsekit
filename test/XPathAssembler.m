@@ -34,7 +34,7 @@
 - (void)workOnAxisSpecifier:(PKAssembly *)a {
     //NSLog(@"\n\n %s\n\n %@ \n\n", _cmd, a);
     
-    //TDToken *tok = [a pop];
+    //PKToken *tok = [a pop];
     
 }
 

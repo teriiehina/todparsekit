@@ -32,8 +32,8 @@ static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
 
 @interface EBNFParser ()
-@property (nonatomic, readwrite, retain) TDTokenizer *tokenizer;
-- (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t;
+@property (nonatomic, readwrite, retain) PKTokenizer *tokenizer;
+- (void)addSymbolString:(NSString *)s toTokenizer:(PKTokenizer *)t;
 
 - (void)workOnWord:(PKAssembly *)a;
 - (void)workOnNum:(PKAssembly *)a;
@@ -80,15 +80,15 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 - (id)parse:(NSString *)s {
     self.tokenizer.string = s;
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:self.tokenizer];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:self.tokenizer];
     PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
 }
 
 
-- (TDTokenizer *)tokenizer {
+- (PKTokenizer *)tokenizer {
     if (!tokenizer) {
-        self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+        self.tokenizer = [[[PKTokenizer alloc] init] autorelease];
         [self addSymbolString:kEBNFEqualsString toTokenizer:tokenizer];
         [self addSymbolString:kEBNFVariablePrefix toTokenizer:tokenizer];
         [self addSymbolString:kEBNFVariableSuffix toTokenizer:tokenizer];
@@ -97,7 +97,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-- (void)addSymbolString:(NSString *)s toTokenizer:(TDTokenizer *)t {
+- (void)addSymbolString:(NSString *)s toTokenizer:(PKTokenizer *)t {
     if (s.length) {
         NSInteger c = [s characterAtIndex:0];
         [t setTokenizerState:t.symbolState from:c to:c];
@@ -310,7 +310,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnWord:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
@@ -318,7 +318,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnNum:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[TDLiteral literalWithString:tok.stringValue]];
 }
 
@@ -326,12 +326,12 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnQuotedString:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     
     PKSequence *p = [PKSequence sequence];
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDToken *eof = [TDToken EOFToken];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
+    PKToken *eof = [PKToken EOFToken];
     while (eof != (tok = [t nextToken])) {
         [p add:[TDLiteral literalWithString:tok.stringValue]];
     }
@@ -397,7 +397,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     NSLog(@"%s", _cmd);
     NSLog(@"a: %@", a);
     id val = [a pop];
-    TDToken *keyTok = [a pop];
+    PKToken *keyTok = [a pop];
     NSMutableDictionary *table = [NSMutableDictionary dictionaryWithDictionary:a.target];
     [table setObject:val forKey:keyTok.stringValue];
     a.target = table;
@@ -407,7 +407,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnVariable:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDToken *keyTok = [a pop];
+    PKToken *keyTok = [a pop];
     id val = [a.target objectForKey:keyTok.stringValue];
     if (val) {
         [a push:val];

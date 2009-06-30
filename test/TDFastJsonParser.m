@@ -15,24 +15,24 @@
 - (void)workOnArray;
 - (NSArray *)objectsAbove:(id)fence;
 
-@property (retain) TDTokenizer *tokenizer;
+@property (retain) PKTokenizer *tokenizer;
 @property (retain) NSMutableArray *stack;
-@property (retain) TDToken *curly;
-@property (retain) TDToken *bracket;
+@property (retain) PKToken *curly;
+@property (retain) PKToken *bracket;
 @end
 
 @implementation TDFastJsonParser
 
 - (id)init {
     if (self = [super init]) {
-        self.tokenizer = [TDTokenizer tokenizer];
+        self.tokenizer = [PKTokenizer tokenizer];
 
         // configure tokenizer
         [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
         [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
 
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.bracket = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
+        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.bracket = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
     }
     return self;
 }
@@ -51,8 +51,8 @@
     self.stack = [NSMutableArray array];
     
     tokenizer.string = s;
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     
     while ((tok = [tokenizer nextToken]) != eof) {
         NSString *sval = tok.stringValue;

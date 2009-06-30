@@ -10,7 +10,7 @@
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -25,7 +25,7 @@ static JSValueRef PKAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjec
     TDPreconditionInstaceOf(PKAssembly_class, "pop");
     
     PKAssembly *data = JSObjectGetPrivate(this);
-    TDToken *tok = [data pop];
+    PKToken *tok = [data pop];
     return TDToken_new(ctx, tok);
 }
 

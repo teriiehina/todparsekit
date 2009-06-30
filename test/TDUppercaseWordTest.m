@@ -13,7 +13,7 @@
 
 - (void)testFoobar {
     NSString *s = @"Foobar";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDUppercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
@@ -25,7 +25,7 @@
 
 - (void)testfoobar {
     NSString *s = @"foobar";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDUppercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
@@ -36,7 +36,7 @@
 
 - (void)test123 {
     NSString *s = @"123";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDUppercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];
@@ -47,7 +47,7 @@
 
 - (void)testPercentFoobar {
     NSString *s = @"%Foobar";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     
     PKParser *p = [TDUppercaseWord word];
     PKAssembly *result = [p completeMatchFor:a];

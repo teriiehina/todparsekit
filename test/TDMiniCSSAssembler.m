@@ -19,8 +19,8 @@
 - (id)init {
     if (self = [super init]) {
         self.attributes = [NSMutableDictionary dictionary];
-        self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
     }
     return self;
 }
@@ -51,31 +51,31 @@
 //    constants   = 'bold' | 'normal' | 'italic';
 
 - (void)workOnProperty:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
 - (void)workOnString:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
 - (void)workOnConstant:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
 - (void)workOnNum:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
 - (void)workOnPixelValue:(PKAssembly *)a {
-    TDToken *tok = [a pop];
+    PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
@@ -111,7 +111,7 @@
     id props = [a pop];
     [self gatherPropertiesIn:props];
 
-    for (TDToken *selectorTok in [a objectsAbove:nil]) {
+    for (PKToken *selectorTok in [a objectsAbove:nil]) {
         NSString *selector = selectorTok.stringValue;
         [attributes setObject:props forKey:selector];
     }
@@ -163,7 +163,7 @@
 //}
 //
 //- (void)workOnHexcolor:(PKAssembly *)a {
-//    TDToken *tok = [a pop];
+//    PKToken *tok = [a pop];
 //    NSString *s = tok.stringValue;
 //    NSColor *color = nil;
 //    

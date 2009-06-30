@@ -11,7 +11,7 @@
 @implementation TDTokenTest
 
 - (void)setUp {
-    eof = [TDToken EOFToken];
+    eof = [PKToken EOFToken];
 }
 
 

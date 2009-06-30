@@ -49,7 +49,7 @@
 
 - (void)doPlistParser {
     NSString *s = nil;
-    TDTokenAssembly *a = nil;
+    PKTokenAssembly *a = nil;
     PKAssembly *res = nil;
     TDPlistParser *p = nil;
     
@@ -79,7 +79,7 @@
     @"}";
     
     p.tokenizer.string = s;
-    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser completeMatchFor:a];
     
     id attrs = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -89,7 +89,7 @@
     id dict = [res pop];
     
     p.tokenizer.string = [[[dict description] copy] autorelease];
-    a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     res = [p.dictParser bestMatchFor:a];
     dict = [res pop];
 
@@ -137,7 +137,7 @@
     //NSString *s = @"foo;";
     EBNFParser *p = [[[EBNFParser alloc] init] autorelease];
     
-    //    PKAssembly *a = [p bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    //    PKAssembly *a = [p bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     //    NSLog(@"a: %@", a);
     //    NSLog(@"a.target: %@", a.target);
     
@@ -149,7 +149,7 @@
     //    NSLog(@"res.subparsers 1: %@", [[res.subparsers objectAtIndex:1] string]);
     
     s = @"bar foo bar foo";
-    PKAssembly *a = [res completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    PKAssembly *a = [res completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     NSLog(@"\n\na: %@\n\n", a);
 }
 
@@ -169,9 +169,9 @@
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
    
 //    s = @"bar bar";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
     t.whitespaceState.reportsWhitespaceTokens = YES;
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
     a.preservesWhitespaceTokens = YES;
     //PKAssembly *res = 
     [lp completeMatchFor:a];
@@ -188,7 +188,7 @@
     
     s = @";";
     p.tokenizer.string = s;
-    //PKAssembly *a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
+    //PKAssembly *a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     //PKAssembly *res = [p bestMatchFor:a];
     //    TDEqualObjects(@"[var, foo, =, 'bar', ;]var/foo/=/bar/;^", [res description]);
 }
@@ -197,9 +197,9 @@
 - (void)doProf {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json_with_discards" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
     NSDate *start = [NSDate date];
     while ((tok = [t nextToken]) != eof) ;
     CGFloat ms4tok = -([start timeIntervalSinceNow]);
@@ -218,7 +218,7 @@
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     start = [NSDate date];
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
 
@@ -253,9 +253,9 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
-    TDToken *eof = [TDToken EOFToken];
-    TDToken *tok = nil;
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
+    PKToken *eof = [PKToken EOFToken];
+    PKToken *tok = nil;
 
     NSDate *start = [NSDate date];    
     while ((tok = [t nextToken]) != eof) ;
@@ -279,7 +279,7 @@
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
     PKParser *lp = [factory parserFromGrammar:s assembler:assembler];
     s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
     
 }
@@ -297,7 +297,7 @@
     // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
+    PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     a = [cssParser bestMatchFor:a];
     
     // get attributes from css
@@ -317,9 +317,9 @@
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
 
     // take care to preseve the whitespace in the JSON
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
     t.whitespaceState.reportsWhitespaceTokens = YES;
-    TDTokenAssembly *a1 = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKTokenAssembly *a1 = [PKTokenAssembly assemblyWithTokenizer:t];
     a1.preservesWhitespaceTokens = YES;
     [jsonParser completeMatchFor:a1];
     
@@ -353,9 +353,9 @@
 
 - (void)doMultiLineComment {
     NSString *s = @"/* foo */ ";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
     t.commentState.reportsCommentTokens = YES;
-    //TDToken *tok = 
+    //PKToken *tok = 
     [t nextToken];
 }
 
@@ -386,7 +386,7 @@
 //    
 ////    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
 ////    NSString *s = @"bar bat";
-////    a = [TDTokenAssembly assemblyWithString:s];
+////    a = [PKTokenAssembly assemblyWithString:s];
 ////    res = [lp completeMatchFor:a];
 ////    TDEqualObjects(@"[bar, bat]bar/bat^", [res description]);
 ////    [mock verify];
@@ -395,25 +395,25 @@
 //    PKParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
 //
 //    NSString *s = @"$foo%";
-//    TDTokenizer *t = lp.tokenizer;
+//    PKTokenizer *t = lp.tokenizer;
 //    t.string = s;
-//    PKAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+//    PKAssembly *res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
     NSString *g = [NSString stringWithContentsOfFile:path];
     PKParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
-    TDTokenizer *t = p.tokenizer;
+    PKTokenizer *t = p.tokenizer;
     t.string = @"foo";
-    PKAssembly *res = [p completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
+    PKAssembly *res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     
 }
 
 
 - (void)doParenStuff {
     NSString *s = @"-(ab+5)";
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
 
-    TDToken *tok = [t nextToken];
+    PKToken *tok = [t nextToken];
     
 //    TDTrue(tok.isSymbol);
 //    TDEqualObjects(tok.stringValue, @"-");    
@@ -429,13 +429,13 @@
 - (void)doDelimitedString {
     NSString *s = @"<?= 'foo' ?>";
 
-    TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
+    PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
     NSCharacterSet *cs = nil;
     
     [t setTokenizerState:t.delimitState from:'<' to:'<'];
     [t.delimitState addStartMarker:@"<?=" endMarker:@"?>" allowedCharacterSet:cs];
     
-//    TDToken *tok = [t nextToken];
+//    PKToken *tok = [t nextToken];
     
     //TDTrue(tok.isDelimitedString);
     
@@ -446,7 +446,7 @@
     TDJavaScriptParser *jsp = [TDJavaScriptParser parser];
     NSString *s = @"for( ; true; true) {}";
     jsp.tokenizer.string = s;
-//    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
+//    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:jsp.tokenizer];
 //    id res = [jsp bestMatchFor:a];
     //TDEqualObjects([res description], @"['foo']'foo'^");
     
@@ -463,7 +463,7 @@
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
 	NSString *g = [NSString stringWithContentsOfFile:path];
     PKParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
-    TDTokenizer *t = p.tokenizer;	
+    PKTokenizer *t = p.tokenizer;	
 }
 
 

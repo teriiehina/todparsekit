@@ -6,21 +6,21 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/PKTokenizer.h>
 #import <ParseKit/ParseKit.h>
 
-@interface TDToken ()
+@interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
 
-@interface TDTokenizer ()
-- (TDTokenizerState *)tokenizerStateFor:(PKUniChar)c;
-- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
+@interface PKTokenizer ()
+- (PKTokenizerState *)tokenizerStateFor:(PKUniChar)c;
+- (PKTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
 @property (nonatomic, retain) PKReader *reader;
 @property (nonatomic, retain) NSMutableArray *tokenizerStates;
 @end
 
-@implementation TDTokenizer
+@implementation PKTokenizer
 
 + (id)tokenizer {
     return [self tokenizerWithString:nil];
@@ -85,19 +85,19 @@
 }
 
 
-- (TDToken *)nextToken {
+- (PKToken *)nextToken {
     PKUniChar c = [reader read];
     
-    TDToken *result = nil;
+    PKToken *result = nil;
     
     if (PKEOF == c) {
-        result = [TDToken EOFToken];
+        result = [PKToken EOFToken];
     } else {
-        TDTokenizerState *state = [self tokenizerStateFor:c];
+        PKTokenizerState *state = [self tokenizerStateFor:c];
         if (state) {
             result = [state nextTokenFromReader:reader startingWith:c tokenizer:self];
         } else {
-            result = [TDToken EOFToken];
+            result = [PKToken EOFToken];
         }
     }
     
@@ -105,7 +105,7 @@
 }
 
 
-- (void)setTokenizerState:(TDTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end {
+- (void)setTokenizerState:(PKTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end {
     NSParameterAssert(state);
 
     NSInteger i = start;
@@ -135,7 +135,7 @@
 
 #pragma mark -
 
-- (TDTokenizerState *)tokenizerStateFor:(PKUniChar)c {
+- (PKTokenizerState *)tokenizerStateFor:(PKUniChar)c {
     if (c < 0 || c > 255) {
         // customization above 255 is not supported, so fetch default.
         return [self defaultTokenizerStateFor:c];
@@ -145,7 +145,7 @@
     }
 }
 
-- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c {
+- (PKTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c {
     if (c >= 0 && c <= ' ') {            // From:  0 to: 32    From:0x00 to:0x20
         return whitespaceState;
     } else if (c == 33) {

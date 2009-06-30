@@ -12,7 +12,7 @@
 @interface TDJavaScriptParserTest : SenTestCase {
     TDJavaScriptParser *jsp;
     NSString *s;
-    TDTokenAssembly *a;
+    PKTokenAssembly *a;
     id res;
 }
 

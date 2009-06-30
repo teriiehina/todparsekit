@@ -14,7 +14,7 @@
     NSString *s;
     PKAssembly *a;
     PKAssembly *res;
-    TDTokenizer *t;
+    PKTokenizer *t;
     
     NSMutableDictionary *d;
 }

@@ -47,11 +47,11 @@
 #import <ParseKit/TDDigit.h>
 
 // tokens
-#import <ParseKit/TDToken.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDTokenArraySource.h>
-#import <ParseKit/TDTokenAssembly.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKToken.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKTokenArraySource.h>
+#import <ParseKit/PKTokenAssembly.h>
+#import <ParseKit/PKTokenizerState.h>
 #import <ParseKit/TDNumberState.h>
 #import <ParseKit/TDQuoteState.h>
 #import <ParseKit/TDDelimitState.h>

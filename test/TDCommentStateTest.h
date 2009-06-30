@@ -11,9 +11,9 @@
 @interface TDCommentStateTest : SenTestCase {
     TDCommentState *commentState;
     PKReader *r;
-    TDTokenizer *t;
+    PKTokenizer *t;
     NSString *s;
-    TDToken *tok;
+    PKToken *tok;
 }
 
 @end

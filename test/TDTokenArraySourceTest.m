@@ -17,8 +17,8 @@
 - (void)testFoo {
     d = @";";
     s = @"I came; I saw; I left in peace.;";
-    t = [[[TDTokenizer alloc] initWithString:s] autorelease];
-    tas = [[[TDTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
+    t = [[[PKTokenizer alloc] initWithString:s] autorelease];
+    tas = [[[PKTokenArraySource alloc] initWithTokenizer:t delimiter:d] autorelease];
     
     TDTrue([tas hasMore]);
     NSArray *a = [tas nextTokenArray];

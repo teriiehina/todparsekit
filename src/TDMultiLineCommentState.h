@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
-@interface TDMultiLineCommentState : TDTokenizerState {
+@interface TDMultiLineCommentState : PKTokenizerState {
     NSMutableArray *startMarkers;
     NSMutableArray *endMarkers;
     NSString *currentStartMarker;

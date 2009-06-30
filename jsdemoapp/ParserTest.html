@@ -8,7 +8,7 @@ try {
     parser.add(new TDLiteral("coffee"));
     
     var s = "hot hot hot coffee";
-    var a = new TDTokenAssembly(s);
+    var a = new PKTokenAssembly(s);
     a = parser.completeMatch(a);
     print(a);
 } catch (e) {

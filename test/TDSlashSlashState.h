@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 /*!
     @class      TDSlashSlashState 
     @brief      A slash slash state ignores everything up to an end-of-line and returns the tokenizer's next token.
 */
-@interface TDSlashSlashState : TDTokenizerState {
+@interface TDSlashSlashState : PKTokenizerState {
     
 }
 

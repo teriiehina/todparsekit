@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-@class TDTokenizer;
-@class TDToken;
+@class PKTokenizer;
+@class PKToken;
 
 @interface TDFastJsonParser : NSObject {
-    TDTokenizer *tokenizer;
+    PKTokenizer *tokenizer;
     NSMutableArray *stack;
-    TDToken *curly;
-    TDToken *bracket;
+    PKToken *curly;
+    PKToken *bracket;
 }
 - (id)parse:(NSString *)s;
 @end

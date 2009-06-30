@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDDelimitedString.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @interface TDDelimitedString ()
 @property (nonatomic, retain) NSString *startMarker;
@@ -42,7 +42,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     BOOL result = tok.isDelimitedString;
     if (result && startMarker.length) {
         result = [tok.stringValue hasPrefix:startMarker];

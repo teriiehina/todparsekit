@@ -72,7 +72,7 @@
 
 
 - (PKAssembly *)assemblyWithString:(NSString *)s {
-    TDTokenizer *t = [[[TDTokenizer alloc] initWithString:s] autorelease];
+    PKTokenizer *t = [[[PKTokenizer alloc] initWithString:s] autorelease];
     [t.symbolState add:@"::"];
     [t.symbolState add:@"!="];
     [t.symbolState add:@"<="];
@@ -84,7 +84,7 @@
 //    [t setTokenizerState:NCNameState from: 'A' to: 'Z'];
 //    [t setTokenizerState:NCNameState from:0xc0 to:0xff];
     
-    TDTokenAssembly *a = [TDTokenAssembly assemblyWithTokenizer:t];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
 //    TDNCNameState *NCNameState = [[[TDNCNameState alloc] init] autorelease];
     
     return a;

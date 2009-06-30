@@ -18,7 +18,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+        self.tokenizer = [[[PKTokenizer alloc] init] autorelease];
         
         [tokenizer.symbolState add:@"::"];
         [tokenizer.symbolState add:@"<="];
@@ -71,13 +71,13 @@
 - (void)doParse {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    //self.tokenizer = [[[TDTokenizer alloc] init] autorelease];
+    //self.tokenizer = [[[PKTokenizer alloc] init] autorelease];
     self.tokenizer.string = self.inString;
     
     
     NSMutableArray *toks = [[NSMutableArray alloc] init];
-    TDToken *tok = nil;
-    TDToken *eofTok = [TDToken EOFToken];
+    PKToken *tok = nil;
+    PKToken *eofTok = [PKToken EOFToken];
     while (tok = [tokenizer nextToken]) {
         if (eofTok == tok) {
             break;
@@ -95,13 +95,13 @@
 
 - (void)done:(NSArray *)toks {
     NSMutableString *s = [NSMutableString string];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         [s appendFormat:@"%@ %C", tok.stringValue, 0xab];
     }
     self.tokString = [[s copy] autorelease];
     
     s = [NSMutableString string];
-    for (TDToken *tok in toks) {
+    for (PKToken *tok in toks) {
         [s appendFormat:@"%@\n", [tok debugDescription]];
     }
     self.outString = [[s copy] autorelease];

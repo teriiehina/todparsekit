@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKParser.h>
 
-@class TDToken;
+@class PKToken;
 
 /*!
     @class      PKTerminal

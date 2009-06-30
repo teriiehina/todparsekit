@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/PKTokenizerState.h>
 
 /*!
     @class      TDWordState 
@@ -22,7 +22,7 @@
 @endcode
                 <p>as well as: minus sign <tt>-</tt>, underscore <tt>_</tt>, and apostrophe <tt>'</tt>.</p>
 */
-@interface TDWordState : TDTokenizerState {
+@interface TDWordState : PKTokenizerState {
     NSMutableArray *wordChars;
 }
 

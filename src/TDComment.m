@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/TDComment.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation TDComment
 
@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    TDToken *tok = (TDToken *)obj;
+    PKToken *tok = (PKToken *)obj;
     return tok.isComment;
 }
 

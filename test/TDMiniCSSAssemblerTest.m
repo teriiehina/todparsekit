@@ -28,7 +28,7 @@
     TDNotNil(lp);
     
     s = @"bar { color:rgb(10, 200, 30); }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -47,7 +47,7 @@
     TDNotNil(lp);
     
     s = @"foo, bar { color:rgb(10, 200, 30); }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]foo/,/bar/{/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -76,7 +76,7 @@
     TDNotNil(lp);
     
     s = @"foo { background-color:rgb(255.0, 0.0, 255.0) }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]foo/{/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -96,7 +96,7 @@
     TDNotNil(lp);
     
     s = @"decl { font-size:12px }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]decl/{/font-size/:/12/px/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -115,7 +115,7 @@
     TDNotNil(lp);
     
     s = @"decl { font-size:8px }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]decl/{/font-size/:/8/px/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -134,7 +134,7 @@
     TDNotNil(lp);
     
     s = @"expr { font-size:16px; font-family:'Helvetica' }";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]expr/{/font-size/:/16/px/;/font-family/:/'Helvetica'/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -153,7 +153,7 @@
     TDNotNil(lp);
     
     s = @"expr { font-size:9.0px; font-family:'Courier'; background-color:rgb(255.0, 0.0, 255.0) ;  color:rgb(10, 200, 30);}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]expr/{/font-size/:/9.0/px/;/font-family/:/'Courier'/;/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/;/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
     TDNotNil(ass.attributes);
@@ -184,7 +184,7 @@
     TDNotNil(lp);
     
     s = @"expr, decl { font-size:9.0px; font-family:'Courier'; background-color:rgb(255.0, 0.0, 255.0) ;  color:rgb(10, 200, 30);}";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     a = [lp bestMatchFor:a];
     TDEqualObjects(@"[]expr/,/decl/{/font-size/:/9.0/px/;/font-family/:/'Courier'/;/background-color/:/rgb/(/255.0/,/0.0/,/255.0/)/;/color/:/rgb/(/10/,/200/,/30/)/;/}^", [a description]);
     TDNotNil(ass.attributes);

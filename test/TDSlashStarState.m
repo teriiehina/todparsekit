@@ -9,11 +9,11 @@
 #import <ParseKit/TDSlashStarState.h>
 #import <ParseKit/TDSlashState.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDTokenizer.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTokenizer.h>
+#import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
@@ -21,7 +21,7 @@
 
 @implementation TDSlashStarState
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -63,7 +63,7 @@
     }
     
     if (reportTokens) {
-        return [TDToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
+        return [PKToken tokenWithTokenType:TDTokenTypeComment stringValue:[self bufferedString] floatValue:0.0];
     } else {
         return [t nextToken];
     }

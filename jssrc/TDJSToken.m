@@ -8,14 +8,14 @@
 
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDToken_class, "toString");
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data debugDescription], ex);
 }
 
@@ -23,52 +23,52 @@ static JSValueRef TDToken_toString(JSContextRef ctx, JSObjectRef function, JSObj
 #pragma mark Properties
 
 static JSValueRef TDToken_getTokenType(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeNumber(ctx, data.tokenType);
 }
 
 static JSValueRef TDToken_getStringValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, data.stringValue, ex);
 }
 
 static JSValueRef TDToken_getFloatValue(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeNumber(ctx, data.floatValue);
 }
 
 static JSValueRef TDToken_getIsNumber(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isNumber);
 }
 
 static JSValueRef TDToken_getIsSymbol(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isSymbol);
 }
 
 static JSValueRef TDToken_getIsWord(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isWord);
 }
 
 static JSValueRef TDToken_getIsQuotedString(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isQuotedString);
 }
 
 static JSValueRef TDToken_getIsWhitespace(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isWhitespace);
 }
 
 static JSValueRef TDToken_getIsComment(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isComment);
 }
 
 static JSValueRef TDToken_getIsDelimitedString(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDToken *data = JSObjectGetPrivate(this);
+    PKToken *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.isDelimitedString);
 }
 
@@ -80,7 +80,7 @@ static void TDToken_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDToken_finalize(JSObjectRef this) {
-    TDToken *data = (TDToken *)JSObjectGetPrivate(this);
+    PKToken *data = (PKToken *)JSObjectGetPrivate(this);
     [data autorelease];
 }
 
@@ -110,7 +110,7 @@ static JSStaticValue TDToken_staticValues[] = {
 //JSValueRef TDToken_EOFToken(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
 //    static JSValueRef eof = NULL;
 //    if (!eof) {
-//        eof = TDToken_new(ctx, [TDToken EOFToken]);
+//        eof = TDToken_new(ctx, [PKToken EOFToken]);
 //        JSValueProtect(ctx, eof); // is this necessary/appropriate?
 //    }
 //    return eof;
@@ -122,7 +122,7 @@ static JSStaticValue TDToken_staticValues[] = {
 JSValueRef TDToken_getEOFToken(JSContextRef ctx) {
     static JSObjectRef eof = NULL;
     if (!eof) {
-        eof = TDToken_new(ctx, [TDToken EOFToken]);
+        eof = TDToken_new(ctx, [PKToken EOFToken]);
     }
     return eof;
 }
@@ -148,12 +148,12 @@ JSObjectRef TDToken_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDToken_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(3, "TDToken");
+    TDPreconditionConstructorArgc(3, "PKToken");
     
     CGFloat tokenType = JSValueToNumber(ctx, argv[0], NULL);
     NSString *stringValue = TDJSValueGetNSString(ctx, argv[1], ex);
     CGFloat floatValue = JSValueToNumber(ctx, argv[2], NULL);
 
-    TDToken *data = [[TDToken alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
+    PKToken *data = [[PKToken alloc] initWithTokenType:tokenType stringValue:stringValue floatValue:floatValue];
     return TDToken_new(ctx, data);
 }

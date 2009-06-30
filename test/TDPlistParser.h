@@ -18,12 +18,12 @@
     PKCollectionParser *stringParser;
     PKParser *numParser;
     PKParser *nullParser;
-    TDToken *curly;
-    TDToken *paren;
+    PKToken *curly;
+    PKToken *paren;
 }
 - (id)parse:(NSString *)s;
 
-@property (nonatomic, readonly, retain) TDTokenizer *tokenizer;
+@property (nonatomic, readonly, retain) PKTokenizer *tokenizer;
 @property (nonatomic, retain) PKCollectionParser *dictParser;
 @property (nonatomic, retain) PKCollectionParser *keyValuePairParser;
 @property (nonatomic, retain) PKCollectionParser *arrayParser;

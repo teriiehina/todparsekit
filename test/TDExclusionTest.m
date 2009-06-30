@@ -18,18 +18,18 @@
     [ex add:foo];
     
     s = @"bar";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDEqualObjects(@"[bar]bar^", [res description]);
     
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     NSLog(@"res: %@", res);
     TDNil(res);
 
     s = @"wee";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDEqualObjects(@"[wee]wee^", [res description]);
 }
@@ -46,17 +46,17 @@
     [ex add:list];
     
     s = @"baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDEqualObjects(@"[baz]baz^", [res description]);
     
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
 
     s = @"wee";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDEqualObjects(@"[wee]wee^", [res description]);
 }
@@ -76,17 +76,17 @@
     [ex add:list];
     
     s = @"baz";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDEqualObjects(@"[baz]baz^", [res description]);
     
     s = @"foo";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
 
     s = @"wee";
-    a = [TDTokenAssembly assemblyWithString:s];
+    a = [PKTokenAssembly assemblyWithString:s];
     res = [ex bestMatchFor:a];
     TDNil(res);
 }

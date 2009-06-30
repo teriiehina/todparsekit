@@ -7,11 +7,11 @@
 //
 
 #import "TDNCNameState.h"
-#import "TDTokenizer.h"
+#import "PKTokenizer.h"
 #import "PKReader.h"
 #import "TDXmlToken.h"
 
-@interface TDTokenizerState ()
+@interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
 - (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
@@ -53,7 +53,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
+- (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     [self resetWithReader:r];
     
     NSInteger c = cin;

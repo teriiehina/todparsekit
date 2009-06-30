@@ -11,7 +11,7 @@
 @interface TDSlashStateTest : SenTestCase {
     TDSlashState *slashState;
     PKReader *r;
-    TDTokenizer *t;
+    PKTokenizer *t;
     NSString *s;
 }
 @end

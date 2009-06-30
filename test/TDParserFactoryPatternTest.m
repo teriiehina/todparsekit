@@ -21,7 +21,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
@@ -30,7 +30,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
@@ -39,7 +39,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
     
     
@@ -48,7 +48,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
     
         
@@ -57,7 +57,7 @@
     TDNotNil(lp);
     
     s = @"foo";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[foo]foo^", [res description]);
 }
 
@@ -68,7 +68,7 @@
     TDNotNil(lp);
     
     s = @"FOO";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[FOO]FOO^", [res description]);
     
     
@@ -77,7 +77,7 @@
     TDNotNil(lp);
     
     s = @"FoO";
-    res = [lp bestMatchFor:[TDTokenAssembly assemblyWithString:s]];
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDEqualObjects(@"[FoO]FoO^", [res description]);
 }
 

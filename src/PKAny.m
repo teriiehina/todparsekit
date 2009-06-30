@@ -7,7 +7,7 @@
 //
 
 #import <ParseKit/PKAny.h>
-#import <ParseKit/TDToken.h>
+#import <ParseKit/PKToken.h>
 
 @implementation PKAny
 
@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    return [obj isKindOfClass:[TDToken class]];
+    return [obj isKindOfClass:[PKToken class]];
 }
 
 @end

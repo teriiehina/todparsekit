@@ -12,11 +12,11 @@
 @interface TDParserFactoryPatternTest : SenTestCase {
     NSString *g;
     NSString *s;
-    TDTokenAssembly *a;
+    PKTokenAssembly *a;
     TDParserFactory *factory;
     PKAssembly *res;
     PKParser *lp; // language parser
-    TDTokenizer *t;
+    PKTokenizer *t;
 }
 
 @end
