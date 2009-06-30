@@ -7,7 +7,7 @@
 //
 
 #import "TDGenericAssembler.h"
-#import "NSArray+TDParseKitAdditions.h"
+#import "NSArray+ParseKitAdditions.h"
 #import <ParseKit/ParseKit.h>
 
 @interface TDGenericAssembler ()

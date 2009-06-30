@@ -8,7 +8,7 @@
 
 #import "TDSyntaxHighlighter.h"
 #import <ParseKit/ParseKit.h>
-#import "TDParserFactory.h"
+#import "PKParserFactory.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"
 
@@ -19,7 +19,7 @@
 // all of the ivars for these properties are lazy loaded in the getters.
 // thats so that if an application has syntax highlighting turned off, this class will
 // consume much less memory/fewer resources.
-@property (nonatomic, retain) TDParserFactory *parserFactory;
+@property (nonatomic, retain) PKParserFactory *parserFactory;
 @property (nonatomic, retain) PKParser *miniCSSParser;
 @property (nonatomic, retain) TDMiniCSSAssembler *miniCSSAssembler;
 @property (nonatomic, retain) TDGenericAssembler *genericAssembler;
@@ -53,9 +53,9 @@
 }
 
 
-- (TDParserFactory *)parserFactory {
+- (PKParserFactory *)parserFactory {
     if (!parserFactory) {
-        self.parserFactory = [TDParserFactory factory];
+        self.parserFactory = [PKParserFactory factory];
     }
     return parserFactory;
 }

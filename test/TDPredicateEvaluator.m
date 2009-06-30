@@ -7,7 +7,7 @@
 //
 
 #import "TDPredicateEvaluator.h"
-#import "NSString+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
 
 // expr                 = term orTerm*
 // orTerm               = 'or' term

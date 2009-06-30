@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
 //
 
-#import "TDParserFactory.h"
+#import "PKParserFactory.h"
 #import <ParseKit/ParseKit.h>
-#import "NSString+TDParseKitAdditions.h"
-#import "NSArray+TDParseKitAdditions.h"
+#import "NSString+ParseKitAdditions.h"
+#import "NSArray+ParseKitAdditions.h"
 
 @interface PKParser (TDParserFactoryAdditionsFriend)
 - (void)setTokenizer:(PKTokenizer *)t;
@@ -51,7 +51,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     }
 }
 
-@interface TDParserFactory ()
+@interface PKParserFactory ()
 - (PKTokenizer *)tokenizerForParsingGrammar;
 - (BOOL)isAllWhitespace:(NSArray *)toks;
 - (id)parserTokensTableFromParsingStatementsInString:(NSString *)s;
@@ -134,10 +134,10 @@ void TDReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain, readonly) PKCollectionParser *optionalWhitespaceParser;
 @end
 
-@implementation TDParserFactory
+@implementation PKParserFactory
 
 + (id)factory {
-    return [[[TDParserFactory alloc] init] autorelease];
+    return [[[PKParserFactory alloc] init] autorelease];
 }
 
 

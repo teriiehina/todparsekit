@@ -13,7 +13,7 @@
 - (void)setUp {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
     NSString *g = [NSString stringWithContentsOfFile:path];
-    p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+    p = [[PKParserFactory factory] parserFromGrammar:g assembler:nil];
     t = p.tokenizer;
 }
 

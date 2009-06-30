@@ -87,12 +87,6 @@
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
 		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
 		D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
-		D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC150FF87F3300D7773A /* NSArray+TDParseKitAdditions.h */; };
-		D34BAC1C0FF87F3300D7773A /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC160FF87F3300D7773A /* NSArray+TDParseKitAdditions.m */; };
-		D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC170FF87F3300D7773A /* NSString+TDParseKitAdditions.h */; };
-		D34BAC1E0FF87F3300D7773A /* NSString+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC180FF87F3300D7773A /* NSString+TDParseKitAdditions.m */; };
-		D34BAC1F0FF87F3300D7773A /* TDParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC190FF87F3300D7773A /* TDParserFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D34BAC200FF87F3300D7773A /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC1A0FF87F3300D7773A /* TDParserFactory.m */; };
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
 		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
 		D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
@@ -195,6 +189,10 @@
 		D34BAFC00FF9E80300D7773A /* PKLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB80FF9E80300D7773A /* PKLetter.m */; };
 		D34BAFC10FF9E80300D7773A /* PKSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFB90FF9E80300D7773A /* PKSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAFC20FF9E80300D7773A /* PKSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFBA0FF9E80300D7773A /* PKSpecificChar.m */; };
+		D34BAFDA0FF9E95500D7773A /* NSArray+ParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFD40FF9E95500D7773A /* NSArray+ParseKitAdditions.m */; };
+		D34BAFDC0FF9E95500D7773A /* NSString+ParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFD60FF9E95500D7773A /* NSString+ParseKitAdditions.m */; };
+		D34BAFDD0FF9E95500D7773A /* PKParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAFD70FF9E95500D7773A /* PKParserFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAFDE0FF9E95500D7773A /* PKParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFD80FF9E95500D7773A /* PKParserFactory.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -215,7 +213,6 @@
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
 		D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */; };
 		D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */; };
-		D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */; };
 		D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C55FD0FD3617B00141CB7 /* RegexKitLite.m */; };
 		D36C560C0FD363D500141CB7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C560B0FD363D500141CB7 /* libicucore.dylib */; };
 		D36C562B0FD365DB00141CB7 /* TDPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C562A0FD365DB00141CB7 /* TDPatternTest.m */; };
@@ -616,12 +613,6 @@
 		D338E5B90FF5DDCB003DE6AA /* TDExclusionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusionTest.h; path = test/TDExclusionTest.h; sourceTree = "<group>"; };
 		D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusionTest.m; path = test/TDExclusionTest.m; sourceTree = "<group>"; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D34BAC150FF87F3300D7773A /* NSArray+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+TDParseKitAdditions.h"; path = "src/NSArray+TDParseKitAdditions.h"; sourceTree = "<group>"; };
-		D34BAC160FF87F3300D7773A /* NSArray+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+TDParseKitAdditions.m"; path = "src/NSArray+TDParseKitAdditions.m"; sourceTree = "<group>"; };
-		D34BAC170FF87F3300D7773A /* NSString+TDParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TDParseKitAdditions.h"; path = "src/NSString+TDParseKitAdditions.h"; sourceTree = "<group>"; };
-		D34BAC180FF87F3300D7773A /* NSString+TDParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TDParseKitAdditions.m"; path = "src/NSString+TDParseKitAdditions.m"; sourceTree = "<group>"; };
-		D34BAC190FF87F3300D7773A /* TDParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactory.h; path = src/TDParserFactory.h; sourceTree = "<group>"; };
-		D34BAC1A0FF87F3300D7773A /* TDParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactory.m; path = src/TDParserFactory.m; sourceTree = "<group>"; };
 		D34BAC210FF87F8600D7773A /* TDParserFactoryTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest3.h; path = test/TDParserFactoryTest3.h; sourceTree = "<group>"; };
 		D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest3.m; path = test/TDParserFactoryTest3.m; sourceTree = "<group>"; };
 		D34BAC490FF892C200D7773A /* XPathParserGrammarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserGrammarTest.h; path = test/XPathParserGrammarTest.h; sourceTree = "<group>"; };
@@ -725,6 +716,12 @@
 		D34BAFB80FF9E80300D7773A /* PKLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKLetter.m; path = src/PKLetter.m; sourceTree = "<group>"; };
 		D34BAFB90FF9E80300D7773A /* PKSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKSpecificChar.h; path = src/PKSpecificChar.h; sourceTree = "<group>"; };
 		D34BAFBA0FF9E80300D7773A /* PKSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSpecificChar.m; path = src/PKSpecificChar.m; sourceTree = "<group>"; };
+		D34BAFD30FF9E95500D7773A /* NSArray+ParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+ParseKitAdditions.h"; path = "src/NSArray+ParseKitAdditions.h"; sourceTree = "<group>"; };
+		D34BAFD40FF9E95500D7773A /* NSArray+ParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+ParseKitAdditions.m"; path = "src/NSArray+ParseKitAdditions.m"; sourceTree = "<group>"; };
+		D34BAFD50FF9E95500D7773A /* NSString+ParseKitAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ParseKitAdditions.h"; path = "src/NSString+ParseKitAdditions.h"; sourceTree = "<group>"; };
+		D34BAFD60FF9E95500D7773A /* NSString+ParseKitAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ParseKitAdditions.m"; path = "src/NSString+ParseKitAdditions.m"; sourceTree = "<group>"; };
+		D34BAFD70FF9E95500D7773A /* PKParserFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParserFactory.h; path = src/PKParserFactory.h; sourceTree = "<group>"; };
+		D34BAFD80FF9E95500D7773A /* PKParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKParserFactory.m; path = src/PKParserFactory.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1250,12 +1247,12 @@
 		D34BAC0F0FF87ED200D7773A /* grammar */ = {
 			isa = PBXGroup;
 			children = (
-				D34BAC190FF87F3300D7773A /* TDParserFactory.h */,
-				D34BAC1A0FF87F3300D7773A /* TDParserFactory.m */,
-				D34BAC150FF87F3300D7773A /* NSArray+TDParseKitAdditions.h */,
-				D34BAC160FF87F3300D7773A /* NSArray+TDParseKitAdditions.m */,
-				D34BAC170FF87F3300D7773A /* NSString+TDParseKitAdditions.h */,
-				D34BAC180FF87F3300D7773A /* NSString+TDParseKitAdditions.m */,
+				D34BAFD70FF9E95500D7773A /* PKParserFactory.h */,
+				D34BAFD80FF9E95500D7773A /* PKParserFactory.m */,
+				D34BAFD30FF9E95500D7773A /* NSArray+ParseKitAdditions.h */,
+				D34BAFD40FF9E95500D7773A /* NSArray+ParseKitAdditions.m */,
+				D34BAFD50FF9E95500D7773A /* NSString+ParseKitAdditions.h */,
+				D34BAFD60FF9E95500D7773A /* NSString+ParseKitAdditions.m */,
 			);
 			name = grammar;
 			sourceTree = "<group>";
@@ -2010,10 +2007,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
-				D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */,
-				D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */,
-				D34BAC1F0FF87F3300D7773A /* TDParserFactory.h in Headers */,
 				D34BAD640FF9C6AE00D7773A /* ParseKit_Prefix.pch in Headers */,
 				D34BAD720FF9C71200D7773A /* ParseKit.h in Headers */,
 				D34BAD770FF9C74F00D7773A /* PKTypes.h in Headers */,
@@ -2065,6 +2058,7 @@
 				D34BAFBD0FF9E80300D7773A /* PKDigit.h in Headers */,
 				D34BAFBF0FF9E80300D7773A /* PKLetter.h in Headers */,
 				D34BAFC10FF9E80300D7773A /* PKSpecificChar.h in Headers */,
+				D34BAFDD0FF9E95500D7773A /* PKParserFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2415,9 +2409,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */,
-				D34BAC1C0FF87F3300D7773A /* NSArray+TDParseKitAdditions.m in Sources */,
-				D34BAC1E0FF87F3300D7773A /* NSString+TDParseKitAdditions.m in Sources */,
-				D34BAC200FF87F3300D7773A /* TDParserFactory.m in Sources */,
 				D34BAD9D0FF9C95800D7773A /* PKReader.m in Sources */,
 				D34BADA20FF9C9B000D7773A /* PKAssembly.m in Sources */,
 				D34BADD80FF9CBFB00D7773A /* PKParser.m in Sources */,
@@ -2466,6 +2457,9 @@
 				D34BAFBE0FF9E80300D7773A /* PKDigit.m in Sources */,
 				D34BAFC00FF9E80300D7773A /* PKLetter.m in Sources */,
 				D34BAFC20FF9E80300D7773A /* PKSpecificChar.m in Sources */,
+				D34BAFDA0FF9E95500D7773A /* NSArray+ParseKitAdditions.m in Sources */,
+				D34BAFDC0FF9E95500D7773A /* NSString+ParseKitAdditions.m in Sources */,
+				D34BAFDE0FF9E95500D7773A /* PKParserFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,12 +7,12 @@
 //
 
 #import "TDTestScaffold.h"
-#import "TDParserFactory.h"
+#import "PKParserFactory.h"
 
 @interface TDXMLParserTest : SenTestCase {
     NSString *s;
     NSString *g;
-    TDParserFactory *factory;
+    PKParserFactory *factory;
     PKTokenAssembly *a;
     PKAssembly *res;
     PKParser *p;

@@ -22,7 +22,7 @@ typedef enum {
     TDParserFactoryAssemblerSettingBehaviorOnExplicit   = 1 << 3
 } TDParserFactoryAssemblerSettingBehavior;
 
-@interface TDParserFactory : NSObject {
+@interface PKParserFactory : NSObject {
     TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
     id assembler;
     NSMutableDictionary *parserTokensTable;

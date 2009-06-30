@@ -9,7 +9,7 @@
 #import "TDParserFactoryTest.h"
 #import <OCMock/OCMock.h>
 
-@interface TDParserFactory ()
+@interface PKParserFactory ()
 - (PKTokenizer *)tokenizerForParsingGrammar;
 - (PKSequence *)parserFromExpression:(NSString *)s;
 @property (retain) PKCollectionParser *exprParser;
@@ -26,7 +26,7 @@
 @implementation TDParserFactoryTest
 
 - (void)setUp {
-    factory = [TDParserFactory factory];
+    factory = [PKParserFactory factory];
     PKSequence *seq = [PKSequence sequence];
     [seq add:factory.exprParser];
     exprSeq = seq;

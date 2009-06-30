@@ -11,7 +11,7 @@
 @implementation TDParserFactoryTest3
 
 - (void)setUp {
-    factory = [TDParserFactory factory];
+    factory = [PKParserFactory factory];
 }
 
 
