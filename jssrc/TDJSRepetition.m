@@ -7,7 +7,7 @@
 //
 
 #import "TDJSRepetition.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSParser.h"
 #import <ParseKit/PKRepetition.h>
 

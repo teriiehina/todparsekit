@@ -7,7 +7,7 @@
 //
 
 #import "TDJSSymbolState.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTokenizerState.h"
 #import <ParseKit/PKSymbolState.h>
 

@@ -7,7 +7,7 @@
 //
 
 #import "TDJSCaseInsensitiveLiteral.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTerminal.h"
 #import <ParseKit/PKCaseInsensitiveLiteral.h>
 

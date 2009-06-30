@@ -7,7 +7,7 @@
 //
 
 #import "TDJSAlternation.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSCollectionParser.h"
 #import <ParseKit/PKAlternation.h>
 

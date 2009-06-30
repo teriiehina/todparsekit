@@ -6,9 +6,9 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDJSAssembly.h"
+#import "PKJSAssembly.h"
 #import "TDJSToken.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKToken.h>
 

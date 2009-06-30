@@ -6,13 +6,13 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <JSParseKit/TDJSParseKit.h>
+#import <JSParseKit/JSParseKit.h>
 #import <ParseKit/PKToken.h>
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSToken.h"
 #import "TDJSTokenizer.h"
 #import "TDJSTokenizerState.h"
-#import "TDJSAssembly.h"
+#import "PKJSAssembly.h"
 #import "TDJSTokenAssembly.h"
 #import "TDJSCharacterAssembly.h"
 #import "TDJSWordState.h"

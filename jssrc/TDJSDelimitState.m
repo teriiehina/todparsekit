@@ -7,7 +7,7 @@
 //
 
 #import "TDJSDelimitState.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTokenizerState.h"
 #import <ParseKit/PKDelimitState.h>
 

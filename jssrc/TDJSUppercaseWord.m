@@ -7,7 +7,7 @@
 //
 
 #import "TDJSUppercaseWord.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSWord.h"
 #import <ParseKit/PKUppercaseWord.h>
 

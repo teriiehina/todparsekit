@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDJSValueHolder.h"
+#import "PKJSValueHolder.h"
 
 @implementation JSValueHolder
 

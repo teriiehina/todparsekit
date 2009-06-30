@@ -7,7 +7,7 @@
 //
 
 #import "TDJSDelimitedString.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTerminal.h"
 #import <ParseKit/PKDelimitedString.h>
 

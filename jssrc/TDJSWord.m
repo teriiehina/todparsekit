@@ -7,7 +7,7 @@
 //
 
 #import "TDJSWord.h"
-#import "TDJSUtils.h"
+#import "PKJSUtils.h"
 #import "TDJSTerminal.h"
 #import <ParseKit/PKWord.h>
 
