@@ -398,7 +398,7 @@
 - (PKPattern *)reservedWordPattern {
     if (!reservedWordPattern) {
         NSString *s = @"true|false|and|or|not|contains|beginswith|endswith|matches";
-        self.reservedWordPattern = [PKPattern patternWithString:s options:TDPatternOptionsIgnoreCase];
+        self.reservedWordPattern = [PKPattern patternWithString:s options:PKPatternOptionsIgnoreCase];
         reservedWordPattern.name = @"reservedWordPattern";
     }
     return reservedWordPattern;

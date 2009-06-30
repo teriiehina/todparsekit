@@ -44,7 +44,7 @@
         
         self.numberState     = [[[PKNumberState alloc] init] autorelease];
         self.quoteState      = [[[PKQuoteState alloc] init] autorelease];
-        self.commentState    = [[[TDCommentState alloc] init] autorelease];
+        self.commentState    = [[[PKCommentState alloc] init] autorelease];
         self.symbolState     = [[[PKSymbolState alloc] init] autorelease];
         self.whitespaceState = [[[PKWhitespaceState alloc] init] autorelease];
         self.wordState       = [[[PKWordState alloc] init] autorelease];

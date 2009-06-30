@@ -12,21 +12,21 @@
 @implementation PKPattern
 
 + (id)patternWithString:(NSString *)s {
-    return [self patternWithString:s options:TDPatternOptionsNone];
+    return [self patternWithString:s options:PKPatternOptionsNone];
 }
 
 
-+ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts {
++ (id)patternWithString:(NSString *)s options:(PKPatternOptions)opts {
     return [[[self alloc] initWithString:s options:opts] autorelease];
 }
 
 
 - (id)initWithString:(NSString *)s {
-    return [self initWithString:s options:TDPatternOptionsNone];
+    return [self initWithString:s options:PKPatternOptionsNone];
 }
 
     
-- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts {
+- (id)initWithString:(NSString *)s options:(PKPatternOptions)opts {
     if (self = [super initWithString:s]) {
         options = opts;
     }

@@ -14,7 +14,7 @@
 @class PKNumberState;
 @class PKQuoteState;
 @class TDSlashState;
-@class TDCommentState;
+@class PKCommentState;
 @class PKSymbolState;
 @class PKWhitespaceState;
 @class PKWordState;
@@ -51,7 +51,7 @@
     
     PKNumberState *numberState;
     PKQuoteState *quoteState;
-    TDCommentState *commentState;
+    PKCommentState *commentState;
     PKSymbolState *symbolState;
     PKWhitespaceState *whitespaceState;
     PKWordState *wordState;
@@ -114,7 +114,7 @@
     @property   commentState
     @brief      The state this tokenizer uses to recognize (and possibly ignore) comments.
 */
-@property (nonatomic, retain) TDCommentState *commentState;
+@property (nonatomic, retain) PKCommentState *commentState;
 
 /*!
     @property   symbolState

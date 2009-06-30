@@ -11,25 +11,25 @@
 #import <ParseKit/PKToken.h>
 
 typedef enum {
-    TDPatternOptionsNone                    = 0,
-    TDPatternOptionsIgnoreCase              = 2,
-    TDPatternOptionsComments                = 4,
-    TDPatternOptionsMultiline               = 8,
-    TDPatternOptionsDotAll                  = 32,
-    TDPatternOptionsUnicodeWordBoundaries   = 256
-} TDPatternOptions;
+    PKPatternOptionsNone                    = 0,
+    PKPatternOptionsIgnoreCase              = 2,
+    PKPatternOptionsComments                = 4,
+    PKPatternOptionsMultiline               = 8,
+    PKPatternOptionsDotAll                  = 32,
+    PKPatternOptionsUnicodeWordBoundaries   = 256
+} PKPatternOptions;
 
 @interface PKPattern : PKTerminal {
-    TDPatternOptions options;
+    PKPatternOptions options;
     BOOL inverted;
 }
 + (id)patternWithString:(NSString *)s;
 
-+ (id)patternWithString:(NSString *)s options:(TDPatternOptions)opts;
++ (id)patternWithString:(NSString *)s options:(PKPatternOptions)opts;
 
 - (id)initWithString:(NSString *)s;
 
-- (id)initWithString:(NSString *)s options:(TDPatternOptions)opts;
+- (id)initWithString:(NSString *)s options:(PKPatternOptions)opts;
 
 - (id)invertedPattern;
 @end

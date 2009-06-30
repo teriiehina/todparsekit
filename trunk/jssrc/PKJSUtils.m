@@ -8,7 +8,7 @@
 
 #import "PKJSUtils.h"
 
-JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) {
+JSValueRef PKCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) {
     JSValueRef result = NULL;
     CFTypeID typeID = CFGetTypeID(value);
 
@@ -20,11 +20,11 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) 
         Boolean b = CFBooleanGetValue(value);
         result = JSValueMakeBoolean(ctx, b);
     } else if (CFStringGetTypeID() == typeID) {
-        result = TDCFStringToJSValue(ctx, value, ex);
+        result = PKCFStringToJSValue(ctx, value, ex);
     } else if (CFArrayGetTypeID() == typeID) {
-        result = TDCFArrayToJSObject(ctx, value, ex);
+        result = PKCFArrayToJSObject(ctx, value, ex);
     } else if (CFDictionaryGetTypeID() == typeID) {
-        result = TDCFDictionaryToJSObject(ctx, value, ex);
+        result = PKCFDictionaryToJSObject(ctx, value, ex);
     } else {
         result = JSValueMakeNull(ctx);
     }
@@ -32,18 +32,18 @@ JSValueRef TDCFTypeToJSValue(JSContextRef ctx, CFTypeRef value, JSValueRef *ex) 
     return result;
 }
 
-JSValueRef TDCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex) {
+JSValueRef PKCFStringToJSValue(JSContextRef ctx, CFStringRef cfStr, JSValueRef *ex) {
     JSStringRef str = JSStringCreateWithCFString(cfStr);
     JSValueRef result = JSValueMakeString(ctx, str);
     JSStringRelease(str);
     return result;
 }
 
-JSValueRef TDNSStringToJSValue(JSContextRef ctx, NSString *nsStr, JSValueRef *ex) {
-    return TDCFStringToJSValue(ctx, (CFStringRef)nsStr, ex);
+JSValueRef PKNSStringToJSValue(JSContextRef ctx, NSString *nsStr, JSValueRef *ex) {
+    return PKCFStringToJSValue(ctx, (CFStringRef)nsStr, ex);
 }
 
-JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef *ex) {
+JSObjectRef PKCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Array");
     JSObjectRef arrayConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, NULL);
@@ -59,18 +59,18 @@ JSObjectRef TDCFArrayToJSObject(JSContextRef ctx, CFArrayRef cfArray, JSValueRef
     CFIndex i = 0;
     for ( ; i < len; i++) {
         CFTypeRef value = CFArrayGetValueAtIndex(cfArray, i);
-        JSValueRef propVal = TDCFTypeToJSValue(ctx, value, ex);
+        JSValueRef propVal = PKCFTypeToJSValue(ctx, value, ex);
         JSObjectSetPropertyAtIndex(ctx, obj, i, propVal, NULL);
     }
     
     return obj;
 }
 
-JSObjectRef TDNSArrayToJSObject(JSContextRef ctx, NSArray *nsArray, JSValueRef *ex) {
-    return TDCFArrayToJSObject(ctx, (CFArrayRef)nsArray, ex);
+JSObjectRef PKNSArrayToJSObject(JSContextRef ctx, NSArray *nsArray, JSValueRef *ex) {
+    return PKCFArrayToJSObject(ctx, (CFArrayRef)nsArray, ex);
 }
 
-JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, JSValueRef *ex) {
+JSObjectRef PKCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Object");
     JSObjectRef objConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, NULL);
@@ -90,7 +90,7 @@ JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, J
             CFTypeRef value = values[i];
             
             JSStringRef propName = JSStringCreateWithCFString(key);
-            JSValueRef propVal = TDCFTypeToJSValue(ctx, value, ex);
+            JSValueRef propVal = PKCFTypeToJSValue(ctx, value, ex);
             JSObjectSetProperty(ctx, obj, propName, propVal, kJSPropertyAttributeNone, NULL);
             JSStringRelease(propName);
         }
@@ -99,11 +99,11 @@ JSObjectRef TDCFDictionaryToJSObject(JSContextRef ctx, CFDictionaryRef cfDict, J
     return obj;
 }
 
-JSObjectRef TDNSDictionaryToJSObject(JSContextRef ctx, NSDictionary *nsDict, JSValueRef *ex) {
-    return TDCFDictionaryToJSObject(ctx, (CFDictionaryRef)nsDict, ex);
+JSObjectRef PKNSDictionaryToJSObject(JSContextRef ctx, NSDictionary *nsDict, JSValueRef *ex) {
+    return PKCFDictionaryToJSObject(ctx, (CFDictionaryRef)nsDict, ex);
 }
 
-CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+CFTypeRef PKJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
     CFTypeRef result = NULL;
     
     if (JSValueIsBoolean(ctx, value)) {
@@ -115,34 +115,34 @@ CFTypeRef TDJSValueCopyCFType(JSContextRef ctx, JSValueRef value, JSValueRef *ex
         CGFloat d = JSValueToNumber(ctx, value, NULL);
         result = CFNumberCreate(NULL, kCFNumberCGFloatType, &d);
     } else if (JSValueIsString(ctx, value)) {
-        result = TDJSValueCopyCFString(ctx, value, ex);
+        result = PKJSValueCopyCFString(ctx, value, ex);
     } else if (JSValueIsObject(ctx, value)) {
-        if (TDJSValueIsInstanceOfClass(ctx, value, "Array", NULL)) {
-            result = TDJSObjectCopyCFArray(ctx, (JSObjectRef)value, ex);
+        if (PKJSValueIsInstanceOfClass(ctx, value, "Array", NULL)) {
+            result = PKJSObjectCopyCFArray(ctx, (JSObjectRef)value, ex);
         } else {
-            result = TDJSObjectCopyCFDictionary(ctx, (JSObjectRef)value, ex);
+            result = PKJSObjectCopyCFDictionary(ctx, (JSObjectRef)value, ex);
         }
     }
     
     return result;
 }
 
-id TDJSValueGetId(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
-    return [(id)TDJSValueCopyCFType(ctx, value, ex) autorelease];
+id PKJSValueGetId(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+    return [(id)PKJSValueCopyCFType(ctx, value, ex) autorelease];
 }
 
-CFStringRef TDJSValueCopyCFString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+CFStringRef PKJSValueCopyCFString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
     JSStringRef str = JSValueToStringCopy(ctx, value, ex);
     CFStringRef result = JSStringCopyCFString(NULL, str);
     JSStringRelease(str);
     return result;
 }
 
-NSString *TDJSValueGetNSString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
-    return [(id)TDJSValueCopyCFString(ctx, value, ex) autorelease];
+NSString *PKJSValueGetNSString(JSContextRef ctx, JSValueRef value, JSValueRef *ex) {
+    return [(id)PKJSValueCopyCFString(ctx, value, ex) autorelease];
 }
 
-CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
+CFArrayRef PKJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
     JSStringRef propName = JSStringCreateWithUTF8CString("length");
     JSValueRef propVal = JSObjectGetProperty(ctx, obj, propName, NULL);
     JSStringRelease(propName);
@@ -153,7 +153,7 @@ CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *
     CFIndex i = 0;
     for ( ; i < len; i++) {
         JSValueRef val = JSObjectGetPropertyAtIndex(ctx, obj, i, NULL);
-        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val, ex);
+        CFTypeRef cfType = PKJSValueCopyCFType(ctx, val, ex);
         CFArraySetValueAtIndex(cfArray, i, cfType);
         
         CFRelease(cfType);
@@ -165,7 +165,7 @@ CFArrayRef TDJSObjectCopyCFArray(JSContextRef ctx, JSObjectRef obj, JSValueRef *
     return result;
 }
 
-CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
+CFDictionaryRef PKJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JSValueRef *ex) {
     JSPropertyNameArrayRef propNames = JSObjectCopyPropertyNames(ctx, obj);
     CFIndex len = JSPropertyNameArrayGetCount(propNames);
     
@@ -175,7 +175,7 @@ CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JS
     for ( ; i < len; i++) {
         JSStringRef propName = JSPropertyNameArrayGetNameAtIndex(propNames, i);
         JSValueRef val = JSObjectGetProperty(ctx, obj, propName, NULL);
-        CFTypeRef cfType = TDJSValueCopyCFType(ctx, val, ex);
+        CFTypeRef cfType = PKJSValueCopyCFType(ctx, val, ex);
         
         CFStringRef key = JSStringCopyCFString(NULL, propName);
         CFDictionarySetValue(cfDict, (const void *)key, (const void *)cfType);
@@ -191,7 +191,7 @@ CFDictionaryRef TDJSObjectCopyCFDictionary(JSContextRef ctx, JSObjectRef obj, JS
     return result;
 }
 
-JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex) {
+JSObjectRef PKNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef className = JSStringCreateWithUTF8CString("Error");
     JSObjectRef errConstr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, className, ex);
@@ -200,7 +200,7 @@ JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex
     JSObjectRef obj = (JSObjectRef)JSObjectCallAsConstructor(ctx, errConstr, 0, NULL, ex);
     
     if (nsErr) {
-        JSStringRef nameStr = JSStringCreateWithUTF8CString("TDParseKitError");
+        JSStringRef nameStr = JSStringCreateWithUTF8CString("PKParseKitError");
         JSValueRef name = JSValueMakeString(ctx, nameStr);
         JSStringRelease(nameStr);
         
@@ -226,7 +226,7 @@ JSObjectRef TDNSErrorToJSObject(JSContextRef ctx, NSError *nsErr, JSValueRef *ex
     return obj;
 }
 
-bool TDJSValueIsInstanceOfClass(JSContextRef ctx, JSValueRef value, char *className, JSValueRef* ex) {
+bool PKJSValueIsInstanceOfClass(JSContextRef ctx, JSValueRef value, char *className, JSValueRef* ex) {
     JSObjectRef globalObj = JSContextGetGlobalObject(ctx);
     JSStringRef classNameStr = JSStringCreateWithUTF8CString(className);
     JSObjectRef constr = (JSObjectRef)JSObjectGetProperty(ctx, globalObj, classNameStr, ex);

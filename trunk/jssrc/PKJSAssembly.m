@@ -7,7 +7,7 @@
 //
 
 #import "PKJSAssembly.h"
-#import "TDJSToken.h"
+#import "PKJSToken.h"
 #import "PKJSUtils.h"
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKToken.h>
@@ -16,43 +16,43 @@
 #pragma mark Methods
 
 static JSValueRef PKAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKAssembly_class, "toString");
+    PKPreconditionInstaceOf(PKAssembly_class, "toString");
     PKAssembly *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, [data description], ex);
+    return PKNSStringToJSValue(ctx, [data description], ex);
 }
 
 static JSValueRef PKAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKAssembly_class, "pop");
+    PKPreconditionInstaceOf(PKAssembly_class, "pop");
     
     PKAssembly *data = JSObjectGetPrivate(this);
     PKToken *tok = [data pop];
-    return TDToken_new(ctx, tok);
+    return PKToken_new(ctx, tok);
 }
 
 static JSValueRef PKAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKAssembly_class, "push");
-    TDPreconditionMethodArgc(1, "PKAssembly.push");
+    PKPreconditionInstaceOf(PKAssembly_class, "push");
+    PKPreconditionMethodArgc(1, "PKAssembly.push");
     
     JSValueRef v = argv[0];
     
     PKAssembly *data = JSObjectGetPrivate(this);
-    id obj = TDJSValueGetId(ctx, v, ex);
+    id obj = PKJSValueGetId(ctx, v, ex);
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
 }
 
 static JSValueRef PKAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKAssembly_class, "objectsAbove");
-    TDPreconditionMethodArgc(1, "PKAssembly.objectsAbove");
+    PKPreconditionInstaceOf(PKAssembly_class, "objectsAbove");
+    PKPreconditionMethodArgc(1, "PKAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
     PKAssembly *data = JSObjectGetPrivate(this);
-    id obj = TDJSValueGetId(ctx, v, ex);
+    id obj = PKJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
-    return TDNSArrayToJSObject(ctx, array, ex);
+    return PKNSArrayToJSObject(ctx, array, ex);
 }
 
 #pragma mark -
@@ -60,22 +60,22 @@ static JSValueRef PKAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function
 
 static JSValueRef PKAssembly_getDefaultDelimiter(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     PKAssembly *data = JSObjectGetPrivate(this);
-    return TDNSStringToJSValue(ctx, data.defaultDelimiter, ex);
+    return PKNSStringToJSValue(ctx, data.defaultDelimiter, ex);
 }
 
 static JSValueRef PKAssembly_getStack(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     PKAssembly *data = JSObjectGetPrivate(this);
-    return TDNSArrayToJSObject(ctx, data.stack, ex);
+    return PKNSArrayToJSObject(ctx, data.stack, ex);
 }
 
 static JSValueRef PKAssembly_getTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     PKAssembly *data = JSObjectGetPrivate(this);
-    return TDCFTypeToJSValue(ctx, (CFTypeRef)data.target, ex);
+    return PKCFTypeToJSValue(ctx, (CFTypeRef)data.target, ex);
 }
 
 static bool PKAssembly_setTarget(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKAssembly *data = JSObjectGetPrivate(this);
-    data.target = TDJSValueGetId(ctx, value, ex);
+    data.target = PKJSValueGetId(ctx, value, ex);
     return true;
 }
 

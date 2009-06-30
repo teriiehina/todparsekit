@@ -25,7 +25,7 @@
 - (NSString *)bufferedString;
 @end
 
-@interface TDCommentState ()
+@interface PKCommentState ()
 @property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @end
 

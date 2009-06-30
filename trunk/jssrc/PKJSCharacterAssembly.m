@@ -15,7 +15,7 @@
 #pragma mark Methods
 
 static JSValueRef PKCharacterAssembly_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKCharacterAssembly_class, "toString");
+    PKPreconditionInstaceOf(PKCharacterAssembly_class, "toString");
     PKCharacterAssembly *data = JSObjectGetPrivate(this);
     JSStringRef resStr = JSStringCreateWithCFString((CFStringRef)[data description]);
     JSValueRef res = JSValueMakeString(ctx, resStr);
@@ -24,36 +24,36 @@ static JSValueRef PKCharacterAssembly_toString(JSContextRef ctx, JSObjectRef fun
 }
 
 static JSValueRef PKCharacterAssembly_pop(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKCharacterAssembly_class, "pop");
+    PKPreconditionInstaceOf(PKCharacterAssembly_class, "pop");
     PKCharacterAssembly *data = JSObjectGetPrivate(this);
     NSNumber *obj = [data pop];
     return JSValueMakeNumber(ctx, [obj doubleValue]);
 }
 
 static JSValueRef PKCharacterAssembly_push(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKCharacterAssembly_class, "push");
-    TDPreconditionMethodArgc(1, "PKCharacterAssembly.push");
+    PKPreconditionInstaceOf(PKCharacterAssembly_class, "push");
+    PKPreconditionMethodArgc(1, "PKCharacterAssembly.push");
     
     JSValueRef v = argv[0];
     
     PKCharacterAssembly *data = JSObjectGetPrivate(this);
-    id obj = TDJSValueGetId(ctx, v, ex);
+    id obj = PKJSValueGetId(ctx, v, ex);
     [data push:obj];
     
     return JSValueMakeUndefined(ctx);
 }
 
 static JSValueRef PKCharacterAssembly_objectsAbove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionInstaceOf(PKCharacterAssembly_class, "objectsAbove");
-    TDPreconditionMethodArgc(1, "PKCharacterAssembly.objectsAbove");
+    PKPreconditionInstaceOf(PKCharacterAssembly_class, "objectsAbove");
+    PKPreconditionMethodArgc(1, "PKCharacterAssembly.objectsAbove");
     
     JSValueRef v = argv[0];
     
     PKCharacterAssembly *data = JSObjectGetPrivate(this);
-    id obj = TDJSValueGetId(ctx, v, ex);
+    id obj = PKJSValueGetId(ctx, v, ex);
     id array = [data objectsAbove:obj];
     
-    return TDNSArrayToJSObject(ctx, array, ex);
+    return PKNSArrayToJSObject(ctx, array, ex);
 }
 
 #pragma mark -
@@ -113,10 +113,10 @@ JSObjectRef PKCharacterAssembly_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef PKCharacterAssembly_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "PKCharacterAssembly");
+    PKPreconditionConstructorArgc(1, "PKCharacterAssembly");
     
     JSValueRef s = argv[0];
-    NSString *string = TDJSValueGetNSString(ctx, s, ex);
+    NSString *string = PKJSValueGetNSString(ctx, s, ex);
     
     PKCharacterAssembly *data = [[PKCharacterAssembly alloc] initWithString:string];
     return PKCharacterAssembly_new(ctx, data);

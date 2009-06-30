@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDCommentStateTest : SenTestCase {
-    TDCommentState *commentState;
+    PKCommentState *commentState;
     PKReader *r;
     PKTokenizer *t;
     NSString *s;

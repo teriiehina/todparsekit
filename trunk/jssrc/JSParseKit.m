@@ -9,36 +9,36 @@
 #import <JSParseKit/JSParseKit.h>
 #import <ParseKit/PKToken.h>
 #import "PKJSUtils.h"
-#import "TDJSToken.h"
-#import "TDJSTokenizer.h"
-#import "TDJSTokenizerState.h"
+#import "PKJSToken.h"
+#import "PKJSTokenizer.h"
+#import "PKJSTokenizerState.h"
 #import "PKJSAssembly.h"
-#import "TDJSTokenAssembly.h"
+#import "PKJSTokenAssembly.h"
 #import "PKJSCharacterAssembly.h"
-#import "TDJSWordState.h"
-#import "TDJSNumberState.h"
-#import "TDJSWhitespaceState.h"
-#import "TDJSCommentState.h"
-#import "TDJSQuoteState.h"
-#import "TDJSSymbolState.h"
-#import "TDJSRepetition.h"
-#import "TDJSSequence.h"
-#import "TDJSTrack.h"
-#import "TDJSAlternation.h"
-#import "TDJSEmpty.h"
-#import "TDJSAny.h"
-#import "TDJSWord.h"
-#import "TDJSNum.h"
-#import "TDJSQuotedString.h"
-#import "TDJSSymbol.h"
-#import "TDJSComment.h"
-#import "TDJSLiteral.h"
-#import "TDJSCaseInsensitiveLiteral.h"
-#import "TDJSUppercaseWord.h"
-#import "TDJSLowercaseWord.h"
+#import "PKJSWordState.h"
+#import "PKJSNumberState.h"
+#import "PKJSWhitespaceState.h"
+#import "PKJSCommentState.h"
+#import "PKJSQuoteState.h"
+#import "PKJSSymbolState.h"
+#import "PKJSRepetition.h"
+#import "PKJSSequence.h"
+#import "PKJSTrack.h"
+#import "PKJSAlternation.h"
+#import "PKJSEmpty.h"
+#import "PKJSAny.h"
+#import "PKJSWord.h"
+#import "PKJSNum.h"
+#import "PKJSQuotedString.h"
+#import "PKJSSymbol.h"
+#import "PKJSComment.h"
+#import "PKJSLiteral.h"
+#import "PKJSCaseInsensitiveLiteral.h"
+#import "PKJSUppercaseWord.h"
+#import "PKJSLowercaseWord.h"
 
 static void printValue(JSContextRef ctx, JSValueRef val) {
-    NSString *s = TDJSValueGetNSString(ctx, val, NULL);
+    NSString *s = PKJSValueGetNSString(ctx, val, NULL);
     NSLog(@"%@", s);
 }
 
@@ -77,40 +77,40 @@ void PKJSParseKitSetUpContext(JSContextRef ctx) {
     setUpFunction(ctx, "print", print, &ex);
     
     // Assemblies
-    setUpConstructor(ctx, "PKTokenAssembly", TDTokenAssembly_class(ctx), TDTokenAssembly_construct, &ex);
+    setUpConstructor(ctx, "PKTokenAssembly", PKTokenAssembly_class(ctx), PKTokenAssembly_construct, &ex);
     setUpConstructor(ctx, "PKCharacterAssembly", PKCharacterAssembly_class(ctx), PKCharacterAssembly_construct, &ex);
     
     // Tokenization
-    JSObjectRef constr = setUpConstructor(ctx, "PKToken", TDToken_class(ctx), TDToken_construct, &ex);
-    setUpClassProperty(ctx, "EOFToken", TDToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
+    JSObjectRef constr = setUpConstructor(ctx, "PKToken", PKToken_class(ctx), PKToken_construct, &ex);
+    setUpClassProperty(ctx, "EOFToken", PKToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
     
-    setUpConstructor(ctx, "PKTokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
-    setUpConstructor(ctx, "PKWordState", TDWordState_class(ctx), TDWordState_construct, &ex);
-    setUpConstructor(ctx, "PKQuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
-    setUpConstructor(ctx, "PKNumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
-    setUpConstructor(ctx, "PKSymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
-    setUpConstructor(ctx, "TDCommentState", TDCommentState_class(ctx), TDCommentState_construct, &ex);
-    setUpConstructor(ctx, "PKWhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
+    setUpConstructor(ctx, "PKTokenizer", PKTokenizer_class(ctx), PKTokenizer_construct, &ex);
+    setUpConstructor(ctx, "PKWordState", PKWordState_class(ctx), PKWordState_construct, &ex);
+    setUpConstructor(ctx, "PKQuoteState", PKQuoteState_class(ctx), PKQuoteState_construct, &ex);
+    setUpConstructor(ctx, "PKNumberState", PKNumberState_class(ctx), PKNumberState_construct, &ex);
+    setUpConstructor(ctx, "PKSymbolState", PKSymbolState_class(ctx), PKSymbolState_construct, &ex);
+    setUpConstructor(ctx, "PKCommentState", PKCommentState_class(ctx), PKCommentState_construct, &ex);
+    setUpConstructor(ctx, "PKWhitespaceState", PKWhitespaceState_class(ctx), PKWhitespaceState_construct, &ex);
 
     // Parsers
-    setUpConstructor(ctx, "PKRepetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
+    setUpConstructor(ctx, "PKRepetition", PKRepetition_class(ctx), PKRepetition_construct, &ex);
 
     // Collection Parsers
-    setUpConstructor(ctx, "PKAlternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
-    setUpConstructor(ctx, "PKSequence", TDSequence_class(ctx), TDSequence_construct, &ex);
+    setUpConstructor(ctx, "PKAlternation", PKAlternation_class(ctx), PKAlternation_construct, &ex);
+    setUpConstructor(ctx, "PKSequence", PKSequence_class(ctx), PKSequence_construct, &ex);
     
     // Terminal Parsers
-    setUpConstructor(ctx, "PKEmpty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
-    setUpConstructor(ctx, "PKAny", TDAny_class(ctx), TDAny_construct, &ex);
+    setUpConstructor(ctx, "PKEmpty", PKEmpty_class(ctx), PKEmpty_construct, &ex);
+    setUpConstructor(ctx, "PKAny", PKAny_class(ctx), PKAny_construct, &ex);
     
     // Token Terminals
-    setUpConstructor(ctx, "PKWord", TDWord_class(ctx), TDWord_construct, &ex);
-    setUpConstructor(ctx, "PKNum", TDNum_class(ctx), TDNum_construct, &ex);
-    setUpConstructor(ctx, "PKQuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
-    setUpConstructor(ctx, "PKSymbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
-    setUpConstructor(ctx, "PKComment", TDComment_class(ctx), TDComment_construct, &ex);
-    setUpConstructor(ctx, "PKLiteral", TDLiteral_class(ctx), TDLiteral_construct, &ex);
-    setUpConstructor(ctx, "PKCaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
-    setUpConstructor(ctx, "PKUppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
-    setUpConstructor(ctx, "PKLowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
+    setUpConstructor(ctx, "PKWord", PKWord_class(ctx), PKWord_construct, &ex);
+    setUpConstructor(ctx, "PKNum", PKNum_class(ctx), PKNum_construct, &ex);
+    setUpConstructor(ctx, "PKQuotedString", PKQuotedString_class(ctx), PKQuotedString_construct, &ex);
+    setUpConstructor(ctx, "PKSymbol", PKSymbol_class(ctx), PKSymbol_construct, &ex);
+    setUpConstructor(ctx, "PKComment", PKComment_class(ctx), PKComment_construct, &ex);
+    setUpConstructor(ctx, "PKLiteral", PKLiteral_class(ctx), PKLiteral_construct, &ex);
+    setUpConstructor(ctx, "PKCaseInsensitiveLiteral", PKCaseInsensitiveLiteral_class(ctx), PKCaseInsensitiveLiteral_construct, &ex);
+    setUpConstructor(ctx, "PKUppercaseWord", PKUppercaseWord_class(ctx), PKUppercaseWord_construct, &ex);
+    setUpConstructor(ctx, "PKLowercaseWord", PKLowercaseWord_class(ctx), PKLowercaseWord_construct, &ex);
 }

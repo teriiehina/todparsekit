@@ -963,7 +963,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         self.patternParser = [PKSequence sequence];
         [patternParser add:[PKDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
         
-        PKParser *opts = [PKPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
+        PKParser *opts = [PKPattern patternWithString:@"[imxsw]+" options:PKPatternOptionsNone];
         PKIntersection *inter = [PKIntersection intersection];
         [inter add:[PKWord word]];
         [inter add:opts];
@@ -1182,21 +1182,21 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSString *s = tok.stringValue;
     NSAssert(s.length > 0, @"");
 
-    TDPatternOptions opts = TDPatternOptionsNone;
+    PKPatternOptions opts = PKPatternOptionsNone;
     if (NSNotFound != [s rangeOfString:@"i"].location) {
-        opts |= TDPatternOptionsIgnoreCase;
+        opts |= PKPatternOptionsIgnoreCase;
     }
     if (NSNotFound != [s rangeOfString:@"m"].location) {
-        opts |= TDPatternOptionsMultiline;
+        opts |= PKPatternOptionsMultiline;
     }
     if (NSNotFound != [s rangeOfString:@"x"].location) {
-        opts |= TDPatternOptionsComments;
+        opts |= PKPatternOptionsComments;
     }
     if (NSNotFound != [s rangeOfString:@"s"].location) {
-        opts |= TDPatternOptionsDotAll;
+        opts |= PKPatternOptionsDotAll;
     }
     if (NSNotFound != [s rangeOfString:@"w"].location) {
-        opts |= TDPatternOptionsUnicodeWordBoundaries;
+        opts |= PKPatternOptionsUnicodeWordBoundaries;
     }
     
     [a push:[NSNumber numberWithInteger:opts]];
@@ -1206,7 +1206,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnPattern:(PKAssembly *)a {
     id obj = [a pop]; // opts (as Number*) or DelimitedString('/', '/')
     
-    TDPatternOptions opts = TDPatternOptionsNone;
+    PKPatternOptions opts = PKPatternOptionsNone;
     if ([obj isKindOfClass:[NSNumber class]]) {
         opts = [obj integerValue];
         obj = [a pop];
