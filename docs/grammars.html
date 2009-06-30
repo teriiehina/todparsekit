@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>TDParseKit Language Parsing via Grammars</title>
+    <title>ParseKit Language Parsing via Grammars</title>
     <style>
         h1 {position:fixed; left:0; top:0; right:0; margin:0; border-bottom:1px solid silver; padding:3px 10px; background:#eeeeec; font:bold 16px "Lucida Grande";}
         #content {width:575px; margin:60px auto 30px; text-align:justify;}
@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <h1>TDParseKit Documentation</h1>
+    <h1>ParseKit Documentation</h1>
     <div id="home-link"><a href="/tdparsekit">Home</a></div>
 <div id="content">
         
@@ -31,9 +31,9 @@
     <a name="basic-syntax"></a>
     <h3>Basic Grammar Syntax</h3>
 
-    <p>TDParseKit allows users to build parsers for custom languages from a declarative, BNF-style grammar without writing any code (well, ok.. a <em>single line</em> of code). Under the hood, grammar support is implemented using the TDParseKit Objective-C API, so the grammar syntax closely mirrors the features of the Objective-C API.</p>
+    <p>ParseKit allows users to build parsers for custom languages from a declarative, BNF-style grammar without writing any code (well, ok.. a <em>single line</em> of code). Under the hood, grammar support is implemented using the ParseKit Objective-C API, so the grammar syntax closely mirrors the features of the Objective-C API.</p>
     
-    <p>The grammar below describes a simple toy language called <b>Cold Beer</b> and will serve as a quick introduction to the TDPK grammar syntax. The rules of the <b>Cold Beer</b> language are as follows. The language consists of a sequence of one or more sentences beginning with the word <tt>&laquo;cold&raquo;</tt> followed by a repetition of either <tt>&laquo;cold&raquo;</tt> or <tt>&laquo;freezing&raquo;</tt> followed by <tt>&laquo;beer&raquo;</tt> and terminated by the symbol <tt>&laquo;.&raquo;</tt>.</p>
+    <p>The grammar below describes a simple toy language called <b>Cold Beer</b> and will serve as a quick introduction to the PKPK grammar syntax. The rules of the <b>Cold Beer</b> language are as follows. The language consists of a sequence of one or more sentences beginning with the word <tt>&laquo;cold&raquo;</tt> followed by a repetition of either <tt>&laquo;cold&raquo;</tt> or <tt>&laquo;freezing&raquo;</tt> followed by <tt>&laquo;beer&raquo;</tt> and terminated by the symbol <tt>&laquo;.&raquo;</tt>.</p>
     
     <p>For example, each of the following lines are valid instances of the <b>Cold Beer</b> language (as is the example as a whole):</p>
     
@@ -54,7 +54,7 @@
     beer.</pre>
     </div>
     
-    <p>Here is a complete TDParseKit grammar for the <b>Cold Beer</b> language.</p>
+    <p>Here is a complete ParseKit grammar for the <b>Cold Beer</b> language.</p>
     
     <div class="code">
     <pre>
@@ -66,7 +66,7 @@
     freezing = 'freezing';</pre>
     </div>
     
-    <p>As shown above, the TDPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of Objective-C. So a commented <b>Cold Beer</b> grammar may appear as:</p>
+    <p>As shown above, the PKPK grammar syntax consists of individual language production declarations separated by <tt>&laquo;;&raquo;</tt>. Whitespace is ignored, so the productions can be formatted liberally with whitespace as the programmer prefers. Comments are also allowed and resemble the comment style of Objective-C. So a commented <b>Cold Beer</b> grammar may appear as:</p>
     
     <div class="code">
     <pre>
@@ -85,7 +85,7 @@
     <a name="production-syntax"></a>
     <h3>Individual Grammar Production Syntax</h3>
 
-    <p>Every TDPK grammar <b>must</b> contain <b>one and only one</b> production named <tt>@start</tt>. This will be the <em>highest-level</em> or <em>outermost</em> production rule in the language. For <b>Cold Beer</b>, the outermost production is:</p>
+    <p>Every PKPK grammar <b>must</b> contain <b>one and only one</b> production named <tt>@start</tt>. This will be the <em>highest-level</em> or <em>outermost</em> production rule in the language. For <b>Cold Beer</b>, the outermost production is:</p>
 
     <div class="code">
     <pre>
@@ -132,14 +132,14 @@
     <a name="instantiating"></a>
     <h3>Instantiating Grammar Parsers in Objective-C</h3>
     
-    <p>Create an Objective-C <tt>TDParser</tt> object by providing the grammar as an <tt>NSString</tt> and an <tt>assembler</tt> object (in this example, <tt>self</tt>).</p>
+    <p>Create an Objective-C <tt>PKParser</tt> object by providing the grammar as an <tt>NSString</tt> and an <tt>assembler</tt> object (in this example, <tt>self</tt>).</p>
     
     <div class="code">
     <pre>
   NSString *g = ... // fetch your grammar from a file on disk
   
-  TDParser *<b>parser</b> = nil;
-  parser = [[TDParserFactory factory] parserFromGrammar:g assembler:<b>self</b>];
+  PKParser *<b>parser</b> = nil;
+  parser = [[PKParserFactory factory] parserFromGrammar:g assembler:<b>self</b>];
   
   NSString *s = @"cold freezing cold beer.";
   <b>[parser parse:s]</b>;</pre>
@@ -151,14 +151,14 @@
     
       <div class="code">
       <pre>
-    - (void)workOnSentenceAssembly:(TDAssembly *)a;
-    - (void)workOnAdjectivesAssembly:(TDAssembly *)a;
-    - (void)workOnAdjectiveAssembly:(TDAssembly *)a;
-    - (void)workOnColdAssembly:(TDAssembly *)a;
-    - (void)workOnFreezingAssembly:(TDAssembly *)a;</pre>
+    - (void)workOnSentenceAssembly:(PKAssembly *)a;
+    - (void)workOnAdjectivesAssembly:(PKAssembly *)a;
+    - (void)workOnAdjectiveAssembly:(PKAssembly *)a;
+    - (void)workOnColdAssembly:(PKAssembly *)a;
+    - (void)workOnFreezingAssembly:(PKAssembly *)a;</pre>
       </div>
       
-     <p>The <tt>TDAssembly</tt> argument will have the most-recently matched tokens on the top of its stack.</p>
+     <p>The <tt>PKAssembly</tt> argument will have the most-recently matched tokens on the top of its stack.</p>
     
 </div>
 </body>
