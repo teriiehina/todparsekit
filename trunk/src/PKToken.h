@@ -9,28 +9,28 @@
 #import <Foundation/Foundation.h>
 
 /*!
-    @typedef    enum TDTokenType
+    @typedef    enum PKTokenType
     @brief      Indicates the type of a <tt>PKToken</tt>
-    @var        TDTokenTypeEOF A constant indicating that the endo fo the stream has been read.
-    @var        TDTokenTypeNumber A constant indicating that a token is a number, like <tt>3.14</tt>.
-    @var        TDTokenTypeQuotedString A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
-    @var        TDTokenTypeSymbol A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
-    @var        TDTokenTypeWord A constant indicating that a token is a word, like <tt>cat</tt>.
-    @var        TDTokenTypeWhitespace A constant indicating that a token is whitespace, like <tt>\t</tt>.
-    @var        TDTokenTypeComment A constant indicating that a token is a comment, like <tt>// this is a hack</tt>.
-    @var        TDTokenTypeDelimtedString A constant indicating that a token is a delimitedString, like <tt><#foo></tt>.
+    @var        PKTokenTypeEOF A constant indicating that the endo fo the stream has been read.
+    @var        PKTokenTypeNumber A constant indicating that a token is a number, like <tt>3.14</tt>.
+    @var        PKTokenTypeQuotedString A constant indicating that a token is a quoted string, like <tt>"Launch Mi"</tt>.
+    @var        PKTokenTypeSymbol A constant indicating that a token is a symbol, like <tt>"&lt;="</tt>.
+    @var        PKTokenTypeWord A constant indicating that a token is a word, like <tt>cat</tt>.
+    @var        PKTokenTypeWhitespace A constant indicating that a token is whitespace, like <tt>\t</tt>.
+    @var        PKTokenTypeComment A constant indicating that a token is a comment, like <tt>// this is a hack</tt>.
+    @var        PKTokenTypeDelimtedString A constant indicating that a token is a delimitedString, like <tt><#foo></tt>.
 */
 typedef enum {
-    TDTokenTypeEOF,
-    TDTokenTypeNumber,
-    TDTokenTypeQuotedString,
-    TDTokenTypeSymbol,
-    TDTokenTypeWord,
-    TDTokenTypeWhitespace,
-    TDTokenTypeComment,
-    TDTokenTypeDelimitedString,
-    TDTokenTypeAny
-} TDTokenType;
+    PKTokenTypeEOF,
+    PKTokenTypeNumber,
+    PKTokenTypeQuotedString,
+    PKTokenTypeSymbol,
+    PKTokenTypeWord,
+    PKTokenTypeWhitespace,
+    PKTokenTypeComment,
+    PKTokenTypeDelimitedString,
+    PKTokenTypeAny
+} PKTokenType;
 
 /*!
     @class      PKToken
@@ -40,7 +40,7 @@ typedef enum {
 @interface PKToken : NSObject <NSCopying> {
     CGFloat floatValue;
     NSString *stringValue;
-    TDTokenType tokenType;
+    PKTokenType tokenType;
     
     BOOL number;
     BOOL quotedString;
@@ -67,7 +67,7 @@ typedef enum {
     @param      n the number falue of this token.
     @result     an autoreleased initialized token.
 */
-+ (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
++ (id)tokenWithTokenType:(PKTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
     @brief      Designated initializer. Constructs a token of the indicated type and associated string or numeric values.
@@ -76,7 +76,7 @@ typedef enum {
     @param      n the number falue of this token.
     @result     an autoreleased initialized token.
 */
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
+- (id)initWithTokenType:(PKTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n;
 
 /*!
     @brief      Returns true if the supplied object is an equivalent <tt>PKToken</tt>, ignoring differences in case.
@@ -138,7 +138,7 @@ typedef enum {
     @property   tokenType
     @brief      The type of this token.
 */
-@property (nonatomic, readonly) TDTokenType tokenType;
+@property (nonatomic, readonly) PKTokenType tokenType;
 
 /*!
     @property   floatValue

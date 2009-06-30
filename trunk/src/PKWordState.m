@@ -12,8 +12,8 @@
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-#define TDTRUE (id)kCFBooleanTrue
-#define TDFALSE (id)kCFBooleanFalse
+#define PKTRUE (id)kCFBooleanTrue
+#define PKFALSE (id)kCFBooleanFalse
 
 @interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
@@ -38,7 +38,7 @@
         self.wordChars = [NSMutableArray arrayWithCapacity:256];
         NSInteger i = 0;
         for ( ; i < 256; i++) {
-            [wordChars addObject:TDFALSE];
+            [wordChars addObject:PKFALSE];
         }
         
         [self setWordChars:YES from: 'a' to: 'z'];
@@ -62,10 +62,10 @@
 - (void)setWordChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = wordChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWordStateNotSupportedException" format:@"PKWordState only supports setting word chars for chars in the latin1 set (under 256)"];
+        [NSException raise:@"PKWordStateNotSupportedException" format:@"PKWordState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
     
-    id obj = yn ? TDTRUE : TDFALSE;
+    id obj = yn ? PKTRUE : PKFALSE;
     NSInteger i = start;
     for ( ; i <= end; i++) {
         [wordChars replaceObjectAtIndex:i withObject:obj];
@@ -75,7 +75,7 @@
 
 - (BOOL)isWordChar:(PKUniChar)c {    
     if (c > PKEOF && c < wordChars.count - 1) {
-        return (TDTRUE == [wordChars objectAtIndex:c]);
+        return (PKTRUE == [wordChars objectAtIndex:c]);
     }
 
     if (c >= 0x2000 && c <= 0x2BFF) { // various symbols
@@ -110,7 +110,7 @@
         [r unread];
     }
     
-    PKToken *tok = [PKToken tokenWithTokenType:TDTokenTypeWord stringValue:[self bufferedString] floatValue:0.0];
+    PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeWord stringValue:[self bufferedString] floatValue:0.0];
     tok.offset = offset;
     return tok;
 }

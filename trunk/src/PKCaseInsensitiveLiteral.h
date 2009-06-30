@@ -11,7 +11,7 @@
 
 /*!
     @class      PKCaseInsensitiveLiteral 
-    @brief      A <tt>TDCaselessLiteral</tt> matches a specified <tt>NSString</tt> from an assembly, disregarding case.
+    @brief      A <tt>PKCaselessLiteral</tt> matches a specified <tt>NSString</tt> from an assembly, disregarding case.
 */
 @interface PKCaseInsensitiveLiteral : PKLiteral {
 

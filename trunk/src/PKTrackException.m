@@ -8,7 +8,7 @@
 
 #import "PKTrackException.h"
 
-NSString * const TDTrackExceptionName = @"Track Exception";
+NSString * const PKTrackExceptionName = @"Track Exception";
 
 @implementation PKTrackException
 

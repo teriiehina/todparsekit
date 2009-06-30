@@ -8,11 +8,11 @@
 
 #import "PKExclusion.h"
 
-@interface NSMutableSet (TDExclusionAdditions)
+@interface NSMutableSet (PKExclusionAdditions)
 - (void)minusSetTestingEquality:(NSSet *)s;
 @end
 
-@implementation NSMutableSet (TDExclusionAdditions)
+@implementation NSMutableSet (PKExclusionAdditions)
 
 - (void)minusSetTestingEquality:(NSSet *)s {
     for (id a1 in self) {

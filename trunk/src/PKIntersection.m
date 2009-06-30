@@ -9,11 +9,11 @@
 #import "PKIntersection.h"
 #import <ParseKit/PKAssembly.h>
 
-@interface NSMutableSet (TDIntersectionAdditions)
+@interface NSMutableSet (PKIntersectionAdditions)
 - (void)intersectSetTestingEquality:(NSSet *)s;
 @end
 
-@implementation NSMutableSet (TDIntersectionAdditions)
+@implementation NSMutableSet (PKIntersectionAdditions)
 
 - (void)intersectSetTestingEquality:(NSSet *)s {
     for (id a1 in self) {

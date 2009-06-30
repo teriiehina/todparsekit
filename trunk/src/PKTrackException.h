@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const TDTrackExceptionName;
+extern NSString * const PKTrackExceptionName;
 
 /*!
  @class     PKTrackException

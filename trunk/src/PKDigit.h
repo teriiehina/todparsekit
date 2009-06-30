@@ -11,7 +11,7 @@
 /*!
     @class      PKDigit 
     @brief      A <tt>PKDigit</tt> matches a digit from a character assembly.
-    @details    <tt>-[TDDitgit qualifies:] returns true if an assembly's next element is a digit.
+    @details    <tt>-[PKDitgit qualifies:] returns true if an assembly's next element is a digit.
 */
 @interface PKDigit : PKTerminal {
 

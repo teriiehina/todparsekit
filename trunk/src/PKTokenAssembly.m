@@ -99,7 +99,7 @@
         if (!preservesWhitespaceTokens) {
             break;
         }
-        if (TDTokenTypeWhitespace == tok.tokenType) {
+        if (PKTokenTypeWhitespace == tok.tokenType) {
             [self push:tok];
             index++;
         } else {

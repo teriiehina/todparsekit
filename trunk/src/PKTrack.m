@@ -67,7 +67,7 @@
                               expected, @"expected",
                               found, @"found",
                               nil];
-    [[PKTrackException exceptionWithName:TDTrackExceptionName reason:reason userInfo:userInfo] raise];
+    [[PKTrackException exceptionWithName:PKTrackExceptionName reason:reason userInfo:userInfo] raise];
 }
 
 @end

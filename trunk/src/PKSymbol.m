@@ -29,7 +29,7 @@
     self = [super initWithString:s];
     if (self) {
         if (s.length) {
-            self.symbol = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:s floatValue:0.0];
+            self.symbol = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:s floatValue:0.0];
         }
     }
     return self;

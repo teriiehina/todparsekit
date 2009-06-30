@@ -9,15 +9,15 @@
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
 
-@interface TDTokenEOF : PKToken {}
-+ (TDTokenEOF *)instance;
+@interface PKTokenEOF : PKToken {}
++ (PKTokenEOF *)instance;
 @end
 
-@implementation TDTokenEOF
+@implementation PKTokenEOF
 
-static TDTokenEOF *EOFToken = nil;
+static PKTokenEOF *EOFToken = nil;
 
-+ (TDTokenEOF *)instance {
++ (PKTokenEOF *)instance {
     @synchronized(self) {
         if (!EOFToken) {
             [[self alloc] init]; // assignment not done here
@@ -64,7 +64,7 @@ static TDTokenEOF *EOFToken = nil;
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<TDTokenEOF %p>", self];
+    return [NSString stringWithFormat:@"<PKTokenEOF %p>", self];
 }
 
 
@@ -92,7 +92,7 @@ static TDTokenEOF *EOFToken = nil;
 
 @property (nonatomic, readwrite) CGFloat floatValue;
 @property (nonatomic, readwrite, copy) NSString *stringValue;
-@property (nonatomic, readwrite) TDTokenType tokenType;
+@property (nonatomic, readwrite) PKTokenType tokenType;
 @property (nonatomic, readwrite, copy) id value;
 
 @property (nonatomic, readwrite) NSUInteger offset;
@@ -101,30 +101,30 @@ static TDTokenEOF *EOFToken = nil;
 @implementation PKToken
 
 + (PKToken *)EOFToken {
-    return [TDTokenEOF instance];
+    return [PKTokenEOF instance];
 }
 
 
-+ (id)tokenWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
++ (id)tokenWithTokenType:(PKTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
     return [[[self alloc] initWithTokenType:t stringValue:s floatValue:n] autorelease];
 }
 
 
 // designated initializer
-- (id)initWithTokenType:(TDTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
+- (id)initWithTokenType:(PKTokenType)t stringValue:(NSString *)s floatValue:(CGFloat)n {
     //NSParameterAssert(s);
     if (self = [super init]) {
         self.tokenType = t;
         self.stringValue = s;
         self.floatValue = n;
         
-        self.number = (TDTokenTypeNumber == t);
-        self.quotedString = (TDTokenTypeQuotedString == t);
-        self.symbol = (TDTokenTypeSymbol == t);
-        self.word = (TDTokenTypeWord == t);
-        self.whitespace = (TDTokenTypeWhitespace == t);
-        self.comment = (TDTokenTypeComment == t);
-        self.delimitedString = (TDTokenTypeDelimitedString == t);
+        self.number = (PKTokenTypeNumber == t);
+        self.quotedString = (PKTokenTypeQuotedString == t);
+        self.symbol = (PKTokenTypeSymbol == t);
+        self.word = (PKTokenTypeWord == t);
+        self.whitespace = (PKTokenTypeWhitespace == t);
+        self.comment = (PKTokenTypeComment == t);
+        self.delimitedString = (PKTokenTypeDelimitedString == t);
     }
     return self;
 }

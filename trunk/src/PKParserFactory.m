@@ -11,7 +11,7 @@
 #import "NSString+ParseKitAdditions.h"
 #import "NSArray+ParseKitAdditions.h"
 
-@interface PKParser (TDParserFactoryAdditionsFriend)
+@interface PKParser (PKParserFactoryAdditionsFriend)
 - (void)setTokenizer:(PKTokenizer *)t;
 @end
 
@@ -24,7 +24,7 @@
 @end
 
 @interface PKPattern ()
-@property (nonatomic, assign) TDTokenType tokenType;
+@property (nonatomic, assign) PKTokenType tokenType;
 @end
 
 void PKReleaseSubparserTree(PKParser *p) {
@@ -66,7 +66,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks;
 - (PKParser *)expandedParserForName:(NSString *)parserName;
 - (void)setAssemblerForParser:(PKParser *)p;
-- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt;
+- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(PKTokenType)tt;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 // this is only for unit tests? can it go away?
@@ -143,10 +143,10 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 - (id)init {
     if (self = [super init]) {
-        self.equals  = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"=" floatValue:0.0];
-        self.curly   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.paren   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.caret   = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"^" floatValue:0.0];
+        self.equals  = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"=" floatValue:0.0];
+        self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
+        self.caret   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"^" floatValue:0.0];
         self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -252,7 +252,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 - (BOOL)isAllWhitespace:(NSArray *)toks {
     for (PKToken *tok in toks) {
-        if (TDTokenTypeWhitespace != tok.tokenType) {
+        if (PKTokenTypeWhitespace != tok.tokenType) {
             return NO;
         }
     }
@@ -1087,7 +1087,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     if ([parserName hasPrefix:@"@"]) {
         // remove whitespace toks from tokenizer directives
         if (![parserName isEqualToString:@"@start"]) {
-            toks = [self tokens:toks byRemovingTokensOfType:TDTokenTypeWhitespace];
+            toks = [self tokens:toks byRemovingTokensOfType:PKTokenTypeWhitespace];
         }
         
         NSArray *existingToks = [d objectForKey:parserName];
@@ -1100,10 +1100,10 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt {
+- (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(PKTokenType)tt {
     NSMutableArray *res = [NSMutableArray array];
     for (PKToken *tok in toks) {
-        if (TDTokenTypeWhitespace != tok.tokenType) {
+        if (PKTokenTypeWhitespace != tok.tokenType) {
             [res addObject:tok];
         }
     }
