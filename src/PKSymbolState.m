@@ -1,12 +1,12 @@
 //
-//  TDSymbolState.m
+//  PKSymbolState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSymbolState.h>
+#import <ParseKit/PKSymbolState.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/TDSymbolRootNode.h>
 #import <ParseKit/PKReader.h>
@@ -20,12 +20,12 @@
 - (void)resetWithReader:(PKReader *)r;
 @end
 
-@interface TDSymbolState ()
+@interface PKSymbolState ()
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *addedSymbols;
 @end
 
-@implementation TDSymbolState
+@implementation PKSymbolState
 
 - (id)init {
     if (self = [super init]) {

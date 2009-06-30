@@ -854,8 +854,8 @@
         self.QName = [PKAlternation alternation];
         QName.name = @"QName";
 
-        PKParser *prefix = [TDWord word];
-        PKParser *localPart = [TDWord word];
+        PKParser *prefix = [PKWord word];
+        PKParser *localPart = [PKWord word];
         PKParser *unprefixedName = localPart;
         
         PKSequence *prefixedName = [PKSequence sequence];
@@ -903,7 +903,7 @@
         [nameTest add:[TDSymbol symbolWithString:@"*"]];
 
         PKSequence *s = [PKSequence sequence];
-        [s add:[TDWord word]];
+        [s add:[PKWord word]];
         [s add:[TDSymbol symbolWithString:@":"]];
         [s add:[TDSymbol symbolWithString:@"*"]];
         [nameTest add:s];

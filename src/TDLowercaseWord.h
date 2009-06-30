@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDWord.h>
+#import <ParseKit/PKWord.h>
 
-@interface TDLowercaseWord : TDWord {
+@interface TDLowercaseWord : PKWord {
 
 }
 

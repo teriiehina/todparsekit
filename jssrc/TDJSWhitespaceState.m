@@ -9,25 +9,25 @@
 #import "TDJSWhitespaceState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDWhitespaceState.h>
+#import <ParseKit/PKWhitespaceState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDWhitespaceState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWhitespaceState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDWhitespaceState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKWhitespaceState]", ex);
 }
 
 static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWhitespaceState_class, "setWhitespaceChars");
-    TDPreconditionMethodArgc(3, "TDWhitespaceState.setWhitespaceChars");
+    TDPreconditionMethodArgc(3, "PKWhitespaceState.setWhitespaceChars");
     
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
     NSString *end = TDJSValueGetNSString(ctx, argv[2], ex);
     
-    TDWhitespaceState *data = JSObjectGetPrivate(this);
+    PKWhitespaceState *data = JSObjectGetPrivate(this);
     [data setWhitespaceChars:yn from:[start characterAtIndex:0] to:[end characterAtIndex:0]];
     
     return JSValueMakeUndefined(ctx);
@@ -35,11 +35,11 @@ static JSValueRef TDWhitespaceState_setWhitespaceChars(JSContextRef ctx, JSObjec
 
 static JSValueRef TDWhitespaceState_isWhitespaceChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWhitespaceState_class, "isWhitespaceChar");
-    TDPreconditionMethodArgc(1, "TDWhitespaceState.add");
+    TDPreconditionMethodArgc(1, "PKWhitespaceState.add");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDWhitespaceState *data = JSObjectGetPrivate(this);
+    PKWhitespaceState *data = JSObjectGetPrivate(this);
     BOOL yn = [data isWhitespaceChar:[s characterAtIndex:0]];
     
     return JSValueMakeBoolean(ctx, yn);
@@ -49,12 +49,12 @@ static JSValueRef TDWhitespaceState_isWhitespaceChar(JSContextRef ctx, JSObjectR
 #pragma mark Properties
 
 static JSValueRef TDWhitespaceState_getReportsWhitespaceTokens(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDWhitespaceState *data = JSObjectGetPrivate(this);
+    PKWhitespaceState *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.reportsWhitespaceTokens);
 }
 
 static bool TDWhitespaceState_setReportsWhitespaceTokens(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
-    TDWhitespaceState *data = JSObjectGetPrivate(this);
+    PKWhitespaceState *data = JSObjectGetPrivate(this);
     data.reportsWhitespaceTokens = JSValueToBoolean(ctx, value);
     return true;
 }
@@ -104,6 +104,6 @@ JSObjectRef TDWhitespaceState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDWhitespaceState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDWhitespaceState *data = [[TDWhitespaceState alloc] init];
+    PKWhitespaceState *data = [[PKWhitespaceState alloc] init];
     return TDWhitespaceState_new(ctx, data);
 }

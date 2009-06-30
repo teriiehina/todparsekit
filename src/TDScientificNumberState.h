@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDNumberState.h>
+#import <ParseKit/PKNumberState.h>
 
 /*!
     @class      TDScientificNumberState 
@@ -14,7 +14,7 @@
     @details    <p>This state's idea of a number expands on its superclass, allowing an 'e' followed by an integer to represent 10 to the indicated power. For example, this state will recognize <tt>1e2</tt> as equaling <tt>100</tt>.</p>
                 <p>This class exists primarily to show how to introduce a new tokenizing state.</p>
 */
-@interface TDScientificNumberState : TDNumberState {
+@interface TDScientificNumberState : PKNumberState {
     CGFloat exp;
     BOOL negativeExp;
 }

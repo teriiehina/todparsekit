@@ -97,10 +97,10 @@
 
     PKSequence *commaTerm = [PKSequence sequence];
     [commaTerm add:[[TDSymbol symbolWithString:@","] discard]];
-    [commaTerm add:[TDWord word]];
+    [commaTerm add:[PKWord word]];
 
     PKSequence *actualList = [PKSequence sequence];
-    [actualList add:[TDWord word]];
+    [actualList add:[PKWord word]];
     [actualList add:[PKRepetition repetitionWithSubparser:commaTerm]];
     
     PKSequence *list = [PKSequence sequence];

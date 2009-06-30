@@ -85,12 +85,12 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpClassProperty(ctx, "EOFToken", TDToken_getEOFToken(ctx), constr, &ex); // Class property on Token constructor
     
     setUpConstructor(ctx, "PKTokenizer", TDTokenizer_class(ctx), TDTokenizer_construct, &ex);
-    setUpConstructor(ctx, "TDWordState", TDWordState_class(ctx), TDWordState_construct, &ex);
-    setUpConstructor(ctx, "TDQuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
-    setUpConstructor(ctx, "TDNumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
-    setUpConstructor(ctx, "TDSymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
+    setUpConstructor(ctx, "PKWordState", TDWordState_class(ctx), TDWordState_construct, &ex);
+    setUpConstructor(ctx, "PKQuoteState", TDQuoteState_class(ctx), TDQuoteState_construct, &ex);
+    setUpConstructor(ctx, "PKNumberState", TDNumberState_class(ctx), TDNumberState_construct, &ex);
+    setUpConstructor(ctx, "PKSymbolState", TDSymbolState_class(ctx), TDSymbolState_construct, &ex);
     setUpConstructor(ctx, "TDCommentState", TDCommentState_class(ctx), TDCommentState_construct, &ex);
-    setUpConstructor(ctx, "TDWhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
+    setUpConstructor(ctx, "PKWhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
 
     // Parsers
     setUpConstructor(ctx, "PKRepetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
@@ -104,7 +104,7 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "PKAny", TDAny_class(ctx), TDAny_construct, &ex);
     
     // Token Terminals
-    setUpConstructor(ctx, "TDWord", TDWord_class(ctx), TDWord_construct, &ex);
+    setUpConstructor(ctx, "PKWord", TDWord_class(ctx), TDWord_construct, &ex);
     setUpConstructor(ctx, "TDNum", TDNum_class(ctx), TDNum_construct, &ex);
     setUpConstructor(ctx, "TDQuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
     setUpConstructor(ctx, "TDSymbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);

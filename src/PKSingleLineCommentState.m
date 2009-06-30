@@ -1,13 +1,13 @@
 //
-//  TDSingleLineCommentState.m
+//  PKSingleLineCommentState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSingleLineCommentState.h>
-#import <ParseKit/TDCommentState.h>
+#import <ParseKit/PKSingleLineCommentState.h>
+#import <ParseKit/PKCommentState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
@@ -24,14 +24,14 @@
 - (NSString *)bufferedString;
 @end
 
-@interface TDSingleLineCommentState ()
+@interface PKSingleLineCommentState ()
 - (void)addStartMarker:(NSString *)start;
 - (void)removeStartMarker:(NSString *)start;
 @property (nonatomic, retain) NSMutableArray *startMarkers;
 @property (nonatomic, retain) NSString *currentStartMarker;
 @end
 
-@implementation TDSingleLineCommentState
+@implementation PKSingleLineCommentState
 
 - (id)init {
     if (self = [super init]) {

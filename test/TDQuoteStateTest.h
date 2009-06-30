@@ -10,7 +10,7 @@
 
 
 @interface TDQuoteStateTest : SenTestCase {
-    TDQuoteState *quoteState;
+    PKQuoteState *quoteState;
     PKReader *r;
     NSString *s;
 }

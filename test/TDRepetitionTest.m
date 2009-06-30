@@ -30,7 +30,7 @@
     s = @"foo bar baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
@@ -45,7 +45,7 @@
     s = @"foo bar baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     
     PKAssembly *result = [p bestMatchFor:a];
@@ -58,7 +58,7 @@
     s = @"foo bar 123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
 
     PKAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);
@@ -70,7 +70,7 @@
     s = @"foo bar 123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
@@ -85,7 +85,7 @@
     s = @"foo 123 baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
@@ -115,7 +115,7 @@
     s = @"foo bar baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
@@ -127,7 +127,7 @@
     s = @"foo bar 123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
@@ -138,7 +138,7 @@
     s = @"456 bar 123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
@@ -200,7 +200,7 @@
     s = @"123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     PKAssembly *result = [p completeMatchFor:a];
     
@@ -212,7 +212,7 @@
     s = @"foo";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[TDWord word]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKWord word]];
     
     PKAssembly *result = [p bestMatchFor:a];
     TDNotNil(result);

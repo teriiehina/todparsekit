@@ -992,13 +992,13 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Word]Word^", [res description]);
-    TDWord *w = [res pop];
-    TDTrue([w isMemberOfClass:[TDWord class]]);
+    PKWord *w = [res pop];
+    TDTrue([w isMemberOfClass:[PKWord class]]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDWord class]);
+    TDEqualObjects([lp class], [PKWord class]);
     s = @"hello hello";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];

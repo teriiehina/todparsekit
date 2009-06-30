@@ -14,7 +14,7 @@
 /*!
     @class      PKParser 
     @brief      An Abstract class. A <tt>PKParser</tt> is an object that recognizes the elements of a language.
-    @details    <p>Each <tt>PKParser</tt> object is either a <tt>PKTerminal</tt> or a composition of other parsers. The <tt>PKTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>TDWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
+    @details    <p>Each <tt>PKParser</tt> object is either a <tt>PKTerminal</tt> or a composition of other parsers. The <tt>PKTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>PKWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
                 <p>In addition to <tt>PKTerminal</tt>, other subclasses of <tt>PKParser</tt> provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following <tt>PKParser</tt> objects culminate in a good parser that recognizes a description of good coffee.</p>
 @code
     PKAlternation *adjective = [PKAlternation alternation];

@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDWhitespaceStateTest : SenTestCase {
-    TDWhitespaceState *whitespaceState;
+    PKWhitespaceState *whitespaceState;
     PKReader *r;
     NSString *s;
 }

@@ -1562,7 +1562,7 @@
 //  identifier          = Word;
 - (PKParser *)identifierParser {
     if (!identifierParser) {
-        self.identifierParser = [TDWord word];
+        self.identifierParser = [PKWord word];
         identifierParser.name = @"identifier";
     }
     return identifierParser;

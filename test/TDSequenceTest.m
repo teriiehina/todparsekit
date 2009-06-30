@@ -179,7 +179,7 @@
     
     p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDWord word]];
+    [p add:[PKWord word]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];

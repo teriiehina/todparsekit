@@ -1,12 +1,12 @@
 //
-//  TDWhitespaceState.m
+//  PKWhitespaceState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDWhitespaceState.h>
+#import <ParseKit/PKWhitespaceState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
@@ -25,11 +25,11 @@
 - (NSString *)bufferedString;
 @end
 
-@interface TDWhitespaceState ()
+@interface PKWhitespaceState ()
 @property (nonatomic, retain) NSMutableArray *whitespaceChars;
 @end
 
-@implementation TDWhitespaceState
+@implementation PKWhitespaceState
 
 - (id)init {
     if (self = [super init]) {
@@ -55,7 +55,7 @@
 - (void)setWhitespaceChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
+        [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"PKWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
 
     id obj = yn ? TDTRUE : TDFALSE;

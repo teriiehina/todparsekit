@@ -1,16 +1,16 @@
 //
-//  TDNumberState.m
+//  PKNumberState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDNumberState.h>
+#import <ParseKit/PKNumberState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKTokenizer.h>
-#import <ParseKit/TDSymbolState.h>
+#import <ParseKit/PKSymbolState.h>
 #import <ParseKit/PKTypes.h>
 
 @interface PKToken ()
@@ -23,7 +23,7 @@
 - (NSString *)bufferedString;
 @end
 
-@interface TDNumberState ()
+@interface PKNumberState ()
 - (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)fraction;
 - (CGFloat)value;
 - (void)parseLeftSideFromReader:(PKReader *)r;
@@ -31,7 +31,7 @@
 - (void)reset:(PKUniChar)cin;
 @end
 
-@implementation TDNumberState
+@implementation PKNumberState
 
 - (void)dealloc {
     [super dealloc];

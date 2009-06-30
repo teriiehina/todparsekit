@@ -20,10 +20,10 @@
 - (PKParser *)listParser {
     PKTrack *commaWord = [PKTrack track];
     [commaWord add:[[TDSymbol symbolWithString:@","] discard]];
-    [commaWord add:[TDWord word]];
+    [commaWord add:[PKWord word]];
     
     PKSequence *actualList = [PKSequence sequence];
-    [actualList add:[TDWord word]];
+    [actualList add:[PKWord word]];
     [actualList add:[PKRepetition repetitionWithSubparser:commaWord]];
     
     PKAlternation *contents = [PKAlternation alternation];

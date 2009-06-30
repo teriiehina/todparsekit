@@ -9,26 +9,26 @@
 #import "TDJSNumberState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDNumberState.h>
+#import <ParseKit/PKNumberState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDNumberState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDNumberState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDNumberState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKNumberState]", ex);
 }
 
 #pragma mark -
 #pragma mark Properties
 
 static JSValueRef TDNumberState_getAllowsTrailingDot(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDNumberState *data = JSObjectGetPrivate(this);
+    PKNumberState *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.allowsTrailingDot);
 }
 
 static bool TDNumberState_setAllowsTrailingDot(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
-    TDNumberState *data = JSObjectGetPrivate(this);
+    PKNumberState *data = JSObjectGetPrivate(this);
     data.allowsTrailingDot = JSValueToBoolean(ctx, value);
     return true;
 }
@@ -76,6 +76,6 @@ JSObjectRef TDNumberState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDNumberState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDNumberState *data = [[TDNumberState alloc] init];
+    PKNumberState *data = [[PKNumberState alloc] init];
     return TDNumberState_new(ctx, data);
 }

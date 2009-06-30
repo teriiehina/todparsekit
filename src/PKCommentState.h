@@ -1,5 +1,5 @@
 //
-//  TDCommentState.h
+//  PKCommentState.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
@@ -10,8 +10,8 @@
 #import <ParseKit/PKTokenizerState.h>
 
 @class TDSymbolRootNode;
-@class TDSingleLineCommentState;
-@class TDMultiLineCommentState;
+@class PKSingleLineCommentState;
+@class PKMultiLineCommentState;
 
 /*!
     @class      TDCommentState
@@ -20,8 +20,8 @@
 */
 @interface TDCommentState : PKTokenizerState {
     TDSymbolRootNode *rootNode;
-    TDSingleLineCommentState *singleLineState;
-    TDMultiLineCommentState *multiLineState;
+    PKSingleLineCommentState *singleLineState;
+    PKMultiLineCommentState *multiLineState;
     BOOL reportsCommentTokens;
     BOOL balancesEOFTerminatedComments;
 }

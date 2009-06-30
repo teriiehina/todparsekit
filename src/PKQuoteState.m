@@ -1,12 +1,12 @@
 //
-//  TDQuoteState.m
+//  PKQuoteState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDQuoteState.h>
+#import <ParseKit/PKQuoteState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKTypes.h>
@@ -21,7 +21,7 @@
 - (NSString *)bufferedString;
 @end
 
-@implementation TDQuoteState
+@implementation PKQuoteState
 
 - (void)dealloc {
     [super dealloc];

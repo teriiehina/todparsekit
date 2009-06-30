@@ -636,7 +636,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     if (!declarationParser) {
         self.declarationParser = [PKSequence sequence];
         declarationParser.name = @"declaration";
-        [declarationParser add:[TDWord word]];
+        [declarationParser add:[PKWord word]];
         [declarationParser add:[self zeroOrOne:self.callbackParser]];
     }
     return declarationParser;
@@ -965,7 +965,7 @@ void TDReleaseSubparserTree(PKParser *p) {
         
         PKParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
         PKIntersection *inter = [PKIntersection intersection];
-        [inter add:[TDWord word]];
+        [inter add:[PKWord word]];
         [inter add:opts];
         [inter setAssembler:self selector:@selector(workOnPatternOptions:)];
         
@@ -1274,7 +1274,7 @@ void TDReleaseSubparserTree(PKParser *p) {
     NSString *s = tok.stringValue;
     id p = nil;
     if ([s isEqualToString:@"Word"]) {
-        p = [TDWord word];
+        p = [PKWord word];
     } else if ([s isEqualToString:@"LowercaseWord"]) {
         p = [TDLowercaseWord word];
     } else if ([s isEqualToString:@"UppercaseWord"]) {

@@ -52,7 +52,7 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
-    [p add:[TDWord word]];
+    [p add:[PKWord word]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
     
@@ -68,7 +68,7 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     
     p = [PKAlternation alternation];
-    [p add:[TDWord word]];
+    [p add:[PKWord word]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDNum num]];
     

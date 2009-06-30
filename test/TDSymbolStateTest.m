@@ -11,7 +11,7 @@
 @implementation TDSymbolStateTest
 
 - (void)setUp {
-    symbolState = [[TDSymbolState alloc] init];
+    symbolState = [[PKSymbolState alloc] init];
 }
 
 

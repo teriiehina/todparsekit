@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDWordState.h>
+#import <ParseKit/PKWordState.h>
 
 /*!
     @class      TDWordOrReservedState 
-    @brief      Override <tt>TDWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
+    @brief      Override <tt>PKWordState</tt> to return known reserved words as tokens of type <tt>TDTT_RESERVED</tt>.
 */
-@interface TDWordOrReservedState : TDWordState {
+@interface TDWordOrReservedState : PKWordState {
     NSMutableSet *reservedWords;
 }
 

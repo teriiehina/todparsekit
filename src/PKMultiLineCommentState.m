@@ -1,13 +1,13 @@
 //
-//  TDMultiLineCommentState.m
+//  PKMultiLineCommentState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDMultiLineCommentState.h>
-#import <ParseKit/TDCommentState.h>
+#import <ParseKit/PKMultiLineCommentState.h>
+#import <ParseKit/PKCommentState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
@@ -29,7 +29,7 @@
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
 @end
 
-@interface TDMultiLineCommentState ()
+@interface PKMultiLineCommentState ()
 - (void)addStartMarker:(NSString *)start endMarker:(NSString *)end;
 - (void)removeStartMarker:(NSString *)start;
 @property (nonatomic, retain) NSMutableArray *startMarkers;
@@ -37,7 +37,7 @@
 @property (nonatomic, copy) NSString *currentStartMarker;
 @end
 
-@implementation TDMultiLineCommentState
+@implementation PKMultiLineCommentState
 
 - (id)init {
     if (self = [super init]) {

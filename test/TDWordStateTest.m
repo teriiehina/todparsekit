@@ -12,7 +12,7 @@
 @implementation TDWordStateTest
 
 - (void)setUp {
-    wordState = [[TDWordState alloc] init];
+    wordState = [[PKWordState alloc] init];
 }
 
 

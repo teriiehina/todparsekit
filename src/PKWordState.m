@@ -1,12 +1,12 @@
 //
-//  TDWordState.m
+//  PKWordState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDWordState.h>
+#import <ParseKit/PKWordState.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
@@ -25,13 +25,13 @@
 - (NSString *)bufferedString;
 @end
 
-@interface TDWordState () 
+@interface PKWordState () 
 - (BOOL)isWordChar:(PKUniChar)c;
 
 @property (nonatomic, retain) NSMutableArray *wordChars;
 @end
 
-@implementation TDWordState
+@implementation PKWordState
 
 - (id)init {
     if (self = [super init]) {
@@ -62,7 +62,7 @@
 - (void)setWordChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = wordChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
-        [NSException raise:@"TDWordStateNotSupportedException" format:@"TDWordState only supports setting word chars for chars in the latin1 set (under 256)"];
+        [NSException raise:@"TDWordStateNotSupportedException" format:@"PKWordState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
     
     id obj = yn ? TDTRUE : TDFALSE;

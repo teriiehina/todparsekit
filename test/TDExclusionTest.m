@@ -11,7 +11,7 @@
 @implementation TDExclusionTest
 
 - (void)testFoo {
-    TDWord *word = [TDWord word];
+    PKWord *word = [PKWord word];
     TDLiteral *foo = [TDLiteral literalWithString:@"foo"];
     PKExclusion *ex = [PKExclusion exclusion];
     [ex add:word];
@@ -36,7 +36,7 @@
 
 
 - (void)testAlt {
-    TDWord *word = [TDWord word];
+    PKWord *word = [PKWord word];
     PKAlternation *list = [PKAlternation alternation];
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];

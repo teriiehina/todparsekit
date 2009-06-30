@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDWordStateTest : SenTestCase {
-    TDWordState *wordState;
+    PKWordState *wordState;
     PKReader *r;
     NSString *s;
 }

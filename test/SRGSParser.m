@@ -105,7 +105,7 @@
         
         PKAlternation *a = [PKAlternation alternation];
         [a add:[PKEmpty empty]];
-        [a add:[TDWord word]]; // CharEncoding
+        [a add:[PKWord word]]; // CharEncoding
         
         [selfIdentHeader add:a];
         [selfIdentHeader add:[TDSymbol symbolWithString:@";"]];
@@ -120,7 +120,7 @@
     if (!ruleName) {
         self.ruleName = [PKSequence sequence];
         [ruleName add:[TDSymbol symbolWithString:@"$"]];
-        [ruleName add:[TDWord word]]; // TODO: ConstrainedName
+        [ruleName add:[PKWord word]]; // TODO: ConstrainedName
     }
     return ruleName;
 }
@@ -213,7 +213,7 @@
 - (PKCollectionParser *)token {
     if (!token) {
         self.token = [PKAlternation alternation];
-        [token add:[TDWord word]];
+        [token add:[PKWord word]];
         [token add:[TDQuotedString quotedString]];
     }
     return token;
@@ -240,7 +240,7 @@
         PKSequence *s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"{"]];
         PKAlternation *a = [PKAlternation alternation];
-        [a add:[TDWord word]];
+        [a add:[PKWord word]];
         [a add:[TDNum num]];
         [a add:[TDSymbol symbol]];
         [a add:[TDQuotedString quotedString]];
@@ -251,7 +251,7 @@
         s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"{!{"]];
         a = [PKAlternation alternation];
-        [a add:[TDWord word]];
+        [a add:[PKWord word]];
         [a add:[TDNum num]];
         [a add:[TDSymbol symbol]];
         [a add:[TDQuotedString quotedString]];
@@ -604,7 +604,7 @@
 //BaseURI ::= ABNF_URI
 - (PKCollectionParser *)baseURI {
     if (!baseURI) {
-        self.baseURI = [TDWord word];
+        self.baseURI = [PKWord word];
     }
     return baseURI;
 }
@@ -614,9 +614,9 @@
 - (PKCollectionParser *)languageCode {
     if (!languageCode) {
         self.languageCode = [PKSequence sequence];
-        [languageCode add:[TDWord word]];
+        [languageCode add:[PKWord word]];
 //        [languageCode add:[TDSymbol symbolWithString:@"-"]];
-//        [languageCode add:[TDWord word]];
+//        [languageCode add:[PKWord word]];
     }
     return languageCode;
 }
@@ -624,7 +624,7 @@
 
 - (PKCollectionParser *)ABNF_URI {
     if (!ABNF_URI) {
-        self.ABNF_URI = [TDWord word];
+        self.ABNF_URI = [PKWord word];
     }
     return ABNF_URI;
 }
@@ -632,7 +632,7 @@
 
 - (PKCollectionParser *)ABNF_URI_with_Media_Type {
     if (!ABNF_URI_with_Media_Type) {
-        self.ABNF_URI_with_Media_Type = [TDWord word];
+        self.ABNF_URI_with_Media_Type = [PKWord word];
     }
     return ABNF_URI_with_Media_Type;
 }
@@ -737,7 +737,7 @@
     
 //    PKParser *p = nil;
 //    if (valTok.isWord) {
-//        p = [TDWord wordWithString:valTok.value];
+//        p = [PKWord wordWithString:valTok.value];
 //    } else if (valTok.isQuotedString) {
 //        p = [TDQuotedString quotedStringWithString:valTok.value];
 //    } else if (valTok.isNumber) {

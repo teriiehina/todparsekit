@@ -283,7 +283,7 @@
         self.tagParser = [PKSequence sequence];
         tagParser.name = @"tag";
         [tagParser add:[[TDSymbol symbolWithString:@"@"] discard]];
-        [tagParser add:[TDWord word]];
+        [tagParser add:[PKWord word]];
     }
     return tagParser;
 }
@@ -373,7 +373,7 @@
 - (PKCollectionParser *)reservedWordParser {
     if (!reservedWordParser) {
         self.reservedWordParser = [PKIntersection intersection];
-        [reservedWordParser add:[TDWord word]];
+        [reservedWordParser add:[PKWord word]];
         [reservedWordParser add:self.reservedWordPattern];
         reservedWordParser.name = @"reservedWord";
         [reservedWordParser setAssembler:self selector:@selector(workOnReservedWord:)];
@@ -386,7 +386,7 @@
 - (PKCollectionParser *)nonReservedWordParser {
     if (!nonReservedWordParser) {
         self.nonReservedWordParser = [PKExclusion exclusion];
-        [nonReservedWordParser add:[TDWord word]];
+        [nonReservedWordParser add:[PKWord word]];
         [nonReservedWordParser add:self.reservedWordPattern];
         nonReservedWordParser.name = @"nonReservedWord";
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWord:)];
