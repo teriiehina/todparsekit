@@ -1,6 +1,6 @@
 /*
  *  PKTypes.h
- *  PKParseKit
+ *  ParseKit
  *
  *  Created by Todd Ditchendorf on 3/15/09.
  *  Copyright 2009 Todd Ditchendorf. All rights reserved.
