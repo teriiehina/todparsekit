@@ -177,7 +177,7 @@ while ((tok = [t nextToken]) != eof) {
 
 <h4>Changing which characters are allowed within a token of a particular type</h4>
 
-<p>Once <tt>PKTokenizer</tt> has decided which token type to create for a given start character (see below), it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the abstract <tt>PKTokenizerState</tt> class: <tt>PKWordState</tt>, <tt>PKNumberState</tt>, <tt>PKQuoteState</tt>, <tt>PKSymbolState</tt>, <tt>PKWhitespaceState</tt>, and  <tt>PKCommentState</tt>. The state objects are accessible via properties of the <tt>PKTokenizer</tt> object.</p>
+<p>Once <tt>PKTokenizer</tt> has decided which token type to create for a given start character (see below), it temporarily passes control to one of its "state" helper objects to finish consumption of characters for the current token. Therefore, the logic for deciding which characters are allowed within a token of a given type is controlled by the "state" objects which are instances of subclasses of the abstract <tt>PKTokenizerState</tt> class: <tt>PKWordState</tt>, <tt>PKNumberState</tt>, <tt>PKQuoteState</tt>, <tt>PKSymbolState</tt>, <tt>PKWhitespaceState</tt>, <tt>PKCommentState</tt>, and <tt>PKDelimitState</tt>. The state objects are accessible via properties of the <tt>PKTokenizer</tt> object.</p>
 
 <table border="1" cellpadding="5" cellspacing="0">
 	<tr>
@@ -273,8 +273,8 @@ t.commentState.reportsCommentTokens = YES;
 			<p>
 				<tt>...</tt>
 				<pre>- (void)setTokenizerState:(PKTokenizerState *)state 
-                     from:(NSInteger)start 
-                       to:(NSInteger)end;</pre>
+                     from:(PKUniChar)start 
+                       to:(PKUniChar)end;</pre>
 				<tt>...</tt><br/>
 			</p>
 		</td>
@@ -313,7 +313,7 @@ PKTokenizer *t = [PKTokenizerWithString:s];
 ...</pre>
 </div>
 
-<p>Finally, customization of commetns recognition may be necessary. By default, PKTokenizer passes control to its <tt>commentState</tt> object which silently consumes the comment text found after <tt>&laquo;//&raquo;</tt> or between <tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>. This default behavior is achieved with the sequence:</p>
+<p>Finally, customization of comments recognition may be necessary. By default, PKTokenizer passes control to its <tt>commentState</tt> object which silently consumes the comment text found after <tt>&laquo;//&raquo;</tt> or between <tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>. This default behavior is achieved with the sequence:</p>
 
 <div class="code">
 <pre>
