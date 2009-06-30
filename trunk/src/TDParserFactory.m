@@ -1080,6 +1080,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         [selectorTable setObject:selName forKey:parserName];
     }
 	NSMutableDictionary *d = a.target;
+    //NSLog(@"parserName: %@", parserName);
     NSAssert(toks.count, @"");
     
     // support for multiple @delimitedString = ... tokenizer directives

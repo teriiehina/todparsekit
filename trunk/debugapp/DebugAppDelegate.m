@@ -399,13 +399,13 @@
 //    t.string = s;
 //    TDAssembly *res = [lp bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     
-    TDExclusion *ex = [TDExclusion exclusion];
-    [ex add:[TDWord word]];
-    [ex add:[TDLiteral literalWithString:@"foo"]];
+    NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
+    NSString *g = [NSString stringWithContentsOfFile:path];
+    TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+    TDTokenizer *t = p.tokenizer;
+    t.string = @"foo";
+    TDAssembly *res = [p completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
     
-    NSString *s = @"foo";
-    [ex completeMatchFor:[TDTokenAssembly assemblyWithString:s]];
-        
 }
 
 
@@ -479,7 +479,7 @@
 
 //    [self doJSParser];
     
-    [self doProf];
+//    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
@@ -496,7 +496,7 @@
 //    [self doMultiLineComment];
 //    [self doDelimitedString];
     
-//    [self doFactory];
+    [self doFactory];
     
 //	[self doXMLParser];
 //    [self doNSPredicateEvaluator];
