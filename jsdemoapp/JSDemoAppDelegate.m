@@ -8,7 +8,7 @@
 
 #import "JSDemoAppDelegate.h"
 #import <WebKit/WebKit.h>
-#import <TDJSParseKit/TDJSParseKit.h>
+#import <JSParseKit/TDJSParseKit.h>
 
 @interface NSObject (JSDemoAppExtras)
 - (id)inspector;
