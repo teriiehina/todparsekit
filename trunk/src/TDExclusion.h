@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
-@interface TDExclusion : TDCollectionParser {
+@interface TDExclusion : PKCollectionParser {
 
 }
 

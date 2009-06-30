@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDAlternationTest : SenTestCase {
-    TDCollectionParser *p;
+    PKCollectionParser *p;
     PKAssembly *a;
     NSString *s;
 }

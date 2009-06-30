@@ -49,7 +49,7 @@
 
 static NSString *kTDPlistNullString = @"<null>";
 
-@interface TDCollectionParser ()
+@interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
@@ -119,7 +119,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 // dict                 = '{' dictContent '}'
 // dictContent          = keyValuePair*
-- (TDCollectionParser *)dictParser {
+- (PKCollectionParser *)dictParser {
     if (!dictParser) {
         self.dictParser = [TDTrack track];
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
@@ -132,7 +132,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // keyValuePair         = key '=' value ';'
-- (TDCollectionParser *)keyValuePairParser {
+- (PKCollectionParser *)keyValuePairParser {
     if (!keyValuePairParser) {
         self.keyValuePairParser = [TDTrack track];
         [keyValuePairParser add:self.keyParser];
@@ -147,7 +147,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // array                = '(' arrayContent ')'
 // arrayContent         = Empty | actualArray
 // actualArray          = value commaValue*
-- (TDCollectionParser *)arrayParser {
+- (PKCollectionParser *)arrayParser {
     if (!arrayParser) {
         self.arrayParser = [TDTrack track];
         [arrayParser add:[TDSymbol symbolWithString:@"("]]; // dont discard. serves as fence
@@ -169,7 +169,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // key                  = num | string | null
-- (TDCollectionParser *)keyParser {
+- (PKCollectionParser *)keyParser {
     if (!keyParser) {
         self.keyParser = [TDAlternation alternation];
         [keyParser add:self.numParser];
@@ -181,7 +181,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // value                = num | string | null | array | dict
-- (TDCollectionParser *)valueParser {
+- (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
         [valueParser add:self.arrayParser];
@@ -194,7 +194,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (TDCollectionParser *)commaValueParser {
+- (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
         self.commaValueParser = [TDSequence sequence];
         [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
@@ -205,7 +205,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // string               = QuotedString | Word
-- (TDCollectionParser *)stringParser {
+- (PKCollectionParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDAlternation alternation];
         

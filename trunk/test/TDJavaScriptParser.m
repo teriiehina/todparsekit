@@ -263,7 +263,7 @@
 
 
 // assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
-- (TDCollectionParser *)assignmentOpParser {
+- (PKCollectionParser *)assignmentOpParser {
     if (!assignmentOpParser) {
         self.assignmentOpParser = [TDAlternation alternation];
         assignmentOpParser.name = @"assignmentOp";
@@ -285,7 +285,7 @@
 
 
 // relationalOperator  = lt | gt | ge | le | instanceof;
-- (TDCollectionParser *)relationalOpParser {
+- (PKCollectionParser *)relationalOpParser {
     if (!relationalOpParser) {
         self.relationalOpParser = [TDAlternation alternation];
         relationalOpParser.name = @"relationalOp";
@@ -300,7 +300,7 @@
 
 
 // equalityOp    = eq | ne | is | isnot;
-- (TDCollectionParser *)equalityOpParser {
+- (PKCollectionParser *)equalityOpParser {
     if (!equalityOpParser) {
         self.equalityOpParser = [TDAlternation alternation];;
         equalityOpParser.name = @"equalityOp";
@@ -314,7 +314,7 @@
 
 
 //shiftOp         = shiftLeft | shiftRight | shiftRightExt;
-- (TDCollectionParser *)shiftOpParser {
+- (PKCollectionParser *)shiftOpParser {
     if (!shiftOpParser) {
         self.shiftOpParser = [TDAlternation alternation];
         shiftOpParser.name = @"shiftOp";
@@ -327,7 +327,7 @@
 
 
 //incrementOperator   = plusPlus | minusMinus;
-- (TDCollectionParser *)incrementOpParser {
+- (PKCollectionParser *)incrementOpParser {
     if (!incrementOpParser) {
         self.incrementOpParser = [TDAlternation alternation];
         incrementOpParser.name = @"incrementOp";
@@ -339,7 +339,7 @@
 
 
 //unaryOperator       = tilde | delete | typeof | void;
-- (TDCollectionParser *)unaryOpParser {
+- (PKCollectionParser *)unaryOpParser {
     if (!unaryOpParser) {
         self.unaryOpParser = [TDAlternation alternation];
         unaryOpParser.name = @"unaryOp";
@@ -353,7 +353,7 @@
 
 
 // multiplicativeOperator = times | div | mod;
-- (TDCollectionParser *)multiplicativeOpParser {
+- (PKCollectionParser *)multiplicativeOpParser {
     if (!multiplicativeOpParser) {
         self.multiplicativeOpParser = [TDAlternation alternation];
         multiplicativeOpParser.name = @"multiplicativeOperator";
@@ -371,7 +371,7 @@
 //           Element Program
 //
 //program             = element*;
-- (TDCollectionParser *)programParser {
+- (PKCollectionParser *)programParser {
     if (!programParser) {
         self.programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
         programParser.name = @"program";
@@ -385,7 +385,7 @@
 //           Statement
 //
 //element             = func | stmt;
-- (TDCollectionParser *)elementParser {
+- (PKCollectionParser *)elementParser {
     if (!elementParser) {
         self.elementParser = [TDAlternation alternation];
         elementParser.name = @"element";
@@ -397,7 +397,7 @@
 
 
 //func                = function identifier openParen paramListOpt closeParen compoundStmt;
-- (TDCollectionParser *)funcParser {
+- (PKCollectionParser *)funcParser {
     if (!funcParser) {
         self.funcParser = [TDSequence sequence];
         funcParser.name = @"func";
@@ -417,7 +417,7 @@
 //           ParameterList
 //
 //paramListOpt        = Empty | paramList;
-- (TDCollectionParser *)paramListOptParser {
+- (PKCollectionParser *)paramListOptParser {
     if (!paramListOptParser) {
         self.paramListOptParser = [TDAlternation alternation];
         paramListOptParser.name = @"paramListOpt";
@@ -432,7 +432,7 @@
 //           Identifier , ParameterList
 //
 //paramList           = identifier commaIdentifier*;
-- (TDCollectionParser *)paramListParser {
+- (PKCollectionParser *)paramListParser {
     if (!paramListParser) {
         self.paramListParser = [TDSequence sequence];
         paramListParser.name = @"paramList";
@@ -444,7 +444,7 @@
 
 
 //commaIdentifier     = comma identifier;
-- (TDCollectionParser *)commaIdentifierParser {
+- (PKCollectionParser *)commaIdentifierParser {
     if (!commaIdentifierParser) {
         self.commaIdentifierParser = [TDSequence sequence];
         commaIdentifierParser.name = @"commaIdentifier";
@@ -459,7 +459,7 @@
 //           { Statements }
 //
 //compoundStmt        = openCurly stmts closeCurly;
-- (TDCollectionParser *)compoundStmtParser {
+- (PKCollectionParser *)compoundStmtParser {
     if (!compoundStmtParser) {
         self.compoundStmtParser = [TDSequence sequence];
         compoundStmtParser.name = @"compoundStmt";
@@ -476,7 +476,7 @@
 //           Statement Statements
 //
 //stmts               = stmt*;
-- (TDCollectionParser *)stmtsParser {
+- (PKCollectionParser *)stmtsParser {
     if (!stmtsParser) {
         self.stmtsParser = [TDRepetition repetitionWithSubparser:self.stmtParser];
         stmtsParser.name = @"stmts";
@@ -501,7 +501,7 @@
 //           VariablesOrExpression ;
 //
 //stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
-- (TDCollectionParser *)stmtParser {
+- (PKCollectionParser *)stmtParser {
     if (!stmtParser) {
         self.stmtParser = [TDAlternation alternation];
         stmtParser.name = @"stmt";
@@ -525,7 +525,7 @@
 
 //           if Condition Statement
 //ifStmt              = if condition stmt;
-- (TDCollectionParser *)ifStmtParser {
+- (PKCollectionParser *)ifStmtParser {
     if (!ifStmtParser) {
         self.ifStmtParser = [TDSequence sequence];
         ifStmtParser.name = @"ifStmt";
@@ -539,7 +539,7 @@
 
 //           if Condition Statement else Statement
 //ifElseStmt          = if condition stmt else stmt;
-- (TDCollectionParser *)ifElseStmtParser {
+- (PKCollectionParser *)ifElseStmtParser {
     if (!ifElseStmtParser) {
         self.ifElseStmtParser = [TDSequence sequence];
         ifElseStmtParser.name = @"ifElseStmt";
@@ -555,7 +555,7 @@
 
 //           while Condition Statement
 //whileStmt           = while condition stmt;
-- (TDCollectionParser *)whileStmtParser {
+- (PKCollectionParser *)whileStmtParser {
     if (!whileStmtParser) {
         self.whileStmtParser = [TDSequence sequence];
         whileStmtParser.name = @"whileStmt";
@@ -569,7 +569,7 @@
 
 //           ForParen ; ExpressionOpt ; ExpressionOpt ) Statement
 //forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
-- (TDCollectionParser *)forParenStmtParser {
+- (PKCollectionParser *)forParenStmtParser {
     if (!forParenStmtParser) {
         self.forParenStmtParser = [TDSequence sequence];
         forParenStmtParser.name = @"forParenStmt";
@@ -587,7 +587,7 @@
 
 //           ForBegin ; ExpressionOpt ; ExpressionOpt ) Statement
 //forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
-- (TDCollectionParser *)forBeginStmtParser {
+- (PKCollectionParser *)forBeginStmtParser {
     if (!forBeginStmtParser) {
         self.forBeginStmtParser = [TDSequence sequence];
         forBeginStmtParser.name = @"forBeginStmt";
@@ -605,7 +605,7 @@
 
 //           ForBegin in Expression ) Statement
 //forInStmt           = forBegin in expr closeParen stmt;
-- (TDCollectionParser *)forInStmtParser {
+- (PKCollectionParser *)forInStmtParser {
     if (!forInStmtParser) {
         self.forInStmtParser = [TDSequence sequence];
         forInStmtParser.name = @"forInStmt";
@@ -621,7 +621,7 @@
 
 //           break ;
 //breakStmt           = break semi;
-- (TDCollectionParser *)breakStmtParser {
+- (PKCollectionParser *)breakStmtParser {
     if (!breakStmtParser) {
         self.breakStmtParser = [TDSequence sequence];
         breakStmtParser.name = @"breakStmt";
@@ -633,7 +633,7 @@
 
 
 //continueStmt        = continue semi;
-- (TDCollectionParser *)continueStmtParser {
+- (PKCollectionParser *)continueStmtParser {
     if (!continueStmtParser) {
         self.continueStmtParser = [TDSequence sequence];
         continueStmtParser.name = @"continueStmt";
@@ -646,7 +646,7 @@
 
 //           with ( Expression ) Statement
 //withStmt            = with openParen expr closeParen stmt;
-- (TDCollectionParser *)withStmtParser {
+- (PKCollectionParser *)withStmtParser {
     if (!withStmtParser) {
         self.withStmtParser = [TDSequence sequence];
         withStmtParser.name = @"withStmt";
@@ -662,7 +662,7 @@
 
 //           return ExpressionOpt ;
 //returnStmt          = return exprOpt semi;
-- (TDCollectionParser *)returnStmtParser {
+- (PKCollectionParser *)returnStmtParser {
     if (!returnStmtParser) {
         self.returnStmtParser = [TDSequence sequence];
         returnStmtParser.name = @"returnStmt";
@@ -676,7 +676,7 @@
 
 //           VariablesOrExpression ;
 //variablesOrExprStmt = variablesOrExpr semi;
-- (TDCollectionParser *)variablesOrExprStmtParser {
+- (PKCollectionParser *)variablesOrExprStmtParser {
     if (!variablesOrExprStmtParser) {
         self.variablesOrExprStmtParser = [TDSequence sequence];
         variablesOrExprStmtParser.name = @"variablesOrExprStmt";
@@ -691,7 +691,7 @@
 //           ( Expression )
 //
 //condition           = openParen expr closeParen;
-- (TDCollectionParser *)conditionParser {
+- (PKCollectionParser *)conditionParser {
     if (!conditionParser) {
         self.conditionParser = [TDSequence sequence];
         conditionParser.name = @"condition";
@@ -707,7 +707,7 @@
 //           for (
 //
 //forParen            = for openParen;
-- (TDCollectionParser *)forParenParser {
+- (PKCollectionParser *)forParenParser {
     if (!forParenParser) {
         self.forParenParser = [TDSequence sequence];
         forParenParser.name = @"forParen";
@@ -722,7 +722,7 @@
 //           ForParen VariablesOrExpression
 //
 //forBegin            = forParen variablesOrExpr;
-- (TDCollectionParser *)forBeginParser {
+- (PKCollectionParser *)forBeginParser {
     if (!forBeginParser) {
         self.forBeginParser = [TDSequence sequence];
         forBeginParser.name = @"forBegin";
@@ -738,7 +738,7 @@
 //           Expression
 //
 //variablesOrExpr     = varVariables | expr;
-- (TDCollectionParser *)variablesOrExprParser {
+- (PKCollectionParser *)variablesOrExprParser {
     if (!variablesOrExprParser) {
         self.variablesOrExprParser = [TDAlternation alternation];
         variablesOrExprParser.name = @"variablesOrExpr";
@@ -750,7 +750,7 @@
 
 
 //varVariables        = var variables;
-- (TDCollectionParser *)varVariablesParser {
+- (PKCollectionParser *)varVariablesParser {
     if (!varVariablesParser) {
         self.varVariablesParser = [TDSequence sequence];
         varVariablesParser.name = @"varVariables";
@@ -766,7 +766,7 @@
 //           Variable , Variables
 //
 //variables           = variable commaVariable*;
-- (TDCollectionParser *)variablesParser {
+- (PKCollectionParser *)variablesParser {
     if (!variablesParser) {
         self.variablesParser = [TDSequence sequence];
         variablesParser.name = @"variables";
@@ -778,7 +778,7 @@
 
 
 //commaVariable       = comma variable;
-- (TDCollectionParser *)commaVariableParser {
+- (PKCollectionParser *)commaVariableParser {
     if (!commaVariableParser) {
         self.commaVariableParser = [TDSequence sequence];
         commaVariableParser.name = @"commaVariable";
@@ -794,7 +794,7 @@
 //           Identifier = AssignmentExpression
 //
 //variable            = identifier assignment?;
-- (TDCollectionParser *)variableParser {
+- (PKCollectionParser *)variableParser {
     if (!variableParser) {
         self.variableParser = [TDSequence sequence];
         variableParser.name = @"variableParser";
@@ -806,7 +806,7 @@
 
 
 //assignment          = equals assignmentExpr;
-- (TDCollectionParser *)assignmentParser {
+- (PKCollectionParser *)assignmentParser {
     if (!assignmentParser) {
         self.assignmentParser = [TDSequence sequence];
         assignmentParser.name = @"assignment";
@@ -822,7 +822,7 @@
 //           Expression
 //
 //    exprOpt             = Empty | expr;
-- (TDCollectionParser *)exprOptParser {
+- (PKCollectionParser *)exprOptParser {
     if (!exprOptParser) {
         self.exprOptParser = [self zeroOrOne:self.exprParser];
         exprOptParser.name = @"exprOpt";
@@ -836,7 +836,7 @@
 //           AssignmentExpression , Expression
 //
 //expr                = assignmentExpr commaAssignmentExpr*;
-- (TDCollectionParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         exprParser.name = @"exprParser";
@@ -848,7 +848,7 @@
 
 
 //commaAssignmentExpr           = comma assignmentExpr;
-- (TDCollectionParser *)commaAssignmentExprParser {
+- (PKCollectionParser *)commaAssignmentExprParser {
     if (!commaAssignmentExprParser) {
         self.commaAssignmentExprParser = [TDSequence sequence];
         commaAssignmentExprParser.name = @"commaAssignmentExpr";
@@ -864,7 +864,7 @@
 //           ConditionalExpression AssignmentOperator AssignmentExpression
 //
 // assignmentExpr      = conditionalExpr assignmentOpConditionalExpr*;
-- (TDCollectionParser *)assignmentExprParser {
+- (PKCollectionParser *)assignmentExprParser {
     if (!assignmentExprParser) {
         self.assignmentExprParser = [TDSequence sequence];
         assignmentExprParser.name = @"assignmentExpr";
@@ -876,7 +876,7 @@
 
 
 // assignmentOpConditionalExpr     = assignmentOperator conditionalExpr;
-- (TDCollectionParser *)assignmentOpConditionalExprParser {
+- (PKCollectionParser *)assignmentOpConditionalExprParser {
     if (!assignmentOpConditionalExprParser) {
         self.assignmentOpConditionalExprParser = [TDSequence sequence];
         assignmentOpConditionalExprParser.name = @"assignmentOpConditionalExpr";
@@ -892,7 +892,7 @@
 //           OrExpression ? AssignmentExpression : AssignmentExpression
 //
 //    conditionalExpr     = orExpr ternaryExpr?;
-- (TDCollectionParser *)conditionalExprParser {
+- (PKCollectionParser *)conditionalExprParser {
     if (!conditionalExprParser) {
         self.conditionalExprParser = [TDSequence sequence];
         conditionalExprParser.name = @"conditionalExpr";
@@ -904,7 +904,7 @@
 
 
 //    ternaryExpr         = question assignmentExpr colon assignmentExpr;
-- (TDCollectionParser *)ternaryExprParser {
+- (PKCollectionParser *)ternaryExprParser {
     if (!ternaryExprParser) {
         self.ternaryExprParser = [TDSequence sequence];
         ternaryExprParser.name = @"ternaryExpr";
@@ -922,7 +922,7 @@
 //           AndExpression || OrExpression
 //
 //    orExpr              = andExpr orAndExpr*;
-- (TDCollectionParser *)orExprParser {
+- (PKCollectionParser *)orExprParser {
     if (!orExprParser) {
         self.orExprParser = [TDSequence sequence];
         orExprParser.name = @"orExpr";
@@ -934,7 +934,7 @@
 
 
 //    orAndExpr           = or andExpr;
-- (TDCollectionParser *)orAndExprParser {
+- (PKCollectionParser *)orAndExprParser {
     if (!orAndExprParser) {
         self.orAndExprParser = [TDSequence sequence];
         orAndExprParser.name = @"orAndExpr";
@@ -950,7 +950,7 @@
 //           BitwiseOrExpression && AndExpression
 //
 //    andExpr             = bitwiseOrExpr andBitwiseOrExprParser*;
-- (TDCollectionParser *)andExprParser {
+- (PKCollectionParser *)andExprParser {
     if (!andExprParser) {
         self.andExprParser = [TDSequence sequence];
         andExprParser.name = @"andExpr";
@@ -962,7 +962,7 @@
 
 
 //    andBitwiseOrExprParser          = and bitwiseOrExpr;
-- (TDCollectionParser *)andBitwiseOrExprParser {
+- (PKCollectionParser *)andBitwiseOrExprParser {
     if (!andBitwiseOrExprParser) {
         self.andBitwiseOrExprParser = [TDSequence sequence];
         andBitwiseOrExprParser.name = @"andBitwiseOrExpr";
@@ -978,7 +978,7 @@
 //           BitwiseXorExpression | BitwiseOrExpression
 //
 //    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseXorExpr*;
-- (TDCollectionParser *)bitwiseOrExprParser {
+- (PKCollectionParser *)bitwiseOrExprParser {
     if (!bitwiseOrExprParser) {
         self.bitwiseOrExprParser = [TDSequence sequence];
         bitwiseOrExprParser.name = @"bitwiseOrExpr";
@@ -990,7 +990,7 @@
 
 
 //    pipeBitwiseXorExprParser   = pipe bitwiseXorExpr;
-- (TDCollectionParser *)pipeBitwiseXorExprParser {
+- (PKCollectionParser *)pipeBitwiseXorExprParser {
     if (!pipeBitwiseXorExprParser) {
         self.pipeBitwiseXorExprParser = [TDSequence sequence];
         pipeBitwiseXorExprParser.name = @"pipeBitwiseXorExpr";
@@ -1006,7 +1006,7 @@
 //           BitwiseAndExpression ^ BitwiseXorExpression
 //
 //    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseAndExpr*;
-- (TDCollectionParser *)bitwiseXorExprParser {
+- (PKCollectionParser *)bitwiseXorExprParser {
     if (!bitwiseXorExprParser) {
         self.bitwiseXorExprParser = [TDSequence sequence];
         bitwiseXorExprParser.name = @"bitwiseXorExpr";
@@ -1018,7 +1018,7 @@
 
 
 //    caretBitwiseAndExpr = caret bitwiseAndExpr;
-- (TDCollectionParser *)caretBitwiseAndExprParser {
+- (PKCollectionParser *)caretBitwiseAndExprParser {
     if (!caretBitwiseAndExprParser) {
         self.caretBitwiseAndExprParser = [TDSequence sequence];
         caretBitwiseAndExprParser.name = @"caretBitwiseAndExpr";
@@ -1034,7 +1034,7 @@
 //           EqualityExpression & BitwiseAndExpression
 //
 //    bitwiseAndExpr      = equalityExpr ampEqualityExpr*;
-- (TDCollectionParser *)bitwiseAndExprParser {
+- (PKCollectionParser *)bitwiseAndExprParser {
     if (!bitwiseAndExprParser) {
         self.bitwiseAndExprParser = [TDSequence sequence];
         bitwiseAndExprParser.name = @"bitwiseAndExpr";
@@ -1046,7 +1046,7 @@
 
 
 //    ampEqualityExpression = amp equalityExpression;
-- (TDCollectionParser *)ampEqualityExprParser {
+- (PKCollectionParser *)ampEqualityExprParser {
     if (!ampEqualityExprParser) {
         self.ampEqualityExprParser = [TDSequence sequence];
         ampEqualityExprParser.name = @"ampEqualityExpr";
@@ -1062,7 +1062,7 @@
 //           RelationalExpression EqualityualityOperator EqualityExpression
 //
 //    equalityExpr        = relationalExpr equalityOpRelationalExpr*;
-- (TDCollectionParser *)equalityExprParser {
+- (PKCollectionParser *)equalityExprParser {
     if (!equalityExprParser) {
         self.equalityExprParser = [TDSequence sequence];
         equalityExprParser.name = @"equalityExpr";
@@ -1074,7 +1074,7 @@
 
 
 //    equalityOpRelationalExpr = equalityOp relationalExpr;
-- (TDCollectionParser *)equalityOpRelationalExprParser {
+- (PKCollectionParser *)equalityOpRelationalExprParser {
     if (!equalityOpRelationalExprParser) {
         self.equalityOpRelationalExprParser = [TDSequence sequence];
         equalityOpRelationalExprParser.name = @"equalityOpRelationalExpr";
@@ -1091,7 +1091,7 @@
 //
 
 //    relationalExpr      = shiftExpr relationalOpShiftExpr*;       /// TODO ????
-- (TDCollectionParser *)relationalExprParser {
+- (PKCollectionParser *)relationalExprParser {
     if (!relationalExprParser) {
         self.relationalExprParser = [TDSequence sequence];
         relationalExprParser.name = @"relationalExpr";
@@ -1103,7 +1103,7 @@
 
 
 //    relationalOpShiftExpr   = relationalOperator shiftExpr;
-- (TDCollectionParser *)relationalOpShiftExprParser {
+- (PKCollectionParser *)relationalOpShiftExprParser {
     if (!relationalOpShiftExprParser) {
         self.relationalOpShiftExprParser = [TDSequence sequence];
         relationalOpShiftExprParser.name = @"relationalOpShiftExpr";
@@ -1119,7 +1119,7 @@
 //           AdditiveExpression ShiftOperator ShiftExpression
 //
 //    shiftExpr           = additiveExpr shiftOpAdditiveExpr?;
-- (TDCollectionParser *)shiftExprParser {
+- (PKCollectionParser *)shiftExprParser {
     if (!shiftExprParser) {
         self.shiftExprParser = [TDSequence sequence];
         shiftExprParser.name = @"shiftExpr";
@@ -1131,7 +1131,7 @@
 
 
 //    shiftOpShiftExpr    = shiftOp additiveExpr;
-- (TDCollectionParser *)shiftOpAdditiveExprParser {
+- (PKCollectionParser *)shiftOpAdditiveExprParser {
     if (!shiftOpAdditiveExprParser) {
         self.shiftOpAdditiveExprParser = [TDSequence sequence];
         shiftOpAdditiveExprParser.name = @"shiftOpShiftExpr";
@@ -1148,7 +1148,7 @@
 //           MultiplicativeExpression - AdditiveExpression
 //
 //    additiveExpr        = multiplicativeExpr plusOrMinusExpr*;
-- (TDCollectionParser *)additiveExprParser {
+- (PKCollectionParser *)additiveExprParser {
     if (!additiveExprParser) {
         self.additiveExprParser = [TDSequence sequence];
         additiveExprParser.name = @"additiveExpr";
@@ -1160,7 +1160,7 @@
 
 
 //    plusOrMinusExpr     = plusExpr | minusExpr;
-- (TDCollectionParser *)plusOrMinusExprParser {
+- (PKCollectionParser *)plusOrMinusExprParser {
     if (!plusOrMinusExprParser) {
         self.plusOrMinusExprParser = [TDAlternation alternation];
         plusOrMinusExprParser.name = @"plusOrMinusExpr";
@@ -1172,7 +1172,7 @@
 
 
 //    plusExpr            = plus multiplicativeExprParser;
-- (TDCollectionParser *)plusExprParser {
+- (PKCollectionParser *)plusExprParser {
     if (!plusExprParser) {
         self.plusExprParser = [TDSequence sequence];
         plusExprParser.name = @"plusExpr";
@@ -1184,7 +1184,7 @@
 
 
 //    minusExpr           = minus multiplicativeExprParser;
-- (TDCollectionParser *)minusExprParser {
+- (PKCollectionParser *)minusExprParser {
     if (!minusExprParser) {
         self.minusExprParser = [TDSequence sequence];
         minusExprParser.name = @"minusExpr";
@@ -1200,7 +1200,7 @@
 //           UnaryExpression MultiplicativeOperator MultiplicativeExpression
 //
 //    multiplicativeExpr  = unaryExpr multiplicativeOpUnaryExpr*;
-- (TDCollectionParser *)multiplicativeExprParser {
+- (PKCollectionParser *)multiplicativeExprParser {
     if (!multiplicativeExprParser) {
         self.multiplicativeExprParser = [TDSequence sequence];
         multiplicativeExprParser.name = @"multiplicativeExpr";
@@ -1212,7 +1212,7 @@
 
 
 // multiplicativeOpUnaryExpr = multiplicativeOp unaryExpr;
-- (TDCollectionParser *)multiplicativeOpUnaryExprParser {
+- (PKCollectionParser *)multiplicativeOpUnaryExprParser {
     if (!multiplicativeOpUnaryExprParser) {
         self.multiplicativeOpUnaryExprParser = [TDSequence sequence];
         multiplicativeOpUnaryExprParser.name = @"multiplicativeOpUnaryExpr";
@@ -1233,7 +1233,7 @@
 //           delete MemberExpression
 //
 //    unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
-- (TDCollectionParser *)unaryExprParser {
+- (PKCollectionParser *)unaryExprParser {
     if (!unaryExprParser) {
         self.unaryExprParser = [TDAlternation alternation];
         unaryExprParser.name = @"unaryExpr";
@@ -1250,7 +1250,7 @@
 
 
 //    unaryExpr1          = unaryOperator unaryExpr;
-- (TDCollectionParser *)unaryExpr1Parser {
+- (PKCollectionParser *)unaryExpr1Parser {
     if (!unaryExpr1Parser) {
         self.unaryExpr1Parser = [TDSequence sequence];
         unaryExpr1Parser.name = @"unaryExpr1";
@@ -1262,7 +1262,7 @@
 
 
 //    unaryExpr2          = minus unaryExpr;
-- (TDCollectionParser *)unaryExpr2Parser {
+- (PKCollectionParser *)unaryExpr2Parser {
     if (!unaryExpr2Parser) {
         self.unaryExpr2Parser = [TDSequence sequence];
         unaryExpr2Parser.name = @"unaryExpr2";
@@ -1274,7 +1274,7 @@
 
 
 //    unaryExpr3          = incrementOperator memberExpr;
-- (TDCollectionParser *)unaryExpr3Parser {
+- (PKCollectionParser *)unaryExpr3Parser {
     if (!unaryExpr3Parser) {
         self.unaryExpr3Parser = [TDSequence sequence];
         unaryExpr3Parser.name = @"unaryExpr3";
@@ -1286,7 +1286,7 @@
 
 
 //    unaryExpr4          = memberExpr incrementOperator;
-- (TDCollectionParser *)unaryExpr4Parser {
+- (PKCollectionParser *)unaryExpr4Parser {
     if (!unaryExpr4Parser) {
         self.unaryExpr4Parser = [TDSequence sequence];
         unaryExpr4Parser.name = @"unaryExpr4";
@@ -1298,7 +1298,7 @@
 
 
 //    unaryExpr5          = new constructor;
-- (TDCollectionParser *)unaryExpr5Parser {
+- (PKCollectionParser *)unaryExpr5Parser {
     if (!unaryExpr5Parser) {
         self.unaryExpr5Parser = [TDSequence sequence];
         unaryExpr5Parser.name = @"unaryExpr5";
@@ -1310,7 +1310,7 @@
 
 
 //    unaryExpr6          = delete memberExpr;
-- (TDCollectionParser *)unaryExpr6Parser {
+- (PKCollectionParser *)unaryExpr6Parser {
     if (!unaryExpr6Parser) {
         self.unaryExpr6Parser = [TDSequence sequence];
         unaryExpr6Parser.name = @"unaryExpr6";
@@ -1328,7 +1328,7 @@
 //
 
 // constructorCall = identifier parentArgListOptParent? memberExprExt*
-- (TDCollectionParser *)constructorCallParser {
+- (PKCollectionParser *)constructorCallParser {
     if (!constructorCallParser) {
         self.constructorCallParser = [TDSequence sequence];
         constructorCallParser.name = @"constructorCall";
@@ -1341,7 +1341,7 @@
 
 
 //    parenArgListParen   = openParen argListOpt closeParen;
-- (TDCollectionParser *)parenArgListOptParenParser {
+- (PKCollectionParser *)parenArgListOptParenParser {
     if (!parenArgListOptParenParser) {
         self.parenArgListOptParenParser = [TDSequence sequence];
         parenArgListOptParenParser.name = @"parenArgListParen";
@@ -1360,7 +1360,7 @@
 //           PrimaryExpression ( ArgumentListOpt )
 //
 //    memberExpr          = primaryExpr memberExprExt?;    // TODO ??????
-- (TDCollectionParser *)memberExprParser {
+- (PKCollectionParser *)memberExprParser {
     if (!memberExprParser) {
         self.memberExprParser = [TDSequence sequence];
         memberExprParser.name = @"memberExpr";
@@ -1372,7 +1372,7 @@
 
 
 //    memberExprExt = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
-- (TDCollectionParser *)memberExprExtParser {
+- (PKCollectionParser *)memberExprExtParser {
     if (!memberExprExtParser) {
         self.memberExprExtParser = [TDAlternation alternation];
         memberExprExtParser.name = @"memberExprExt";
@@ -1385,7 +1385,7 @@
 
 
 //    dotMemberExpr       = dot memberExpr;
-- (TDCollectionParser *)dotMemberExprParser {
+- (PKCollectionParser *)dotMemberExprParser {
     if (!dotMemberExprParser) {
         self.dotMemberExprParser = [TDSequence sequence];
         dotMemberExprParser.name = @"dotMemberExpr";
@@ -1397,7 +1397,7 @@
 
 
 //    bracketMemberExpr   = openBracket expr closeBracket;
-- (TDCollectionParser *)bracketMemberExprParser {
+- (PKCollectionParser *)bracketMemberExprParser {
     if (!bracketMemberExprParser) {
         self.bracketMemberExprParser = [TDSequence sequence];
         bracketMemberExprParser.name = @"bracketMemberExpr";
@@ -1414,7 +1414,7 @@
 //           ArgumentList
 //
 // argListOpt          = argList?;
-- (TDCollectionParser *)argListOptParser {
+- (PKCollectionParser *)argListOptParser {
     if (!argListOptParser) {
         self.argListOptParser = [self zeroOrOne:self.argListParser];
         argListOptParser.name = @"argListOpt";
@@ -1428,7 +1428,7 @@
 //           AssignmentExpression , ArgumentList
 //
 // argList             = assignmentExpr commaAssignmentExpr*;
-- (TDCollectionParser *)argListParser {
+- (PKCollectionParser *)argListParser {
     if (!argListParser) {
         self.argListParser = [TDSequence sequence];
         argListParser.name = @"argList";
@@ -1452,7 +1452,7 @@
  //           null
  //           this
 // primaryExpr         = parenExprParen | funcLiteral | arrayLiteral | identifier | Num | QuotedString | false | true | null | undefined | this;
-- (TDCollectionParser *)primaryExprParser {
+- (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
@@ -1475,7 +1475,7 @@
  
  
 //  parenExprParen      = openParen expr closeParen;
-- (TDCollectionParser *)parenExprParenParser {
+- (PKCollectionParser *)parenExprParenParser {
     if (!parenExprParenParser) {
         self.parenExprParenParser = [TDSequence sequence];
         parenExprParenParser.name = @"parenExprParen";
@@ -1488,7 +1488,7 @@
 
 
 //funcLiteral                = function openParen paramListOpt closeParen compoundStmt;
-- (TDCollectionParser *)funcLiteralParser {
+- (PKCollectionParser *)funcLiteralParser {
     if (!funcLiteralParser) {
         self.funcLiteralParser = [TDSequence sequence];
         funcLiteralParser.name = @"funcLiteral";
@@ -1503,7 +1503,7 @@
 
 
 //arrayLiteral                = '[' arrayContents ']';
-- (TDCollectionParser *)arrayLiteralParser {
+- (PKCollectionParser *)arrayLiteralParser {
     if (!arrayLiteralParser) {
         self.arrayLiteralParser = [TDTrack track];
         arrayLiteralParser.name = @"arrayLiteralParser";
@@ -1529,7 +1529,7 @@
 
 
 //objectLiteral                = '{' objectContentsOpt '}';
-- (TDCollectionParser *)objectLiteralParser {
+- (PKCollectionParser *)objectLiteralParser {
     if (!objectLiteralParser) {
         self.objectLiteralParser = [TDSequence sequence];
         objectLiteralParser.name = @"objectLiteralParser";

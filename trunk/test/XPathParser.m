@@ -100,7 +100,7 @@
 
 
 // [1]        LocationPath                        ::=       RelativeLocationPath | AbsoluteLocationPath    
-- (TDCollectionParser *)locationPath {
+- (PKCollectionParser *)locationPath {
     //NSLog(@"%s", _cmd);
     if (!locationPath) {
         self.locationPath = [TDAlternation alternation];
@@ -114,7 +114,7 @@
 
 
 //[2]        AbsoluteLocationPath                ::=       '/' RelativeLocationPath? | AbbreviatedAbsoluteLocationPath    
-- (TDCollectionParser *)absoluteLocationPath {
+- (PKCollectionParser *)absoluteLocationPath {
     //NSLog(@"%s", _cmd);
     if (!absoluteLocationPath) {
         self.absoluteLocationPath = [TDAlternation alternation];
@@ -142,7 +142,7 @@
 // avoiding left recursion by changing to this
 //[3] RelativeLocationPath ::= Step SlashStep*    | AbbreviatedRelativeLocationPath
 
-- (TDCollectionParser *)relativeLocationPath {
+- (PKCollectionParser *)relativeLocationPath {
     //NSLog(@"%s", _cmd);
     if (!relativeLocationPath) {
         self.relativeLocationPath = [TDAlternation alternation];
@@ -165,7 +165,7 @@
 
 
 // [4] Step ::=       AxisSpecifier NodeTest Predicate* | AbbreviatedStep    
-- (TDCollectionParser *)step {
+- (PKCollectionParser *)step {
     NSLog(@"%s", _cmd);
     if (!step) {
         self.step = [TDAlternation alternation];
@@ -186,7 +186,7 @@
 
 
 // [5]    AxisSpecifier ::= AxisName '::' | AbbreviatedAxisSpecifier
-- (TDCollectionParser *)axisSpecifier {
+- (PKCollectionParser *)axisSpecifier {
     //NSLog(@"%s", _cmd);
     if (!axisSpecifier) {
         self.axisSpecifier = [TDAlternation alternation];
@@ -206,7 +206,7 @@
 
 // [6] AxisName ::= 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self'
 //            | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self'
-- (TDCollectionParser *)axisName {
+- (PKCollectionParser *)axisName {
     //NSLog(@"%s", _cmd);
     if (!axisName) {
         self.axisName = [TDAlternation alternation];
@@ -230,7 +230,7 @@
 
 
 // [7]  NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')'
-- (TDCollectionParser *)nodeTest {
+- (PKCollectionParser *)nodeTest {
     //NSLog(@"%s", _cmd);
     if (!nodeTest) {
         self.nodeTest = [TDAlternation alternation];
@@ -255,7 +255,7 @@
 
 
 // [8]  Predicate ::=  '[' PredicateExpr ']'    
-- (TDCollectionParser *)predicate {
+- (PKCollectionParser *)predicate {
     //NSLog(@"%s", _cmd);
     if (!predicate) {
         self.predicate = [TDSequence sequence];
@@ -269,7 +269,7 @@
 
 
 // [9]  PredicateExpr    ::=       Expr
-- (TDCollectionParser *)predicateExpr {
+- (PKCollectionParser *)predicateExpr {
     //NSLog(@"%s", _cmd);
     if (!predicateExpr) {
         self.predicateExpr = self.expr;
@@ -280,7 +280,7 @@
 
 
 // [10]  AbbreviatedAbsoluteLocationPath ::= '//' RelativeLocationPath    
-- (TDCollectionParser *)abbreviatedAbsoluteLocationPath {
+- (PKCollectionParser *)abbreviatedAbsoluteLocationPath {
     //NSLog(@"%s", _cmd);
     if (!abbreviatedAbsoluteLocationPath) {
         self.abbreviatedAbsoluteLocationPath = [TDSequence sequence];
@@ -293,7 +293,7 @@
 
 
 // [11] AbbreviatedRelativeLocationPath ::= RelativeLocationPath '//' Step    
-- (TDCollectionParser *)abbreviatedRelativeLocationPath {
+- (PKCollectionParser *)abbreviatedRelativeLocationPath {
     //NSLog(@"%s", _cmd);
     if (!abbreviatedRelativeLocationPath) {
         self.abbreviatedRelativeLocationPath = [TDSequence sequence];
@@ -307,7 +307,7 @@
 
 
 // [12] AbbreviatedStep    ::=       '.'    | '..'
-- (TDCollectionParser *)abbreviatedStep {
+- (PKCollectionParser *)abbreviatedStep {
     //NSLog(@"%s", _cmd);
     if (!abbreviatedStep) {
         self.abbreviatedStep = [TDAlternation alternation];
@@ -320,7 +320,7 @@
 
 
 // [13] AbbreviatedAxisSpecifier ::=       '@'?
-- (TDCollectionParser *)abbreviatedAxisSpecifier {
+- (PKCollectionParser *)abbreviatedAxisSpecifier {
     //NSLog(@"%s", _cmd);
     if (!abbreviatedAxisSpecifier) {
         self.abbreviatedAxisSpecifier = [TDAlternation alternation];
@@ -333,7 +333,7 @@
 
 
 // [14]       Expr ::=       OrExpr    
-- (TDCollectionParser *)expr {
+- (PKCollectionParser *)expr {
     //NSLog(@"%s", _cmd);
     if (!expr) {
         self.expr = self.orExpr;
@@ -348,7 +348,7 @@
 //                    | Literal    
 //                    | Number    
 //                    | FunctionCall
-- (TDCollectionParser *)primaryExpr {
+- (PKCollectionParser *)primaryExpr {
     //NSLog(@"%s", _cmd);
     if (!primaryExpr) {
         self.primaryExpr = [TDAlternation alternation];
@@ -373,7 +373,7 @@
 
 // commaArg ::= ',' Argument
 // [16] FunctionCall ::= FunctionName '(' ( Argument commaArg* )? ')'    
-- (TDCollectionParser *)functionCall {
+- (PKCollectionParser *)functionCall {
     //NSLog(@"%s", _cmd);
     if (!functionCall) {
         self.functionCall = [TDSequence sequence];
@@ -401,7 +401,7 @@
 
 
 // [17] Argument ::=       Expr
-- (TDCollectionParser *)argument {
+- (PKCollectionParser *)argument {
     //NSLog(@"%s", _cmd);
     if (!argument) {
         self.argument = self.expr;
@@ -418,7 +418,7 @@
 
 // pipePathExpr :: = | PathExpr
 // [18]  UnionExpr ::=       PathExpr PipePathExpr*
-- (TDCollectionParser *)unionExpr {
+- (PKCollectionParser *)unionExpr {
     //NSLog(@"%s", _cmd);
     if (!unionExpr) {
         self.unionExpr = [TDSequence sequence];
@@ -439,7 +439,7 @@
 //                    | FilterExpr    
 //                    | FilterExpr '/' RelativeLocationPath    
 //                    | FilterExpr '//' RelativeLocationPath    
-- (TDCollectionParser *)pathExpr {
+- (PKCollectionParser *)pathExpr {
     //NSLog(@"%s", _cmd);
     if (!pathExpr) {
         self.pathExpr = [TDAlternation alternation];
@@ -470,7 +470,7 @@
 
 
 // [20]  FilterExpr     ::=       PrimaryExpr Predicate?
-- (TDCollectionParser *)filterExpr {
+- (PKCollectionParser *)filterExpr {
     //NSLog(@"%s", _cmd);
     if (!filterExpr) {
         self.filterExpr = [TDSequence sequence];
@@ -492,7 +492,7 @@
 
 // orAndExpr ::= 'or' AndExpr
 // me: AndExpr orAndExpr*
-- (TDCollectionParser *)orExpr {
+- (PKCollectionParser *)orExpr {
     //NSLog(@"%s", _cmd);
     if (!orExpr) {
         self.orExpr = [TDSequence sequence];
@@ -519,7 +519,7 @@
 // andEqualityExpr
 // EqualityExpr andEqualityExpr
 
-- (TDCollectionParser *)andExpr {
+- (PKCollectionParser *)andExpr {
     //NSLog(@"%s", _cmd);
     if (!andExpr) {
         self.andExpr = [TDSequence sequence];
@@ -545,7 +545,7 @@
 
 // RelationalExpr (equalsRelationalExpr | notEqualsRelationalExpr)?
 
-- (TDCollectionParser *)equalityExpr {
+- (PKCollectionParser *)equalityExpr {
     //NSLog(@"%s", _cmd);
     if (!equalityExpr) {
         self.equalityExpr = [TDSequence sequence];
@@ -584,7 +584,7 @@
 //                        | RelationalExpr '>=' AdditiveExpr
 
 // RelationalExpr = AdditiveExpr (ltAdditiveExpr | gtAdditiveExpr | lteAdditiveExpr | gteAdditiveExpr)?
-- (TDCollectionParser *)relationalExpr {
+- (PKCollectionParser *)relationalExpr {
     //NSLog(@"%s", _cmd);
     if (!relationalExpr) {
         
@@ -628,7 +628,7 @@
 //                        | AdditiveExpr '-' MultiplicativeExpr    
 
 // AdditiveExpr ::= MultiplicativeExpr (plusMultiplicativeExpr | minusMultiplicativeExpr)?
-- (TDCollectionParser *)additiveExpr {
+- (PKCollectionParser *)additiveExpr {
     //NSLog(@"%s", _cmd);
     if (!additiveExpr) {
         self.additiveExpr = [TDSequence sequence];
@@ -666,7 +666,7 @@
 //                            | MultiplicativeExpr 'mod' UnaryExpr
 
 // MultiplicativeExpr :: = UnaryExpr (multiplyUnaryExpr | divUnaryExpr | modUnaryExpr)? 
-- (TDCollectionParser *)multiplicativeExpr {
+- (PKCollectionParser *)multiplicativeExpr {
     //NSLog(@"%s", _cmd);
     if (!multiplicativeExpr) {
         self.multiplicativeExpr = [TDSequence sequence];
@@ -706,7 +706,7 @@
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
 
 // UnaryExpr ::= '-'? UnionExpr
-- (TDCollectionParser *)unaryExpr {
+- (PKCollectionParser *)unaryExpr {
     //NSLog(@"%s", _cmd);
     if (!unaryExpr) {
         self.unaryExpr = [TDSequence sequence];
@@ -740,7 +740,7 @@
 //                    | Literal    
 //                    | Number    
 //                    | VariableReference    
-- (TDCollectionParser *)exprToken {
+- (PKCollectionParser *)exprToken {
     //NSLog(@"%s", _cmd);
     if (!exprToken) {
         self.exprToken = [TDAlternation alternation];
@@ -794,7 +794,7 @@
 // [32] Operator ::= OperatorName    
 //                    | MultiplyOperator    
 //                    | '/' | '//' | '|' | '+' | '-' | '=' | '!=' | '<' | '<=' | '>' | '>='    
-- (TDCollectionParser *)operator {
+- (PKCollectionParser *)operator {
     //NSLog(@"%s", _cmd);
     if (!operator) {
         self.operator = [TDAlternation alternation];
@@ -818,7 +818,7 @@
 
 
 // [33] OperatorName ::=       'and' | 'or' | 'mod' | 'div'    
-- (TDCollectionParser *)operatorName {
+- (PKCollectionParser *)operatorName {
     //NSLog(@"%s", _cmd);
     if (!operatorName) {
         self.operatorName = [TDAlternation alternation];
@@ -848,7 +848,7 @@
 //[9]       UnprefixedName     ::=        LocalPart
 //[10]       Prefix       ::=       NCName
 //[11]       LocalPart       ::=       NCName
-- (TDCollectionParser *)QName {
+- (PKCollectionParser *)QName {
     //NSLog(@"%s", _cmd);
     if (!QName) {
         self.QName = [TDAlternation alternation];
@@ -882,7 +882,7 @@
 
 
 // [36]  VariableReference ::=       '$' QName    
-- (TDCollectionParser *)variableReference {
+- (PKCollectionParser *)variableReference {
     //NSLog(@"%s", _cmd);
     if (!variableReference) {
         self.variableReference = [TDSequence sequence];
@@ -895,7 +895,7 @@
 
 
 // [37] NameTest ::= '*' | NCName ':' '*' | QName    
-- (TDCollectionParser *)nameTest {
+- (PKCollectionParser *)nameTest {
     //NSLog(@"%s", _cmd);
     if (!nameTest) {
         self.nameTest = [TDAlternation alternation];
@@ -918,7 +918,7 @@
 //                    | 'text'    
 //                    | 'processing-instruction'    
 //                    | 'node'
-- (TDCollectionParser *)nodeType {
+- (PKCollectionParser *)nodeType {
     //NSLog(@"%s", _cmd);
     if (!nodeType) {
         self.nodeType = [TDAlternation alternation];

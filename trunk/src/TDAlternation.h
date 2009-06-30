@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDCollectionParser.h>
+#import <ParseKit/PKCollectionParser.h>
 
 /*!
     @class      TDAlternation
     @brief      A <tt>TDAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
 */
-@interface TDAlternation : TDCollectionParser {
+@interface TDAlternation : PKCollectionParser {
 
 }
 

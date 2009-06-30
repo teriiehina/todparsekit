@@ -86,7 +86,7 @@
 
 
 // expression       = term orTerm*
-- (TDCollectionParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     if (!exprParser) {
         self.exprParser = [TDSequence sequence];
         [exprParser add:self.termParser];
@@ -97,7 +97,7 @@
 
 
 // orTerm           = 'or' term
-- (TDCollectionParser *)orTermParser {
+- (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
         [orTermParser add:[[TDCaseInsensitiveLiteral literalWithString:@"or"] discard]];
@@ -109,7 +109,7 @@
 
 
 // term             = primaryExpr andPrimaryExpr*
-- (TDCollectionParser *)termParser {
+- (PKCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         [termParser add:self.primaryExprParser];
@@ -120,7 +120,7 @@
 
 
 // andPrimaryExpr        = 'and' primaryExpr
-- (TDCollectionParser *)andPrimaryExprParser {
+- (PKCollectionParser *)andPrimaryExprParser {
     if (!andPrimaryExprParser) {
         self.andPrimaryExprParser = [TDSequence sequence];
         [andPrimaryExprParser add:[[TDCaseInsensitiveLiteral literalWithString:@"and"] discard]];
@@ -132,7 +132,7 @@
 
 
 // primaryExpr           = phrase | '(' expression ')'
-- (TDCollectionParser *)primaryExprParser {
+- (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [TDAlternation alternation];
         [primaryExprParser add:self.phraseParser];
@@ -149,7 +149,7 @@
 
 
 // phrase      = predicate | negatedPredicate
-- (TDCollectionParser *)phraseParser {
+- (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [TDAlternation alternation];
         [phraseParser add:self.predicateParser];
@@ -160,7 +160,7 @@
 
 
 // negatedPredicate      = 'not' predicate
-- (TDCollectionParser *)negatedPredicateParser {
+- (PKCollectionParser *)negatedPredicateParser {
     if (!negatedPredicateParser) {
         self.negatedPredicateParser = [TDSequence sequence];
         [negatedPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"not"] discard]];
@@ -172,7 +172,7 @@
 
 
 // predicate         = bool | eqPredicate | nePredicate | gtPredicate | gteqPredicate | ltPredicate | lteqPredicate | beginswithPredicate | containsPredicate | endswithPredicate | matchesPredicate
-- (TDCollectionParser *)predicateParser {
+- (PKCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [TDAlternation alternation];
         [predicateParser add:self.boolParser];
@@ -196,7 +196,7 @@
 
 
 // attr                 = tag | Word
-- (TDCollectionParser *)attrParser {
+- (PKCollectionParser *)attrParser {
     if (!attrParser) {
         self.attrParser = [TDAlternation alternation];
         [attrParser add:self.tagParser];
@@ -208,7 +208,7 @@
 
 
 // tag                  = '@' Word
-- (TDCollectionParser *)tagParser {
+- (PKCollectionParser *)tagParser {
     if (!tagParser) {
         self.tagParser = [TDSequence sequence];
         [tagParser add:[[TDSymbol symbolWithString:@"@"] discard]];
@@ -219,7 +219,7 @@
 
 
 // eqPredicate          = attr '=' value
-- (TDCollectionParser *)eqStringPredicateParser {
+- (PKCollectionParser *)eqStringPredicateParser {
     if (!eqStringPredicateParser) {
         self.eqStringPredicateParser = [TDSequence sequence];
         [eqStringPredicateParser add:self.attrParser];
@@ -231,7 +231,7 @@
 }
 
 
-- (TDCollectionParser *)eqNumberPredicateParser {
+- (PKCollectionParser *)eqNumberPredicateParser {
     if (!eqNumberPredicateParser) {
         self.eqNumberPredicateParser = [TDSequence sequence];
         [eqNumberPredicateParser add:self.attrParser];
@@ -243,7 +243,7 @@
 }
 
 
-- (TDCollectionParser *)eqBoolPredicateParser {
+- (PKCollectionParser *)eqBoolPredicateParser {
     if (!eqBoolPredicateParser) {
         self.eqBoolPredicateParser = [TDSequence sequence];
         [eqBoolPredicateParser add:self.attrParser];
@@ -256,7 +256,7 @@
 
 
 // nePredicate          = attr '!=' value
-- (TDCollectionParser *)neStringPredicateParser {
+- (PKCollectionParser *)neStringPredicateParser {
     if (!neStringPredicateParser) {
         self.neStringPredicateParser = [TDSequence sequence];
         [neStringPredicateParser add:self.attrParser];
@@ -268,7 +268,7 @@
 }
 
 
-- (TDCollectionParser *)neNumberPredicateParser {
+- (PKCollectionParser *)neNumberPredicateParser {
     if (!neNumberPredicateParser) {
         self.neNumberPredicateParser = [TDSequence sequence];
         [neNumberPredicateParser add:self.attrParser];
@@ -280,7 +280,7 @@
 }
 
 
-- (TDCollectionParser *)neBoolPredicateParser {
+- (PKCollectionParser *)neBoolPredicateParser {
     if (!neBoolPredicateParser) {
         self.neBoolPredicateParser = [TDSequence sequence];
         [neBoolPredicateParser add:self.attrParser];
@@ -293,7 +293,7 @@
 
 
 // gtPredicate          = attr '>' value
-- (TDCollectionParser *)gtPredicateParser {
+- (PKCollectionParser *)gtPredicateParser {
     if (!gtPredicateParser) {
         self.gtPredicateParser = [TDSequence sequence];
         [gtPredicateParser add:self.attrParser];
@@ -306,7 +306,7 @@
 
 
 // gteqPredicate        = attr '>=' value
-- (TDCollectionParser *)gteqPredicateParser {
+- (PKCollectionParser *)gteqPredicateParser {
     if (!gteqPredicateParser) {
         self.gteqPredicateParser = [TDSequence sequence];
         [gteqPredicateParser add:self.attrParser];
@@ -319,7 +319,7 @@
 
 
 // ltPredicate          = attr '<' value
-- (TDCollectionParser *)ltPredicateParser {
+- (PKCollectionParser *)ltPredicateParser {
     if (!ltPredicateParser) {
         self.ltPredicateParser = [TDSequence sequence];
         [ltPredicateParser add:self.attrParser];
@@ -332,7 +332,7 @@
 
 
 // lteqPredicate        = attr '<=' value
-- (TDCollectionParser *)lteqPredicateParser {
+- (PKCollectionParser *)lteqPredicateParser {
     if (!lteqPredicateParser) {
         self.lteqPredicateParser = [TDSequence sequence];
         [lteqPredicateParser add:self.attrParser];
@@ -345,7 +345,7 @@
 
 
 // beginswithPredicate  = attr 'beginswith' value
-- (TDCollectionParser *)beginswithPredicateParser {
+- (PKCollectionParser *)beginswithPredicateParser {
     if (!beginswithPredicateParser) {
         self.beginswithPredicateParser = [TDSequence sequence];
         [beginswithPredicateParser add:self.attrParser];
@@ -358,7 +358,7 @@
 
 
 // containsPredicate    = attr 'contains' value
-- (TDCollectionParser *)containsPredicateParser {
+- (PKCollectionParser *)containsPredicateParser {
     if (!containsPredicateParser) {
         self.containsPredicateParser = [TDSequence sequence];
         [containsPredicateParser add:self.attrParser];
@@ -371,7 +371,7 @@
 
 
 // endswithPredicate    = attr 'endswith' value
-- (TDCollectionParser *)endswithPredicateParser {
+- (PKCollectionParser *)endswithPredicateParser {
     if (!endswithPredicateParser) {
         self.endswithPredicateParser = [TDSequence sequence];
         [endswithPredicateParser add:self.attrParser];
@@ -384,7 +384,7 @@
 
 
 // matchesPredicate     = attr 'matches' value
-- (TDCollectionParser *)matchesPredicateParser {
+- (PKCollectionParser *)matchesPredicateParser {
     if (!matchesPredicateParser) {
         self.matchesPredicateParser = [TDSequence sequence];
         [matchesPredicateParser add:self.attrParser];
@@ -397,7 +397,7 @@
 
 
 // value                = QuotedString | Num | bool
-- (TDCollectionParser *)valueParser {
+- (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [TDAlternation alternation];
         [valueParser add:self.stringParser];
@@ -408,7 +408,7 @@
 }
 
 
-- (TDCollectionParser *)boolParser {
+- (PKCollectionParser *)boolParser {
     if (!boolParser) {
         self.boolParser = [TDAlternation alternation];
         [boolParser add:self.trueParser];

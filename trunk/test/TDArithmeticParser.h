@@ -9,25 +9,25 @@
 #import <ParseKit/ParseKit.h>
 
 @interface TDArithmeticParser : TDSequence {
-    TDCollectionParser *exprParser;
-    TDCollectionParser *termParser;
-    TDCollectionParser *plusTermParser;
-    TDCollectionParser *minusTermParser;
-    TDCollectionParser *factorParser;
-    TDCollectionParser *timesFactorParser;
-    TDCollectionParser *divFactorParser;
-    TDCollectionParser *exponentFactorParser;
-    TDCollectionParser *phraseParser;
+    PKCollectionParser *exprParser;
+    PKCollectionParser *termParser;
+    PKCollectionParser *plusTermParser;
+    PKCollectionParser *minusTermParser;
+    PKCollectionParser *factorParser;
+    PKCollectionParser *timesFactorParser;
+    PKCollectionParser *divFactorParser;
+    PKCollectionParser *exponentFactorParser;
+    PKCollectionParser *phraseParser;
 }
 - (CGFloat)parse:(NSString *)s;
 
-@property (retain) TDCollectionParser *exprParser;
-@property (retain) TDCollectionParser *termParser;
-@property (retain) TDCollectionParser *plusTermParser;
-@property (retain) TDCollectionParser *minusTermParser;
-@property (retain) TDCollectionParser *factorParser;
-@property (retain) TDCollectionParser *timesFactorParser;
-@property (retain) TDCollectionParser *divFactorParser;
-@property (retain) TDCollectionParser *exponentFactorParser;
-@property (retain) TDCollectionParser *phraseParser;
+@property (retain) PKCollectionParser *exprParser;
+@property (retain) PKCollectionParser *termParser;
+@property (retain) PKCollectionParser *plusTermParser;
+@property (retain) PKCollectionParser *minusTermParser;
+@property (retain) PKCollectionParser *factorParser;
+@property (retain) PKCollectionParser *timesFactorParser;
+@property (retain) PKCollectionParser *divFactorParser;
+@property (retain) PKCollectionParser *exponentFactorParser;
+@property (retain) PKCollectionParser *phraseParser;
 @end

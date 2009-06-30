@@ -64,7 +64,7 @@
 
 
 // expression        = term orTerm*
-- (TDCollectionParser *)expressionParser {
+- (PKCollectionParser *)expressionParser {
     if (!expressionParser) {
         self.expressionParser = [TDSequence sequence];
         expressionParser.name = @"expression";
@@ -77,7 +77,7 @@
 
 
 // term                = factor nextFactor*
-- (TDCollectionParser *)termParser {
+- (PKCollectionParser *)termParser {
     if (!termParser) {
         self.termParser = [TDSequence sequence];
         termParser.name = @"term";
@@ -89,7 +89,7 @@
 
 
 // orTerm            = '|' term
-- (TDCollectionParser *)orTermParser {
+- (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
         self.orTermParser = [TDSequence sequence];
         orTermParser.name = @"orTerm";
@@ -102,7 +102,7 @@
 
 
 // factor            = phrase | phraseStar | phrasePlus | phraseQuestion
-- (TDCollectionParser *)factorParser {
+- (PKCollectionParser *)factorParser {
     if (!factorParser) {
         self.factorParser = [TDAlternation alternation];
         factorParser.name = @"factor";
@@ -116,7 +116,7 @@
 
 
 // nextFactor        = factor
-- (TDCollectionParser *)nextFactorParser {
+- (PKCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
         self.nextFactorParser = [TDAlternation alternation];
         nextFactorParser.name = @"nextFactor";
@@ -131,7 +131,7 @@
 
 
 // phrase            = letterOrDigit | '(' expression ')'
-- (TDCollectionParser *)phraseParser {
+- (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         TDSequence *s = [TDSequence sequence];
         [s add:[[TDSpecificChar specificCharWithChar:'('] discard]];
@@ -148,7 +148,7 @@
 
 
 // phraseStar        = phrase '*'
-- (TDCollectionParser *)phraseStarParser {
+- (PKCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
         self.phraseStarParser = [TDSequence sequence];
         phraseStarParser.name = @"phraseStar";
@@ -161,7 +161,7 @@
 
 
 // phrasePlus        = phrase '+'
-- (TDCollectionParser *)phrasePlusParser {
+- (PKCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
         self.phrasePlusParser = [TDSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
@@ -174,7 +174,7 @@
 
 
 // phrasePlus        = phrase '?'
-- (TDCollectionParser *)phraseQuestionParser {
+- (PKCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
         self.phraseQuestionParser = [TDSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
@@ -187,7 +187,7 @@
 
 
 // letterOrDigit    = Letter | Digit
-- (TDCollectionParser *)letterOrDigitParser {
+- (PKCollectionParser *)letterOrDigitParser {
     if (!letterOrDigitParser) {
         self.letterOrDigitParser = [TDAlternation alternation];
         letterOrDigitParser.name = @"letterOrDigit";
