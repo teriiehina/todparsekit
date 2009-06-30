@@ -6,12 +6,12 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDSingleLineCommentState.h>
-#import <TDParseKit/TDCommentState.h>
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDSingleLineCommentState.h>
+#import <ParseKit/TDCommentState.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDToken ()
 @property (nonatomic, readwrite) NSUInteger offset;

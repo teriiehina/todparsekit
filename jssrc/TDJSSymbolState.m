@@ -9,7 +9,7 @@
 #import "TDJSSymbolState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <TDParseKit/TDSymbolState.h>
+#import <ParseKit/TDSymbolState.h>
 
 #pragma mark -
 #pragma mark Methods

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDSpecificChar.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDSpecificChar.h>
+#import <ParseKit/PKTypes.h>
 
 @implementation TDSpecificChar
 

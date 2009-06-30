@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDToken.h>
 
 extern const NSInteger TDTokenTypeBlob;
 

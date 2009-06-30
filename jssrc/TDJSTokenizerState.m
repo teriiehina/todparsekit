@@ -9,8 +9,8 @@
 #import "TDJSTokenizerState.h"
 #import "TDJSUtils.h"
 #import "TDJSToken.h"
-#import <TDParseKit/TDTokenizerState.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/TDToken.h>
 
 #pragma mark -
 #pragma mark Methods

@@ -6,10 +6,10 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDTokenizerState.h>
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDTokenizerState.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDTokenizer ()
 - (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;

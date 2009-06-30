@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDWordState.h>
+#import <ParseKit/TDWordState.h>
 
 /*!
     @class      TDWordOrReservedState 

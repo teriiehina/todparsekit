@@ -7,8 +7,8 @@
 //
 
 #import "TDScientificNumberState.h"
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDTokenizerState ()
 - (void)append:(TDUniChar)c;

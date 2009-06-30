@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/PKTypes.h>
 
 /*!
     @class      TDSymbolNode 

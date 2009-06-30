@@ -9,7 +9,7 @@
 #import "TDCollectionParser.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <TDParseKit/TDCollectionParser.h>
+#import <ParseKit/TDCollectionParser.h>
 
 #pragma mark -
 #pragma mark Methods

@@ -11,7 +11,6 @@
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D315DF720FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
 		D315DF730FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
-		D31A13360F6D8513002AFDF1 /* TDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D31A13350F6D8513002AFDF1 /* TDTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
 		D31A15270F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
 		D31A16520F7038C2002AFDF1 /* TDJavaScriptParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */; };
@@ -71,7 +70,6 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE60A0E60E72500A0803E /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE60B0E60E72500A0803E /* TDReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6090E60E72500A0803E /* TDReader.m */; };
 		D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE60C0E60E73300A0803E /* TDAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -140,7 +138,6 @@
 		D31FE6B50E60E87D00A0803E /* TDLetter.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AD0E60E87D00A0803E /* TDLetter.m */; };
 		D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6B70E60E87D00A0803E /* TDSpecificChar.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */; };
-		D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
 		D31FE6E00E60EE2500A0803E /* TDNCName.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6DF0E60EE2500A0803E /* TDNCName.m */; };
 		D31FE7300E60F31E00A0803E /* TDFastJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5A20E60E5D500A0803E /* TDFastJsonParser.m */; };
 		D31FE7320E60F33000A0803E /* EBNFParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3E78A160E574C99008C7D61 /* EBNFParser.m */; };
@@ -156,7 +153,7 @@
 		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D331B5A10EA5293A0020BF01 /* TDTrackException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D331B5A40EA5293A0020BF01 /* TDTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D331B5A20EA5293A0020BF01 /* TDTrackException.m */; };
-		D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D33494720E29670B00406085 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
@@ -165,7 +162,7 @@
 		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
 		D338E69E0FF6885A003DE6AA /* TDIntersection.h in Headers */ = {isa = PBXBuildFile; fileRef = D338E69C0FF6885A003DE6AA /* TDIntersection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D338E69F0FF6885A003DE6AA /* TDIntersection.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E69D0FF6885A003DE6AA /* TDIntersection.m */; };
-		D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC150FF87F3300D7773A /* NSArray+TDParseKitAdditions.h */; };
 		D34BAC1C0FF87F3300D7773A /* NSArray+TDParseKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC160FF87F3300D7773A /* NSArray+TDParseKitAdditions.m */; };
 		D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC170FF87F3300D7773A /* NSString+TDParseKitAdditions.h */; };
@@ -175,6 +172,9 @@
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
 		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
 		D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
+		D34BAD640FF9C6AE00D7773A /* ParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D34BAD630FF9C6AE00D7773A /* ParseKit_Prefix.pch */; };
+		D34BAD720FF9C71200D7773A /* ParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAD710FF9C71200D7773A /* ParseKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAD770FF9C74F00D7773A /* PKTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAD760FF9C74F00D7773A /* PKTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -225,7 +225,6 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
-		D37D38120FE77860008C2E4D /* TDParseKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6060E60E71900A0803E /* TDParseKit.h */; };
 		D37D38160FE77860008C2E4D /* TDReader.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6080E60E72500A0803E /* TDReader.h */; };
 		D37D38170FE77860008C2E4D /* TDAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE60C0E60E73300A0803E /* TDAssembly.h */; };
 		D37D38180FE77860008C2E4D /* TDAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6100E60E75300A0803E /* TDAlternation.h */; };
@@ -260,7 +259,6 @@
 		D37D38350FE77860008C2E4D /* TDDigit.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AA0E60E87D00A0803E /* TDDigit.h */; };
 		D37D38360FE77860008C2E4D /* TDLetter.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AC0E60E87D00A0803E /* TDLetter.h */; };
 		D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */; };
-		D37D38380FE77860008C2E4D /* TDParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */; };
 		D37D38390FE77860008C2E4D /* TDScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D32365200E92F327008CB5C4 /* TDScientificNumberState.h */; };
 		D37D383A0FE77860008C2E4D /* TDTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D331B5A10EA5293A0020BF01 /* TDTrackException.h */; };
 		D37D383B0FE77860008C2E4D /* TDTokenArraySource.h in Headers */ = {isa = PBXBuildFile; fileRef = D3656DC60EF260FC00226554 /* TDTokenArraySource.h */; };
@@ -269,7 +267,6 @@
 		D37D383E0FE77860008C2E4D /* TDSingleLineCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA9B0F081B3E00A58000 /* TDSingleLineCommentState.h */; };
 		D37D383F0FE77860008C2E4D /* TDMultiLineCommentState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3DDDA9F0F081B4A00A58000 /* TDMultiLineCommentState.h */; };
 		D37D38400FE77860008C2E4D /* TDComment.h in Headers */ = {isa = PBXBuildFile; fileRef = D38349530F0C09740055E4E0 /* TDComment.h */; };
-		D37D38410FE77860008C2E4D /* TDTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = D31A13350F6D8513002AFDF1 /* TDTypes.h */; };
 		D37D38420FE77860008C2E4D /* TDDelimitState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881290FC5443300A40BEF /* TDDelimitState.h */; };
 		D37D38430FE77860008C2E4D /* TDDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881C20FC637C200A40BEF /* TDDelimitedString.h */; };
 		D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */; };
@@ -361,9 +358,9 @@
 		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
 		D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
 		D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
-		D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
-		D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */; };
-		D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D389F1D50F19666500558235 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
+		D389F20B0F196A9200558235 /* JSParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* JSParseKit.framework */; };
+		D389F20C0F196A9200558235 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F20D0F196A9200558235 /* WebKit.framework */; };
 		D389F2E40F196CAE00558235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E30F196CAE00558235 /* main.m */; };
 		D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
@@ -457,7 +454,7 @@
 		D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
 		D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8800FEB36A1006A91A4 /* xml.grammar */; };
 		D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */; };
-		D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */; };
+		D3C7D9DA0A412874005DD154 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
@@ -574,9 +571,8 @@
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8DC2EF5B0486A6940098B216 /* TDParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2EF5B0486A6940098B216 /* ParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D315DF710FEF59B600D876C8 /* date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = date.grammar; path = res/date.grammar; sourceTree = "<group>"; };
-		D31A13350F6D8513002AFDF1 /* TDTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTypes.h; path = src/TDTypes.h; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
 		D31A16510F7038C2002AFDF1 /* TDJavaScriptParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJavaScriptParser.m; path = test/TDJavaScriptParser.m; sourceTree = "<group>"; };
@@ -697,7 +693,6 @@
 		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
 		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
 		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
-		D31FE6060E60E71900A0803E /* TDParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParseKit.h; path = src/TDParseKit.h; sourceTree = "<group>"; };
 		D31FE6080E60E72500A0803E /* TDReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDReader.h; path = src/TDReader.h; sourceTree = "<group>"; };
 		D31FE6090E60E72500A0803E /* TDReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDReader.m; path = src/TDReader.m; sourceTree = "<group>"; };
 		D31FE60C0E60E73300A0803E /* TDAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDAssembly.h; path = src/TDAssembly.h; sourceTree = "<group>"; };
@@ -766,7 +761,6 @@
 		D31FE6AD0E60E87D00A0803E /* TDLetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLetter.m; path = src/TDLetter.m; sourceTree = "<group>"; };
 		D31FE6AE0E60E87D00A0803E /* TDSpecificChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSpecificChar.h; path = src/TDSpecificChar.h; sourceTree = "<group>"; };
 		D31FE6AF0E60E87D00A0803E /* TDSpecificChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSpecificChar.m; path = src/TDSpecificChar.m; sourceTree = "<group>"; };
-		D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDParseKit_Prefix.pch; sourceTree = "<group>"; };
 		D31FE6DF0E60EE2500A0803E /* TDNCName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNCName.m; path = test/TDNCName.m; sourceTree = "<group>"; };
 		D32365200E92F327008CB5C4 /* TDScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDScientificNumberState.h; path = src/TDScientificNumberState.h; sourceTree = "<group>"; };
 		D32365210E92F327008CB5C4 /* TDScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDScientificNumberState.m; path = src/TDScientificNumberState.m; sourceTree = "<group>"; };
@@ -798,6 +792,9 @@
 		D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest3.m; path = test/TDParserFactoryTest3.m; sourceTree = "<group>"; };
 		D34BAC490FF892C200D7773A /* XPathParserGrammarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserGrammarTest.h; path = test/XPathParserGrammarTest.h; sourceTree = "<group>"; };
 		D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParserGrammarTest.m; path = test/XPathParserGrammarTest.m; sourceTree = "<group>"; };
+		D34BAD630FF9C6AE00D7773A /* ParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseKit_Prefix.pch; sourceTree = "<group>"; };
+		D34BAD710FF9C71200D7773A /* ParseKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParseKit.h; path = src/ParseKit.h; sourceTree = "<group>"; };
+		D34BAD760FF9C74F00D7773A /* PKTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTypes.h; path = src/PKTypes.h; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -863,7 +860,7 @@
 		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
 		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
 		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
-		D37D380F0FE7783C008C2E4D /* libTDParseKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTDParseKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D37D380F0FE7783C008C2E4D /* libParseKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libParseKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D380AFBB0F0C54B60009EC13 /* html.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = html.css; path = res/html.css; sourceTree = "<group>"; };
 		D380AFBC0F0C54B60009EC13 /* html.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = html.grammar; path = res/html.grammar; sourceTree = "<group>"; };
 		D380AFC20F0C56000009EC13 /* example.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = example.html; path = res/example.html; sourceTree = "<group>"; };
@@ -892,7 +889,7 @@
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
 		D389A0B00F1FCC99003B43BD /* RelaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelaxParser.h; path = test/RelaxParser.h; sourceTree = "<group>"; };
 		D389A0B10F1FCC99003B43BD /* RelaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelaxParser.m; path = test/RelaxParser.m; sourceTree = "<group>"; };
-		D389F1CE0F1965E600558235 /* TDJSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TDJSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D389F1CE0F1965E600558235 /* JSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F1CF0F1965E600558235 /* TDJSParseKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TDJSParseKit-Info.plist"; sourceTree = "<group>"; };
 		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
@@ -1070,7 +1067,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33494720E29670B00406085 /* TDParseKit.framework in Frameworks */,
+				D33494720E29670B00406085 /* ParseKit.framework in Frameworks */,
 				D37D3A000FE77A71008C2E4D /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1080,7 +1077,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
-				D341850C0E520D640081B0DC /* TDParseKit.framework in Frameworks */,
+				D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */,
 				D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */,
 				D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 				D37D3A010FE77A72008C2E4D /* AppKit.framework in Frameworks */,
@@ -1101,7 +1098,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */,
-				D389F1D50F19666500558235 /* TDParseKit.framework in Frameworks */,
+				D389F1D50F19666500558235 /* ParseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1111,8 +1108,8 @@
 			files = (
 				D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */,
 				D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */,
-				D389F20C0F196A9200558235 /* TDParseKit.framework in Frameworks */,
-				D389F20B0F196A9200558235 /* TDJSParseKit.framework in Frameworks */,
+				D389F20C0F196A9200558235 /* ParseKit.framework in Frameworks */,
+				D389F20B0F196A9200558235 /* JSParseKit.framework in Frameworks */,
 				D37D3A020FE77A77008C2E4D /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1122,7 +1119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */,
-				D3C7D9DA0A412874005DD154 /* TDParseKit.framework in Frameworks */,
+				D3C7D9DA0A412874005DD154 /* ParseKit.framework in Frameworks */,
 				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
 				D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 				D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */,
@@ -1135,9 +1132,9 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5B0486A6940098B216 /* TDParseKit.framework */,
-				D389F1CE0F1965E600558235 /* TDJSParseKit.framework */,
-				D37D380F0FE7783C008C2E4D /* libTDParseKit.a */,
+				8DC2EF5B0486A6940098B216 /* ParseKit.framework */,
+				D389F1CE0F1965E600558235 /* JSParseKit.framework */,
+				D37D380F0FE7783C008C2E4D /* libParseKit.a */,
 				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
@@ -1185,7 +1182,8 @@
 		08FB77AEFE84172EC02AAC07 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6060E60E71900A0803E /* TDParseKit.h */,
+				D34BAD710FF9C71200D7773A /* ParseKit.h */,
+				D34BAD760FF9C74F00D7773A /* PKTypes.h */,
 				D3C7D8710A411F6B005DD154 /* io */,
 				D3C7D8720A411F81005DD154 /* parse */,
 				D3C7D8740A411F8E005DD154 /* tokens */,
@@ -1674,7 +1672,7 @@
 		D3AF4C8E0FDC738B0032F4DC /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6CA0E60E9A200A0803E /* TDParseKit_Prefix.pch */,
+				D34BAD630FF9C6AE00D7773A /* ParseKit_Prefix.pch */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1829,7 +1827,6 @@
 		D3C7D8710A411F6B005DD154 /* io */ = {
 			isa = PBXGroup;
 			children = (
-				D31A13350F6D8513002AFDF1 /* TDTypes.h */,
 				D31FE6080E60E72500A0803E /* TDReader.h */,
 				D31FE6090E60E72500A0803E /* TDReader.m */,
 			);
@@ -2103,7 +2100,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE6070E60E71900A0803E /* TDParseKit.h in Headers */,
 				D31FE60A0E60E72500A0803E /* TDReader.h in Headers */,
 				D31FE60E0E60E73300A0803E /* TDAssembly.h in Headers */,
 				D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */,
@@ -2138,7 +2134,6 @@
 				D31FE6B20E60E87D00A0803E /* TDDigit.h in Headers */,
 				D31FE6B40E60E87D00A0803E /* TDLetter.h in Headers */,
 				D31FE6B60E60E87D00A0803E /* TDSpecificChar.h in Headers */,
-				D31FE6CB0E60E9A200A0803E /* TDParseKit_Prefix.pch in Headers */,
 				D32365230E92F327008CB5C4 /* TDScientificNumberState.h in Headers */,
 				D331B5A30EA5293A0020BF01 /* TDTrackException.h in Headers */,
 				D3656DD60EF2614C00226554 /* TDTokenArraySource.h in Headers */,
@@ -2147,7 +2142,6 @@
 				D3DDDA9D0F081B3E00A58000 /* TDSingleLineCommentState.h in Headers */,
 				D3DDDAA10F081B4A00A58000 /* TDMultiLineCommentState.h in Headers */,
 				D38349550F0C09740055E4E0 /* TDComment.h in Headers */,
-				D31A13360F6D8513002AFDF1 /* TDTypes.h in Headers */,
 				D3A8812B0FC5443300A40BEF /* TDDelimitState.h in Headers */,
 				D3A881C40FC637C200A40BEF /* TDDelimitedString.h in Headers */,
 				D36C55FE0FD3617B00141CB7 /* RegexKitLite.h in Headers */,
@@ -2158,6 +2152,9 @@
 				D34BAC1B0FF87F3300D7773A /* NSArray+TDParseKitAdditions.h in Headers */,
 				D34BAC1D0FF87F3300D7773A /* NSString+TDParseKitAdditions.h in Headers */,
 				D34BAC1F0FF87F3300D7773A /* TDParserFactory.h in Headers */,
+				D34BAD640FF9C6AE00D7773A /* ParseKit_Prefix.pch in Headers */,
+				D34BAD720FF9C71200D7773A /* ParseKit.h in Headers */,
+				D34BAD770FF9C74F00D7773A /* PKTypes.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2165,7 +2162,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38120FE77860008C2E4D /* TDParseKit.h in Headers */,
 				D37D38160FE77860008C2E4D /* TDReader.h in Headers */,
 				D37D38170FE77860008C2E4D /* TDAssembly.h in Headers */,
 				D37D38180FE77860008C2E4D /* TDAlternation.h in Headers */,
@@ -2200,7 +2196,6 @@
 				D37D38350FE77860008C2E4D /* TDDigit.h in Headers */,
 				D37D38360FE77860008C2E4D /* TDLetter.h in Headers */,
 				D37D38370FE77860008C2E4D /* TDSpecificChar.h in Headers */,
-				D37D38380FE77860008C2E4D /* TDParseKit_Prefix.pch in Headers */,
 				D37D38390FE77860008C2E4D /* TDScientificNumberState.h in Headers */,
 				D37D383A0FE77860008C2E4D /* TDTrackException.h in Headers */,
 				D37D383B0FE77860008C2E4D /* TDTokenArraySource.h in Headers */,
@@ -2209,7 +2204,6 @@
 				D37D383E0FE77860008C2E4D /* TDSingleLineCommentState.h in Headers */,
 				D37D383F0FE77860008C2E4D /* TDMultiLineCommentState.h in Headers */,
 				D37D38400FE77860008C2E4D /* TDComment.h in Headers */,
-				D37D38410FE77860008C2E4D /* TDTypes.h in Headers */,
 				D37D38420FE77860008C2E4D /* TDDelimitState.h in Headers */,
 				D37D38430FE77860008C2E4D /* TDDelimitedString.h in Headers */,
 				D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */,
@@ -2265,9 +2259,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		8DC2EF4F0486A6940098B216 /* TDParseKit */ = {
+		8DC2EF4F0486A6940098B216 /* ParseKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "ParseKit" */;
 			buildPhases = (
 				8DC2EF500486A6940098B216 /* Headers */,
 				8DC2EF540486A6940098B216 /* Sources */,
@@ -2278,10 +2272,10 @@
 			);
 			dependencies = (
 			);
-			name = TDParseKit;
+			name = ParseKit;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = TODParseKit;
-			productReference = 8DC2EF5B0486A6940098B216 /* TDParseKit.framework */;
+			productReference = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D334940F0E2963FD00406085 /* DemoApp */ = {
@@ -2321,9 +2315,9 @@
 			productReference = D34185040E520D3F0081B0DC /* DebugApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D37D380E0FE7783C008C2E4D /* TDMobileParseKit */ = {
+		D37D380E0FE7783C008C2E4D /* ParseKitMobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D37D38FD0FE778AE008C2E4D /* Build configuration list for PBXNativeTarget "TDMobileParseKit" */;
+			buildConfigurationList = D37D38FD0FE778AE008C2E4D /* Build configuration list for PBXNativeTarget "ParseKitMobile" */;
 			buildPhases = (
 				D37D380B0FE7783C008C2E4D /* Headers */,
 				D37D380C0FE7783C008C2E4D /* Sources */,
@@ -2333,14 +2327,14 @@
 			);
 			dependencies = (
 			);
-			name = TDMobileParseKit;
+			name = ParseKitMobile;
 			productName = staticlib;
-			productReference = D37D380F0FE7783C008C2E4D /* libTDParseKit.a */;
+			productReference = D37D380F0FE7783C008C2E4D /* libParseKit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		D389F1CD0F1965E600558235 /* TDJSParseKit */ = {
+		D389F1CD0F1965E600558235 /* JSParseKit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "TDJSParseKit" */;
+			buildConfigurationList = D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "JSParseKit" */;
 			buildPhases = (
 				D389F1C90F1965E600558235 /* Headers */,
 				D389F1CB0F1965E600558235 /* Sources */,
@@ -2352,9 +2346,9 @@
 			dependencies = (
 				D389F1D40F19665C00558235 /* PBXTargetDependency */,
 			);
-			name = TDJSParseKit;
+			name = JSParseKit;
 			productName = TDJSParseKit;
-			productReference = D389F1CE0F1965E600558235 /* TDJSParseKit.framework */;
+			productReference = D389F1CE0F1965E600558235 /* JSParseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D389F2020F196A7500558235 /* JSDemoApp */ = {
@@ -2408,9 +2402,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8DC2EF4F0486A6940098B216 /* TDParseKit */,
-				D389F1CD0F1965E600558235 /* TDJSParseKit */,
-				D37D380E0FE7783C008C2E4D /* TDMobileParseKit */,
+				8DC2EF4F0486A6940098B216 /* ParseKit */,
+				D389F1CD0F1965E600558235 /* JSParseKit */,
+				D37D380E0FE7783C008C2E4D /* ParseKitMobile */,
 				D3C7D8790A411FBF005DD154 /* Tests */,
 				D334940F0E2963FD00406085 /* DemoApp */,
 				D34185030E520D3F0081B0DC /* DebugApp */,
@@ -2865,27 +2859,27 @@
 /* Begin PBXTargetDependency section */
 		D31FE7180E60F24700A0803E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* ParseKit */;
 			targetProxy = D31FE7170E60F24700A0803E /* PBXContainerItemProxy */;
 		};
 		D33494A00E296AA900406085 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* ParseKit */;
 			targetProxy = D334949F0E296AA900406085 /* PBXContainerItemProxy */;
 		};
 		D34185100E520D6F0081B0DC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* ParseKit */;
 			targetProxy = D341850F0E520D6F0081B0DC /* PBXContainerItemProxy */;
 		};
 		D389F1D40F19665C00558235 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8DC2EF4F0486A6940098B216 /* TDParseKit */;
+			target = 8DC2EF4F0486A6940098B216 /* ParseKit */;
 			targetProxy = D389F1D30F19665C00558235 /* PBXContainerItemProxy */;
 		};
 		D389F20A0F196A8000558235 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D389F1CD0F1965E600558235 /* TDJSParseKit */;
+			target = D389F1CD0F1965E600558235 /* JSParseKit */;
 			targetProxy = D389F2090F196A8000558235 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -2917,7 +2911,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
+				GCC_PREFIX_HEADER = ParseKit_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GENERATE_PROFILING_CODE = YES;
@@ -2930,7 +2924,7 @@
 					"-framework",
 					Foundation,
 				);
-				PRODUCT_NAME = TDParseKit;
+				PRODUCT_NAME = ParseKit;
 				SDKROOT = "";
 				WARNING_CFLAGS = "-Wundeclared-selector";
 				WRAPPER_EXTENSION = framework;
@@ -2951,7 +2945,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
+				GCC_PREFIX_HEADER = ParseKit_Prefix.pch;
 				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = Info.plist;
@@ -2962,7 +2956,7 @@
 					"-framework",
 					Foundation,
 				);
-				PRODUCT_NAME = TDParseKit;
+				PRODUCT_NAME = ParseKit;
 				SDKROOT = "";
 				TDPARSEKIT_FRAMEWORK_TARGET_PATH = "@executable_path/../Frameworks";
 				WARNING_CFLAGS = "-Wundeclared-selector";
@@ -3126,7 +3120,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = TDParseKit;
+				PRODUCT_NAME = ParseKit;
 			};
 			name = Debug;
 		};
@@ -3147,7 +3141,7 @@
 					Foundation,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = TDParseKit;
+				PRODUCT_NAME = ParseKit;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3177,7 +3171,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = TDJSParseKit;
+				PRODUCT_NAME = JSParseKit;
 				SDKROOT = "";
 			};
 			name = Debug;
@@ -3206,7 +3200,7 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = TDJSParseKit;
+				PRODUCT_NAME = JSParseKit;
 				SDKROOT = "";
 				ZERO_LINK = NO;
 			};
@@ -3354,7 +3348,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "TDParseKit" */ = {
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "ParseKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1DEB91AE08733DA50010E9CD /* Debug */,
@@ -3390,7 +3384,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D37D38FD0FE778AE008C2E4D /* Build configuration list for PBXNativeTarget "TDMobileParseKit" */ = {
+		D37D38FD0FE778AE008C2E4D /* Build configuration list for PBXNativeTarget "ParseKitMobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D37D38100FE7783D008C2E4D /* Debug */,
@@ -3399,7 +3393,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
-		D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "TDJSParseKit" */ = {
+		D389F1D20F1965E800558235 /* Build configuration list for PBXNativeTarget "JSParseKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D389F1D00F1965E800558235 /* Debug */,

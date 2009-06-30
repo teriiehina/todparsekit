@@ -7,7 +7,7 @@
 //
 
 #import "TDReservedWordTest.h"
-#import "TDParseKit.h"
+#import "ParseKit.h"
 
 @implementation TDReservedWordTest
 

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDCharacterAssembly.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDCharacterAssembly.h>
+#import <ParseKit/PKTypes.h>
 
 @interface TDAssembly ()
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;

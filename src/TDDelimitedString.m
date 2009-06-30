@@ -6,8 +6,8 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDDelimitedString.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDDelimitedString.h>
+#import <ParseKit/TDToken.h>
 
 @interface TDDelimitedString ()
 @property (nonatomic, retain) NSString *startMarker;

@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDSymbol.h>
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDSymbol.h>
+#import <ParseKit/TDToken.h>
 
 @interface TDSymbol ()
 @property (nonatomic, retain) TDToken *symbol;

@@ -15,9 +15,9 @@
 #import "TDJSWhitespaceState.h"
 #import "TDJSCommentState.h"
 #import "TDJSSymbolState.h"
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTokenizerState.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/TDTokenizerState.h>
 
 #pragma mark -
 #pragma mark Methods

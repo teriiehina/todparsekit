@@ -7,7 +7,7 @@
 //
 
 #import "DemoAppDelegate.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @interface DemoAppDelegate ()
 - (void)doParse;

@@ -9,7 +9,7 @@
 #import "TDJSUppercaseWord.h"
 #import "TDJSUtils.h"
 #import "TDJSWord.h"
-#import <TDParseKit/TDUppercaseWord.h>
+#import <ParseKit/TDUppercaseWord.h>
 
 #pragma mark -
 #pragma mark Methods

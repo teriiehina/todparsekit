@@ -8,7 +8,7 @@
 
 #import "TDMiniCSSAssembler.h"
 #import "NSString+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @interface TDMiniCSSAssembler ()
 - (void)gatherPropertiesIn:(id)props;

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @class TDNSPredicateEvaluator;
 

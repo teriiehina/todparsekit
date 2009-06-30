@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDDigit.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDDigit.h>
+#import <ParseKit/PKTypes.h>
 
 @implementation TDDigit
 

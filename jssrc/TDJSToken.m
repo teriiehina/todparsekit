@@ -8,7 +8,7 @@
 
 #import "TDJSToken.h"
 #import "TDJSUtils.h"
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDToken.h>
 
 #pragma mark -
 #pragma mark Methods

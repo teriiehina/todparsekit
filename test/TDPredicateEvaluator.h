@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @protocol TDPredicateEvaluatorDelegate <NSObject>
 - (id)valueForAttributeKey:(NSString *)key;

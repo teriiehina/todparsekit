@@ -9,7 +9,7 @@
 #import "TDJSQuoteState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <TDParseKit/TDQuoteState.h>
+#import <ParseKit/TDQuoteState.h>
 
 #pragma mark -
 #pragma mark Methods

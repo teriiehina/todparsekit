@@ -7,7 +7,7 @@
 //
 
 #import "TDWhitespace.h"
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDToken.h>
 
 @implementation TDWhitespace
 

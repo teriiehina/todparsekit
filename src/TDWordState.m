@@ -6,11 +6,11 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDWordState.h>
-#import <TDParseKit/TDReader.h>
-#import <TDParseKit/TDTokenizer.h>
-#import <TDParseKit/TDToken.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDWordState.h>
+#import <ParseKit/TDReader.h>
+#import <ParseKit/TDTokenizer.h>
+#import <ParseKit/TDToken.h>
+#import <ParseKit/PKTypes.h>
 
 #define TDTRUE (id)kCFBooleanTrue
 #define TDFALSE (id)kCFBooleanFalse

@@ -9,7 +9,7 @@
 #import "TDJSRepetition.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <TDParseKit/TDRepetition.h>
+#import <ParseKit/TDRepetition.h>
 
 #pragma mark -
 #pragma mark Methods

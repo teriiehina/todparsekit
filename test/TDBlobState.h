@@ -6,7 +6,7 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDTokenizerState.h>
+#import <ParseKit/TDTokenizerState.h>
 
 @interface TDBlobState : TDTokenizerState {
 

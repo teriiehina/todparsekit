@@ -6,8 +6,8 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDLetter.h>
-#import <TDParseKit/TDTypes.h>
+#import <ParseKit/TDLetter.h>
+#import <ParseKit/PKTypes.h>
 
 @implementation TDLetter
 

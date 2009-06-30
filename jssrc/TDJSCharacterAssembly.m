@@ -9,7 +9,7 @@
 #import "TDJSCharacterAssembly.h"
 #import "TDJSUtils.h"
 #import "TDJSAssembly.h"
-#import <TDParseKit/TDCharacterAssembly.h>
+#import <ParseKit/TDCharacterAssembly.h>
 
 #pragma mark -
 #pragma mark Methods

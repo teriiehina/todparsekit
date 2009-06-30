@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @interface TDJsonParser : TDAlternation {
     BOOL shouldAssemble;

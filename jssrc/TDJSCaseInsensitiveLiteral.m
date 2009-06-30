@@ -9,7 +9,7 @@
 #import "TDJSCaseInsensitiveLiteral.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <TDParseKit/TDCaseInsensitiveLiteral.h>
+#import <ParseKit/TDCaseInsensitiveLiteral.h>
 
 #pragma mark -
 #pragma mark Methods

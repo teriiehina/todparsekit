@@ -7,7 +7,7 @@
 //
 
 #import "TDBlob.h"
-#import <TDParseKit/TDToken.h>
+#import <ParseKit/TDToken.h>
 #import "TDToken+Blob.h"
 
 @implementation TDBlob

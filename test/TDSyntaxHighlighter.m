@@ -7,7 +7,7 @@
 //
 
 #import "TDSyntaxHighlighter.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 #import "TDParserFactory.h"
 #import "TDMiniCSSAssembler.h"
 #import "TDGenericAssembler.h"

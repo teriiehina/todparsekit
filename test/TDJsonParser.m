@@ -7,7 +7,7 @@
 //
 
 #import "TDJsonParser.h"
-#import "TDParseKit.h"
+#import "ParseKit.h"
 #import "NSString+TDParseKitAdditions.h"
 
 @interface TDCollectionParser ()

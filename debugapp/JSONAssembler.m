@@ -8,7 +8,7 @@
 
 #import "JSONAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @implementation JSONAssembler
 

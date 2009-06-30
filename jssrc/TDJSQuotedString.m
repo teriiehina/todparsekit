@@ -9,7 +9,7 @@
 #import "TDJSQuotedString.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <TDParseKit/TDQuotedString.h>
+#import <ParseKit/TDQuotedString.h>
 
 #pragma mark -
 #pragma mark Methods

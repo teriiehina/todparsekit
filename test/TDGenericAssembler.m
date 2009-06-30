@@ -8,7 +8,7 @@
 
 #import "TDGenericAssembler.h"
 #import "NSArray+TDParseKitAdditions.h"
-#import <TDParseKit/TDParseKit.h>
+#import <ParseKit/ParseKit.h>
 
 @interface TDGenericAssembler ()
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(TDAssembly *)a;
