@@ -33,7 +33,7 @@
     if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         arg = (JSValueRef)TDTokenAssembly_new(ctx, a);
     } else if ([a isMemberOfClass:[PKCharacterAssembly class]]) {
-        arg = (JSValueRef)TDCharacterAssembly_new(ctx, a);
+        arg = (JSValueRef)PKCharacterAssembly_new(ctx, a);
     } else {
         NSAssert(0, @"Should not reach here.");
     }

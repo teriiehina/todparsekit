@@ -202,6 +202,8 @@
 		D34BB0750FF9EE4000D7773A /* PKJSUtils_macros.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BB06E0FF9EE4000D7773A /* PKJSUtils_macros.h */; };
 		D34BB0760FF9EE4000D7773A /* PKJSValueHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BB06F0FF9EE4000D7773A /* PKJSValueHolder.h */; };
 		D34BB0770FF9EE4000D7773A /* PKJSValueHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BB0700FF9EE4000D7773A /* PKJSValueHolder.m */; };
+		D34BB08F0FF9EF9D00D7773A /* PKJSCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BB08D0FF9EF9D00D7773A /* PKJSCharacterAssembly.h */; };
+		D34BB0900FF9EF9D00D7773A /* PKJSCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BB08E0FF9EF9D00D7773A /* PKJSCharacterAssembly.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -324,8 +326,6 @@
 		D389F5B60F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
 		D389F5B70F19C76A00558235 /* TDJsonParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B50F19C76A00558235 /* TDJsonParserTest.m */; };
 		D389F5B80F19C76A00558235 /* TDJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F5B30F19C76A00558235 /* TDJsonParser.m */; };
-		D389F8C70F1AC8B200558235 /* TDJSCharacterAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D389F8C50F1AC8B200558235 /* TDJSCharacterAssembly.h */; };
-		D389F8C80F1AC8B200558235 /* TDJSCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */; };
 		D389FAA90F1AFDD900558235 /* TDJSAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAA70F1AFDD900558235 /* TDJSAlternation.h */; };
 		D389FAAA0F1AFDD900558235 /* TDJSAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D389FAA80F1AFDD900558235 /* TDJSAlternation.m */; };
 		D389FAAF0F1AFEE900558235 /* TDJSCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */; };
@@ -732,6 +732,8 @@
 		D34BB06E0FF9EE4000D7773A /* PKJSUtils_macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKJSUtils_macros.h; path = jssrc/PKJSUtils_macros.h; sourceTree = "<group>"; };
 		D34BB06F0FF9EE4000D7773A /* PKJSValueHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKJSValueHolder.h; path = jssrc/PKJSValueHolder.h; sourceTree = "<group>"; };
 		D34BB0700FF9EE4000D7773A /* PKJSValueHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKJSValueHolder.m; path = jssrc/PKJSValueHolder.m; sourceTree = "<group>"; };
+		D34BB08D0FF9EF9D00D7773A /* PKJSCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKJSCharacterAssembly.h; path = jssrc/PKJSCharacterAssembly.h; sourceTree = "<group>"; };
+		D34BB08E0FF9EF9D00D7773A /* PKJSCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKJSCharacterAssembly.m; path = jssrc/PKJSCharacterAssembly.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -856,8 +858,6 @@
 		D389F5B30F19C76A00558235 /* TDJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParser.m; path = test/TDJsonParser.m; sourceTree = "<group>"; };
 		D389F5B40F19C76A00558235 /* TDJsonParserTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJsonParserTest.h; path = test/TDJsonParserTest.h; sourceTree = "<group>"; };
 		D389F5B50F19C76A00558235 /* TDJsonParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJsonParserTest.m; path = test/TDJsonParserTest.m; sourceTree = "<group>"; };
-		D389F8C50F1AC8B200558235 /* TDJSCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCharacterAssembly.h; path = jssrc/TDJSCharacterAssembly.h; sourceTree = "<group>"; };
-		D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSCharacterAssembly.m; path = jssrc/TDJSCharacterAssembly.m; sourceTree = "<group>"; };
 		D389FAA70F1AFDD900558235 /* TDJSAlternation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSAlternation.h; path = jssrc/TDJSAlternation.h; sourceTree = "<group>"; };
 		D389FAA80F1AFDD900558235 /* TDJSAlternation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDJSAlternation.m; path = jssrc/TDJSAlternation.m; sourceTree = "<group>"; };
 		D389FAAD0F1AFEE900558235 /* TDJSCollectionParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJSCollectionParser.h; path = jssrc/TDJSCollectionParser.h; sourceTree = "<group>"; };
@@ -1536,8 +1536,8 @@
 		D389F8C40F1AC89A00558235 /* Chars */ = {
 			isa = PBXGroup;
 			children = (
-				D389F8C50F1AC8B200558235 /* TDJSCharacterAssembly.h */,
-				D389F8C60F1AC8B200558235 /* TDJSCharacterAssembly.m */,
+				D34BB08D0FF9EF9D00D7773A /* PKJSCharacterAssembly.h */,
+				D34BB08E0FF9EF9D00D7773A /* PKJSCharacterAssembly.m */,
 			);
 			name = Chars;
 			sourceTree = "<group>";
@@ -2086,7 +2086,6 @@
 				D389F5980F19B7E200558235 /* TDJSWordState.h in Headers */,
 				D389F59E0F19BCC500558235 /* TDJSParser.h in Headers */,
 				D389F5A20F19BF9200558235 /* TDJSAssemblerAdapter.h in Headers */,
-				D389F8C70F1AC8B200558235 /* TDJSCharacterAssembly.h in Headers */,
 				D389FAA90F1AFDD900558235 /* TDJSAlternation.h in Headers */,
 				D389FAAF0F1AFEE900558235 /* TDJSCollectionParser.h in Headers */,
 				D389FAB50F1AFF1000558235 /* TDJSSequence.h in Headers */,
@@ -2112,6 +2111,7 @@
 				D34BB0730FF9EE4000D7773A /* PKJSUtils.h in Headers */,
 				D34BB0750FF9EE4000D7773A /* PKJSUtils_macros.h in Headers */,
 				D34BB0760FF9EE4000D7773A /* PKJSValueHolder.h in Headers */,
+				D34BB08F0FF9EF9D00D7773A /* PKJSCharacterAssembly.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2523,7 +2523,6 @@
 				D389F5990F19B7E200558235 /* TDJSWordState.m in Sources */,
 				D389F59F0F19BCC500558235 /* TDJSParser.m in Sources */,
 				D389F5A30F19BF9200558235 /* TDJSAssemblerAdapter.m in Sources */,
-				D389F8C80F1AC8B200558235 /* TDJSCharacterAssembly.m in Sources */,
 				D389FAAA0F1AFDD900558235 /* TDJSAlternation.m in Sources */,
 				D389FAB00F1AFEE900558235 /* TDJSCollectionParser.m in Sources */,
 				D389FAB60F1AFF1000558235 /* TDJSSequence.m in Sources */,
@@ -2548,6 +2547,7 @@
 				D34BB0720FF9EE4000D7773A /* PKJSAssembly.m in Sources */,
 				D34BB0740FF9EE4000D7773A /* PKJSUtils.m in Sources */,
 				D34BB0770FF9EE4000D7773A /* PKJSValueHolder.m in Sources */,
+				D34BB0900FF9EF9D00D7773A /* PKJSCharacterAssembly.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
