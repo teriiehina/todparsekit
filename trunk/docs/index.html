@@ -21,6 +21,14 @@
 
 <p>ParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java"</a> by Steven John Metsker. ParseKit includes additional features beyond the designs from the book and also some changes to match common Cocoa/Objective-C conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
 
+<p>The ParseKit Framework offers 3 basic services of general interest to Cocoa developers:</p>
+
+<ol>
+<li><b>String Tokenization</b> via the Objective-C <tt>PKTokenizer</tt> and <tt>PKToken</tt> classes.</li>
+<li><b>Language Parsing via Objective-C</b> - An Objective-C parser-building API (the <tt>PKParser</tt> class and sublcasses).</li>
+<li><b>Language Parsing via Grammars</b> - Describe custom languages using a high-level grammar syntax (similar to yacc or ANTLR) with callbacks in Objective-C.</li>
+</ol>
+
 <p>The ParseKit source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>.</p>
 
 <p>More documentation:</p>
@@ -56,14 +64,6 @@
 
 
 <h2>ParseKit Framework</h2>
-
-<p>The ParseKit Framework offers 3 basic services of general interest to Cocoa developers:</p>
-
-<ol>
-<li><b>String Tokenization</b> via the Objective-C <tt>PKTokenizer</tt> and <tt>PKToken</tt> classes.</li>
-<li><b>Language Parsing via Objective-C</b> - An Objective-C parser-building API (the <tt>PKParser</tt> class and sublcasses).</li>
-<li><b>Language Parsing via Grammars</b> - Describe custom languages and parsers using a high-level grammar syntax (very similar to yacc or ANTLR).</li>
-</ol>
 
 <hr/>
 <h3>Tokenization</h3>
