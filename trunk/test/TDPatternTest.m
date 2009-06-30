@@ -33,7 +33,7 @@
 
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDWord word]];
+    [inter add:[PKWord word]];
 
     a = [inter completeMatchFor:a];
     
@@ -211,7 +211,7 @@
 
     inter = [PKIntersection intersection];
     [inter add:p];
-    [inter add:[TDWord word]];
+    [inter add:[PKWord word]];
     
     a = [inter completeMatchFor:a];
     

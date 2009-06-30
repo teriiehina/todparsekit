@@ -12,7 +12,7 @@
 @implementation TDWhitespaceStateTest
 
 - (void)setUp {
-    whitespaceState = [[TDWhitespaceState alloc] init];
+    whitespaceState = [[PKWhitespaceState alloc] init];
 }
 
 

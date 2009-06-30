@@ -9,23 +9,23 @@
 #import "TDJSSymbolState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDSymbolState.h>
+#import <ParseKit/PKSymbolState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDSymbolState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDSymbolState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDSymbolState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKSymbolState]", ex);
 }
 
 static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDSymbolState_class, "add");
-    TDPreconditionMethodArgc(1, "TDSymbolState.add");
+    TDPreconditionMethodArgc(1, "PKSymbolState.add");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDSymbolState *data = JSObjectGetPrivate(this);
+    PKSymbolState *data = JSObjectGetPrivate(this);
     [data add:s];
     
     return JSValueMakeUndefined(ctx);
@@ -33,11 +33,11 @@ static JSValueRef TDSymbolState_add(JSContextRef ctx, JSObjectRef function, JSOb
 
 static JSValueRef TDSymbolState_remove(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDSymbolState_class, "remove");
-    TDPreconditionMethodArgc(1, "TDSymbolState.remove");
+    TDPreconditionMethodArgc(1, "PKSymbolState.remove");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDSymbolState *data = JSObjectGetPrivate(this);
+    PKSymbolState *data = JSObjectGetPrivate(this);
     [data remove:s];
     
     return JSValueMakeUndefined(ctx);
@@ -90,6 +90,6 @@ JSObjectRef TDSymbolState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDSymbolState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDSymbolState *data = [[TDSymbolState alloc] init];
+    PKSymbolState *data = [[PKSymbolState alloc] init];
     return TDSymbolState_new(ctx, data);
 }

@@ -1,18 +1,18 @@
 //
-//  TDCommentState.m
+//  PKCommentState.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDCommentState.h>
+#import <ParseKit/PKCommentState.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKReader.h>
 #import <ParseKit/TDSymbolRootNode.h>
-#import <ParseKit/TDSingleLineCommentState.h>
-#import <ParseKit/TDMultiLineCommentState.h>
+#import <ParseKit/PKSingleLineCommentState.h>
+#import <ParseKit/PKMultiLineCommentState.h>
 
 @interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
@@ -25,18 +25,18 @@
 
 @interface TDCommentState ()
 @property (nonatomic, retain) TDSymbolRootNode *rootNode;
-@property (nonatomic, retain) TDSingleLineCommentState *singleLineState;
-@property (nonatomic, retain) TDMultiLineCommentState *multiLineState;
+@property (nonatomic, retain) PKSingleLineCommentState *singleLineState;
+@property (nonatomic, retain) PKMultiLineCommentState *multiLineState;
 @end
 
-@interface TDSingleLineCommentState ()
+@interface PKSingleLineCommentState ()
 - (void)addStartMarker:(NSString *)start;
 - (void)removeStartMarker:(NSString *)start;
 @property (nonatomic, retain) NSMutableArray *startMarkers;
 @property (nonatomic, retain) NSString *currentStartMarker;
 @end
 
-@interface TDMultiLineCommentState ()
+@interface PKMultiLineCommentState ()
 - (void)addStartMarker:(NSString *)start endMarker:(NSString *)end;
 - (void)removeStartMarker:(NSString *)start;
 @property (nonatomic, retain) NSMutableArray *startMarkers;
@@ -49,8 +49,8 @@
 - (id)init {
     if (self = [super init]) {
         self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
-        self.singleLineState = [[[TDSingleLineCommentState alloc] init] autorelease];
-        self.multiLineState = [[[TDMultiLineCommentState alloc] init] autorelease];
+        self.singleLineState = [[[PKSingleLineCommentState alloc] init] autorelease];
+        self.multiLineState = [[[PKMultiLineCommentState alloc] init] autorelease];
     }
     return self;
 }

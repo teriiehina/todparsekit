@@ -9,26 +9,26 @@
 #import "TDJSQuoteState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDQuoteState.h>
+#import <ParseKit/PKQuoteState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDQuoteState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDQuoteState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDQuoteState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKQuoteState]", ex);
 }
 
 #pragma mark -
 #pragma mark Properties
 
 static JSValueRef TDQuoteState_getBalancesEOFTerminatedQuotes(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDQuoteState *data = JSObjectGetPrivate(this);
+    PKQuoteState *data = JSObjectGetPrivate(this);
     return JSValueMakeBoolean(ctx, data.balancesEOFTerminatedQuotes);
 }
 
 static bool TDQuoteState_setBalancesEOFTerminatedQuotes(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
-    TDQuoteState *data = JSObjectGetPrivate(this);
+    PKQuoteState *data = JSObjectGetPrivate(this);
     data.balancesEOFTerminatedQuotes = JSValueToBoolean(ctx, value);
     return true;
 }
@@ -76,6 +76,6 @@ JSObjectRef TDQuoteState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDQuoteState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDQuoteState *data = [[TDQuoteState alloc] init];
+    PKQuoteState *data = [[PKQuoteState alloc] init];
     return TDQuoteState_new(ctx, data);
 }

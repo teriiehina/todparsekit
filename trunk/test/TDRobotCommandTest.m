@@ -59,7 +59,7 @@
 //    location = Word
 
 - (PKParser *)location {
-    return [TDWord word];
+    return [PKWord word];
 }
 
 

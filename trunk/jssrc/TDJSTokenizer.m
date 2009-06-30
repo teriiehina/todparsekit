@@ -79,7 +79,7 @@ static JSValueRef TDTokenizer_getWordState(JSContextRef ctx, JSObjectRef this, J
 static bool TDTokenizer_setWordState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKTokenizer *data = JSObjectGetPrivate(this);
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
-    TDWordState *state = JSObjectGetPrivate(stateObj);
+    PKWordState *state = JSObjectGetPrivate(stateObj);
     data.wordState = state;
     return true;
 }
@@ -93,7 +93,7 @@ static JSValueRef TDTokenizer_getNumberState(JSContextRef ctx, JSObjectRef this,
 static bool TDTokenizer_setNumberState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKTokenizer *data = JSObjectGetPrivate(this);
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
-    TDNumberState *state = JSObjectGetPrivate(stateObj);
+    PKNumberState *state = JSObjectGetPrivate(stateObj);
     data.numberState = state;
     return true;
 }
@@ -107,7 +107,7 @@ static JSValueRef TDTokenizer_getQuoteState(JSContextRef ctx, JSObjectRef this, 
 static bool TDTokenizer_setQuoteState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKTokenizer *data = JSObjectGetPrivate(this);
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
-    TDQuoteState *state = JSObjectGetPrivate(stateObj);
+    PKQuoteState *state = JSObjectGetPrivate(stateObj);
     data.quoteState = state;
     return true;
 }
@@ -121,7 +121,7 @@ static JSValueRef TDTokenizer_getSymbolState(JSContextRef ctx, JSObjectRef this,
 static bool TDTokenizer_setSymbolState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKTokenizer *data = JSObjectGetPrivate(this);
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
-    TDSymbolState *state = JSObjectGetPrivate(stateObj);
+    PKSymbolState *state = JSObjectGetPrivate(stateObj);
     data.symbolState = state;
     return true;
 }
@@ -135,7 +135,7 @@ static JSValueRef TDTokenizer_getWhitespaceState(JSContextRef ctx, JSObjectRef t
 static bool TDTokenizer_setWhitespaceState(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
     PKTokenizer *data = JSObjectGetPrivate(this);
     JSObjectRef stateObj = JSValueToObject(ctx, value, ex);
-    TDWhitespaceState *state = JSObjectGetPrivate(stateObj);
+    PKWhitespaceState *state = JSObjectGetPrivate(stateObj);
     data.whitespaceState = state;
     return true;
 }

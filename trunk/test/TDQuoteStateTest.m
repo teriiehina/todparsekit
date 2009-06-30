@@ -12,7 +12,7 @@
 @implementation TDQuoteStateTest
 
 - (void)setUp {
-    quoteState = [[TDQuoteState alloc] init];
+    quoteState = [[PKQuoteState alloc] init];
     r = [[PKReader alloc] init];
 }
 

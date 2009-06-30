@@ -11,13 +11,13 @@
 
 @class PKToken;
 @class PKTokenizerState;
-@class TDNumberState;
-@class TDQuoteState;
+@class PKNumberState;
+@class PKQuoteState;
 @class TDSlashState;
 @class TDCommentState;
-@class TDSymbolState;
-@class TDWhitespaceState;
-@class TDWordState;
+@class PKSymbolState;
+@class PKWhitespaceState;
+@class PKWordState;
 @class TDDelimitState;
 @class PKReader;
 
@@ -26,8 +26,8 @@
     @brief      A tokenizer divides a string into tokens.
     @details    <p>This class is highly customizable with regard to exactly how this division occurs, but it also has defaults that are suitable for many languages. This class assumes that the character values read from the string lie in the range <tt>0-MAXINT</tt>. For example, the Unicode value of a capital A is 65, so <tt>NSLog(@"%C", (unichar)65);</tt> prints out a capital A.</p>
                 <p>The behavior of a tokenizer depends on its character state table. This table is an array of 256 <tt>PKTokenizerState</tt> states. The state table decides which state to enter upon reading a character from the input string.</p>
-                <p>For example, by default, upon reading an 'A', a tokenizer will enter a "word" state. This means the tokenizer will ask a <tt>TDWordState</tt> object to consume the 'A', along with the characters after the 'A' that form a word. The state's responsibility is to consume characters and return a complete token.</p>
-                <p>The default table sets a <tt>TDSymbolState</tt> for every character from 0 to 255, and then overrides this with:</p>
+                <p>For example, by default, upon reading an 'A', a tokenizer will enter a "word" state. This means the tokenizer will ask a <tt>PKWordState</tt> object to consume the 'A', along with the characters after the 'A' that form a word. The state's responsibility is to consume characters and return a complete token.</p>
+                <p>The default table sets a <tt>PKSymbolState</tt> for every character from 0 to 255, and then overrides this with:</p>
 @code
      From     To    State
         0    ' '    whitespaceState
@@ -49,12 +49,12 @@
     
     NSMutableArray *tokenizerStates;
     
-    TDNumberState *numberState;
-    TDQuoteState *quoteState;
+    PKNumberState *numberState;
+    PKQuoteState *quoteState;
     TDCommentState *commentState;
-    TDSymbolState *symbolState;
-    TDWhitespaceState *whitespaceState;
-    TDWordState *wordState;
+    PKSymbolState *symbolState;
+    PKWhitespaceState *whitespaceState;
+    PKWordState *wordState;
     TDDelimitState *delimitState;
 }
 
@@ -102,13 +102,13 @@
     @property    numberState
     @brief       The state this tokenizer uses to build numbers.
 */
-@property (nonatomic, retain) TDNumberState *numberState;
+@property (nonatomic, retain) PKNumberState *numberState;
 
 /*!
     @property   quoteState
     @brief      The state this tokenizer uses to build quoted strings.
 */
-@property (nonatomic, retain) TDQuoteState *quoteState;
+@property (nonatomic, retain) PKQuoteState *quoteState;
 
 /*!
     @property   commentState
@@ -120,19 +120,19 @@
     @property   symbolState
     @brief      The state this tokenizer uses to recognize symbols.
 */
-@property (nonatomic, retain) TDSymbolState *symbolState;
+@property (nonatomic, retain) PKSymbolState *symbolState;
 
 /*!
     @property   whitespaceState
     @brief      The state this tokenizer uses to recognize (and possibly ignore) whitespace.
 */
-@property (nonatomic, retain) TDWhitespaceState *whitespaceState;
+@property (nonatomic, retain) PKWhitespaceState *whitespaceState;
 
 /*!
     @property   wordState
     @brief      The state this tokenizer uses to build words.
 */
-@property (nonatomic, retain) TDWordState *wordState;
+@property (nonatomic, retain) PKWordState *wordState;
 
 /*!
     @property   delimitState

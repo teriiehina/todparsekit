@@ -215,7 +215,7 @@ static NSString *kTDPlistNullString = @"<null>";
         [stringParser add:quotedString];
 
         // handle non-quoted string values (Words) in a separate assembler method for simplicity.
-        PKParser *word = [TDWord word];
+        PKParser *word = [PKWord word];
         [word setAssembler:self selector:@selector(workOnWord:)];
         [stringParser add:word];
     }

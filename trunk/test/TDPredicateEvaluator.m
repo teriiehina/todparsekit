@@ -200,7 +200,7 @@
     if (!attrParser) {
         self.attrParser = [PKAlternation alternation];
         [attrParser add:self.tagParser];
-        [attrParser add:[TDWord word]];
+        [attrParser add:[PKWord word]];
         [attrParser setAssembler:self selector:@selector(workOnAttr:)];
     }
     return attrParser;
@@ -212,7 +212,7 @@
     if (!tagParser) {
         self.tagParser = [PKSequence sequence];
         [tagParser add:[[TDSymbol symbolWithString:@"@"] discard]];
-        [tagParser add:[TDWord word]];
+        [tagParser add:[PKWord word]];
     }
     return tagParser;
 }

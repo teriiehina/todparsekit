@@ -14,7 +14,7 @@
 - (void)append:(PKUniChar)c;
 @end
 
-@interface TDNumberState ()
+@interface PKNumberState ()
 - (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)isFraction;
 - (void)parseRightSideFromReader:(PKReader *)r;
 - (void)reset:(PKUniChar)cin;

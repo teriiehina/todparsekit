@@ -1,5 +1,5 @@
 //
-//  TDSingleLineCommentState.h
+//  PKSingleLineCommentState.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 12/28/08.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKTokenizerState.h>
 
-@interface TDSingleLineCommentState : PKTokenizerState {
+@interface PKSingleLineCommentState : PKTokenizerState {
     NSMutableArray *startMarkers;
     NSString *currentStartMarker;
 }

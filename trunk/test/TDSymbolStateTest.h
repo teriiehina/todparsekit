@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDSymbolStateTest : SenTestCase {
-    TDSymbolState *symbolState;
+    PKSymbolState *symbolState;
     PKReader *r;
     NSString *s;
 }

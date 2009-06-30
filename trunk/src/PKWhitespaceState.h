@@ -1,5 +1,5 @@
 //
-//  TDWhitespaceState.h
+//  PKWhitespaceState.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
@@ -10,11 +10,11 @@
 #import <ParseKit/PKTokenizerState.h>
 
 /*!
-    @class      TDWhitespaceState
+    @class      PKWhitespaceState
     @brief      A whitespace state ignores whitespace (such as blanks and tabs), and returns the tokenizer's next token.
     @details    By default, all characters from 0 to 32 are whitespace.
 */
-@interface TDWhitespaceState : PKTokenizerState {
+@interface PKWhitespaceState : PKTokenizerState {
     NSMutableArray *whitespaceChars;
     BOOL reportsWhitespaceTokens;
 }

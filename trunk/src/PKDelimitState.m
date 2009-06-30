@@ -10,7 +10,7 @@
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
-#import <ParseKit/TDWhitespaceState.h>
+#import <ParseKit/PKWhitespaceState.h>
 #import <ParseKit/TDSymbolRootNode.h>
 #import <ParseKit/PKTypes.h>
 

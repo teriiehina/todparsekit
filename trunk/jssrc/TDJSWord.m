@@ -9,7 +9,7 @@
 #import "TDJSWord.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDWord.h>
+#import <ParseKit/PKWord.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDWord_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDWord_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDWord *data = [[TDWord alloc] init];
+    PKWord *data = [[PKWord alloc] init];
     return TDWord_new(ctx, data);
 }

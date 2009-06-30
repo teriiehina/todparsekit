@@ -9,25 +9,25 @@
 #import "TDJSWordState.h"
 #import "TDJSUtils.h"
 #import "TDJSTokenizerState.h"
-#import <ParseKit/TDWordState.h>
+#import <ParseKit/PKWordState.h>
 
 #pragma mark -
 #pragma mark Methods
 
 static JSValueRef TDWordState_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, "toString");
-    return TDNSStringToJSValue(ctx, @"[object TDWordState]", ex);
+    return TDNSStringToJSValue(ctx, @"[object PKWordState]", ex);
 }
 
 static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, "setWordChars");
-    TDPreconditionMethodArgc(3, "TDWordState.setWordChars");
+    TDPreconditionMethodArgc(3, "PKWordState.setWordChars");
 
     BOOL yn = JSValueToBoolean(ctx, argv[0]);
     NSString *start = TDJSValueGetNSString(ctx, argv[1], ex);
     NSString *end = TDJSValueGetNSString(ctx, argv[2], ex);
     
-    TDWordState *data = JSObjectGetPrivate(this);
+    PKWordState *data = JSObjectGetPrivate(this);
     [data setWordChars:yn from:[start characterAtIndex:0] to:[end characterAtIndex:0]];
     
     return JSValueMakeUndefined(ctx);
@@ -35,11 +35,11 @@ static JSValueRef TDWordState_setWordChars(JSContextRef ctx, JSObjectRef functio
 
 static JSValueRef TDWordState_isWordChar(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDWordState_class, "isWordChar");
-    TDPreconditionMethodArgc(1, "TDWordState.isWordChar");
+    TDPreconditionMethodArgc(1, "PKWordState.isWordChar");
     
     NSInteger c = (NSInteger)JSValueToNumber(ctx, argv[0], ex);
     
-    TDWordState *data = JSObjectGetPrivate(this);
+    PKWordState *data = JSObjectGetPrivate(this);
     BOOL yn = [data isWordChar:c];
     
     return JSValueMakeBoolean(ctx, yn);
@@ -92,6 +92,6 @@ JSObjectRef TDWordState_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDWordState_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDWordState *data = [[TDWordState alloc] init];
+    PKWordState *data = [[PKWordState alloc] init];
     return TDWordState_new(ctx, data);
 }

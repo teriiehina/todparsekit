@@ -42,12 +42,12 @@
         self.string = s;
         self.reader = [[[PKReader alloc] init] autorelease];
         
-        self.numberState     = [[[TDNumberState alloc] init] autorelease];
-        self.quoteState      = [[[TDQuoteState alloc] init] autorelease];
+        self.numberState     = [[[PKNumberState alloc] init] autorelease];
+        self.quoteState      = [[[PKQuoteState alloc] init] autorelease];
         self.commentState    = [[[TDCommentState alloc] init] autorelease];
-        self.symbolState     = [[[TDSymbolState alloc] init] autorelease];
-        self.whitespaceState = [[[TDWhitespaceState alloc] init] autorelease];
-        self.wordState       = [[[TDWordState alloc] init] autorelease];
+        self.symbolState     = [[[PKSymbolState alloc] init] autorelease];
+        self.whitespaceState = [[[PKWhitespaceState alloc] init] autorelease];
+        self.wordState       = [[[PKWordState alloc] init] autorelease];
         self.delimitState    = [[[TDDelimitState alloc] init] autorelease];
         
         self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];

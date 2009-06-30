@@ -146,7 +146,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     if (!declarationParser) {
         self.declarationParser = [PKTrack track];
         [declarationParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
-        [declarationParser add:[TDWord word]];
+        [declarationParser add:[PKWord word]];
         if (kEBNFVariableSuffix.length) {
             [declarationParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
         }
@@ -160,7 +160,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     if (!variableParser) {
         self.variableParser = [PKTrack track];
         [variableParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
-        [variableParser add:[TDWord word]];
+        [variableParser add:[PKWord word]];
         if (kEBNFVariableSuffix.length) {
             [variableParser add:[[TDSymbol symbolWithString:kEBNFVariableSuffix] discard]];
         }
@@ -287,7 +287,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     if (!atomicValueParser) {
         self.atomicValueParser = [PKAlternation alternation];
         
-        PKParser *p = [TDWord word];
+        PKParser *p = [PKWord word];
         [p setAssembler:self selector:@selector(workOnWord:)];
         [atomicValueParser add:p];
         
