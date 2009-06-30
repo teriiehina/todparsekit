@@ -96,12 +96,12 @@ ncName = name & /[^:]+/;
 // [15] PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number | FunctionCall
 
     primaryExpr = variableReference | '(' expr ')' | literal | Num | functionCall;
-
-
+    literal = QuotedString;
+    variableReference = '$' Word;
 
 // [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'
 
-    functionCall ::= functionName '(' (argument (',' argument)* )? ')';
+    functionCall = functionName '(' (argument (',' argument)* )? ')';
 
 
 // [17] Argument ::= Expr
@@ -126,7 +126,7 @@ ncName = name & /[^:]+/;
 // [20] FilterExpr ::= PrimaryExpr | FilterExpr Predicate
 // avoiding Left recursion ??
 
-    filterExpr = primaryExpr predicate?
+    filterExpr = primaryExpr predicate?;
 
 
 // [21] OrExpr ::= AndExpr | OrExpr 'or' AndExpr

@@ -173,6 +173,8 @@
 		D34BAC1F0FF87F3300D7773A /* TDParserFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAC190FF87F3300D7773A /* TDParserFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAC200FF87F3300D7773A /* TDParserFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC1A0FF87F3300D7773A /* TDParserFactory.m */; };
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
+		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
+		D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -794,6 +796,8 @@
 		D34BAC1A0FF87F3300D7773A /* TDParserFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactory.m; path = src/TDParserFactory.m; sourceTree = "<group>"; };
 		D34BAC210FF87F8600D7773A /* TDParserFactoryTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest3.h; path = test/TDParserFactoryTest3.h; sourceTree = "<group>"; };
 		D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest3.m; path = test/TDParserFactoryTest3.m; sourceTree = "<group>"; };
+		D34BAC490FF892C200D7773A /* XPathParserGrammarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserGrammarTest.h; path = test/XPathParserGrammarTest.h; sourceTree = "<group>"; };
+		D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParserGrammarTest.m; path = test/XPathParserGrammarTest.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1433,6 +1437,8 @@
 		D36E94F40E57865500496BD3 /* xpath */ = {
 			isa = PBXGroup;
 			children = (
+				D34BAC490FF892C200D7773A /* XPathParserGrammarTest.h */,
+				D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */,
 				D31FE5EF0E60E6B500A0803E /* TDNCName.h */,
 				D31FE6DF0E60EE2500A0803E /* TDNCName.m */,
 				D31FE5F00E60E6B500A0803E /* TDNCNameState.h */,
@@ -2465,6 +2471,7 @@
 				D355C6A70FE9F704006A91A4 /* nspredicate.grammar in Resources */,
 				D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */,
 				D315DF730FEF59B600D876C8 /* date.grammar in Resources */,
+				D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2849,6 +2856,7 @@
 				D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */,
 				D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */,
 				D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */,
+				D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
