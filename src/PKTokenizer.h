@@ -18,7 +18,7 @@
 @class PKSymbolState;
 @class PKWhitespaceState;
 @class PKWordState;
-@class TDDelimitState;
+@class PKDelimitState;
 @class PKReader;
 
 /*!
@@ -55,7 +55,7 @@
     PKSymbolState *symbolState;
     PKWhitespaceState *whitespaceState;
     PKWordState *wordState;
-    TDDelimitState *delimitState;
+    PKDelimitState *delimitState;
 }
 
 /*!
@@ -138,5 +138,5 @@
     @property   delimitState
     @brief      The state this tokenizer uses to build delimited strings.
 */
-@property (nonatomic, retain) TDDelimitState *delimitState;
+@property (nonatomic, retain) PKDelimitState *delimitState;
 @end

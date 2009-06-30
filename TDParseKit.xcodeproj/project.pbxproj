@@ -70,10 +70,6 @@
 		D31FE5FF0E60E6B500A0803E /* TDXmlNameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F70E60E6B500A0803E /* TDXmlNameTest.m */; };
 		D31FE6000E60E6B500A0803E /* TDXmlNmtoken.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */; };
 		D31FE6010E60E6B500A0803E /* TDXmlNmtokenState.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */; };
-		D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6720E60E7E100A0803E /* TDSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */; };
-		D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6740E60E7E100A0803E /* TDSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */; };
 		D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6780E60E80600A0803E /* TDLiteral.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6830E60E80600A0803E /* TDLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6790E60E80600A0803E /* TDLiteral.m */; };
 		D31FE6840E60E80600A0803E /* TDNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67A0E60E80600A0803E /* TDNum.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,6 +183,10 @@
 		D34BAEE80FF9D56400D7773A /* PKWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAED40FF9D56400D7773A /* PKWord.m */; };
 		D34BAEE90FF9D56400D7773A /* PKWordState.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAED50FF9D56400D7773A /* PKWordState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAEEA0FF9D56400D7773A /* PKWordState.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAED60FF9D56400D7773A /* PKWordState.m */; };
+		D34BAF270FF9DF9900D7773A /* PKSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF230FF9DF9900D7773A /* PKSymbolNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAF280FF9DF9900D7773A /* PKSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF240FF9DF9900D7773A /* PKSymbolNode.m */; };
+		D34BAF290FF9DF9900D7773A /* PKSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAF250FF9DF9900D7773A /* PKSymbolRootNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAF2A0FF9DF9900D7773A /* PKSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF260FF9DF9900D7773A /* PKSymbolRootNode.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -235,8 +235,6 @@
 		D36E9FB50E5A944A00496BD3 /* apple-boss.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FB40E5A944A00496BD3 /* apple-boss.xml */; };
 		D36E9FE50E5BA0FC00496BD3 /* SRGSGrammar.txt in Resources */ = {isa = PBXBuildFile; fileRef = D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */; };
 		D36EA3B00E5EA67E00496BD3 /* small-xml-file.xml in Resources */ = {isa = PBXBuildFile; fileRef = D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */; };
-		D37D38290FE77860008C2E4D /* TDSymbolNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */; };
-		D37D382A0FE77860008C2E4D /* TDSymbolRootNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */; };
 		D37D382B0FE77860008C2E4D /* TDLiteral.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6780E60E80600A0803E /* TDLiteral.h */; };
 		D37D382C0FE77860008C2E4D /* TDNum.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67A0E60E80600A0803E /* TDNum.h */; };
 		D37D382D0FE77860008C2E4D /* TDQuotedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE67C0E60E80600A0803E /* TDQuotedString.h */; };
@@ -254,8 +252,6 @@
 		D37D38430FE77860008C2E4D /* TDDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3A881C20FC637C200A40BEF /* TDDelimitedString.h */; };
 		D37D38440FE77860008C2E4D /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */; };
 		D37D38450FE77860008C2E4D /* TDPattern.h in Headers */ = {isa = PBXBuildFile; fileRef = D36C56000FD361AD00141CB7 /* TDPattern.h */; };
-		D37D38590FE7786F008C2E4D /* TDSymbolNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */; };
-		D37D385A0FE7786F008C2E4D /* TDSymbolRootNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */; };
 		D37D385B0FE7786F008C2E4D /* TDLiteral.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6790E60E80600A0803E /* TDLiteral.m */; };
 		D37D385C0FE7786F008C2E4D /* TDNum.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67B0E60E80600A0803E /* TDNum.m */; };
 		D37D385D0FE7786F008C2E4D /* TDQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE67D0E60E80600A0803E /* TDQuotedString.m */; };
@@ -639,10 +635,6 @@
 		D31FE5F90E60E6B500A0803E /* TDXmlNmtoken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtoken.m; path = test/TDXmlNmtoken.m; sourceTree = "<group>"; };
 		D31FE5FA0E60E6B500A0803E /* TDXmlNmtokenState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDXmlNmtokenState.h; path = test/TDXmlNmtokenState.h; sourceTree = "<group>"; };
 		D31FE5FB0E60E6B500A0803E /* TDXmlNmtokenState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXmlNmtokenState.m; path = test/TDXmlNmtokenState.m; sourceTree = "<group>"; };
-		D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolNode.h; path = src/TDSymbolNode.h; sourceTree = "<group>"; };
-		D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolNode.m; path = src/TDSymbolNode.m; sourceTree = "<group>"; };
-		D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSymbolRootNode.h; path = src/TDSymbolRootNode.h; sourceTree = "<group>"; };
-		D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSymbolRootNode.m; path = src/TDSymbolRootNode.m; sourceTree = "<group>"; };
 		D31FE6780E60E80600A0803E /* TDLiteral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLiteral.h; path = src/TDLiteral.h; sourceTree = "<group>"; };
 		D31FE6790E60E80600A0803E /* TDLiteral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLiteral.m; path = src/TDLiteral.m; sourceTree = "<group>"; };
 		D31FE67A0E60E80600A0803E /* TDNum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNum.h; path = src/TDNum.h; sourceTree = "<group>"; };
@@ -753,6 +745,10 @@
 		D34BAED40FF9D56400D7773A /* PKWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKWord.m; path = src/PKWord.m; sourceTree = "<group>"; };
 		D34BAED50FF9D56400D7773A /* PKWordState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKWordState.h; path = src/PKWordState.h; sourceTree = "<group>"; };
 		D34BAED60FF9D56400D7773A /* PKWordState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKWordState.m; path = src/PKWordState.m; sourceTree = "<group>"; };
+		D34BAF230FF9DF9900D7773A /* PKSymbolNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKSymbolNode.h; path = src/PKSymbolNode.h; sourceTree = "<group>"; };
+		D34BAF240FF9DF9900D7773A /* PKSymbolNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSymbolNode.m; path = src/PKSymbolNode.m; sourceTree = "<group>"; };
+		D34BAF250FF9DF9900D7773A /* PKSymbolRootNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKSymbolRootNode.h; path = src/PKSymbolRootNode.h; sourceTree = "<group>"; };
+		D34BAF260FF9DF9900D7773A /* PKSymbolRootNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSymbolRootNode.m; path = src/PKSymbolRootNode.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1325,10 +1321,10 @@
 		D3541F890DFB108300429B4F /* symbol */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE66D0E60E7E100A0803E /* TDSymbolNode.h */,
-				D31FE66E0E60E7E100A0803E /* TDSymbolNode.m */,
-				D31FE66F0E60E7E100A0803E /* TDSymbolRootNode.h */,
-				D31FE6700E60E7E100A0803E /* TDSymbolRootNode.m */,
+				D34BAF230FF9DF9900D7773A /* PKSymbolNode.h */,
+				D34BAF240FF9DF9900D7773A /* PKSymbolNode.m */,
+				D34BAF250FF9DF9900D7773A /* PKSymbolRootNode.h */,
+				D34BAF260FF9DF9900D7773A /* PKSymbolRootNode.m */,
 			);
 			name = symbol;
 			sourceTree = "<group>";
@@ -2046,8 +2042,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE6710E60E7E100A0803E /* TDSymbolNode.h in Headers */,
-				D31FE6730E60E7E100A0803E /* TDSymbolRootNode.h in Headers */,
 				D31FE6820E60E80600A0803E /* TDLiteral.h in Headers */,
 				D31FE6840E60E80600A0803E /* TDNum.h in Headers */,
 				D31FE6860E60E80600A0803E /* TDQuotedString.h in Headers */,
@@ -2101,6 +2095,8 @@
 				D34BAEE50FF9D56400D7773A /* PKWhitespaceState.h in Headers */,
 				D34BAEE70FF9D56400D7773A /* PKWord.h in Headers */,
 				D34BAEE90FF9D56400D7773A /* PKWordState.h in Headers */,
+				D34BAF270FF9DF9900D7773A /* PKSymbolNode.h in Headers */,
+				D34BAF290FF9DF9900D7773A /* PKSymbolRootNode.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2108,8 +2104,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38290FE77860008C2E4D /* TDSymbolNode.h in Headers */,
-				D37D382A0FE77860008C2E4D /* TDSymbolRootNode.h in Headers */,
 				D37D382B0FE77860008C2E4D /* TDLiteral.h in Headers */,
 				D37D382C0FE77860008C2E4D /* TDNum.h in Headers */,
 				D37D382D0FE77860008C2E4D /* TDQuotedString.h in Headers */,
@@ -2468,8 +2462,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D31FE6720E60E7E100A0803E /* TDSymbolNode.m in Sources */,
-				D31FE6740E60E7E100A0803E /* TDSymbolRootNode.m in Sources */,
 				D31FE6830E60E80600A0803E /* TDLiteral.m in Sources */,
 				D31FE6850E60E80600A0803E /* TDNum.m in Sources */,
 				D31FE6870E60E80600A0803E /* TDQuotedString.m in Sources */,
@@ -2520,6 +2512,8 @@
 				D34BAEE60FF9D56400D7773A /* PKWhitespaceState.m in Sources */,
 				D34BAEE80FF9D56400D7773A /* PKWord.m in Sources */,
 				D34BAEEA0FF9D56400D7773A /* PKWordState.m in Sources */,
+				D34BAF280FF9DF9900D7773A /* PKSymbolNode.m in Sources */,
+				D34BAF2A0FF9DF9900D7773A /* PKSymbolRootNode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2563,8 +2557,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D37D38590FE7786F008C2E4D /* TDSymbolNode.m in Sources */,
-				D37D385A0FE7786F008C2E4D /* TDSymbolRootNode.m in Sources */,
 				D37D385B0FE7786F008C2E4D /* TDLiteral.m in Sources */,
 				D37D385C0FE7786F008C2E4D /* TDNum.m in Sources */,
 				D37D385D0FE7786F008C2E4D /* TDQuotedString.m in Sources */,

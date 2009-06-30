@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDDelimitStateTest : SenTestCase {
-    TDDelimitState *delimitState;
+    PKDelimitState *delimitState;
     PKTokenizer *t;
     NSString *s;
     PKToken *tok;

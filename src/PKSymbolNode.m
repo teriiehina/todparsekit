@@ -1,17 +1,17 @@
 //
-//  TDSymbolNode.m
+//  PKSymbolNode.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSymbolNode.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 
-@interface TDSymbolNode ()
+@interface PKSymbolNode ()
 @property (nonatomic, readwrite, retain) NSString *ancestry;
-@property (nonatomic, assign) TDSymbolNode *parent;  // this must be 'assign' to avoid retain loop leak
+@property (nonatomic, assign) PKSymbolNode *parent;  // this must be 'assign' to avoid retain loop leak
 @property (nonatomic, retain) NSMutableDictionary *children;
 @property (nonatomic) PKUniChar character;
 @property (nonatomic, retain) NSString *string;
@@ -19,9 +19,9 @@
 - (void)determineAncestry;
 @end
 
-@implementation TDSymbolNode
+@implementation PKSymbolNode
 
-- (id)initWithParent:(TDSymbolNode *)p character:(PKUniChar)c {
+- (id)initWithParent:(PKSymbolNode *)p character:(PKUniChar)c {
     if (self = [super init]) {
         self.parent = p;
         self.character = c;
@@ -52,7 +52,7 @@
     } else {
         NSMutableString *result = [NSMutableString string];
         
-        TDSymbolNode *n = self;
+        PKSymbolNode *n = self;
         while (PKEOF != n.character) {
             [result insertString:n.string atIndex:0];
             n = n.parent;
@@ -65,7 +65,7 @@
 
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<TDSymbolNode %@>", self.ancestry];
+    return [NSString stringWithFormat:@"<PKSymbolNode %@>", self.ancestry];
 }
 
 @synthesize ancestry;

@@ -10,7 +10,7 @@
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
 #import <ParseKit/PKReader.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKSingleLineCommentState.h>
 #import <ParseKit/PKMultiLineCommentState.h>
 
@@ -24,7 +24,7 @@
 @end
 
 @interface TDCommentState ()
-@property (nonatomic, retain) TDSymbolRootNode *rootNode;
+@property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @property (nonatomic, retain) PKSingleLineCommentState *singleLineState;
 @property (nonatomic, retain) PKMultiLineCommentState *multiLineState;
 @end
@@ -48,7 +48,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.rootNode = [[[TDSymbolRootNode alloc] init] autorelease];
+        self.rootNode = [[[PKSymbolRootNode alloc] init] autorelease];
         self.singleLineState = [[[PKSingleLineCommentState alloc] init] autorelease];
         self.multiLineState = [[[PKMultiLineCommentState alloc] init] autorelease];
     }

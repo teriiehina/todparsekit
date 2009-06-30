@@ -11,7 +11,7 @@
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/PKToken.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKTypes.h>
 
 @interface PKToken ()
@@ -26,7 +26,7 @@
 @end
 
 @interface TDCommentState ()
-@property (nonatomic, retain) TDSymbolRootNode *rootNode;
+@property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @end
 
 @interface PKMultiLineCommentState ()
@@ -90,7 +90,7 @@
     PKUniChar e = [currentEndSymbol characterAtIndex:0];
     
     // get the definitions of all multi-char comment start and end symbols from the commentState
-    TDSymbolRootNode *rootNode = t.commentState.rootNode;
+    PKSymbolRootNode *rootNode = t.commentState.rootNode;
         
     PKUniChar c;
     while (1) {

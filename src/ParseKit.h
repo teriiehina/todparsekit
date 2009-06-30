@@ -54,12 +54,12 @@
 #import <ParseKit/PKTokenizerState.h>
 #import <ParseKit/PKNumberState.h>
 #import <ParseKit/PKQuoteState.h>
-#import <ParseKit/TDDelimitState.h>
+#import <ParseKit/PKDelimitState.h>
 #import <ParseKit/PKCommentState.h>
 #import <ParseKit/PKSingleLineCommentState.h>
 #import <ParseKit/PKMultiLineCommentState.h>
-#import <ParseKit/TDSymbolNode.h>
-#import <ParseKit/TDSymbolRootNode.h>
+#import <ParseKit/PKSymbolNode.h>
+#import <ParseKit/PKSymbolRootNode.h>
 #import <ParseKit/PKSymbolState.h>
 #import <ParseKit/PKWordState.h>
 #import <ParseKit/PKWhitespaceState.h>

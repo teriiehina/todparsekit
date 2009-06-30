@@ -48,7 +48,7 @@
         self.symbolState     = [[[PKSymbolState alloc] init] autorelease];
         self.whitespaceState = [[[PKWhitespaceState alloc] init] autorelease];
         self.wordState       = [[[PKWordState alloc] init] autorelease];
-        self.delimitState    = [[[TDDelimitState alloc] init] autorelease];
+        self.delimitState    = [[[PKDelimitState alloc] init] autorelease];
         
         self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
         
