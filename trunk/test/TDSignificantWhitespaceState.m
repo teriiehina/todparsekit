@@ -21,7 +21,7 @@
 @implementation PKToken (TDSignificantWhitespaceStateAdditions)
 
 - (BOOL)isWhitespace {
-    return self.tokenType == TDTokenTypeWhitespace;
+    return self.tokenType == PKTokenTypeWhitespace;
 }
 
 
@@ -63,7 +63,7 @@
         [r unread];
     }
     
-    return [PKToken tokenWithTokenType:TDTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
+    return [PKToken tokenWithTokenType:PKTokenTypeWhitespace stringValue:[self bufferedString] floatValue:0.0];
 }
 
 @end

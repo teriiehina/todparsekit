@@ -24,7 +24,7 @@
     if (self = [super init]) {
         self.resolver = r;
 
-        self.openCurly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0];
+        self.openCurly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0];
 
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nspredicate" ofType:@"grammar"];
         NSString *s = [NSString stringWithContentsOfFile:path];

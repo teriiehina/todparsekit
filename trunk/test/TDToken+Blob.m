@@ -8,12 +8,12 @@
 
 #import "PKToken+Blob.h"
 
-const NSInteger TDTokenTypeBlob = 200;
+const NSInteger PKTokenTypeBlob = 200;
 
 @implementation PKToken (Blob)
 
 - (BOOL)isBlob {
-    return TDTokenTypeBlob == self.tokenType;
+    return PKTokenTypeBlob == self.tokenType;
 }
 
 @end

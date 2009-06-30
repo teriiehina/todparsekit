@@ -49,7 +49,7 @@
         if (-1 != c) {
             [r unread];
         }
-        return [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"/" floatValue:0.0];
+        return [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"/" floatValue:0.0];
     }
 }
 

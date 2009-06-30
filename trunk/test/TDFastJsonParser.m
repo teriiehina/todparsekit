@@ -31,8 +31,8 @@
         [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
         [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
 
-        self.curly = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.0];
-        self.bracket = [PKToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"[" floatValue:0.0];
+        self.curly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
+        self.bracket = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0.0];
     }
     return self;
 }

@@ -9,7 +9,7 @@
 #import "PKTerminal.h"
 #import "PKToken.h"
 
-extern const NSInteger TDTokenTypeNCName;
+extern const NSInteger PKTokenTypeNCName;
 
 @interface PKToken (NCNameAdditions)
 @property (readonly, getter=isNCName) BOOL NCName;
