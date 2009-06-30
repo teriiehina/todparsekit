@@ -13,26 +13,26 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @interface TDNCNameState ()
-+ (BOOL)isNameChar:(TDUniChar)c;
-+ (BOOL)isValidStartSymbolChar:(TDUniChar)c;
-+ (BOOL)isValidNonStartSymbolChar:(TDUniChar)c;
++ (BOOL)isNameChar:(PKUniChar)c;
++ (BOOL)isValidStartSymbolChar:(PKUniChar)c;
++ (BOOL)isValidNonStartSymbolChar:(PKUniChar)c;
 @end
 
 // NCName       ::=       (Letter | '_') (NameChar)*
 @implementation TDNCNameState
 
-//- (BOOL)isWhitespace:(TDUniChar)c {
+//- (BOOL)isWhitespace:(PKUniChar)c {
 //    return (' ' == c || '\n' == c || '\r' == c || '\t' == c);
 //}
 
 
 //    NameChar       ::=        Letter | Digit | '.' | '-' | '_' | CombiningChar | Extender
-+ (BOOL)isNameChar:(TDUniChar)c {
++ (BOOL)isNameChar:(PKUniChar)c {
     if (isalnum(c)) {
         return YES;
     } else if ([self isValidNonStartSymbolChar:c]) {
@@ -43,17 +43,17 @@
 }
 
 
-+ (BOOL)isValidStartSymbolChar:(TDUniChar)c {
++ (BOOL)isValidStartSymbolChar:(PKUniChar)c {
     return ('_' == c);
 }
 
 
-+ (BOOL)isValidNonStartSymbolChar:(TDUniChar)c {
++ (BOOL)isValidNonStartSymbolChar:(PKUniChar)c {
     return ('_' == c || '.' == c || '-' == c);
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     [self resetWithReader:r];
     
     NSInteger c = cin;
@@ -62,7 +62,7 @@
         c = [r read];
     } while ([TDNCNameState isNameChar:c]);
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

@@ -20,7 +20,7 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t;
+- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
 @end
 
 @interface TDCommentState ()
@@ -94,7 +94,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 

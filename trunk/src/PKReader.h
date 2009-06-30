@@ -29,9 +29,9 @@
 
 /*!
     @brief      Read a single UTF-16 unicode character
-    @result     The character read, or <tt>TDEOF</tt> (-1) if the end of the stream has been reached
+    @result     The character read, or <tt>PKEOF</tt> (-1) if the end of the stream has been reached
 */
-- (TDUniChar)read;
+- (PKUniChar)read;
 
 /*!
     @brief      Push back a single character

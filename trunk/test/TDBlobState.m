@@ -17,23 +17,23 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
 @implementation TDBlobState
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     [self resetWithReader:r];
     
-    TDUniChar c = cin;
+    PKUniChar c = cin;
     do {
         [self append:c];
         c = [r read];
-    } while (TDEOF != c && !isspace(c));
+    } while (PKEOF != c && !isspace(c));
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

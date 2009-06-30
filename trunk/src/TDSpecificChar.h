@@ -22,12 +22,12 @@
     @param      c the character this object should match
     @result     an initialized autoreleased <tt>TDSpecificChar</tt> parser.
 */
-+ (id)specificCharWithChar:(TDUniChar)c;
++ (id)specificCharWithChar:(PKUniChar)c;
 
 /*!
     @brief      Designated Initializer. Initializes a <tt>TDSpecificChar</tt> parser.
     @param      c the character this object should match
     @result     an initialized <tt>TDSpecificChar</tt> parser.
 */
-- (id)initWithSpecificChar:(TDUniChar)c;
+- (id)initWithSpecificChar:(PKUniChar)c;
 @end

@@ -12,15 +12,15 @@
 #import <ParseKit/PKTypes.h>
 
 @interface TDTokenizer ()
-- (TDTokenizerState *)defaultTokenizerStateFor:(TDUniChar)c;
+- (TDTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
 @end
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
-- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t;
+- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t;
 
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @property (nonatomic) NSUInteger offset;
@@ -35,7 +35,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSAssert1(0, @"TDTokenizerState is an abstract classs. %s must be overriden", _cmd);
     return nil;
 }
@@ -47,7 +47,7 @@
 }
 
 
-- (void)append:(TDUniChar)c {
+- (void)append:(PKUniChar)c {
     NSParameterAssert(c > -1);
     [stringbuf appendFormat:@"%C", c];
 }
@@ -64,7 +64,7 @@
 }
 
 
-- (TDTokenizerState *)nextTokenizerStateFor:(TDUniChar)c tokenizer:(TDTokenizer *)t {
+- (TDTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(TDTokenizer *)t {
     if (fallbackState) {
         return fallbackState;
     } else {

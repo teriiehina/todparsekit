@@ -31,7 +31,7 @@
     @param      t the tokenizer currently powering the tokenization
     @result     a token that represents a logical piece of the reader
 */
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t;
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t;
 
 /*!
     @property   fallbackState

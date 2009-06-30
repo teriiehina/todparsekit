@@ -30,7 +30,7 @@
     tok = [commentState nextTokenFromReader:r startingWith:'/' tokenizer:t];
     TDEqualObjects(tok, [TDToken EOFToken]);
     TDEquals(tok.offset, (NSUInteger)-1);
-    TDEquals([r read], TDEOF);
+    TDEquals([r read], PKEOF);
 }
 
 
@@ -69,7 +69,7 @@
     TDTrue(tok.isSymbol);
     TDEqualObjects(tok.stringValue, @"/");
     TDEquals(tok.offset, (NSUInteger)0);
-    TDEquals([r read], (TDUniChar)'/');
+    TDEquals([r read], (PKUniChar)'/');
 }
 
 
@@ -129,7 +129,7 @@
     t.string = s;
     tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], TDEOF);
+    TDEquals([r read], PKEOF);
 }
 
 
@@ -138,7 +138,7 @@
     t.string = s;
     tok = [t nextToken];
     TDEqualObjects(tok, [TDToken EOFToken]);
-    TDEquals([r read], TDEOF);
+    TDEquals([r read], PKEOF);
 }
 
 

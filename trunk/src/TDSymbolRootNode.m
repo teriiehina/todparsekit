@@ -14,15 +14,15 @@
 @end
 
 @interface TDSymbolRootNode ()
-- (void)addWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (void)removeWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
-- (NSString *)nextWithFirst:(TDUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p;
+- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
+- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p;
+- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p;
 @end
 
 @implementation TDSymbolRootNode
 
 - (id)init {
-    self = [super initWithParent:nil character:TDEOF];
+    self = [super initWithParent:nil character:PKEOF];
     if (self) {
         
     }
@@ -46,7 +46,7 @@
 }
 
 
-- (void)addWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)addWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
@@ -68,7 +68,7 @@
 }
 
 
-- (void)removeWithFirst:(TDUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
+- (void)removeWithFirst:(PKUniChar)c rest:(NSString *)s parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSNumber *key = [NSNumber numberWithInteger:c];
     TDSymbolNode *child = [p.children objectForKey:key];
@@ -87,13 +87,13 @@
 }
 
 
-- (NSString *)nextSymbol:(PKReader *)r startingWith:(TDUniChar)cin {
+- (NSString *)nextSymbol:(PKReader *)r startingWith:(PKUniChar)cin {
     NSParameterAssert(r);
     return [self nextWithFirst:cin rest:r parent:self];
 }
 
 
-- (NSString *)nextWithFirst:(TDUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p {
+- (NSString *)nextWithFirst:(PKUniChar)c rest:(PKReader *)r parent:(TDSymbolNode *)p {
     NSParameterAssert(p);
     NSString *result = [NSString stringWithFormat:@"%C", c];
 
@@ -132,7 +132,7 @@
     } 
     
     c = [r read];
-    if (TDEOF == c) {
+    if (PKEOF == c) {
         return result;
     }
     

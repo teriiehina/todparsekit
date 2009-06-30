@@ -21,7 +21,7 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
@@ -52,7 +52,7 @@
 }
 
 
-- (void)setWhitespaceChars:(BOOL)yn from:(TDUniChar)start to:(TDUniChar)end {
+- (void)setWhitespaceChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
     NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"TDWhitespaceStateNotSupportedException" format:@"TDWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
@@ -66,7 +66,7 @@
 }
 
 
-- (BOOL)isWhitespaceChar:(TDUniChar)cin {
+- (BOOL)isWhitespaceChar:(PKUniChar)cin {
     if (cin < 0 || cin > whitespaceChars.count - 1) {
         return NO;
     }
@@ -74,20 +74,20 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     if (reportsWhitespaceTokens) {
         [self resetWithReader:r];
     }
     
-    TDUniChar c = cin;
+    PKUniChar c = cin;
     while ([self isWhitespaceChar:c]) {
         if (reportsWhitespaceTokens) {
             [self append:c];
         }
         c = [r read];
     }
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

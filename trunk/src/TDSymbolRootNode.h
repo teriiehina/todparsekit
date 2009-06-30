@@ -38,5 +38,5 @@
     @param      cin the character from witch to start
     @result     a symbol string from a reader
 */
-- (NSString *)nextSymbol:(PKReader *)r startingWith:(TDUniChar)cin;
+- (NSString *)nextSymbol:(PKReader *)r startingWith:(PKUniChar)cin;
 @end

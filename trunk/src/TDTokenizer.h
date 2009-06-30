@@ -90,7 +90,7 @@
     @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
     @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
 */
-- (void)setTokenizerState:(TDTokenizerState *)state from:(TDUniChar)start to:(TDUniChar)end;
+- (void)setTokenizerState:(TDTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end;
 
 /*!
     @property   string

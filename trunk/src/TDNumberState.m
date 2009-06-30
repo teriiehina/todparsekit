@@ -19,7 +19,7 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
 
@@ -28,7 +28,7 @@
 - (CGFloat)value;
 - (void)parseLeftSideFromReader:(PKReader *)r;
 - (void)parseRightSideFromReader:(PKReader *)r;
-- (void)reset:(TDUniChar)cin;
+- (void)reset:(PKUniChar)cin;
 @end
 
 @implementation TDNumberState
@@ -38,13 +38,13 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
     [self resetWithReader:r];
     negative = NO;
-    TDUniChar originalCin = cin;
+    PKUniChar originalCin = cin;
     
     if ('-' == cin) {
         negative = YES;
@@ -65,13 +65,13 @@
     
     // erroneous ., +, or -
     if (!gotADigit) {
-        if (negative && TDEOF != c) { // ??
+        if (negative && PKEOF != c) { // ??
             [r unread];
         }
         return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
     }
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
 
@@ -123,9 +123,9 @@
 
 - (void)parseRightSideFromReader:(PKReader *)r {
     if ('.' == c) {
-        TDUniChar n = [r read];
+        PKUniChar n = [r read];
         BOOL nextIsDigit = isdigit(n);
-        if (TDEOF != n) {
+        if (PKEOF != n) {
             [r unread];
         }
 
@@ -140,7 +140,7 @@
 }
 
 
-- (void)reset:(TDUniChar)cin {
+- (void)reset:(PKUniChar)cin {
     gotADigit = NO;
     floatValue = 0.0;
     c = cin;

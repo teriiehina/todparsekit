@@ -18,7 +18,7 @@
     NSString *ancestry;
     TDSymbolNode *parent;
     NSMutableDictionary *children;
-    TDUniChar character;
+    PKUniChar character;
     NSString *string;
 }
 
@@ -28,7 +28,7 @@
     @param      c the character for this node
     @result     An initialized <tt>TDSymbolNode</tt>
 */
-- (id)initWithParent:(TDSymbolNode *)p character:(TDUniChar)c;
+- (id)initWithParent:(TDSymbolNode *)p character:(PKUniChar)c;
 
 /*!
     @property   ancestry

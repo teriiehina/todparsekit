@@ -19,7 +19,7 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 @end
@@ -60,7 +60,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -70,10 +70,10 @@
         [self appendString:currentStartMarker];
     }
     
-    TDUniChar c;
+    PKUniChar c;
     while (1) {
         c = [r read];
-        if ('\n' == c || '\r' == c || TDEOF == c) {
+        if ('\n' == c || '\r' == c || PKEOF == c) {
             break;
         }
         if (reportTokens) {
@@ -81,7 +81,7 @@
         }
     }
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     

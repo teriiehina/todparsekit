@@ -20,7 +20,7 @@
 
 @interface TDTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
-- (void)append:(TDUniChar)c;
+- (void)append:(PKUniChar)c;
 - (void)appendString:(NSString *)s;
 - (NSString *)bufferedString;
 @end
@@ -74,7 +74,7 @@
 }
 
 
-- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(TDUniChar)cin tokenizer:(TDTokenizer *)t {
+- (TDToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(TDTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
     
@@ -87,15 +87,15 @@
     
     NSUInteger i = [startMarkers indexOfObject:currentStartMarker];
     NSString *currentEndSymbol = [endMarkers objectAtIndex:i];
-    TDUniChar e = [currentEndSymbol characterAtIndex:0];
+    PKUniChar e = [currentEndSymbol characterAtIndex:0];
     
     // get the definitions of all multi-char comment start and end symbols from the commentState
     TDSymbolRootNode *rootNode = t.commentState.rootNode;
         
-    TDUniChar c;
+    PKUniChar c;
     while (1) {
         c = [r read];
-        if (TDEOF == c) {
+        if (PKEOF == c) {
             if (balanceEOF) {
                 [self appendString:currentEndSymbol];
             }
@@ -125,7 +125,7 @@
         }
     }
     
-    if (TDEOF != c) {
+    if (PKEOF != c) {
         [r unread];
     }
     
