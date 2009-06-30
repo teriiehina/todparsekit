@@ -10,13 +10,13 @@
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDTrackException.h>
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
 @end
 
 @interface TDTrack ()
-- (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(TDParser *)p;
+- (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(PKParser *)p;
 @end
 
 @implementation TDTrack
@@ -32,7 +32,7 @@
     NSSet *lastAssemblies = inAssemblies;
     NSSet *outAssemblies = inAssemblies;
     
-    for (TDParser *p in subparsers) {
+    for (PKParser *p in subparsers) {
         outAssemblies = [p matchAndAssemble:outAssemblies];
         if (!outAssemblies.count) {
             if (inTrack) {
@@ -48,7 +48,7 @@
 }
 
 
-- (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(TDParser *)p {
+- (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(PKParser *)p {
     PKAssembly *best = [self best:inAssemblies];
 
     NSString *after = [best consumedObjectsJoinedByString:@" "];

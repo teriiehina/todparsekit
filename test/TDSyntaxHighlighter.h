@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class TDParser;
+@class PKParser;
 @class TDTokenizer;
 @class TDParserFactory;
 @class TDMiniCSSAssembler;
@@ -16,7 +16,7 @@
 
 @interface TDSyntaxHighlighter : NSObject {
     TDParserFactory *parserFactory;
-    TDParser *miniCSSParser;
+    PKParser *miniCSSParser;
     TDMiniCSSAssembler *miniCSSAssembler;
     TDGenericAssembler *genericAssembler;
     BOOL cacheParsers;

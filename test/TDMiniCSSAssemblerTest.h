@@ -16,7 +16,7 @@
     NSString *s;
     TDMiniCSSAssembler *ass;
     TDParserFactory *factory;
-    TDParser *lp;
+    PKParser *lp;
     PKAssembly *a;
 }
 

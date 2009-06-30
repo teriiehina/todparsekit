@@ -141,7 +141,7 @@
     //    NSLog(@"a: %@", a);
     //    NSLog(@"a.target: %@", a.target);
     
-    TDParser *res = [p parse:s];
+    PKParser *res = [p parse:s];
     //    NSLog(@"res: %@", res);
     //    NSLog(@"res: %@", res.string);
     //    NSLog(@"res.subparsers: %@", res.subparsers);
@@ -163,7 +163,7 @@
     TDParserFactory *factory = [TDParserFactory factory];
     
     JSONAssembler *ass = [[[JSONAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserFromGrammar:s assembler:ass];
+    PKParser *lp = [factory parserFromGrammar:s assembler:ass];
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
     s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
@@ -183,8 +183,8 @@
 - (void)doJavaScriptGrammarParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"javascript" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDParser *p = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
-    //TDParser *plus = [p parserNamed:@"plus"];
+    PKParser *p = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
+    //PKParser *plus = [p parserNamed:@"plus"];
     
     s = @";";
     p.tokenizer.string = s;
@@ -211,7 +211,7 @@
     
     //JSONAssembler *assembler = [[[JSONAssembler alloc] init] autorelease];
     start = [NSDate date];
-    TDParser *lp = [factory parserFromGrammar:s assembler:p];
+    PKParser *lp = [factory parserFromGrammar:s assembler:p];
     CGFloat ms4grammar = -([start timeIntervalSinceNow]);
     
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -277,7 +277,7 @@
     TDParserFactory *factory = [TDParserFactory factory];
     
     TDMiniCSSAssembler *assembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
-    TDParser *lp = [factory parserFromGrammar:s assembler:assembler];
+    PKParser *lp = [factory parserFromGrammar:s assembler:assembler];
     s = @"foo { color:rgb(111.0, 99.0, 255.0); }";
     PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     a = [lp completeMatchFor:a];
@@ -292,7 +292,7 @@
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
     NSString *grammarString = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     TDMiniCSSAssembler *cssAssembler = [[[TDMiniCSSAssembler alloc] init] autorelease];
-    TDParser *cssParser = [factory parserFromGrammar:grammarString assembler:cssAssembler];
+    PKParser *cssParser = [factory parserFromGrammar:grammarString assembler:cssAssembler];
     
     // parse CSS
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"json" ofType:@"css"];
@@ -310,7 +310,7 @@
 
     // give it the attrs from CSS
     genericAssembler.attributes = attrs;
-    TDParser *jsonParser = [factory parserFromGrammar:grammarString assembler:genericAssembler];
+    PKParser *jsonParser = [factory parserFromGrammar:grammarString assembler:genericAssembler];
     
     // parse JSON
     path = [[NSBundle bundleForClass:[self class]] pathForResource:@"yahoo" ofType:@"json"];
@@ -363,7 +363,7 @@
 - (void)doRubyHashParser {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"rubyhash" ofType:@"grammar"];
     NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
+    PKParser *lp = [[TDParserFactory factory] parserFromGrammar:s assembler:nil];
     
     s = @"{\"brand\"=>{\"name\"=>\"something\","
     @"\"logo\"=>#<File:/var/folders/RK/RK1vsZigGhijmL6ObznDJk+++TI/-Tmp-/CGI66145-4>,"
@@ -382,7 +382,7 @@
 //    NSString *s = nil;
 //    s = @"@start = foo|baz; foo (workOnFooAssembly:) = 'bar'; baz (workOnBazAssembly:) = 'bat'";
 //    factory.assemblerSettingBehavior = TDParserFactoryAssemblerSettingBehaviorOnExplicit;
-//    TDParser *lp = [factory parserFromGrammar:s assembler:mock];
+//    PKParser *lp = [factory parserFromGrammar:s assembler:mock];
 //    
 ////    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
 ////    NSString *s = @"bar bat";
@@ -392,7 +392,7 @@
 ////    [mock verify];
     
 //    NSString *g = @"@delimitState = '$'; @delimitedString = '$' '%' nil; @start = DelimitedString('$', '%');";
-//    TDParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+//    PKParser *lp = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
 //
 //    NSString *s = @"$foo%";
 //    TDTokenizer *t = lp.tokenizer;
@@ -401,7 +401,7 @@
     
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
     NSString *g = [NSString stringWithContentsOfFile:path];
-    TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
+    PKParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:nil];
     TDTokenizer *t = p.tokenizer;
     t.string = @"foo";
     PKAssembly *res = [p completeMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -462,7 +462,7 @@
 - (void)doXMLParser {
 	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
 	NSString *g = [NSString stringWithContentsOfFile:path];
-    TDParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
+    PKParser *p = [[TDParserFactory factory] parserFromGrammar:g assembler:self];
     TDTokenizer *t = p.tokenizer;	
 }
 

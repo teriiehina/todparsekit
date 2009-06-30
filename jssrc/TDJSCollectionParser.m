@@ -21,7 +21,7 @@ static JSValueRef TDCollectionParser_add(JSContextRef ctx, JSObjectRef function,
     TDCollectionParser *data = JSObjectGetPrivate(this);
     
     JSObjectRef arg = (JSObjectRef)argv[0];
-    TDParser *p = (TDParser *)JSObjectGetPrivate(arg);
+    PKParser *p = (PKParser *)JSObjectGetPrivate(arg);
     [data add:p];
     return JSValueMakeUndefined(ctx);
 }

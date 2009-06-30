@@ -1,26 +1,26 @@
 //
-//  TDParser.m
+//  PKParser.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDTokenAssembly.h>
 #import <ParseKit/TDTokenizer.h>
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
 @end
 
-@interface TDParser (TDParserFactoryAdditionsFriend)
+@interface PKParser (PKParserFactoryAdditionsFriend)
 - (void)setTokenizer:(TDTokenizer *)t;
 @end
 
-@implementation TDParser
+@implementation PKParser
 
 + (id)parser {
     return [[[self alloc] init] autorelease];
@@ -51,7 +51,7 @@
 }
 
 
-- (TDParser *)parserNamed:(NSString *)s {
+- (PKParser *)parserNamed:(NSString *)s {
     if ([name isEqualToString:s]) {
         return self;
     }
@@ -60,7 +60,7 @@
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
-    NSAssert1(0, @"-[TDParser %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKParser %s] must be overriden", _cmd);
     return nil;
 }
 
@@ -128,7 +128,7 @@
 @synthesize name;
 @end
 
-@implementation TDParser (TDParserFactoryAdditions)
+@implementation PKParser (PKParserFactoryAdditions)
 
 - (id)parse:(NSString *)s {
     TDTokenizer *t = self.tokenizer;

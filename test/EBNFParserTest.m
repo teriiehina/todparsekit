@@ -21,7 +21,7 @@
     //    NSLog(@"a: %@", a);
     //    NSLog(@"a.target: %@", a.target);
     
-    TDParser *res = [p parse:s];
+    PKParser *res = [p parse:s];
     //    NSLog(@"res: %@", res);
     //    NSLog(@"res: %@", res.string);
     //    NSLog(@"res.subparsers: %@", res.subparsers);

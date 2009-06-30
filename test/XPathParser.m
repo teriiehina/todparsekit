@@ -771,7 +771,7 @@
 }
 
 
-- (TDParser *)literal {
+- (PKParser *)literal {
     //NSLog(@"%s", _cmd);
     if (!literal) {
         self.literal = [TDQuotedString quotedString];
@@ -781,7 +781,7 @@
 }
 
 
-- (TDParser *)number {
+- (PKParser *)number {
     //NSLog(@"%s", _cmd);
     if (!number) {
         self.number = [TDNum num];
@@ -833,7 +833,7 @@
 
 
 // [34]       MultiplyOperator                    ::=       '*'    
-- (TDParser *)multiplyOperator {
+- (PKParser *)multiplyOperator {
     //NSLog(@"%s", _cmd);
     if (!multiplyOperator) {
         self.multiplyOperator = [TDSymbol symbolWithString:@"*"];
@@ -854,9 +854,9 @@
         self.QName = [TDAlternation alternation];
         QName.name = @"QName";
 
-        TDParser *prefix = [TDWord word];
-        TDParser *localPart = [TDWord word];
-        TDParser *unprefixedName = localPart;
+        PKParser *prefix = [TDWord word];
+        PKParser *localPart = [TDWord word];
+        PKParser *unprefixedName = localPart;
         
         TDSequence *prefixedName = [TDSequence sequence];
         [prefixedName add:prefix];
@@ -871,7 +871,7 @@
 
 
 // [35] FunctionName ::= QName - NodeType    
-- (TDParser *)functionName {
+- (PKParser *)functionName {
     //NSLog(@"%s", _cmd);
     if (!functionName) {
         self.functionName = self.QName; // TODO QName - NodeType

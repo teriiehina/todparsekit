@@ -26,7 +26,7 @@
 
 @end
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
@@ -43,7 +43,7 @@
     NSMutableSet *outAssemblies = nil;
     
     NSInteger i = 0;
-    for (TDParser *p in subparsers) {
+    for (PKParser *p in subparsers) {
         if (0 == i++) {
             outAssemblies = [[[p matchAndAssemble:inAssemblies] mutableCopy] autorelease];
         } else {

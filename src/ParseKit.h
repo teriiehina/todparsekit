@@ -26,7 +26,7 @@
 #import <ParseKit/PKReader.h>
 
 // parse
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDSequence.h>
 #import <ParseKit/TDExclusion.h>

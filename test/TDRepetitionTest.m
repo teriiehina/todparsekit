@@ -8,7 +8,7 @@
 
 #import "TDRepetitionTest.h"
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 

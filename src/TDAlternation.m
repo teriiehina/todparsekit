@@ -9,7 +9,7 @@
 #import <ParseKit/TDAlternation.h>
 #import <ParseKit/PKAssembly.h>
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
@@ -25,7 +25,7 @@
     NSParameterAssert(inAssemblies);
     NSMutableSet *outAssemblies = [NSMutableSet set];
     
-    for (TDParser *p in subparsers) {
+    for (PKParser *p in subparsers) {
         [outAssemblies unionSet:[p matchAndAssemble:inAssemblies]];
     }
     

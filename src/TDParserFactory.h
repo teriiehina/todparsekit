@@ -10,10 +10,10 @@
 
 @class TDToken;
 @class TDTokenizer;
-@class TDParser;
+@class PKParser;
 @class TDCollectionParser;
 
-void TDReleaseSubparserTree(TDParser *p);
+void TDReleaseSubparserTree(PKParser *p);
 
 typedef enum {
     TDParserFactoryAssemblerSettingBehaviorOnNone       = 0,
@@ -56,13 +56,13 @@ typedef enum {
     TDCollectionParser *discardParser;
     TDCollectionParser *patternParser;
     TDCollectionParser *delimitedStringParser;
-    TDParser *literalParser;
-    TDParser *variableParser;
-    TDParser *constantParser;
+    PKParser *literalParser;
+    PKParser *variableParser;
+    PKParser *constantParser;
 }
 + (id)factory;
 
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
+- (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
 
 @property (nonatomic) TDParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
 @end

@@ -213,7 +213,7 @@
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
-    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    NSAssert([top isKindOfClass:[PKParser class]], @"");
     TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
     [a push:rep];
 }
@@ -223,7 +223,7 @@
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
-    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    NSAssert([top isKindOfClass:[PKParser class]], @"");
     TDSequence *seq = [TDSequence sequence];
     [seq add:top];
     [seq add:[TDRepetition repetitionWithSubparser:top]];
@@ -235,7 +235,7 @@
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
-    NSAssert([top isKindOfClass:[TDParser class]], @"");
+    NSAssert([top isKindOfClass:[PKParser class]], @"");
     TDAlternation *alt = [TDAlternation alternation];
     [alt add:[TDEmpty empty]];
     [alt add:top];
@@ -248,8 +248,8 @@
 ////    NSLog(@"a: %@", a);
 //    id second = [a pop];
 //    id first = [a pop];
-//    NSAssert([first isKindOfClass:[TDParser class]], @"");
-//    NSAssert([second isKindOfClass:[TDParser class]], @"");
+//    NSAssert([first isKindOfClass:[PKParser class]], @"");
+//    NSAssert([second isKindOfClass:[PKParser class]], @"");
 //    TDSequence *p = [TDSequence sequence];
 //    [p add:first];
 //    [p add:second];
@@ -268,7 +268,7 @@
     while (![a isStackEmpty]) {
         obj = [a pop];
         [objs addObject:obj];
-        NSAssert([obj isKindOfClass:[TDParser class]], @"");
+        NSAssert([obj isKindOfClass:[PKParser class]], @"");
     }
     
     if (objs.count > 1) {
@@ -279,7 +279,7 @@
         [a push:seq];
     } else {
         NSAssert((NSUInteger)1 == objs.count, @"");
-        TDParser *p = [objs objectAtIndex:0];
+        PKParser *p = [objs objectAtIndex:0];
         [a push:p];
     }
 }
@@ -294,8 +294,8 @@
 //    NSLog(@"second: %@", second);
     NSAssert(first, @"");
     NSAssert(second, @"");
-    NSAssert([first isKindOfClass:[TDParser class]], @"");
-    NSAssert([second isKindOfClass:[TDParser class]], @"");
+    NSAssert([first isKindOfClass:[PKParser class]], @"");
+    NSAssert([second isKindOfClass:[PKParser class]], @"");
     TDAlternation *p = [TDAlternation alternation];
     [p add:first];
     [p add:second];

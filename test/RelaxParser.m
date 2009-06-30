@@ -70,7 +70,7 @@
 }
 
 
-- (TDCollectionParser *)atLeastOneOf:(TDParser *)p {
+- (TDCollectionParser *)atLeastOneOf:(PKParser *)p {
 	TDSequence *s = [TDSequence sequence];
 	[s add:p];
 	[s add:[TDRepetition repetitionWithSubparser:p]];
@@ -446,7 +446,7 @@
 // | "text"
 // | "token"
 // 
-- (TDParser *)keywordParser {
+- (PKParser *)keywordParser {
 	if (!keywordParser) {
 		self.keywordParser = [TDAlternation alternation];
 		[keywordParser add:self.attributeKeywordParser];
@@ -472,7 +472,7 @@
 }
 
 
-- (TDParser *)attributeKeywordParser {
+- (PKParser *)attributeKeywordParser {
 	if (!attributeKeywordParser) {
 		self.attributeKeywordParser = [TDLiteral literalWithString:@"attribute"];
 	}
@@ -480,7 +480,7 @@
 }
 
 
-- (TDParser *)defaultKeywordParser {
+- (PKParser *)defaultKeywordParser {
 	if (!defaultKeywordParser) {
 		self.defaultKeywordParser = [TDLiteral literalWithString:@"default"];
 	}
@@ -488,7 +488,7 @@
 }
 
 
-- (TDParser *)datatypesKeywordParser {
+- (PKParser *)datatypesKeywordParser {
 	if (!datatypesKeywordParser) {
 		self.datatypesKeywordParser = [TDLiteral literalWithString:@"datatypes"];
 	}
@@ -496,7 +496,7 @@
 }
 
 
-- (TDParser *)elementKeywordParser {
+- (PKParser *)elementKeywordParser {
 	if (!elementKeywordParser) {
 		self.elementKeywordParser = [TDLiteral literalWithString:@"element"];
 	}
@@ -504,7 +504,7 @@
 }
 
 
-- (TDParser *)emptyKeywordParser {
+- (PKParser *)emptyKeywordParser {
 	if (!emptyKeywordParser) {
 		self.emptyKeywordParser = [TDLiteral literalWithString:@"empty"];
 	}
@@ -512,7 +512,7 @@
 }
 
 
-- (TDParser *)externalKeywordParser {
+- (PKParser *)externalKeywordParser {
 	if (!externalKeywordParser) {
 		self.externalKeywordParser = [TDLiteral literalWithString:@"external"];
 	}
@@ -520,7 +520,7 @@
 }
 
 
-- (TDParser *)grammarKeywordParser {
+- (PKParser *)grammarKeywordParser {
 	if (!grammarKeywordParser) {
 		self.grammarKeywordParser = [TDLiteral literalWithString:@"grammar"];
 	}
@@ -528,7 +528,7 @@
 }
 
 
-- (TDParser *)includeKeywordParser {
+- (PKParser *)includeKeywordParser {
 	if (!includeKeywordParser) {
 		self.includeKeywordParser = [TDLiteral literalWithString:@"include"];
 	}
@@ -536,7 +536,7 @@
 }
 
 
-- (TDParser *)inheritKeywordParser {
+- (PKParser *)inheritKeywordParser {
 	if (!inheritKeywordParser) {
 		self.inheritKeywordParser = [TDLiteral literalWithString:@"inherit"];
 	}
@@ -544,7 +544,7 @@
 }
 
 
-- (TDParser *)listKeywordParser {
+- (PKParser *)listKeywordParser {
 	if (!listKeywordParser) {
 		self.listKeywordParser = [TDLiteral literalWithString:@"list"];
 	}
@@ -552,7 +552,7 @@
 }
 
 
-- (TDParser *)mixedKeywordParser {
+- (PKParser *)mixedKeywordParser {
 	if (!mixedKeywordParser) {
 		self.mixedKeywordParser = [TDLiteral literalWithString:@"mixed"];
 	}
@@ -560,7 +560,7 @@
 }
 
 
-- (TDParser *)namespaceKeywordParser {
+- (PKParser *)namespaceKeywordParser {
 	if (!namespaceKeywordParser) {
 		self.namespaceKeywordParser = [TDLiteral literalWithString:@"namespace"];
 	}
@@ -568,7 +568,7 @@
 }
 
 
-- (TDParser *)notAllowedKeywordParser {
+- (PKParser *)notAllowedKeywordParser {
 	if (!notAllowedKeywordParser) {
 		self.notAllowedKeywordParser = [TDLiteral literalWithString:@"notAllowed"];
 	}
@@ -576,7 +576,7 @@
 }
 
 
-- (TDParser *)parentKeywordParser {
+- (PKParser *)parentKeywordParser {
 	if (!parentKeywordParser) {
 		self.parentKeywordParser = [TDLiteral literalWithString:@"parent"];
 	}
@@ -584,7 +584,7 @@
 }
 
 
-- (TDParser *)startKeywordParser {
+- (PKParser *)startKeywordParser {
 	if (!startKeywordParser) {
 		self.startKeywordParser = [TDLiteral literalWithString:@"start"];
 	}
@@ -592,7 +592,7 @@
 }
 
 
-- (TDParser *)stringKeywordParser {
+- (PKParser *)stringKeywordParser {
 	if (!stringKeywordParser) {
 		self.stringKeywordParser = [TDLiteral literalWithString:@"string"];
 	}
@@ -600,7 +600,7 @@
 }
 
 
-- (TDParser *)textKeywordParser {
+- (PKParser *)textKeywordParser {
 	if (!textKeywordParser) {
 		self.textKeywordParser = [TDLiteral literalWithString:@"text"];
 	}
@@ -608,7 +608,7 @@
 }
 
 
-- (TDParser *)tokenKeywordParser {
+- (PKParser *)tokenKeywordParser {
 	if (!tokenKeywordParser) {
 		self.tokenKeywordParser = [TDLiteral literalWithString:@"token"];
 	}

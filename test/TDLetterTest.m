@@ -45,7 +45,7 @@
     
     TDEqualObjects(@"[]^abc", [a description]);
     p = [TDLetter letter];
-    TDParser *r = [TDRepetition repetitionWithSubparser:p];
+    PKParser *r = [TDRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
     TDNotNil(a);

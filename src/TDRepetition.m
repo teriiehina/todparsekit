@@ -9,17 +9,17 @@
 #import <ParseKit/TDRepetition.h>
 #import <ParseKit/PKAssembly.h>
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 @end
 
 @interface TDRepetition ()
-@property (nonatomic, readwrite, retain) TDParser *subparser;
+@property (nonatomic, readwrite, retain) PKParser *subparser;
 @end
 
 @implementation TDRepetition
 
-+ (id)repetitionWithSubparser:(TDParser *)p {
++ (id)repetitionWithSubparser:(PKParser *)p {
     return [[[self alloc] initWithSubparser:p] autorelease];
 }
 
@@ -29,7 +29,7 @@
 }
 
 
-- (id)initWithSubparser:(TDParser *)p {
+- (id)initWithSubparser:(PKParser *)p {
     //NSParameterAssert(p);
     if (self = [super init]) {
         self.subparser = p;
@@ -52,7 +52,7 @@
 }
 
 
-- (TDParser *)parserNamed:(NSString *)s {
+- (PKParser *)parserNamed:(NSString *)s {
     if ([name isEqualToString:s]) {
         return self;
     } else {

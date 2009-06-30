@@ -14,13 +14,13 @@
 
 @interface TDSyntaxHighlighter ()
 - (NSMutableDictionary *)attributesForGrammarNamed:(NSString *)grammarName;
-- (TDParser *)parserForGrammarNamed:(NSString *)grammarName;
+- (PKParser *)parserForGrammarNamed:(NSString *)grammarName;
 
 // all of the ivars for these properties are lazy loaded in the getters.
 // thats so that if an application has syntax highlighting turned off, this class will
 // consume much less memory/fewer resources.
 @property (nonatomic, retain) TDParserFactory *parserFactory;
-@property (nonatomic, retain) TDParser *miniCSSParser;
+@property (nonatomic, retain) PKParser *miniCSSParser;
 @property (nonatomic, retain) TDMiniCSSAssembler *miniCSSAssembler;
 @property (nonatomic, retain) TDGenericAssembler *genericAssembler;
 @property (nonatomic, retain) NSMutableDictionary *parserCache;
@@ -39,7 +39,7 @@
 
 - (void)dealloc {
     TDReleaseSubparserTree(miniCSSParser);
-    for (TDParser *p in parserCache) {
+    for (PKParser *p in parserCache) {
         TDReleaseSubparserTree(p);
     }
     
@@ -69,7 +69,7 @@
 }
 
 
-- (TDParser *)miniCSSParser {
+- (PKParser *)miniCSSParser {
     if (!miniCSSParser) {
         // create mini-css parser
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"mini_css" ofType:@"grammar"];
@@ -107,9 +107,9 @@
 }
 
 
-- (TDParser *)parserForGrammarNamed:(NSString *)grammarName {
+- (PKParser *)parserForGrammarNamed:(NSString *)grammarName {
     // create parser or the grammar requested or fetch parser from cache
-    TDParser *parser = nil;
+    PKParser *parser = nil;
     if (cacheParsers) {
         parser = [self.parserCache objectForKey:grammarName];
     }
@@ -138,7 +138,7 @@
 
 - (NSAttributedString *)highlightedStringForString:(NSString *)s ofGrammar:(NSString *)grammarName {    
     // create or fetch the parser & tokenizer for this grammar
-    TDParser *parser = [self parserForGrammarNamed:grammarName];
+    PKParser *parser = [self parserForGrammarNamed:grammarName];
     
     // parse the string. take care to preseve the whitespace and comments in the string
     parser.tokenizer.string = s;

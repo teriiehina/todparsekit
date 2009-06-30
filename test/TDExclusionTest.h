@@ -10,8 +10,8 @@
 
 @interface TDExclusionTest : SenTestCase {
     TDTokenizer *t;
-    TDParser *p;
-    TDParser *minus;
+    PKParser *p;
+    PKParser *minus;
     PKAssembly *a;
     PKAssembly *res;
     NSString *s;    

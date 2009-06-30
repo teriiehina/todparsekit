@@ -82,7 +82,7 @@
 }
 
 
-- (TDParser *)stringParser {
+- (PKParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
         if (shouldAssemble) {
@@ -93,7 +93,7 @@
 }
 
 
-- (TDParser *)numberParser {
+- (PKParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
         if (shouldAssemble) {
@@ -104,7 +104,7 @@
 }
 
 
-- (TDParser *)nullParser {
+- (PKParser *)nullParser {
     if (!nullParser) {
         self.nullParser = [[TDLiteral literalWithString:@"null"] discard];
         if (shouldAssemble) {

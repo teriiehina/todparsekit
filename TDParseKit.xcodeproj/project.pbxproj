@@ -76,8 +76,6 @@
 		D31FE6230E60E75300A0803E /* TDCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6130E60E75300A0803E /* TDCollectionParser.m */; };
 		D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6140E60E75300A0803E /* TDEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6250E60E75300A0803E /* TDEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6150E60E75300A0803E /* TDEmpty.m */; };
-		D31FE6260E60E75300A0803E /* TDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6160E60E75300A0803E /* TDParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D31FE6270E60E75300A0803E /* TDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6170E60E75300A0803E /* TDParser.m */; };
 		D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6180E60E75300A0803E /* TDRepetition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D31FE6290E60E75300A0803E /* TDRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6190E60E75300A0803E /* TDRepetition.m */; };
 		D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61A0E60E75300A0803E /* TDSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -175,6 +173,8 @@
 		D34BAD9D0FF9C95800D7773A /* PKReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAD9B0FF9C95800D7773A /* PKReader.m */; };
 		D34BADA10FF9C9B000D7773A /* PKAssembly.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAD9F0FF9C9B000D7773A /* PKAssembly.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BADA20FF9C9B000D7773A /* PKAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BADA00FF9C9B000D7773A /* PKAssembly.m */; };
+		D34BADD70FF9CBFB00D7773A /* PKParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BADD50FF9CBFB00D7773A /* PKParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BADD80FF9CBFB00D7773A /* PKParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BADD60FF9CBFB00D7773A /* PKParser.m */; };
 		D3521F560E5FA1B0009681F9 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F530E5FA1B0009681F9 /* XMLReader.m */; };
 		D3521F570E5FA1B0009681F9 /* XMLReaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3521F550E5FA1B0009681F9 /* XMLReaderTest.m */; };
 		D35384ED0FE9691100926552 /* nspredicate.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D35384EC0FE9691100926552 /* nspredicate.grammar */; };
@@ -228,7 +228,6 @@
 		D37D38180FE77860008C2E4D /* TDAlternation.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6100E60E75300A0803E /* TDAlternation.h */; };
 		D37D38190FE77860008C2E4D /* TDCollectionParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6120E60E75300A0803E /* TDCollectionParser.h */; };
 		D37D381A0FE77860008C2E4D /* TDEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6140E60E75300A0803E /* TDEmpty.h */; };
-		D37D381B0FE77860008C2E4D /* TDParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6160E60E75300A0803E /* TDParser.h */; };
 		D37D381C0FE77860008C2E4D /* TDRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE6180E60E75300A0803E /* TDRepetition.h */; };
 		D37D381D0FE77860008C2E4D /* TDSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61A0E60E75300A0803E /* TDSequence.h */; };
 		D37D381E0FE77860008C2E4D /* TDTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D31FE61C0E60E75300A0803E /* TDTerminal.h */; };
@@ -272,7 +271,6 @@
 		D37D38480FE7786F008C2E4D /* TDAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6110E60E75300A0803E /* TDAlternation.m */; };
 		D37D38490FE7786F008C2E4D /* TDCollectionParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6130E60E75300A0803E /* TDCollectionParser.m */; };
 		D37D384A0FE7786F008C2E4D /* TDEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6150E60E75300A0803E /* TDEmpty.m */; };
-		D37D384B0FE7786F008C2E4D /* TDParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6170E60E75300A0803E /* TDParser.m */; };
 		D37D384C0FE7786F008C2E4D /* TDRepetition.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE6190E60E75300A0803E /* TDRepetition.m */; };
 		D37D384D0FE7786F008C2E4D /* TDSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61B0E60E75300A0803E /* TDSequence.m */; };
 		D37D384E0FE7786F008C2E4D /* TDTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D31FE61D0E60E75300A0803E /* TDTerminal.m */; };
@@ -695,8 +693,6 @@
 		D31FE6130E60E75300A0803E /* TDCollectionParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDCollectionParser.m; path = src/TDCollectionParser.m; sourceTree = "<group>"; };
 		D31FE6140E60E75300A0803E /* TDEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDEmpty.h; path = src/TDEmpty.h; sourceTree = "<group>"; };
 		D31FE6150E60E75300A0803E /* TDEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDEmpty.m; path = src/TDEmpty.m; sourceTree = "<group>"; };
-		D31FE6160E60E75300A0803E /* TDParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParser.h; path = src/TDParser.h; sourceTree = "<group>"; };
-		D31FE6170E60E75300A0803E /* TDParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParser.m; path = src/TDParser.m; sourceTree = "<group>"; };
 		D31FE6180E60E75300A0803E /* TDRepetition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDRepetition.h; path = src/TDRepetition.h; sourceTree = "<group>"; };
 		D31FE6190E60E75300A0803E /* TDRepetition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDRepetition.m; path = src/TDRepetition.m; sourceTree = "<group>"; };
 		D31FE61A0E60E75300A0803E /* TDSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSequence.h; path = src/TDSequence.h; sourceTree = "<group>"; };
@@ -791,6 +787,8 @@
 		D34BAD9B0FF9C95800D7773A /* PKReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKReader.m; path = src/PKReader.m; sourceTree = "<group>"; };
 		D34BAD9F0FF9C9B000D7773A /* PKAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKAssembly.h; path = src/PKAssembly.h; sourceTree = "<group>"; };
 		D34BADA00FF9C9B000D7773A /* PKAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAssembly.m; path = src/PKAssembly.m; sourceTree = "<group>"; };
+		D34BADD50FF9CBFB00D7773A /* PKParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParser.h; path = src/PKParser.h; sourceTree = "<group>"; };
+		D34BADD60FF9CBFB00D7773A /* PKParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKParser.m; path = src/PKParser.m; sourceTree = "<group>"; };
 		D3521F520E5FA1B0009681F9 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReader.h; path = test/XMLReader.h; sourceTree = "<group>"; };
 		D3521F530E5FA1B0009681F9 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLReader.m; path = test/XMLReader.m; sourceTree = "<group>"; };
 		D3521F540E5FA1B0009681F9 /* XMLReaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLReaderTest.h; path = test/XMLReaderTest.h; sourceTree = "<group>"; };
@@ -1886,8 +1884,8 @@
 		D3D63EA90E2A7A5C009BF5CD /* parsers */ = {
 			isa = PBXGroup;
 			children = (
-				D31FE6160E60E75300A0803E /* TDParser.h */,
-				D31FE6170E60E75300A0803E /* TDParser.m */,
+				D34BADD50FF9CBFB00D7773A /* PKParser.h */,
+				D34BADD60FF9CBFB00D7773A /* PKParser.m */,
 				D31FE6180E60E75300A0803E /* TDRepetition.h */,
 				D31FE6190E60E75300A0803E /* TDRepetition.m */,
 				D31FE6120E60E75300A0803E /* TDCollectionParser.h */,
@@ -2099,7 +2097,6 @@
 				D31FE6200E60E75300A0803E /* TDAlternation.h in Headers */,
 				D31FE6220E60E75300A0803E /* TDCollectionParser.h in Headers */,
 				D31FE6240E60E75300A0803E /* TDEmpty.h in Headers */,
-				D31FE6260E60E75300A0803E /* TDParser.h in Headers */,
 				D31FE6280E60E75300A0803E /* TDRepetition.h in Headers */,
 				D31FE62A0E60E75300A0803E /* TDSequence.h in Headers */,
 				D31FE62C0E60E75300A0803E /* TDTerminal.h in Headers */,
@@ -2151,6 +2148,7 @@
 				D34BAD770FF9C74F00D7773A /* PKTypes.h in Headers */,
 				D34BAD9C0FF9C95800D7773A /* PKReader.h in Headers */,
 				D34BADA10FF9C9B000D7773A /* PKAssembly.h in Headers */,
+				D34BADD70FF9CBFB00D7773A /* PKParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2161,7 +2159,6 @@
 				D37D38180FE77860008C2E4D /* TDAlternation.h in Headers */,
 				D37D38190FE77860008C2E4D /* TDCollectionParser.h in Headers */,
 				D37D381A0FE77860008C2E4D /* TDEmpty.h in Headers */,
-				D37D381B0FE77860008C2E4D /* TDParser.h in Headers */,
 				D37D381C0FE77860008C2E4D /* TDRepetition.h in Headers */,
 				D37D381D0FE77860008C2E4D /* TDSequence.h in Headers */,
 				D37D381E0FE77860008C2E4D /* TDTerminal.h in Headers */,
@@ -2546,7 +2543,6 @@
 				D31FE6210E60E75300A0803E /* TDAlternation.m in Sources */,
 				D31FE6230E60E75300A0803E /* TDCollectionParser.m in Sources */,
 				D31FE6250E60E75300A0803E /* TDEmpty.m in Sources */,
-				D31FE6270E60E75300A0803E /* TDParser.m in Sources */,
 				D31FE6290E60E75300A0803E /* TDRepetition.m in Sources */,
 				D31FE62B0E60E75300A0803E /* TDSequence.m in Sources */,
 				D31FE62D0E60E75300A0803E /* TDTerminal.m in Sources */,
@@ -2595,6 +2591,7 @@
 				D34BAC200FF87F3300D7773A /* TDParserFactory.m in Sources */,
 				D34BAD9D0FF9C95800D7773A /* PKReader.m in Sources */,
 				D34BADA20FF9C9B000D7773A /* PKAssembly.m in Sources */,
+				D34BADD80FF9CBFB00D7773A /* PKParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2641,7 +2638,6 @@
 				D37D38480FE7786F008C2E4D /* TDAlternation.m in Sources */,
 				D37D38490FE7786F008C2E4D /* TDCollectionParser.m in Sources */,
 				D37D384A0FE7786F008C2E4D /* TDEmpty.m in Sources */,
-				D37D384B0FE7786F008C2E4D /* TDParser.m in Sources */,
 				D37D384C0FE7786F008C2E4D /* TDRepetition.m in Sources */,
 				D37D384D0FE7786F008C2E4D /* TDSequence.m in Sources */,
 				D37D384E0FE7786F008C2E4D /* TDTerminal.m in Sources */,

@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 
 /*!
     @class      TDCollectionParser 
     @brief      An Abstract class. This class abstracts the behavior common to parsers that consist of a series of other parsers.
 */
-@interface TDCollectionParser : TDParser {
+@interface TDCollectionParser : PKParser {
     NSMutableArray *subparsers;
 }
 
@@ -21,7 +21,7 @@
     @brief      Adds a parser to the collection.
     @param      p parser to add
 */
-- (void)add:(TDParser *)p;
+- (void)add:(PKParser *)p;
 
 /*!
     @property   subparsers

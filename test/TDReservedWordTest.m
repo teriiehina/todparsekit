@@ -17,7 +17,7 @@
     
     PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
-    TDParser *p = [TDReservedWord word];
+    PKParser *p = [TDReservedWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNotNil(result);
@@ -32,7 +32,7 @@
     
     PKAssembly *a = [TDTokenAssembly assemblyWithString:s];
     
-    TDParser *p = [TDReservedWord word];
+    PKParser *p = [TDReservedWord word];
     PKAssembly *result = [p completeMatchFor:a];
     
     TDNil(result);

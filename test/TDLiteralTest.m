@@ -22,13 +22,13 @@
     p = [TDNum num];
     PKAssembly *result = [p completeMatchFor:a];
     
-    // -[TDParser completeMatchFor:]
-    // -[TDParser bestMatchFor:]
-    // -[TDParser matchAndAssemble:]
+    // -[PKParser completeMatchFor:]
+    // -[PKParser bestMatchFor:]
+    // -[PKParser matchAndAssemble:]
     // -[TDTerminal allMatchesFor:]
     // -[TDTerminal matchOneAssembly:]
     // -[TDLiteral qualifies:]
-    // -[TDParser best:]
+    // -[PKParser best:]
     
     NSLog(@"result: %@", result);
     TDNotNil(result);

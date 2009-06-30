@@ -10,9 +10,9 @@
 
 @interface TDJsonParser : TDAlternation {
     BOOL shouldAssemble;
-    TDParser *stringParser;
-    TDParser *numberParser;
-    TDParser *nullParser;
+    PKParser *stringParser;
+    PKParser *numberParser;
+    PKParser *nullParser;
     TDCollectionParser *booleanParser;
     TDCollectionParser *arrayParser;
     TDCollectionParser *objectParser;
@@ -30,9 +30,9 @@
 - (id)parse:(NSString *)s;
 
 @property (nonatomic, retain, readonly) TDTokenizer *tokenizer;
-@property (nonatomic, retain) TDParser *stringParser;
-@property (nonatomic, retain) TDParser *numberParser;
-@property (nonatomic, retain) TDParser *nullParser;
+@property (nonatomic, retain) PKParser *stringParser;
+@property (nonatomic, retain) PKParser *numberParser;
+@property (nonatomic, retain) PKParser *nullParser;
 @property (nonatomic, retain) TDCollectionParser *booleanParser;
 @property (nonatomic, retain) TDCollectionParser *arrayParser;
 @property (nonatomic, retain) TDCollectionParser *objectParser;
