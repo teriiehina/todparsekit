@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDComment
     @brief      A <tt>TDComment</tt> matches a comment from a token assembly.
 */
-@interface TDComment : TDTerminal {
+@interface TDComment : PKTerminal {
 
 }
 

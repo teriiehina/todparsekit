@@ -96,15 +96,15 @@
 //CharEncoding     ::= Nmtoken
 - (PKCollectionParser *)selfIdentHeader {
     if (!selfIdentHeader) {
-        self.selfIdentHeader = [TDSequence sequence];
+        self.selfIdentHeader = [PKSequence sequence];
         selfIdentHeader.name = @"selfIdentHeader";
         
         [selfIdentHeader add:[TDSymbol symbolWithString:@"#"]];
         [selfIdentHeader add:[TDLiteral literalWithString:@"ABNF"]];
         [selfIdentHeader add:[TDNum num]];  // VersionNumber
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:[TDWord word]]; // CharEncoding
         
         [selfIdentHeader add:a];
@@ -118,7 +118,7 @@
 //ConstrainedName  ::= Name - (Char* ('.' | ':' | '-') Char*)
 - (PKCollectionParser *)ruleName {
     if (!ruleName) {
-        self.ruleName = [TDSequence sequence];
+        self.ruleName = [PKSequence sequence];
         [ruleName add:[TDSymbol symbolWithString:@"$"]];
         [ruleName add:[TDWord word]]; // TODO: ConstrainedName
     }
@@ -137,7 +137,7 @@
 //LexiconURI ::= ABNF_URI | ABNF_URI_with_Media_Type
 - (PKCollectionParser *)lexiconURI {
     if (!lexiconURI) {
-        self.lexiconURI = [TDAlternation alternation];
+        self.lexiconURI = [PKAlternation alternation];
         [lexiconURI add:self.ABNF_URI];
         [lexiconURI add:self.ABNF_URI_with_Media_Type];
     }
@@ -148,7 +148,7 @@
 //Weight ::= '/' Number '/'
 - (PKCollectionParser *)weight {
     if (!weight) {
-        self.weight = [TDSequence sequence];
+        self.weight = [PKSequence sequence];
         [weight add:[TDSymbol symbolWithString:@"/"]];
         [weight add:[TDNum num]];
         [weight add:[TDSymbol symbolWithString:@"/"]];
@@ -160,15 +160,15 @@
 //Repeat ::= [0-9]+ ('-' [0-9]*)?
 - (PKCollectionParser *)repeat {
     if (!repeat) {
-        self.repeat = [TDSequence sequence];
+        self.repeat = [PKSequence sequence];
         [repeat add:[TDNum num]];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"-"]];
         [s add:[TDNum num]];
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:s];
         
         [repeat add:a];
@@ -180,7 +180,7 @@
 //Probability      ::= '/' Number '/'
 - (PKCollectionParser *)probability {
     if (!probability) {
-        self.probability = [TDSequence sequence];
+        self.probability = [PKSequence sequence];
         [probability add:[TDSymbol symbolWithString:@"/"]];
         [probability add:[TDNum num]];
         [probability add:[TDSymbol symbolWithString:@"/"]];
@@ -193,14 +193,14 @@
 //ExternalRuleRef  ::= '$' ABNF_URI | '$' ABNF_URI_with_Media_Type
 - (PKCollectionParser *)externalRuleRef {
     if (!externalRuleRef) {
-        self.externalRuleRef = [TDAlternation alternation];
+        self.externalRuleRef = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"$"]];
         [s add:self.ABNF_URI];
         [externalRuleRef add:s];
 
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"$"]];
         [s add:self.ABNF_URI_with_Media_Type];
         [externalRuleRef add:s];
@@ -212,7 +212,7 @@
 //Token  ::= Nmtoken | DoubleQuotedCharacters
 - (PKCollectionParser *)token {
     if (!token) {
-        self.token = [TDAlternation alternation];
+        self.token = [PKAlternation alternation];
         [token add:[TDWord word]];
         [token add:[TDQuotedString quotedString]];
     }
@@ -223,7 +223,7 @@
 //LanguageAttachment ::= '!' LanguageCode
 - (PKCollectionParser *)languageAttachment {
     if (!languageAttachment) {
-        self.languageAttachment = [TDSequence sequence];
+        self.languageAttachment = [PKSequence sequence];
         [languageAttachment add:[TDSymbol symbolWithString:@"!"]];
         [languageAttachment add:self.languageCode];
     }
@@ -234,28 +234,28 @@
 //Tag ::= '{' [^}]* '}' | '{!{' (Char* - (Char* '}!}' Char*)) '}!}'
 - (PKCollectionParser *)tag {
     if (!tag) {
-        self.tag = [TDAlternation alternation];
+        self.tag = [PKAlternation alternation];
 
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"{"]];
-        TDAlternation *a = [TDAlternation alternation];
+        PKAlternation *a = [PKAlternation alternation];
         [a add:[TDWord word]];
         [a add:[TDNum num]];
         [a add:[TDSymbol symbol]];
         [a add:[TDQuotedString quotedString]];
-        [s add:[TDRepetition repetitionWithSubparser:a]];
+        [s add:[PKRepetition repetitionWithSubparser:a]];
         [s add:[TDSymbol symbolWithString:@"}"]];
         [tag add:s];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"{!{"]];
-        a = [TDAlternation alternation];
+        a = [PKAlternation alternation];
         [a add:[TDWord word]];
         [a add:[TDNum num]];
         [a add:[TDSymbol symbol]];
         [a add:[TDQuotedString quotedString]];
-        [s add:[TDRepetition repetitionWithSubparser:a]];
+        [s add:[PKRepetition repetitionWithSubparser:a]];
         [s add:[TDLiteral literalWithString:@"}!}"]];
         [tag add:s];
     }
@@ -269,10 +269,10 @@
 // grammar ::= selfIdentHeader declaration* ruleDefinition*
 - (PKCollectionParser *)grammar {
     if (!grammar) {
-        self.grammar = [TDSequence sequence];
+        self.grammar = [PKSequence sequence];
         [grammar add:self.selfIdentHeader];
-        [grammar add:[TDRepetition repetitionWithSubparser:self.declaration]];
-        [grammar add:[TDRepetition repetitionWithSubparser:self.ruleDefinition]];
+        [grammar add:[PKRepetition repetitionWithSubparser:self.declaration]];
+        [grammar add:[PKRepetition repetitionWithSubparser:self.ruleDefinition]];
     }
     return grammar;
 }
@@ -280,7 +280,7 @@
 // declaration ::= baseDecl | languageDecl | modeDecl | rootRuleDecl | tagFormatDecl | lexiconDecl | metaDecl | tagDecl
 - (PKCollectionParser *)declaration {
     if (!declaration) {
-        self.declaration = [TDAlternation alternation];
+        self.declaration = [PKAlternation alternation];
         [declaration add:self.baseDecl];
         [declaration add:self.languageDecl];
         [declaration add:self.modeDecl];
@@ -295,7 +295,7 @@
 // baseDecl ::= 'base' BaseURI ';'
 - (PKCollectionParser *)baseDecl {
     if (!baseDecl) {
-        self.baseDecl = [TDSequence sequence];
+        self.baseDecl = [PKSequence sequence];
         [baseDecl add:[TDLiteral literalWithString:@"base"]];
         [baseDecl add:self.baseURI];
         [baseDecl add:[TDSymbol symbolWithString:@";"]];
@@ -306,7 +306,7 @@
 // languageDecl    ::= 'language' LanguageCode ';'
 - (PKCollectionParser *)languageDecl {
     if (!languageDecl) {
-        self.languageDecl = [TDSequence sequence];
+        self.languageDecl = [PKSequence sequence];
         [languageDecl add:[TDLiteral literalWithString:@"language"]];
         [languageDecl add:self.languageCode];
         [languageDecl add:[TDSymbol symbolWithString:@";"]];
@@ -319,15 +319,15 @@
 // modeDecl        ::= 'mode' 'voice' ';' | 'mode' 'dtmf' ';'
 - (PKCollectionParser *)modeDecl {
     if (!modeDecl) {
-        self.modeDecl = [TDAlternation alternation];
+        self.modeDecl = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"mode"]];
         [s add:[TDLiteral literalWithString:@"voice"]];
         [s add:[TDSymbol symbolWithString:@";"]];
         [modeDecl add:s];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"mode"]];
         [s add:[TDLiteral literalWithString:@"dtmf"]];
         [s add:[TDSymbol symbolWithString:@";"]];
@@ -340,7 +340,7 @@
 // rootRuleDecl    ::= 'root' RuleName ';'
 - (PKCollectionParser *)rootRuleDecl {
     if (!rootRuleDecl) {
-        self.rootRuleDecl = [TDSequence sequence];
+        self.rootRuleDecl = [PKSequence sequence];
         [rootRuleDecl add:[TDLiteral literalWithString:@"root"]];
         [rootRuleDecl add:self.ruleName];
         [rootRuleDecl add:[TDSymbol symbolWithString:@";"]];
@@ -352,7 +352,7 @@
 // tagFormatDecl   ::=     'tag-format' TagFormat ';'
 - (PKCollectionParser *)tagFormatDecl {
     if (!tagFormatDecl) {
-        self.tagFormatDecl = [TDSequence sequence];
+        self.tagFormatDecl = [PKSequence sequence];
         [tagFormatDecl add:[TDLiteral literalWithString:@"tag-format"]];
         [tagFormatDecl add:self.tagFormat];
         [tagFormatDecl add:[TDSymbol symbolWithString:@";"]];
@@ -365,7 +365,7 @@
 // lexiconDecl     ::= 'lexicon' LexiconURI ';'
 - (PKCollectionParser *)lexiconDecl {
     if (!lexiconDecl) {
-        self.lexiconDecl = [TDSequence sequence];
+        self.lexiconDecl = [PKSequence sequence];
         [lexiconDecl add:[TDLiteral literalWithString:@"lexicon"]];
         [lexiconDecl add:self.lexiconURI];
         [lexiconDecl add:[TDSymbol symbolWithString:@";"]];
@@ -379,9 +379,9 @@
 //    | 'meta' QuotedCharacters 'is' QuotedCharacters ';'
 - (PKCollectionParser *)metaDecl {
     if (!metaDecl) {
-        self.metaDecl = [TDAlternation alternation];
+        self.metaDecl = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"http-equiv"]];
         [s add:[TDQuotedString quotedString]];
         [s add:[TDLiteral literalWithString:@"is"]];
@@ -389,7 +389,7 @@
         [s add:[TDSymbol symbolWithString:@";"]];
         [metaDecl add:s];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDLiteral literalWithString:@"meta"]];
         [s add:[TDQuotedString quotedString]];
         [s add:[TDLiteral literalWithString:@"is"]];
@@ -405,7 +405,7 @@
 // tagDecl  ::=  Tag ';'
 - (PKCollectionParser *)tagDecl {
     if (!tagDecl) {
-        self.tagDecl = [TDSequence sequence];
+        self.tagDecl = [PKSequence sequence];
         [tagDecl add:self.tag];
         [tagDecl add:[TDSymbol symbolWithString:@";"]];
     }
@@ -416,10 +416,10 @@
 // ruleDefinition  ::= scope? RuleName '=' ruleExpansion ';'
 - (PKCollectionParser *)ruleDefinition {
     if (!ruleDefinition) {
-        self.ruleDefinition = [TDSequence sequence];
+        self.ruleDefinition = [PKSequence sequence];
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.scope];
         
         [ruleDefinition add:a];
@@ -434,7 +434,7 @@
 // scope ::=  'private' | 'public'
 - (PKCollectionParser *)scope {
     if (!scope) {
-        self.scope = [TDAlternation alternation];
+        self.scope = [PKAlternation alternation];
         [scope add:[TDLiteral literalWithString:@"private"]];
         [scope add:[TDLiteral literalWithString:@"public"]];
     }
@@ -445,13 +445,13 @@
 // ruleExpansion   ::= ruleAlternative ( '|' ruleAlternative )*
 - (PKCollectionParser *)ruleExpansion {
     if (!ruleExpansion) {
-        self.ruleExpansion = [TDSequence sequence];
+        self.ruleExpansion = [PKSequence sequence];
         [ruleExpansion add:self.ruleAlternative];
         
-        TDSequence *pipeRuleAlternative = [TDSequence sequence];
+        PKSequence *pipeRuleAlternative = [PKSequence sequence];
         [pipeRuleAlternative add:[TDSymbol symbolWithString:@"|"]];
         [pipeRuleAlternative add:self.ruleAlternative];
-        [ruleExpansion add:[TDRepetition repetitionWithSubparser:pipeRuleAlternative]];
+        [ruleExpansion add:[PKRepetition repetitionWithSubparser:pipeRuleAlternative]];
     }
     return ruleExpansion;
 }
@@ -460,15 +460,15 @@
 // ruleAlternative ::= Weight? sequenceElement+
 - (PKCollectionParser *)ruleAlternative {
     if (!ruleAlternative) {
-        self.ruleAlternative = [TDSequence sequence];
+        self.ruleAlternative = [PKSequence sequence];
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.weight];
         
         [ruleAlternative add:a];
         [ruleAlternative add:self.sequenceElement];
-        [ruleAlternative add:[TDRepetition repetitionWithSubparser:self.sequenceElement]];
+        [ruleAlternative add:[PKRepetition repetitionWithSubparser:self.sequenceElement]];
     }
     return ruleAlternative;
 }
@@ -479,20 +479,20 @@
 // sequenceElement ::= subexpansion repeatOperator?
 - (PKCollectionParser *)sequenceElement {
     if (!sequenceElement) {
-//        self.sequenceElement = [TDAlternation alternation];
+//        self.sequenceElement = [PKAlternation alternation];
 //        [sequenceElement add:self.subexpansion];
 //        
-//        TDSequence *s = [TDSequence sequence];
+//        PKSequence *s = [PKSequence sequence];
 //        [s add:self.subexpansion];
 //        [s add:self.repeatOperator];
 //        
 //        [sequenceElement add:s];
 
-        self.sequenceElement = [TDSequence sequence];
+        self.sequenceElement = [PKSequence sequence];
         [sequenceElement add:self.subexpansion];
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.repeatOperator];
         
         [sequenceElement add:a];
@@ -509,12 +509,12 @@
 //     | '[' ruleExpansion ']' LanguageAttachment?
 - (PKCollectionParser *)subexpansion {
     if (!subexpansion) {
-        self.subexpansion = [TDAlternation alternation];
+        self.subexpansion = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:self.token];
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.languageAttachment];
         [s add:a];
         [subexpansion add:s];
@@ -522,27 +522,27 @@
         [subexpansion add:self.ruleRef];
         [subexpansion add:self.tag];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"("]];
         [s add:[TDSymbol symbolWithString:@")"]];
         [subexpansion add:s];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"("]];
         [s add:self.ruleExpansion];    
         [s add:[TDSymbol symbolWithString:@")"]];
-        a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.languageAttachment];
         [s add:a];
         [subexpansion add:s];
         
-        s = [TDSequence sequence];
+        s = [PKSequence sequence];
         [s add:[TDSymbol symbolWithString:@"["]];
         [s add:self.ruleExpansion];    
         [s add:[TDSymbol symbolWithString:@"]"]];
-        a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.languageAttachment];
         [s add:a];
         [subexpansion add:s];
@@ -554,7 +554,7 @@
 // ruleRef  ::= localRuleRef | ExternalRuleRef | specialRuleRef
 - (PKCollectionParser *)ruleRef {
     if (!ruleRef) {
-        self.ruleRef = [TDAlternation alternation];
+        self.ruleRef = [PKAlternation alternation];
         [ruleRef add:self.localRuleRef];
         [ruleRef add:self.externalRuleRef];
         [ruleRef add:self.specialRuleRef];
@@ -574,7 +574,7 @@
 // specialRuleRef  ::= '$NULL' | '$VOID' | '$GARBAGE'
 - (PKCollectionParser *)specialRuleRef {
     if (!specialRuleRef) {
-        self.specialRuleRef = [TDAlternation alternation];
+        self.specialRuleRef = [PKAlternation alternation];
         [specialRuleRef add:[TDLiteral literalWithString:@"$NULL"]];
         [specialRuleRef add:[TDLiteral literalWithString:@"$VOID"]];
         [specialRuleRef add:[TDLiteral literalWithString:@"$GARBAGE"]];
@@ -586,12 +586,12 @@
 // repeatOperator  ::='<' Repeat Probability? '>'
 - (PKCollectionParser *)repeatOperator {
     if (!repeatOperator) {
-        self.repeatOperator = [TDSequence sequence];
+        self.repeatOperator = [PKSequence sequence];
         [repeatOperator add:[TDSymbol symbolWithString:@"<"]];
         [repeatOperator add:self.repeat];
         
-        TDAlternation *a = [TDAlternation alternation];
-        [a add:[TDEmpty empty]];
+        PKAlternation *a = [PKAlternation alternation];
+        [a add:[PKEmpty empty]];
         [a add:self.probability];
         [repeatOperator add:a];
         
@@ -613,7 +613,7 @@
 //LanguageCode ::= Nmtoken
 - (PKCollectionParser *)languageCode {
     if (!languageCode) {
-        self.languageCode = [TDSequence sequence];
+        self.languageCode = [PKSequence sequence];
         [languageCode add:[TDWord word]];
 //        [languageCode add:[TDSymbol symbolWithString:@"-"]];
 //        [languageCode add:[TDWord word]];
@@ -664,7 +664,7 @@
     TDToken *tok = [a pop];
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     
-    TDSequence *p = [TDSequence sequence];
+    PKSequence *p = [PKSequence sequence];
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDToken *eof = [TDToken EOFToken];
     while (eof != (tok = [t nextToken])) {
@@ -678,7 +678,7 @@
 - (void)workOnStar:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
+    PKRepetition *p = [PKRepetition repetitionWithSubparser:[a pop]];
     [a push:p];
 }
 
@@ -686,9 +686,9 @@
 - (void)workOnQuestion:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
-    TDAlternation *p = [TDAlternation alternation];
+    PKAlternation *p = [PKAlternation alternation];
     [p add:[a pop]];
-    [p add:[TDEmpty empty]];
+    [p add:[PKEmpty empty]];
     [a push:p];
 }
 
@@ -697,7 +697,7 @@
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id top = [a pop];
-    TDSequence *p = [TDSequence sequence];
+    PKSequence *p = [PKSequence sequence];
     [p add:[a pop]];
     [p add:top];
     [a push:p];
@@ -710,7 +710,7 @@
     id top = [a pop];
 //    NSLog(@"top: %@", top);
 //    NSLog(@"top class: %@", [top class]);
-    TDAlternation *p = [TDAlternation alternation];
+    PKAlternation *p = [PKAlternation alternation];
     [p add:[a pop]];
     [p add:top];
     [a push:p];

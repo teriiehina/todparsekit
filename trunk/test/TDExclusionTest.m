@@ -13,7 +13,7 @@
 - (void)testFoo {
     TDWord *word = [TDWord word];
     TDLiteral *foo = [TDLiteral literalWithString:@"foo"];
-    TDExclusion *ex = [TDExclusion exclusion];
+    PKExclusion *ex = [PKExclusion exclusion];
     [ex add:word];
     [ex add:foo];
     
@@ -37,11 +37,11 @@
 
 - (void)testAlt {
     TDWord *word = [TDWord word];
-    TDAlternation *list = [TDAlternation alternation];
+    PKAlternation *list = [PKAlternation alternation];
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusion];
+    PKExclusion *ex = [PKExclusion exclusion];
     [ex add:word];
     [ex add:list];
     
@@ -63,15 +63,15 @@
 
 
 - (void)testAlt2 {
-    TDAlternation *ok = [TDAlternation alternation];
+    PKAlternation *ok = [PKAlternation alternation];
     [ok add:[TDLiteral literalWithString:@"foo"]];
     [ok add:[TDLiteral literalWithString:@"baz"]];
     
-    TDAlternation *list = [TDAlternation alternation];
+    PKAlternation *list = [PKAlternation alternation];
     [list add:[TDLiteral literalWithString:@"foo"]];
     [list add:[TDLiteral literalWithString:@"bar"]];
     
-    TDExclusion *ex = [TDExclusion exclusion];
+    PKExclusion *ex = [PKExclusion exclusion];
     [ex add:ok];
     [ex add:list];
     

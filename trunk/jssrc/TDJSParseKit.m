@@ -93,15 +93,15 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     setUpConstructor(ctx, "TDWhitespaceState", TDWhitespaceState_class(ctx), TDWhitespaceState_construct, &ex);
 
     // Parsers
-    setUpConstructor(ctx, "TDRepetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
+    setUpConstructor(ctx, "PKRepetition", TDRepetition_class(ctx), TDRepetition_construct, &ex);
 
     // Collection Parsers
-    setUpConstructor(ctx, "TDAlternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
-    setUpConstructor(ctx, "TDSequence", TDSequence_class(ctx), TDSequence_construct, &ex);
+    setUpConstructor(ctx, "PKAlternation", TDAlternation_class(ctx), TDAlternation_construct, &ex);
+    setUpConstructor(ctx, "PKSequence", TDSequence_class(ctx), TDSequence_construct, &ex);
     
     // Terminal Parsers
-    setUpConstructor(ctx, "TDEmpty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
-    setUpConstructor(ctx, "TDAny", TDAny_class(ctx), TDAny_construct, &ex);
+    setUpConstructor(ctx, "PKEmpty", TDEmpty_class(ctx), TDEmpty_construct, &ex);
+    setUpConstructor(ctx, "PKAny", TDAny_class(ctx), TDAny_construct, &ex);
     
     // Token Terminals
     setUpConstructor(ctx, "TDWord", TDWord_class(ctx), TDWord_construct, &ex);

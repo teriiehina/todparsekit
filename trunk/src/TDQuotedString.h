@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDQuotedString 
     @brief      A <tt>TDQuotedString</tt> matches a quoted string, like "this one" from a token assembly.
 */
-@interface TDQuotedString : TDTerminal {
+@interface TDQuotedString : PKTerminal {
 
 }
 

@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface SRGSParser : TDSequence {
+@interface SRGSParser : PKSequence {
     PKCollectionParser *selfIdentHeader;
     PKCollectionParser *ruleName;
     PKCollectionParser *tagFormat;

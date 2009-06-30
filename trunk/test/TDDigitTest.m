@@ -45,7 +45,7 @@
     
     TDEqualObjects(@"[]^123", [a description]);
     p = [TDDigit digit];
-    PKParser *r = [TDRepetition repetitionWithSubparser:p];
+    PKParser *r = [PKRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
     TDNotNil(a);

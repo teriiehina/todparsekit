@@ -6,9 +6,9 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDTerminal.h"
+#import "PKTerminal.h"
 
-@interface TDXmlNmtoken : TDTerminal {
+@interface TDXmlNmtoken : PKTerminal {
 
 }
 + (id)nmtoken;

@@ -25,7 +25,7 @@
     s = @"2 4 6 8";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDRepetition repetitionWithSubparser:[TDNum num]];
+    p = [PKRepetition repetitionWithSubparser:[TDNum num]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
@@ -37,13 +37,13 @@
     s = @"4.5 - 5.6 - 222.0";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDSequence *minusNum = [TDSequence sequence];
+    PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[TDSymbol symbolWithString:@"-"] discard]];
     [minusNum add:[TDNum num]];
     
-    TDSequence *e = [TDSequence sequence];
+    PKSequence *e = [PKSequence sequence];
     [e add:[TDNum num]];
-    [e add:[TDRepetition repetitionWithSubparser:minusNum]];
+    [e add:[PKRepetition repetitionWithSubparser:minusNum]];
     
     PKAssembly *result = [e completeMatchFor:a];
     TDNotNil(result);
@@ -55,14 +55,14 @@
     s = @"[4.5 - 5.6 - 222.0]";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDSequence *minusNum = [TDSequence sequence];
+    PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[TDSymbol symbolWithString:@"-"] discard]];
     [minusNum add:[TDNum num]];
     
-    TDSequence *e = [TDSequence sequence];
+    PKSequence *e = [PKSequence sequence];
     [e add:[[TDSymbol symbolWithString:@"["] discard]];
     [e add:[TDNum num]];
-    [e add:[TDRepetition repetitionWithSubparser:minusNum]];
+    [e add:[PKRepetition repetitionWithSubparser:minusNum]];
     [e add:[[TDSymbol symbolWithString:@"]"] discard]];
     
     PKAssembly *result = [e completeMatchFor:a];
@@ -72,13 +72,13 @@
 
 
 - (void)testHotHotSteamingHotCoffee {
-    TDAlternation *adjective = [TDAlternation alternation];
+    PKAlternation *adjective = [PKAlternation alternation];
     [adjective add:[TDLiteral literalWithString:@"hot"]];
     [adjective add:[TDLiteral literalWithString:@"steaming"]];
 
-    TDRepetition *adjectives = [TDRepetition repetitionWithSubparser:adjective];
+    PKRepetition *adjectives = [PKRepetition repetitionWithSubparser:adjective];
     
-    TDSequence *sentence = [TDSequence sequence];
+    PKSequence *sentence = [PKSequence sequence];
     [sentence add:adjectives];
     [sentence add:[TDLiteral literalWithString:@"coffee"]];
 
@@ -95,15 +95,15 @@
 - (void)testList {
     PKAssembly *result = nil;
 
-    TDSequence *commaTerm = [TDSequence sequence];
+    PKSequence *commaTerm = [PKSequence sequence];
     [commaTerm add:[[TDSymbol symbolWithString:@","] discard]];
     [commaTerm add:[TDWord word]];
 
-    TDSequence *actualList = [TDSequence sequence];
+    PKSequence *actualList = [PKSequence sequence];
     [actualList add:[TDWord word]];
-    [actualList add:[TDRepetition repetitionWithSubparser:commaTerm]];
+    [actualList add:[PKRepetition repetitionWithSubparser:commaTerm]];
     
-    TDSequence *list = [TDSequence sequence];
+    PKSequence *list = [PKSequence sequence];
     [list add:[[TDSymbol symbolWithString:@"["] discard]];
     [list add:actualList];
     [list add:[[TDSymbol symbolWithString:@"]"] discard]];
@@ -121,7 +121,7 @@
     s = @"123 'boo'";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    TDAlternation *literals = [TDAlternation alternation];
+    PKAlternation *literals = [PKAlternation alternation];
     [literals add:[TDQuotedString quotedString]];
     [literals add:[TDNum num]];
     

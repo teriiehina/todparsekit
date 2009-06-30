@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 @class TDToken;
 
@@ -15,7 +15,7 @@
     @class      TDSymbol 
     @brief      A <tt>TDSymbol</tt> matches a specific sequence, such as <tt>&lt;</tt>, or <tt>&lt;=</tt> that a tokenizer returns as a symbol.
 */
-@interface TDSymbol : TDTerminal {
+@interface TDSymbol : PKTerminal {
     TDToken *symbol;
 }
 

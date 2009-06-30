@@ -66,10 +66,10 @@
 // expression        = term orTerm*
 - (PKCollectionParser *)expressionParser {
     if (!expressionParser) {
-        self.expressionParser = [TDSequence sequence];
+        self.expressionParser = [PKSequence sequence];
         expressionParser.name = @"expression";
         [expressionParser add:self.termParser];
-        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+        [expressionParser add:[PKRepetition repetitionWithSubparser:self.orTermParser]];
         [expressionParser setAssembler:self selector:@selector(workOnExpression:)];
     }
     return expressionParser;
@@ -79,10 +79,10 @@
 // term                = factor nextFactor*
 - (PKCollectionParser *)termParser {
     if (!termParser) {
-        self.termParser = [TDSequence sequence];
+        self.termParser = [PKSequence sequence];
         termParser.name = @"term";
         [termParser add:self.factorParser];
-        [termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
+        [termParser add:[PKRepetition repetitionWithSubparser:self.nextFactorParser]];
     }
     return termParser;
 }
@@ -91,7 +91,7 @@
 // orTerm            = '|' term
 - (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
-        self.orTermParser = [TDSequence sequence];
+        self.orTermParser = [PKSequence sequence];
         orTermParser.name = @"orTerm";
         [orTermParser add:[[TDSpecificChar specificCharWithChar:'|'] discard]];
         [orTermParser add:self.termParser];
@@ -104,7 +104,7 @@
 // factor            = phrase | phraseStar | phrasePlus | phraseQuestion
 - (PKCollectionParser *)factorParser {
     if (!factorParser) {
-        self.factorParser = [TDAlternation alternation];
+        self.factorParser = [PKAlternation alternation];
         factorParser.name = @"factor";
         [factorParser add:self.phraseParser];
         [factorParser add:self.phraseStarParser];
@@ -118,7 +118,7 @@
 // nextFactor        = factor
 - (PKCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
-        self.nextFactorParser = [TDAlternation alternation];
+        self.nextFactorParser = [PKAlternation alternation];
         nextFactorParser.name = @"nextFactor";
         [nextFactorParser add:self.phraseParser];
         [nextFactorParser add:self.phraseStarParser];
@@ -133,12 +133,12 @@
 // phrase            = letterOrDigit | '(' expression ')'
 - (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[[TDSpecificChar specificCharWithChar:'('] discard]];
         [s add:self.expressionParser];
         [s add:[[TDSpecificChar specificCharWithChar:')'] discard]];
 
-        self.phraseParser = [TDAlternation alternation];
+        self.phraseParser = [PKAlternation alternation];
         phraseParser.name = @"phrase";
         [phraseParser add:self.letterOrDigitParser];
         [phraseParser add:s];
@@ -150,7 +150,7 @@
 // phraseStar        = phrase '*'
 - (PKCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
-        self.phraseStarParser = [TDSequence sequence];
+        self.phraseStarParser = [PKSequence sequence];
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[TDSpecificChar specificCharWithChar:'*'] discard]];
@@ -163,7 +163,7 @@
 // phrasePlus        = phrase '+'
 - (PKCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
-        self.phrasePlusParser = [TDSequence sequence];
+        self.phrasePlusParser = [PKSequence sequence];
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[TDSpecificChar specificCharWithChar:'+'] discard]];
@@ -176,7 +176,7 @@
 // phrasePlus        = phrase '?'
 - (PKCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
-        self.phraseQuestionParser = [TDSequence sequence];
+        self.phraseQuestionParser = [PKSequence sequence];
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[TDSpecificChar specificCharWithChar:'?'] discard]];
@@ -189,7 +189,7 @@
 // letterOrDigit    = Letter | Digit
 - (PKCollectionParser *)letterOrDigitParser {
     if (!letterOrDigitParser) {
-        self.letterOrDigitParser = [TDAlternation alternation];
+        self.letterOrDigitParser = [PKAlternation alternation];
         letterOrDigitParser.name = @"letterOrDigit";
         [letterOrDigitParser add:[TDLetter letter]];
         [letterOrDigitParser add:[TDDigit digit]];
@@ -214,7 +214,7 @@
     //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[PKParser class]], @"");
-    TDRepetition *rep = [TDRepetition repetitionWithSubparser:top];
+    PKRepetition *rep = [PKRepetition repetitionWithSubparser:top];
     [a push:rep];
 }
 
@@ -224,9 +224,9 @@
     //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[PKParser class]], @"");
-    TDSequence *seq = [TDSequence sequence];
+    PKSequence *seq = [PKSequence sequence];
     [seq add:top];
-    [seq add:[TDRepetition repetitionWithSubparser:top]];
+    [seq add:[PKRepetition repetitionWithSubparser:top]];
     [a push:seq];
 }
 
@@ -236,8 +236,8 @@
     //    NSLog(@"a: %@", a);
     id top = [a pop];
     NSAssert([top isKindOfClass:[PKParser class]], @"");
-    TDAlternation *alt = [TDAlternation alternation];
-    [alt add:[TDEmpty empty]];
+    PKAlternation *alt = [PKAlternation alternation];
+    [alt add:[PKEmpty empty]];
     [alt add:top];
     [a push:alt];
 }
@@ -250,7 +250,7 @@
 //    id first = [a pop];
 //    NSAssert([first isKindOfClass:[PKParser class]], @"");
 //    NSAssert([second isKindOfClass:[PKParser class]], @"");
-//    TDSequence *p = [TDSequence sequence];
+//    PKSequence *p = [PKSequence sequence];
 //    [p add:first];
 //    [p add:second];
 //    [a push:p];
@@ -272,7 +272,7 @@
     }
     
     if (objs.count > 1) {
-        TDSequence *seq = [TDSequence sequence];
+        PKSequence *seq = [PKSequence sequence];
         for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
@@ -296,7 +296,7 @@
     NSAssert(second, @"");
     NSAssert([first isKindOfClass:[PKParser class]], @"");
     NSAssert([second isKindOfClass:[PKParser class]], @"");
-    TDAlternation *p = [TDAlternation alternation];
+    PKAlternation *p = [PKAlternation alternation];
     [p add:first];
     [p add:second];
     [a push:p];

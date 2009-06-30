@@ -125,7 +125,7 @@
 //    
 //    t.string = @"foo:bar";
 //    a = [TDTokenAssembly assemblyWithTokenizer:t];
-//    //TDAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TDTrackException");
+//    //TDAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"PKTrackException");
 //}
 
 //
@@ -162,7 +162,7 @@
 //    
 //    t.string = @"foo:bar";
 //    a = [TDTokenAssembly assemblyWithTokenizer:t];
-//    //TDAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TDTrackException");
+//    //TDAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"PKTrackException");
 //}
 //
 //

@@ -11,7 +11,7 @@
 @class XPathAssembler;
 @class PKAssembly;
 
-@interface XPathParser : TDSequence {
+@interface XPathParser : PKSequence {
     XPathAssembler *xpathAssembler;
     PKCollectionParser *locationPath;
     PKCollectionParser *absoluteLocationPath;

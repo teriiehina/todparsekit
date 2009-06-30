@@ -1,5 +1,5 @@
 //
-//  TDIntersection.h
+//  PKIntersection.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/27/09.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKCollectionParser.h>
 
-@interface TDIntersection : PKCollectionParser {
+@interface PKIntersection : PKCollectionParser {
 
 }
 

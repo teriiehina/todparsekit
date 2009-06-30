@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDDelimitedString
     @brief      A <tt>TDDelimitedString</tt> matches a delimited string from a token assembly.
 */
-@interface TDDelimitedString : TDTerminal {
+@interface TDDelimitedString : PKTerminal {
     NSString *startMarker;
     NSString *endMarker;
 }

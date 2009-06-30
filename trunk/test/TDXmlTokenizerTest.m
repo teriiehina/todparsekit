@@ -33,7 +33,7 @@
 
 
 - (void)testAppleBoss {
-    TDSequence *s = [TDSequence sequence];
+    PKSequence *s = [PKSequence sequence];
     s.name = @"parent sequence";
     [s add:[TDXmlStartTag startTagWithString:@"result"]];
     [s add:[TDXmlStartTag startTagWithString:@"url"]];

@@ -122,7 +122,7 @@
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
-    //TDAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"TDTrackException");
+    //TDAssertThrowsSpecificNamed([p.QName bestMatchFor:a], [NSException class], @"PKTrackException");
 }
 
 
@@ -159,7 +159,7 @@
     
     s = @"foo:bar";
     a = [p assemblyWithString:s];
-    //TDAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"TDTrackException");
+    //TDAssertThrowsSpecificNamed([p.nameTest bestMatchFor:a], [NSException class], @"PKTrackException");
 }
 
 

@@ -9,7 +9,7 @@
 #import "TDJSRepetition.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <ParseKit/TDRepetition.h>
+#import <ParseKit/PKRepetition.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,7 +58,7 @@ JSObjectRef TDRepetition_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDRepetition_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDRepetition");
+    TDPreconditionConstructorArgc(1, "PKRepetition");
 	
 	JSValueRef v = argv[0];
 	if (!TDJSValueIsInstanceOfClass(ctx, v, "PKParser", ex)) {
@@ -67,6 +67,6 @@ JSObjectRef TDRepetition_construct(JSContextRef ctx, JSObjectRef constructor, si
     
     PKParser *p = JSObjectGetPrivate((JSObjectRef)v);
 
-    TDRepetition *data = [[TDRepetition alloc] initWithSubparser:p];
+    PKRepetition *data = [[PKRepetition alloc] initWithSubparser:p];
     return TDRepetition_new(ctx, data);
 }

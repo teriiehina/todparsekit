@@ -9,7 +9,7 @@
 #import "TDJSTerminal.h"
 #import "TDJSUtils.h"
 #import "TDJSParser.h"
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -17,7 +17,7 @@
 static JSValueRef TDTerminal_discard(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDTerminal_class, "discard");
     
-    TDTerminal *data = JSObjectGetPrivate(this);
+    PKTerminal *data = JSObjectGetPrivate(this);
     [data discard];
     return this;
 }

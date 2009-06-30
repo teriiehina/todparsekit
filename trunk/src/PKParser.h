@@ -14,14 +14,14 @@
 /*!
     @class      PKParser 
     @brief      An Abstract class. A <tt>PKParser</tt> is an object that recognizes the elements of a language.
-    @details    <p>Each <tt>PKParser</tt> object is either a <tt>TDTerminal</tt> or a composition of other parsers. The <tt>TDTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>TDWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
-                <p>In addition to <tt>TDTerminal</tt>, other subclasses of <tt>PKParser</tt> provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following <tt>PKParser</tt> objects culminate in a good parser that recognizes a description of good coffee.</p>
+    @details    <p>Each <tt>PKParser</tt> object is either a <tt>PKTerminal</tt> or a composition of other parsers. The <tt>PKTerminal</tt> class is a subclass of Parser, and is itself a hierarchy of parsers that recognize specific patterns of text. For example, a <tt>TDWord</tt> recognizes any word, and a <tt>TDLiteral</tt> matches a specific string.</p>
+                <p>In addition to <tt>PKTerminal</tt>, other subclasses of <tt>PKParser</tt> provide composite parsers, describing sequences, alternations, and repetitions of other parsers. For example, the following <tt>PKParser</tt> objects culminate in a good parser that recognizes a description of good coffee.</p>
 @code
-    TDAlternation *adjective = [TDAlternation alternation];
+    PKAlternation *adjective = [PKAlternation alternation];
     [adjective add:[TDLiteral literalWithString:@"steaming"]];
     [adjective add:[TDLiteral literalWithString:@"hot"]];
-    TDSequence *good = [TDSequence sequence];
-    [good add:[TDRepetition repetitionWithSubparser:adjective]];
+    PKSequence *good = [PKSequence sequence];
+    [good add:[PKRepetition repetitionWithSubparser:adjective]];
     [good add:[TDLiteral literalWithString:@"coffee"]];
     NSString *s = @"hot hot steaming hot coffee";
     PKAssembly *a = [TDTokenAssembly assemblyWithString:s];

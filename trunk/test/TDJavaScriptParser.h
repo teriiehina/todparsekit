@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface TDJavaScriptParser : TDRepetition {
+@interface TDJavaScriptParser : PKRepetition {
     PKCollectionParser *assignmentOpParser;
     PKCollectionParser *relationalOpParser;
     PKCollectionParser *equalityOpParser;

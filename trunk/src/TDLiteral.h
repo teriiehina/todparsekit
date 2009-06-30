@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 @class TDToken;
 
@@ -15,7 +15,7 @@
     @class      TDLiteral 
     @brief      A <tt>TDLiteral</tt> matches a specific word from an assembly.
 */
-@interface TDLiteral : TDTerminal {
+@interface TDLiteral : PKTerminal {
     TDToken *literal;
 }
 

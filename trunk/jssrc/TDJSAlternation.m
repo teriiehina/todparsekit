@@ -9,7 +9,7 @@
 #import "TDJSAlternation.h"
 #import "TDJSUtils.h"
 #import "TDJSCollectionParser.h"
-#import <ParseKit/TDAlternation.h>
+#import <ParseKit/PKAlternation.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDAlternation_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDAlternation_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDAlternation *data = [[TDAlternation alloc] init];
+    PKAlternation *data = [[PKAlternation alloc] init];
     return TDAlternation_new(ctx, data);
 }

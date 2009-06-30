@@ -6,9 +6,9 @@
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
-@interface TDBlob : TDTerminal {
+@interface TDBlob : PKTerminal {
 
 }
 + (id)blob;

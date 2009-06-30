@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface TDPlistParser : TDAlternation {
+@interface TDPlistParser : PKAlternation {
     PKCollectionParser *dictParser;
     PKCollectionParser *keyValuePairParser;
     PKCollectionParser *arrayParser;

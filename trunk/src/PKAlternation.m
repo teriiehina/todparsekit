@@ -1,34 +1,32 @@
 //
-//  TDSequence.m
+//  PKAlternation.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSequence.h>
+#import <ParseKit/PKAlternation.h>
 #import <ParseKit/PKAssembly.h>
 
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
+- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
-@implementation TDSequence
+@implementation PKAlternation
 
-+ (id)sequence {
++ (id)alternation {
     return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    NSSet *outAssemblies = inAssemblies;
+    NSMutableSet *outAssemblies = [NSMutableSet set];
     
     for (PKParser *p in subparsers) {
-        outAssemblies = [p matchAndAssemble:outAssemblies];
-        if (!outAssemblies.count) {
-            break;
-        }
+        [outAssemblies unionSet:[p matchAndAssemble:inAssemblies]];
     }
     
     return outAssemblies;

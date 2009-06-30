@@ -28,16 +28,16 @@
 // parse
 #import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDSequence.h>
-#import <ParseKit/TDExclusion.h>
-#import <ParseKit/TDIntersection.h>
+#import <ParseKit/PKSequence.h>
+#import <ParseKit/PKExclusion.h>
+#import <ParseKit/PKIntersection.h>
 #import <ParseKit/PKCollectionParser.h>
-#import <ParseKit/TDAlternation.h>
-#import <ParseKit/TDRepetition.h>
-#import <ParseKit/TDEmpty.h>
-#import <ParseKit/TDTerminal.h>
-#import <ParseKit/TDTrack.h>
-#import <ParseKit/TDTrackException.h>
+#import <ParseKit/PKAlternation.h>
+#import <ParseKit/PKRepetition.h>
+#import <ParseKit/PKEmpty.h>
+#import <ParseKit/PKTerminal.h>
+#import <ParseKit/PKTrack.h>
+#import <ParseKit/PKTrackException.h>
 
 //chars
 #import <ParseKit/TDCharacterAssembly.h>
@@ -72,7 +72,7 @@
 #import <ParseKit/TDComment.h>
 #import <ParseKit/TDLiteral.h>
 #import <ParseKit/TDCaseInsensitiveLiteral.h>
-#import <ParseKit/TDAny.h>
+#import <ParseKit/PKAny.h>
 #import <ParseKit/TDPattern.h>
 
 // ext

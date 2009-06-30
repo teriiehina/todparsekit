@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 #import <ParseKit/PKTypes.h>
 
 /*!
@@ -14,7 +14,7 @@
     @brief      A <tt>TDSpecificChar</tt> matches a specified character from a character assembly.
     @details    <tt>-[TDSpecificChar qualifies:] returns true if an assembly's next element is equal to the character this object was constructed with.
 */
-@interface TDSpecificChar : TDTerminal {
+@interface TDSpecificChar : PKTerminal {
 }
 
 /*!

@@ -18,19 +18,19 @@
 
 
 - (PKParser *)listParser {
-    TDTrack *commaWord = [TDTrack track];
+    PKTrack *commaWord = [PKTrack track];
     [commaWord add:[[TDSymbol symbolWithString:@","] discard]];
     [commaWord add:[TDWord word]];
     
-    TDSequence *actualList = [TDSequence sequence];
+    PKSequence *actualList = [PKSequence sequence];
     [actualList add:[TDWord word]];
-    [actualList add:[TDRepetition repetitionWithSubparser:commaWord]];
+    [actualList add:[PKRepetition repetitionWithSubparser:commaWord]];
     
-    TDAlternation *contents = [TDAlternation alternation];
-    [contents add:[TDEmpty empty]];
+    PKAlternation *contents = [PKAlternation alternation];
+    [contents add:[PKEmpty empty]];
     [contents add:actualList];
     
-    TDTrack *list = [TDTrack track];
+    PKTrack *list = [PKTrack track];
     [list add:[[TDSymbol symbolWithString:@"("] discard]];
     [list add:contents];
     [list add:[[TDSymbol symbolWithString:@")"] discard]];
@@ -67,7 +67,7 @@
                 //NSString *stack = [[[list completeMatchFor:a] stack] description];
                 //NSLog(@"OK stack is: %@", stack);
             }
-        } @catch (TDTrackException *e) {
+        } @catch (PKTrackException *e) {
             //NSLog(@"\n\n%@\n\n", [e reason]);
         }
     }
@@ -76,18 +76,18 @@
 
 
 - (void)testMissingParen {
-    TDTrack *track = [TDTrack track];
+    PKTrack *track = [PKTrack track];
     [track add:[TDSymbol symbolWithString:@"("]];
     [track add:[TDSymbol symbolWithString:@")"]];
     
     PKAssembly *a = [TDTokenAssembly assemblyWithString:@"("];
-    STAssertThrowsSpecificNamed([track completeMatchFor:a], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([track completeMatchFor:a], PKTrackException, TDTrackExceptionName, @"");
     
     @try {
         [track completeMatchFor:a];
         STAssertTrue(0, @"Should not be reached");
-    } @catch (TDTrackException *e) {
-        TDEqualObjects([e class], [TDTrackException class]);
+    } @catch (PKTrackException *e) {
+        TDEqualObjects([e class], [PKTrackException class]);
         TDEqualObjects([e name], TDTrackExceptionName);
         
         NSDictionary *userInfo = e.userInfo;

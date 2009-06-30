@@ -6,7 +6,7 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDTerminal.h"
+#import "PKTerminal.h"
 #import "TDToken.h"
 
 extern const NSInteger TDTokenTypeNCName;
@@ -15,7 +15,7 @@ extern const NSInteger TDTokenTypeNCName;
 @property (readonly, getter=isNCName) BOOL NCName;
 @end
 
-@interface TDNCName : TDTerminal {
+@interface TDNCName : PKTerminal {
 
 }
 + (id)NCName;

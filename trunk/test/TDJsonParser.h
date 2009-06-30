@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface TDJsonParser : TDAlternation {
+@interface TDJsonParser : PKAlternation {
     BOOL shouldAssemble;
     PKParser *stringParser;
     PKParser *numberParser;

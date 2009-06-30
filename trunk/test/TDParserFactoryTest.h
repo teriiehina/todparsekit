@@ -15,7 +15,7 @@
     TDParserFactory *factory;
     PKAssembly *res;
 
-    TDSequence *exprSeq;
+    PKSequence *exprSeq;
     TDTokenizer *t;
     PKParser *lp; // language parser
 }

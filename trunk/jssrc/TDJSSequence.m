@@ -9,7 +9,7 @@
 #import "TDJSSequence.h"
 #import "TDJSUtils.h"
 #import "TDJSCollectionParser.h"
-#import <ParseKit/TDSequence.h>
+#import <ParseKit/PKSequence.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDSequence_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDSequence_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDSequence *data = [[TDSequence alloc] init];
+    PKSequence *data = [[PKSequence alloc] init];
     return TDSequence_new(ctx, data);
 }

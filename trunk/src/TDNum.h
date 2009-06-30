@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDNum
     @brief      A <tt>TDNum</tt> matches a number from a token assembly.
 */
-@interface TDNum : TDTerminal {
+@interface TDNum : PKTerminal {
 
 }
 

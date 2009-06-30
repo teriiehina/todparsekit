@@ -1,25 +1,25 @@
 //
-//  TDTrack.m
+//  PKTrack.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 8/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTrack.h>
+#import <ParseKit/PKTrack.h>
 #import <ParseKit/PKAssembly.h>
-#import <ParseKit/TDTrackException.h>
+#import <ParseKit/PKTrackException.h>
 
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
 @end
 
-@interface TDTrack ()
+@interface PKTrack ()
 - (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(PKParser *)p;
 @end
 
-@implementation TDTrack
+@implementation PKTrack
 
 + (id)track {
     return [[[self alloc] init] autorelease];
@@ -67,7 +67,7 @@
                               expected, @"expected",
                               found, @"found",
                               nil];
-    [[TDTrackException exceptionWithName:TDTrackExceptionName reason:reason userInfo:userInfo] raise];
+    [[PKTrackException exceptionWithName:TDTrackExceptionName reason:reason userInfo:userInfo] raise];
 }
 
 @end

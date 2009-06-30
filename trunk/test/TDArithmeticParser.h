@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface TDArithmeticParser : TDSequence {
+@interface TDArithmeticParser : PKSequence {
     PKCollectionParser *exprParser;
     PKCollectionParser *termParser;
     PKCollectionParser *plusTermParser;
