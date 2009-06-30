@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 
 @class TDToken;
 
@@ -15,7 +15,7 @@
     @class      TDTerminal
     @brief      An Abstract Class. A <tt>TDTerminal</tt> is a parser that is not a composition of other parsers.
 */
-@interface TDTerminal : TDParser {
+@interface TDTerminal : PKParser {
     NSString *string;
     BOOL discardFlag;
 }

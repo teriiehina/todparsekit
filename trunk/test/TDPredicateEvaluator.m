@@ -419,7 +419,7 @@
 }
 
 
-- (TDParser *)trueParser {
+- (PKParser *)trueParser {
     if (!trueParser) {
         self.trueParser = [[TDCaseInsensitiveLiteral literalWithString:@"true"] discard];
         [trueParser setAssembler:self selector:@selector(workOnTrue:)];
@@ -428,7 +428,7 @@
 }
 
 
-- (TDParser *)falseParser {
+- (PKParser *)falseParser {
     if (!falseParser) {
         self.falseParser = [[TDCaseInsensitiveLiteral literalWithString:@"false"] discard];
         [falseParser setAssembler:self selector:@selector(workOnFalse:)];
@@ -437,7 +437,7 @@
 }
 
 
-- (TDParser *)stringParser {
+- (PKParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
         [stringParser setAssembler:self selector:@selector(workOnString:)];
@@ -446,7 +446,7 @@
 }
 
 
-- (TDParser *)numberParser {
+- (PKParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
         [numberParser setAssembler:self selector:@selector(workOnNumber:)];

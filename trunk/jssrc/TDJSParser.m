@@ -12,7 +12,7 @@
 #import "TDJSAssembly.h"
 #import "TDJSTokenAssembly.h"
 #import "TDJSCharacterAssembly.h"
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDTokenAssembly.h>
 #import <ParseKit/TDCharacterAssembly.h>
@@ -22,7 +22,7 @@
 
 static JSValueRef TDParser_toString(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDParser_class, "toString");
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, [data description], ex);
 }
 
@@ -30,7 +30,7 @@ static JSValueRef TDParser_bestMatch(JSContextRef ctx, JSObjectRef function, JSO
     TDPreconditionInstaceOf(TDParser_class, "bestMatch");
     TDPreconditionMethodArgc(1, "bestMatch");
     
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
 
     JSObjectRef arg = (JSObjectRef)argv[0];
     PKAssembly *a = (PKAssembly *)JSObjectGetPrivate(arg);
@@ -50,7 +50,7 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
     TDPreconditionInstaceOf(TDParser_class, "completeMatch");
     TDPreconditionMethodArgc(1, "completeMatch");
     
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     
     JSObjectRef arg = (JSObjectRef)argv[0];
     PKAssembly *a = (PKAssembly *)JSObjectGetPrivate(arg);
@@ -70,7 +70,7 @@ static JSValueRef TDParser_completeMatch(JSContextRef ctx, JSObjectRef function,
 #pragma mark Properties
 
 static JSValueRef TDParser_getAssembler(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     id assembler = data.assembler;
     if ([assembler isMemberOfClass:[TDJSAssemblerAdapter class]]) {
         return [assembler assemblerFunction];
@@ -85,7 +85,7 @@ static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRe
         return false;
     }
     
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     TDJSAssemblerAdapter *adapter = [[TDJSAssemblerAdapter alloc] init]; // retained. released in TDParser_finalize
     [adapter setAssemblerFunction:(JSObjectRef)value fromContext:ctx];
     [data setAssembler:adapter selector:@selector(workOn:)];
@@ -93,12 +93,12 @@ static bool TDParser_setAssembler(JSContextRef ctx, JSObjectRef this, JSStringRe
 }
 
 static JSValueRef TDParser_getName(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     return TDNSStringToJSValue(ctx, data.name, ex);
 }
 
 static bool TDParser_setName(JSContextRef ctx, JSObjectRef this, JSStringRef propertyName, JSValueRef value, JSValueRef *ex) {
-    TDParser *data = JSObjectGetPrivate(this);
+    PKParser *data = JSObjectGetPrivate(this);
     data.name = TDJSValueGetNSString(ctx, value, ex);
     return true;
 }
@@ -111,7 +111,7 @@ static void TDParser_initialize(JSContextRef ctx, JSObjectRef this) {
 }
 
 static void TDParser_finalize(JSObjectRef this) {
-    TDParser *data = (TDParser *)JSObjectGetPrivate(this);
+    PKParser *data = (PKParser *)JSObjectGetPrivate(this);
     id assembler = data.assembler;
     data.assembler = nil;
     if ([assembler isMemberOfClass:[TDJSAssemblerAdapter class]]) {

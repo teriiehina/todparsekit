@@ -17,7 +17,7 @@
     NSString *s;
     TDMiniCSSAssembler *cssAssember;
     TDParserFactory *factory;
-    TDParser *cssParser;
+    PKParser *cssParser;
     PKAssembly *a;
     TDGenericAssembler *genericAssember;
 }

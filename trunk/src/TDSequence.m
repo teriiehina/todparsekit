@@ -9,7 +9,7 @@
 #import <ParseKit/TDSequence.h>
 #import <ParseKit/PKAssembly.h>
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 @end
 
@@ -24,7 +24,7 @@
     NSParameterAssert(inAssemblies);
     NSSet *outAssemblies = inAssemblies;
     
-    for (TDParser *p in subparsers) {
+    for (PKParser *p in subparsers) {
         outAssemblies = [p matchAndAssemble:outAssemblies];
         if (!outAssemblies.count) {
             break;

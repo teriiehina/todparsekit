@@ -11,7 +11,7 @@
 #import "NSString+TDParseKitAdditions.h"
 #import "NSArray+TDParseKitAdditions.h"
 
-@interface TDParser (TDParserFactoryAdditionsFriend)
+@interface PKParser (TDParserFactoryAdditionsFriend)
 - (void)setTokenizer:(TDTokenizer *)t;
 @end
 
@@ -20,28 +20,28 @@
 @end
 
 @interface TDRepetition ()
-@property (nonatomic, readwrite, retain) TDParser *subparser;
+@property (nonatomic, readwrite, retain) PKParser *subparser;
 @end
 
 @interface TDPattern ()
 @property (nonatomic, assign) TDTokenType tokenType;
 @end
 
-void TDReleaseSubparserTree(TDParser *p) {
+void TDReleaseSubparserTree(PKParser *p) {
     if ([p isKindOfClass:[TDCollectionParser class]]) {
         TDCollectionParser *c = (TDCollectionParser *)p;
         NSArray *subs = c.subparsers;
         if (subs) {
             [subs retain];
             c.subparsers = nil;
-            for (TDParser *s in subs) {
+            for (PKParser *s in subs) {
                 TDReleaseSubparserTree(s);
             }
             [subs release];
         }
     } else if ([p isMemberOfClass:[TDRepetition class]]) {
         TDRepetition *r = (TDRepetition *)p;
-		TDParser *sub = r.subparser;
+		PKParser *sub = r.subparser;
         if (sub) {
             [sub retain];
             r.subparser = nil;
@@ -63,17 +63,17 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)setTokenizerState:(TDTokenizerState *)state onTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 - (void)setFallbackStateOn:(TDTokenizerState *)state withTokenizer:(TDTokenizer *)t forTokensForKey:(NSString *)key;
 
-- (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks;
-- (TDParser *)expandedParserForName:(NSString *)parserName;
-- (void)setAssemblerForParser:(TDParser *)p;
+- (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks;
+- (PKParser *)expandedParserForName:(NSString *)parserName;
+- (void)setAssemblerForParser:(PKParser *)p;
 - (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(TDTokenType)tt;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
 
 // this is only for unit tests? can it go away?
 - (TDSequence *)parserFromExpression:(NSString *)s;
 
-- (TDAlternation *)zeroOrOne:(TDParser *)p;
-- (TDSequence *)oneOrMore:(TDParser *)p;
+- (TDAlternation *)zeroOrOne:(PKParser *)p;
+- (TDSequence *)oneOrMore:(PKParser *)p;
     
 - (void)workOnStatement:(PKAssembly *)a;
 - (void)workOnCallback:(PKAssembly *)a;
@@ -126,11 +126,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 @property (nonatomic, retain) TDCollectionParser *discardParser;
 @property (nonatomic, retain) TDCollectionParser *patternParser;
 @property (nonatomic, retain) TDCollectionParser *delimitedStringParser;
-@property (nonatomic, retain) TDParser *literalParser;
-@property (nonatomic, retain) TDParser *variableParser;
-@property (nonatomic, retain) TDParser *constantParser;
+@property (nonatomic, retain) PKParser *literalParser;
+@property (nonatomic, retain) PKParser *variableParser;
+@property (nonatomic, retain) PKParser *constantParser;
 
-@property (nonatomic, retain, readonly) TDParser *whitespaceParser;
+@property (nonatomic, retain, readonly) PKParser *whitespaceParser;
 @property (nonatomic, retain, readonly) TDCollectionParser *optionalWhitespaceParser;
 @end
 
@@ -196,7 +196,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
+- (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
     self.assembler = a;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
@@ -206,14 +206,14 @@ void TDReleaseSubparserTree(TDParser *p) {
 
     [self gatherParserClassNamesFromTokens];
     
-    TDParser *start = [self expandedParserForName:@"@start"];
+    PKParser *start = [self expandedParserForName:@"@start"];
     
     assembler = nil;
     self.selectorTable = nil;
     self.parserClassTable = nil;
     self.parserTokensTable = nil;
     
-    if (start && [start isKindOfClass:[TDParser class]]) {
+    if (start && [start isKindOfClass:[PKParser class]]) {
         start.tokenizer = t;
         return start;
     } else {
@@ -300,7 +300,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
-    TDParser *res = [a pop];
+    PKParser *res = [a pop];
     a.target = nil;
     return [res className];
 }
@@ -480,15 +480,15 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDParser *)expandedParserForName:(NSString *)parserName {
+- (PKParser *)expandedParserForName:(NSString *)parserName {
     id obj = [parserTokensTable objectForKey:parserName];
-    if ([obj isKindOfClass:[TDParser class]]) {
+    if ([obj isKindOfClass:[PKParser class]]) {
         return obj;
     } else {
         // prevent infinite loops by creating a parser of the correct type first, and putting it in the table
         NSString *className = [parserClassTable objectForKey:parserName];
 
-        TDParser *p = [[NSClassFromString(className) alloc] init];
+        PKParser *p = [[NSClassFromString(className) alloc] init];
         [parserTokensTable setObject:p forKey:parserName];
         [p release];
         
@@ -503,7 +503,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (void)setAssemblerForParser:(TDParser *)p {
+- (void)setAssemblerForParser:(PKParser *)p {
     NSString *parserName = p.name;
     NSString *selName = [selectorTable objectForKey:parserName];
 
@@ -539,11 +539,11 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (id)expandParser:(TDParser *)p fromTokenArray:(NSArray *)toks {	
+- (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks {	
     PKAssembly *a = [TDTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
     a = [self.exprParser completeMatchFor:a];
-    TDParser *res = [a pop];
+    PKParser *res = [a pop];
     if ([p isKindOfClass:[TDCollectionParser class]]) {
         TDCollectionParser *cp = (TDCollectionParser *)p;
         [cp add:res];
@@ -565,7 +565,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDAlternation *)zeroOrOne:(TDParser *)p {
+- (TDAlternation *)zeroOrOne:(PKParser *)p {
     TDAlternation *a = [TDAlternation alternation];
     [a add:[TDEmpty empty]];
     [a add:p];
@@ -573,7 +573,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDSequence *)oneOrMore:(TDParser *)p {
+- (TDSequence *)oneOrMore:(PKParser *)p {
     TDSequence *s = [TDSequence sequence];
     [s add:p];
     [s add:[TDRepetition repetitionWithSubparser:p]];
@@ -963,7 +963,7 @@ void TDReleaseSubparserTree(TDParser *p) {
         self.patternParser = [TDSequence sequence];
         [patternParser add:[TDDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
         
-        TDParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
+        PKParser *opts = [TDPattern patternWithString:@"[imxsw]+" options:TDPatternOptionsNone];
         TDIntersection *inter = [TDIntersection intersection];
         [inter add:[TDWord word]];
         [inter add:opts];
@@ -1007,7 +1007,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 // literal              = QuotedString;
-- (TDParser *)literalParser {
+- (PKParser *)literalParser {
     if (!literalParser) {
         self.literalParser = [TDQuotedString quotedString];
         [literalParser setAssembler:self selector:@selector(workOnLiteral:)];
@@ -1017,7 +1017,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 // variable             = LowercaseWord;
-- (TDParser *)variableParser {
+- (PKParser *)variableParser {
     if (!variableParser) {
         self.variableParser = [TDLowercaseWord word];
         variableParser.name = @"variable";
@@ -1028,7 +1028,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 // constant             = UppercaseWord;
-- (TDParser *)constantParser {
+- (PKParser *)constantParser {
     if (!constantParser) {
         self.constantParser = [TDUppercaseWord word];
         constantParser.name = @"constant";
@@ -1038,7 +1038,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 }
 
 
-- (TDParser *)whitespaceParser {
+- (PKParser *)whitespaceParser {
     return [[TDWhitespace whitespace] discard];
 }
 
@@ -1148,10 +1148,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnExclusion:(PKAssembly *)a {
-    TDParser *predicate = [a pop];
-    TDParser *sub = [a pop];
-    NSAssert([predicate isKindOfClass:[TDParser class]], @"");
-    NSAssert([sub isKindOfClass:[TDParser class]], @"");
+    PKParser *predicate = [a pop];
+    PKParser *sub = [a pop];
+    NSAssert([predicate isKindOfClass:[PKParser class]], @"");
+    NSAssert([sub isKindOfClass:[PKParser class]], @"");
     
     TDExclusion *ex = [TDExclusion exclusion];
     [ex add:sub];
@@ -1162,10 +1162,10 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 
 - (void)workOnIntersection:(PKAssembly *)a {
-    TDParser *predicate = [a pop];
-    TDParser *sub = [a pop];
-    NSAssert([predicate isKindOfClass:[TDParser class]], @"");
-    NSAssert([sub isKindOfClass:[TDParser class]], @"");
+    PKParser *predicate = [a pop];
+    PKParser *sub = [a pop];
+    NSAssert([predicate isKindOfClass:[PKParser class]], @"");
+    NSAssert([sub isKindOfClass:[PKParser class]], @"");
     
     TDIntersection *inter = [TDIntersection intersection];
     [inter add:sub];
@@ -1251,13 +1251,13 @@ void TDReleaseSubparserTree(TDParser *p) {
 - (void)workOnVariable:(PKAssembly *)a {
     TDToken *tok = [a pop];
     NSString *parserName = tok.stringValue;
-    TDParser *p = nil;
+    PKParser *p = nil;
     if (isGatheringClasses) {
         // lookup the actual possible parser. 
         // if its not there, or still a token array, just spoof it with a sequence
 		NSMutableDictionary *d = a.target;
         p = [d objectForKey:parserName];
-        if (![p isKindOfClass:[TDParser parser]]) {
+        if (![p isKindOfClass:[PKParser parser]]) {
             p = [TDSequence sequence];
         }
     } else {
@@ -1361,7 +1361,7 @@ void TDReleaseSubparserTree(TDParser *p) {
 
 - (void)workOnPhraseCardinality:(PKAssembly *)a {
     NSRange r = [[a pop] rangeValue];
-    TDParser *p = [a pop];
+    PKParser *p = [a pop];
     TDSequence *s = [TDSequence sequence];
     
     NSInteger start = r.location;
@@ -1414,7 +1414,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     NSMutableArray *parsers = [NSMutableArray array];
     while (![a isStackEmpty]) {
         id obj = [a pop];
-        if ([obj isKindOfClass:[TDParser class]]) {
+        if ([obj isKindOfClass:[PKParser class]]) {
             [parsers addObject:obj];
         } else {
             [a push:obj];
@@ -1424,7 +1424,7 @@ void TDReleaseSubparserTree(TDParser *p) {
     
     if (parsers.count > 1) {
         TDSequence *seq = [TDSequence sequence];
-        for (TDParser *p in [parsers reverseObjectEnumerator]) {
+        for (PKParser *p in [parsers reverseObjectEnumerator]) {
             [seq add:p];
         }
         

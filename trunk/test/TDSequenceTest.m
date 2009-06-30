@@ -8,7 +8,7 @@
 
 #import "TDSequenceTest.h"
 
-@interface TDParser ()
+@interface PKParser ()
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 

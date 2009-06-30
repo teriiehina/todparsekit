@@ -8,13 +8,13 @@
 
 #import "TDJavaScriptParser.h"
 
-@interface TDParser ()
+@interface PKParser ()
 - (void)setTokenizer:(TDTokenizer *)t;
 @end
 
 @interface TDJavaScriptParser ()
-- (TDAlternation *)zeroOrOne:(TDParser *)p;
-- (TDSequence *)oneOrMore:(TDParser *)p;
+- (TDAlternation *)zeroOrOne:(PKParser *)p;
+- (TDSequence *)oneOrMore:(PKParser *)p;
 @end
 
 @implementation TDJavaScriptParser
@@ -246,7 +246,7 @@
 }
 
 
-- (TDAlternation *)zeroOrOne:(TDParser *)p {
+- (TDAlternation *)zeroOrOne:(PKParser *)p {
     TDAlternation *a = [TDAlternation alternation];
     [a add:[TDEmpty empty]];
     [a add:p];
@@ -254,7 +254,7 @@
 }
 
 
-- (TDSequence *)oneOrMore:(TDParser *)p {
+- (TDSequence *)oneOrMore:(PKParser *)p {
     TDSequence *s = [TDSequence sequence];
     [s add:p];
     [s add:[TDRepetition repetitionWithSubparser:p]];
@@ -1560,7 +1560,7 @@
 
 
 //  identifier          = Word;
-- (TDParser *)identifierParser {
+- (PKParser *)identifierParser {
     if (!identifierParser) {
         self.identifierParser = [TDWord word];
         identifierParser.name = @"identifier";
@@ -1569,7 +1569,7 @@
 }
 
 
-- (TDParser *)stringParser {
+- (PKParser *)stringParser {
     if (!stringParser) {
         self.stringParser = [TDQuotedString quotedString];
         stringParser.name = @"string";
@@ -1578,7 +1578,7 @@
 }
 
 
-- (TDParser *)numberParser {
+- (PKParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
         numberParser.name = @"number";
@@ -1590,7 +1590,7 @@
 #pragma mark -
 #pragma mark keywords
 
-- (TDParser *)ifParser {
+- (PKParser *)ifParser {
     if (!ifParser) {
         self.ifParser = [TDLiteral literalWithString:@"if"];
         ifParser.name = @"if";
@@ -1599,7 +1599,7 @@
 }
 
 
-- (TDParser *)elseParser {
+- (PKParser *)elseParser {
     if (!elseParser) {
         self.elseParser = [TDLiteral literalWithString:@"else"];
         elseParser.name = @"else";
@@ -1608,7 +1608,7 @@
 }
 
 
-- (TDParser *)whileParser {
+- (PKParser *)whileParser {
     if (!whileParser) {
         self.whileParser = [TDLiteral literalWithString:@"while"];
         whileParser.name = @"while";
@@ -1617,7 +1617,7 @@
 }
 
 
-- (TDParser *)forParser {
+- (PKParser *)forParser {
     if (!forParser) {
         self.forParser = [TDLiteral literalWithString:@"for"];
         forParser.name = @"for";
@@ -1626,7 +1626,7 @@
 }
 
 
-- (TDParser *)inParser {
+- (PKParser *)inParser {
     if (!inParser) {
         self.inParser = [TDLiteral literalWithString:@"in"];
         inParser.name = @"in";
@@ -1635,7 +1635,7 @@
 }
 
 
-- (TDParser *)breakParser {
+- (PKParser *)breakParser {
     if (!breakParser) {
         self.breakParser = [TDLiteral literalWithString:@"break"];
         breakParser.name = @"break";
@@ -1644,7 +1644,7 @@
 }
 
 
-- (TDParser *)continueParser {
+- (PKParser *)continueParser {
     if (!continueParser) {
         self.continueParser = [TDLiteral literalWithString:@"continue"];
         continueParser.name = @"continue";
@@ -1653,7 +1653,7 @@
 }
 
 
-- (TDParser *)withParser {
+- (PKParser *)withParser {
     if (!withParser) {
         self.withParser = [TDLiteral literalWithString:@"with"];
         withParser.name = @"with";
@@ -1662,7 +1662,7 @@
 }
 
 
-- (TDParser *)returnParser {
+- (PKParser *)returnParser {
     if (!returnParser) {
         self.returnParser = [TDLiteral literalWithString:@"return"];
         returnParser.name = @"return";
@@ -1671,7 +1671,7 @@
 }
 
 
-- (TDParser *)varParser {
+- (PKParser *)varParser {
     if (!varParser) {
         self.varParser = [TDLiteral literalWithString:@"var"];
         varParser.name = @"var";
@@ -1680,7 +1680,7 @@
 }
 
 
-- (TDParser *)deleteParser {
+- (PKParser *)deleteParser {
     if (!deleteParser) {
         self.deleteParser = [TDLiteral literalWithString:@"delete"];
         deleteParser.name = @"delete";
@@ -1689,7 +1689,7 @@
 }
 
 
-- (TDParser *)newParser {
+- (PKParser *)newParser {
     if (!newParser) {
         self.newParser = [TDLiteral literalWithString:@"new"];
         newParser.name = @"new";
@@ -1698,7 +1698,7 @@
 }
 
 
-- (TDParser *)thisParser {
+- (PKParser *)thisParser {
     if (!thisParser) {
         self.thisParser = [TDLiteral literalWithString:@"this"];
         thisParser.name = @"this";
@@ -1707,7 +1707,7 @@
 }
 
 
-- (TDParser *)falseParser {
+- (PKParser *)falseParser {
     if (!falseParser) {
         self.falseParser = [TDLiteral literalWithString:@"false"];
         falseParser.name = @"false";
@@ -1716,7 +1716,7 @@
 }
 
 
-- (TDParser *)trueParser {
+- (PKParser *)trueParser {
     if (!trueParser) {
         self.trueParser = [TDLiteral literalWithString:@"true"];
         trueParser.name = @"true";
@@ -1725,7 +1725,7 @@
 }
 
 
-- (TDParser *)nullParser {
+- (PKParser *)nullParser {
     if (!nullParser) {
         self.nullParser = [TDLiteral literalWithString:@"null"];
         nullParser.name = @"null";
@@ -1734,7 +1734,7 @@
 }
 
 
-- (TDParser *)undefinedParser {
+- (PKParser *)undefinedParser {
     if (!undefinedParser) {
         self.undefinedParser = [TDLiteral literalWithString:@"undefined"];
         undefinedParser.name = @"undefined";
@@ -1743,7 +1743,7 @@
 }
 
 
-- (TDParser *)voidParser {
+- (PKParser *)voidParser {
     if (!voidParser) {
         self.voidParser = [TDLiteral literalWithString:@"void"];
         voidParser.name = @"void";
@@ -1752,7 +1752,7 @@
 }
 
 
-- (TDParser *)typeofParser {
+- (PKParser *)typeofParser {
     if (!typeofParser) {
         self.typeofParser = [TDLiteral literalWithString:@"typeof"];
         typeofParser.name = @"typeof";
@@ -1761,7 +1761,7 @@
 }
 
 
-- (TDParser *)instanceofParser {
+- (PKParser *)instanceofParser {
     if (!instanceofParser) {
         self.instanceofParser = [TDLiteral literalWithString:@"instanceof"];
         instanceofParser.name = @"instanceof";
@@ -1770,7 +1770,7 @@
 }
 
 
-- (TDParser *)functionParser {
+- (PKParser *)functionParser {
     if (!functionParser) {
         self.functionParser = [TDLiteral literalWithString:@"function"];
         functionParser.name = @"function";
@@ -1782,7 +1782,7 @@
 #pragma mark -
 #pragma mark single-char symbols
 
-- (TDParser *)orParser {
+- (PKParser *)orParser {
     if (!orParser) {
         self.orParser = [TDSymbol symbolWithString:@"||"];
         orParser.name = @"or";
@@ -1791,7 +1791,7 @@
 }
 
 
-- (TDParser *)andParser {
+- (PKParser *)andParser {
     if (!andParser) {
         self.andParser = [TDSymbol symbolWithString:@"&&"];
         andParser.name = @"and";
@@ -1800,7 +1800,7 @@
 }
 
 
-- (TDParser *)neParser {
+- (PKParser *)neParser {
     if (!neParser) {
         self.neParser = [TDSymbol symbolWithString:@"!="];
         neParser.name = @"ne";
@@ -1809,7 +1809,7 @@
 }
 
 
-- (TDParser *)isNotParser {
+- (PKParser *)isNotParser {
     if (!isNotParser) {
         self.isNotParser = [TDSymbol symbolWithString:@"!=="];
         isNotParser.name = @"isNot";
@@ -1818,7 +1818,7 @@
 }
 
 
-- (TDParser *)eqParser {
+- (PKParser *)eqParser {
     if (!eqParser) {
         self.eqParser = [TDSymbol symbolWithString:@"=="];
         eqParser.name = @"eq";
@@ -1827,7 +1827,7 @@
 }
 
 
-- (TDParser *)isParser {
+- (PKParser *)isParser {
     if (!isParser) {
         self.isParser = [TDSymbol symbolWithString:@"==="];
         isParser.name = @"is";
@@ -1836,7 +1836,7 @@
 }
 
 
-- (TDParser *)leParser {
+- (PKParser *)leParser {
     if (!leParser) {
         self.leParser = [TDSymbol symbolWithString:@"<="];
         leParser.name = @"le";
@@ -1845,7 +1845,7 @@
 }
 
 
-- (TDParser *)geParser {
+- (PKParser *)geParser {
     if (!geParser) {
         self.geParser = [TDSymbol symbolWithString:@">="];
         geParser.name = @"ge";
@@ -1854,7 +1854,7 @@
 }
 
 
-- (TDParser *)plusPlusParser {
+- (PKParser *)plusPlusParser {
     if (!plusPlusParser) {
         self.plusPlusParser = [TDSymbol symbolWithString:@"++"];
         plusPlusParser.name = @"plusPlus";
@@ -1863,7 +1863,7 @@
 }
 
 
-- (TDParser *)minusMinusParser {
+- (PKParser *)minusMinusParser {
     if (!minusMinusParser) {
         self.minusMinusParser = [TDSymbol symbolWithString:@"--"];
         minusMinusParser.name = @"minusMinus";
@@ -1872,7 +1872,7 @@
 }
 
 
-- (TDParser *)plusEqParser {
+- (PKParser *)plusEqParser {
     if (!plusEqParser) {
         self.plusEqParser = [TDSymbol symbolWithString:@"+="];
         plusEqParser.name = @"plusEq";
@@ -1881,7 +1881,7 @@
 }
 
 
-- (TDParser *)minusEqParser {
+- (PKParser *)minusEqParser {
     if (!minusEqParser) {
         self.minusEqParser = [TDSymbol symbolWithString:@"-="];
         minusEqParser.name = @"minusEq";
@@ -1890,7 +1890,7 @@
 }
 
 
-- (TDParser *)timesEqParser {
+- (PKParser *)timesEqParser {
     if (!timesEqParser) {
         self.timesEqParser = [TDSymbol symbolWithString:@"*="];
         timesEqParser.name = @"timesEq";
@@ -1899,7 +1899,7 @@
 }
 
 
-- (TDParser *)divEqParser {
+- (PKParser *)divEqParser {
     if (!divEqParser) {
         self.divEqParser = [TDSymbol symbolWithString:@"/="];
         divEqParser.name = @"divEq";
@@ -1908,7 +1908,7 @@
 }
 
 
-- (TDParser *)modEqParser {
+- (PKParser *)modEqParser {
     if (!modEqParser) {
         self.modEqParser = [TDSymbol symbolWithString:@"%="];
         modEqParser.name = @"modEq";
@@ -1917,7 +1917,7 @@
 }
 
 
-- (TDParser *)shiftLeftParser {
+- (PKParser *)shiftLeftParser {
     if (!shiftLeftParser) {
         self.shiftLeftParser = [TDSymbol symbolWithString:@"<<"];
         shiftLeftParser.name = @"shiftLeft";
@@ -1926,7 +1926,7 @@
 }
 
 
-- (TDParser *)shiftRightParser {
+- (PKParser *)shiftRightParser {
     if (!shiftRightParser) {
         self.shiftRightParser = [TDSymbol symbolWithString:@">>"];
         shiftRightParser.name = @"shiftRight";
@@ -1935,7 +1935,7 @@
 }
 
 
-- (TDParser *)shiftRightExtParser {
+- (PKParser *)shiftRightExtParser {
     if (!shiftRightExtParser) {
         self.shiftRightExtParser = [TDSymbol symbolWithString:@">>>"];
         shiftRightExtParser.name = @"shiftRightExt";
@@ -1944,7 +1944,7 @@
 }
 
 
-- (TDParser *)shiftLeftEqParser {
+- (PKParser *)shiftLeftEqParser {
     if (!shiftLeftEqParser) {
         self.shiftLeftEqParser = [TDSymbol symbolWithString:@"<<="];
         shiftLeftEqParser.name = @"shiftLeftEq";
@@ -1953,7 +1953,7 @@
 }
 
 
-- (TDParser *)shiftRightEqParser {
+- (PKParser *)shiftRightEqParser {
     if (!shiftRightEqParser) {
         self.shiftRightEqParser = [TDSymbol symbolWithString:@">>="];
         shiftRightEqParser.name = @"shiftRightEq";
@@ -1962,7 +1962,7 @@
 }
 
 
-- (TDParser *)shiftRightExtEqParser {
+- (PKParser *)shiftRightExtEqParser {
     if (!shiftRightExtEqParser) {
         self.shiftRightExtEqParser = [TDSymbol symbolWithString:@">>>="];
         shiftRightExtEqParser.name = @"shiftRightExtEq";
@@ -1971,7 +1971,7 @@
 }
 
 
-- (TDParser *)andEqParser {
+- (PKParser *)andEqParser {
     if (!andEqParser) {
         self.andEqParser = [TDSymbol symbolWithString:@"&="];
         andEqParser.name = @"andEq";
@@ -1980,7 +1980,7 @@
 }
 
 
-- (TDParser *)xorEqParser {
+- (PKParser *)xorEqParser {
     if (!xorEqParser) {
         self.xorEqParser = [TDSymbol symbolWithString:@"^="];
         xorEqParser.name = @"xorEq";
@@ -1989,7 +1989,7 @@
 }
 
 
-- (TDParser *)orEqParser {
+- (PKParser *)orEqParser {
     if (!orEqParser) {
         self.orEqParser = [TDSymbol symbolWithString:@"|="];
         orEqParser.name = @"orEq";
@@ -2001,7 +2001,7 @@
 #pragma mark -
 #pragma mark single-char symbols
 
-- (TDParser *)openCurlyParser {
+- (PKParser *)openCurlyParser {
     if (!openCurlyParser) {
         self.openCurlyParser = [TDSymbol symbolWithString:@"{"];
         openCurlyParser.name = @"openCurly";
@@ -2010,7 +2010,7 @@
 }
 
 
-- (TDParser *)closeCurlyParser {
+- (PKParser *)closeCurlyParser {
     if (!closeCurlyParser) {
         self.closeCurlyParser = [TDSymbol symbolWithString:@"}"];
         closeCurlyParser.name = @"closeCurly";
@@ -2019,7 +2019,7 @@
 }
 
 
-- (TDParser *)openParenParser {
+- (PKParser *)openParenParser {
     if (!openParenParser) {
         self.openParenParser = [TDSymbol symbolWithString:@"("];
         openParenParser.name = @"openParen";
@@ -2028,7 +2028,7 @@
 }
 
 
-- (TDParser *)closeParenParser {
+- (PKParser *)closeParenParser {
     if (!closeParenParser) {
         self.closeParenParser = [TDSymbol symbolWithString:@")"];
         closeParenParser.name = @"closeParen";
@@ -2037,7 +2037,7 @@
 }
 
 
-- (TDParser *)openBracketParser {
+- (PKParser *)openBracketParser {
     if (!openBracketParser) {
         self.openBracketParser = [TDSymbol symbolWithString:@"["];
         openBracketParser.name = @"openBracket";
@@ -2046,7 +2046,7 @@
 }
 
 
-- (TDParser *)closeBracketParser {
+- (PKParser *)closeBracketParser {
     if (!closeBracketParser) {
         self.closeBracketParser = [TDSymbol symbolWithString:@"]"];
         closeBracketParser.name = @"closeBracket";
@@ -2055,7 +2055,7 @@
 }
 
 
-- (TDParser *)commaParser {
+- (PKParser *)commaParser {
     if (!commaParser) {
         self.commaParser = [TDSymbol symbolWithString:@","];
         commaParser.name = @"comma";
@@ -2064,7 +2064,7 @@
 }
 
 
-- (TDParser *)dotParser {
+- (PKParser *)dotParser {
     if (!dotParser) {
         self.dotParser = [TDSymbol symbolWithString:@"."];
         dotParser.name = @"dot";
@@ -2073,7 +2073,7 @@
 }
 
 
-- (TDParser *)semiOptParser {
+- (PKParser *)semiOptParser {
     if (!semiOptParser) {
         self.semiOptParser = [self zeroOrOne:self.semiParser];
         semiOptParser.name = @"semiOpt";
@@ -2082,7 +2082,7 @@
 }
 
 
-- (TDParser *)semiParser {
+- (PKParser *)semiParser {
     if (!semiParser) {
         self.semiParser = [TDSymbol symbolWithString:@";"];
         semiParser.name = @"semi";
@@ -2091,7 +2091,7 @@
 }
 
 
-- (TDParser *)colonParser {
+- (PKParser *)colonParser {
     if (!colonParser) {
         self.colonParser = [TDSymbol symbolWithString:@":"];
         colonParser.name = @"colon";
@@ -2100,7 +2100,7 @@
 }
 
 
-- (TDParser *)equalsParser {
+- (PKParser *)equalsParser {
     if (!equalsParser) {
         self.equalsParser = [TDSymbol symbolWithString:@"="];
         equalsParser.name = @"equals";
@@ -2109,7 +2109,7 @@
 }
 
 
-- (TDParser *)notParser {
+- (PKParser *)notParser {
     if (!notParser) {
         self.notParser = [TDSymbol symbolWithString:@"!"];
         notParser.name = @"not";
@@ -2118,7 +2118,7 @@
 }
 
 
-- (TDParser *)ltParser {
+- (PKParser *)ltParser {
     if (!ltParser) {
         self.ltParser = [TDSymbol symbolWithString:@"<"];
         ltParser.name = @"lt";
@@ -2127,7 +2127,7 @@
 }
 
 
-- (TDParser *)gtParser {
+- (PKParser *)gtParser {
     if (!gtParser) {
         self.gtParser = [TDSymbol symbolWithString:@">"];
         gtParser.name = @"gt";
@@ -2136,7 +2136,7 @@
 }
 
 
-- (TDParser *)ampParser {
+- (PKParser *)ampParser {
     if (!ampParser) {
         self.ampParser = [TDSymbol symbolWithString:@"&"];
         ampParser.name = @"amp";
@@ -2145,7 +2145,7 @@
 }
 
 
-- (TDParser *)pipeParser {
+- (PKParser *)pipeParser {
     if (!pipeParser) {
         self.pipeParser = [TDSymbol symbolWithString:@"|"];
         pipeParser.name = @"pipe";
@@ -2154,7 +2154,7 @@
 }
 
 
-- (TDParser *)caretParser {
+- (PKParser *)caretParser {
     if (!caretParser) {
         self.caretParser = [TDSymbol symbolWithString:@"^"];
         caretParser.name = @"caret";
@@ -2163,7 +2163,7 @@
 }
 
 
-- (TDParser *)tildeParser {
+- (PKParser *)tildeParser {
     if (!tildeParser) {
         self.tildeParser = [TDSymbol symbolWithString:@"~"];
         tildeParser.name = @"tilde";
@@ -2172,7 +2172,7 @@
 }
 
 
-- (TDParser *)questionParser {
+- (PKParser *)questionParser {
     if (!questionParser) {
         self.questionParser = [TDSymbol symbolWithString:@"?"];
         questionParser.name = @"question";
@@ -2181,7 +2181,7 @@
 }
 
 
-- (TDParser *)plusParser {
+- (PKParser *)plusParser {
     if (!plusParser) {
         self.plusParser = [TDSymbol symbolWithString:@"+"];
         plusParser.name = @"plus";
@@ -2190,7 +2190,7 @@
 }
 
 
-- (TDParser *)minusParser {
+- (PKParser *)minusParser {
     if (!minusParser) {
         self.minusParser = [TDSymbol symbolWithString:@"-"];
         minusParser.name = @"minus";
@@ -2199,7 +2199,7 @@
 }
 
 
-- (TDParser *)timesParser {
+- (PKParser *)timesParser {
     if (!timesParser) {
         self.timesParser = [TDSymbol symbolWithString:@"x"];
         timesParser.name = @"times";
@@ -2208,7 +2208,7 @@
 }
 
 
-- (TDParser *)divParser {
+- (PKParser *)divParser {
     if (!divParser) {
         self.divParser = [TDSymbol symbolWithString:@"/"];
         divParser.name = @"div";
@@ -2217,7 +2217,7 @@
 }
 
 
-- (TDParser *)modParser {
+- (PKParser *)modParser {
     if (!modParser) {
         self.modParser = [TDSymbol symbolWithString:@"%"];
         modParser.name = @"mod";

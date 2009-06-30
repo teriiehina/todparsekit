@@ -210,12 +210,12 @@ static NSString *kTDPlistNullString = @"<null>";
         self.stringParser = [TDAlternation alternation];
         
         // we have to remove the quotes from QuotedString string values. so set an assembler method to do that
-        TDParser *quotedString = [TDQuotedString quotedString];
+        PKParser *quotedString = [TDQuotedString quotedString];
         [quotedString setAssembler:self selector:@selector(workOnQuotedString:)];
         [stringParser add:quotedString];
 
         // handle non-quoted string values (Words) in a separate assembler method for simplicity.
-        TDParser *word = [TDWord word];
+        PKParser *word = [TDWord word];
         [word setAssembler:self selector:@selector(workOnWord:)];
         [stringParser add:word];
     }
@@ -223,7 +223,7 @@ static NSString *kTDPlistNullString = @"<null>";
 }
 
 
-- (TDParser *)numParser {
+- (PKParser *)numParser {
     if (!numParser) {
         self.numParser = [TDNum num];
         [numParser setAssembler:self selector:@selector(workOnNum:)];
@@ -233,7 +233,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 // null = '<null>'
-- (TDParser *)nullParser {
+- (PKParser *)nullParser {
     if (!nullParser) {
         // thus must be a TDSymbol (not a TDLiteral) to match the resulting '<null>' symbol tok
         self.nullParser = [TDSymbol symbolWithString:kTDPlistNullString];

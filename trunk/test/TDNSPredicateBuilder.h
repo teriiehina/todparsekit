@@ -30,15 +30,15 @@
     TDCollectionParser *relationParser;
     TDCollectionParser *valueParser;
     TDCollectionParser *boolParser;
-    TDParser *trueParser;
-    TDParser *falseParser;
+    PKParser *trueParser;
+    PKParser *falseParser;
     TDCollectionParser *stringParser;
-    TDParser *quotedStringParser;
+    PKParser *quotedStringParser;
     TDCollectionParser *unquotedStringParser;
     TDCollectionParser *reservedWordParser;
     TDCollectionParser *nonReservedWordParser;
     TDPattern *reservedWordPattern;
-    TDParser *numberParser;
+    PKParser *numberParser;
 
 }
 - (NSPredicate *)buildFrom:(NSString *)s;
@@ -64,13 +64,13 @@
 @property (nonatomic, retain) TDCollectionParser *relationParser;
 @property (nonatomic, retain) TDCollectionParser *valueParser;
 @property (nonatomic, retain) TDCollectionParser *boolParser;
-@property (nonatomic, retain) TDParser *trueParser;
-@property (nonatomic, retain) TDParser *falseParser;
+@property (nonatomic, retain) PKParser *trueParser;
+@property (nonatomic, retain) PKParser *falseParser;
 @property (nonatomic, retain) TDCollectionParser *stringParser;
-@property (nonatomic, retain) TDParser *quotedStringParser;
+@property (nonatomic, retain) PKParser *quotedStringParser;
 @property (nonatomic, retain) TDCollectionParser *unquotedStringParser;
 @property (nonatomic, retain) TDCollectionParser *reservedWordParser;
 @property (nonatomic, retain) TDCollectionParser *nonReservedWordParser;
 @property (nonatomic, retain) TDPattern *reservedWordPattern;
-@property (nonatomic, retain) TDParser *numberParser;
+@property (nonatomic, retain) PKParser *numberParser;
 @end

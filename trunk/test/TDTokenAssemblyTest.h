@@ -11,7 +11,7 @@
 @interface TDTokenAssemblyTest : SenTestCase {
     PKAssembly *a;
     NSString *s;
-    TDParser *p;
+    PKParser *p;
 }
 
 @end

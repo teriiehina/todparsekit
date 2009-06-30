@@ -10,7 +10,7 @@
 
 @interface XPathParserGrammarTest : SenTestCase {
     NSString *s;
-    TDParser *p;
+    PKParser *p;
     TDTokenizer *t;
     PKAssembly *a;
     PKAssembly *res;

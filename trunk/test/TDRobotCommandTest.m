@@ -58,12 +58,12 @@
 //    scanCommand = "scan" location
 //    location = Word
 
-- (TDParser *)location {
+- (PKParser *)location {
     return [TDWord word];
 }
 
 
-- (TDParser *)pickCommand {
+- (PKParser *)pickCommand {
     TDSequence *s = [TDSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"pick"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
@@ -74,7 +74,7 @@
 }
 
 
-- (TDParser *)placeCommand {
+- (PKParser *)placeCommand {
     TDSequence *s = [TDSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"place"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
@@ -85,7 +85,7 @@
 }
 
 
-- (TDParser *)scanCommand {
+- (PKParser *)scanCommand {
     TDSequence *s = [TDSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
     [s add:[self location]];
@@ -94,7 +94,7 @@
 }
 
 
-- (TDParser *)command {
+- (PKParser *)command {
     TDAlternation *a = [TDAlternation alternation];
     [a add:[self pickCommand]];
     [a add:[self placeCommand]];
@@ -107,7 +107,7 @@
     NSString *s1 = @"pick carrier from LINE_IN";
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s1];
-    TDParser *p = [self command];
+    PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
 
     TDNotNil(result);
@@ -123,7 +123,7 @@
     NSString *s2 = @"place carrier at LINE_OUT";
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s2];
-    TDParser *p = [self command];
+    PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);
@@ -139,7 +139,7 @@
     NSString *s3 = @"scan DB101_OUT";
     
     TDTokenAssembly *a = [TDTokenAssembly assemblyWithString:s3];
-    TDParser *p = [self command];
+    PKParser *p = [self command];
     PKAssembly *result = [p bestMatchFor:a];
     
     TDNotNil(result);

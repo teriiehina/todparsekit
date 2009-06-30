@@ -287,7 +287,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     if (!atomicValueParser) {
         self.atomicValueParser = [TDAlternation alternation];
         
-        TDParser *p = [TDWord word];
+        PKParser *p = [TDWord word];
         [p setAssembler:self selector:@selector(workOnWord:)];
         [atomicValueParser add:p];
         

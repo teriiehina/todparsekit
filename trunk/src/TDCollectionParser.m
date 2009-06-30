@@ -28,28 +28,28 @@
 }
 
 
-- (void)add:(TDParser *)p {
+- (void)add:(PKParser *)p {
     if (!p) {
         
     }
     //NSParameterAssert(p);
-    //NSParameterAssert([p isKindOfClass:[TDParser class]]);
+    //NSParameterAssert([p isKindOfClass:[PKParser class]]);
     [subparsers addObject:p];
 }
 
 
-- (TDParser *)parserNamed:(NSString *)s {
+- (PKParser *)parserNamed:(NSString *)s {
     if ([name isEqualToString:s]) {
         return self;
     } else {
         // do bredth-first search
-        for (TDParser *p in subparsers) {
+        for (PKParser *p in subparsers) {
             if ([p.name isEqualToString:s]) {
                 return p;
             }
         }
-        for (TDParser *p in subparsers) {
-            TDParser *sub = [p parserNamed:s];
+        for (PKParser *p in subparsers) {
+            PKParser *sub = [p parserNamed:s];
             if (sub) {
                 return sub;
             }

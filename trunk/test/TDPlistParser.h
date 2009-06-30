@@ -16,8 +16,8 @@
     TDCollectionParser *keyParser;
     TDCollectionParser *valueParser;
     TDCollectionParser *stringParser;
-    TDParser *numParser;
-    TDParser *nullParser;
+    PKParser *numParser;
+    PKParser *nullParser;
     TDToken *curly;
     TDToken *paren;
 }
@@ -31,6 +31,6 @@
 @property (nonatomic, retain) TDCollectionParser *keyParser;
 @property (nonatomic, retain) TDCollectionParser *valueParser;
 @property (nonatomic, retain) TDCollectionParser *stringParser;
-@property (nonatomic, retain) TDParser *numParser;
-@property (nonatomic, retain) TDParser *nullParser;
+@property (nonatomic, retain) PKParser *numParser;
+@property (nonatomic, retain) PKParser *nullParser;
 @end

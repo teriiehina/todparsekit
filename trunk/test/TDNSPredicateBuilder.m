@@ -314,7 +314,7 @@
 }
 
 
-- (TDParser *)trueParser {
+- (PKParser *)trueParser {
     if (!trueParser) {
         self.trueParser = [[TDCaseInsensitiveLiteral literalWithString:@"true"] discard];
         trueParser.name = @"true";
@@ -324,7 +324,7 @@
 }
 
 
-- (TDParser *)falseParser {
+- (PKParser *)falseParser {
     if (!falseParser) {
         self.falseParser = [[TDCaseInsensitiveLiteral literalWithString:@"false"] discard];
         falseParser.name = @"false";
@@ -347,7 +347,7 @@
 
 
 // quotedString         = QuotedString
-- (TDParser *)quotedStringParser {
+- (PKParser *)quotedStringParser {
     if (!quotedStringParser) {
         self.quotedStringParser = [TDQuotedString quotedString];
         quotedStringParser.name = @"quotedString";
@@ -405,7 +405,7 @@
 }
 
 
-- (TDParser *)numberParser {
+- (PKParser *)numberParser {
     if (!numberParser) {
         self.numberParser = [TDNum num];
         numberParser.name = @"number";

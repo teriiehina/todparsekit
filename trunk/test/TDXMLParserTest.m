@@ -20,7 +20,7 @@
 
 
 - (void)testSTag {
-    TDParser *sTag = [p parserNamed:@"sTag"];
+    PKParser *sTag = [p parserNamed:@"sTag"];
     
     t.string = @"<foo>";
     res = [sTag bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:t]];
@@ -95,7 +95,7 @@
 
 - (void)testSmallSTagGrammar {
     g = @"@delimitState='<';@reportsWhitespaceTokens=YES;@start=sTag;sTag='<' name (S attribute)* S? '>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
-    TDParser *sTag = [factory parserFromGrammar:g assembler:nil];
+    PKParser *sTag = [factory parserFromGrammar:g assembler:nil];
     t = sTag.tokenizer;
 
     t.string = @"<foo>";
@@ -129,7 +129,7 @@
         @"eTag='</' name S? '>';"
         @"name=/[^-:\\.]\\w+/;";
     
-    TDParser *eTag = [factory parserFromGrammar:g assembler:nil];
+    PKParser *eTag = [factory parserFromGrammar:g assembler:nil];
     t = eTag.tokenizer;
     
     t.string = @"</foo>";
@@ -174,7 +174,7 @@
 
 - (void)testSmallEmptyElemTagGrammar {
     g = @"@delimitState='<';@symbols='/>';@reportsWhitespaceTokens=YES;@start=emptyElemTag;emptyElemTag='<' name (S attribute)* S? '/>';name=/[^-:\\.]\\w+/;attribute=name eq attValue;eq=S? '=' S?;attValue=QuotedString;";
-    TDParser *emptyElemTag = [factory parserFromGrammar:g assembler:nil];
+    PKParser *emptyElemTag = [factory parserFromGrammar:g assembler:nil];
     t = emptyElemTag.tokenizer;
     
     t.string = @"<foo/>";
@@ -202,7 +202,7 @@
         @"@start = charData+;"
         @"charData = /[^<\\&]+/ - (/[^\\]]*\\]\\]>[^<\\&]*/);";
 
-    TDParser *charData = [factory parserFromGrammar:g assembler:nil];
+    PKParser *charData = [factory parserFromGrammar:g assembler:nil];
     t = charData.tokenizer;
 
     t.string = @" ";
@@ -242,7 +242,7 @@
         @"cdSect = DelimitedString('<![CDATA[', ']]>');"
     ;
     
-    TDParser *element = [factory parserFromGrammar:g assembler:nil];
+    PKParser *element = [factory parserFromGrammar:g assembler:nil];
     t = element.tokenizer;
     
     t.string = @"<foo/>";
@@ -362,7 +362,7 @@
         @"@wordChars = ':' '.' '-' '_';"
         @"pi = '<?' piTarget (Any - /?>/)* '?>';"
         @"@start = pi;";
-    TDParser *pi = [[TDParserFactory factory] parserFromGrammar:gram assembler:nil];
+    PKParser *pi = [[TDParserFactory factory] parserFromGrammar:gram assembler:nil];
     pi.tokenizer.string = @"<?foo bar='baz'?>";
     res = [pi bestMatchFor:[TDTokenAssembly assemblyWithTokenizer:pi.tokenizer]];
     TDEqualObjects(@"[<?, foo,  , bar, =, 'baz', ?>]<?/foo/ /bar/=/'baz'/?>^", [res description]);    

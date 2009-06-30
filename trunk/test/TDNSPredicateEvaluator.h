@@ -17,12 +17,12 @@
 
 @interface TDNSPredicateEvaluator : NSObject {
     id <TDKeyPathResolver>resolver;
-    TDParser *parser;
+    PKParser *parser;
     TDToken *openCurly;
 }
 - (id)initWithKeyPathResolver:(id <TDKeyPathResolver>)r;
 
 - (BOOL)evaluate:(NSString *)s;
 
-@property (nonatomic, retain) TDParser *parser;
+@property (nonatomic, retain) PKParser *parser;
 @end

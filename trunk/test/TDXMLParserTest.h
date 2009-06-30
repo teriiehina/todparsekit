@@ -15,7 +15,7 @@
     TDParserFactory *factory;
     TDTokenAssembly *a;
     PKAssembly *res;
-    TDParser *p;
+    PKParser *p;
     TDTokenizer *t;
 }
 

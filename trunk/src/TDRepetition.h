@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDParser.h>
+#import <ParseKit/PKParser.h>
 
 /*!
     @class      TDRepetition 
     @brief      A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
 */
-@interface TDRepetition : TDParser {
-    TDParser *subparser;
+@interface TDRepetition : PKParser {
+    PKParser *subparser;
     id preassembler;
     SEL preassemblerSelector;
 }
@@ -24,7 +24,7 @@
     @param      p the subparser against wich to repeatedly match
     @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
 */
-+ (id)repetitionWithSubparser:(TDParser *)p;
++ (id)repetitionWithSubparser:(PKParser *)p;
 
 /*!
     @brief      Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
@@ -32,7 +32,7 @@
     @param      p the subparser against wich to repeatedly match
     @result     an initialized <tt>TDRepetition</tt> parser.
 */
-- (id)initWithSubparser:(TDParser *)p;
+- (id)initWithSubparser:(PKParser *)p;
 
 /*!
     @brief      Sets the object that will work on every assembly before matching against it.
@@ -46,7 +46,7 @@
     @property   subparser
     @brief      this parser's subparser against which it repeatedly matches
 */
-@property (nonatomic, readonly, retain) TDParser *subparser;
+@property (nonatomic, readonly, retain) PKParser *subparser;
 
 /*!
     @property   preassembler

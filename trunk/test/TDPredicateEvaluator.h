@@ -42,10 +42,10 @@
     TDCollectionParser *matchesPredicateParser;
     TDCollectionParser *valueParser;
     TDCollectionParser *boolParser;
-    TDParser *trueParser;
-    TDParser *falseParser;
-    TDParser *stringParser;
-    TDParser *numberParser;
+    PKParser *trueParser;
+    PKParser *falseParser;
+    PKParser *stringParser;
+    PKParser *numberParser;
 }
 - (id)initWithDelegate:(id <TDPredicateEvaluatorDelegate>)d;
 - (BOOL)evaluate:(NSString *)s;
@@ -76,8 +76,8 @@
 @property (nonatomic, retain) TDCollectionParser *matchesPredicateParser;
 @property (nonatomic, retain) TDCollectionParser *valueParser;
 @property (nonatomic, retain) TDCollectionParser *boolParser;
-@property (nonatomic, retain) TDParser *trueParser;
-@property (nonatomic, retain) TDParser *falseParser;
-@property (nonatomic, retain) TDParser *stringParser;
-@property (nonatomic, retain) TDParser *numberParser;
+@property (nonatomic, retain) PKParser *trueParser;
+@property (nonatomic, retain) PKParser *falseParser;
+@property (nonatomic, retain) PKParser *stringParser;
+@property (nonatomic, retain) PKParser *numberParser;
 @end

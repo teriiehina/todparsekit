@@ -17,7 +17,7 @@
 //    actualList = Word (',' Word)*
 
 
-- (TDParser *)listParser {
+- (PKParser *)listParser {
     TDTrack *commaWord = [TDTrack track];
     [commaWord add:[[TDSymbol symbolWithString:@","] discard]];
     [commaWord add:[TDWord word]];
@@ -41,7 +41,7 @@
 
 - (void)testTrack {
     
-    TDParser *list = [self listParser];
+    PKParser *list = [self listParser];
     
     NSArray *test = [NSArray arrayWithObjects:
                      @"()",

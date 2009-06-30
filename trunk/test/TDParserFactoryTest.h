@@ -17,7 +17,7 @@
 
     TDSequence *exprSeq;
     TDTokenizer *t;
-    TDParser *lp; // language parser
+    PKParser *lp; // language parser
 }
 
 @end
