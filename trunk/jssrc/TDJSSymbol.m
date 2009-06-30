@@ -1,6 +1,6 @@
 //
-//  TDJSSymbol.m
-//  TDParseKit
+//  PKJSSymbol.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSSymbol.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDSymbol.h>
+#import <ParseKit/PKSymbol.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -64,6 +64,6 @@ JSObjectRef TDSymbol_construct(JSContextRef ctx, JSObjectRef constructor, size_t
         s = TDJSValueGetNSString(ctx, argv[0], ex);
     }
     
-    TDSymbol *data = [[TDSymbol alloc] initWithString:s];
+    PKSymbol *data = [[PKSymbol alloc] initWithString:s];
     return TDSymbol_new(ctx, data);
 }

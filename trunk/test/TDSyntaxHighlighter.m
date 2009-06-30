@@ -1,5 +1,5 @@
 //
-//  TDSyntaxHighlighter.m
+//  PKSyntaxHighlighter.m
 //  HTTPClient
 //
 //  Created by Todd Ditchendorf on 12/26/08.

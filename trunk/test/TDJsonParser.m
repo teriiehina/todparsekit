@@ -1,6 +1,6 @@
 //
-//  TDJsonParser.m
-//  TDParseKit
+//  PKJsonParser.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/18/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -84,7 +84,7 @@
 
 - (PKParser *)stringParser {
     if (!stringParser) {
-        self.stringParser = [TDQuotedString quotedString];
+        self.stringParser = [PKQuotedString quotedString];
         if (shouldAssemble) {
             [stringParser setAssembler:self selector:@selector(workOnString:)];
         }
@@ -95,7 +95,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [TDNum num];
+        self.numberParser = [PKNum num];
         if (shouldAssemble) {
             [numberParser setAssembler:self selector:@selector(workOnNumber:)];
         }
@@ -106,7 +106,7 @@
 
 - (PKParser *)nullParser {
     if (!nullParser) {
-        self.nullParser = [[TDLiteral literalWithString:@"null"] discard];
+        self.nullParser = [[PKLiteral literalWithString:@"null"] discard];
         if (shouldAssemble) {
             [nullParser setAssembler:self selector:@selector(workOnNull:)];
         }
@@ -118,8 +118,8 @@
 - (PKCollectionParser *)booleanParser {
     if (!booleanParser) {
         self.booleanParser = [PKAlternation alternation];
-        [booleanParser add:[TDLiteral literalWithString:@"true"]];
-        [booleanParser add:[TDLiteral literalWithString:@"false"]];
+        [booleanParser add:[PKLiteral literalWithString:@"true"]];
+        [booleanParser add:[PKLiteral literalWithString:@"false"]];
         if (shouldAssemble) {
             [booleanParser setAssembler:self selector:@selector(workOnBoolean:)];
         }
@@ -144,9 +144,9 @@
         [content add:actualArray];
         
         self.arrayParser = [PKSequence sequence];
-        [arrayParser add:[TDSymbol symbolWithString:@"["]]; // serves as fence
+        [arrayParser add:[PKSymbol symbolWithString:@"["]]; // serves as fence
         [arrayParser add:content];
-        [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
+        [arrayParser add:[[PKSymbol symbolWithString:@"]"] discard]];
         
         if (shouldAssemble) {
             [arrayParser setAssembler:self selector:@selector(workOnArray:)];
@@ -174,9 +174,9 @@
         [content add:actualObject];
         
         self.objectParser = [PKSequence sequence];
-        [objectParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence
+        [objectParser add:[PKSymbol symbolWithString:@"{"]]; // serves as fence
         [objectParser add:content];
-        [objectParser add:[[TDSymbol symbolWithString:@"}"] discard]];
+        [objectParser add:[[PKSymbol symbolWithString:@"}"] discard]];
 
         if (shouldAssemble) {
             [objectParser setAssembler:self selector:@selector(workOnObject:)];
@@ -203,7 +203,7 @@
 - (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
         self.commaValueParser = [PKTrack sequence];
-        [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaValueParser add:[[PKSymbol symbolWithString:@","] discard]];
         [commaValueParser add:self.valueParser];
     }
     return commaValueParser;
@@ -213,8 +213,8 @@
 - (PKCollectionParser *)propertyParser {
     if (!propertyParser) {
         self.propertyParser = [PKSequence sequence];
-        [propertyParser add:[TDQuotedString quotedString]];
-        [propertyParser add:[[TDSymbol symbolWithString:@":"] discard]];
+        [propertyParser add:[PKQuotedString quotedString]];
+        [propertyParser add:[[PKSymbol symbolWithString:@":"] discard]];
         [propertyParser add:self.valueParser];
         if (shouldAssemble) {
             [propertyParser setAssembler:self selector:@selector(workOnProperty:)];
@@ -227,7 +227,7 @@
 - (PKCollectionParser *)commaPropertyParser {
     if (!commaPropertyParser) {
         self.commaPropertyParser = [PKTrack sequence];
-        [commaPropertyParser add:[[TDSymbol symbolWithString:@","] discard]];
+        [commaPropertyParser add:[[PKSymbol symbolWithString:@","] discard]];
         [commaPropertyParser add:self.propertyParser];
     }
     return commaPropertyParser;

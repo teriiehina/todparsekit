@@ -1,6 +1,6 @@
 //
-//  TDRobotCommandTest.m
-//  TDParseKit
+//  PKRobotCommandTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/14/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -65,9 +65,9 @@
 
 - (PKParser *)pickCommand {
     PKSequence *s = [PKSequence sequence];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"pick"] discard]];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"from"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"pick"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"from"] discard]];
     [s add:[self location]];
     [s setAssembler:self selector:@selector(workOnPickCommand:)];
     return s;
@@ -76,9 +76,9 @@
 
 - (PKParser *)placeCommand {
     PKSequence *s = [PKSequence sequence];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"place"] discard]];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"at"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"place"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"at"] discard]];
     [s add:[self location]];
     [s setAssembler:self selector:@selector(workOnPlaceCommand:)];
     return s;
@@ -87,7 +87,7 @@
 
 - (PKParser *)scanCommand {
     PKSequence *s = [PKSequence sequence];
-    [s add:[[TDCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
+    [s add:[[PKCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
     [s add:[self location]];
     [s setAssembler:self selector:@selector(workOnScanCommand:)];
     return s;

@@ -1,6 +1,6 @@
 //
-//  TDLiteralTest.m
-//  TDParseKit
+//  PKLiteralTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -19,7 +19,7 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     NSLog(@"a: %@", a);
     
-    p = [TDNum num];
+    p = [PKNum num];
     PKAssembly *result = [p completeMatchFor:a];
     
     // -[PKParser completeMatchFor:]
@@ -27,7 +27,7 @@
     // -[PKParser matchAndAssemble:]
     // -[PKTerminal allMatchesFor:]
     // -[PKTerminal matchOneAssembly:]
-    // -[TDLiteral qualifies:]
+    // -[PKLiteral qualifies:]
     // -[PKParser best:]
     
     NSLog(@"result: %@", result);
@@ -40,7 +40,7 @@
     s = @"1234";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [TDLiteral literalWithString:@"123"];
+    p = [PKLiteral literalWithString:@"123"];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
     TDEqualObjects(@"[]^1234", [a description]);
@@ -51,7 +51,7 @@
     s = @"Foo";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [TDLiteral literalWithString:@"Foo"];
+    p = [PKLiteral literalWithString:@"Foo"];
     PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[Foo]Foo^", [result description]);
@@ -62,7 +62,7 @@
     s = @"Foo";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [TDLiteral literalWithString:@"foo"];
+    p = [PKLiteral literalWithString:@"foo"];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
@@ -72,7 +72,7 @@
     s = @"Fool";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [TDCaseInsensitiveLiteral literalWithString:@"Foo"];
+    p = [PKCaseInsensitiveLiteral literalWithString:@"Foo"];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
@@ -82,7 +82,7 @@
     s = @"Foo";
     a = [[PKTokenAssembly alloc] initWithString:s];
         
-    p = [TDCaseInsensitiveLiteral literalWithString:@"foo"];
+    p = [PKCaseInsensitiveLiteral literalWithString:@"foo"];
     PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
     TDEqualObjects(@"[Foo]Foo^", [result description]);

@@ -1,6 +1,6 @@
 //
-//  TDXMLParserTest.h
-//  TDParseKit
+//  PKXMLParserTest.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/19/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

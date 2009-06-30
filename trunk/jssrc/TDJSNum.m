@@ -1,6 +1,6 @@
 //
-//  TDJSNum.m
-//  TDParseKit
+//  PKJSNum.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSNum.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDNum.h>
+#import <ParseKit/PKNum.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDNum_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDNum_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDNum *data = [[TDNum alloc] init];
+    PKNum *data = [[PKNum alloc] init];
     return TDNum_new(ctx, data);
 }

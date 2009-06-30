@@ -1,6 +1,6 @@
 //
 //  QuoteStateTest.h
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/21/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

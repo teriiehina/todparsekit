@@ -1,6 +1,6 @@
 //
-//  TDTrackTest.m
-//  TDParseKit
+//  PKTrackTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 8/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -19,7 +19,7 @@
 
 - (PKParser *)listParser {
     PKTrack *commaWord = [PKTrack track];
-    [commaWord add:[[TDSymbol symbolWithString:@","] discard]];
+    [commaWord add:[[PKSymbol symbolWithString:@","] discard]];
     [commaWord add:[PKWord word]];
     
     PKSequence *actualList = [PKSequence sequence];
@@ -31,9 +31,9 @@
     [contents add:actualList];
     
     PKTrack *list = [PKTrack track];
-    [list add:[[TDSymbol symbolWithString:@"("] discard]];
+    [list add:[[PKSymbol symbolWithString:@"("] discard]];
     [list add:contents];
-    [list add:[[TDSymbol symbolWithString:@")"] discard]];
+    [list add:[[PKSymbol symbolWithString:@")"] discard]];
 
     return list;
 }
@@ -77,8 +77,8 @@
 
 - (void)testMissingParen {
     PKTrack *track = [PKTrack track];
-    [track add:[TDSymbol symbolWithString:@"("]];
-    [track add:[TDSymbol symbolWithString:@")"]];
+    [track add:[PKSymbol symbolWithString:@"("]];
+    [track add:[PKSymbol symbolWithString:@")"]];
     
     PKAssembly *a = [PKTokenAssembly assemblyWithString:@"("];
     STAssertThrowsSpecificNamed([track completeMatchFor:a], PKTrackException, TDTrackExceptionName, @"");

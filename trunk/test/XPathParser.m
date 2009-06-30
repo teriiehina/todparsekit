@@ -1,6 +1,6 @@
 //
 //  XPathParser.m
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 8/16/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -125,7 +125,7 @@
         [a add:self.relativeLocationPath];
         
         PKSequence *s = [PKSequence sequence];
-        [s add:[TDSymbol symbolWithString:@"/"]];
+        [s add:[PKSymbol symbolWithString:@"/"]];
         [s add:a];
         
         [absoluteLocationPath add:s];
@@ -152,7 +152,7 @@
         [s add:self.step];
 
         PKSequence *slashStep = [PKSequence sequence];
-        [slashStep add:[TDSymbol symbolWithString:@"/"]];
+        [slashStep add:[PKSymbol symbolWithString:@"/"]];
         [slashStep add:self.step];
         [s add:[PKRepetition repetitionWithSubparser:slashStep]];
 
@@ -194,7 +194,7 @@
         
         PKSequence *s = [PKSequence sequence];
         [s add:self.axisName];
-        [s add:[TDSymbol symbolWithString:@"::"]];
+        [s add:[PKSymbol symbolWithString:@"::"]];
         
         [axisSpecifier add:s];
         [axisSpecifier add:self.abbreviatedAxisSpecifier];
@@ -211,19 +211,19 @@
     if (!axisName) {
         self.axisName = [PKAlternation alternation];
         axisName.name = @"axisName";
-        [axisName add:[TDLiteral literalWithString:@"ancestor"]];
-        [axisName add:[TDLiteral literalWithString:@"ancestor-or-self"]];
-        [axisName add:[TDLiteral literalWithString:@"attribute"]];
-        [axisName add:[TDLiteral literalWithString:@"child"]];
-        [axisName add:[TDLiteral literalWithString:@"descendant"]];
-        [axisName add:[TDLiteral literalWithString:@"descendant-or-self"]];
-        [axisName add:[TDLiteral literalWithString:@"following"]];
-        [axisName add:[TDLiteral literalWithString:@"following-sibling"]];
-        [axisName add:[TDLiteral literalWithString:@"preceeding"]];
-        [axisName add:[TDLiteral literalWithString:@"preceeding-sibling"]];
-        [axisName add:[TDLiteral literalWithString:@"namespace"]];
-        [axisName add:[TDLiteral literalWithString:@"parent"]];
-        [axisName add:[TDLiteral literalWithString:@"self"]];
+        [axisName add:[PKLiteral literalWithString:@"ancestor"]];
+        [axisName add:[PKLiteral literalWithString:@"ancestor-or-self"]];
+        [axisName add:[PKLiteral literalWithString:@"attribute"]];
+        [axisName add:[PKLiteral literalWithString:@"child"]];
+        [axisName add:[PKLiteral literalWithString:@"descendant"]];
+        [axisName add:[PKLiteral literalWithString:@"descendant-or-self"]];
+        [axisName add:[PKLiteral literalWithString:@"following"]];
+        [axisName add:[PKLiteral literalWithString:@"following-sibling"]];
+        [axisName add:[PKLiteral literalWithString:@"preceeding"]];
+        [axisName add:[PKLiteral literalWithString:@"preceeding-sibling"]];
+        [axisName add:[PKLiteral literalWithString:@"namespace"]];
+        [axisName add:[PKLiteral literalWithString:@"parent"]];
+        [axisName add:[PKLiteral literalWithString:@"self"]];
     }
     return axisName;
 }
@@ -239,15 +239,15 @@
         
         PKSequence *s = [PKSequence sequence];
         [s add:self.nodeType];
-        [s add:[TDSymbol symbolWithString:@"("]];
-        [s add:[TDSymbol symbolWithString:@")"]];
+        [s add:[PKSymbol symbolWithString:@"("]];
+        [s add:[PKSymbol symbolWithString:@")"]];
         [nodeTest add:s];
         
         s = [PKSequence sequence];
-        [s add:[TDLiteral literalWithString:@"processing-instruction"]];
-        [s add:[TDSymbol symbolWithString:@"("]];
+        [s add:[PKLiteral literalWithString:@"processing-instruction"]];
+        [s add:[PKSymbol symbolWithString:@"("]];
         [s add:self.literal];
-        [s add:[TDSymbol symbolWithString:@")"]];
+        [s add:[PKSymbol symbolWithString:@")"]];
         [nodeTest add:s];    
     }
     return nodeTest;
@@ -260,9 +260,9 @@
     if (!predicate) {
         self.predicate = [PKSequence sequence];
         predicate.name = @"predicate";
-        [predicate add:[TDSymbol symbolWithString:@"["]];
+        [predicate add:[PKSymbol symbolWithString:@"["]];
         [predicate add:self.predicateExpr];
-        [predicate add:[TDSymbol symbolWithString:@"]"]];
+        [predicate add:[PKSymbol symbolWithString:@"]"]];
     }
     return predicate;
 }
@@ -285,7 +285,7 @@
     if (!abbreviatedAbsoluteLocationPath) {
         self.abbreviatedAbsoluteLocationPath = [PKSequence sequence];
         abbreviatedAbsoluteLocationPath.name = @"abbreviatedAbsoluteLocationPath";
-        [abbreviatedAbsoluteLocationPath add:[TDSymbol symbolWithString:@"//"]];
+        [abbreviatedAbsoluteLocationPath add:[PKSymbol symbolWithString:@"//"]];
         [abbreviatedAbsoluteLocationPath add:self.relativeLocationPath];
     }
     return abbreviatedAbsoluteLocationPath;
@@ -299,7 +299,7 @@
         self.abbreviatedRelativeLocationPath = [PKSequence sequence];
         abbreviatedRelativeLocationPath.name = @"abbreviatedRelativeLocationPath";
         [abbreviatedRelativeLocationPath add:self.relativeLocationPath];
-        [abbreviatedRelativeLocationPath add:[TDSymbol symbolWithString:@"//"]];
+        [abbreviatedRelativeLocationPath add:[PKSymbol symbolWithString:@"//"]];
         [abbreviatedRelativeLocationPath add:self.step];
     }
     return abbreviatedRelativeLocationPath;
@@ -312,8 +312,8 @@
     if (!abbreviatedStep) {
         self.abbreviatedStep = [PKAlternation alternation];
         abbreviatedStep.name = @"abbreviatedStep";
-        [abbreviatedStep add:[TDSymbol symbolWithString:@"."]];
-        [abbreviatedStep add:[TDSymbol symbolWithString:@".."]];
+        [abbreviatedStep add:[PKSymbol symbolWithString:@"."]];
+        [abbreviatedStep add:[PKSymbol symbolWithString:@".."]];
     }
     return abbreviatedStep;
 }
@@ -326,7 +326,7 @@
         self.abbreviatedAxisSpecifier = [PKAlternation alternation];
         abbreviatedAxisSpecifier.name = @"abbreviatedAxisSpecifier";
         [abbreviatedAxisSpecifier add:[PKEmpty empty]];
-        [abbreviatedAxisSpecifier add:[TDSymbol symbolWithString:@"@"]];
+        [abbreviatedAxisSpecifier add:[PKSymbol symbolWithString:@"@"]];
     }
     return abbreviatedAxisSpecifier;
 }
@@ -356,9 +356,9 @@
         [primaryExpr add:self.variableReference];
         
         PKSequence *s = [PKSequence sequence];
-        [s add:[TDSymbol symbolWithString:@"("]];
+        [s add:[PKSymbol symbolWithString:@"("]];
         [s add:self.expr];
-        [s add:[TDSymbol symbolWithString:@")"]];
+        [s add:[PKSymbol symbolWithString:@")"]];
         [primaryExpr add:s];
         
         [primaryExpr add:self.literal];
@@ -379,10 +379,10 @@
         self.functionCall = [PKSequence sequence];
         functionCall.name = @"functionCall";
         [functionCall add:self.functionName];
-        [functionCall add:[TDSymbol symbolWithString:@"("]];
+        [functionCall add:[PKSymbol symbolWithString:@"("]];
         
         PKSequence *commaArg = [PKSequence sequence];
-        [commaArg add:[TDSymbol symbolWithString:@","]];
+        [commaArg add:[PKSymbol symbolWithString:@","]];
         [commaArg add:self.argument];
         
         PKSequence *args = [PKSequence sequence];
@@ -394,7 +394,7 @@
         [a add:args];
         
         [functionCall add:a];
-        [functionCall add:[TDSymbol symbolWithString:@")"]];
+        [functionCall add:[PKSymbol symbolWithString:@")"]];
     }
     return functionCall;
 }
@@ -425,7 +425,7 @@
         unionExpr.name = @"unionExpr";
 
         PKSequence *pipePathExpr = [PKSequence sequence];
-        [pipePathExpr add:[TDSymbol symbolWithString:@"|"]];
+        [pipePathExpr add:[PKSymbol symbolWithString:@"|"]];
         [pipePathExpr add:self.pathExpr];
         
         [unionExpr add:self.pathExpr];
@@ -449,13 +449,13 @@
         
         PKSequence *s = [PKSequence sequence];
         [s add:self.filterExpr];
-        [s add:[TDSymbol symbolWithString:@"/"]];
+        [s add:[PKSymbol symbolWithString:@"/"]];
         [s add:self.relativeLocationPath];
         [pathExpr add:s];
         
         s = [PKSequence sequence];
         [s add:self.filterExpr];
-        [s add:[TDSymbol symbolWithString:@"//"]];
+        [s add:[PKSymbol symbolWithString:@"//"]];
         [s add:self.relativeLocationPath];
         [pathExpr add:s];
     }
@@ -501,7 +501,7 @@
         [orExpr add:self.andExpr];
         
         PKSequence *orAndExpr = [PKSequence sequence];
-        [orAndExpr add:[TDLiteral literalWithString:@"or"]];
+        [orAndExpr add:[PKLiteral literalWithString:@"or"]];
         [orAndExpr add:self.andExpr];
         
         [orExpr add:[PKRepetition repetitionWithSubparser:orAndExpr]];
@@ -527,7 +527,7 @@
         [andExpr add:self.equalityExpr];
 
         PKSequence *andEqualityExpr = [PKSequence sequence];
-        [andEqualityExpr add:[TDLiteral literalWithString:@"and"]];
+        [andEqualityExpr add:[PKLiteral literalWithString:@"and"]];
         [andEqualityExpr add:self.equalityExpr];
         
         [andExpr add:[PKRepetition repetitionWithSubparser:andEqualityExpr]];
@@ -553,11 +553,11 @@
         [equalityExpr add:self.relationalExpr];
         
         PKSequence *equalsRelationalExpr = [PKSequence sequence];
-        [equalsRelationalExpr add:[TDSymbol symbolWithString:@"="]];
+        [equalsRelationalExpr add:[PKSymbol symbolWithString:@"="]];
         [equalsRelationalExpr add:self.relationalExpr];
         
         PKSequence *notEqualsRelationalExpr = [PKSequence sequence];
-        [notEqualsRelationalExpr add:[TDSymbol symbolWithString:@"!="]];
+        [notEqualsRelationalExpr add:[PKSymbol symbolWithString:@"!="]];
         [notEqualsRelationalExpr add:self.relationalExpr];
         
         PKAlternation *a = [PKAlternation alternation];
@@ -595,19 +595,19 @@
         PKAlternation *a = [PKAlternation alternation];
         
         PKSequence *ltAdditiveExpr = [PKSequence sequence];
-        [ltAdditiveExpr add:[TDSymbol symbolWithString:@"<"]];
+        [ltAdditiveExpr add:[PKSymbol symbolWithString:@"<"]];
         [a add:ltAdditiveExpr];
 
         PKSequence *gtAdditiveExpr = [PKSequence sequence];
-        [gtAdditiveExpr add:[TDSymbol symbolWithString:@">"]];
+        [gtAdditiveExpr add:[PKSymbol symbolWithString:@">"]];
         [a add:gtAdditiveExpr];
 
         PKSequence *lteAdditiveExpr = [PKSequence sequence];
-        [lteAdditiveExpr add:[TDSymbol symbolWithString:@"<="]];
+        [lteAdditiveExpr add:[PKSymbol symbolWithString:@"<="]];
         [a add:lteAdditiveExpr];
 
         PKSequence *gteAdditiveExpr = [PKSequence sequence];
-        [gteAdditiveExpr add:[TDSymbol symbolWithString:@">="]];
+        [gteAdditiveExpr add:[PKSymbol symbolWithString:@">="]];
         [a add:gteAdditiveExpr];
         
         PKAlternation *a1 = [PKAlternation alternation];
@@ -638,12 +638,12 @@
         PKAlternation *a = [PKAlternation alternation];
 
         PKSequence *plusMultiplicativeExpr = [PKSequence sequence];
-        [plusMultiplicativeExpr add:[TDSymbol symbolWithString:@"+"]];
+        [plusMultiplicativeExpr add:[PKSymbol symbolWithString:@"+"]];
         [plusMultiplicativeExpr add:self.multiplicativeExpr];
         [a add:plusMultiplicativeExpr];
         
         PKSequence *minusMultiplicativeExpr = [PKSequence sequence];
-        [minusMultiplicativeExpr add:[TDSymbol symbolWithString:@"-"]];
+        [minusMultiplicativeExpr add:[PKSymbol symbolWithString:@"-"]];
         [minusMultiplicativeExpr add:self.multiplicativeExpr];
         [a add:minusMultiplicativeExpr];
         
@@ -681,12 +681,12 @@
         [a add:multiplyUnaryExpr];
         
         PKSequence *divUnaryExpr = [PKSequence sequence];
-        [divUnaryExpr add:[TDLiteral literalWithString:@"div"]];
+        [divUnaryExpr add:[PKLiteral literalWithString:@"div"]];
         [divUnaryExpr add:self.unaryExpr];
         [a add:divUnaryExpr];
         
         PKSequence *modUnaryExpr = [PKSequence sequence];
-        [modUnaryExpr add:[TDLiteral literalWithString:@"mod"]];
+        [modUnaryExpr add:[PKLiteral literalWithString:@"mod"]];
         [modUnaryExpr add:self.unaryExpr];
         [a add:modUnaryExpr];
         
@@ -714,7 +714,7 @@
         
         PKAlternation *a = [PKAlternation alternation];
         [a add:[PKEmpty empty]];
-        [a add:[TDSymbol symbolWithString:@"-"]];
+        [a add:[PKSymbol symbolWithString:@"-"]];
         
         [unaryExpr add:a];
         [unaryExpr add:self.unionExpr];
@@ -723,7 +723,7 @@
 //        [unaryExpr add:self.unionExpr];
 //        
 //        PKSequence *s = [PKSequence sequence];
-//        [s add:[TDSymbol symbolWithString:@"-"]];
+//        [s add:[PKSymbol symbolWithString:@"-"]];
 //        [s add:unaryExpr];
 //        [unionExpr add:s];
     }
@@ -747,15 +747,15 @@
         exprToken.name = @"exprToken";
         
         PKAlternation *a = [PKAlternation alternation];
-        [a add:[TDSymbol symbolWithString:@"("]];
-        [a add:[TDSymbol symbolWithString:@")"]];
-        [a add:[TDSymbol symbolWithString:@"["]];
-        [a add:[TDSymbol symbolWithString:@"]"]];
-        [a add:[TDSymbol symbolWithString:@"."]];
-        [a add:[TDSymbol symbolWithString:@".."]];
-        [a add:[TDSymbol symbolWithString:@"@"]];
-        [a add:[TDSymbol symbolWithString:@","]];
-        [a add:[TDSymbol symbolWithString:@"::"]];
+        [a add:[PKSymbol symbolWithString:@"("]];
+        [a add:[PKSymbol symbolWithString:@")"]];
+        [a add:[PKSymbol symbolWithString:@"["]];
+        [a add:[PKSymbol symbolWithString:@"]"]];
+        [a add:[PKSymbol symbolWithString:@"."]];
+        [a add:[PKSymbol symbolWithString:@".."]];
+        [a add:[PKSymbol symbolWithString:@"@"]];
+        [a add:[PKSymbol symbolWithString:@","]];
+        [a add:[PKSymbol symbolWithString:@"::"]];
         [exprToken add:a];
         
         [exprToken add:self.nameTest];
@@ -774,7 +774,7 @@
 - (PKParser *)literal {
     //NSLog(@"%s", _cmd);
     if (!literal) {
-        self.literal = [TDQuotedString quotedString];
+        self.literal = [PKQuotedString quotedString];
         literal.name = @"literal";
     }
     return literal;
@@ -784,7 +784,7 @@
 - (PKParser *)number {
     //NSLog(@"%s", _cmd);
     if (!number) {
-        self.number = [TDNum num];
+        self.number = [PKNum num];
         number.name = @"number";
     }
     return number;
@@ -801,17 +801,17 @@
         operator.name = @"operator";
         [operator add:self.operatorName];
         [operator add:self.multiplyOperator];
-        [operator add:[TDSymbol symbolWithString: @"/"]];
-        [operator add:[TDSymbol symbolWithString:@"//"]];
-        [operator add:[TDSymbol symbolWithString: @"|"]];
-        [operator add:[TDSymbol symbolWithString: @"+"]];
-        [operator add:[TDSymbol symbolWithString: @"-"]];
-        [operator add:[TDSymbol symbolWithString: @"="]];
-        [operator add:[TDSymbol symbolWithString:@"!="]];
-        [operator add:[TDSymbol symbolWithString: @"<"]];
-        [operator add:[TDSymbol symbolWithString:@"<="]];
-        [operator add:[TDSymbol symbolWithString: @">"]];
-        [operator add:[TDSymbol symbolWithString:@">="]];
+        [operator add:[PKSymbol symbolWithString: @"/"]];
+        [operator add:[PKSymbol symbolWithString:@"//"]];
+        [operator add:[PKSymbol symbolWithString: @"|"]];
+        [operator add:[PKSymbol symbolWithString: @"+"]];
+        [operator add:[PKSymbol symbolWithString: @"-"]];
+        [operator add:[PKSymbol symbolWithString: @"="]];
+        [operator add:[PKSymbol symbolWithString:@"!="]];
+        [operator add:[PKSymbol symbolWithString: @"<"]];
+        [operator add:[PKSymbol symbolWithString:@"<="]];
+        [operator add:[PKSymbol symbolWithString: @">"]];
+        [operator add:[PKSymbol symbolWithString:@">="]];
     }
     return operator;
 }
@@ -823,10 +823,10 @@
     if (!operatorName) {
         self.operatorName = [PKAlternation alternation];
         operatorName.name = @"operatorName";
-        [operatorName add:[TDLiteral literalWithString:@"and"]];
-        [operatorName add:[TDLiteral literalWithString: @"or"]];
-        [operatorName add:[TDLiteral literalWithString:@"mod"]];
-        [operatorName add:[TDLiteral literalWithString:@"div"]];
+        [operatorName add:[PKLiteral literalWithString:@"and"]];
+        [operatorName add:[PKLiteral literalWithString: @"or"]];
+        [operatorName add:[PKLiteral literalWithString:@"mod"]];
+        [operatorName add:[PKLiteral literalWithString:@"div"]];
     }
     return operatorName;
 }
@@ -836,7 +836,7 @@
 - (PKParser *)multiplyOperator {
     //NSLog(@"%s", _cmd);
     if (!multiplyOperator) {
-        self.multiplyOperator = [TDSymbol symbolWithString:@"*"];
+        self.multiplyOperator = [PKSymbol symbolWithString:@"*"];
         multiplyOperator.name = @"multiplyOperator";
     }
     return multiplyOperator;
@@ -860,7 +860,7 @@
         
         PKSequence *prefixedName = [PKSequence sequence];
         [prefixedName add:prefix];
-        [prefixedName add:[TDSymbol symbolWithString:@":"]];
+        [prefixedName add:[PKSymbol symbolWithString:@":"]];
         [prefixedName add:localPart];
         
         [QName add:prefixedName];
@@ -887,7 +887,7 @@
     if (!variableReference) {
         self.variableReference = [PKSequence sequence];
         variableReference.name = @"variableReference";
-        [variableReference add:[TDSymbol symbolWithString:@"$"]];
+        [variableReference add:[PKSymbol symbolWithString:@"$"]];
         [variableReference add:self.QName];
     }
     return variableReference;
@@ -900,12 +900,12 @@
     if (!nameTest) {
         self.nameTest = [PKAlternation alternation];
         nameTest.name = @"nameTest";
-        [nameTest add:[TDSymbol symbolWithString:@"*"]];
+        [nameTest add:[PKSymbol symbolWithString:@"*"]];
 
         PKSequence *s = [PKSequence sequence];
         [s add:[PKWord word]];
-        [s add:[TDSymbol symbolWithString:@":"]];
-        [s add:[TDSymbol symbolWithString:@"*"]];
+        [s add:[PKSymbol symbolWithString:@":"]];
+        [s add:[PKSymbol symbolWithString:@"*"]];
         [nameTest add:s];
         
         [nameTest add:self.QName];
@@ -923,10 +923,10 @@
     if (!nodeType) {
         self.nodeType = [PKAlternation alternation];
         nodeType.name = @"nodeType";
-        [nodeType add:[TDLiteral literalWithString:@"comment"]];
-        [nodeType add:[TDLiteral literalWithString:@"text"]];
-        [nodeType add:[TDLiteral literalWithString:@"processing-instruction"]];
-        [nodeType add:[TDLiteral literalWithString:@"node"]];
+        [nodeType add:[PKLiteral literalWithString:@"comment"]];
+        [nodeType add:[PKLiteral literalWithString:@"text"]];
+        [nodeType add:[PKLiteral literalWithString:@"processing-instruction"]];
+        [nodeType add:[PKLiteral literalWithString:@"node"]];
     }
     return nodeType;
 }

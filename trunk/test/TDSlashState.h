@@ -1,6 +1,6 @@
 //
-//  TDSlashState.h
-//  TDParseKit
+//  PKSlashState.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/20/06.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -14,7 +14,7 @@
 
 /*!
     @class      TDSlashState 
-    @brief      This state will either delegate to a comment-handling state, or return a <tt>TDSymbol</tt> token with just a slash in it.
+    @brief      This state will either delegate to a comment-handling state, or return a <tt>PKSymbol</tt> token with just a slash in it.
 */
 @interface TDSlashState : PKTokenizerState {
     TDSlashSlashState *slashSlashState;

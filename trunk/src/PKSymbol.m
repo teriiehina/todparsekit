@@ -1,19 +1,19 @@
 //
-//  TDSymbol.m
-//  TDParseKit
+//  PKSymbol.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDSymbol.h>
+#import <ParseKit/PKSymbol.h>
 #import <ParseKit/PKToken.h>
 
-@interface TDSymbol ()
+@interface PKSymbol ()
 @property (nonatomic, retain) PKToken *symbol;
 @end
 
-@implementation TDSymbol
+@implementation PKSymbol
 
 + (id)symbol {
     return [[[self alloc] initWithString:nil] autorelease];

@@ -1,15 +1,15 @@
 //
-//  TDLiteral.m
-//  TDParseKit
+//  PKLiteral.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDLiteral.h"
+#import "PKLiteral.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDLiteral.h>
+#import <ParseKit/PKLiteral.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,10 +58,10 @@ JSObjectRef TDLiteral_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDLiteral_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDLiteral");
+    TDPreconditionConstructorArgc(1, "PKLiteral");
     
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     
-    TDLiteral *data = [[TDLiteral alloc] initWithString:s];
+    PKLiteral *data = [[PKLiteral alloc] initWithString:s];
     return TDLiteral_new(ctx, data);
 }

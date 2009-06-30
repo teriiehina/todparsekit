@@ -1,6 +1,6 @@
 //
-//  TDJSQuotedString.m
-//  TDParseKit
+//  PKJSQuotedString.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/11/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSQuotedString.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDQuotedString.h>
+#import <ParseKit/PKQuotedString.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDQuotedString_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDQuotedString_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDQuotedString *data = [[TDQuotedString alloc] init];
+    PKQuotedString *data = [[PKQuotedString alloc] init];
     return TDQuotedString_new(ctx, data);
 }

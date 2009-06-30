@@ -1,6 +1,6 @@
 //
-//  TDJsonParser.h
-//  TDParseKit
+//  PKJsonParser.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/18/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

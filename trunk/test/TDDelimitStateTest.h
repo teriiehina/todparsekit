@@ -1,6 +1,6 @@
 //
-//  TDDelimitStateTest.h
-//  TDParseKit
+//  PKDelimitStateTest.h
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/21/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.

@@ -1,6 +1,6 @@
 //
-//  TDMinusTest.m
-//  TDParseKit
+//  PKMinusTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/26/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -12,7 +12,7 @@
 
 - (void)testFoo {
     PKWord *word = [PKWord word];
-    TDLiteral *foo = [TDLiteral literalWithString:@"foo"];
+    PKLiteral *foo = [PKLiteral literalWithString:@"foo"];
     PKExclusion *ex = [PKExclusion exclusion];
     [ex add:word];
     [ex add:foo];
@@ -38,8 +38,8 @@
 - (void)testAlt {
     PKWord *word = [PKWord word];
     PKAlternation *list = [PKAlternation alternation];
-    [list add:[TDLiteral literalWithString:@"foo"]];
-    [list add:[TDLiteral literalWithString:@"bar"]];
+    [list add:[PKLiteral literalWithString:@"foo"]];
+    [list add:[PKLiteral literalWithString:@"bar"]];
     
     PKExclusion *ex = [PKExclusion exclusion];
     [ex add:word];
@@ -64,12 +64,12 @@
 
 - (void)testAlt2 {
     PKAlternation *ok = [PKAlternation alternation];
-    [ok add:[TDLiteral literalWithString:@"foo"]];
-    [ok add:[TDLiteral literalWithString:@"baz"]];
+    [ok add:[PKLiteral literalWithString:@"foo"]];
+    [ok add:[PKLiteral literalWithString:@"baz"]];
     
     PKAlternation *list = [PKAlternation alternation];
-    [list add:[TDLiteral literalWithString:@"foo"]];
-    [list add:[TDLiteral literalWithString:@"bar"]];
+    [list add:[PKLiteral literalWithString:@"foo"]];
+    [list add:[PKLiteral literalWithString:@"bar"]];
     
     PKExclusion *ex = [PKExclusion exclusion];
     [ex add:ok];

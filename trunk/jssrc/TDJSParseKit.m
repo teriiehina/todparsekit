@@ -1,6 +1,6 @@
 //
-//  TDJSParseKit.m
-//  TDParseKit
+//  PKJSParseKit.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/10/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -105,12 +105,12 @@ void TDJSParseKitSetUpContext(JSContextRef ctx) {
     
     // Token Terminals
     setUpConstructor(ctx, "PKWord", TDWord_class(ctx), TDWord_construct, &ex);
-    setUpConstructor(ctx, "TDNum", TDNum_class(ctx), TDNum_construct, &ex);
-    setUpConstructor(ctx, "TDQuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
-    setUpConstructor(ctx, "TDSymbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
-    setUpConstructor(ctx, "TDComment", TDComment_class(ctx), TDComment_construct, &ex);
-    setUpConstructor(ctx, "TDLiteral", TDLiteral_class(ctx), TDLiteral_construct, &ex);
-    setUpConstructor(ctx, "TDCaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
+    setUpConstructor(ctx, "PKNum", TDNum_class(ctx), TDNum_construct, &ex);
+    setUpConstructor(ctx, "PKQuotedString", TDQuotedString_class(ctx), TDQuotedString_construct, &ex);
+    setUpConstructor(ctx, "PKSymbol", TDSymbol_class(ctx), TDSymbol_construct, &ex);
+    setUpConstructor(ctx, "PKComment", TDComment_class(ctx), TDComment_construct, &ex);
+    setUpConstructor(ctx, "PKLiteral", TDLiteral_class(ctx), TDLiteral_construct, &ex);
+    setUpConstructor(ctx, "PKCaseInsensitiveLiteral", TDCaseInsensitiveLiteral_class(ctx), TDCaseInsensitiveLiteral_construct, &ex);
     setUpConstructor(ctx, "TDUppercaseWord", TDUppercaseWord_class(ctx), TDUppercaseWord_construct, &ex);
     setUpConstructor(ctx, "TDLowercaseWord", TDLowercaseWord_class(ctx), TDLowercaseWord_construct, &ex);
 }

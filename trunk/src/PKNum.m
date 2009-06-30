@@ -1,24 +1,24 @@
 //
-//  TDComment.m
-//  TDParseKit
+//  PKNum.m
+//  ParseKit
 //
-//  Created by Todd Ditchendorf on 12/31/08.
+//  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDComment.h>
+#import <ParseKit/PKNum.h>
 #import <ParseKit/PKToken.h>
 
-@implementation TDComment
+@implementation PKNum
 
-+ (id)comment {
++ (id)num {
     return [[[self alloc] initWithString:nil] autorelease];
 }
 
 
 - (BOOL)qualifies:(id)obj {
     PKToken *tok = (PKToken *)obj;
-    return tok.isComment;
+    return tok.isNumber;
 }
 
 @end

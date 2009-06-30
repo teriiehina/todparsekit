@@ -1,6 +1,6 @@
 //
-//  TDSequenceTest.m
-//  TDParseKit
+//  PKSequenceTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -22,8 +22,8 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -37,9 +37,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -53,9 +53,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -69,8 +69,8 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -84,9 +84,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -100,10 +100,10 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[[TDSymbol symbolWithString:@"-"] discard]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[[TDSymbol symbolWithString:@"+"] discard]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"-"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[[PKSymbol symbolWithString:@"+"] discard]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -117,9 +117,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"bar"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -133,9 +133,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
-    [p add:[TDLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -148,9 +148,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
@@ -162,9 +162,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"bar"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];
     
@@ -178,9 +178,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
     [p add:[PKWord word]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];
     
@@ -194,9 +194,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
@@ -208,9 +208,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDNum num]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKNum num]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
@@ -222,9 +222,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"bar"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"bar"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -237,9 +237,9 @@
     a = [PKTokenAssembly assemblyWithString:s];
     
     p = [PKSequence sequence];
-    [p add:[TDLiteral literalWithString:@"foo"]];
-    [p add:[TDLiteral literalWithString:@"123"]];
-    [p add:[TDLiteral literalWithString:@"baz"]];
+    [p add:[PKLiteral literalWithString:@"foo"]];
+    [p add:[PKLiteral literalWithString:@"123"]];
+    [p add:[PKLiteral literalWithString:@"baz"]];
     
     NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
     

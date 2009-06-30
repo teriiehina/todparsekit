@@ -1,6 +1,6 @@
 //
-//  TDParserFactoryTest.m
-//  TDParseKit
+//  PKParserFactoryTest.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 12/12/08.
 //  Copyright 2008 Todd Ditchendorf All rights reserved.
@@ -635,11 +635,11 @@
     TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)2, seq.subparsers.count);
     
-    TDLiteral *c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [seq.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [seq.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -664,14 +664,14 @@
     TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)3, seq.subparsers.count);
     
-    TDLiteral *c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [seq.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [seq.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     c = [seq.subparsers objectAtIndex:2];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"baz", c.string);
     
     // use the result parser
@@ -697,11 +697,11 @@
     TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -733,14 +733,14 @@
     TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     PKRepetition *rep = [alt.subparsers objectAtIndex:1];
     TDEqualObjects([PKRepetition class], [rep class]);
-    c = (TDLiteral *)rep.subparser;
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    c = (PKLiteral *)rep.subparser;
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -777,21 +777,21 @@
     TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     PKSequence *seq = [alt.subparsers objectAtIndex:1];
     TDEqualObjects([PKSequence class], [seq class]);
     
     c = [seq.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     PKRepetition *rep = [seq.subparsers objectAtIndex:1];
     TDEqualObjects([PKRepetition class], [rep class]);
-    c = (TDLiteral *)rep.subparser;
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    c = (PKLiteral *)rep.subparser;
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -831,8 +831,8 @@
     TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     alt = [alt.subparsers objectAtIndex:1];
@@ -841,8 +841,8 @@
     PKEmpty *e = [alt.subparsers objectAtIndex:0];
     TDTrue([e isMemberOfClass:[PKEmpty class]]);
     
-    c = (TDLiteral *)[alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    c = (PKLiteral *)[alt.subparsers objectAtIndex:1];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -875,12 +875,12 @@
     TDTrue([alt class] == [PKAlternation class]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -910,12 +910,12 @@
     TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     PKRepetition *rep = [seq.subparsers objectAtIndex:1];
@@ -925,11 +925,11 @@
     TDEqualObjects([PKAlternation class], [alt class]);
     
     c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -961,12 +961,12 @@
     TDEqualObjects([alt class], [PKAlternation class]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
-    TDLiteral *c = [alt.subparsers objectAtIndex:0];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    PKLiteral *c = [alt.subparsers objectAtIndex:0];
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
     c = [alt.subparsers objectAtIndex:1];
-    TDTrue([c isKindOfClass:[TDLiteral class]]);
+    TDTrue([c isKindOfClass:[PKLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
     // use the result parser
@@ -1024,13 +1024,13 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Num]Num^", [res description]);
-    TDNum *w = [res pop];
-    TDTrue([w isMemberOfClass:[TDNum class]]);
+    PKNum *w = [res pop];
+    TDTrue([w isMemberOfClass:[PKNum class]]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDNum class]]);
+    TDTrue([lp isKindOfClass:[PKNum class]]);
     
     s = @"333 444";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -1054,11 +1054,11 @@
     TDEqualObjects([seq class], [PKSequence class]);
     
     TDEquals((NSUInteger)2, seq.subparsers.count);
-    TDNum *n = [seq.subparsers objectAtIndex:0];
-    TDEqualObjects([n class], [TDNum class]);
+    PKNum *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [PKNum class]);
 
     n = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([n class], [TDNum class]);
+    TDEqualObjects([n class], [PKNum class]);
 
     // use the result parser
     lp = [factory parserFromExpression:s];
@@ -1093,11 +1093,11 @@
     
     TDEquals((NSUInteger)3, seq.subparsers.count);
 
-    TDNum *n = [seq.subparsers objectAtIndex:0];
-    TDEqualObjects([n class], [TDNum class]);
+    PKNum *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [PKNum class]);
     
     n = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([n class], [TDNum class]);
+    TDEqualObjects([n class], [PKNum class]);
     
     n = [seq.subparsers objectAtIndex:2];
     TDEqualObjects([n class], [PKAlternation class]);
@@ -1147,13 +1147,13 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Symbol]Symbol^", [res description]);
-    TDSymbol *w = [res pop];
-    TDTrue([w isMemberOfClass:[TDSymbol class]]);
+    PKSymbol *w = [res pop];
+    TDTrue([w isMemberOfClass:[PKSymbol class]]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSymbol class]]);
+    TDTrue([lp isKindOfClass:[PKSymbol class]]);
     
     s = @"? #";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -1185,13 +1185,13 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[QuotedString]QuotedString^", [res description]);
-    TDQuotedString *w = [res pop];
-    TDTrue([w isMemberOfClass:[TDQuotedString class]]);
+    PKQuotedString *w = [res pop];
+    TDTrue([w isMemberOfClass:[PKQuotedString class]]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDQuotedString class]);
+    TDEqualObjects([lp class], [PKQuotedString class]);
     s = @"'hello' 'hello'";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];

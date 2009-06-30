@@ -1,6 +1,6 @@
 //
-//  TDSymbolStateTestok.m
-//  TDParseKit
+//  PKSymbolStateTestok.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/12/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.

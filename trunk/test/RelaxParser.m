@@ -1,6 +1,6 @@
 //
 //  RelaxParser.m
-//  TDParseKit
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/15/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -45,25 +45,25 @@
 		self.declParser = [PKAlternation alternation];
 		
 		PKSequence *s = [PKSequence sequence];
-		[s add:[TDLiteral literalWithString:@"namespace"]];
+		[s add:[PKLiteral literalWithString:@"namespace"]];
 		[s add:self.identifierOrKeywordParser];
-		[s add:[TDSymbol symbolWithString:@"="]];
+		[s add:[PKSymbol symbolWithString:@"="]];
 		[a add:self.namespaceURILiteralParser];
 		[declParser add:s];
 		
 		s = [PKSequence sequence];
-		[s add:[TDLiteral literalWithString:@"default"]];
-		[s add:[TDLiteral literalWithString:@"namespace"]];
+		[s add:[PKLiteral literalWithString:@"default"]];
+		[s add:[PKLiteral literalWithString:@"namespace"]];
 		[s add:self.identifierOrKeywordParser];
-		[s add:[TDSymbol symbolWithString:@"="]];
+		[s add:[PKSymbol symbolWithString:@"="]];
 		[a add:self.namespaceURILiteralParser];
 		[declParser add:s];
 		
 		s = [PKSequence sequence];
-		[s add:[TDLiteral literalWithString:@"datatypes"]];
+		[s add:[PKLiteral literalWithString:@"datatypes"]];
 		[s add:self.identifierOrKeywordParser];
-		[s add:[TDSymbol symbolWithString:@"="]];
-		[a add:[TDQuotedString quotedString]];
+		[s add:[PKSymbol symbolWithString:@"="]];
+		[a add:[PKQuotedString quotedString]];
 		[declParser add:s];		
 	}
 	return declParser;
@@ -129,11 +129,11 @@
 - (PKCollectionParser *)elementPatternParser {
 	if (!elementPatternParser) {
 		self.elementPatternParser = [PKSequence sequence];
-		[elementPatternParser add:[TDLiteral literalWithString:@"element"]];
+		[elementPatternParser add:[PKLiteral literalWithString:@"element"]];
 		[elementPatternParser add:self.nameClass];
-		[elementPatternParser add:[TDSymbol symbolWithString:@"{"]];
+		[elementPatternParser add:[PKSymbol symbolWithString:@"{"]];
 		[elementPatternParser add:patternParser];
-		[elementPatternParser add:[TDSymbol symbolWithString:@"}"]];
+		[elementPatternParser add:[PKSymbol symbolWithString:@"}"]];
 	}
 	return elementPatternParser;
 }
@@ -143,11 +143,11 @@
 - (PKCollectionParser *)attributePatternParser {
 	if (!attributePatternParser) {
 		attributePatternParser = [PKSequence sequence];
-		[attributePatternParser add:[TDLiteral literalWithString:@"attribute"]];
+		[attributePatternParser add:[PKLiteral literalWithString:@"attribute"]];
 		[attributePatternParser add:self.nameClass];
-		[attributePatternParser add:[TDSymbol symbolWithString:@"{"]];
+		[attributePatternParser add:[PKSymbol symbolWithString:@"{"]];
 		[attributePatternParser add:patternParser];
-		[attributePatternParser add:[TDSymbol symbolWithString:@"}"]];
+		[attributePatternParser add:[PKSymbol symbolWithString:@"}"]];
 	}
 	return attributePatternParser;
 }
@@ -157,7 +157,7 @@
 - (PKCollectionParser *)commaPatternParser {
 	if (!commaPatternParser) {
 		self.commaPatternParser = [PKSequence sequence];
-		[commaPatternParser add:[TDSymbol symbolWithString:@","]];
+		[commaPatternParser add:[PKSymbol symbolWithString:@","]];
 		[commaPatternParser add:self.patternParser];
 	}
 	return commaPatternParser;
@@ -168,7 +168,7 @@
 - (PKCollectionParser *)andPatternParser {
 	if (!andPatternParser) {
 		self.andPatternParser = [PKSequence sequence];
-		[andPatternParser add:[TDSymbol symbolWithString:@"&"]];
+		[andPatternParser add:[PKSymbol symbolWithString:@"&"]];
 		[andPatternParser add:self.patternParser];
 	}
 	return andPatternParser;
@@ -179,7 +179,7 @@
 - (PKCollectionParser *)orPatternParser {
 	if (!orPatternParser) {
 		self.orPatternParser = [PKSequence sequence];
-		[orPatternParser add:[TDSymbol symbolWithString:@"|"]];
+		[orPatternParser add:[PKSymbol symbolWithString:@"|"]];
 		[orPatternParser add:self.patternParser];
 	}
 	return orPatternParser;
@@ -191,7 +191,7 @@
 	if (!patternQuestionParser) {
 		self.patternQuestionParser = [PKSequence sequence];
 		[patternQuestionParser add:self.patternParser];
-		[patternQuestionParser add:[TDSymbol symbolWithString:@"?"]];
+		[patternQuestionParser add:[PKSymbol symbolWithString:@"?"]];
 	}
 	return patternQuestionParser;
 }
@@ -202,7 +202,7 @@
 	if (!patternStarParser) {
 		self.patternStarParser = [PKSequence sequence];
 		[patternStarParser add:self.patternParser];
-		[patternStarParser add:[TDSymbol symbolWithString:@"*"]];
+		[patternStarParser add:[PKSymbol symbolWithString:@"*"]];
 	}
 	return patternStarParser;
 }
@@ -213,7 +213,7 @@
 	if (!patternPlusParser) {
 		self.patternPlusParser = [PKSequence sequence];
 		[patternPlusParser add:self.patternParser];
-		[patternPlusParser add:[TDSymbol symbolWithString:@"+"]];
+		[patternPlusParser add:[PKSymbol symbolWithString:@"+"]];
 	}
 	return patternPlusParser;
 }
@@ -222,10 +222,10 @@
 - (PKCollectionParser *)listPatternParser {
 	if (!listPatternParser) {
 		self.listPatternParser = [PKSequence sequence];
-		[listPatternParser add:[TDLiteral literalWithString:@"list"]];
-		[listPatternParser add:[TDSymbol symbolWithString:@"{"]];
+		[listPatternParser add:[PKLiteral literalWithString:@"list"]];
+		[listPatternParser add:[PKSymbol symbolWithString:@"{"]];
 		[listPatternParser add:patternParser];
-		[listPatternParser add:[TDSymbol symbolWithString:@"}"]];
+		[listPatternParser add:[PKSymbol symbolWithString:@"}"]];
 	}
 	return listPatternParser;
 }
@@ -234,10 +234,10 @@
 - (PKCollectionParser *)mixedPatternParser {
 	if (!mixedPatternParser) {
 		self.mixedPatternParser = [PKSequence sequence];
-		[mixedPatternParser add:[TDLiteral literalWithString:@"mixed"]];
-		[mixedPatternParser add:[TDSymbol symbolWithString:@"{"]];
+		[mixedPatternParser add:[PKLiteral literalWithString:@"mixed"]];
+		[mixedPatternParser add:[PKSymbol symbolWithString:@"{"]];
 		[mixedPatternParser add:patternParser];
-		[mixedPatternParser add:[TDSymbol symbolWithString:@"}"]];
+		[mixedPatternParser add:[PKSymbol symbolWithString:@"}"]];
 	}
 	return mixedPatternParser;
 }
@@ -246,7 +246,7 @@
 - (PKCollectionParser *)parentParser {
 	if (!parentParser) {
 		self.parentParser = [PKSequence sequence];
-		[parentParser add:[TDLiteral literalWithString:@"parent"]];
+		[parentParser add:[PKLiteral literalWithString:@"parent"]];
 		[parentParser add:self.identifierParser];
 	}
 	return parentParser;
@@ -258,7 +258,7 @@
 	if (!paramParser) {
 		self.paramParser = [PKSequence sequence];
 		[paramParser add:self.identifierOrKeywordParser];
-		[paramParser add:[TDSymbol symbolWithString:@"="]];
+		[paramParser add:[PKSymbol symbolWithString:@"="]];
 		[paramParser add:self.literalParser];
 	}
 	return paramParser;
@@ -268,7 +268,7 @@
 - (PKCollectionParser *)exceptPatternParser {
 	if (!exceptPattern) {
 		self.exceptPattern = [PKSequence sequence];
-		[exceptPattern add:[TDSymbol symbolWithString:@"-"]];
+		[exceptPattern add:[PKSymbol symbolWithString:@"-"]];
 		[exceptPattern add:self.patternParser];
 	}
 	return exceptPattern;
@@ -293,9 +293,9 @@
 	if (!elementIncludeContentParser) {
 		self.elementIncludeContentParser = [PKSequence sequence];
 		[s add:self.elementKeywordParser];
-		[s add:[TDSymbol symbolWithString:@"{"]];
+		[s add:[PKSymbol symbolWithString:@"{"]];
 		[s add:[PKRepetition repetitionWithSubparser:self.includeContentParser]]
-		[s add:[TDSymbol symbolWithString:@"}"]];
+		[s add:[PKSymbol symbolWithString:@"}"]];
 		
 		[elementIncludeContentParser add:s];
 	}
@@ -334,9 +334,9 @@
 - (PKCollectionParser *)assignMethodParser {
 	if (!assignMethodParser) {
 		self.assignMethodParser = [PKAlternation alternation];
-		[assignMethodParser add:[TDSymbol symbolWithString:@"="]];
-		[assignMethodParser add:[TDSymbol symbolWithString:@"|="]];
-		[assignMethodParser add:[TDSymbol symbolWithString:@"&="]];
+		[assignMethodParser add:[PKSymbol symbolWithString:@"="]];
+		[assignMethodParser add:[PKSymbol symbolWithString:@"|="]];
+		[assignMethodParser add:[PKSymbol symbolWithString:@"&="]];
 	}
 	return assignMethodParser;
 }
@@ -363,7 +363,7 @@
 - (PKCollectionParser *)exceptNameClassParser {
 	if (!exceptNameClassParser) {
 		self.exceptNameClassParser = [PKSequence sequence];
-		[nameParser add:[TDSymbol symbolWithString:@"-"]];
+		[nameParser add:[PKSymbol symbolWithString:@"-"]];
 		[nameParser add:self.nameClassParser];
 	}
 	return nameParser;
@@ -474,7 +474,7 @@
 
 - (PKParser *)attributeKeywordParser {
 	if (!attributeKeywordParser) {
-		self.attributeKeywordParser = [TDLiteral literalWithString:@"attribute"];
+		self.attributeKeywordParser = [PKLiteral literalWithString:@"attribute"];
 	}
 	return attributeKeywordParser;
 }
@@ -482,7 +482,7 @@
 
 - (PKParser *)defaultKeywordParser {
 	if (!defaultKeywordParser) {
-		self.defaultKeywordParser = [TDLiteral literalWithString:@"default"];
+		self.defaultKeywordParser = [PKLiteral literalWithString:@"default"];
 	}
 	return defaultKeywordParser;
 }
@@ -490,7 +490,7 @@
 
 - (PKParser *)datatypesKeywordParser {
 	if (!datatypesKeywordParser) {
-		self.datatypesKeywordParser = [TDLiteral literalWithString:@"datatypes"];
+		self.datatypesKeywordParser = [PKLiteral literalWithString:@"datatypes"];
 	}
 	return datatypesKeywordParser;
 }
@@ -498,7 +498,7 @@
 
 - (PKParser *)elementKeywordParser {
 	if (!elementKeywordParser) {
-		self.elementKeywordParser = [TDLiteral literalWithString:@"element"];
+		self.elementKeywordParser = [PKLiteral literalWithString:@"element"];
 	}
 	return elementKeywordParser;
 }
@@ -506,7 +506,7 @@
 
 - (PKParser *)emptyKeywordParser {
 	if (!emptyKeywordParser) {
-		self.emptyKeywordParser = [TDLiteral literalWithString:@"empty"];
+		self.emptyKeywordParser = [PKLiteral literalWithString:@"empty"];
 	}
 	return emptyKeywordParser;
 }
@@ -514,7 +514,7 @@
 
 - (PKParser *)externalKeywordParser {
 	if (!externalKeywordParser) {
-		self.externalKeywordParser = [TDLiteral literalWithString:@"external"];
+		self.externalKeywordParser = [PKLiteral literalWithString:@"external"];
 	}
 	return externalKeywordParser;
 }
@@ -522,7 +522,7 @@
 
 - (PKParser *)grammarKeywordParser {
 	if (!grammarKeywordParser) {
-		self.grammarKeywordParser = [TDLiteral literalWithString:@"grammar"];
+		self.grammarKeywordParser = [PKLiteral literalWithString:@"grammar"];
 	}
 	return grammarKeywordParser;
 }
@@ -530,7 +530,7 @@
 
 - (PKParser *)includeKeywordParser {
 	if (!includeKeywordParser) {
-		self.includeKeywordParser = [TDLiteral literalWithString:@"include"];
+		self.includeKeywordParser = [PKLiteral literalWithString:@"include"];
 	}
 	return includeKeywordParser;
 }
@@ -538,7 +538,7 @@
 
 - (PKParser *)inheritKeywordParser {
 	if (!inheritKeywordParser) {
-		self.inheritKeywordParser = [TDLiteral literalWithString:@"inherit"];
+		self.inheritKeywordParser = [PKLiteral literalWithString:@"inherit"];
 	}
 	return inheritKeywordParser;
 }
@@ -546,7 +546,7 @@
 
 - (PKParser *)listKeywordParser {
 	if (!listKeywordParser) {
-		self.listKeywordParser = [TDLiteral literalWithString:@"list"];
+		self.listKeywordParser = [PKLiteral literalWithString:@"list"];
 	}
 	return listKeywordParser;
 }
@@ -554,7 +554,7 @@
 
 - (PKParser *)mixedKeywordParser {
 	if (!mixedKeywordParser) {
-		self.mixedKeywordParser = [TDLiteral literalWithString:@"mixed"];
+		self.mixedKeywordParser = [PKLiteral literalWithString:@"mixed"];
 	}
 	return mixedKeywordParser;
 }
@@ -562,7 +562,7 @@
 
 - (PKParser *)namespaceKeywordParser {
 	if (!namespaceKeywordParser) {
-		self.namespaceKeywordParser = [TDLiteral literalWithString:@"namespace"];
+		self.namespaceKeywordParser = [PKLiteral literalWithString:@"namespace"];
 	}
 	return namespaceKeywordParser;
 }
@@ -570,7 +570,7 @@
 
 - (PKParser *)notAllowedKeywordParser {
 	if (!notAllowedKeywordParser) {
-		self.notAllowedKeywordParser = [TDLiteral literalWithString:@"notAllowed"];
+		self.notAllowedKeywordParser = [PKLiteral literalWithString:@"notAllowed"];
 	}
 	return notAllowedKeywordParser;
 }
@@ -578,7 +578,7 @@
 
 - (PKParser *)parentKeywordParser {
 	if (!parentKeywordParser) {
-		self.parentKeywordParser = [TDLiteral literalWithString:@"parent"];
+		self.parentKeywordParser = [PKLiteral literalWithString:@"parent"];
 	}
 	return parentKeywordParser;
 }
@@ -586,7 +586,7 @@
 
 - (PKParser *)startKeywordParser {
 	if (!startKeywordParser) {
-		self.startKeywordParser = [TDLiteral literalWithString:@"start"];
+		self.startKeywordParser = [PKLiteral literalWithString:@"start"];
 	}
 	return startKeywordParser;
 }
@@ -594,7 +594,7 @@
 
 - (PKParser *)stringKeywordParser {
 	if (!stringKeywordParser) {
-		self.stringKeywordParser = [TDLiteral literalWithString:@"string"];
+		self.stringKeywordParser = [PKLiteral literalWithString:@"string"];
 	}
 	return stringKeywordParser;
 }
@@ -602,7 +602,7 @@
 
 - (PKParser *)textKeywordParser {
 	if (!textKeywordParser) {
-		self.textKeywordParser = [TDLiteral literalWithString:@"text"];
+		self.textKeywordParser = [PKLiteral literalWithString:@"text"];
 	}
 	return textKeywordParser;
 }
@@ -610,7 +610,7 @@
 
 - (PKParser *)tokenKeywordParser {
 	if (!tokenKeywordParser) {
-		self.tokenKeywordParser = [TDLiteral literalWithString:@"token"];
+		self.tokenKeywordParser = [PKLiteral literalWithString:@"token"];
 	}
 	return tokenKeywordParser;
 }

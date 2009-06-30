@@ -1,6 +1,6 @@
 //
-//  TDJSPattern.m
-//  TDParseKit
+//  PKJSPattern.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/1/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -9,7 +9,7 @@
 #import "TDJSPattern.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDPattern.h>
+#import <ParseKit/PKPattern.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -17,7 +17,7 @@
 static JSValueRef TDPattern_invertedPattern(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
     TDPreconditionInstaceOf(TDPattern_class, "invertedPattern");
     
-    TDPattern *data = JSObjectGetPrivate(this);
+    PKPattern *data = JSObjectGetPrivate(this);
     return TDPattern_new(ctx, [data invertedPattern]);
 }
 
@@ -66,7 +66,7 @@ JSObjectRef TDPattern_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDPattern_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDPreconditionConstructorArgc(1, "TDPattern");
+    TDPreconditionConstructorArgc(1, "PKPattern");
 
     NSString *s = TDJSValueGetNSString(ctx, argv[0], ex);
     NSInteger opts = TDPatternOptionsNone;
@@ -79,6 +79,6 @@ JSObjectRef TDPattern_construct(JSContextRef ctx, JSObjectRef constructor, size_
         t = JSValueToNumber(ctx, argv[2], ex);
     }
 
-    TDPattern *data = [[TDPattern alloc] initWithString:s options:opts tokenType:t];
+    PKPattern *data = [[PKPattern alloc] initWithString:s options:opts tokenType:t];
     return TDPattern_new(ctx, data);
 }

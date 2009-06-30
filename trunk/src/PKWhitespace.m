@@ -1,15 +1,15 @@
 //
-//  TDWhitespace.m
-//  TDParseKit
+//  PKWhitespace.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 6/19/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDWhitespace.h"
+#import "PKWhitespace.h"
 #import <ParseKit/PKToken.h>
 
-@implementation TDWhitespace
+@implementation PKWhitespace
 
 + (id)whitespace {
     return [[[self alloc] initWithString:nil] autorelease];

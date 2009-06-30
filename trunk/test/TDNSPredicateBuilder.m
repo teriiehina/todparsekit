@@ -1,6 +1,6 @@
 //
-//  TDNSPredicateBuilder.m
-//  TDParseKit
+//  PKNSPredicateBuilder.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 5/27/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
@@ -102,7 +102,7 @@
     if (!orTermParser) {
         self.orTermParser = [PKSequence sequence];
         orTermParser.name = @"orTerm";
-        [orTermParser add:[[TDCaseInsensitiveLiteral literalWithString:@"or"] discard]];
+        [orTermParser add:[[PKCaseInsensitiveLiteral literalWithString:@"or"] discard]];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOr:)];
     }
@@ -127,7 +127,7 @@
     if (!andPrimaryExprParser) {
         self.andPrimaryExprParser = [PKSequence sequence];
         andPrimaryExprParser.name = @"andPrimaryExpr";
-        [andPrimaryExprParser add:[[TDCaseInsensitiveLiteral literalWithString:@"and"] discard]];
+        [andPrimaryExprParser add:[[PKCaseInsensitiveLiteral literalWithString:@"and"] discard]];
         [andPrimaryExprParser add:self.primaryExprParser];
         [andPrimaryExprParser setAssembler:self selector:@selector(workOnAnd:)];
     }
@@ -143,9 +143,9 @@
         [primaryExprParser add:self.phraseParser];
         
         PKSequence *s = [PKSequence sequence];
-        [s add:[[TDSymbol symbolWithString:@"("] discard]];
+        [s add:[[PKSymbol symbolWithString:@"("] discard]];
         [s add:self.exprParser];
-        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        [s add:[[PKSymbol symbolWithString:@")"] discard]];
         
         [primaryExprParser add:s];
     }
@@ -170,7 +170,7 @@
     if (!negatedPredicateParser) {
         self.negatedPredicateParser = [PKSequence sequence];
         negatedPredicateParser.name = @"negatedPredicate";
-        [negatedPredicateParser add:[[TDCaseInsensitiveLiteral literalWithString:@"not"] discard]];
+        [negatedPredicateParser add:[[PKCaseInsensitiveLiteral literalWithString:@"not"] discard]];
         [negatedPredicateParser add:self.predicateParser];
         [negatedPredicateParser setAssembler:self selector:@selector(workOnNegatedValue:)];
     }
@@ -261,16 +261,16 @@
     if (!relationParser) {
         self.relationParser = [PKAlternation alternation];
         relationParser.name = @"relation";
-        [relationParser add:[TDSymbol symbolWithString:@"="]];
-        [relationParser add:[TDSymbol symbolWithString:@"!="]];
-        [relationParser add:[TDSymbol symbolWithString:@">"]];
-        [relationParser add:[TDSymbol symbolWithString:@">="]];
-        [relationParser add:[TDSymbol symbolWithString:@"<"]];
-        [relationParser add:[TDSymbol symbolWithString:@"<="]];
-        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"beginswith"]];
-        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"contains"]];
-        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"endswith"]];
-        [relationParser add:[TDCaseInsensitiveLiteral literalWithString:@"matches"]];
+        [relationParser add:[PKSymbol symbolWithString:@"="]];
+        [relationParser add:[PKSymbol symbolWithString:@"!="]];
+        [relationParser add:[PKSymbol symbolWithString:@">"]];
+        [relationParser add:[PKSymbol symbolWithString:@">="]];
+        [relationParser add:[PKSymbol symbolWithString:@"<"]];
+        [relationParser add:[PKSymbol symbolWithString:@"<="]];
+        [relationParser add:[PKCaseInsensitiveLiteral literalWithString:@"beginswith"]];
+        [relationParser add:[PKCaseInsensitiveLiteral literalWithString:@"contains"]];
+        [relationParser add:[PKCaseInsensitiveLiteral literalWithString:@"endswith"]];
+        [relationParser add:[PKCaseInsensitiveLiteral literalWithString:@"matches"]];
         [relationParser setAssembler:self selector:@selector(workOnRelation:)];
     }
     return relationParser;
@@ -282,7 +282,7 @@
     if (!tagParser) {
         self.tagParser = [PKSequence sequence];
         tagParser.name = @"tag";
-        [tagParser add:[[TDSymbol symbolWithString:@"@"] discard]];
+        [tagParser add:[[PKSymbol symbolWithString:@"@"] discard]];
         [tagParser add:[PKWord word]];
     }
     return tagParser;
@@ -316,7 +316,7 @@
 
 - (PKParser *)trueParser {
     if (!trueParser) {
-        self.trueParser = [[TDCaseInsensitiveLiteral literalWithString:@"true"] discard];
+        self.trueParser = [[PKCaseInsensitiveLiteral literalWithString:@"true"] discard];
         trueParser.name = @"true";
         [trueParser setAssembler:self selector:@selector(workOnTrue:)];
     }
@@ -326,7 +326,7 @@
 
 - (PKParser *)falseParser {
     if (!falseParser) {
-        self.falseParser = [[TDCaseInsensitiveLiteral literalWithString:@"false"] discard];
+        self.falseParser = [[PKCaseInsensitiveLiteral literalWithString:@"false"] discard];
         falseParser.name = @"false";
         [falseParser setAssembler:self selector:@selector(workOnFalse:)];
     }
@@ -349,7 +349,7 @@
 // quotedString         = QuotedString
 - (PKParser *)quotedStringParser {
     if (!quotedStringParser) {
-        self.quotedStringParser = [TDQuotedString quotedString];
+        self.quotedStringParser = [PKQuotedString quotedString];
         quotedStringParser.name = @"quotedString";
         [quotedStringParser setAssembler:self selector:@selector(workOnQuotedString:)];
     }
@@ -395,10 +395,10 @@
 }
 
 
-- (TDPattern *)reservedWordPattern {
+- (PKPattern *)reservedWordPattern {
     if (!reservedWordPattern) {
         NSString *s = @"true|false|and|or|not|contains|beginswith|endswith|matches";
-        self.reservedWordPattern = [TDPattern patternWithString:s options:TDPatternOptionsIgnoreCase];
+        self.reservedWordPattern = [PKPattern patternWithString:s options:TDPatternOptionsIgnoreCase];
         reservedWordPattern.name = @"reservedWordPattern";
     }
     return reservedWordPattern;
@@ -407,7 +407,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [TDNum num];
+        self.numberParser = [PKNum num];
         numberParser.name = @"number";
         [numberParser setAssembler:self selector:@selector(workOnNumber:)];
     }

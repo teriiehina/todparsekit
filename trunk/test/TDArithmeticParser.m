@@ -1,6 +1,6 @@
 //
-//  TDArithmeticParser.m
-//  TDParseKit
+//  PKArithmeticParser.m
+//  ParseKit
 //
 //  Created by Todd Ditchendorf on 8/25/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
@@ -89,7 +89,7 @@
 - (PKCollectionParser *)plusTermParser {
     if (!plusTermParser) {
         self.plusTermParser = [PKSequence sequence];
-        [plusTermParser add:[[TDSymbol symbolWithString:@"+"] discard]];
+        [plusTermParser add:[[PKSymbol symbolWithString:@"+"] discard]];
         [plusTermParser add:self.termParser];
         [plusTermParser setAssembler:self selector:@selector(workOnPlus:)];
     }
@@ -101,7 +101,7 @@
 - (PKCollectionParser *)minusTermParser {
     if (!minusTermParser) {
         self.minusTermParser = [PKSequence sequence];
-        [minusTermParser add:[[TDSymbol symbolWithString:@"-"] discard]];
+        [minusTermParser add:[[PKSymbol symbolWithString:@"-"] discard]];
         [minusTermParser add:self.termParser];
         [minusTermParser setAssembler:self selector:@selector(workOnMinus:)];
     }
@@ -129,7 +129,7 @@
 - (PKCollectionParser *)timesFactorParser {
     if (!timesFactorParser) {
         self.timesFactorParser = [PKSequence sequence];
-        [timesFactorParser add:[[TDSymbol symbolWithString:@"*"] discard]];
+        [timesFactorParser add:[[PKSymbol symbolWithString:@"*"] discard]];
         [timesFactorParser add:self.factorParser];
         [timesFactorParser setAssembler:self selector:@selector(workOnTimes:)];
     }
@@ -141,7 +141,7 @@
 - (PKCollectionParser *)divFactorParser {
     if (!divFactorParser) {
         self.divFactorParser = [PKSequence sequence];
-        [divFactorParser add:[[TDSymbol symbolWithString:@"/"] discard]];
+        [divFactorParser add:[[PKSymbol symbolWithString:@"/"] discard]];
         [divFactorParser add:self.factorParser];
         [divFactorParser setAssembler:self selector:@selector(workOnDivide:)];
     }
@@ -153,7 +153,7 @@
 - (PKCollectionParser *)exponentFactorParser {
     if (!exponentFactorParser) {
         self.exponentFactorParser = [PKSequence sequence];
-        [exponentFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
+        [exponentFactorParser add:[[PKSymbol symbolWithString:@"^"] discard]];
         [exponentFactorParser add:self.factorParser];
         [exponentFactorParser setAssembler:self selector:@selector(workOnExp:)];
     }
@@ -167,13 +167,13 @@
         self.phraseParser = [PKAlternation alternation];
         
         PKSequence *s = [PKSequence sequence];
-        [s add:[[TDSymbol symbolWithString:@"("] discard]];
+        [s add:[[PKSymbol symbolWithString:@"("] discard]];
         [s add:self.exprParser];
-        [s add:[[TDSymbol symbolWithString:@")"] discard]];
+        [s add:[[PKSymbol symbolWithString:@")"] discard]];
         
         [phraseParser add:s];
         
-        TDNum *n = [TDNum num];
+        PKNum *n = [PKNum num];
         [phraseParser add:n];
     }
     return phraseParser;
