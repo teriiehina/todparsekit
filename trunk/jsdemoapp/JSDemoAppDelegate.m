@@ -128,7 +128,7 @@
 
 
 - (void)webView:(WebView *)sender didClearWindowObject:(WebScriptObject *)windowObject forFrame:(WebFrame *)frame {
-    TDJSParseKitSetUpContext([[sender mainFrame] globalContext]);
+    PKJSParseKitSetUpContext([[sender mainFrame] globalContext]);
 }
 
 @synthesize webView;

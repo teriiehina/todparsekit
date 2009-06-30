@@ -14,7 +14,7 @@
 #import "TDJSTokenizerState.h"
 #import "PKJSAssembly.h"
 #import "TDJSTokenAssembly.h"
-#import "TDJSCharacterAssembly.h"
+#import "PKJSCharacterAssembly.h"
 #import "TDJSWordState.h"
 #import "TDJSNumberState.h"
 #import "TDJSWhitespaceState.h"
@@ -71,14 +71,14 @@ static void setUpClassProperty(JSContextRef ctx, char *propName, JSValueRef prop
     JSStringRelease(propNameStr);
 }
 
-void TDJSParseKitSetUpContext(JSContextRef ctx) {
+void PKJSParseKitSetUpContext(JSContextRef ctx) {
     JSValueRef ex = NULL;
 
     setUpFunction(ctx, "print", print, &ex);
     
     // Assemblies
     setUpConstructor(ctx, "PKTokenAssembly", TDTokenAssembly_class(ctx), TDTokenAssembly_construct, &ex);
-    setUpConstructor(ctx, "PKCharacterAssembly", TDCharacterAssembly_class(ctx), TDCharacterAssembly_construct, &ex);
+    setUpConstructor(ctx, "PKCharacterAssembly", PKCharacterAssembly_class(ctx), PKCharacterAssembly_construct, &ex);
     
     // Tokenization
     JSObjectRef constr = setUpConstructor(ctx, "PKToken", TDToken_class(ctx), TDToken_construct, &ex);
