@@ -9,7 +9,7 @@
 #import "TDJSEmpty.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDEmpty.h>
+#import <ParseKit/PKEmpty.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDEmpty_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDEmpty_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDEmpty *data = [[TDEmpty alloc] init];
+    PKEmpty *data = [[PKEmpty alloc] init];
     return TDEmpty_new(ctx, data);
 }

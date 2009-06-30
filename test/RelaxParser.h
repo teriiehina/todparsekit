@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface RelaxParser : TDSequence {
+@interface RelaxParser : PKSequence {
 	TDTokenizer *tokenizer;
 }
 

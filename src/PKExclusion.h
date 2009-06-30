@@ -1,5 +1,5 @@
 //
-//  TDExclusion.h
+//  PKExclusion.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 6/26/09.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <ParseKit/PKCollectionParser.h>
 
-@interface TDExclusion : PKCollectionParser {
+@interface PKExclusion : PKCollectionParser {
 
 }
 

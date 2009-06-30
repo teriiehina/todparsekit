@@ -21,7 +21,7 @@
     s = @"foo -";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     
@@ -36,7 +36,7 @@
     s = @"foo foo -";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -52,7 +52,7 @@
     s = @"foo - foo";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
@@ -68,7 +68,7 @@
     s = @"- foo";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     
@@ -83,7 +83,7 @@
     s = @"- foo -";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
@@ -99,7 +99,7 @@
     s = @"- foo + foo";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[[TDSymbol symbolWithString:@"-"] discard]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[[TDSymbol symbolWithString:@"+"] discard]];
@@ -116,7 +116,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -132,7 +132,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
@@ -147,7 +147,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -161,7 +161,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -177,7 +177,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDWord word]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -193,7 +193,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -207,7 +207,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDNum num]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -221,7 +221,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -236,7 +236,7 @@
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     
-    p = [TDSequence sequence];
+    p = [PKSequence sequence];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"123"]];
     [p add:[TDLiteral literalWithString:@"baz"]];

@@ -1,5 +1,5 @@
 //
-//  TDRepetition.h
+//  PKRepetition.h
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
@@ -10,27 +10,27 @@
 #import <ParseKit/PKParser.h>
 
 /*!
-    @class      TDRepetition 
-    @brief      A <tt>TDRepetition</tt> matches its underlying parser repeatedly against a assembly.
+    @class      PKRepetition 
+    @brief      A <tt>PKRepetition</tt> matches its underlying parser repeatedly against a assembly.
 */
-@interface TDRepetition : PKParser {
+@interface PKRepetition : PKParser {
     PKParser *subparser;
     id preassembler;
     SEL preassemblerSelector;
 }
 
 /*!
-    @brief      Convenience factory method for initializing an autoreleased <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+    @brief      Convenience factory method for initializing an autoreleased <tt>PKRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @param      p the subparser against wich to repeatedly match
-    @result     an initialized autoreleased <tt>TDRepetition</tt> parser.
+    @result     an initialized autoreleased <tt>PKRepetition</tt> parser.
 */
 + (id)repetitionWithSubparser:(PKParser *)p;
 
 /*!
-    @brief      Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
-    @details    Designated Initializer. Initialize a <tt>TDRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+    @brief      Designated Initializer. Initialize a <tt>PKRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
+    @details    Designated Initializer. Initialize a <tt>PKRepetition</tt> parser to repeatedly match against subparser <tt>p</tt>.
     @param      p the subparser against wich to repeatedly match
-    @result     an initialized <tt>TDRepetition</tt> parser.
+    @result     an initialized <tt>PKRepetition</tt> parser.
 */
 - (id)initWithSubparser:(PKParser *)p;
 

@@ -9,7 +9,7 @@
 #import "TDJSAny.h"
 #import "TDJSUtils.h"
 #import "TDJSTerminal.h"
-#import <ParseKit/TDAny.h>
+#import <ParseKit/PKAny.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDAny_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDAny_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDAny *data = [[TDAny alloc] init];
+    PKAny *data = [[PKAny alloc] init];
     return TDAny_new(ctx, data);
 }

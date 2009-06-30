@@ -56,14 +56,14 @@
 // expr            = term (plusTerm | minusTerm)*
 - (PKCollectionParser *)exprParser {
     if (!exprParser) {
-        self.exprParser = [TDSequence sequence];
+        self.exprParser = [PKSequence sequence];
         [exprParser add:self.termParser];
         
-        TDAlternation *a = [TDAlternation alternation];
+        PKAlternation *a = [PKAlternation alternation];
         [a add:self.plusTermParser];
         [a add:self.minusTermParser];
         
-        [exprParser add:[TDRepetition repetitionWithSubparser:a]];
+        [exprParser add:[PKRepetition repetitionWithSubparser:a]];
     }
     return exprParser;
 }
@@ -72,14 +72,14 @@
 // term            = factor (timesFactor | divFactor)*
 - (PKCollectionParser *)termParser {
     if (!termParser) {
-        self.termParser = [TDSequence sequence];
+        self.termParser = [PKSequence sequence];
         [termParser add:self.factorParser];
         
-        TDAlternation *a = [TDAlternation alternation];
+        PKAlternation *a = [PKAlternation alternation];
         [a add:self.timesFactorParser];
         [a add:self.divFactorParser];
         
-        [termParser add:[TDRepetition repetitionWithSubparser:a]];
+        [termParser add:[PKRepetition repetitionWithSubparser:a]];
     }
     return termParser;
 }
@@ -88,7 +88,7 @@
 // plusTerm        = '+' term
 - (PKCollectionParser *)plusTermParser {
     if (!plusTermParser) {
-        self.plusTermParser = [TDSequence sequence];
+        self.plusTermParser = [PKSequence sequence];
         [plusTermParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [plusTermParser add:self.termParser];
         [plusTermParser setAssembler:self selector:@selector(workOnPlus:)];
@@ -100,7 +100,7 @@
 // minusTerm    = '-' term
 - (PKCollectionParser *)minusTermParser {
     if (!minusTermParser) {
-        self.minusTermParser = [TDSequence sequence];
+        self.minusTermParser = [PKSequence sequence];
         [minusTermParser add:[[TDSymbol symbolWithString:@"-"] discard]];
         [minusTermParser add:self.termParser];
         [minusTermParser setAssembler:self selector:@selector(workOnMinus:)];
@@ -112,9 +112,9 @@
 // factor        = phrase exponentFactor | phrase
 - (PKCollectionParser *)factorParser {
     if (!factorParser) {
-        self.factorParser = [TDAlternation alternation];
+        self.factorParser = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:self.phraseParser];
         [s add:self.exponentFactorParser];
         
@@ -128,7 +128,7 @@
 // timesFactor    = '*' factor
 - (PKCollectionParser *)timesFactorParser {
     if (!timesFactorParser) {
-        self.timesFactorParser = [TDSequence sequence];
+        self.timesFactorParser = [PKSequence sequence];
         [timesFactorParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [timesFactorParser add:self.factorParser];
         [timesFactorParser setAssembler:self selector:@selector(workOnTimes:)];
@@ -140,7 +140,7 @@
 // divFactor    = '/' factor
 - (PKCollectionParser *)divFactorParser {
     if (!divFactorParser) {
-        self.divFactorParser = [TDSequence sequence];
+        self.divFactorParser = [PKSequence sequence];
         [divFactorParser add:[[TDSymbol symbolWithString:@"/"] discard]];
         [divFactorParser add:self.factorParser];
         [divFactorParser setAssembler:self selector:@selector(workOnDivide:)];
@@ -152,7 +152,7 @@
 // exponentFactor    = '^' factor
 - (PKCollectionParser *)exponentFactorParser {
     if (!exponentFactorParser) {
-        self.exponentFactorParser = [TDSequence sequence];
+        self.exponentFactorParser = [PKSequence sequence];
         [exponentFactorParser add:[[TDSymbol symbolWithString:@"^"] discard]];
         [exponentFactorParser add:self.factorParser];
         [exponentFactorParser setAssembler:self selector:@selector(workOnExp:)];
@@ -164,9 +164,9 @@
 // phrase        = '(' expr ')' | Num
 - (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
-        self.phraseParser = [TDAlternation alternation];
+        self.phraseParser = [PKAlternation alternation];
         
-        TDSequence *s = [TDSequence sequence];
+        PKSequence *s = [PKSequence sequence];
         [s add:[[TDSymbol symbolWithString:@"("] discard]];
         [s add:self.exprParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];

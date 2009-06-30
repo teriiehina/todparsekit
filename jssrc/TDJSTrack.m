@@ -9,7 +9,7 @@
 #import "TDJSTrack.h"
 #import "TDJSUtils.h"
 #import "TDJSSequence.h"
-#import <ParseKit/TDTrack.h>
+#import <ParseKit/PKTrack.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef TDTrack_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef TDTrack_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    TDTrack *data = [[TDTrack alloc] init];
+    PKTrack *data = [[PKTrack alloc] init];
     return TDTrack_new(ctx, data);
 }

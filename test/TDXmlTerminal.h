@@ -6,11 +6,11 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 @class TDXmlToken;
 
-@interface TDXmlTerminal : TDTerminal {
+@interface TDXmlTerminal : PKTerminal {
     TDXmlToken *tok;
 }
 @property (nonatomic, retain) TDXmlToken *tok;

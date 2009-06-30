@@ -71,7 +71,7 @@ static NSString *kTDPlistNullString = @"<null>";
         
         self.curly = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"{" floatValue:0.];
         self.paren = [TDToken tokenWithTokenType:TDTokenTypeSymbol stringValue:@"(" floatValue:0.];
-        [self add:[TDEmpty empty]];
+        [self add:[PKEmpty empty]];
         [self add:self.arrayParser];
         [self add:self.dictParser];
     }
@@ -121,9 +121,9 @@ static NSString *kTDPlistNullString = @"<null>";
 // dictContent          = keyValuePair*
 - (PKCollectionParser *)dictParser {
     if (!dictParser) {
-        self.dictParser = [TDTrack track];
+        self.dictParser = [PKTrack track];
         [dictParser add:[TDSymbol symbolWithString:@"{"]]; // dont discard. serves as fence
-        [dictParser add:[TDRepetition repetitionWithSubparser:self.keyValuePairParser]];
+        [dictParser add:[PKRepetition repetitionWithSubparser:self.keyValuePairParser]];
         [dictParser add:[[TDSymbol symbolWithString:@"}"] discard]];
         [dictParser setAssembler:self selector:@selector(workOnDict:)];
     }
@@ -134,7 +134,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // keyValuePair         = key '=' value ';'
 - (PKCollectionParser *)keyValuePairParser {
     if (!keyValuePairParser) {
-        self.keyValuePairParser = [TDTrack track];
+        self.keyValuePairParser = [PKTrack track];
         [keyValuePairParser add:self.keyParser];
         [keyValuePairParser add:[[TDSymbol symbolWithString:@"="] discard]];
         [keyValuePairParser add:self.valueParser];
@@ -149,15 +149,15 @@ static NSString *kTDPlistNullString = @"<null>";
 // actualArray          = value commaValue*
 - (PKCollectionParser *)arrayParser {
     if (!arrayParser) {
-        self.arrayParser = [TDTrack track];
+        self.arrayParser = [PKTrack track];
         [arrayParser add:[TDSymbol symbolWithString:@"("]]; // dont discard. serves as fence
         
-        TDAlternation *arrayContent = [TDAlternation alternation];
-        [arrayContent add:[TDEmpty empty]];
+        PKAlternation *arrayContent = [PKAlternation alternation];
+        [arrayContent add:[PKEmpty empty]];
         
-        TDSequence *actualArray = [TDSequence sequence];
+        PKSequence *actualArray = [PKSequence sequence];
         [actualArray add:self.valueParser];
-        [actualArray add:[TDRepetition repetitionWithSubparser:self.commaValueParser]];
+        [actualArray add:[PKRepetition repetitionWithSubparser:self.commaValueParser]];
         
         [arrayContent add:actualArray];
         [arrayParser add:arrayContent];
@@ -171,7 +171,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // key                  = num | string | null
 - (PKCollectionParser *)keyParser {
     if (!keyParser) {
-        self.keyParser = [TDAlternation alternation];
+        self.keyParser = [PKAlternation alternation];
         [keyParser add:self.numParser];
         [keyParser add:self.stringParser];
         [keyParser add:self.nullParser];
@@ -183,7 +183,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // value                = num | string | null | array | dict
 - (PKCollectionParser *)valueParser {
     if (!valueParser) {
-        self.valueParser = [TDAlternation alternation];
+        self.valueParser = [PKAlternation alternation];
         [valueParser add:self.arrayParser];
         [valueParser add:self.dictParser];
         [valueParser add:self.stringParser];
@@ -196,7 +196,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
-        self.commaValueParser = [TDSequence sequence];
+        self.commaValueParser = [PKSequence sequence];
         [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
         [commaValueParser add:self.valueParser];
     }
@@ -207,7 +207,7 @@ static NSString *kTDPlistNullString = @"<null>";
 // string               = QuotedString | Word
 - (PKCollectionParser *)stringParser {
     if (!stringParser) {
-        self.stringParser = [TDAlternation alternation];
+        self.stringParser = [PKAlternation alternation];
         
         // we have to remove the quotes from QuotedString string values. so set an assembler method to do that
         PKParser *quotedString = [TDQuotedString quotedString];

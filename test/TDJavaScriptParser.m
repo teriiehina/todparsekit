@@ -13,8 +13,8 @@
 @end
 
 @interface TDJavaScriptParser ()
-- (TDAlternation *)zeroOrOne:(PKParser *)p;
-- (TDSequence *)oneOrMore:(PKParser *)p;
+- (PKAlternation *)zeroOrOne:(PKParser *)p;
+- (PKSequence *)oneOrMore:(PKParser *)p;
 @end
 
 @implementation TDJavaScriptParser
@@ -246,18 +246,18 @@
 }
 
 
-- (TDAlternation *)zeroOrOne:(PKParser *)p {
-    TDAlternation *a = [TDAlternation alternation];
-    [a add:[TDEmpty empty]];
+- (PKAlternation *)zeroOrOne:(PKParser *)p {
+    PKAlternation *a = [PKAlternation alternation];
+    [a add:[PKEmpty empty]];
     [a add:p];
     return a;
 }
 
 
-- (TDSequence *)oneOrMore:(PKParser *)p {
-    TDSequence *s = [TDSequence sequence];
+- (PKSequence *)oneOrMore:(PKParser *)p {
+    PKSequence *s = [PKSequence sequence];
     [s add:p];
-    [s add:[TDRepetition repetitionWithSubparser:p]];
+    [s add:[PKRepetition repetitionWithSubparser:p]];
     return s;
 }
 
@@ -265,7 +265,7 @@
 // assignmentOperator  = equals | plusEq | minusEq | timesEq | divEq | modEq | shiftLeftEq | shiftRightEq | shiftRightExtEq | andEq | xorEq | orEq;
 - (PKCollectionParser *)assignmentOpParser {
     if (!assignmentOpParser) {
-        self.assignmentOpParser = [TDAlternation alternation];
+        self.assignmentOpParser = [PKAlternation alternation];
         assignmentOpParser.name = @"assignmentOp";
         [assignmentOpParser add:self.equalsParser];
         [assignmentOpParser add:self.plusEqParser];
@@ -287,7 +287,7 @@
 // relationalOperator  = lt | gt | ge | le | instanceof;
 - (PKCollectionParser *)relationalOpParser {
     if (!relationalOpParser) {
-        self.relationalOpParser = [TDAlternation alternation];
+        self.relationalOpParser = [PKAlternation alternation];
         relationalOpParser.name = @"relationalOp";
         [relationalOpParser add:self.ltParser];
         [relationalOpParser add:self.gtParser];
@@ -302,7 +302,7 @@
 // equalityOp    = eq | ne | is | isnot;
 - (PKCollectionParser *)equalityOpParser {
     if (!equalityOpParser) {
-        self.equalityOpParser = [TDAlternation alternation];;
+        self.equalityOpParser = [PKAlternation alternation];;
         equalityOpParser.name = @"equalityOp";
         [equalityOpParser add:self.eqParser];
         [equalityOpParser add:self.neParser];
@@ -316,7 +316,7 @@
 //shiftOp         = shiftLeft | shiftRight | shiftRightExt;
 - (PKCollectionParser *)shiftOpParser {
     if (!shiftOpParser) {
-        self.shiftOpParser = [TDAlternation alternation];
+        self.shiftOpParser = [PKAlternation alternation];
         shiftOpParser.name = @"shiftOp";
         [shiftOpParser add:self.shiftLeftParser];
         [shiftOpParser add:self.shiftRightParser];
@@ -329,7 +329,7 @@
 //incrementOperator   = plusPlus | minusMinus;
 - (PKCollectionParser *)incrementOpParser {
     if (!incrementOpParser) {
-        self.incrementOpParser = [TDAlternation alternation];
+        self.incrementOpParser = [PKAlternation alternation];
         incrementOpParser.name = @"incrementOp";
         [incrementOpParser add:self.plusPlusParser];
         [incrementOpParser add:self.minusMinusParser];
@@ -341,7 +341,7 @@
 //unaryOperator       = tilde | delete | typeof | void;
 - (PKCollectionParser *)unaryOpParser {
     if (!unaryOpParser) {
-        self.unaryOpParser = [TDAlternation alternation];
+        self.unaryOpParser = [PKAlternation alternation];
         unaryOpParser.name = @"unaryOp";
         [unaryOpParser add:self.tildeParser];
         [unaryOpParser add:self.deleteParser];
@@ -355,7 +355,7 @@
 // multiplicativeOperator = times | div | mod;
 - (PKCollectionParser *)multiplicativeOpParser {
     if (!multiplicativeOpParser) {
-        self.multiplicativeOpParser = [TDAlternation alternation];
+        self.multiplicativeOpParser = [PKAlternation alternation];
         multiplicativeOpParser.name = @"multiplicativeOperator";
         [multiplicativeOpParser add:self.timesParser];
         [multiplicativeOpParser add:self.divParser];
@@ -373,7 +373,7 @@
 //program             = element*;
 - (PKCollectionParser *)programParser {
     if (!programParser) {
-        self.programParser = [TDRepetition repetitionWithSubparser:self.elementParser];
+        self.programParser = [PKRepetition repetitionWithSubparser:self.elementParser];
         programParser.name = @"program";
     }
     return programParser;
@@ -387,7 +387,7 @@
 //element             = func | stmt;
 - (PKCollectionParser *)elementParser {
     if (!elementParser) {
-        self.elementParser = [TDAlternation alternation];
+        self.elementParser = [PKAlternation alternation];
         elementParser.name = @"element";
         [elementParser add:self.funcParser];
         [elementParser add:self.stmtParser];
@@ -399,7 +399,7 @@
 //func                = function identifier openParen paramListOpt closeParen compoundStmt;
 - (PKCollectionParser *)funcParser {
     if (!funcParser) {
-        self.funcParser = [TDSequence sequence];
+        self.funcParser = [PKSequence sequence];
         funcParser.name = @"func";
         [funcParser add:self.functionParser];
         [funcParser add:self.identifierParser];
@@ -419,7 +419,7 @@
 //paramListOpt        = Empty | paramList;
 - (PKCollectionParser *)paramListOptParser {
     if (!paramListOptParser) {
-        self.paramListOptParser = [TDAlternation alternation];
+        self.paramListOptParser = [PKAlternation alternation];
         paramListOptParser.name = @"paramListOpt";
         [paramListOptParser add:[self zeroOrOne:self.paramListParser]];
     }
@@ -434,10 +434,10 @@
 //paramList           = identifier commaIdentifier*;
 - (PKCollectionParser *)paramListParser {
     if (!paramListParser) {
-        self.paramListParser = [TDSequence sequence];
+        self.paramListParser = [PKSequence sequence];
         paramListParser.name = @"paramList";
         [paramListParser add:self.identifierParser];
-        [paramListParser add:[TDRepetition repetitionWithSubparser:self.commaIdentifierParser]];
+        [paramListParser add:[PKRepetition repetitionWithSubparser:self.commaIdentifierParser]];
     }
     return paramListParser;
 }
@@ -446,7 +446,7 @@
 //commaIdentifier     = comma identifier;
 - (PKCollectionParser *)commaIdentifierParser {
     if (!commaIdentifierParser) {
-        self.commaIdentifierParser = [TDSequence sequence];
+        self.commaIdentifierParser = [PKSequence sequence];
         commaIdentifierParser.name = @"commaIdentifier";
         [commaIdentifierParser add:self.commaParser];
         [commaIdentifierParser add:self.identifierParser];
@@ -461,7 +461,7 @@
 //compoundStmt        = openCurly stmts closeCurly;
 - (PKCollectionParser *)compoundStmtParser {
     if (!compoundStmtParser) {
-        self.compoundStmtParser = [TDSequence sequence];
+        self.compoundStmtParser = [PKSequence sequence];
         compoundStmtParser.name = @"compoundStmt";
         [compoundStmtParser add:self.openCurlyParser];
         [compoundStmtParser add:self.stmtsParser];
@@ -478,7 +478,7 @@
 //stmts               = stmt*;
 - (PKCollectionParser *)stmtsParser {
     if (!stmtsParser) {
-        self.stmtsParser = [TDRepetition repetitionWithSubparser:self.stmtParser];
+        self.stmtsParser = [PKRepetition repetitionWithSubparser:self.stmtParser];
         stmtsParser.name = @"stmts";
     }
     return stmtsParser;
@@ -503,7 +503,7 @@
 //stmt                = semi | ifStmt | ifElseStmt | whileStmt | forParenStmt | forBeginStmt | forInStmt | breakStmt | continueStmt | withStmt | returnStmt | compoundStmt | variablesOrExprStmt;
 - (PKCollectionParser *)stmtParser {
     if (!stmtParser) {
-        self.stmtParser = [TDAlternation alternation];
+        self.stmtParser = [PKAlternation alternation];
         stmtParser.name = @"stmt";
         [stmtParser add:self.semiParser];
         [stmtParser add:self.ifStmtParser];
@@ -527,7 +527,7 @@
 //ifStmt              = if condition stmt;
 - (PKCollectionParser *)ifStmtParser {
     if (!ifStmtParser) {
-        self.ifStmtParser = [TDSequence sequence];
+        self.ifStmtParser = [PKSequence sequence];
         ifStmtParser.name = @"ifStmt";
         [ifStmtParser add:self.ifParser];
         [ifStmtParser add:self.conditionParser];
@@ -541,7 +541,7 @@
 //ifElseStmt          = if condition stmt else stmt;
 - (PKCollectionParser *)ifElseStmtParser {
     if (!ifElseStmtParser) {
-        self.ifElseStmtParser = [TDSequence sequence];
+        self.ifElseStmtParser = [PKSequence sequence];
         ifElseStmtParser.name = @"ifElseStmt";
         [ifElseStmtParser add:self.ifParser];
         [ifElseStmtParser add:self.conditionParser];
@@ -557,7 +557,7 @@
 //whileStmt           = while condition stmt;
 - (PKCollectionParser *)whileStmtParser {
     if (!whileStmtParser) {
-        self.whileStmtParser = [TDSequence sequence];
+        self.whileStmtParser = [PKSequence sequence];
         whileStmtParser.name = @"whileStmt";
         [whileStmtParser add:self.whileParser];
         [whileStmtParser add:self.conditionParser];
@@ -571,7 +571,7 @@
 //forParenStmt        = forParen semi exprOpt semi exprOpt closeParen stmt;
 - (PKCollectionParser *)forParenStmtParser {
     if (!forParenStmtParser) {
-        self.forParenStmtParser = [TDSequence sequence];
+        self.forParenStmtParser = [PKSequence sequence];
         forParenStmtParser.name = @"forParenStmt";
         [forParenStmtParser add:self.forParenParser];
         [forParenStmtParser add:self.semiParser];
@@ -589,7 +589,7 @@
 //forBeginStmt        = forBegin semi exprOpt semi exprOpt closeParen stmt;
 - (PKCollectionParser *)forBeginStmtParser {
     if (!forBeginStmtParser) {
-        self.forBeginStmtParser = [TDSequence sequence];
+        self.forBeginStmtParser = [PKSequence sequence];
         forBeginStmtParser.name = @"forBeginStmt";
         [forBeginStmtParser add:self.forBeginParser];
         [forBeginStmtParser add:self.semiParser];
@@ -607,7 +607,7 @@
 //forInStmt           = forBegin in expr closeParen stmt;
 - (PKCollectionParser *)forInStmtParser {
     if (!forInStmtParser) {
-        self.forInStmtParser = [TDSequence sequence];
+        self.forInStmtParser = [PKSequence sequence];
         forInStmtParser.name = @"forInStmt";
         [forInStmtParser add:self.forBeginParser];
         [forInStmtParser add:self.inParser];
@@ -623,7 +623,7 @@
 //breakStmt           = break semi;
 - (PKCollectionParser *)breakStmtParser {
     if (!breakStmtParser) {
-        self.breakStmtParser = [TDSequence sequence];
+        self.breakStmtParser = [PKSequence sequence];
         breakStmtParser.name = @"breakStmt";
         [breakStmtParser add:self.breakParser];
         [breakStmtParser add:self.semiOptParser];
@@ -635,7 +635,7 @@
 //continueStmt        = continue semi;
 - (PKCollectionParser *)continueStmtParser {
     if (!continueStmtParser) {
-        self.continueStmtParser = [TDSequence sequence];
+        self.continueStmtParser = [PKSequence sequence];
         continueStmtParser.name = @"continueStmt";
         [continueStmtParser add:self.continueParser];
         [continueStmtParser add:self.semiOptParser];
@@ -648,7 +648,7 @@
 //withStmt            = with openParen expr closeParen stmt;
 - (PKCollectionParser *)withStmtParser {
     if (!withStmtParser) {
-        self.withStmtParser = [TDSequence sequence];
+        self.withStmtParser = [PKSequence sequence];
         withStmtParser.name = @"withStmt";
         [withStmtParser add:self.withParser];
         [withStmtParser add:self.openParenParser];
@@ -664,7 +664,7 @@
 //returnStmt          = return exprOpt semi;
 - (PKCollectionParser *)returnStmtParser {
     if (!returnStmtParser) {
-        self.returnStmtParser = [TDSequence sequence];
+        self.returnStmtParser = [PKSequence sequence];
         returnStmtParser.name = @"returnStmt";
         [returnStmtParser add:self.returnParser];
         [returnStmtParser add:self.exprOptParser];
@@ -678,7 +678,7 @@
 //variablesOrExprStmt = variablesOrExpr semi;
 - (PKCollectionParser *)variablesOrExprStmtParser {
     if (!variablesOrExprStmtParser) {
-        self.variablesOrExprStmtParser = [TDSequence sequence];
+        self.variablesOrExprStmtParser = [PKSequence sequence];
         variablesOrExprStmtParser.name = @"variablesOrExprStmt";
         [variablesOrExprStmtParser add:self.variablesOrExprParser];
         [variablesOrExprStmtParser add:self.semiOptParser];
@@ -693,7 +693,7 @@
 //condition           = openParen expr closeParen;
 - (PKCollectionParser *)conditionParser {
     if (!conditionParser) {
-        self.conditionParser = [TDSequence sequence];
+        self.conditionParser = [PKSequence sequence];
         conditionParser.name = @"condition";
         [conditionParser add:self.openParenParser];
         [conditionParser add:self.exprParser];
@@ -709,7 +709,7 @@
 //forParen            = for openParen;
 - (PKCollectionParser *)forParenParser {
     if (!forParenParser) {
-        self.forParenParser = [TDSequence sequence];
+        self.forParenParser = [PKSequence sequence];
         forParenParser.name = @"forParen";
         [forParenParser add:self.forParser];
         [forParenParser add:self.openParenParser];
@@ -724,7 +724,7 @@
 //forBegin            = forParen variablesOrExpr;
 - (PKCollectionParser *)forBeginParser {
     if (!forBeginParser) {
-        self.forBeginParser = [TDSequence sequence];
+        self.forBeginParser = [PKSequence sequence];
         forBeginParser.name = @"forBegin";
         [forBeginParser add:self.forParenParser];
         [forBeginParser add:self.variablesOrExprParser];
@@ -740,7 +740,7 @@
 //variablesOrExpr     = varVariables | expr;
 - (PKCollectionParser *)variablesOrExprParser {
     if (!variablesOrExprParser) {
-        self.variablesOrExprParser = [TDAlternation alternation];
+        self.variablesOrExprParser = [PKAlternation alternation];
         variablesOrExprParser.name = @"variablesOrExpr";
         [variablesOrExprParser add:self.varVariablesParser];
         [variablesOrExprParser add:self.exprParser];
@@ -752,7 +752,7 @@
 //varVariables        = var variables;
 - (PKCollectionParser *)varVariablesParser {
     if (!varVariablesParser) {
-        self.varVariablesParser = [TDSequence sequence];
+        self.varVariablesParser = [PKSequence sequence];
         varVariablesParser.name = @"varVariables";
         [varVariablesParser add:self.varParser];
         [varVariablesParser add:self.variablesParser];
@@ -768,10 +768,10 @@
 //variables           = variable commaVariable*;
 - (PKCollectionParser *)variablesParser {
     if (!variablesParser) {
-        self.variablesParser = [TDSequence sequence];
+        self.variablesParser = [PKSequence sequence];
         variablesParser.name = @"variables";
         [variablesParser add:self.variableParser];
-        [variablesParser add:[TDRepetition repetitionWithSubparser:self.commaVariableParser]];
+        [variablesParser add:[PKRepetition repetitionWithSubparser:self.commaVariableParser]];
     }
     return variablesParser;
 }
@@ -780,7 +780,7 @@
 //commaVariable       = comma variable;
 - (PKCollectionParser *)commaVariableParser {
     if (!commaVariableParser) {
-        self.commaVariableParser = [TDSequence sequence];
+        self.commaVariableParser = [PKSequence sequence];
         commaVariableParser.name = @"commaVariable";
         [commaVariableParser add:self.commaParser];
         [commaVariableParser add:self.variableParser];
@@ -796,7 +796,7 @@
 //variable            = identifier assignment?;
 - (PKCollectionParser *)variableParser {
     if (!variableParser) {
-        self.variableParser = [TDSequence sequence];
+        self.variableParser = [PKSequence sequence];
         variableParser.name = @"variableParser";
         [variableParser add:self.identifierParser];
         [variableParser add:[self zeroOrOne:self.assignmentParser]];
@@ -808,7 +808,7 @@
 //assignment          = equals assignmentExpr;
 - (PKCollectionParser *)assignmentParser {
     if (!assignmentParser) {
-        self.assignmentParser = [TDSequence sequence];
+        self.assignmentParser = [PKSequence sequence];
         assignmentParser.name = @"assignment";
         [assignmentParser add:self.equalsParser];
         [assignmentParser add:self.assignmentExprParser];
@@ -838,10 +838,10 @@
 //expr                = assignmentExpr commaAssignmentExpr*;
 - (PKCollectionParser *)exprParser {
     if (!exprParser) {
-        self.exprParser = [TDSequence sequence];
+        self.exprParser = [PKSequence sequence];
         exprParser.name = @"exprParser";
         [exprParser add:self.assignmentExprParser];
-        [exprParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
+        [exprParser add:[PKRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
     return exprParser;
 }
@@ -850,7 +850,7 @@
 //commaAssignmentExpr           = comma assignmentExpr;
 - (PKCollectionParser *)commaAssignmentExprParser {
     if (!commaAssignmentExprParser) {
-        self.commaAssignmentExprParser = [TDSequence sequence];
+        self.commaAssignmentExprParser = [PKSequence sequence];
         commaAssignmentExprParser.name = @"commaAssignmentExpr";
         [commaAssignmentExprParser add:self.commaParser];
         [commaAssignmentExprParser add:self.assignmentExprParser];
@@ -866,10 +866,10 @@
 // assignmentExpr      = conditionalExpr assignmentOpConditionalExpr*;
 - (PKCollectionParser *)assignmentExprParser {
     if (!assignmentExprParser) {
-        self.assignmentExprParser = [TDSequence sequence];
+        self.assignmentExprParser = [PKSequence sequence];
         assignmentExprParser.name = @"assignmentExpr";
         [assignmentExprParser add:self.conditionalExprParser];
-        [assignmentExprParser add:[TDRepetition repetitionWithSubparser:self.assignmentOpConditionalExprParser]];
+        [assignmentExprParser add:[PKRepetition repetitionWithSubparser:self.assignmentOpConditionalExprParser]];
     }
     return assignmentExprParser;
 }
@@ -878,7 +878,7 @@
 // assignmentOpConditionalExpr     = assignmentOperator conditionalExpr;
 - (PKCollectionParser *)assignmentOpConditionalExprParser {
     if (!assignmentOpConditionalExprParser) {
-        self.assignmentOpConditionalExprParser = [TDSequence sequence];
+        self.assignmentOpConditionalExprParser = [PKSequence sequence];
         assignmentOpConditionalExprParser.name = @"assignmentOpConditionalExpr";
         [assignmentOpConditionalExprParser add:self.assignmentOpParser];
         [assignmentOpConditionalExprParser add:self.conditionalExprParser];
@@ -894,7 +894,7 @@
 //    conditionalExpr     = orExpr ternaryExpr?;
 - (PKCollectionParser *)conditionalExprParser {
     if (!conditionalExprParser) {
-        self.conditionalExprParser = [TDSequence sequence];
+        self.conditionalExprParser = [PKSequence sequence];
         conditionalExprParser.name = @"conditionalExpr";
         [conditionalExprParser add:self.orExprParser];
         [conditionalExprParser add:[self zeroOrOne:self.ternaryExprParser]];
@@ -906,7 +906,7 @@
 //    ternaryExpr         = question assignmentExpr colon assignmentExpr;
 - (PKCollectionParser *)ternaryExprParser {
     if (!ternaryExprParser) {
-        self.ternaryExprParser = [TDSequence sequence];
+        self.ternaryExprParser = [PKSequence sequence];
         ternaryExprParser.name = @"ternaryExpr";
         [ternaryExprParser add:self.questionParser];
         [ternaryExprParser add:self.assignmentExprParser];
@@ -924,10 +924,10 @@
 //    orExpr              = andExpr orAndExpr*;
 - (PKCollectionParser *)orExprParser {
     if (!orExprParser) {
-        self.orExprParser = [TDSequence sequence];
+        self.orExprParser = [PKSequence sequence];
         orExprParser.name = @"orExpr";
         [orExprParser add:self.andExprParser];
-        [orExprParser add:[TDRepetition repetitionWithSubparser:self.orAndExprParser]];
+        [orExprParser add:[PKRepetition repetitionWithSubparser:self.orAndExprParser]];
     }
     return orExprParser;
 }
@@ -936,7 +936,7 @@
 //    orAndExpr           = or andExpr;
 - (PKCollectionParser *)orAndExprParser {
     if (!orAndExprParser) {
-        self.orAndExprParser = [TDSequence sequence];
+        self.orAndExprParser = [PKSequence sequence];
         orAndExprParser.name = @"orAndExpr";
         [orAndExprParser add:self.orParser];
         [orAndExprParser add:self.andExprParser];
@@ -952,10 +952,10 @@
 //    andExpr             = bitwiseOrExpr andBitwiseOrExprParser*;
 - (PKCollectionParser *)andExprParser {
     if (!andExprParser) {
-        self.andExprParser = [TDSequence sequence];
+        self.andExprParser = [PKSequence sequence];
         andExprParser.name = @"andExpr";
         [andExprParser add:self.bitwiseOrExprParser];
-        [andExprParser add:[TDRepetition repetitionWithSubparser:self.andBitwiseOrExprParser]];
+        [andExprParser add:[PKRepetition repetitionWithSubparser:self.andBitwiseOrExprParser]];
     }
     return andExprParser;
 }
@@ -964,7 +964,7 @@
 //    andBitwiseOrExprParser          = and bitwiseOrExpr;
 - (PKCollectionParser *)andBitwiseOrExprParser {
     if (!andBitwiseOrExprParser) {
-        self.andBitwiseOrExprParser = [TDSequence sequence];
+        self.andBitwiseOrExprParser = [PKSequence sequence];
         andBitwiseOrExprParser.name = @"andBitwiseOrExpr";
         [andBitwiseOrExprParser add:self.andParser];
         [andBitwiseOrExprParser add:self.bitwiseOrExprParser];
@@ -980,10 +980,10 @@
 //    bitwiseOrExpr       = bitwiseXorExpr pipeBitwiseXorExpr*;
 - (PKCollectionParser *)bitwiseOrExprParser {
     if (!bitwiseOrExprParser) {
-        self.bitwiseOrExprParser = [TDSequence sequence];
+        self.bitwiseOrExprParser = [PKSequence sequence];
         bitwiseOrExprParser.name = @"bitwiseOrExpr";
         [bitwiseOrExprParser add:self.bitwiseXorExprParser];
-        [bitwiseOrExprParser add:[TDRepetition repetitionWithSubparser:self.pipeBitwiseXorExprParser]];
+        [bitwiseOrExprParser add:[PKRepetition repetitionWithSubparser:self.pipeBitwiseXorExprParser]];
     }
     return bitwiseOrExprParser;
 }
@@ -992,7 +992,7 @@
 //    pipeBitwiseXorExprParser   = pipe bitwiseXorExpr;
 - (PKCollectionParser *)pipeBitwiseXorExprParser {
     if (!pipeBitwiseXorExprParser) {
-        self.pipeBitwiseXorExprParser = [TDSequence sequence];
+        self.pipeBitwiseXorExprParser = [PKSequence sequence];
         pipeBitwiseXorExprParser.name = @"pipeBitwiseXorExpr";
         [pipeBitwiseXorExprParser add:self.pipeParser];
         [pipeBitwiseXorExprParser add:self.bitwiseXorExprParser];
@@ -1008,10 +1008,10 @@
 //    bitwiseXorExpr      = bitwiseAndExpr caretBitwiseAndExpr*;
 - (PKCollectionParser *)bitwiseXorExprParser {
     if (!bitwiseXorExprParser) {
-        self.bitwiseXorExprParser = [TDSequence sequence];
+        self.bitwiseXorExprParser = [PKSequence sequence];
         bitwiseXorExprParser.name = @"bitwiseXorExpr";
         [bitwiseXorExprParser add:self.bitwiseAndExprParser];
-        [bitwiseXorExprParser add:[TDRepetition repetitionWithSubparser:self.caretBitwiseAndExprParser]];
+        [bitwiseXorExprParser add:[PKRepetition repetitionWithSubparser:self.caretBitwiseAndExprParser]];
     }
     return bitwiseXorExprParser;
 }
@@ -1020,7 +1020,7 @@
 //    caretBitwiseAndExpr = caret bitwiseAndExpr;
 - (PKCollectionParser *)caretBitwiseAndExprParser {
     if (!caretBitwiseAndExprParser) {
-        self.caretBitwiseAndExprParser = [TDSequence sequence];
+        self.caretBitwiseAndExprParser = [PKSequence sequence];
         caretBitwiseAndExprParser.name = @"caretBitwiseAndExpr";
         [caretBitwiseAndExprParser add:self.caretParser];
         [caretBitwiseAndExprParser add:self.bitwiseAndExprParser];
@@ -1036,10 +1036,10 @@
 //    bitwiseAndExpr      = equalityExpr ampEqualityExpr*;
 - (PKCollectionParser *)bitwiseAndExprParser {
     if (!bitwiseAndExprParser) {
-        self.bitwiseAndExprParser = [TDSequence sequence];
+        self.bitwiseAndExprParser = [PKSequence sequence];
         bitwiseAndExprParser.name = @"bitwiseAndExpr";
         [bitwiseAndExprParser add:self.equalityExprParser];
-        [bitwiseAndExprParser add:[TDRepetition repetitionWithSubparser:self.ampEqualityExprParser]];
+        [bitwiseAndExprParser add:[PKRepetition repetitionWithSubparser:self.ampEqualityExprParser]];
     }
     return bitwiseAndExprParser;
 }
@@ -1048,7 +1048,7 @@
 //    ampEqualityExpression = amp equalityExpression;
 - (PKCollectionParser *)ampEqualityExprParser {
     if (!ampEqualityExprParser) {
-        self.ampEqualityExprParser = [TDSequence sequence];
+        self.ampEqualityExprParser = [PKSequence sequence];
         ampEqualityExprParser.name = @"ampEqualityExpr";
         [ampEqualityExprParser add:self.ampParser];
         [ampEqualityExprParser add:self.equalityExprParser];
@@ -1064,10 +1064,10 @@
 //    equalityExpr        = relationalExpr equalityOpRelationalExpr*;
 - (PKCollectionParser *)equalityExprParser {
     if (!equalityExprParser) {
-        self.equalityExprParser = [TDSequence sequence];
+        self.equalityExprParser = [PKSequence sequence];
         equalityExprParser.name = @"equalityExpr";
         [equalityExprParser add:self.relationalExprParser];
-        [equalityExprParser add:[TDRepetition repetitionWithSubparser:self.equalityOpRelationalExprParser]];
+        [equalityExprParser add:[PKRepetition repetitionWithSubparser:self.equalityOpRelationalExprParser]];
     }
     return equalityExprParser;
 }
@@ -1076,7 +1076,7 @@
 //    equalityOpRelationalExpr = equalityOp relationalExpr;
 - (PKCollectionParser *)equalityOpRelationalExprParser {
     if (!equalityOpRelationalExprParser) {
-        self.equalityOpRelationalExprParser = [TDSequence sequence];
+        self.equalityOpRelationalExprParser = [PKSequence sequence];
         equalityOpRelationalExprParser.name = @"equalityOpRelationalExpr";
         [equalityOpRelationalExprParser add:self.equalityOpParser];
         [equalityOpRelationalExprParser add:self.relationalExprParser];
@@ -1093,10 +1093,10 @@
 //    relationalExpr      = shiftExpr relationalOpShiftExpr*;       /// TODO ????
 - (PKCollectionParser *)relationalExprParser {
     if (!relationalExprParser) {
-        self.relationalExprParser = [TDSequence sequence];
+        self.relationalExprParser = [PKSequence sequence];
         relationalExprParser.name = @"relationalExpr";
         [relationalExprParser add:self.shiftExprParser];
-        [relationalExprParser add:[TDRepetition repetitionWithSubparser:self.relationalOpShiftExprParser]];
+        [relationalExprParser add:[PKRepetition repetitionWithSubparser:self.relationalOpShiftExprParser]];
     }
     return relationalExprParser;
 }
@@ -1105,7 +1105,7 @@
 //    relationalOpShiftExpr   = relationalOperator shiftExpr;
 - (PKCollectionParser *)relationalOpShiftExprParser {
     if (!relationalOpShiftExprParser) {
-        self.relationalOpShiftExprParser = [TDSequence sequence];
+        self.relationalOpShiftExprParser = [PKSequence sequence];
         relationalOpShiftExprParser.name = @"relationalOpShiftExpr";
         [relationalOpShiftExprParser add:self.relationalOpParser];
         [relationalOpShiftExprParser add:self.shiftExprParser];
@@ -1121,10 +1121,10 @@
 //    shiftExpr           = additiveExpr shiftOpAdditiveExpr?;
 - (PKCollectionParser *)shiftExprParser {
     if (!shiftExprParser) {
-        self.shiftExprParser = [TDSequence sequence];
+        self.shiftExprParser = [PKSequence sequence];
         shiftExprParser.name = @"shiftExpr";
         [shiftExprParser add:self.additiveExprParser];
-        [shiftExprParser add:[TDRepetition repetitionWithSubparser:self.shiftOpAdditiveExprParser]];
+        [shiftExprParser add:[PKRepetition repetitionWithSubparser:self.shiftOpAdditiveExprParser]];
     }
     return shiftExprParser;
 }
@@ -1133,7 +1133,7 @@
 //    shiftOpShiftExpr    = shiftOp additiveExpr;
 - (PKCollectionParser *)shiftOpAdditiveExprParser {
     if (!shiftOpAdditiveExprParser) {
-        self.shiftOpAdditiveExprParser = [TDSequence sequence];
+        self.shiftOpAdditiveExprParser = [PKSequence sequence];
         shiftOpAdditiveExprParser.name = @"shiftOpShiftExpr";
         [shiftOpAdditiveExprParser add:self.shiftOpParser];
         [shiftOpAdditiveExprParser add:self.additiveExprParser];
@@ -1150,10 +1150,10 @@
 //    additiveExpr        = multiplicativeExpr plusOrMinusExpr*;
 - (PKCollectionParser *)additiveExprParser {
     if (!additiveExprParser) {
-        self.additiveExprParser = [TDSequence sequence];
+        self.additiveExprParser = [PKSequence sequence];
         additiveExprParser.name = @"additiveExpr";
         [additiveExprParser add:self.multiplicativeExprParser];
-        [additiveExprParser add:[TDRepetition repetitionWithSubparser:self.plusOrMinusExprParser]];
+        [additiveExprParser add:[PKRepetition repetitionWithSubparser:self.plusOrMinusExprParser]];
     }
     return additiveExprParser;
 }
@@ -1162,7 +1162,7 @@
 //    plusOrMinusExpr     = plusExpr | minusExpr;
 - (PKCollectionParser *)plusOrMinusExprParser {
     if (!plusOrMinusExprParser) {
-        self.plusOrMinusExprParser = [TDAlternation alternation];
+        self.plusOrMinusExprParser = [PKAlternation alternation];
         plusOrMinusExprParser.name = @"plusOrMinusExpr";
         [plusOrMinusExprParser add:self.plusExprParser];
         [plusOrMinusExprParser add:self.minusExprParser];
@@ -1174,7 +1174,7 @@
 //    plusExpr            = plus multiplicativeExprParser;
 - (PKCollectionParser *)plusExprParser {
     if (!plusExprParser) {
-        self.plusExprParser = [TDSequence sequence];
+        self.plusExprParser = [PKSequence sequence];
         plusExprParser.name = @"plusExpr";
         [plusExprParser add:self.plusParser];
         [plusExprParser add:self.multiplicativeExprParser];
@@ -1186,7 +1186,7 @@
 //    minusExpr           = minus multiplicativeExprParser;
 - (PKCollectionParser *)minusExprParser {
     if (!minusExprParser) {
-        self.minusExprParser = [TDSequence sequence];
+        self.minusExprParser = [PKSequence sequence];
         minusExprParser.name = @"minusExpr";
         [minusExprParser add:self.minusParser];
         [minusExprParser add:self.multiplicativeExprParser];
@@ -1202,10 +1202,10 @@
 //    multiplicativeExpr  = unaryExpr multiplicativeOpUnaryExpr*;
 - (PKCollectionParser *)multiplicativeExprParser {
     if (!multiplicativeExprParser) {
-        self.multiplicativeExprParser = [TDSequence sequence];
+        self.multiplicativeExprParser = [PKSequence sequence];
         multiplicativeExprParser.name = @"multiplicativeExpr";
         [multiplicativeExprParser add:self.unaryExprParser];
-        [multiplicativeExprParser add:[TDRepetition repetitionWithSubparser:self.multiplicativeOpUnaryExprParser]];
+        [multiplicativeExprParser add:[PKRepetition repetitionWithSubparser:self.multiplicativeOpUnaryExprParser]];
     }
     return multiplicativeExprParser;
 }
@@ -1214,7 +1214,7 @@
 // multiplicativeOpUnaryExpr = multiplicativeOp unaryExpr;
 - (PKCollectionParser *)multiplicativeOpUnaryExprParser {
     if (!multiplicativeOpUnaryExprParser) {
-        self.multiplicativeOpUnaryExprParser = [TDSequence sequence];
+        self.multiplicativeOpUnaryExprParser = [PKSequence sequence];
         multiplicativeOpUnaryExprParser.name = @"multiplicativeOpUnaryExpr";
         [multiplicativeOpUnaryExprParser add:self.multiplicativeOpParser];
         [multiplicativeOpUnaryExprParser add:self.unaryExprParser];
@@ -1235,7 +1235,7 @@
 //    unaryExpr           = memberExpr | unaryExpr1 | unaryExpr2 | unaryExpr3 | unaryExpr4 | unaryExpr5 | unaryExpr6;
 - (PKCollectionParser *)unaryExprParser {
     if (!unaryExprParser) {
-        self.unaryExprParser = [TDAlternation alternation];
+        self.unaryExprParser = [PKAlternation alternation];
         unaryExprParser.name = @"unaryExpr";
         [unaryExprParser add:self.memberExprParser];
         [unaryExprParser add:self.unaryExpr1Parser];
@@ -1252,7 +1252,7 @@
 //    unaryExpr1          = unaryOperator unaryExpr;
 - (PKCollectionParser *)unaryExpr1Parser {
     if (!unaryExpr1Parser) {
-        self.unaryExpr1Parser = [TDSequence sequence];
+        self.unaryExpr1Parser = [PKSequence sequence];
         unaryExpr1Parser.name = @"unaryExpr1";
         [unaryExpr1Parser add:self.unaryOpParser];
         [unaryExpr1Parser add:self.unaryExprParser];
@@ -1264,7 +1264,7 @@
 //    unaryExpr2          = minus unaryExpr;
 - (PKCollectionParser *)unaryExpr2Parser {
     if (!unaryExpr2Parser) {
-        self.unaryExpr2Parser = [TDSequence sequence];
+        self.unaryExpr2Parser = [PKSequence sequence];
         unaryExpr2Parser.name = @"unaryExpr2";
         [unaryExpr2Parser add:self.minusParser];
         [unaryExpr2Parser add:self.unaryExprParser];
@@ -1276,7 +1276,7 @@
 //    unaryExpr3          = incrementOperator memberExpr;
 - (PKCollectionParser *)unaryExpr3Parser {
     if (!unaryExpr3Parser) {
-        self.unaryExpr3Parser = [TDSequence sequence];
+        self.unaryExpr3Parser = [PKSequence sequence];
         unaryExpr3Parser.name = @"unaryExpr3";
         [unaryExpr3Parser add:self.incrementOpParser];
         [unaryExpr3Parser add:self.memberExprParser];
@@ -1288,7 +1288,7 @@
 //    unaryExpr4          = memberExpr incrementOperator;
 - (PKCollectionParser *)unaryExpr4Parser {
     if (!unaryExpr4Parser) {
-        self.unaryExpr4Parser = [TDSequence sequence];
+        self.unaryExpr4Parser = [PKSequence sequence];
         unaryExpr4Parser.name = @"unaryExpr4";
         [unaryExpr4Parser add:self.memberExprParser];
         [unaryExpr4Parser add:self.incrementOpParser];
@@ -1300,7 +1300,7 @@
 //    unaryExpr5          = new constructor;
 - (PKCollectionParser *)unaryExpr5Parser {
     if (!unaryExpr5Parser) {
-        self.unaryExpr5Parser = [TDSequence sequence];
+        self.unaryExpr5Parser = [PKSequence sequence];
         unaryExpr5Parser.name = @"unaryExpr5";
         [unaryExpr5Parser add:self.newParser];
         [unaryExpr5Parser add:self.constructorCallParser];
@@ -1312,7 +1312,7 @@
 //    unaryExpr6          = delete memberExpr;
 - (PKCollectionParser *)unaryExpr6Parser {
     if (!unaryExpr6Parser) {
-        self.unaryExpr6Parser = [TDSequence sequence];
+        self.unaryExpr6Parser = [PKSequence sequence];
         unaryExpr6Parser.name = @"unaryExpr6";
         [unaryExpr6Parser add:self.deleteParser];
         [unaryExpr6Parser add:self.memberExprParser];
@@ -1330,11 +1330,11 @@
 // constructorCall = identifier parentArgListOptParent? memberExprExt*
 - (PKCollectionParser *)constructorCallParser {
     if (!constructorCallParser) {
-        self.constructorCallParser = [TDSequence sequence];
+        self.constructorCallParser = [PKSequence sequence];
         constructorCallParser.name = @"constructorCall";
         [constructorCallParser add:self.identifierParser];
         [constructorCallParser add:[self zeroOrOne:self.parenArgListOptParenParser]];
-        [constructorCallParser add:[TDRepetition repetitionWithSubparser:self.memberExprExtParser]];
+        [constructorCallParser add:[PKRepetition repetitionWithSubparser:self.memberExprExtParser]];
     }
     return constructorCallParser;
 }
@@ -1343,7 +1343,7 @@
 //    parenArgListParen   = openParen argListOpt closeParen;
 - (PKCollectionParser *)parenArgListOptParenParser {
     if (!parenArgListOptParenParser) {
-        self.parenArgListOptParenParser = [TDSequence sequence];
+        self.parenArgListOptParenParser = [PKSequence sequence];
         parenArgListOptParenParser.name = @"parenArgListParen";
         [parenArgListOptParenParser add:self.openParenParser];
         [parenArgListOptParenParser add:self.argListOptParser];
@@ -1362,10 +1362,10 @@
 //    memberExpr          = primaryExpr memberExprExt?;    // TODO ??????
 - (PKCollectionParser *)memberExprParser {
     if (!memberExprParser) {
-        self.memberExprParser = [TDSequence sequence];
+        self.memberExprParser = [PKSequence sequence];
         memberExprParser.name = @"memberExpr";
         [memberExprParser add:self.primaryExprParser];
-        [memberExprParser add:[TDRepetition repetitionWithSubparser:self.memberExprExtParser]];
+        [memberExprParser add:[PKRepetition repetitionWithSubparser:self.memberExprExtParser]];
     }
     return memberExprParser;
 }
@@ -1374,7 +1374,7 @@
 //    memberExprExt = dotMemberExpr | bracketMemberExpr | parenMemberExpr;
 - (PKCollectionParser *)memberExprExtParser {
     if (!memberExprExtParser) {
-        self.memberExprExtParser = [TDAlternation alternation];
+        self.memberExprExtParser = [PKAlternation alternation];
         memberExprExtParser.name = @"memberExprExt";
         [memberExprExtParser add:self.dotMemberExprParser];
         [memberExprExtParser add:self.bracketMemberExprParser];
@@ -1387,7 +1387,7 @@
 //    dotMemberExpr       = dot memberExpr;
 - (PKCollectionParser *)dotMemberExprParser {
     if (!dotMemberExprParser) {
-        self.dotMemberExprParser = [TDSequence sequence];
+        self.dotMemberExprParser = [PKSequence sequence];
         dotMemberExprParser.name = @"dotMemberExpr";
         [dotMemberExprParser add:self.dotParser];
         [dotMemberExprParser add:self.memberExprParser];
@@ -1399,7 +1399,7 @@
 //    bracketMemberExpr   = openBracket expr closeBracket;
 - (PKCollectionParser *)bracketMemberExprParser {
     if (!bracketMemberExprParser) {
-        self.bracketMemberExprParser = [TDSequence sequence];
+        self.bracketMemberExprParser = [PKSequence sequence];
         bracketMemberExprParser.name = @"bracketMemberExpr";
         [bracketMemberExprParser add:self.openBracketParser];
         [bracketMemberExprParser add:self.exprParser];
@@ -1430,10 +1430,10 @@
 // argList             = assignmentExpr commaAssignmentExpr*;
 - (PKCollectionParser *)argListParser {
     if (!argListParser) {
-        self.argListParser = [TDSequence sequence];
+        self.argListParser = [PKSequence sequence];
         argListParser.name = @"argList";
         [argListParser add:self.assignmentExprParser];
-        [argListParser add:[TDRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
+        [argListParser add:[PKRepetition repetitionWithSubparser:self.commaAssignmentExprParser]];
     }
     return argListParser;
 }
@@ -1454,7 +1454,7 @@
 // primaryExpr         = parenExprParen | funcLiteral | arrayLiteral | identifier | Num | QuotedString | false | true | null | undefined | this;
 - (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
-        self.primaryExprParser = [TDAlternation alternation];
+        self.primaryExprParser = [PKAlternation alternation];
         primaryExprParser.name = @"primaryExpr";
         [primaryExprParser add:self.parenExprParenParser];
         [primaryExprParser add:self.funcLiteralParser];
@@ -1477,7 +1477,7 @@
 //  parenExprParen      = openParen expr closeParen;
 - (PKCollectionParser *)parenExprParenParser {
     if (!parenExprParenParser) {
-        self.parenExprParenParser = [TDSequence sequence];
+        self.parenExprParenParser = [PKSequence sequence];
         parenExprParenParser.name = @"parenExprParen";
         [parenExprParenParser add:self.openParenParser];
         [parenExprParenParser add:self.exprParser];
@@ -1490,7 +1490,7 @@
 //funcLiteral                = function openParen paramListOpt closeParen compoundStmt;
 - (PKCollectionParser *)funcLiteralParser {
     if (!funcLiteralParser) {
-        self.funcLiteralParser = [TDSequence sequence];
+        self.funcLiteralParser = [PKSequence sequence];
         funcLiteralParser.name = @"funcLiteral";
         [funcLiteralParser add:self.functionParser];
         [funcLiteralParser add:self.openParenParser];
@@ -1505,19 +1505,19 @@
 //arrayLiteral                = '[' arrayContents ']';
 - (PKCollectionParser *)arrayLiteralParser {
     if (!arrayLiteralParser) {
-        self.arrayLiteralParser = [TDTrack track];
+        self.arrayLiteralParser = [PKTrack track];
         arrayLiteralParser.name = @"arrayLiteralParser";
         
-        TDSequence *commaPrimaryExpr = [TDSequence sequence];
+        PKSequence *commaPrimaryExpr = [PKSequence sequence];
         [commaPrimaryExpr add:self.commaParser];
         [commaPrimaryExpr add:self.primaryExprParser];
 
-        TDSequence *arrayContents = [TDSequence sequence];
+        PKSequence *arrayContents = [PKSequence sequence];
         [arrayContents add:self.primaryExprParser];
-        [arrayContents add:[TDRepetition repetitionWithSubparser:commaPrimaryExpr]];
+        [arrayContents add:[PKRepetition repetitionWithSubparser:commaPrimaryExpr]];
 
-        TDAlternation *arrayContentsOpt = [TDAlternation alternation];
-        [arrayContentsOpt add:[TDEmpty empty]];
+        PKAlternation *arrayContentsOpt = [PKAlternation alternation];
+        [arrayContentsOpt add:[PKEmpty empty]];
         [arrayContentsOpt add:arrayContents];
 
         [arrayLiteralParser add:self.openBracketParser];
@@ -1531,24 +1531,24 @@
 //objectLiteral                = '{' objectContentsOpt '}';
 - (PKCollectionParser *)objectLiteralParser {
     if (!objectLiteralParser) {
-        self.objectLiteralParser = [TDSequence sequence];
+        self.objectLiteralParser = [PKSequence sequence];
         objectLiteralParser.name = @"objectLiteralParser";
 
-        TDSequence *member = [TDSequence sequence];
+        PKSequence *member = [PKSequence sequence];
         [member add:self.identifierParser];
         [member add:self.colonParser];
         [member add:self.primaryExprParser];
 
-        TDSequence *commaMember = [TDSequence sequence];
+        PKSequence *commaMember = [PKSequence sequence];
         [commaMember add:self.commaParser];
         [commaMember add:member];
         
-        TDSequence *objectContents = [TDSequence sequence];
+        PKSequence *objectContents = [PKSequence sequence];
         [objectContents add:member];
-        [objectContents add:[TDRepetition repetitionWithSubparser:commaMember]];
+        [objectContents add:[PKRepetition repetitionWithSubparser:commaMember]];
         
-        TDAlternation *objectContentsOpt = [TDAlternation alternation];
-        [objectContentsOpt add:[TDEmpty empty]];
+        PKAlternation *objectContentsOpt = [PKAlternation alternation];
+        [objectContentsOpt add:[PKEmpty empty]];
         [objectContentsOpt add:objectContents];
         
         [objectLiteralParser add:self.openCurlyParser];

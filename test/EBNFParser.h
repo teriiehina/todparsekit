@@ -8,7 +8,7 @@
 
 #import <ParseKit/ParseKit.h>
 
-@interface EBNFParser : TDRepetition {
+@interface EBNFParser : PKRepetition {
     PKCollectionParser *statementParser;
     PKCollectionParser *exprOrAssignmentParser;
     PKCollectionParser *assignmentParser;

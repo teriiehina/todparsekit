@@ -1,23 +1,23 @@
 //
-//  TDTerminal.m
+//  PKTerminal.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/TDToken.h>
 
-@interface TDTerminal ()
+@interface PKTerminal ()
 - (PKAssembly *)matchOneAssembly:(PKAssembly *)inAssembly;
 - (BOOL)qualifies:(id)obj;
 
 @property (nonatomic, readwrite, copy) NSString *string;
 @end
 
-@implementation TDTerminal
+@implementation PKTerminal
 
 - (id)init {
     return [self initWithString:nil];
@@ -74,12 +74,12 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    NSAssert1(0, @"-[TDTerminal %s] must be overriden", _cmd);
+    NSAssert1(0, @"-[PKTerminal %s] must be overriden", _cmd);
     return NO;
 }
 
 
-- (TDTerminal *)discard {
+- (PKTerminal *)discard {
     discardFlag = YES;
     return self;
 }

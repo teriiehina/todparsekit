@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDWhitespace
     @brief      A <tt>TDWhitespace</tt> matches a number from a token assembly.
 */
-@interface TDWhitespace : TDTerminal {
+@interface TDWhitespace : PKTerminal {
 
 }
 

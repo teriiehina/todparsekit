@@ -1,23 +1,23 @@
 //
-//  TDRepetition.m
+//  PKRepetition.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDRepetition.h>
+#import <ParseKit/PKRepetition.h>
 #import <ParseKit/PKAssembly.h>
 
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 @end
 
-@interface TDRepetition ()
+@interface PKRepetition ()
 @property (nonatomic, readwrite, retain) PKParser *subparser;
 @end
 
-@implementation TDRepetition
+@implementation PKRepetition
 
 + (id)repetitionWithSubparser:(PKParser *)p {
     return [[[self alloc] initWithSubparser:p] autorelease];

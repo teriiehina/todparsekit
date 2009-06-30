@@ -11,7 +11,7 @@
 
 @interface TDParserFactory ()
 - (TDTokenizer *)tokenizerForParsingGrammar;
-- (TDSequence *)parserFromExpression:(NSString *)s;
+- (PKSequence *)parserFromExpression:(NSString *)s;
 @property (retain) PKCollectionParser *exprParser;
 @end
 
@@ -27,7 +27,7 @@
 
 - (void)setUp {
     factory = [TDParserFactory factory];
-    TDSequence *seq = [TDSequence sequence];
+    PKSequence *seq = [PKSequence sequence];
     [seq add:factory.exprParser];
     exprSeq = seq;
     t = [factory tokenizerForParsingGrammar];
@@ -78,19 +78,19 @@
     PKParser *declParser = [lp parserNamed:@"decl"];
     TDNotNil(declParser);
     TDEqualObjects(declParser.name, @"decl");
-    TDEqualObjects([declParser class], [TDSequence class]);
+    TDEqualObjects([declParser class], [PKSequence class]);
 
     PKParser *rulesetParser = [lp parserNamed:@"ruleset"];
     TDNotNil(rulesetParser);
-    TDEqualObjects(rulesetParser, [(TDRepetition *)lp subparser]);
+    TDEqualObjects(rulesetParser, [(PKRepetition *)lp subparser]);
     TDEqualObjects(rulesetParser.name, @"ruleset");
-    TDEqualObjects([rulesetParser class], [TDSequence class]);
+    TDEqualObjects([rulesetParser class], [PKSequence class]);
     
     PKParser *startParser = [lp parserNamed:@"@start"];
     TDNotNil(startParser);
     TDEqualObjects(startParser, lp);
     TDEqualObjects(startParser.name, @"@start");
-    TDEqualObjects([startParser class], [TDRepetition class]);
+    TDEqualObjects([startParser class], [PKRepetition class]);
     
     s = @"foo {font-family:'helvetica';}";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -499,73 +499,73 @@
 
 - (void)testStmtTrackException {
     s = @"@start =";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
     
     s = @"@start";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testCallbackTrackException {
     s = @"@start ( = 'foo';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
     
     s = @"@start (foo: = 'foo'";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testSelectorTrackException {
     s = @"@start (foo) = 'foo';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testOrTrackException {
     s = @"@start = 'foo'|;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 //- (void)testExprTrackException {
 //    s = @"@start=(foo;";
-//    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+//    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 //}
 
 
 - (void)testIntersectionTrackException {
     s = @"@start='foo' &;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testExclusionTrackException {
     s = @"@start='foo' -;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testDelimitedStringTrackException {
     s = @"@start=DelimitedString('/';";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 
     s = @"@start=DelimitedString('/', ;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
 - (void)testCardinalityTrackException {
     s = @"@start='foo'{;";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 
     s = @"@start='foo'{};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
     
     s = @"@start='foo'{,};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
     
     s = @"@start='foo'{m};";
-    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], TDTrackException, TDTrackExceptionName, @"");
+    STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, TDTrackExceptionName, @"");
 }
 
 
@@ -574,7 +574,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -587,7 +587,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDRepetition class]);
+    TDEqualObjects([lp class], [PKRepetition class]);
 
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -601,7 +601,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDAlternation class]);
+    TDEqualObjects([lp class], [PKAlternation class]);
 
     s = @"hello hello hello";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -615,7 +615,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"there";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -631,8 +631,8 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]'foo'/ /'bar'^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)2, seq.subparsers.count);
     
     TDLiteral *c = [seq.subparsers objectAtIndex:0];
@@ -645,7 +645,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -660,8 +660,8 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]'foo'/ /'bar'/ /'baz'^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)3, seq.subparsers.count);
     
     TDLiteral *c = [seq.subparsers objectAtIndex:0];
@@ -677,7 +677,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo bar baz";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -693,8 +693,8 @@
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'^", [res description]);
 
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
@@ -707,7 +707,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDAlternation class]);
+    TDEqualObjects([lp class], [PKAlternation class]);
 
     s = @"bar";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -729,16 +729,16 @@
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/*^", [res description]);
 
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
-    TDRepetition *rep = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDRepetition class], [rep class]);
+    PKRepetition *rep = [alt.subparsers objectAtIndex:1];
+    TDEqualObjects([PKRepetition class], [rep class]);
     c = (TDLiteral *)rep.subparser;
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
@@ -746,7 +746,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDAlternation class]]);
+    TDTrue([lp isKindOfClass:[PKAlternation class]]);
 
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -773,23 +773,23 @@
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/+^", [res description]);
 
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"foo", c.string);
     
-    TDSequence *seq = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDSequence class], [seq class]);
+    PKSequence *seq = [alt.subparsers objectAtIndex:1];
+    TDEqualObjects([PKSequence class], [seq class]);
     
     c = [seq.subparsers objectAtIndex:0];
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
-    TDRepetition *rep = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([TDRepetition class], [rep class]);
+    PKRepetition *rep = [seq.subparsers objectAtIndex:1];
+    TDEqualObjects([PKRepetition class], [rep class]);
     c = (TDLiteral *)rep.subparser;
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
@@ -797,7 +797,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDAlternation class]]);
+    TDTrue([lp isKindOfClass:[PKAlternation class]]);
     s = @"foo";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -827,8 +827,8 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]'foo'/|/'bar'/?^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
@@ -836,10 +836,10 @@
     TDEqualObjects(@"foo", c.string);
     
     alt = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDAlternation class], [alt class]);
+    TDEqualObjects([PKAlternation class], [alt class]);
     
-    TDEmpty *e = [alt.subparsers objectAtIndex:0];
-    TDTrue([e isMemberOfClass:[TDEmpty class]]);
+    PKEmpty *e = [alt.subparsers objectAtIndex:0];
+    TDTrue([e isMemberOfClass:[PKEmpty class]]);
     
     c = (TDLiteral *)[alt.subparsers objectAtIndex:1];
     TDTrue([c isKindOfClass:[TDLiteral class]]);
@@ -848,7 +848,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDAlternation class]]);
+    TDTrue([lp isKindOfClass:[PKAlternation class]]);
     s = @"bar bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -868,11 +868,11 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Repetition](/'foo'/|/'bar'/)/*^", [res description]);
-    TDRepetition *rep = [res pop];
-    TDTrue([rep isMemberOfClass:[TDRepetition class]]);
+    PKRepetition *rep = [res pop];
+    TDTrue([rep isMemberOfClass:[PKRepetition class]]);
     
-    TDAlternation *alt = (TDAlternation *)rep.subparser;
-    TDTrue([alt class] == [TDAlternation class]);
+    PKAlternation *alt = (PKAlternation *)rep.subparser;
+    TDTrue([alt class] == [PKAlternation class]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
@@ -886,7 +886,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDRepetition class]);
+    TDEqualObjects([lp class], [PKRepetition class]);
     s = @"foo bar bar foo";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -901,13 +901,13 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence](/'foo'/|/'bar'/)/+^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
     
     TDEquals((NSUInteger)2, seq.subparsers.count);
     
-    TDAlternation *alt = [seq.subparsers objectAtIndex:0];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [seq.subparsers objectAtIndex:0];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
@@ -918,11 +918,11 @@
     TDTrue([c isKindOfClass:[TDLiteral class]]);
     TDEqualObjects(@"bar", c.string);
     
-    TDRepetition *rep = [seq.subparsers objectAtIndex:1];
-    TDTrue([rep isMemberOfClass:[TDRepetition class]]);
+    PKRepetition *rep = [seq.subparsers objectAtIndex:1];
+    TDTrue([rep isMemberOfClass:[PKRepetition class]]);
     
-    alt = (TDAlternation *)rep.subparser;
-    TDEqualObjects([TDAlternation class], [alt class]);
+    alt = (PKAlternation *)rep.subparser;
+    TDEqualObjects([PKAlternation class], [alt class]);
     
     c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isKindOfClass:[TDLiteral class]]);
@@ -935,7 +935,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     s = @"foo foo bar bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -950,15 +950,15 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation](/'foo'/|/'bar'/)/?^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     
     TDEquals((NSUInteger)2, alt.subparsers.count);
-    TDEmpty *e = [alt.subparsers objectAtIndex:0];
-    TDTrue([TDEmpty class] == [e class]);
+    PKEmpty *e = [alt.subparsers objectAtIndex:0];
+    TDTrue([PKEmpty class] == [e class]);
     
     alt = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([alt class], [TDAlternation class]);
+    TDEqualObjects([alt class], [PKAlternation class]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDLiteral *c = [alt.subparsers objectAtIndex:0];
@@ -972,7 +972,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDEqualObjects([lp class], [TDAlternation class]);
+    TDEqualObjects([lp class], [PKAlternation class]);
     s = @"foo bar";
     a = [TDTokenAssembly assemblyWithString:s];
     res = [lp bestMatchFor:a];
@@ -1050,8 +1050,8 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]Num/{/2/}^", [res description]);
-    TDSequence *seq = [res pop];
-    TDEqualObjects([seq class], [TDSequence class]);
+    PKSequence *seq = [res pop];
+    TDEqualObjects([seq class], [PKSequence class]);
     
     TDEquals((NSUInteger)2, seq.subparsers.count);
     TDNum *n = [seq.subparsers objectAtIndex:0];
@@ -1063,7 +1063,7 @@
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];
@@ -1088,8 +1088,8 @@
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]Num/{/2/,/3/}^", [res description]);
-    TDSequence *seq = [res pop];
-    TDEqualObjects([seq class], [TDSequence class]);
+    PKSequence *seq = [res pop];
+    TDEqualObjects([seq class], [PKSequence class]);
     
     TDEquals((NSUInteger)3, seq.subparsers.count);
 
@@ -1100,12 +1100,12 @@
     TDEqualObjects([n class], [TDNum class]);
     
     n = [seq.subparsers objectAtIndex:2];
-    TDEqualObjects([n class], [TDAlternation class]);
+    TDEqualObjects([n class], [PKAlternation class]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[TDSequence class]]);
+    TDTrue([lp isKindOfClass:[PKSequence class]]);
     
     s = @"333 444";
     a = [TDTokenAssembly assemblyWithString:s];

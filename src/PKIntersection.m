@@ -1,25 +1,31 @@
 //
-//  TDExclusion.m
+//  PKIntersection.m
 //  TDParseKit
 //
-//  Created by Todd Ditchendorf on 6/26/09.
+//  Created by Todd Ditchendorf on 6/27/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import "TDExclusion.h"
+#import "PKIntersection.h"
+#import <ParseKit/PKAssembly.h>
 
-@interface NSMutableSet (TDExclusionAdditions)
-- (void)minusSetTestingEquality:(NSSet *)s;
+@interface NSMutableSet (TDIntersectionAdditions)
+- (void)intersectSetTestingEquality:(NSSet *)s;
 @end
 
-@implementation NSMutableSet (TDExclusionAdditions)
+@implementation NSMutableSet (TDIntersectionAdditions)
 
-- (void)minusSetTestingEquality:(NSSet *)s {
+- (void)intersectSetTestingEquality:(NSSet *)s {
     for (id a1 in self) {
+        BOOL found = NO;
         for (id a2 in s) {
             if ([a1 isEqualTo:a2 ]) {
-                [self removeObject:a1];
+                found = YES;
+                break;
             }
+        }
+        if (!found) {
+            [self removeObject:a1];
         }
     }
 }
@@ -31,23 +37,23 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
-@implementation TDExclusion
+@implementation PKIntersection
 
-+ (id)exclusion {
++ (id)intersection {
     return [[[self alloc] init] autorelease];
 }
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    NSMutableSet *outAssemblies = nil;
+    NSMutableSet *outAssemblies = [NSMutableSet set];
     
     NSInteger i = 0;
     for (PKParser *p in subparsers) {
         if (0 == i++) {
             outAssemblies = [[[p matchAndAssemble:inAssemblies] mutableCopy] autorelease];
         } else {
-            [outAssemblies minusSetTestingEquality:[p allMatchesFor:inAssemblies]];
+            [outAssemblies intersectSetTestingEquality:[p allMatchesFor:inAssemblies]];
         }
     }
     

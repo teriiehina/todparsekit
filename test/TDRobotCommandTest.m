@@ -64,7 +64,7 @@
 
 
 - (PKParser *)pickCommand {
-    TDSequence *s = [TDSequence sequence];
+    PKSequence *s = [PKSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"pick"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"from"] discard]];
@@ -75,7 +75,7 @@
 
 
 - (PKParser *)placeCommand {
-    TDSequence *s = [TDSequence sequence];
+    PKSequence *s = [PKSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"place"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"at"] discard]];
@@ -86,7 +86,7 @@
 
 
 - (PKParser *)scanCommand {
-    TDSequence *s = [TDSequence sequence];
+    PKSequence *s = [PKSequence sequence];
     [s add:[[TDCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
     [s add:[self location]];
     [s setAssembler:self selector:@selector(workOnScanCommand:)];
@@ -95,7 +95,7 @@
 
 
 - (PKParser *)command {
-    TDAlternation *a = [TDAlternation alternation];
+    PKAlternation *a = [PKAlternation alternation];
     [a add:[self pickCommand]];
     [a add:[self placeCommand]];
     [a add:[self scanCommand]];

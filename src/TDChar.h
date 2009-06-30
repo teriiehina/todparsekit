@@ -6,14 +6,14 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDChar 
     @brief      A <tt>TDChar</tt> matches a character from a character assembly.
     @details    <tt>-[TDChar qualifies:]</tt> returns true every time, since this class assumes it is working against a <tt>TDCharacterAssembly</tt>.
 */
-@interface TDChar : TDTerminal {
+@interface TDChar : PKTerminal {
 
 }
 

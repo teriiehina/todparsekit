@@ -135,7 +135,7 @@
     s = @"{foo = bar;";
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    STAssertThrowsSpecific([p.dictParser completeMatchFor:a], TDTrackException, @"");
+    STAssertThrowsSpecific([p.dictParser completeMatchFor:a], PKTrackException, @"");
 }
 
 
@@ -179,7 +179,7 @@
     s = @"foo = bar";
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    STAssertThrowsSpecific([p.keyValuePairParser completeMatchFor:a], TDTrackException, @"");
+    STAssertThrowsSpecific([p.keyValuePairParser completeMatchFor:a], PKTrackException, @"");
 }
 
 
@@ -260,7 +260,7 @@
     s = @"(1, 2, 3";
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
+    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], PKTrackException, @"");
 }
 
 
@@ -268,7 +268,7 @@
     s = @"(1, 2 3)";
     p.tokenizer.string = s;
     a = [TDTokenAssembly assemblyWithTokenizer:p.tokenizer];
-    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], TDTrackException, @"");
+    STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], PKTrackException, @"");
 }
 
 

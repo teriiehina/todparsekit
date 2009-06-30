@@ -19,7 +19,7 @@
     s = @"foo baz bar";
     a = [[TDTokenAssembly alloc] initWithString:s];
     
-    p = [TDAlternation alternation];
+    p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
@@ -35,7 +35,7 @@
     s = @"123 baz bar";
     a = [[TDTokenAssembly alloc] initWithString:s];
     
-    p = [TDAlternation alternation];
+    p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"bar"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
@@ -51,7 +51,7 @@
     s = @"123 baz bar";
     a = [[TDTokenAssembly alloc] initWithString:s];
     
-    p = [TDAlternation alternation];
+    p = [PKAlternation alternation];
     [p add:[TDWord word]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];
@@ -67,7 +67,7 @@
     s = @"123 baz bar";
     a = [[TDTokenAssembly alloc] initWithString:s];
     
-    p = [TDAlternation alternation];
+    p = [PKAlternation alternation];
     [p add:[TDWord word]];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDNum num]];
@@ -83,7 +83,7 @@
     s = @"123 baz bar";
     a = [[TDTokenAssembly alloc] initWithString:s];
     
-    p = [TDAlternation alternation];
+    p = [PKAlternation alternation];
     [p add:[TDLiteral literalWithString:@"foo"]];
     [p add:[TDLiteral literalWithString:@"baz"]];
     [p add:[TDNum num]];

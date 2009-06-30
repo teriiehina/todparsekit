@@ -11,7 +11,7 @@
 @interface TDPatternTest : SenTestCase {
     TDTokenizer *t;
     TDPattern *p;
-    TDIntersection *inter;
+    PKIntersection *inter;
     PKAssembly *a;
     NSString *s;
 }

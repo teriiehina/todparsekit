@@ -6,14 +6,14 @@
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDLetter 
     @brief      A <tt>TDLetter</tt> matches any letter from a character assembly.
     @details    <tt>-[TDLetter qualifies:]</tt> returns true if an assembly's next element is a letter.
 */
-@interface TDLetter : TDTerminal {
+@interface TDLetter : PKTerminal {
 
 }
 

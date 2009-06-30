@@ -3,8 +3,8 @@ try {
     // a parser for this grammar:
     // 'hot'* 'coffee'
     
-    var parser = new TDSequence();
-    parser.add(new TDRepetition(new TDLiteral("hot")));
+    var parser = new PKSequence();
+    parser.add(new PKRepetition(new TDLiteral("hot")));
     parser.add(new TDLiteral("coffee"));
     
     var s = "hot hot hot coffee";

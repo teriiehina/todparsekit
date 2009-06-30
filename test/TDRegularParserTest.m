@@ -20,7 +20,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -33,7 +33,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -46,7 +46,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"aabbbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -60,8 +60,8 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]ab^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)2, seq.subparsers.count);
     
     TDSpecificChar *c = [seq.subparsers objectAtIndex:0];
@@ -74,7 +74,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"ab";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -88,8 +88,8 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence]abc^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
     TDEquals((NSUInteger)3, seq.subparsers.count);
     
     TDSpecificChar *c = [seq.subparsers objectAtIndex:0];
@@ -105,7 +105,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"abc";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -119,8 +119,8 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]a|b^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -133,7 +133,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"b";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -147,8 +147,8 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]4|7^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -161,7 +161,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"4";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -175,16 +175,16 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]a|b*^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"a", c.string);
     
-    TDRepetition *rep = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDRepetition class], [rep class]);
+    PKRepetition *rep = [alt.subparsers objectAtIndex:1];
+    TDEqualObjects([PKRepetition class], [rep class]);
     c = (TDSpecificChar *)rep.subparser;
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"b", c.string);
@@ -192,7 +192,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"bbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -206,23 +206,23 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]a|b+^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"a", c.string);
     
-    TDSequence *seq = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDSequence class], [seq class]);
+    PKSequence *seq = [alt.subparsers objectAtIndex:1];
+    TDEqualObjects([PKSequence class], [seq class]);
     
     c = [seq.subparsers objectAtIndex:0];
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"b", c.string);
     
-    TDRepetition *rep = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([TDRepetition class], [rep class]);
+    PKRepetition *rep = [seq.subparsers objectAtIndex:1];
+    TDEqualObjects([PKRepetition class], [rep class]);
     c = (TDSpecificChar *)rep.subparser;
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"b", c.string);
@@ -230,7 +230,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"bbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -249,8 +249,8 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation]a|b?^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -258,10 +258,10 @@
     TDEqualObjects(@"a", c.string);
     
     alt = [alt.subparsers objectAtIndex:1];
-    TDEqualObjects([TDAlternation class], [alt class]);
+    TDEqualObjects([PKAlternation class], [alt class]);
     
-    TDEmpty *e = [alt.subparsers objectAtIndex:0];
-    TDTrue([e isMemberOfClass:[TDEmpty class]]);
+    PKEmpty *e = [alt.subparsers objectAtIndex:0];
+    TDTrue([e isMemberOfClass:[PKEmpty class]]);
     
     c = (TDSpecificChar *)[alt.subparsers objectAtIndex:1];
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
@@ -270,7 +270,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"bbb";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -289,11 +289,11 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Repetition](a|b)*^", [res description]);
-    TDRepetition *rep = [res pop];
-    TDTrue([rep isMemberOfClass:[TDRepetition class]]);
+    PKRepetition *rep = [res pop];
+    TDTrue([rep isMemberOfClass:[PKRepetition class]]);
     
-    TDAlternation *alt = (TDAlternation *)rep.subparser;
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = (PKAlternation *)rep.subparser;
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -307,7 +307,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDRepetition class]]);
+    TDTrue([p isKindOfClass:[PKRepetition class]]);
     s = @"bbbaaa";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -321,13 +321,13 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Sequence](a|b)+^", [res description]);
-    TDSequence *seq = [res pop];
-    TDTrue([seq isMemberOfClass:[TDSequence class]]);
+    PKSequence *seq = [res pop];
+    TDTrue([seq isMemberOfClass:[PKSequence class]]);
 
     TDEquals((NSUInteger)2, seq.subparsers.count);
 
-    TDAlternation *alt = [seq.subparsers objectAtIndex:0];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [seq.subparsers objectAtIndex:0];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -338,11 +338,11 @@
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
     TDEqualObjects(@"b", c.string);
 
-    TDRepetition *rep = [seq.subparsers objectAtIndex:1];
-    TDTrue([rep isMemberOfClass:[TDRepetition class]]);
+    PKRepetition *rep = [seq.subparsers objectAtIndex:1];
+    TDTrue([rep isMemberOfClass:[PKRepetition class]]);
     
-    alt = (TDAlternation *)rep.subparser;
-    TDEqualObjects([TDAlternation class], [alt class]);
+    alt = (PKAlternation *)rep.subparser;
+    TDEqualObjects([PKAlternation class], [alt class]);
 
     c = [alt.subparsers objectAtIndex:0];
     TDTrue([c isMemberOfClass:[TDSpecificChar class]]);
@@ -355,7 +355,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDSequence class]]);
+    TDTrue([p isKindOfClass:[PKSequence class]]);
     s = @"bbbaaa";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];
@@ -369,15 +369,15 @@
     res = [p bestMatchFor:a];
     TDNotNil(res);
     TDEqualObjects(@"[Alternation](a|b)?^", [res description]);
-    TDAlternation *alt = [res pop];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    PKAlternation *alt = [res pop];
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     
     TDEquals((NSUInteger)2, alt.subparsers.count);
-    TDEmpty *e = [alt.subparsers objectAtIndex:0];
-    TDTrue([TDEmpty class] == [e class]);
+    PKEmpty *e = [alt.subparsers objectAtIndex:0];
+    TDTrue([PKEmpty class] == [e class]);
     
     alt = [alt.subparsers objectAtIndex:1];
-    TDTrue([alt isMemberOfClass:[TDAlternation class]]);
+    TDTrue([alt isMemberOfClass:[PKAlternation class]]);
     TDEquals((NSUInteger)2, alt.subparsers.count);
     
     TDSpecificChar *c = [alt.subparsers objectAtIndex:0];
@@ -391,7 +391,7 @@
     // use the result parser
     p = [TDRegularParser parserFromGrammar:s];
     TDNotNil(p);
-    TDTrue([p isKindOfClass:[TDAlternation class]]);
+    TDTrue([p isKindOfClass:[PKAlternation class]]);
     s = @"bbbaaa";
     a = [TDCharacterAssembly assemblyWithString:s];
     res = (TDCharacterAssembly *)[p bestMatchFor:a];

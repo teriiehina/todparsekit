@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 
 /*!
     @class      TDWord 
     @brief      A <tt>TDWord</tt> matches a word from a token assembly.
 */
-@interface TDWord : TDTerminal {
+@interface TDWord : PKTerminal {
 
 }
 

@@ -31,7 +31,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDWord word]];
 
@@ -44,7 +44,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"foo"];
 
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDSymbol symbol]];
 
@@ -93,7 +93,7 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/foo/" options:TDPatternOptionsNone];
     
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDQuotedString quotedString]];
 
@@ -107,7 +107,7 @@
     a = [TDTokenAssembly assemblyWithTokenizer:t];
     p = [TDPattern patternWithString:@"/[^/]+/" options:TDPatternOptionsNone];
 
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDQuotedString quotedString]];
     
@@ -209,7 +209,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
 
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDWord word]];
     
@@ -227,7 +227,7 @@
     a = [TDTokenAssembly assemblyWithString:s];
     p = [TDPattern patternWithString:@"and|or|not|true|false" options:TDPatternOptionsIgnoreCase];
     
-    inter = [TDIntersection intersection];
+    inter = [PKIntersection intersection];
     [inter add:p];
     [inter add:[TDSymbol symbol]];
     

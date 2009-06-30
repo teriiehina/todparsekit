@@ -25,8 +25,8 @@
     // -[PKParser completeMatchFor:]
     // -[PKParser bestMatchFor:]
     // -[PKParser matchAndAssemble:]
-    // -[TDTerminal allMatchesFor:]
-    // -[TDTerminal matchOneAssembly:]
+    // -[PKTerminal allMatchesFor:]
+    // -[PKTerminal matchOneAssembly:]
     // -[TDLiteral qualifies:]
     // -[PKParser best:]
     

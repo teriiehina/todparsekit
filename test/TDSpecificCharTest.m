@@ -45,7 +45,7 @@
     
     TDEqualObjects(@"[]^aaa", [a description]);
     p = [TDSpecificChar specificCharWithChar:'a'];
-    PKParser *r = [TDRepetition repetitionWithSubparser:p];
+    PKParser *r = [PKRepetition repetitionWithSubparser:p];
     
     result = [r bestMatchFor:a];
     TDNotNil(a);

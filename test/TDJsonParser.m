@@ -117,7 +117,7 @@
 
 - (PKCollectionParser *)booleanParser {
     if (!booleanParser) {
-        self.booleanParser = [TDAlternation alternation];
+        self.booleanParser = [PKAlternation alternation];
         [booleanParser add:[TDLiteral literalWithString:@"true"]];
         [booleanParser add:[TDLiteral literalWithString:@"false"]];
         if (shouldAssemble) {
@@ -135,15 +135,15 @@
         // content = Empty | actualArray
         // actualArray = value commaValue*
 
-        TDTrack *actualArray = [TDTrack sequence];
+        PKTrack *actualArray = [PKTrack sequence];
         [actualArray add:self.valueParser];
-        [actualArray add:[TDRepetition repetitionWithSubparser:self.commaValueParser]];
+        [actualArray add:[PKRepetition repetitionWithSubparser:self.commaValueParser]];
 
-        TDAlternation *content = [TDAlternation alternation];
-        [content add:[TDEmpty empty]];
+        PKAlternation *content = [PKAlternation alternation];
+        [content add:[PKEmpty empty]];
         [content add:actualArray];
         
-        self.arrayParser = [TDSequence sequence];
+        self.arrayParser = [PKSequence sequence];
         [arrayParser add:[TDSymbol symbolWithString:@"["]]; // serves as fence
         [arrayParser add:content];
         [arrayParser add:[[TDSymbol symbolWithString:@"]"] discard]];
@@ -165,15 +165,15 @@
         // property = QuotedString ':' value
         // commaProperty = ',' property
         
-        TDTrack *actualObject = [TDTrack sequence];
+        PKTrack *actualObject = [PKTrack sequence];
         [actualObject add:self.propertyParser];
-        [actualObject add:[TDRepetition repetitionWithSubparser:self.commaPropertyParser]];
+        [actualObject add:[PKRepetition repetitionWithSubparser:self.commaPropertyParser]];
         
-        TDAlternation *content = [TDAlternation alternation];
-        [content add:[TDEmpty empty]];
+        PKAlternation *content = [PKAlternation alternation];
+        [content add:[PKEmpty empty]];
         [content add:actualObject];
         
-        self.objectParser = [TDSequence sequence];
+        self.objectParser = [PKSequence sequence];
         [objectParser add:[TDSymbol symbolWithString:@"{"]]; // serves as fence
         [objectParser add:content];
         [objectParser add:[[TDSymbol symbolWithString:@"}"] discard]];
@@ -188,7 +188,7 @@
 
 - (PKCollectionParser *)valueParser {
     if (!valueParser) {
-        self.valueParser = [TDAlternation alternation];
+        self.valueParser = [PKAlternation alternation];
         [valueParser add:self.stringParser];
         [valueParser add:self.numberParser];
         [valueParser add:self.nullParser];
@@ -202,7 +202,7 @@
 
 - (PKCollectionParser *)commaValueParser {
     if (!commaValueParser) {
-        self.commaValueParser = [TDTrack sequence];
+        self.commaValueParser = [PKTrack sequence];
         [commaValueParser add:[[TDSymbol symbolWithString:@","] discard]];
         [commaValueParser add:self.valueParser];
     }
@@ -212,7 +212,7 @@
 
 - (PKCollectionParser *)propertyParser {
     if (!propertyParser) {
-        self.propertyParser = [TDSequence sequence];
+        self.propertyParser = [PKSequence sequence];
         [propertyParser add:[TDQuotedString quotedString]];
         [propertyParser add:[[TDSymbol symbolWithString:@":"] discard]];
         [propertyParser add:self.valueParser];
@@ -226,7 +226,7 @@
 
 - (PKCollectionParser *)commaPropertyParser {
     if (!commaPropertyParser) {
-        self.commaPropertyParser = [TDTrack sequence];
+        self.commaPropertyParser = [PKTrack sequence];
         [commaPropertyParser add:[[TDSymbol symbolWithString:@","] discard]];
         [commaPropertyParser add:self.propertyParser];
     }

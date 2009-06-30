@@ -1,14 +1,14 @@
 //
-//  TDEmpty.m
+//  PKEmpty.m
 //  TDParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2008 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/TDEmpty.h>
+#import <ParseKit/PKEmpty.h>
 
-@implementation TDEmpty
+@implementation PKEmpty
 
 + (id)empty {
     return [[[self alloc] init] autorelease];

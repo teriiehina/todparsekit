@@ -109,7 +109,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // statement        = exprOrAssignment ';'
 - (PKCollectionParser *)statementParser {
     if (!statementParser) {
-        self.statementParser = [TDTrack track];
+        self.statementParser = [PKTrack track];
         [statementParser add:self.exprOrAssignmentParser];
         [statementParser add:[[TDSymbol symbolWithString:@";"] discard]];
     }
@@ -120,7 +120,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // exprOrAssignmentParser        = expression | assignment
 - (PKCollectionParser *)exprOrAssignmentParser {
     if (!exprOrAssignmentParser) {
-        self.exprOrAssignmentParser = [TDAlternation alternation];
+        self.exprOrAssignmentParser = [PKAlternation alternation];
         [exprOrAssignmentParser add:self.expressionParser];
         [exprOrAssignmentParser add:self.assignmentParser];
     }
@@ -131,7 +131,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // declaration        = variable '=' expression
 - (PKCollectionParser *)assignmentParser {
     if (!assignmentParser) {
-        self.assignmentParser = [TDTrack track];
+        self.assignmentParser = [PKTrack track];
         [assignmentParser add:self.declarationParser];
         [assignmentParser add:[[TDSymbol symbolWithString:kEBNFEqualsString] discard]];
         [assignmentParser add:self.expressionParser];
@@ -144,7 +144,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // declaration            = '$' Word
 - (PKCollectionParser *)declarationParser {
     if (!declarationParser) {
-        self.declarationParser = [TDTrack track];
+        self.declarationParser = [PKTrack track];
         [declarationParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
         [declarationParser add:[TDWord word]];
         if (kEBNFVariableSuffix.length) {
@@ -158,7 +158,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // variable            = '$' Word
 - (PKCollectionParser *)variableParser {
     if (!variableParser) {
-        self.variableParser = [TDTrack track];
+        self.variableParser = [PKTrack track];
         [variableParser add:[[TDSymbol symbolWithString:kEBNFVariablePrefix] discard]];
         [variableParser add:[TDWord word]];
         if (kEBNFVariableSuffix.length) {
@@ -172,9 +172,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 // expression        = term orTerm*
 - (PKCollectionParser *)expressionParser {
     if (!expressionParser) {
-        self.expressionParser = [TDSequence sequence];
+        self.expressionParser = [PKSequence sequence];
         [expressionParser add:self.termParser];
-        [expressionParser add:[TDRepetition repetitionWithSubparser:self.orTermParser]];
+        [expressionParser add:[PKRepetition repetitionWithSubparser:self.orTermParser]];
     }
     return expressionParser;
 }
@@ -183,9 +183,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 // term                = factor nextFactor*
 - (PKCollectionParser *)termParser {
     if (!termParser) {
-        self.termParser = [TDSequence sequence];
+        self.termParser = [PKSequence sequence];
         [termParser add:self.factorParser];
-        [termParser add:[TDRepetition repetitionWithSubparser:self.nextFactorParser]];
+        [termParser add:[PKRepetition repetitionWithSubparser:self.nextFactorParser]];
     }
     return termParser;
 }
@@ -194,7 +194,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // orTerm            = '|' term
 - (PKCollectionParser *)orTermParser {
     if (!orTermParser) {
-        self.orTermParser = [TDTrack track];
+        self.orTermParser = [PKTrack track];
         [orTermParser add:[[TDSymbol symbolWithString:@"|"] discard]];
         [orTermParser add:self.termParser];
         [orTermParser setAssembler:self selector:@selector(workOnOr:)];
@@ -206,7 +206,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // factor            = phrase | phraseStar | phraseQuestion | phrasePlus
 - (PKCollectionParser *)factorParser {
     if (!factorParser) {
-        self.factorParser = [TDAlternation alternation];
+        self.factorParser = [PKAlternation alternation];
         [factorParser add:self.phraseParser];
         [factorParser add:self.phraseStarParser];
         [factorParser add:self.phraseQuestionParser];
@@ -219,7 +219,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // nextFactor        = factor
 - (PKCollectionParser *)nextFactorParser {
     if (!nextFactorParser) {
-        self.nextFactorParser = [TDAlternation alternation];
+        self.nextFactorParser = [PKAlternation alternation];
         [nextFactorParser add:self.phraseParser];
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phraseQuestionParser];
@@ -233,12 +233,12 @@ static NSString * const kEBNFVariableSuffix = @"";
 // phrase            = atomicValue | '(' expression ')'
 - (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
-        TDSequence *s = [TDTrack track];
+        PKSequence *s = [PKTrack track];
         [s add:[[TDSymbol symbolWithString:@"("] discard]];
         [s add:self.expressionParser];
         [s add:[[TDSymbol symbolWithString:@")"] discard]];
         
-        self.phraseParser = [TDAlternation alternation];
+        self.phraseParser = [PKAlternation alternation];
         [phraseParser add:self.atomicValueParser];
         [phraseParser add:s];
     }
@@ -249,7 +249,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // phraseStar        = phrase '*'
 - (PKCollectionParser *)phraseStarParser {
     if (!phraseStarParser) {
-        self.phraseStarParser = [TDSequence sequence];
+        self.phraseStarParser = [PKSequence sequence];
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[TDSymbol symbolWithString:@"*"] discard]];
         [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
@@ -261,7 +261,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // phraseQuestion        = phrase '?'
 - (PKCollectionParser *)phraseQuestionParser {
     if (!phraseQuestionParser) {
-        self.phraseQuestionParser = [TDSequence sequence];
+        self.phraseQuestionParser = [PKSequence sequence];
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[TDSymbol symbolWithString:@"?"] discard]];
         [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
@@ -273,7 +273,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // phrasePlus            = phrase '+'
 - (PKCollectionParser *)phrasePlusParser {
     if (!phrasePlusParser) {
-        self.phrasePlusParser = [TDSequence sequence];
+        self.phrasePlusParser = [PKSequence sequence];
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[TDSymbol symbolWithString:@"+"] discard]];
         [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
@@ -285,7 +285,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 // atomicValue        = Word | Num | QuotedString | Variable
 - (PKCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
-        self.atomicValueParser = [TDAlternation alternation];
+        self.atomicValueParser = [PKAlternation alternation];
         
         PKParser *p = [TDWord word];
         [p setAssembler:self selector:@selector(workOnWord:)];
@@ -329,7 +329,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     TDToken *tok = [a pop];
     NSString *s = [tok.stringValue stringByTrimmingQuotes];
     
-    TDSequence *p = [TDSequence sequence];
+    PKSequence *p = [PKSequence sequence];
     TDTokenizer *t = [TDTokenizer tokenizerWithString:s];
     TDToken *eof = [TDToken EOFToken];
     while (eof != (tok = [t nextToken])) {
@@ -343,7 +343,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnStar:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    TDRepetition *p = [TDRepetition repetitionWithSubparser:[a pop]];
+    PKRepetition *p = [PKRepetition repetitionWithSubparser:[a pop]];
     [a push:p];
 }
 
@@ -351,9 +351,9 @@ static NSString * const kEBNFVariableSuffix = @"";
 - (void)workOnQuestion:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
-    TDAlternation *p = [TDAlternation alternation];
+    PKAlternation *p = [PKAlternation alternation];
     [p add:[a pop]];
-    [p add:[TDEmpty empty]];
+    [p add:[PKEmpty empty]];
     [a push:p];
 }
 
@@ -362,9 +362,9 @@ static NSString * const kEBNFVariableSuffix = @"";
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
-    TDSequence *p = [TDSequence sequence];
+    PKSequence *p = [PKSequence sequence];
     [p add:top];
-    [p add:[TDRepetition repetitionWithSubparser:top]];
+    [p add:[PKRepetition repetitionWithSubparser:top]];
     [a push:p];
 }
 
@@ -373,7 +373,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
-    TDSequence *p = [TDSequence sequence];
+    PKSequence *p = [PKSequence sequence];
     [p add:[a pop]];
     [p add:top];
     [a push:p];
@@ -386,7 +386,7 @@ static NSString * const kEBNFVariableSuffix = @"";
     id top = [a pop];
     //    NSLog(@"top: %@", top);
     //    NSLog(@"top class: %@", [top class]);
-    TDAlternation *p = [TDAlternation alternation];
+    PKAlternation *p = [PKAlternation alternation];
     [p add:[a pop]];
     [p add:top];
     [a push:p];

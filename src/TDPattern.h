@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <ParseKit/TDTerminal.h>
+#import <ParseKit/PKTerminal.h>
 #import <ParseKit/TDToken.h>
 
 typedef enum {
@@ -19,7 +19,7 @@ typedef enum {
     TDPatternOptionsUnicodeWordBoundaries   = 256
 } TDPatternOptions;
 
-@interface TDPattern : TDTerminal {
+@interface TDPattern : PKTerminal {
     TDPatternOptions options;
     BOOL inverted;
 }
