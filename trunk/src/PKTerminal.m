@@ -46,10 +46,6 @@
         PKAssembly *b = [self matchOneAssembly:a];
         if (b) {
             [outAssemblies addObject:b];
-
-            if (![b hasMore]) {
-                break;
-            }
         }
     }
     
