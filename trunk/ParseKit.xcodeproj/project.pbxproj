@@ -950,7 +950,7 @@
 		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
 		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
 		D36EA3AF0E5EA67E00496BD3 /* small-xml-file.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "small-xml-file.xml"; path = "res/small-xml-file.xml"; sourceTree = "<group>"; };
-		D37D380F0FE7783C008C2E4D /* libParseKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libParseKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D37D380F0FE7783C008C2E4D /* libparsekit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libparsekit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D380AFBB0F0C54B60009EC13 /* html.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = html.css; path = res/html.css; sourceTree = "<group>"; };
 		D380AFBC0F0C54B60009EC13 /* html.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = html.grammar; path = res/html.grammar; sourceTree = "<group>"; };
 		D380AFC20F0C56000009EC13 /* example.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = example.html; path = res/example.html; sourceTree = "<group>"; };
@@ -1144,7 +1144,7 @@
 			children = (
 				8DC2EF5B0486A6940098B216 /* ParseKit.framework */,
 				D389F1CE0F1965E600558235 /* JSParseKit.framework */,
-				D37D380F0FE7783C008C2E4D /* libParseKit.a */,
+				D37D380F0FE7783C008C2E4D /* libparsekit.a */,
 				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
@@ -2343,7 +2343,7 @@
 			);
 			name = ParseKitMobile;
 			productName = staticlib;
-			productReference = D37D380F0FE7783C008C2E4D /* libParseKit.a */;
+			productReference = D37D380F0FE7783C008C2E4D /* libparsekit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		D389F1CD0F1965E600558235 /* JSParseKit */ = {
@@ -3131,7 +3131,6 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3140,7 +3139,8 @@
 					AppKit,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = ParseKit;
+				PRODUCT_NAME = parsekit;
+				SDKROOT = iphonesimulator2.0;
 			};
 			name = Debug;
 		};
@@ -3154,14 +3154,14 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = TDParseKit_Prefix.pch;
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 				);
 				PREBINDING = NO;
-				PRODUCT_NAME = ParseKit;
+				PRODUCT_NAME = parsekit;
+				SDKROOT = iphonesimulator2.0;
 				ZERO_LINK = NO;
 			};
 			name = Release;
