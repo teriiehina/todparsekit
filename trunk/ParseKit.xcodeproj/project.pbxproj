@@ -81,12 +81,12 @@
 		D3252F7B0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */; };
 		D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
-		D33494720E29670B00406085 /* ParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit */; };
+		D33494720E29670B00406085 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
 		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
-		D341850C0E520D640081B0DC /* ParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit */; };
+		D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
 		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
 		D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
@@ -338,9 +338,9 @@
 		D385FD490F05A8C900DB2946 /* TDMiniCSSAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D385FD410F05A88C00DB2946 /* TDMiniCSSAssembler.m */; };
 		D385FD6C0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
 		D385FD6D0F05A99900DB2946 /* mini_css.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D385FD6B0F05A99900DB2946 /* mini_css.grammar */; };
-		D389F1D50F19666500558235 /* ParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit */; };
-		D389F20B0F196A9200558235 /* JSParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* JSParseKit */; };
-		D389F20C0F196A9200558235 /* ParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit */; };
+		D389F1D50F19666500558235 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
+		D389F20B0F196A9200558235 /* JSParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F1CE0F1965E600558235 /* JSParseKit.framework */; };
+		D389F20C0F196A9200558235 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D389F20D0F196A9200558235 /* WebKit.framework */; };
 		D389F2E40F196CAE00558235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D389F2E30F196CAE00558235 /* main.m */; };
 		D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D380BAA20F0F1D980009EC13 /* JavaScriptCore.framework */; };
@@ -365,7 +365,7 @@
 		D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */; };
 		D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D355C8800FEB36A1006A91A4 /* xml.grammar */; };
 		D3C031ED0EF38D2D00C5ABEB /* TDLowercaseWordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */; };
-		D3C7D9DA0A412874005DD154 /* ParseKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit */; };
+		D3C7D9DA0A412874005DD154 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D3C85C7B0E63B438000445FD /* TDArithmeticParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */; };
 		D3C85C800E63B9E9000445FD /* TDArithmeticParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85C7F0E63B9E9000445FD /* TDArithmeticParserTest.m */; };
 		D3C85D450E63D1BF000445FD /* TDScientificNumberStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3C85D440E63D1BF000445FD /* TDScientificNumberStateTest.m */; };
@@ -583,7 +583,7 @@
 		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8DC2EF5B0486A6940098B216 /* ParseKit */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = ParseKit; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DC2EF5B0486A6940098B216 /* ParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D315DF710FEF59B600D876C8 /* date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = date.grammar; path = res/date.grammar; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
@@ -978,7 +978,7 @@
 		D385FD6B0F05A99900DB2946 /* mini_css.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = mini_css.grammar; path = res/mini_css.grammar; sourceTree = "<group>"; };
 		D389A0B00F1FCC99003B43BD /* RelaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelaxParser.h; path = test/RelaxParser.h; sourceTree = "<group>"; };
 		D389A0B10F1FCC99003B43BD /* RelaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelaxParser.m; path = test/RelaxParser.m; sourceTree = "<group>"; };
-		D389F1CE0F1965E600558235 /* JSParseKit */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; path = JSParseKit; sourceTree = BUILT_PRODUCTS_DIR; };
+		D389F1CE0F1965E600558235 /* JSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		D389F20D0F196A9200558235 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -1083,7 +1083,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D33494720E29670B00406085 /* ParseKit in Frameworks */,
+				D33494720E29670B00406085 /* ParseKit.framework in Frameworks */,
 				D37D3A000FE77A71008C2E4D /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1093,7 +1093,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D31FE7380E60F36600A0803E /* libxml2.dylib in Frameworks */,
-				D341850C0E520D640081B0DC /* ParseKit in Frameworks */,
+				D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */,
 				D380B9800F0EF3860009EC13 /* OCMock.framework in Frameworks */,
 				D380BAA30F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 				D37D3A010FE77A72008C2E4D /* AppKit.framework in Frameworks */,
@@ -1105,7 +1105,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D389F34E0F197DF500558235 /* JavaScriptCore.framework in Frameworks */,
-				D389F1D50F19666500558235 /* ParseKit in Frameworks */,
+				D389F1D50F19666500558235 /* ParseKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,8 +1115,8 @@
 			files = (
 				D389F3430F197DDC00558235 /* JavaScriptCore.framework in Frameworks */,
 				D389F20E0F196A9200558235 /* WebKit.framework in Frameworks */,
-				D389F20C0F196A9200558235 /* ParseKit in Frameworks */,
-				D389F20B0F196A9200558235 /* JSParseKit in Frameworks */,
+				D389F20C0F196A9200558235 /* ParseKit.framework in Frameworks */,
+				D389F20B0F196A9200558235 /* JSParseKit.framework in Frameworks */,
 				D37D3A020FE77A77008C2E4D /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1126,7 +1126,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3DCB37D0EF5E5E400DE5110 /* OCMock.framework in Frameworks */,
-				D3C7D9DA0A412874005DD154 /* ParseKit in Frameworks */,
+				D3C7D9DA0A412874005DD154 /* ParseKit.framework in Frameworks */,
 				D36E9F870E5A795400496BD3 /* libxml2.dylib in Frameworks */,
 				D380BAA40F0F1D980009EC13 /* JavaScriptCore.framework in Frameworks */,
 				D3587EAF0FE83EC900DDD023 /* AppKit.framework in Frameworks */,
@@ -1149,8 +1149,8 @@
 		034768DFFF38A50411DB9C8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8DC2EF5B0486A6940098B216 /* ParseKit */,
-				D389F1CE0F1965E600558235 /* JSParseKit */,
+				8DC2EF5B0486A6940098B216 /* ParseKit.framework */,
+				D389F1CE0F1965E600558235 /* JSParseKit.framework */,
 				D3C7D87A0A411FBF005DD154 /* Tests.octest */,
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
@@ -2309,7 +2309,7 @@
 			name = ParseKit;
 			productInstallPath = "$(HOME)/Library/Frameworks";
 			productName = TODParseKit;
-			productReference = 8DC2EF5B0486A6940098B216 /* ParseKit */;
+			productReference = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D334940F0E2963FD00406085 /* DemoApp */ = {
@@ -2365,7 +2365,7 @@
 			);
 			name = JSParseKit;
 			productName = TDJSParseKit;
-			productReference = D389F1CE0F1965E600558235 /* JSParseKit */;
+			productReference = D389F1CE0F1965E600558235 /* JSParseKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D389F2020F196A7500558235 /* JSDemoApp */ = {
