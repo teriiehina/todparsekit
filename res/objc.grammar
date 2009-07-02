@@ -1,31 +1,46 @@
-external-declaration:
-function-definition
-declaration
-class-interface
-class-implementation
-category-interface
-category-implementation
-protocol-declaration
-class-declaration-list
 
-class-interface:
-@interface class-name [ : superclass-name ]
-[ protocol-reference-list ]
-[ instance-variables ]
-[ interface-declaration-list ]
-@end
+@symbol = '@interface';
+@symbol = '@implementation';
+@symbol = '@end';
+@symbol = '@class';
+@symbol = '@protocol';
 
-class-implementation:
-@implementation class-name [ : superclass-name ]
-[ instance-variables ]
-[ implementation-definition-list ]
-@end
+//    external-declaration:
+//    function-definition
+//    declaration
+//    class-interface
+//    class-implementation
+//    category-interface
+//    category-implementation
+//    protocol-declaration
+//    class-declaration-list
 
-category-interface:
-@interface class-name ( category-name )
-[ protocol-reference-list ]
-[ interface-declaration-list ]
-@end
+externalDecl = functionDef | decl | classInterface | classImpl | categoryInterface | categoryImpl | protocolDecl | classDeclList;
+
+//    class-interface:
+//    @interface class-name [ : superclass-name ]
+//    [ protocol-reference-list ]
+//    [ instance-variables ]
+//    [ interface-declaration-list ]
+//    @end
+
+classInterface = '@interface' className (':' superclassName)? protocolRefList? ivars? interfaceDeclList? '@end';
+
+//    class-implementation:
+//    @implementation class-name [ : superclass-name ]
+//    [ instance-variables ]
+//    [ implementation-definition-list ]
+//    @end
+
+classImpl = '@implementation' className (':' superclassName)? ivars? implementationDefList? '@end';
+
+//    category-interface:
+//    @interface class-name ( category-name )
+//    [ protocol-reference-list ]
+//    [ interface-declaration-list ]
+//    @end
+
+categoryInterface = '@interface' className '(' categoryName ')' protocolRefList? interfaceDeclList? '@end';
 
 category-implementation:
 @implementation class-name ( category-name )
