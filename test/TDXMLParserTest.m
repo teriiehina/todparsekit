@@ -348,7 +348,7 @@
 
 // [16]       PI       ::=       '<?' PITarget (S (Char* - (Char* '?>' Char*)))? '?>'
 // [17]       PITarget       ::=        Name - (('X' | 'x') ('M' | 'm') ('L' | 'l'))
-// pi = '<?' piTarget (Any - /?>/)* '?>';
+// pi = '<?' piTarget (/?>/)* '?>';
 // piTarget = name - /xml/i;
 
 - (void)testPI {
@@ -360,7 +360,7 @@
         @"piTarget = name - /xml/i;"
         @"@wordState = ':' '.' '-' '_';"
         @"@wordChars = ':' '.' '-' '_';"
-        @"pi = '<?' piTarget (Any - /?>/)* '?>';"
+        @"pi = '<?' piTarget !/?>/* '?>';"
         @"@start = pi;";
     PKParser *pi = [[PKParserFactory factory] parserFromGrammar:gram assembler:nil];
     pi.tokenizer.string = @"<?foo bar='baz'?>";
