@@ -21,7 +21,6 @@ typedef enum {
 
 @interface PKPattern : PKTerminal {
     PKPatternOptions options;
-    BOOL inverted;
 }
 + (id)patternWithString:(NSString *)s;
 
@@ -30,6 +29,4 @@ typedef enum {
 - (id)initWithString:(NSString *)s;
 
 - (id)initWithString:(NSString *)s options:(PKPatternOptions)opts;
-
-- (id)invertedPattern;
 @end
