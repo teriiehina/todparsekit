@@ -50,7 +50,7 @@
     @property   string
     @brief      This reader's string.
 */
-@property (nonatomic, retain) NSString *string;
+@property (nonatomic, copy) NSString *string;
 
 /*!
     @property   offset
