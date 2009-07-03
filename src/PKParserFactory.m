@@ -95,6 +95,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnPhraseCardinality:(PKAssembly *)a;
 - (void)workOnCardinality:(PKAssembly *)a;
 - (void)workOnOr:(PKAssembly *)a;
+- (void)workOnNegation:(PKAssembly *)a;
 
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
@@ -1173,31 +1174,17 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSAssert(objs.count, @"");
     [a pop]; // pop '('
     
-    BOOL negate = NO;
-    id obj = [a pop];
-    if ([bang isEqualTo:obj]) {
-        negate = YES;
-    } else {
-        [a push:obj];
-    }
-    
     if (objs.count > 1) {
         PKSequence *seq = [PKSequence sequence];
         for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
-        if (negate) {
-            [a push:[PKNegation negationWithSubparser:seq]];
-        } else {
-            [a push:seq];
-        }
+        [a push:seq];
     } else if (objs.count) {
-        PKParser *p = [objs objectAtIndex:0];
-        if (negate) {
-            p = [PKNegation negationWithSubparser:p];
-        }
-        [a push:p];
+        [a push:[objs objectAtIndex:0]];
     }
+    
+    [self workOnNegation:a];
 }
 
 
