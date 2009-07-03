@@ -9,6 +9,7 @@
 #import "TDTestScaffold.h"
 
 @interface TDNegationTest : SenTestCase {
+    PKNegation *n;
     PKTokenizer *t;
     PKAssembly *a;
     PKAssembly *res;

@@ -130,4 +130,45 @@
     TDEqualObjects(@"[123]123^'boo'", [result description]);
 }
 
+
+- (void)testParserNamed {
+    
+    //  (foo|bar) foo* w sy
+    
+    PKCollectionParser *alt = [PKAlternation alternation];
+    alt.name = @"alt";
+    
+    PKParser *foo = [PKLiteral literalWithString:@"foo"];
+    foo.name = @"w";
+    [alt add:foo];
+    
+    PKParser *bar = [PKLiteral literalWithString:@"bar"];
+    bar.name = @"w";
+    [alt add:bar];
+    
+    PKRepetition *r = [PKRepetition repetitionWithSubparser:foo];
+    
+    PKWord *w = [PKWord word];
+    w.name = @"w";
+    
+    PKSymbol *sy = [PKSymbol symbol];
+    sy.name = @"sy";
+    
+    PKCollectionParser *seq = [PKSequence sequence];
+    seq.name = @"seq";
+    
+    [seq add:alt];
+    [seq add:r];
+    [seq add:w];
+    [seq add:sy];
+    
+    
+    TDEquals(alt, [seq parserNamed:@"alt"]);
+    TDEquals(w, [seq parserNamed:@"w"]);
+    TDEquals(sy, [seq parserNamed:@"sy"]);
+
+    TDEquals(foo, [alt parserNamed:@"w"]);
+    TDEquals(foo, [r parserNamed:@"w"]);
+}
+
 @end
