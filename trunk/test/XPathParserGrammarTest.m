@@ -18,12 +18,12 @@
 }
 
 
-//- (void)testFoo {
-//    t.string = @"foo";
-//    res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[foo]foo^", [res description]);
-//}
+- (void)testFoo {
+    t.string = @"foo";
+    res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNotNil(res);
+    TDEqualObjects(@"[foo]foo^", [res description]);
+}
 
 
 - (void)test {
@@ -35,7 +35,7 @@
     
     t.string = @"/foo";
     res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
-    NSLog(@"\n\n res: %@ \n\n", res);
+//    NSLog(@"\n\n res: %@ \n\n", res);
     TDEqualObjects(@"[/, foo]//foo^", [res description]);
     
 //    t.string = @"/foo/bar";

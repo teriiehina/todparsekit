@@ -10,11 +10,9 @@
 @symbols =  '//' '..' '!=' '::' '<=' '>=';
             
 @wordState = '_';
-@wordChars = '_' '.' ':' '-';
+@wordChars = '_' '.' '-';
 
-name = Word;
-
-ncName = name & /[^:]+/;
+ncName = Word;
 
 
 
@@ -223,7 +221,7 @@ ncName = name & /[^:]+/;
     
 // [8] PrefixedName ::= Prefix ':' LocalPart
     
-    prefixedName = prefix ':' locaPart;
+    prefixedName = prefix ':' localPart;
 
 
 // [9] UnprefixedName ::= LocalPart
