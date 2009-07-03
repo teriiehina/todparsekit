@@ -38,15 +38,15 @@
 #pragma mark Assembler Callbacks
 
 //    @start      = ruleset*;
-//    ruleset     = selector '{' decls ^'}';
+//    ruleset     = selector '{' decls ~'}';
 //    selector    = LowercaseWord;            // forcing selectors to be lowercase words for use in a future syntax-highlight framework where i want that
 //    decls       = Empty | actualDecls;
 //    actualDecls = decl decl*;
-//    decl        = property ^':' expr ^';'?;
+//    decl        = property ~':' expr ~';'?;
 //    property    = 'color' | 'background-color' | 'font-family' | 'font-size';
 //    expr        = pixelValue | rgb | string | constants;
-//    pixelValue  = Num ^'px';
-//    rgb         = ^'rgb' '(' Num ^',' Num ^',' Num ^')';
+//    pixelValue  = Num ~'px';
+//    rgb         = ~'rgb' '(' Num ~',' Num ~',' Num ~')';
 //    string      = QuotedString;
 //    constants   = 'bold' | 'normal' | 'italic';
 

@@ -368,7 +368,7 @@
 
 
 - (void)testDiscard {
-    g = @"@start = ^'foo';";
+    g = @"@start = ~'foo';";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -378,7 +378,7 @@
     res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[]foo^", [res description]);
 
-    g = @"@start = ^/foo/;";
+    g = @"@start = ~/foo/;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -388,7 +388,7 @@
     res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[]foo^", [res description]);
 
-    g = @"@delimitState='<'; @delimitedStrings='<%' '%>' nil; @start=^DelimitedString('<%', '%>');";
+    g = @"@delimitState='<'; @delimitedStrings='<%' '%>' nil; @start=~DelimitedString('<%', '%>');";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -401,7 +401,7 @@
 
 
 - (void)testDiscard2 {
-    g = @"@reportsWhitespaceTokens=YES;@start=^S;";
+    g = @"@reportsWhitespaceTokens=YES;@start=~S;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -411,7 +411,7 @@
     res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[] ^", [res description]);
     
-    g = @"@start=^Any;";
+    g = @"@start=~Any;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -421,7 +421,7 @@
     res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[]foo^", [res description]);
     
-    g = @"@start=^Word;";
+    g = @"@start=~Word;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     

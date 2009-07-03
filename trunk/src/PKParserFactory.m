@@ -146,7 +146,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         self.equals  = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.caret   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"^" floatValue:0.0];
+        self.caret   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"~" floatValue:0.0];
         self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -949,7 +949,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     if (!discardParser) {
         self.discardParser = [PKSequence sequence];
         discardParser.name = @"discardParser";
-        [discardParser add:[PKSymbol symbolWithString:@"^"]]; // preserve
+        [discardParser add:[PKSymbol symbolWithString:@"~"]]; // preserve
         [discardParser add:self.optionalWhitespaceParser];
     }
     return discardParser;
