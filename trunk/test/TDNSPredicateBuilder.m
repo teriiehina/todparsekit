@@ -520,7 +520,7 @@
     while (1) {
         NSArray *objs = [a objectsAbove:nonReservedWordFence];
         id next = [a pop]; // is the next obj a fence?
-        if (![nonReservedWordFence isEqualTo:next]) {
+        if (![nonReservedWordFence isEqual:next]) {
             // if not, put the next token back
             if (next) {
                 [a push:next];

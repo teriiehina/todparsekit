@@ -19,7 +19,7 @@
     for (id a1 in self) {
         BOOL found = NO;
         for (id a2 in s) {
-            if ([a1 isEqualTo:a2 ]) {
+            if ([a1 isEqual:a2 ]) {
                 found = YES;
                 break;
             }
@@ -32,7 +32,7 @@
     for (id a2 in s) {
         BOOL found = NO;
         for (id a1 in self) {
-            if ([a2 isEqualTo:a1]) {
+            if ([a2 isEqual:a1]) {
                 found = YES;
                 break;
             }
