@@ -599,7 +599,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 // factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
 // nextFactor           = S factor;
 // phrase               = primaryExpr predicate*;
-// primaryExpr          = atomicValue | '(' expr ')';
+// primaryExpr          = atomicValue | '!'? '(' expr ')';
 // predicate            = S* (intersection | difference);
 // intersection         = '&' S* primaryExpr;
 // difference           = '-' S* primaryExpr;
@@ -780,7 +780,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// primaryExpr          = atomicValue | '(' expr ')';
+// primaryExpr          = atomicValue | '!'? '(' expr ')';
 - (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [PKAlternation alternation];
@@ -788,6 +788,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         [primaryExprParser add:self.atomicValueParser];
 
         PKSequence *s = [PKSequence sequence];
+        [s add:[self zeroOrOne:[PKLiteral literalWithString:@"!"]]]; // preserve
         [s add:[PKSymbol symbolWithString:@"("]];
         [s add:self.exprParser];
         [s add:[[PKSymbol symbolWithString:@")"] discard]];
@@ -1171,14 +1172,31 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSArray *objs = [a objectsAbove:paren];
     NSAssert(objs.count, @"");
     [a pop]; // pop '('
+    
+    BOOL negate = NO;
+    id obj = [a pop];
+    if ([bang isEqualTo:obj]) {
+        negate = YES;
+    } else {
+        [a push:obj];
+    }
+    
     if (objs.count > 1) {
         PKSequence *seq = [PKSequence sequence];
         for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
-        [a push:seq];
+        if (negate) {
+            [a push:[PKNegation negationWithSubparser:seq]];
+        } else {
+            [a push:seq];
+        }
     } else if (objs.count) {
-        [a push:[objs objectAtIndex:0]];
+        PKParser *p = [objs objectAtIndex:0];
+        if (negate) {
+            p = [PKNegation negationWithSubparser:p];
+        }
+        [a push:p];
     }
 }
 
