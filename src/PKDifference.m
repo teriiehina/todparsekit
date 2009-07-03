@@ -59,6 +59,31 @@
 }
 
 
+- (PKParser *)parserNamed:(NSString *)s {
+    if ([name isEqualToString:s]) {
+        return self;
+    } else {
+        // do bredth-first search
+        if ([subparser.name isEqualToString:s]) {
+            return subparser;
+        }
+        if ([minus.name isEqualToString:s]) {
+            return minus;
+        }
+        
+        PKParser *sub = [subparser parserNamed:s];
+        if (sub) {
+            return sub;
+        }
+        sub = [minus parserNamed:s];
+        if (sub) {
+            return sub;
+        }
+    }
+    return nil;
+}
+
+
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
 
