@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		D302C69D0EF044810090E714 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
+		D3126D050FFD9BA700CBF4C4 /* PKNegation.h in Headers */ = {isa = PBXBuildFile; fileRef = D3126D030FFD9BA700CBF4C4 /* PKNegation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3126D060FFD9BA700CBF4C4 /* PKNegation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3126D040FFD9BA700CBF4C4 /* PKNegation.m */; };
+		D3126D0B0FFD9E4B00CBF4C4 /* TDNegationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */; };
 		D315DF720FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
 		D315DF730FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
 		D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
@@ -584,6 +587,10 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* ParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3126D030FFD9BA700CBF4C4 /* PKNegation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKNegation.h; path = src/PKNegation.h; sourceTree = "<group>"; };
+		D3126D040FFD9BA700CBF4C4 /* PKNegation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKNegation.m; path = src/PKNegation.m; sourceTree = "<group>"; };
+		D3126D090FFD9E4B00CBF4C4 /* TDNegationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNegationTest.h; path = test/TDNegationTest.h; sourceTree = "<group>"; };
+		D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNegationTest.m; path = test/TDNegationTest.m; sourceTree = "<group>"; };
 		D315DF710FEF59B600D876C8 /* date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = date.grammar; path = res/date.grammar; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
@@ -1923,14 +1930,16 @@
 				D34BAE190FF9CE0E00D7773A /* PKTrack.m */,
 				D34BAE1A0FF9CE0E00D7773A /* PKTrackException.h */,
 				D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */,
-				D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */,
-				D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */,
 				D34BAE100FF9CE0E00D7773A /* PKIntersection.h */,
 				D34BAE110FF9CE0E00D7773A /* PKIntersection.m */,
 				D34BAE160FF9CE0E00D7773A /* PKTerminal.h */,
 				D34BAE170FF9CE0E00D7773A /* PKTerminal.m */,
 				D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */,
 				D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */,
+				D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */,
+				D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */,
+				D3126D030FFD9BA700CBF4C4 /* PKNegation.h */,
+				D3126D040FFD9BA700CBF4C4 /* PKNegation.m */,
 			);
 			name = parsers;
 			sourceTree = "<group>";
@@ -1982,6 +1991,8 @@
 				D36C562A0FD365DB00141CB7 /* TDPatternTest.m */,
 				D338E5B90FF5DDCB003DE6AA /* TDDifferenceTest.h */,
 				D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */,
+				D3126D090FFD9E4B00CBF4C4 /* TDNegationTest.h */,
+				D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";
@@ -2182,6 +2193,7 @@
 				D34BAFC10FF9E80300D7773A /* PKSpecificChar.h in Headers */,
 				D34BAFDD0FF9E95500D7773A /* PKParserFactory.h in Headers */,
 				D3FDC4A50FFB3B2A00F1F797 /* RegexKitLite.h in Headers */,
+				D3126D050FFD9BA700CBF4C4 /* PKNegation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2635,6 +2647,7 @@
 				D34BAFDA0FF9E95500D7773A /* NSArray+ParseKitAdditions.m in Sources */,
 				D34BAFDC0FF9E95500D7773A /* NSString+ParseKitAdditions.m in Sources */,
 				D34BAFDE0FF9E95500D7773A /* PKParserFactory.m in Sources */,
+				D3126D060FFD9BA700CBF4C4 /* PKNegation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2832,6 +2845,7 @@
 				D338E5BB0FF5DDCB003DE6AA /* TDDifferenceTest.m in Sources */,
 				D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */,
 				D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */,
+				D3126D0B0FFD9E4B00CBF4C4 /* TDNegationTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
