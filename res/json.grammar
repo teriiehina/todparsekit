@@ -39,9 +39,9 @@ colon         = ':';
     You define collections (alternations, repetitions or sequences) and literal terminals (in quotes). These should be lowercase.
     The special '@start' production is the outermost production.
     
-    you can discard tokens by prefixing them with a tilde ('~') like:
+    you can discard tokens by prefixing them with a greather-than ('>') like:
     
-    closeCurly = ~'}';
+    closeCurly = >'}';
     
     Feed this grammar to -[PKParserFactory parserFromGrammar:assembler:] along with a reference
     to an assembler (a call back delegate), and it will return a PKParser object which can 
