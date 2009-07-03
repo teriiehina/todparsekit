@@ -27,20 +27,11 @@
 }
 
 
-- (id)init {
-    if (self = [super init]) {
-    }
-    return self;
-}
-
-
 - (void)dealloc {
     assembler = nil;
     self.selector = nil;
     self.name = nil;
-    if (tokenizer) {
-        self.tokenizer = nil;
-    }
+    self.tokenizer = nil;
     [super dealloc];
 }
 
@@ -146,7 +137,7 @@
 
 
 - (PKTokenizer *)tokenizer {
-    return tokenizer;
+    return [[tokenizer retain] autorelease];
 }
 
 
