@@ -26,4 +26,47 @@
     TDEqualObjects(@"[foo]foo^", [res description]);
 }
 
+
+- (void)testNegation {
+    g = @"@start = !'foo';";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"foo";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+    s = @"'bar'";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"['bar']'bar'^", [res description]);
+    
+    s = @"bar";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+}
+
+
+- (void)testNegateSymbol {
+    g = @"@start = !Symbol;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"1";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[1]1^", [res description]);
+    
+    s = @"'bar'";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"['bar']'bar'^", [res description]);
+    
+    s = @"bar";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDEqualObjects(@"[bar]bar^", [res description]);
+
+    s = @"$";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+}
+
 @end

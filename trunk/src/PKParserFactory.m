@@ -80,9 +80,10 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnExpression:(PKAssembly *)a;
 - (void)workOnAnd:(PKAssembly *)a;
 - (void)workOnIntersection:(PKAssembly *)a;    
-- (void)workOnExclusion:(PKAssembly *)a;
+- (void)workOnDifference:(PKAssembly *)a;
 - (void)workOnPatternOptions:(PKAssembly *)a;
 - (void)workOnPattern:(PKAssembly *)a;
+- (void)workOnParser:(PKAssembly *)a;
 - (void)workOnLiteral:(PKAssembly *)a;
 - (void)workOnVariable:(PKAssembly *)a;
 - (void)workOnConstant:(PKAssembly *)a;
@@ -103,6 +104,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *paren;
 @property (nonatomic, retain) PKToken *gt;
+@property (nonatomic, retain) PKToken *bang;
 @property (nonatomic, retain) PKCollectionParser *statementParser;
 @property (nonatomic, retain) PKCollectionParser *declarationParser;
 @property (nonatomic, retain) PKCollectionParser *callbackParser;
@@ -121,8 +123,10 @@ void PKReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) PKCollectionParser *primaryExprParser;
 @property (nonatomic, retain) PKCollectionParser *predicateParser;
 @property (nonatomic, retain) PKCollectionParser *intersectionParser;
-@property (nonatomic, retain) PKCollectionParser *exclusionParser;
+@property (nonatomic, retain) PKCollectionParser *differenceParser;
 @property (nonatomic, retain) PKCollectionParser *atomicValueParser;
+@property (nonatomic, retain) PKCollectionParser *negatedParserParser;
+@property (nonatomic, retain) PKCollectionParser *parserParser;
 @property (nonatomic, retain) PKCollectionParser *discardParser;
 @property (nonatomic, retain) PKCollectionParser *patternParser;
 @property (nonatomic, retain) PKCollectionParser *delimitedStringParser;
@@ -147,6 +151,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
         self.gt      = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@">" floatValue:0.0];
+        self.bang    = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"!" floatValue:0.0];
         self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -166,6 +171,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     self.curly = nil;
     self.paren = nil;
     self.gt = nil;
+    self.bang = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -184,8 +190,10 @@ void PKReleaseSubparserTree(PKParser *p) {
     self.primaryExprParser = nil;
     self.predicateParser = nil;
     self.intersectionParser = nil;
-    self.exclusionParser = nil;
+    self.differenceParser = nil;
     self.atomicValueParser = nil;
+    self.negatedParserParser = nil;
+    self.parserParser = nil;
     self.discardParser = nil;
     self.patternParser = nil;
     self.delimitedStringParser = nil;
@@ -592,16 +600,18 @@ void PKReleaseSubparserTree(PKParser *p) {
 // nextFactor           = S factor;
 // phrase               = primaryExpr predicate*;
 // primaryExpr          = atomicValue | '(' expr ')';
-// predicate            = S* (intersection | exclusion);
+// predicate            = S* (intersection | difference);
 // intersection         = '&' S* primaryExpr;
-// exclusion            = '-' S* primaryExpr;
+// difference           = '-' S* primaryExpr;
 // phraseStar           = phrase S* '*';
 // phrasePlus           = phrase S* '+';
 // phraseQuestion       = phrase S* '?';
 // phraseCardinality    = phrase S* cardinality;
 // cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
-// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString);
-// discard              = '^' S*;
+// atomicValue          =  discard? (negatedParser | parser);
+// negatedParser        = '!' S* parser;
+// parser               = pattern | literal | variable | constant | delimitedString;
+// discard              = '>' S*;
 // pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
 // delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
 // literal              = QuotedString;
@@ -788,7 +798,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// predicate            = S* (intersection | exclusion);
+// predicate            = S* (intersection | difference);
 - (PKCollectionParser *)predicateParser {
     if (!predicateParser) {
         self.predicateParser = [PKSequence sequence];
@@ -797,7 +807,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
         PKAlternation *a = [PKAlternation alternation];
         [a add:self.intersectionParser];
-        [a add:self.exclusionParser];
+        [a add:self.differenceParser];
 
         [predicateParser add:a];
     }
@@ -823,21 +833,21 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// exclusion            = '-' S* primaryExpr;
-- (PKCollectionParser *)exclusionParser {
-    if (!exclusionParser) {
-        self.exclusionParser = [PKTrack track];
-        exclusionParser.name = @"exclusion";
+// difference            = '-' S* primaryExpr;
+- (PKCollectionParser *)differenceParser {
+    if (!differenceParser) {
+        self.differenceParser = [PKTrack track];
+        differenceParser.name = @"difference";
 
         PKTrack *tr = [PKTrack track];
         [tr add:[[PKSymbol symbolWithString:@"-"] discard]];
         [tr add:self.optionalWhitespaceParser];
         [tr add:self.primaryExprParser];
         
-        [exclusionParser add:tr];
-        [exclusionParser setAssembler:self selector:@selector(workOnExclusion:)];
+        [differenceParser add:tr];
+        [differenceParser setAssembler:self selector:@selector(workOnDifference:)];
     }
-    return exclusionParser;
+    return differenceParser;
 }
 
 
@@ -924,27 +934,53 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// atomicValue          =  discard? (pattern | literal | variable | constant | delimitedString);
+// atomicValue          =  discard? (negatedParser | parser);
 - (PKCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [PKSequence sequence];
         atomicValueParser.name = @"atomicValue";
-
         [atomicValueParser add:[self zeroOrOne:self.discardParser]];
         
         PKAlternation *a = [PKAlternation alternation];
-        [a add:self.patternParser];
-        [a add:self.literalParser];
-        [a add:self.variableParser];
-        [a add:self.constantParser];
-        [a add:self.delimitedStringParser];
+        [a add:self.negatedParserParser];
+        [a add:self.parserParser];
+        
         [atomicValueParser add:a];
     }
     return atomicValueParser;
 }
 
 
-// discard              = '^' S*;
+// negatedParser              = '!' S* parser;
+- (PKCollectionParser *)negatedParserParser {
+    if (!negatedParserParser) {
+        self.negatedParserParser = [PKSequence sequence];
+        negatedParserParser.name = @"negatedParser";
+        [negatedParserParser add:[PKSymbol symbolWithString:@"!"]]; // preserve
+        [negatedParserParser add:self.optionalWhitespaceParser];
+        [negatedParserParser add:self.parserParser];
+    }
+    return negatedParserParser;
+}
+
+
+// parser              = pattern | literal | variable | constant | delimitedString;
+- (PKCollectionParser *)parserParser {
+    if (!parserParser) {
+        self.parserParser = [PKAlternation alternation];
+        parserParser.name = @"parser";
+        [parserParser add:self.patternParser];
+        [parserParser add:self.literalParser];
+        [parserParser add:self.variableParser];
+        [parserParser add:self.constantParser];
+        [parserParser add:self.delimitedStringParser];
+        [parserParser setAssembler:self selector:@selector(workOnParser:)];
+    }
+    return parserParser;
+}
+
+
+// discard              = '>' S*;
 - (PKCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [PKSequence sequence];
@@ -1147,13 +1183,13 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (void)workOnExclusion:(PKAssembly *)a {
-    PKParser *predicate = [a pop];
+- (void)workOnDifference:(PKAssembly *)a {
+    PKParser *minus = [a pop];
     PKParser *sub = [a pop];
-    NSAssert([predicate isKindOfClass:[PKParser class]], @"");
+    NSAssert([minus isKindOfClass:[PKParser class]], @"");
     NSAssert([sub isKindOfClass:[PKParser class]], @"");
     
-    [a push:[PKDifference differenceWithSubparser:sub minus:predicate]];
+    [a push:[PKDifference differenceWithSubparser:sub minus:minus]];
 }
 
 
@@ -1227,6 +1263,18 @@ void PKReleaseSubparserTree(PKParser *p) {
     }
     
     [a push:t];
+}
+
+
+- (void)workOnParser:(PKAssembly *)a {
+    PKParser *p = [a pop];
+    id obj = [a pop];
+    if ([bang isEqualTo:obj]) {
+        p = [PKNegation negationWithSubparser:p];
+    } else {
+        [a push:obj];
+    }
+    [a push:p];
 }
 
 
@@ -1438,6 +1486,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 @synthesize curly;
 @synthesize paren;
 @synthesize gt;
+@synthesize bang;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
@@ -1456,8 +1505,10 @@ void PKReleaseSubparserTree(PKParser *p) {
 @synthesize primaryExprParser;
 @synthesize predicateParser;
 @synthesize intersectionParser;
-@synthesize exclusionParser;
+@synthesize differenceParser;
 @synthesize atomicValueParser;
+@synthesize negatedParserParser;
+@synthesize parserParser;
 @synthesize discardParser;
 @synthesize patternParser;
 @synthesize delimitedStringParser;
