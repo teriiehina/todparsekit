@@ -1,5 +1,5 @@
 //
-//  PKJSParseKit.h
+//  JSParseKit.h
 //  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/10/09.
