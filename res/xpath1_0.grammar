@@ -92,7 +92,7 @@
 
 // [15] PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number | FunctionCall
 
-    primaryExpr = variableReference | '(' expr ')' | literal | Num | functionCall;
+    primaryExpr = variableReference | '(' expr ')' | literal | Number | functionCall;
     literal = QuotedString;
     variableReference = '$' Word;
 

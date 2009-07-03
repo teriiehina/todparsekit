@@ -33,7 +33,7 @@ arrayContent  = Empty | actualArray;
 actualArray   = value commaValue*;
 commaValue    = >',' value;
 
-value         = null | true | false | array | object | Num | QuotedString;
+value         = null | true | false | array | object | Number | QuotedString;
 null          = >'null';
 true          = >'true';
 false         = >'false';

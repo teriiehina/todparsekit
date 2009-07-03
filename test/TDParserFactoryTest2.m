@@ -16,7 +16,7 @@
 
 
 - (void)testOrVsAndPrecendence {
-    g = @"@start = Word | Num Symbol;";
+    g = @"@start = Word | Number Symbol;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -28,7 +28,7 @@
     res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDNil(res);
     
-    g = @"@start = Word Num | Symbol;";
+    g = @"@start = Word Number | Symbol;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -44,7 +44,7 @@
     res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDNil(res);
     
-    g = @"@start = Word (Num | Symbol);";
+    g = @"@start = Word (Number | Symbol);";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -63,7 +63,7 @@
 
 
 - (void)test1 {
-    g = @"@start = (Word | Num)*;";
+    g = @"@start = (Word | Number)*;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
 
@@ -86,7 +86,7 @@
 
 
 - (void)test2 {
-    g = @"@start = (Word | Num)* QuotedString;";
+    g = @"@start = (Word | Number)* QuotedString;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -109,7 +109,7 @@
 
 
 - (void)test3 {
-    g = @"@start = (Word | Num)* '$'+ QuotedString;";
+    g = @"@start = (Word | Number)* '$'+ QuotedString;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -136,7 +136,7 @@
 
 
 - (void)test4 {
-    g = @"@start = (Word | Num)* ('$' '%')+ QuotedString;";
+    g = @"@start = (Word | Number)* ('$' '%')+ QuotedString;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -151,7 +151,7 @@
 
 
 - (void)test5 {
-    g = @"@start = (Word | Num)* ('$' '%')+ QuotedString;";
+    g = @"@start = (Word | Number)* ('$' '%')+ QuotedString;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -174,7 +174,7 @@
 
 
 - (void)test6 {
-    g = @"@start = ((Word | Num)* ('$' '%')+) | QuotedString;";
+    g = @"@start = ((Word | Number)* ('$' '%')+) | QuotedString;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -189,7 +189,7 @@
 
 
 - (void)test7 {
-    g = @"@start = ((Word | Num)* ('$' '%')+) | QuotedString+;";
+    g = @"@start = ((Word | Number)* ('$' '%')+) | QuotedString+;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -208,7 +208,7 @@
 
 
 - (void)test8 {
-    g = @"@start = ((Word | Num)* ('$' '%')+) | QuotedString+;";
+    g = @"@start = ((Word | Number)* ('$' '%')+) | QuotedString+;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -227,7 +227,7 @@
 
 
 - (void)test9 {
-    g = @"@start = Word | (Num);";
+    g = @"@start = Word | (Number);";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -242,7 +242,7 @@
 
 
 - (void)test10 {
-    g = @"@start = Word | (Num QuotedString);";
+    g = @"@start = Word | (Number QuotedString);";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -257,7 +257,7 @@
 
 
 - (void)test11 {
-    g = @"@start = ((Word | Num)* | ('$' '%')+) QuotedString+;";
+    g = @"@start = ((Word | Number)* | ('$' '%')+) QuotedString+;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
 

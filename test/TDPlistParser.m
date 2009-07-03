@@ -40,7 +40,7 @@
 // value                = num | string | null | array | dict
 // null                 = '<null>'
 // string               = Word | QuotedString
-// num                  = Num
+// num                  = Number
 
 // array                = '(' arrayContent ')'
 // arrayContent         = Empty | actualArray
@@ -225,7 +225,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (PKParser *)numParser {
     if (!numParser) {
-        self.numParser = [PKNum num];
+        self.numParser = [PKNumber number];
         [numParser setAssembler:self selector:@selector(workOnNum:)];
     }
     return numParser;

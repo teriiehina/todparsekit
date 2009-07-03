@@ -784,7 +784,7 @@
 - (PKParser *)number {
     //NSLog(@"%s", _cmd);
     if (!number) {
-        self.number = [PKNum num];
+        self.number = [PKNumber number];
         number.name = @"number";
     }
     return number;

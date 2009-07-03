@@ -68,7 +68,7 @@
 #import <ParseKit/PKWord.h>
 #import <ParseKit/PKUppercaseWord.h>
 #import <ParseKit/PKLowercaseWord.h>
-#import <ParseKit/PKNum.h>
+#import <ParseKit/PKNumber.h>
 #import <ParseKit/PKQuotedString.h>
 #import <ParseKit/PKWhitespace.h>
 #import <ParseKit/PKDelimitedString.h>

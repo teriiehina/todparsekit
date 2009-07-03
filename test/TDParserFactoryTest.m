@@ -1019,18 +1019,18 @@
 
 
 - (void)testExprNum {
-    s = @"Num";
+    s = @"Number";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Num]Num^", [res description]);
-    PKNum *w = [res pop];
-    TDTrue([w isMemberOfClass:[PKNum class]]);
+    TDEqualObjects(@"[Number]Number^", [res description]);
+    PKNumber *w = [res pop];
+    TDTrue([w isMemberOfClass:[PKNumber class]]);
     
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);
-    TDTrue([lp isKindOfClass:[PKNum class]]);
+    TDTrue([lp isKindOfClass:[PKNumber class]]);
     
     s = @"333 444";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -1045,20 +1045,20 @@
 
 
 - (void)testExprNumCardinality {
-    s = @"Num{2}";
+    s = @"Number{2}";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Sequence]Num/{/2/}^", [res description]);
+    TDEqualObjects(@"[Sequence]Number/{/2/}^", [res description]);
     PKSequence *seq = [res pop];
     TDEqualObjects([seq class], [PKSequence class]);
     
     TDEquals((NSUInteger)2, seq.subparsers.count);
-    PKNum *n = [seq.subparsers objectAtIndex:0];
-    TDEqualObjects([n class], [PKNum class]);
+    PKNumber *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [PKNumber class]);
 
     n = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([n class], [PKNum class]);
+    TDEqualObjects([n class], [PKNumber class]);
 
     // use the result parser
     lp = [factory parserFromExpression:s];
@@ -1083,21 +1083,21 @@
 
 
 - (void)testExprNumCardinality2 {
-    s = @"Num{2,3}";
+    s = @"Number{2,3}";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [exprSeq bestMatchFor:a];
     TDNotNil(res);
-    TDEqualObjects(@"[Sequence]Num/{/2/,/3/}^", [res description]);
+    TDEqualObjects(@"[Sequence]Number/{/2/,/3/}^", [res description]);
     PKSequence *seq = [res pop];
     TDEqualObjects([seq class], [PKSequence class]);
     
     TDEquals((NSUInteger)3, seq.subparsers.count);
 
-    PKNum *n = [seq.subparsers objectAtIndex:0];
-    TDEqualObjects([n class], [PKNum class]);
+    PKNumber *n = [seq.subparsers objectAtIndex:0];
+    TDEqualObjects([n class], [PKNumber class]);
     
     n = [seq.subparsers objectAtIndex:1];
-    TDEqualObjects([n class], [PKNum class]);
+    TDEqualObjects([n class], [PKNumber class]);
     
     n = [seq.subparsers objectAtIndex:2];
     TDEqualObjects([n class], [PKAlternation class]);
@@ -1130,7 +1130,7 @@
 
 
 - (void)testExprNumPlus {
-    s = @"Num+";
+    s = @"Number+";
     // use the result parser
     lp = [factory parserFromExpression:s];
     TDNotNil(lp);

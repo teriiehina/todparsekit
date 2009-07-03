@@ -425,6 +425,6 @@ commaAssignmentExpr = comma assignmentExpr;
 //           null
 //           this
 
-primaryExpr         = parenExprParen | identifier | Num | QuotedString | false | true | null | undefined | this;
+primaryExpr         = parenExprParen | identifier | Number | QuotedString | false | true | null | undefined | this;
 parenExprParen      = openParen expr closeParen;
 identifier          = Word;

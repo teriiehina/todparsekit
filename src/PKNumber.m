@@ -1,17 +1,17 @@
 //
-//  PKNum.m
+//  PKNumber.m
 //  ParseKit
 //
 //  Created by Todd Ditchendorf on 7/13/08.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
-#import <ParseKit/PKNum.h>
+#import <ParseKit/PKNumber.h>
 #import <ParseKit/PKToken.h>
 
-@implementation PKNum
+@implementation PKNumber
 
-+ (id)num {
++ (id)number {
     return [[[self alloc] initWithString:nil] autorelease];
 }
 

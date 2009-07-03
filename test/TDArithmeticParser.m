@@ -17,7 +17,7 @@
  timesFactor	= '*' factor
  divFactor      = '/' factor
  exponentFactor = '^' factor
- phrase         = '(' expr ')' | Num
+ phrase         = '(' expr ')' | Number
 */
 
 @implementation TDArithmeticParser
@@ -161,7 +161,7 @@
 }
 
 
-// phrase        = '(' expr ')' | Num
+// phrase        = '(' expr ')' | Number
 - (PKCollectionParser *)phraseParser {
     if (!phraseParser) {
         self.phraseParser = [PKAlternation alternation];
@@ -173,7 +173,7 @@
         
         [phraseParser add:s];
         
-        PKNum *n = [PKNum num];
+        PKNumber *n = [PKNumber number];
         [phraseParser add:n];
     }
     return phraseParser;

@@ -95,7 +95,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [PKNum num];
+        self.numberParser = [PKNumber number];
         if (shouldAssemble) {
             [numberParser setAssembler:self selector:@selector(workOnNumber:)];
         }

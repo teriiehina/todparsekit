@@ -9,7 +9,7 @@
 #import "PKJSNum.h"
 #import "PKJSUtils.h"
 #import "PKJSTerminal.h"
-#import <ParseKit/PKNum.h>
+#import <ParseKit/PKNumber.h>
 
 #pragma mark -
 #pragma mark Methods
@@ -58,6 +58,6 @@ JSObjectRef PKNum_new(JSContextRef ctx, void *data) {
 }
 
 JSObjectRef PKNum_construct(JSContextRef ctx, JSObjectRef constructor, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    PKNum *data = [[PKNum alloc] init];
+    PKNumber *data = [[PKNumber alloc] init];
     return PKNum_new(ctx, data);
 }

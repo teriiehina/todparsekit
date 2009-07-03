@@ -209,7 +209,7 @@
     
     p = [PKSequence sequence];
     [p add:[PKLiteral literalWithString:@"foo"]];
-    [p add:[PKNum num]];
+    [p add:[PKNumber number]];
     [p add:[PKLiteral literalWithString:@"baz"]];
     
     PKAssembly *result = [p completeMatchFor:a];

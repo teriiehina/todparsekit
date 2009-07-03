@@ -163,7 +163,7 @@ expr            = term (operator term)*;
 //          TIME S* | FREQ S* | function ]
 //      | STRING S* | IDENT S* | URI S* | RGB S* | UNICODERANGE S* | hexcolor
 //      ;
-term            = unaryOperator? (Num | percentage | length | ems | exs | angle | time | freq | function)
+term            = unaryOperator? (Number | percentage | length | ems | exs | angle | time | freq | function)
                     | Word  | identifier | uri | hexcolor;
 
 
@@ -190,14 +190,14 @@ dashmatch       = '|=';
 
 identifier      = Word;
 
-hash            = '#' (Word|Num);
-ems             = Num 'em';
-exs             = Num 'ex';
-length          = Num ('px'|'cm'|'mm'|'in'|'pt'|'pc');
-angle           = Num ('deg'|'rad'|'grad');
-time            = Num ('s'|'ms');
-freq            = Num ('hz'|'khz');
-dimension       = Num identifier;
-percentage      = Num '%';
-uri             = 'url' '(' (Word|Symbol|Num)+ ')';
+hash            = '#' (Word|Number);
+ems             = Number 'em';
+exs             = Number 'ex';
+length          = Number ('px'|'cm'|'mm'|'in'|'pt'|'pc');
+angle           = Number ('deg'|'rad'|'grad');
+time            = Number ('s'|'ms');
+freq            = Number ('hz'|'khz');
+dimension       = Number identifier;
+percentage      = Number '%';
+uri             = 'url' '(' (Word|Symbol|Number)+ ')';
 function        = identifier '(';

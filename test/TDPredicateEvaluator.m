@@ -30,7 +30,7 @@
 
 // attr                 = tag | Word
 // tag                  = '@' Word
-// value                = QuotedString | Num | bool
+// value                = QuotedString | Number | bool
 // bool                 = 'true' | 'false'
 
 @implementation TDPredicateEvaluator
@@ -396,7 +396,7 @@
 }
 
 
-// value                = QuotedString | Num | bool
+// value                = QuotedString | Number | bool
 - (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [PKAlternation alternation];
@@ -448,7 +448,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [PKNum num];
+        self.numberParser = [PKNumber number];
         [numberParser setAssembler:self selector:@selector(workOnNumber:)];
     }
     return numberParser;

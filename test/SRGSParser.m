@@ -101,7 +101,7 @@
         
         [selfIdentHeader add:[PKSymbol symbolWithString:@"#"]];
         [selfIdentHeader add:[PKLiteral literalWithString:@"ABNF"]];
-        [selfIdentHeader add:[PKNum num]];  // VersionNumber
+        [selfIdentHeader add:[PKNumber number]];  // VersionNumber
         
         PKAlternation *a = [PKAlternation alternation];
         [a add:[PKEmpty empty]];
@@ -150,7 +150,7 @@
     if (!weight) {
         self.weight = [PKSequence sequence];
         [weight add:[PKSymbol symbolWithString:@"/"]];
-        [weight add:[PKNum num]];
+        [weight add:[PKNumber number]];
         [weight add:[PKSymbol symbolWithString:@"/"]];
     }
     return weight;
@@ -161,11 +161,11 @@
 - (PKCollectionParser *)repeat {
     if (!repeat) {
         self.repeat = [PKSequence sequence];
-        [repeat add:[PKNum num]];
+        [repeat add:[PKNumber number]];
         
         PKSequence *s = [PKSequence sequence];
         [s add:[PKSymbol symbolWithString:@"-"]];
-        [s add:[PKNum num]];
+        [s add:[PKNumber number]];
         
         PKAlternation *a = [PKAlternation alternation];
         [a add:[PKEmpty empty]];
@@ -182,7 +182,7 @@
     if (!probability) {
         self.probability = [PKSequence sequence];
         [probability add:[PKSymbol symbolWithString:@"/"]];
-        [probability add:[PKNum num]];
+        [probability add:[PKNumber number]];
         [probability add:[PKSymbol symbolWithString:@"/"]];
     }
     return probability;
@@ -241,7 +241,7 @@
         [s add:[PKSymbol symbolWithString:@"{"]];
         PKAlternation *a = [PKAlternation alternation];
         [a add:[PKWord word]];
-        [a add:[PKNum num]];
+        [a add:[PKNumber number]];
         [a add:[PKSymbol symbol]];
         [a add:[PKQuotedString quotedString]];
         [s add:[PKRepetition repetitionWithSubparser:a]];
@@ -252,7 +252,7 @@
         [s add:[PKLiteral literalWithString:@"{!{"]];
         a = [PKAlternation alternation];
         [a add:[PKWord word]];
-        [a add:[PKNum num]];
+        [a add:[PKNumber number]];
         [a add:[PKSymbol symbol]];
         [a add:[PKQuotedString quotedString]];
         [s add:[PKRepetition repetitionWithSubparser:a]];

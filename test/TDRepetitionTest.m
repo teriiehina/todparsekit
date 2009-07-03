@@ -100,7 +100,7 @@
     s = @"foo bar baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[PKNum num]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKNumber number]];
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     NSLog(@"all: %@", all);
@@ -149,7 +149,7 @@
     s = @"456 bar 123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[PKNum num]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKNumber number]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
@@ -160,7 +160,7 @@
     s = @"123 456 baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[PKNum num]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKNumber number]];
     
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     
@@ -174,7 +174,7 @@
     s = @"123 456 baz";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[PKNum num]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKNumber number]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -187,7 +187,7 @@
     s = @"123";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [[PKRepetition alloc] initWithSubparser:[PKNum num]];
+    p = [[PKRepetition alloc] initWithSubparser:[PKNumber number]];
     
     PKAssembly *result = [p completeMatchFor:a];
     

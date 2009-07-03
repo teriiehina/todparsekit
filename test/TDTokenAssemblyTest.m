@@ -128,7 +128,7 @@
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p bestMatchFor:a];
     TDNil(result);
 }
@@ -141,7 +141,7 @@
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
@@ -180,7 +180,7 @@
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^", [result description]);
     TDFalse(result == a);
@@ -194,7 +194,7 @@
     TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^", [result description]);
     TDFalse(result == a);
@@ -208,7 +208,7 @@
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^456", [result description]);
     TDFalse(result == a);
@@ -222,7 +222,7 @@
     TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
@@ -262,7 +262,7 @@
     TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p bestMatchFor:a];
     TDEqualObjects(@"[123]123^456/foobar", [result description]);
     TDFalse(result == a);
@@ -276,7 +276,7 @@
     TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
-    p = [[PKNum alloc] init];
+    p = [[PKNumber alloc] init];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
 }
