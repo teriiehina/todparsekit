@@ -12,6 +12,7 @@
 		D3126D050FFD9BA700CBF4C4 /* PKNegation.h in Headers */ = {isa = PBXBuildFile; fileRef = D3126D030FFD9BA700CBF4C4 /* PKNegation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3126D060FFD9BA700CBF4C4 /* PKNegation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3126D040FFD9BA700CBF4C4 /* PKNegation.m */; };
 		D3126D0B0FFD9E4B00CBF4C4 /* TDNegationTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */; };
+		D3126DEC0FFDBC1D00CBF4C4 /* PKNegation.m in Sources */ = {isa = PBXBuildFile; fileRef = D3126D040FFD9BA700CBF4C4 /* PKNegation.m */; };
 		D315DF720FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
 		D315DF730FEF59B600D876C8 /* date.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D315DF710FEF59B600D876C8 /* date.grammar */; };
 		D31A15260F6DE449002AFDF1 /* javascript.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D31A15250F6DE449002AFDF1 /* javascript.grammar */; };
@@ -2913,6 +2914,7 @@
 				D3FDC71F0FFC4C9E00F1F797 /* PKParserFactory.m in Sources */,
 				D3FDC7200FFC4C9E00F1F797 /* NSArray+ParseKitAdditions.m in Sources */,
 				D3FDC7210FFC4C9E00F1F797 /* NSString+ParseKitAdditions.m in Sources */,
+				D3126DEC0FFDBC1D00CBF4C4 /* PKNegation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

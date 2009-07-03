@@ -102,7 +102,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) PKToken *equals;
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *paren;
-@property (nonatomic, retain) PKToken *caret;
+@property (nonatomic, retain) PKToken *gt;
 @property (nonatomic, retain) PKCollectionParser *statementParser;
 @property (nonatomic, retain) PKCollectionParser *declarationParser;
 @property (nonatomic, retain) PKCollectionParser *callbackParser;
@@ -146,7 +146,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         self.equals  = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.caret   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"~" floatValue:0.0];
+        self.gt      = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@">" floatValue:0.0];
         self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -165,7 +165,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
-    self.caret = nil;
+    self.gt = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -949,7 +949,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     if (!discardParser) {
         self.discardParser = [PKSequence sequence];
         discardParser.name = @"discardParser";
-        [discardParser add:[PKSymbol symbolWithString:@"~"]]; // preserve
+        [discardParser add:[PKSymbol symbolWithString:@">"]]; // preserve
         [discardParser add:self.optionalWhitespaceParser];
     }
     return discardParser;
@@ -1051,7 +1051,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (BOOL)shouldDiscard:(PKAssembly *)a {
     if (![a isStackEmpty]) {
         id obj = [a pop];
-        if ([obj isEqual:caret]) {
+        if ([obj isEqual:gt]) {
             return YES;
         } else {
             [a push:obj];
@@ -1437,7 +1437,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
-@synthesize caret;
+@synthesize gt;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
