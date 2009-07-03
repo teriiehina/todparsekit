@@ -2,14 +2,14 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">9G55</string>
+		<string key="IBDocument.SystemVersion">9J61</string>
 		<string key="IBDocument.InterfaceBuilderVersion">677</string>
-		<string key="IBDocument.AppKitVersion">949.43</string>
+		<string key="IBDocument.AppKitVersion">949.46</string>
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="447"/>
 			<integer value="24"/>
+			<integer value="447"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1162,6 +1162,7 @@
 								<object class="NSMutableArray" key="set.sortedObjects">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<string>Apple HTML pasteboard type</string>
+									<string>Apple PDF pasteboard type</string>
 									<string>Apple PICT pasteboard type</string>
 									<string>Apple URL pasteboard type</string>
 									<string>Apple Web Archive pasteboard type</string>
@@ -1172,6 +1173,7 @@
 									<string>NeXT Rich Text Format v1.0 pasteboard type</string>
 									<string>NeXT TIFF v4.0 pasteboard type</string>
 									<string>WebURLsWithTitlesPboardType</string>
+									<string>public.png</string>
 									<string>public.url</string>
 									<string>public.url-name</string>
 								</object>
@@ -1338,7 +1340,7 @@
 						<object class="NSBox" id="883854811">
 							<reference key="NSNextResponder" ref="481368951"/>
 							<int key="NSvFlags">14</int>
-							<string key="NSFrame">{{0, 189}, {359, 5}}</string>
+							<string key="NSFrame">{{0, 190}, {359, 5}}</string>
 							<reference key="NSSuperview" ref="481368951"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -1360,7 +1362,7 @@
 						<object class="NSBox" id="937629113">
 							<reference key="NSNextResponder" ref="481368951"/>
 							<int key="NSvFlags">34</int>
-							<string key="NSFrame">{{0, 18}, {359, 5}}</string>
+							<string key="NSFrame">{{0, 17}, {359, 5}}</string>
 							<reference key="NSSuperview" ref="481368951"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -3554,11 +3556,11 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{812, 744}, {211, 103}}</string>
+					<string>{{812, -102}, {211, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{{525, 802}, {197, 73}}</string>
-					<string>{{495, 847}, {449, 20}}</string>
+					<string>{{495, 1}, {449, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
 					<string>{74, 862}</string>
@@ -3794,7 +3796,7 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.LastKnownRelativeProjectPath">../TDParseKit.xcodeproj</string>
+		<string key="IBDocument.LastKnownRelativeProjectPath">../ParseKit.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 	</data>
 </archive>
