@@ -85,7 +85,7 @@
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
-		D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */; };
+		D338E5BB0FF5DDCB003DE6AA /* TDDifferenceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */; };
 		D341850C0E520D640081B0DC /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
 		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
@@ -105,8 +105,8 @@
 		D34BAE1D0FF9CE0E00D7773A /* PKAlternation.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0B0FF9CE0E00D7773A /* PKAlternation.m */; };
 		D34BAE1E0FF9CE0E00D7773A /* PKEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAE1F0FF9CE0E00D7773A /* PKEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */; };
-		D34BAE200FF9CE0E00D7773A /* PKExclusion.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0E0FF9CE0E00D7773A /* PKExclusion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D34BAE210FF9CE0E00D7773A /* PKExclusion.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0F0FF9CE0E00D7773A /* PKExclusion.m */; };
+		D34BAE200FF9CE0E00D7773A /* PKDifference.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D34BAE210FF9CE0E00D7773A /* PKDifference.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */; };
 		D34BAE220FF9CE0E00D7773A /* PKIntersection.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE100FF9CE0E00D7773A /* PKIntersection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D34BAE230FF9CE0E00D7773A /* PKIntersection.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE110FF9CE0E00D7773A /* PKIntersection.m */; };
 		D34BAE240FF9CE0E00D7773A /* PKRepetition.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE120FF9CE0E00D7773A /* PKRepetition.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -416,7 +416,7 @@
 		D3FDC6C20FFC4C8C00F1F797 /* PKSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE140FF9CE0E00D7773A /* PKSequence.h */; };
 		D3FDC6C30FFC4C8C00F1F797 /* PKTrack.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE180FF9CE0E00D7773A /* PKTrack.h */; };
 		D3FDC6C40FFC4C8C00F1F797 /* PKTrackException.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE1A0FF9CE0E00D7773A /* PKTrackException.h */; };
-		D3FDC6C50FFC4C8C00F1F797 /* PKExclusion.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0E0FF9CE0E00D7773A /* PKExclusion.h */; };
+		D3FDC6C50FFC4C8C00F1F797 /* PKDifference.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */; };
 		D3FDC6C60FFC4C8C00F1F797 /* PKIntersection.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE100FF9CE0E00D7773A /* PKIntersection.h */; };
 		D3FDC6C70FFC4C8C00F1F797 /* PKTerminal.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE160FF9CE0E00D7773A /* PKTerminal.h */; };
 		D3FDC6C80FFC4C8C00F1F797 /* PKEmpty.h in Headers */ = {isa = PBXBuildFile; fileRef = D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */; };
@@ -467,7 +467,7 @@
 		D3FDC6F50FFC4C9E00F1F797 /* PKSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE150FF9CE0E00D7773A /* PKSequence.m */; };
 		D3FDC6F60FFC4C9E00F1F797 /* PKTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE190FF9CE0E00D7773A /* PKTrack.m */; };
 		D3FDC6F70FFC4C9E00F1F797 /* PKTrackException.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */; };
-		D3FDC6F80FFC4C9E00F1F797 /* PKExclusion.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0F0FF9CE0E00D7773A /* PKExclusion.m */; };
+		D3FDC6F80FFC4C9E00F1F797 /* PKDifference.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */; };
 		D3FDC6F90FFC4C9E00F1F797 /* PKIntersection.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE110FF9CE0E00D7773A /* PKIntersection.m */; };
 		D3FDC6FA0FFC4C9E00F1F797 /* PKTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE170FF9CE0E00D7773A /* PKTerminal.m */; };
 		D3FDC6FB0FFC4C9E00F1F797 /* PKEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */; };
@@ -715,8 +715,8 @@
 		D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluator.m; path = test/TDPredicateEvaluator.m; sourceTree = "<group>"; };
 		D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluatorTest.h; path = test/TDPredicateEvaluatorTest.h; sourceTree = "<group>"; };
 		D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluatorTest.m; path = test/TDPredicateEvaluatorTest.m; sourceTree = "<group>"; };
-		D338E5B90FF5DDCB003DE6AA /* TDExclusionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusionTest.h; path = test/TDExclusionTest.h; sourceTree = "<group>"; };
-		D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusionTest.m; path = test/TDExclusionTest.m; sourceTree = "<group>"; };
+		D338E5B90FF5DDCB003DE6AA /* TDDifferenceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDDifferenceTest.h; path = test/TDDifferenceTest.h; sourceTree = "<group>"; };
+		D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDDifferenceTest.m; path = test/TDDifferenceTest.m; sourceTree = "<group>"; };
 		D34185040E520D3F0081B0DC /* DebugApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebugApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D34BAC210FF87F8600D7773A /* TDParserFactoryTest3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest3.h; path = test/TDParserFactoryTest3.h; sourceTree = "<group>"; };
 		D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest3.m; path = test/TDParserFactoryTest3.m; sourceTree = "<group>"; };
@@ -737,8 +737,8 @@
 		D34BAE0B0FF9CE0E00D7773A /* PKAlternation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAlternation.m; path = src/PKAlternation.m; sourceTree = "<group>"; };
 		D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKEmpty.h; path = src/PKEmpty.h; sourceTree = "<group>"; };
 		D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKEmpty.m; path = src/PKEmpty.m; sourceTree = "<group>"; };
-		D34BAE0E0FF9CE0E00D7773A /* PKExclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKExclusion.h; path = src/PKExclusion.h; sourceTree = "<group>"; };
-		D34BAE0F0FF9CE0E00D7773A /* PKExclusion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKExclusion.m; path = src/PKExclusion.m; sourceTree = "<group>"; };
+		D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKDifference.h; path = src/PKDifference.h; sourceTree = "<group>"; };
+		D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKDifference.m; path = src/PKDifference.m; sourceTree = "<group>"; };
 		D34BAE100FF9CE0E00D7773A /* PKIntersection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKIntersection.h; path = src/PKIntersection.h; sourceTree = "<group>"; };
 		D34BAE110FF9CE0E00D7773A /* PKIntersection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKIntersection.m; path = src/PKIntersection.m; sourceTree = "<group>"; };
 		D34BAE120FF9CE0E00D7773A /* PKRepetition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKRepetition.h; path = src/PKRepetition.h; sourceTree = "<group>"; };
@@ -1923,8 +1923,8 @@
 				D34BAE190FF9CE0E00D7773A /* PKTrack.m */,
 				D34BAE1A0FF9CE0E00D7773A /* PKTrackException.h */,
 				D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */,
-				D34BAE0E0FF9CE0E00D7773A /* PKExclusion.h */,
-				D34BAE0F0FF9CE0E00D7773A /* PKExclusion.m */,
+				D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */,
+				D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */,
 				D34BAE100FF9CE0E00D7773A /* PKIntersection.h */,
 				D34BAE110FF9CE0E00D7773A /* PKIntersection.m */,
 				D34BAE160FF9CE0E00D7773A /* PKTerminal.h */,
@@ -1980,8 +1980,8 @@
 				D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */,
 				D36C56290FD365DB00141CB7 /* TDPatternTest.h */,
 				D36C562A0FD365DB00141CB7 /* TDPatternTest.m */,
-				D338E5B90FF5DDCB003DE6AA /* TDExclusionTest.h */,
-				D338E5BA0FF5DDCB003DE6AA /* TDExclusionTest.m */,
+				D338E5B90FF5DDCB003DE6AA /* TDDifferenceTest.h */,
+				D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";
@@ -2138,7 +2138,7 @@
 				D34BAE020FF9CCAE00D7773A /* PKCollectionParser.h in Headers */,
 				D34BAE1C0FF9CE0E00D7773A /* PKAlternation.h in Headers */,
 				D34BAE1E0FF9CE0E00D7773A /* PKEmpty.h in Headers */,
-				D34BAE200FF9CE0E00D7773A /* PKExclusion.h in Headers */,
+				D34BAE200FF9CE0E00D7773A /* PKDifference.h in Headers */,
 				D34BAE220FF9CE0E00D7773A /* PKIntersection.h in Headers */,
 				D34BAE240FF9CE0E00D7773A /* PKRepetition.h in Headers */,
 				D34BAE260FF9CE0E00D7773A /* PKSequence.h in Headers */,
@@ -2245,7 +2245,7 @@
 				D3FDC6C20FFC4C8C00F1F797 /* PKSequence.h in Headers */,
 				D3FDC6C30FFC4C8C00F1F797 /* PKTrack.h in Headers */,
 				D3FDC6C40FFC4C8C00F1F797 /* PKTrackException.h in Headers */,
-				D3FDC6C50FFC4C8C00F1F797 /* PKExclusion.h in Headers */,
+				D3FDC6C50FFC4C8C00F1F797 /* PKDifference.h in Headers */,
 				D3FDC6C60FFC4C8C00F1F797 /* PKIntersection.h in Headers */,
 				D3FDC6C70FFC4C8C00F1F797 /* PKTerminal.h in Headers */,
 				D3FDC6C80FFC4C8C00F1F797 /* PKEmpty.h in Headers */,
@@ -2590,7 +2590,7 @@
 				D34BAE030FF9CCAE00D7773A /* PKCollectionParser.m in Sources */,
 				D34BAE1D0FF9CE0E00D7773A /* PKAlternation.m in Sources */,
 				D34BAE1F0FF9CE0E00D7773A /* PKEmpty.m in Sources */,
-				D34BAE210FF9CE0E00D7773A /* PKExclusion.m in Sources */,
+				D34BAE210FF9CE0E00D7773A /* PKDifference.m in Sources */,
 				D34BAE230FF9CE0E00D7773A /* PKIntersection.m in Sources */,
 				D34BAE250FF9CE0E00D7773A /* PKRepetition.m in Sources */,
 				D34BAE270FF9CE0E00D7773A /* PKSequence.m in Sources */,
@@ -2829,7 +2829,7 @@
 				D355C6310FE9EFEA006A91A4 /* TDNSPredicateEvaluatorTest.m in Sources */,
 				D3BBBC9E0FEC9756007DF30D /* TDXMLParser.m in Sources */,
 				D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */,
-				D338E5BB0FF5DDCB003DE6AA /* TDExclusionTest.m in Sources */,
+				D338E5BB0FF5DDCB003DE6AA /* TDDifferenceTest.m in Sources */,
 				D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */,
 				D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */,
 			);
@@ -2849,7 +2849,7 @@
 				D3FDC6F50FFC4C9E00F1F797 /* PKSequence.m in Sources */,
 				D3FDC6F60FFC4C9E00F1F797 /* PKTrack.m in Sources */,
 				D3FDC6F70FFC4C9E00F1F797 /* PKTrackException.m in Sources */,
-				D3FDC6F80FFC4C9E00F1F797 /* PKExclusion.m in Sources */,
+				D3FDC6F80FFC4C9E00F1F797 /* PKDifference.m in Sources */,
 				D3FDC6F90FFC4C9E00F1F797 /* PKIntersection.m in Sources */,
 				D3FDC6FA0FFC4C9E00F1F797 /* PKTerminal.m in Sources */,
 				D3FDC6FB0FFC4C9E00F1F797 /* PKEmpty.m in Sources */,

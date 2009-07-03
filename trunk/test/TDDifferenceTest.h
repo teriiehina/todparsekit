@@ -8,7 +8,7 @@
 
 #import "TDTestScaffold.h"
 
-@interface TDExclusionTest : SenTestCase {
+@interface TDDifferenceTest : SenTestCase {
     PKTokenizer *t;
     PKParser *p;
     PKParser *minus;
