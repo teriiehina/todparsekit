@@ -30,14 +30,14 @@
 
 
 - (NSString *)string {
-    return string;
+    return [[string retain] autorelease];
 }
 
 
 - (void)setString:(NSString *)s {
     if (string != s) {
-        [string release];
-        string = [s retain];
+        [string autorelease];
+        string = [s copy];
         length = string.length;
     }
     // reset cursor
