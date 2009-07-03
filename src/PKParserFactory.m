@@ -1274,7 +1274,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnParser:(PKAssembly *)a {
     PKParser *p = [a pop];
     id obj = [a pop];
-    if ([bang isEqualTo:obj]) {
+    if ([bang isEqual:obj]) {
         p = [PKNegation negationWithSubparser:p];
     } else {
         [a push:obj];
@@ -1487,7 +1487,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnNegation:(PKAssembly *)a {
     PKParser *p = [a pop];
     id obj = [a pop];
-    if ([bang isEqualTo:obj]) {
+    if ([bang isEqual:obj]) {
         p = [PKNegation negationWithSubparser:p];
     } else {
         [a push:obj];
