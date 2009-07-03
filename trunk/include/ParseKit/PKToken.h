@@ -87,7 +87,7 @@ typedef enum {
 
 /*!
     @brief      Returns more descriptive textual representation than <tt>-description</tt> which may be useful for debugging puposes only.
-    @details    Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Num 3.14></tt>
+    @details    Usually of format similar to: <tt>&lt;QuotedString "Launch Mi"></tt>, <tt>&lt;Word cat></tt>, or <tt>&lt;Number 3.14></tt>
     @result     A textual representation including more descriptive information than <tt>-description</tt>.
 */
 - (NSString *)debugDescription;

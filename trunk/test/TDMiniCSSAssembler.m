@@ -45,8 +45,8 @@
 //    decl        = property >':' expr >';'?;
 //    property    = 'color' | 'background-color' | 'font-family' | 'font-size';
 //    expr        = pixelValue | rgb | string | constants;
-//    pixelValue  = Num >'px';
-//    rgb         = >'rgb' '(' Num >',' Num >',' Num >')';
+//    pixelValue  = Number >'px';
+//    rgb         = >'rgb' '(' Number >',' Number >',' Number >')';
 //    string      = QuotedString;
 //    constants   = 'bold' | 'normal' | 'italic';
 

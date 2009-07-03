@@ -23,7 +23,7 @@
 // valuePredicate       = value;
 // attr                 = tag | Word;
 // tag                  = '@' Word;
-// value                = string | Num | bool;
+// value                = string | Number | bool;
 // string               = QuotedString | unquotedString;
 // unquotedString       = nonReservedWord+;
 // bool                 = 'true' | 'false';
@@ -289,7 +289,7 @@
 }
 
 
-// value                = QuotedString | Num | bool
+// value                = QuotedString | Number | bool
 - (PKCollectionParser *)valueParser {
     if (!valueParser) {
         self.valueParser = [PKAlternation alternation];
@@ -405,7 +405,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [PKNum num];
+        self.numberParser = [PKNumber number];
         numberParser.name = @"number";
         [numberParser setAssembler:self selector:@selector(workOnNumber:)];
     }

@@ -76,7 +76,7 @@ camelIdent = /[A-Z][\w_]*/;
 // hexInt ::= /0[xX]([A-Fa-f0-9])+/ 
 // octInt ::= /0[0-7]+/ 
 // floatLit ::= /\d+(\.\d+)?([Ee][\+-]?\d+)?/ // allow_f_after_float_ is 
-numLit = Num;
+numLit = Number;
 
 // disabled by default in tokenizer.cc 
 

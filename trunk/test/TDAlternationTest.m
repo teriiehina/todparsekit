@@ -38,7 +38,7 @@
     p = [PKAlternation alternation];
     [p add:[PKLiteral literalWithString:@"bar"]];
     [p add:[PKLiteral literalWithString:@"baz"]];
-    [p add:[PKNum num]];
+    [p add:[PKNumber number]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -54,7 +54,7 @@
     p = [PKAlternation alternation];
     [p add:[PKWord word]];
     [p add:[PKLiteral literalWithString:@"baz"]];
-    [p add:[PKNum num]];
+    [p add:[PKNumber number]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -70,7 +70,7 @@
     p = [PKAlternation alternation];
     [p add:[PKWord word]];
     [p add:[PKLiteral literalWithString:@"foo"]];
-    [p add:[PKNum num]];
+    [p add:[PKNumber number]];
     
     PKAssembly *result = [p bestMatchFor:a];
     
@@ -86,7 +86,7 @@
     p = [PKAlternation alternation];
     [p add:[PKLiteral literalWithString:@"foo"]];
     [p add:[PKLiteral literalWithString:@"baz"]];
-    [p add:[PKNum num]];
+    [p add:[PKNumber number]];
     
     PKAssembly *result = [p bestMatchFor:a];
     

@@ -25,7 +25,7 @@
     s = @"2 4 6 8";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    p = [PKRepetition repetitionWithSubparser:[PKNum num]];
+    p = [PKRepetition repetitionWithSubparser:[PKNumber number]];
     
     PKAssembly *result = [p completeMatchFor:a];
     TDNotNil(result);
@@ -39,10 +39,10 @@
     
     PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[PKSymbol symbolWithString:@"-"] discard]];
-    [minusNum add:[PKNum num]];
+    [minusNum add:[PKNumber number]];
     
     PKSequence *e = [PKSequence sequence];
-    [e add:[PKNum num]];
+    [e add:[PKNumber number]];
     [e add:[PKRepetition repetitionWithSubparser:minusNum]];
     
     PKAssembly *result = [e completeMatchFor:a];
@@ -57,11 +57,11 @@
     
     PKSequence *minusNum = [PKSequence sequence];
     [minusNum add:[[PKSymbol symbolWithString:@"-"] discard]];
-    [minusNum add:[PKNum num]];
+    [minusNum add:[PKNumber number]];
     
     PKSequence *e = [PKSequence sequence];
     [e add:[[PKSymbol symbolWithString:@"["] discard]];
-    [e add:[PKNum num]];
+    [e add:[PKNumber number]];
     [e add:[PKRepetition repetitionWithSubparser:minusNum]];
     [e add:[[PKSymbol symbolWithString:@"]"] discard]];
     
@@ -123,7 +123,7 @@
     
     PKAlternation *literals = [PKAlternation alternation];
     [literals add:[PKQuotedString quotedString]];
-    [literals add:[PKNum num]];
+    [literals add:[PKNumber number]];
     
     PKAssembly *result = [literals bestMatchFor:a];
     TDNotNil(result);

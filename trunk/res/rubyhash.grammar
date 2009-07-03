@@ -23,7 +23,7 @@ propertyName  = QuotedString;         // NOTE: property names are quoted
 value         = null | true | false | object | number | string | fileRef;
 
 string        = QuotedString;
-number        = Num;
+number        = Number;
 fileRef       = Comment;
 null          = 'null';
 true          = 'true';

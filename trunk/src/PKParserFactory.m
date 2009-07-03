@@ -608,7 +608,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 // phrasePlus           = phrase S* '+';
 // phraseQuestion       = phrase S* '?';
 // phraseCardinality    = phrase S* cardinality;
-// cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
+// cardinality          = '{' S* Number (S* ',' S* Number)? S* '}';
 // atomicValue          =  discard? (negatedParser | parser);
 // negatedParser        = '!' S* parser;
 // parser               = pattern | literal | variable | constant | delimitedString;
@@ -909,7 +909,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// cardinality          = '{' S* Num (S* ',' S* Num)? S* '}';
+// cardinality          = '{' S* Number (S* ',' S* Number)? S* '}';
 - (PKCollectionParser *)cardinalityParser {
     if (!cardinalityParser) {
         self.cardinalityParser = [PKSequence sequence];
@@ -919,12 +919,12 @@ void PKReleaseSubparserTree(PKParser *p) {
         [commaNum add:self.optionalWhitespaceParser];
         [commaNum add:[[PKSymbol symbolWithString:@","] discard]];
         [commaNum add:self.optionalWhitespaceParser];
-        [commaNum add:[PKNum num]];
+        [commaNum add:[PKNumber number]];
         
         PKTrack *tr = [PKTrack track];
         [tr add:[PKSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
         [tr add:self.optionalWhitespaceParser];
-        [tr add:[PKNum num]];
+        [tr add:[PKNumber number]];
         [tr add:[self zeroOrOne:commaNum]];
         [tr add:self.optionalWhitespaceParser];
         [tr add:[[PKSymbol symbolWithString:@"}"] discard]];
@@ -1328,8 +1328,8 @@ void PKReleaseSubparserTree(PKParser *p) {
         p = [PKLowercaseWord word];
     } else if ([s isEqualToString:@"UppercaseWord"]) {
         p = [PKUppercaseWord word];
-    } else if ([s isEqualToString:@"Num"]) {
-        p = [PKNum num];
+    } else if ([s isEqualToString:@"Number"]) {
+        p = [PKNumber number];
     } else if ([s isEqualToString:@"S"]) {
         p = [PKWhitespace whitespace];
     } else if ([s isEqualToString:@"QuotedString"]) {
@@ -1350,7 +1350,7 @@ void PKReleaseSubparserTree(PKParser *p) {
         p = tok;
     } else {
         [NSException raise:@"Grammar Exception" format:
-         @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Num, Symbol, Empty.", s];
+         @"User Grammar referenced a constant parser name (uppercase word) which is not supported: %@. Must be one of: Word, LowercaseWord, UppercaseWord, QuotedString, Number, Symbol, Empty.", s];
     }
     
     if ([p isKindOfClass:[PKTerminal class]] && [self shouldDiscard:a]) {

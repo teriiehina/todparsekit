@@ -24,7 +24,7 @@
  phraseStar			= phrase '*'
  phraseQuestion		= phrase '?'
  phrasePlus			= phrase '+'
- atomicValue        = Word | Num | QuotedString | variable
+ atomicValue        = Word | Number | QuotedString | variable
 */
  
 static NSString * const kEBNFEqualsString = @"=";
@@ -282,7 +282,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 }
 
 
-// atomicValue        = Word | Num | QuotedString | Variable
+// atomicValue        = Word | Number | QuotedString | Variable
 - (PKCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
         self.atomicValueParser = [PKAlternation alternation];
@@ -291,7 +291,7 @@ static NSString * const kEBNFVariableSuffix = @"";
         [p setAssembler:self selector:@selector(workOnWord:)];
         [atomicValueParser add:p];
         
-        p = [PKNum num];
+        p = [PKNumber number];
         [p setAssembler:self selector:@selector(workOnNum:)];
         [atomicValueParser add:p];
         

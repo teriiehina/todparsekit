@@ -1451,7 +1451,7 @@
  //           true
  //           null
  //           this
-// primaryExpr         = parenExprParen | funcLiteral | arrayLiteral | identifier | Num | QuotedString | false | true | null | undefined | this;
+// primaryExpr         = parenExprParen | funcLiteral | arrayLiteral | identifier | Number | QuotedString | false | true | null | undefined | this;
 - (PKCollectionParser *)primaryExprParser {
     if (!primaryExprParser) {
         self.primaryExprParser = [PKAlternation alternation];
@@ -1580,7 +1580,7 @@
 
 - (PKParser *)numberParser {
     if (!numberParser) {
-        self.numberParser = [PKNum num];
+        self.numberParser = [PKNumber number];
         numberParser.name = @"number";
     }
     return numberParser;

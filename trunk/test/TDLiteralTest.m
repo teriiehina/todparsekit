@@ -19,7 +19,7 @@
     a = [[PKTokenAssembly alloc] initWithString:s];
     NSLog(@"a: %@", a);
     
-    p = [PKNum num];
+    p = [PKNumber number];
     PKAssembly *result = [p completeMatchFor:a];
     
     // -[PKParser completeMatchFor:]

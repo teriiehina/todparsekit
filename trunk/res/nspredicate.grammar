@@ -29,7 +29,7 @@ See: http://developer.apple.com/documentation/Cocoa/Conceptual/Predicates/Articl
     value   = keyPath | string | num | bool | array;
 
     string  = QuotedString;
-    num     = Num;
+    num     = Number;
     bool    = true | false;
     true    = >'true';
     false   = >'false';
