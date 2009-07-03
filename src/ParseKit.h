@@ -30,6 +30,7 @@
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKSequence.h>
 #import <ParseKit/PKDifference.h>
+#import <ParseKit/PKNegation.h>
 #import <ParseKit/PKIntersection.h>
 #import <ParseKit/PKCollectionParser.h>
 #import <ParseKit/PKAlternation.h>

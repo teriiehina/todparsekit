@@ -62,7 +62,7 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
 
-    NSMutableSet *outAssemblies = [[[subparser matchAndAssemble:inAssemblies] mutableCopy] autorelease];;
+    NSMutableSet *outAssemblies = [[[subparser matchAndAssemble:inAssemblies] mutableCopy] autorelease];
     [outAssemblies minusSetTestingEquality:[minus allMatchesFor:inAssemblies]];
     
     return outAssemblies;

@@ -50,7 +50,17 @@
     a = [PKTokenAssembly assemblyWithString:s];
     res = [d bestMatchFor:a];
     TDNil(res);
-
+    
+    s = @"bar";
+    a = [PKTokenAssembly assemblyWithString:s];
+    res = [d bestMatchFor:a];
+    TDNil(res);
+    
+    s = @"%";
+    a = [PKTokenAssembly assemblyWithString:s];
+    res = [d bestMatchFor:a];
+    TDNil(res);
+    
     s = @"wee";
     a = [PKTokenAssembly assemblyWithString:s];
     res = [d bestMatchFor:a];
