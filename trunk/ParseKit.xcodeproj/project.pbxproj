@@ -594,8 +594,7 @@
 		D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNegationTest.m; path = test/TDNegationTest.m; sourceTree = "<group>"; };
 		D3126D410FFDB4C600CBF4C4 /* TDExclusionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusionTest.h; path = test/TDExclusionTest.h; sourceTree = "<group>"; };
 		D3126D420FFDB4C600CBF4C4 /* TDExclusionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusionTest.m; path = test/TDExclusionTest.m; sourceTree = "<group>"; };
-		D3126D440FFDB4ED00CBF4C4 /* PKExclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKExclusion.h; path = src/PKExclusion.h; sourceTree = "<group>"; };
-		D3126D450FFDB4ED00CBF4C4 /* PKExclusion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKExclusion.m; path = src/PKExclusion.m; sourceTree = "<group>"; };
+		D31270F80FFE898300CBF4C4 /* PKExclusion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKExclusion.m; path = test/PKExclusion.m; sourceTree = "<group>"; };
 		D315DF710FEF59B600D876C8 /* date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = date.grammar; path = res/date.grammar; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
@@ -1034,6 +1033,7 @@
 		D3BBBC9C0FEC9756007DF30D /* TDXMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDXMLParser.m; path = test/TDXMLParser.m; sourceTree = "<group>"; };
 		D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDLowercaseWordTest.h; path = test/TDLowercaseWordTest.h; sourceTree = "<group>"; };
 		D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDLowercaseWordTest.m; path = test/TDLowercaseWordTest.m; sourceTree = "<group>"; };
+		D3C2216D0FFE8A86004514FE /* PKExclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKExclusion.h; path = test/PKExclusion.h; sourceTree = "<group>"; };
 		D3C7D87A0A411FBF005DD154 /* Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3C85C790E63B438000445FD /* TDArithmeticParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDArithmeticParser.h; path = test/TDArithmeticParser.h; sourceTree = "<group>"; };
 		D3C85C7A0E63B438000445FD /* TDArithmeticParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDArithmeticParser.m; path = test/TDArithmeticParser.m; sourceTree = "<group>"; };
@@ -1247,8 +1247,8 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
-				D3126D440FFDB4ED00CBF4C4 /* PKExclusion.h */,
-				D3126D450FFDB4ED00CBF4C4 /* PKExclusion.m */,
+				D3C2216D0FFE8A86004514FE /* PKExclusion.h */,
+				D31270F80FFE898300CBF4C4 /* PKExclusion.m */,
 				D3AF4CCB0FDC74540032F4DC /* Whitespace */,
 				D3AF4CCA0FDC74490032F4DC /* Slash */,
 				D3AF4CC90FDC743C0032F4DC /* ReservedWord */,
