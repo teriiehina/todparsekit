@@ -80,7 +80,7 @@ static PKTokenEOF *EOFToken = nil;
 @end
 
 @interface PKToken ()
-- (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase;
+- (BOOL)isEqual:(id)obj ignoringCase:(BOOL)ignoringCase;
 
 @property (nonatomic, readwrite, getter=isNumber) BOOL number;
 @property (nonatomic, readwrite, getter=isQuotedString) BOOL quotedString;
@@ -147,22 +147,22 @@ static PKTokenEOF *EOFToken = nil;
 }
 
 
-- (BOOL)isEqual:(id)rhv {
-    return [self isEqual:rhv ignoringCase:NO];
+- (BOOL)isEqual:(id)obj {
+    return [self isEqual:obj ignoringCase:NO];
 }
 
 
-- (BOOL)isEqualIgnoringCase:(id)rhv {
-    return [self isEqual:rhv ignoringCase:YES];
+- (BOOL)isEqualIgnoringCase:(id)obj {
+    return [self isEqual:obj ignoringCase:YES];
 }
 
 
-- (BOOL)isEqual:(id)rhv ignoringCase:(BOOL)ignoringCase {
-    if (![rhv isMemberOfClass:[PKToken class]]) {
+- (BOOL)isEqual:(id)obj ignoringCase:(BOOL)ignoringCase {
+    if (![obj isMemberOfClass:[PKToken class]]) {
         return NO;
     }
     
-    PKToken *tok = (PKToken *)rhv;
+    PKToken *tok = (PKToken *)obj;
     if (tokenType != tok.tokenType) {
         return NO;
     }
