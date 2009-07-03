@@ -10,32 +10,14 @@
 #import <ParseKit/PKAny.h>
 #import <ParseKit/PKDifference.h>
 
-@interface NSMutableSet (PKNegationAdditions)
-- (void)minusSetTestingEquality:(NSSet *)s;
-@end
-
-@implementation NSMutableSet (PKNegationAdditions)
-
-- (void)minusSetTestingEquality:(NSSet *)s {
-    for (id a1 in self) {
-        for (id a2 in s) {
-            if ([a1 isEqualTo:a2 ]) {
-                [self removeObject:a1];
-            }
-        }
-    }
-}
-
+@interface PKParser ()
+- (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
+- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
 @interface PKNegation ()
 @property (nonatomic, retain, readwrite) PKParser *subparser;
 @property (nonatomic, retain) PKParser *difference;
-@end
-
-@interface PKParser ()
-- (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
-- (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
 @implementation PKNegation
