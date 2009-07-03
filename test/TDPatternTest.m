@@ -171,7 +171,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[foo]foo^");
     
-    p = [p invertedPattern];
+    p = [PKNegation negationWithSubparser:p];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -187,7 +187,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[true]true^");
     
-    p = [p invertedPattern];
+    p = [PKNegation negationWithSubparser:p];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -200,7 +200,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[TRUE]TRUE^");
     
-    p = [p invertedPattern];
+    p = [PKNegation negationWithSubparser:p];
     a = [p completeMatchFor:a];
     
     TDNil(a);
@@ -218,7 +218,7 @@
     TDNotNil(a);
     TDEqualObjects([a description], @"[NOT]NOT^");
     
-    p = [p invertedPattern];
+    p = [PKNegation negationWithSubparser:p];
     a = [p completeMatchFor:a];
     
     TDNil(a);

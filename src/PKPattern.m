@@ -39,19 +39,7 @@
 
     NSRange r = NSMakeRange(0, tok.stringValue.length);
 
-    BOOL isMatch = NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:(uint32_t)options inRange:r capture:0 error:nil]);
-    if (inverted) {
-        return !isMatch;
-    } else {
-        return isMatch;
-    }
-}
-
-
-- (id)invertedPattern {
-    PKPattern *pattern = [[self class] patternWithString:self.string options:options];
-    pattern->inverted = !inverted;
-    return pattern;
+    return NSEqualRanges(r, [tok.stringValue rangeOfRegex:self.string options:(uint32_t)options inRange:r capture:0 error:nil]);
 }
 
 @end
