@@ -10,7 +10,7 @@
 
 @interface TDDifferenceTest : SenTestCase {
     PKTokenizer *t;
-    PKParser *p;
+    PKDifference *d;
     PKParser *minus;
     PKAssembly *a;
     PKAssembly *res;

@@ -1994,14 +1994,14 @@
 				D31FE5620E60E50800A0803E /* TDUppercaseWordTest.m */,
 				D3C031EB0EF38D2D00C5ABEB /* TDLowercaseWordTest.h */,
 				D3C031EC0EF38D2D00C5ABEB /* TDLowercaseWordTest.m */,
+				D3126D410FFDB4C600CBF4C4 /* TDExclusionTest.h */,
+				D3126D420FFDB4C600CBF4C4 /* TDExclusionTest.m */,
 				D36C56290FD365DB00141CB7 /* TDPatternTest.h */,
 				D36C562A0FD365DB00141CB7 /* TDPatternTest.m */,
 				D338E5B90FF5DDCB003DE6AA /* TDDifferenceTest.h */,
 				D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */,
 				D3126D090FFD9E4B00CBF4C4 /* TDNegationTest.h */,
 				D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */,
-				D3126D410FFDB4C600CBF4C4 /* TDExclusionTest.h */,
-				D3126D420FFDB4C600CBF4C4 /* TDExclusionTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";

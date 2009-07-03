@@ -11,7 +11,7 @@
 @implementation TDNegationTest
 
 - (void)testFoo {
-    PKNegation *n = [PKNegation negationWithSubparser:[PKWord word]];
+    n = [PKNegation negationWithSubparser:[PKWord word]];
     
     s = @"bar";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -29,6 +29,32 @@
     a = [PKTokenAssembly assemblyWithString:s];
     res = [n bestMatchFor:a];
     TDNil(res);
-}    
+}
+
+
+- (void)testParserNamed {
+    PKWord *w = [PKWord word];
+    w.name = @"w";
+    n = [PKNegation negationWithSubparser:w];
+    
+    TDEquals(w, [n parserNamed:@"w"]);
+
+    PKCollectionParser *alt = [PKAlternation alternation];
+    alt.name = @"alt";
+    
+    PKParser *foo = [PKLiteral literalWithString:@"foo"];
+    foo.name = @"foo";
+    [alt add:foo];
+    
+    PKParser *bar = [PKLiteral literalWithString:@"bar"];
+    bar.name = @"bar";
+    [alt add:bar];
+    
+    n = [PKNegation negationWithSubparser:alt];
+    
+    TDEquals(alt, [n parserNamed:@"alt"]);
+    TDEquals(foo, [n parserNamed:@"foo"]);
+    TDEquals(bar, [n parserNamed:@"bar"]);
+}
     
 @end

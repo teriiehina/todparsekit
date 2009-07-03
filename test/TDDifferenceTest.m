@@ -13,7 +13,7 @@
 - (void)testFoo {
     PKWord *word = [PKWord word];
     PKLiteral *foo = [PKLiteral literalWithString:@"foo"];
-    PKDifference *d = [PKDifference differenceWithSubparser:word minus:foo];
+    d = [PKDifference differenceWithSubparser:word minus:foo];
     
     s = @"bar";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -39,7 +39,7 @@
     [list add:[PKLiteral literalWithString:@"foo"]];
     [list add:[PKLiteral literalWithString:@"bar"]];
     
-    PKDifference *d = [PKDifference differenceWithSubparser:word minus:list];
+    d = [PKDifference differenceWithSubparser:word minus:list];
     
     s = @"baz";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -77,7 +77,7 @@
     [list add:[PKLiteral literalWithString:@"foo"]];
     [list add:[PKLiteral literalWithString:@"bar"]];
     
-    PKDifference *d = [PKDifference differenceWithSubparser:ok minus:list];
+    d = [PKDifference differenceWithSubparser:ok minus:list];
     
     s = @"baz";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -93,6 +93,30 @@
     a = [PKTokenAssembly assemblyWithString:s];
     res = [d bestMatchFor:a];
     TDNil(res);
+}
+
+
+- (void)testParserNamed {
+    PKWord *w = [PKWord word];
+    w.name = @"w";
+
+    PKCollectionParser *m = [PKAlternation alternation];
+    m.name = @"m";
+    
+    PKParser *foo = [PKLiteral literalWithString:@"foo"];
+    foo.name = @"foo";
+    [m add:foo];
+
+    PKParser *bar = [PKLiteral literalWithString:@"bar"];
+    bar.name = @"bar";
+    [m add:bar];
+    
+    d = [PKDifference differenceWithSubparser:w minus:m];
+    
+    TDEquals(w, [d parserNamed:@"w"]);
+    TDEquals(m, [d parserNamed:@"m"]);
+    TDEquals(foo, [d parserNamed:@"foo"]);
+    TDEquals(bar, [d parserNamed:@"bar"]);
 }
 
 @end
