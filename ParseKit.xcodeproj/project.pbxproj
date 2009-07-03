@@ -1180,12 +1180,12 @@
 		0867D691FE84028FC02AAC07 /* TODParseKit */ = {
 			isa = PBXGroup;
 			children = (
+				08FB77AEFE84172EC02AAC07 /* ParseKit Framework */,
+				D380BA950F0F1C450009EC13 /* JSParseKit Framework */,
+				D3C7D8220A411F31005DD154 /* ParseKit Tests */,
 				D36E98CB0E58C08F00496BD3 /* DebugApp */,
 				D334941B0E29641300406085 /* DemoApp */,
 				D389F2CA0F196ACF00558235 /* JSDemoApp */,
-				D3C7D8220A411F31005DD154 /* Tests */,
-				D380BA950F0F1C450009EC13 /* JS Framework */,
-				08FB77AEFE84172EC02AAC07 /* Framework */,
 				D3AF4C8E0FDC738B0032F4DC /* Other Sources */,
 				32C88DFF0371C24200C91783 /* Other Sources (not used) */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -1214,7 +1214,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		08FB77AEFE84172EC02AAC07 /* Framework */ = {
+		08FB77AEFE84172EC02AAC07 /* ParseKit Framework */ = {
 			isa = PBXGroup;
 			children = (
 				D3C221900FFE8B8C004514FE /* ParseKit.h */,
@@ -1225,7 +1225,7 @@
 				D3E785F10E550F63008C7D61 /* chars */,
 				D34BAC0F0FF87ED200D7773A /* grammar */,
 			);
-			name = Framework;
+			name = "ParseKit Framework";
 			sourceTree = "<group>";
 		};
 		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
@@ -1541,7 +1541,7 @@
 			name = tokenizer;
 			sourceTree = "<group>";
 		};
-		D380BA950F0F1C450009EC13 /* JS Framework */ = {
+		D380BA950F0F1C450009EC13 /* JSParseKit Framework */ = {
 			isa = PBXGroup;
 			children = (
 				D34BB04E0FF9EC4E00D7773A /* JSParseKit-Info.plist */,
@@ -1558,7 +1558,7 @@
 				D389F59A0F19BBAE00558235 /* Tokens */,
 				D389F59B0F19BBD300558235 /* Parse */,
 			);
-			name = "JS Framework";
+			name = "JSParseKit Framework";
 			sourceTree = "<group>";
 		};
 		D389A0AE0F1FCC7A003B43BD /* relaxng */ = {
@@ -1817,7 +1817,7 @@
 			name = grammar;
 			sourceTree = "<group>";
 		};
-		D3C7D8220A411F31005DD154 /* Tests */ = {
+		D3C7D8220A411F31005DD154 /* ParseKit Tests */ = {
 			isa = PBXGroup;
 			children = (
 				D3F0E36C0FFEA33700C9DF74 /* Tests-Info.plist */,
@@ -1841,7 +1841,7 @@
 				D389A0AE0F1FCC7A003B43BD /* relaxng */,
 				D3C863240E67C249000445FD /* syntax highlight */,
 			);
-			name = Tests;
+			name = "ParseKit Tests";
 			sourceTree = "<group>";
 		};
 		D3C7D8710A411F6B005DD154 /* io */ = {
