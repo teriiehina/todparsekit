@@ -591,6 +591,10 @@
 		D3126D040FFD9BA700CBF4C4 /* PKNegation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKNegation.m; path = src/PKNegation.m; sourceTree = "<group>"; };
 		D3126D090FFD9E4B00CBF4C4 /* TDNegationTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNegationTest.h; path = test/TDNegationTest.h; sourceTree = "<group>"; };
 		D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNegationTest.m; path = test/TDNegationTest.m; sourceTree = "<group>"; };
+		D3126D410FFDB4C600CBF4C4 /* TDExclusionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDExclusionTest.h; path = test/TDExclusionTest.h; sourceTree = "<group>"; };
+		D3126D420FFDB4C600CBF4C4 /* TDExclusionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDExclusionTest.m; path = test/TDExclusionTest.m; sourceTree = "<group>"; };
+		D3126D440FFDB4ED00CBF4C4 /* PKExclusion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKExclusion.h; path = src/PKExclusion.h; sourceTree = "<group>"; };
+		D3126D450FFDB4ED00CBF4C4 /* PKExclusion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKExclusion.m; path = src/PKExclusion.m; sourceTree = "<group>"; };
 		D315DF710FEF59B600D876C8 /* date.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = date.grammar; path = res/date.grammar; sourceTree = "<group>"; };
 		D31A15250F6DE449002AFDF1 /* javascript.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = javascript.grammar; path = res/javascript.grammar; sourceTree = "<group>"; };
 		D31A16500F7038C2002AFDF1 /* TDJavaScriptParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDJavaScriptParser.h; path = test/TDJavaScriptParser.h; sourceTree = "<group>"; };
@@ -1242,6 +1246,8 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
+				D3126D440FFDB4ED00CBF4C4 /* PKExclusion.h */,
+				D3126D450FFDB4ED00CBF4C4 /* PKExclusion.m */,
 				D3AF4CCB0FDC74540032F4DC /* Whitespace */,
 				D3AF4CCA0FDC74490032F4DC /* Slash */,
 				D3AF4CC90FDC743C0032F4DC /* ReservedWord */,
@@ -1932,14 +1938,14 @@
 				D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */,
 				D34BAE100FF9CE0E00D7773A /* PKIntersection.h */,
 				D34BAE110FF9CE0E00D7773A /* PKIntersection.m */,
-				D34BAE160FF9CE0E00D7773A /* PKTerminal.h */,
-				D34BAE170FF9CE0E00D7773A /* PKTerminal.m */,
-				D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */,
-				D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */,
 				D34BAE0E0FF9CE0E00D7773A /* PKDifference.h */,
 				D34BAE0F0FF9CE0E00D7773A /* PKDifference.m */,
 				D3126D030FFD9BA700CBF4C4 /* PKNegation.h */,
 				D3126D040FFD9BA700CBF4C4 /* PKNegation.m */,
+				D34BAE160FF9CE0E00D7773A /* PKTerminal.h */,
+				D34BAE170FF9CE0E00D7773A /* PKTerminal.m */,
+				D34BAE0C0FF9CE0E00D7773A /* PKEmpty.h */,
+				D34BAE0D0FF9CE0E00D7773A /* PKEmpty.m */,
 			);
 			name = parsers;
 			sourceTree = "<group>";
@@ -1993,6 +1999,8 @@
 				D338E5BA0FF5DDCB003DE6AA /* TDDifferenceTest.m */,
 				D3126D090FFD9E4B00CBF4C4 /* TDNegationTest.h */,
 				D3126D0A0FFD9E4B00CBF4C4 /* TDNegationTest.m */,
+				D3126D410FFDB4C600CBF4C4 /* TDExclusionTest.h */,
+				D3126D420FFDB4C600CBF4C4 /* TDExclusionTest.m */,
 			);
 			name = parse;
 			sourceTree = "<group>";
