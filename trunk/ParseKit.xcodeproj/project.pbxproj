@@ -909,9 +909,6 @@
 		D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoAppDelegate.m; path = demoapp/DemoAppDelegate.m; sourceTree = "<group>"; };
 		D36E98E50E58C14000496BD3 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = demoapp/main.m; sourceTree = "<group>"; };
 		D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DemoAppMainMenu.xib; path = demoapp/DemoAppMainMenu.xib; sourceTree = "<group>"; };
-		D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = SOURCE_ROOT; };
-		D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
-		D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		D36E9F860E5A795400496BD3 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = /usr/lib/libxml2.dylib; sourceTree = "<absolute>"; };
 		D36E9FB40E5A944A00496BD3 /* apple-boss.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "apple-boss.xml"; path = "res/apple-boss.xml"; sourceTree = "<group>"; };
 		D36E9FE40E5BA0FC00496BD3 /* SRGSGrammar.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SRGSGrammar.txt; path = res/SRGSGrammar.txt; sourceTree = "<group>"; };
@@ -944,7 +941,6 @@
 		D389A0B10F1FCC99003B43BD /* RelaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelaxParser.m; path = test/RelaxParser.m; sourceTree = "<group>"; };
 		D389F1CE0F1965E600558235 /* JSParseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSParseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D389F2030F196A7500558235 /* JSDemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JSDemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D389F2050F196A7500558235 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		D389F20D0F196A9200558235 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		D389F2E30F196CAE00558235 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = jsdemoapp/main.m; sourceTree = "<group>"; };
 		D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSDemoAppDelegate.h; path = jsdemoapp/JSDemoAppDelegate.h; sourceTree = "<group>"; };
@@ -1074,6 +1070,10 @@
 		D3EADD8C0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDHtmlSyntaxHighlighter.m; path = test/TDHtmlSyntaxHighlighter.m; sourceTree = "<group>"; };
 		D3EADD8D0E75EAA400F78584 /* TDHtmlSyntaxHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDHtmlSyntaxHighlighter.h; path = test/TDHtmlSyntaxHighlighter.h; sourceTree = "<group>"; };
 		D3F0E2470FFE8EB900C9DF74 /* PKQuoteState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKQuoteState.h; path = include/ParseKit/PKQuoteState.h; sourceTree = "<group>"; };
+		D3F0E3290FFEA1E200C9DF74 /* DebugApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DebugApp-Info.plist"; sourceTree = "<group>"; };
+		D3F0E3600FFEA2B500C9DF74 /* DemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "DemoApp-Info.plist"; path = "demoapp/DemoApp-Info.plist"; sourceTree = "<group>"; };
+		D3F0E36C0FFEA33700C9DF74 /* Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Tests-Info.plist"; path = "test/Tests-Info.plist"; sourceTree = "<group>"; };
+		D3F0E37A0FFEA39000C9DF74 /* JSDemoApp-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "JSDemoApp-Info.plist"; path = "jsdemoapp/JSDemoApp-Info.plist"; sourceTree = "<group>"; };
 		D3F740B50EF8C38A00559B9F /* JSONAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAssembler.h; sourceTree = "<group>"; };
 		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
@@ -1313,7 +1313,7 @@
 		D334941B0E29641300406085 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
-				D36E9B180E58FFEC00496BD3 /* DemoApp-Info.plist */,
+				D3F0E3600FFEA2B500C9DF74 /* DemoApp-Info.plist */,
 				D36E98E50E58C14000496BD3 /* main.m */,
 				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
 				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
@@ -1475,7 +1475,7 @@
 		D36E98CB0E58C08F00496BD3 /* DebugApp */ = {
 			isa = PBXGroup;
 			children = (
-				D36E9B160E58FFDF00496BD3 /* DebugApp-Info.plist */,
+				D3F0E3290FFEA1E200C9DF74 /* DebugApp-Info.plist */,
 				D36E98DF0E58C12800496BD3 /* main.m */,
 				D36E98DC0E58C12800496BD3 /* DebugAppDelegate.h */,
 				D36E98DD0E58C12800496BD3 /* DebugAppDelegate.m */,
@@ -1573,7 +1573,7 @@
 		D389F2CA0F196ACF00558235 /* JSDemoApp */ = {
 			isa = PBXGroup;
 			children = (
-				D389F2050F196A7500558235 /* JSDemoApp-Info.plist */,
+				D3F0E37A0FFEA39000C9DF74 /* JSDemoApp-Info.plist */,
 				D389F2E30F196CAE00558235 /* main.m */,
 				D389F2E80F196F5B00558235 /* JSDemoAppDelegate.h */,
 				D389F2E90F196F5B00558235 /* JSDemoAppDelegate.m */,
@@ -1820,7 +1820,7 @@
 		D3C7D8220A411F31005DD154 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D36E9B1A0E58FFF900496BD3 /* Tests-Info.plist */,
+				D3F0E36C0FFEA33700C9DF74 /* Tests-Info.plist */,
 				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
 				D3F823560F57859900B7DC48 /* factory */,
@@ -3044,7 +3044,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INFOPLIST_FILE = "demoapp/DemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3069,7 +3069,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "DemoApp-Info.plist";
+				INFOPLIST_FILE = "demoapp/DemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3104,7 +3104,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
-				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INFOPLIST_FILE = "debugapp/DebugApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
@@ -3135,7 +3135,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
-				INFOPLIST_FILE = "DebugApp-Info.plist";
+				INFOPLIST_FILE = "debugapp/DebugApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
@@ -3223,7 +3223,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "JSDemoApp-Info.plist";
+				INFOPLIST_FILE = "jsdemoapp/JSDemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3247,7 +3247,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
-				INFOPLIST_FILE = "JSDemoApp-Info.plist";
+				INFOPLIST_FILE = "jsdemoapp/JSDemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -3286,7 +3286,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
-				INFOPLIST_FILE = "Tests-Info.plist";
+				INFOPLIST_FILE = "test/Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/src";
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
@@ -3332,7 +3332,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "$(LIBXML_PATH)";
-				INFOPLIST_FILE = "Tests-Info.plist";
+				INFOPLIST_FILE = "test/Tests-Info.plist";
 				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
 				OTHER_LDFLAGS = (
