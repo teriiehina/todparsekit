@@ -133,7 +133,9 @@
 
 - (void)testParserNamed {
     
-    //  (foo|bar) foo* w sy
+    //  seq = (foo|bar|seq) foo* w sy;
+    PKCollectionParser *seq = [PKSequence sequence];
+    seq.name = @"seq";
     
     PKCollectionParser *alt = [PKAlternation alternation];
     alt.name = @"alt";
@@ -146,6 +148,8 @@
     bar.name = @"w";
     [alt add:bar];
     
+    [alt add:seq];
+    
     PKRepetition *r = [PKRepetition repetitionWithSubparser:foo];
     
     PKWord *w = [PKWord word];
@@ -154,14 +158,14 @@
     PKSymbol *sy = [PKSymbol symbol];
     sy.name = @"sy";
     
-    PKCollectionParser *seq = [PKSequence sequence];
-    seq.name = @"seq";
     
     [seq add:alt];
     [seq add:r];
     [seq add:w];
     [seq add:sy];
     
+    TDEquals(seq, [seq parserNamed:@"seq"]);
+    TDEquals(seq, [alt parserNamed:@"seq"]);
     
     TDEquals(alt, [seq parserNamed:@"alt"]);
     TDEquals(w, [seq parserNamed:@"w"]);
