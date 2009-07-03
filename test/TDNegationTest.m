@@ -29,7 +29,6 @@
     a = [PKTokenAssembly assemblyWithString:s];
     res = [n bestMatchFor:a];
     TDNil(res);
-    
 }    
     
 @end

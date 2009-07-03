@@ -69,4 +69,34 @@
     
 }
 
+
+- (void)testNegateMore {
+    g = @"@start = !Symbol & !Num;";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"1";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+
+    s = @"$";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+}    
+
+
+- (void)testNegateMore2 {
+    g = @"@start = !(Symbol|Num);";
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    
+    s = @"1";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+    
+    s = @"$";
+    res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
+    TDNil(res);
+}    
+
 @end
