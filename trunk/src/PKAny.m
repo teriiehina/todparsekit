@@ -17,7 +17,7 @@
 
 
 - (BOOL)qualifies:(id)obj {
-    return [obj isKindOfClass:[PKToken class]];
+    return [obj isMemberOfClass:[PKToken class]];
 }
 
 @end
