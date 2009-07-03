@@ -54,6 +54,7 @@
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKTokenizerState.h>
 #import <ParseKit/PKNumberState.h>
+#import <ParseKit/PKScientificNumberState.h>
 #import <ParseKit/PKQuoteState.h>
 #import <ParseKit/PKDelimitState.h>
 #import <ParseKit/PKCommentState.h>
@@ -65,6 +66,8 @@
 #import <ParseKit/PKWordState.h>
 #import <ParseKit/PKWhitespaceState.h>
 #import <ParseKit/PKWord.h>
+#import <ParseKit/PKUppercaseWord.h>
+#import <ParseKit/PKLowercaseWord.h>
 #import <ParseKit/PKNum.h>
 #import <ParseKit/PKQuotedString.h>
 #import <ParseKit/PKWhitespace.h>
@@ -75,11 +78,6 @@
 #import <ParseKit/PKCaseInsensitiveLiteral.h>
 #import <ParseKit/PKAny.h>
 #import <ParseKit/PKPattern.h>
-
-// ext
-#import <ParseKit/PKScientificNumberState.h>
-#import <ParseKit/PKUppercaseWord.h>
-#import <ParseKit/PKLowercaseWord.h>
 
 // grammar
 #import <ParseKit/PKParserFactory.h>

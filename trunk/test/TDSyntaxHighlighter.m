@@ -3,7 +3,7 @@
 //  HTTPClient
 //
 //  Created by Todd Ditchendorf on 12/26/08.
-//  Copyright 2008 Todd Ditchendorf. All rights reserved.
+//  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
 #import "TDSyntaxHighlighter.h"
