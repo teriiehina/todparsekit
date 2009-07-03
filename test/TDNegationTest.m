@@ -22,6 +22,14 @@
     a = [PKTokenAssembly assemblyWithString:s];
     res = [n bestMatchFor:a];
     TDEqualObjects(@"['foo']'foo'^", [res description]);
+
+    n = [PKNegation negationWithSubparser:[PKLiteral literalWithString:@"foo"]];
+    
+    s = @"foo";
+    a = [PKTokenAssembly assemblyWithString:s];
+    res = [n bestMatchFor:a];
+    TDNil(res);
+    
 }    
     
 @end
