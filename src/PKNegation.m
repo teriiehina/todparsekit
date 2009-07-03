@@ -55,7 +55,7 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
     
-    return [difference matchAndAssemble:inAssemblies];
+    return [difference allMatchesFor:inAssemblies];
 }
 
 @synthesize subparser;
