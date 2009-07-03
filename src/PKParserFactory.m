@@ -1153,11 +1153,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSAssert([predicate isKindOfClass:[PKParser class]], @"");
     NSAssert([sub isKindOfClass:[PKParser class]], @"");
     
-    PKExclusion *ex = [PKExclusion exclusion];
-    [ex add:sub];
-    [ex add:predicate];
-
-    [a push:ex];
+    [a push:[PKDifference differenceWithSubparser:sub minus:predicate]];
 }
 
 

@@ -385,9 +385,7 @@
 // nonReservedWord      = Word
 - (PKCollectionParser *)nonReservedWordParser {
     if (!nonReservedWordParser) {
-        self.nonReservedWordParser = [PKExclusion exclusion];
-        [nonReservedWordParser add:[PKWord word]];
-        [nonReservedWordParser add:self.reservedWordPattern];
+        self.nonReservedWordParser = [PKDifference differenceWithSubparser:[PKWord word] minus:self.reservedWordParser];
         nonReservedWordParser.name = @"nonReservedWord";
         [nonReservedWordParser setAssembler:self selector:@selector(workOnNonReservedWord:)];
     }
