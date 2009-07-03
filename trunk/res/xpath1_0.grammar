@@ -12,8 +12,7 @@
 @wordState = '_';
 @wordChars = '_' '.' '-';
 
-ncName = Word;
-
+    ncName = Word;
 
 
 // [1] LocationPath ::= RelativeLocationPath | AbsoluteLocationPath

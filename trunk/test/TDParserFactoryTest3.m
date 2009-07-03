@@ -134,7 +134,6 @@
     @"localPart = ncName;"
     @"prefix = ncName;"
     @"ncName = Word;";
-    //        @"nameTest = '*' | ncName ':' '*' | qName;"
     
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
@@ -147,6 +146,31 @@
     t.string = @"foo:bar";
     res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     TDEqualObjects(@"[foo, :, bar]foo/:/bar^", [res description]);
+    
+    t.string = @":bar";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    t.string = @"text";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    t.string = @"comment";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    t.string = @"node";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    t.string = @"processing-instruction";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDNil(res);
+    
+    t.string = @"texts";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[texts]texts^", [res description]);
+    
 }
 
 @end
