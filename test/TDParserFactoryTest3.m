@@ -97,6 +97,56 @@
     s = @"$";
     res = [lp completeMatchFor:[PKTokenAssembly assemblyWithString:s]];
     TDNil(res);
-}    
+}
+
+
+- (void)testNcName {
+    g = @"@wordChars=':' '_'; @wordState='_';"
+    @"@start = name;"
+    @"ncName = name & /[^:]+/;"
+    @"name = Word;";
+    //        @"nameTest = '*' | ncName ':' '*' | qName;"
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    t.string = @"foo";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+    
+    t.string = @"foo:bar";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo:bar]foo:bar^", [res description]);
+}
+
+
+- (void)testFunctionName {
+    g = 
+    @"@wordState = '_';"
+    @"@wordChars = '_' '.' '-';"
+    @"@start = functionName;"
+    @"functionName = qName - nodeType;"
+    @"nodeType = 'comment' | 'text' | 'processing-instruction' | 'node';"
+    @"qName = prefixedName | unprefixedName;"
+    @"prefixedName = prefix ':' localPart;"
+    @"unprefixedName = localPart;"
+    @"localPart = ncName;"
+    @"prefix = ncName;"
+    @"ncName = Word;";
+    //        @"nameTest = '*' | ncName ':' '*' | qName;"
+    
+    lp = [factory parserFromGrammar:g assembler:nil];
+    TDNotNil(lp);
+    t = lp.tokenizer;
+    
+    t.string = @"foo";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo]foo^", [res description]);
+    
+    t.string = @"foo:bar";
+    res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    TDEqualObjects(@"[foo, :, bar]foo/:/bar^", [res description]);
+}
 
 @end
