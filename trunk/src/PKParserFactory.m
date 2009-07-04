@@ -104,7 +104,6 @@ void PKReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) PKToken *equals;
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *paren;
-@property (nonatomic, retain) PKToken *bang;
 @property (nonatomic, retain) PKCollectionParser *statementParser;
 @property (nonatomic, retain) PKCollectionParser *declarationParser;
 @property (nonatomic, retain) PKCollectionParser *callbackParser;
@@ -152,7 +151,6 @@ void PKReleaseSubparserTree(PKParser *p) {
         self.equals  = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
-        self.bang    = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"!" floatValue:0.0];
         self.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnAll;
     }
     return self;
@@ -171,7 +169,6 @@ void PKReleaseSubparserTree(PKParser *p) {
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
-    self.bang = nil;
     self.statementParser = nil;
     self.declarationParser = nil;
     self.callbackParser = nil;
@@ -799,6 +796,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
+// negatedPrimaryExpr   = '!' barePrimaryExpr;
 - (PKCollectionParser *)negatedPrimaryExprParser {
     if (!negatedPrimaryExprParser) {
         self.negatedPrimaryExprParser = [PKSequence sequence];
@@ -811,7 +809,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-// barePrimaryExpr          = atomicValue | '!'? '(' expr ')';
+// barePrimaryExpr          = atomicValue | '(' expr ')';
 - (PKCollectionParser *)barePrimaryExprParser {
     if (!barePrimaryExprParser) {
         self.barePrimaryExprParser = [PKAlternation alternation];
@@ -1485,7 +1483,6 @@ void PKReleaseSubparserTree(PKParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
-@synthesize bang;
 @synthesize statementParser;
 @synthesize declarationParser;
 @synthesize callbackParser;
