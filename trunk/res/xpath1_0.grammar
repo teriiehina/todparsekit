@@ -12,7 +12,33 @@
 @wordState = '_';
 @wordChars = '_' '.' '-';
 
-    ncName = Word;
+
+ncName = Word;
+/*
+
+expr = orExpr;
+    orExpr = andExpr ('or' andExpr)*;
+        andExpr = equalityExpr ('and' equalityExpr)*;
+            equalityExpr = relationalExpr (('=' | '!=') relationalExpr)*; 
+                relationalExpr = additiveExpr (('<' | '>' | '<=' | '>=') additiveExpr)*;
+                    additiveExpr = multiplicativeExpr (('+' | '-') multiplicativeExpr)*;
+                        multiplicativeExpr = unaryExpr ((multiplyOperator | 'div' | 'mod') unaryExpr)*;
+                            multiplyOperator = '*';
+                            unaryExpr = '-'* unionExpr;
+                                unionExpr = pathExpr ('|' pathExpr)*;
+    
+
+pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
+    locationPath = relativeLocationPath | absoluteLocationPath;
+        relativeLocationPath = step ('/' step)*; // | abbreviatedRelativeLocationPath;
+        absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath;
+            abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
+            abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
+
+    filterExpr = primaryExpr predicate*;
+    
+*/    
+
 
 
 // [1] LocationPath ::= RelativeLocationPath | AbsoluteLocationPath
@@ -123,7 +149,7 @@
 // [20] FilterExpr ::= PrimaryExpr | FilterExpr Predicate
 // avoiding Left recursion ??
 
-    filterExpr = primaryExpr predicate?;
+    filterExpr = primaryExpr predicate*;
 
 
 // [21] OrExpr ::= AndExpr | OrExpr 'or' AndExpr
@@ -174,7 +200,7 @@
 // [27] UnaryExpr ::= UnionExpr | '-' UnaryExpr
 // avoiding Left recursion
 
-    unaryExpr = '-'? unionExpr;
+    unaryExpr = '-'* unionExpr;
 
 
 // [28] ExprToken ::= '(' | ')' | '[' | ']' | '.' | '..' | '@' | ',' | '::'
@@ -259,5 +285,4 @@
 //  | 'node'
 
     nodeType = 'comment' | 'text' | 'processing-instruction' | 'node';
-    
-    
+
