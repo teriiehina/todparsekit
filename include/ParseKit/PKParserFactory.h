@@ -31,7 +31,6 @@ typedef enum {
     PKToken *equals;
     PKToken *curly;
     PKToken *paren;
-    PKToken *bang;
     BOOL isGatheringClasses;
     PKCollectionParser *statementParser;
     PKCollectionParser *declarationParser;
