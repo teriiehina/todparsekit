@@ -29,11 +29,8 @@
 
 
 - (void)add:(PKParser *)p {
-    if (!p) {
-        
-    }
-    //NSParameterAssert(p);
-    //NSParameterAssert([p isKindOfClass:[PKParser class]]);
+    NSParameterAssert(p);
+    NSParameterAssert([p isKindOfClass:[PKParser class]]);
     [subparsers addObject:p];
 }
 
