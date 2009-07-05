@@ -2,6 +2,21 @@
     An XPath 1.0 grammar derived from the XPath 1.0 Specification:
  
     http://www.w3.org/TR/xpath
+    
+
+
+    NOTE-TO-SELF: to avoid infinite recursion, I had to eliminate this production:
+    
+        abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
+    
+    and therefore remove `abbreviatedRelativeLocationPath` from `relativeLocationPath` which changed from
+        
+        relativeLocationPath = step ('/' step)* | abbreviatedRelativeLocationPath;
+        
+    to:
+    
+        relativeLocationPath = '//'? step ('/' step)*;
+    
 
 */
 
@@ -12,10 +27,10 @@
 @wordState = '_';
 @wordChars = '_' '.' '-';
 
-@numberState = '.'; // numbers may start with dot
-@allowsTrailingDot = YES; // numbers may end with dot
-@symbolState = '-'; // numbers may not start with a minus sign
-@allowsScientificNotation = NO;
+@numberState = '.';             // numbers may start with dot
+@allowsTrailingDot = YES;       // numbers may end with dot
+@symbolState = '-';             // numbers may not start with a minus sign
+@allowsScientificNotation = NO; // exponents not allowed
 
 
 ncName = Word;
@@ -34,9 +49,8 @@ expr = orExpr;
 
 pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
     locationPath = relativeLocationPath | absoluteLocationPath;
-        relativeLocationPath = step ('/' step)*; // | abbreviatedRelativeLocationPath;
+        relativeLocationPath = '//'? step ('/' step)*;
         absoluteLocationPath = '/' relativeLocationPath? | abbreviatedAbsoluteLocationPath;
-            abbreviatedRelativeLocationPath = relativeLocationPath '//' step;
             abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
 
     filterExpr = primaryExpr predicate*;

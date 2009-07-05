@@ -63,11 +63,11 @@
     TDEqualObjects(@"[/, foo, /, bar, [, baz, ], /, foo]//foo///bar/[/baz/]///foo^", [res description]);
     
     // not supported
-    //    t.string = @"//foo";
-    //    a = [PKTokenAssembly assemblyWithTokenizer:t];
-    //    res = [p bestMatchFor:a];
-    //    NSLog(@"\n\n res: %@ \n\n", res);
-    //    TDEqualObjects(@"[//, foo]///foo^", [res description]);
+    t.string = @"//foo";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+    NSLog(@"\n\n res: %@ \n\n", res);
+    TDEqualObjects(@"[//, foo]///foo^", [res description]);
 }
 
 
