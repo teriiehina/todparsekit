@@ -218,50 +218,46 @@
 
 
 - (void)testVariableReference {
-//    t.string = @"$foo";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"variableReference"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[$, foo]$/foo^", [res description]);
+    t.string = @"$foo";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    p = [p parserNamed:@"pathExpr"];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[$, foo]$/foo^", [res description]);
     
-//    t.string = @"$bar";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"variableReference"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[$, bar]$/bar^", [res description]);
-//    
-//    t.string = @"$foo:bar";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"variableReference"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[$, foo, :, bar]$/foo/:/bar^", [res description]);
+    t.string = @"$bar";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    p = [p parserNamed:@"pathExpr"];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[$, bar]$/bar^", [res description]);
 }
 
 
 - (void)testFunctionCall {
-//    t.string = @"foo()";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"functionCall"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[foo, (, )]foo/(/)^", [res description]);
+    t.string = @"foo()";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[foo, (, )]foo/(/)^", [res description]);
     
-//    t.string = @"foo('bar')";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"functionCall"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [res description]);
-//    
-//    t.string = @"foo('bar', 'baz')";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"functionCall"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [res description]);
-//    
-//    t.string = @"foo('bar', 1)";
-//    a = [PKTokenAssembly assemblyWithTokenizer:t];
-//    res = [[p parserNamed:@"functionCall"] bestMatchFor:a];
-//    TDNotNil(res);
-//    TDEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [res description]);
+    t.string = @"foo('bar')";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[foo, (, 'bar', )]foo/(/'bar'/)^", [res description]);
+    
+    t.string = @"foo('bar', 'baz')";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[foo, (, 'bar', ,, 'baz', )]foo/(/'bar'/,/'baz'/)^", [res description]);
+    
+    t.string = @"foo('bar', 1)";
+    a = [PKTokenAssembly assemblyWithTokenizer:t];
+    res = [p bestMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects(@"[foo, (, 'bar', ,, 1, )]foo/(/'bar'/,/1/)^", [res description]);
 }
 
 - (void)testOrExpr {
