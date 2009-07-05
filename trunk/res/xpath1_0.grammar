@@ -7,15 +7,19 @@
 
 @start = expr;
 
-@symbols =  '//' '..' '!=' '::' '<=' '>=';
+@symbols =  '//' '..' '!=' '::' '<=' '>=' ':*';
             
 @wordState = '_';
 @wordChars = '_' '.' '-';
 
+@numberState = '.'; // numbers may start with dot
+@allowsTrailingDot = YES; // numbers may end with dot
+@symbolState = '-'; // numbers may not start with a minus sign
+@allowsScientificNotation = NO;
+
 
 ncName = Word;
-/*
-
+ 
 expr = orExpr;
     orExpr = andExpr ('or' andExpr)*;
         andExpr = equalityExpr ('and' equalityExpr)*;
@@ -36,10 +40,30 @@ pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
             abbreviatedAbsoluteLocationPath = '//' relativeLocationPath;
 
     filterExpr = primaryExpr predicate*;
-    
-*/    
+        primaryExpr = variableReference | literal | number | functionCall | '(' expr ')';
+            variableReference = '$' qName; // note whitespace is not allowed here. also qName is optional
+            literal = QuotedString;
+            number = Number;
+            functionCall = functionName '(' (argument (',' argument)* )? ')';
+                functionName = qName - nodeType;
+                    qName = (prefix ':')? localPart;
+                        prefix = ncName;
+                        localPart = ncName;
+                argument = expr;
+        predicate = '[' predicateExpr ']';
+            predicateExpr = expr;
+                
 
-
+    step = axisSpecifier nodeTest predicate* | abbreviatedStep;
+        axisSpecifier = axisName '::' | abbreviatedAxisSpecifier;
+            axisName = 'ancestor' | 'ancestor-or-self' | 'attribute' | 'child' | 'descendant' | 'descendant-or-self' | 'following' | 'following-sibling' | 'namespace' | 'parent' | 'preceding' | 'preceding-sibling' | 'self';
+            abbreviatedAxisSpecifier = '@'?;
+        nodeTest = nameTest | nodeType '(' ')' | 'processing-instruction' '(' literal ')';
+            nameTest = '*' | ncName ':*' | qName; // note whitespace should not be allowed in second alt here
+            nodeType = 'comment' | 'text' | 'processing-instruction' | 'node';
+        abbreviatedStep = '.' | '..';
+            
+/*
 
 // [1] LocationPath ::= RelativeLocationPath | AbsoluteLocationPath
  
@@ -120,7 +144,7 @@ pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
 
     primaryExpr = variableReference | '(' expr ')' | literal | Number | functionCall;
     literal = QuotedString;
-    variableReference = '$' Word;
+    variableReference = '$' qName;
 
 // [16] FunctionCall ::= FunctionName '(' ( Argument ( ',' Argument )* )? ')'
 
@@ -286,3 +310,4 @@ pathExpr = locationPath | filterExpr (('/'| '//') relativeLocationPath)?;
 
     nodeType = 'comment' | 'text' | 'processing-instruction' | 'node';
 
+*/    

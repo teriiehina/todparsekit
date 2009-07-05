@@ -324,6 +324,9 @@ void PKReleaseSubparserTree(PKParser *p) {
 	t.quoteState.balancesEOFTerminatedQuotes = [self boolForTokenForKey:@"@balancesEOFTerminatedQuotes"];
 	t.delimitState.balancesEOFTerminatedStrings = [self boolForTokenForKey:@"@balancesEOFTerminatedStrings"];
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
+    //t.numberState.allowsScientificNotation 
+    BOOL yn = [self boolForTokenForKey:@"@allowsScientificNotation"];
+    yn;
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
