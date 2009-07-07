@@ -1,0 +1,73 @@
+<html>
+<head>
+	<meta name="keywords" content="parse parser tokenizer token tokenization parsing objective-c objc cocoa framework opensource"/>
+	<title>ParseKit - Cocoa Objective-C Framework for parsing, tokenizing and language processing</title>
+	<style>
+		#content {width:675px; margin:60px auto 30px; text-align:justify;}
+		body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
+		tt, pre {font:12px Monaco;}
+		table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
+		th, td {border:1px solid silver;}
+		.code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
+		h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
+		a[name] {display:block; margin-bottom:60px;}
+		a:hover {text-decoration:none;}
+		img {border:4px solid silver;}
+	</style>
+</head>
+<body>
+<div id="content">
+	
+<h1>ParseKit for iPhone OS Applications</h1>
+
+<p>Including ParseKit in your iPhone OS applications is easy. Follow the steps below.</p>
+
+<ol>
+    <li>
+        <div>Check out the ParseKit sourcecode from <a href="http://code.google.com/p/todparsekit/source/checkout">Google Code</a>. <!-- The latest tagged (stable) version is recommended. --></div>
+    </li>
+    <li>
+        <div>Open your iPhone app Xcode project. Drag the <tt>ParseKit.xcodeproj</tt> file from the finder and drop it at the top of the <tt>Groups &amp; Files</tt> tree in your app's Xcode project window. In the confirmation dialog that appears, click <tt>Add</tt>.</div>
+        <p><img alt="" src="img/step1a.png"/></p>
+        <p><img alt="" src="img/step1b.png"/></p>
+    </li>
+    
+    <li>
+        <div>Click and expand the disclosure triangle next to the blue <tt>ParseKit.xcodeproj</tt> icon to reveal all of the potential products of the ParseKit project.</div>
+        <p><img alt="" src="img/step2a.png"/></p>
+    </li>
+    <li>
+        <div>Click and expand the disclosure triangle next to your app's Target. Drag the <tt>parsekit.a</tt> product under <tt>ParseKit.xcodeproj</tt> to your Target's <tt>Link Binary With Libraries</tt> build phase.</div>
+        <p><img alt="" src="img/step3a.png"/></p>
+    </li>
+    <li>
+        <div>Double-click your Target (<tt>MyApp</tt> shown here) to edit it. In the <tt>General</tt> tab of the Target Info window, click the square <tt>+</tt> button below the <tt>Direct Dependencies</tt> list. In the sheet that appears, select <tt>ParseKitMobile</tt> and click <tt>Add Target</tt>.</div>
+        <p><img alt="" src="img/step4a.png"/></p>
+        <div>You will now see the <tt>ParseKitMobile</tt> target appearing as a dependency under your app's Target.</div>
+        <p><img alt="" src="img/step4b.png"/></p>
+    </li>
+    
+    <li>
+        <div>Finally, under the <tt>Build</tt> tab of your app's Target Info window, edit the <tt>Header Search Paths</tt> Setting to include the path to the <tt>include</tt> folder inside of the ParseKit folder you checked out. Make sure you edit this for <tt>All Configurations</tt>, not just the active one.</div>
+    </li>
+    <p><img alt="" src="img/step5a.png"/></p>
+    
+    <li>Ship it!</li>
+    
+</ol>
+
+
+
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-600478-9");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
