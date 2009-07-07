@@ -14,13 +14,13 @@
 #pragma mark -
 #pragma mark Methods
 
-static JSValueRef PKPattern_invertedPattern(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
-    PKPreconditionInstaceOf(PKPattern_class, "invertedPattern");
-    
-    PKPattern *data = JSObjectGetPrivate(this);
-    return PKPattern_new(ctx, [data invertedPattern]);
-}
-
+//static JSValueRef PKPattern_invertedPattern(JSContextRef ctx, JSObjectRef function, JSObjectRef this, size_t argc, const JSValueRef argv[], JSValueRef *ex) {
+//    PKPreconditionInstaceOf(PKPattern_class, "invertedPattern");
+//    
+//    PKPattern *data = JSObjectGetPrivate(this);
+//    return PKPattern_new(ctx, [data invertedPattern]);
+//}
+//
 #pragma mark -
 #pragma mark Properties
 
@@ -36,7 +36,7 @@ static void PKPattern_finalize(JSObjectRef this) {
 }
 
 static JSStaticFunction PKPattern_staticFunctions[] = {
-{ "invertedPattern", PKPattern_invertedPattern, kJSPropertyAttributeDontDelete },
+//{ "invertedPattern", PKPattern_invertedPattern, kJSPropertyAttributeDontDelete },
 { 0, 0, 0 }
 };
 
