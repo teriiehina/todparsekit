@@ -309,7 +309,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     a = [self.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
     a.target = nil;
-    return [res className];
+    return NSStringFromClass([res class]);
 }
 
 
