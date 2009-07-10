@@ -51,11 +51,19 @@
         <div>You will now see the <tt>ParseKitMobile</tt> target appearing as a dependency under your app's Target.</div>
         <p><img alt="" src="img/step4b.png"/></p>
     </li>
+    <li>
+        <p>Next click the <tt>+</tt> button below the <tt>Linked Libraries</tt> list in the same window. Select <tt>libicucore.dylib</tt> and click <tt>Add</tt>. (This is for regular expression features in the <tt>PKPattern</tt> class.)</p>
+        <p><img alt="" src="img/step5a.png"/></p>
+    </li>
+    <li>
+        <div>Under the <tt>Build</tt> tab of your app's Target Info window, edit the <tt>Header Search Paths</tt> Setting to include the path to the <tt>include</tt> folder inside of the ParseKit folder you checked out. Make sure you edit this for <tt>All Configurations</tt>, not just the active one.</div>
+        <p><img alt="" src="img/step6a.png"/></p>
+    </li>
     
     <li>
-        <div>Finally, under the <tt>Build</tt> tab of your app's Target Info window, edit the <tt>Header Search Paths</tt> Setting to include the path to the <tt>include</tt> folder inside of the ParseKit folder you checked out. Make sure you edit this for <tt>All Configurations</tt>, not just the active one.</div>
+        <div>Finally, in the same window, edit the <tt>Other Linker Flags</tt> Setting to include the following flags: <tt>-ObjC -all_load</tt>. (This is needed for code in Objective-C categories in the ParseKit static library to execute successfully.)</div>
+        <p><img alt="" src="img/step7a.png"/></p>
     </li>
-    <p><img alt="" src="img/step5a.png"/></p>
     
     <li>Ship it!</li>
     
