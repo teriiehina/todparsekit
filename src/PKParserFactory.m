@@ -23,6 +23,15 @@
 @property (nonatomic, readwrite, retain) PKParser *subparser;
 @end
 
+@interface PKNegation ()
+@property (nonatomic, readwrite, retain) PKParser *subparser;
+@end
+
+@interface PKDifference ()
+@property (nonatomic, readwrite, retain) PKParser *subparser;
+@property (nonatomic, readwrite, retain) PKParser *minus;
+@end
+
 @interface PKPattern ()
 @property (nonatomic, assign) PKTokenType tokenType;
 @end
@@ -47,6 +56,31 @@ void PKReleaseSubparserTree(PKParser *p) {
             r.subparser = nil;
             PKReleaseSubparserTree(sub);
             [sub release];
+        }
+    } else if ([p isMemberOfClass:[PKNegation class]]) {
+        PKNegation *n = (PKNegation *)p;
+		PKParser *sub = n.subparser;
+        if (sub) {
+            [sub retain];
+            n.subparser = nil;
+            PKReleaseSubparserTree(sub);
+            [sub release];
+        }
+    } else if ([p isMemberOfClass:[PKDifference class]]) {
+        PKDifference *d = (PKDifference *)p;
+		PKParser *sub = d.subparser;
+        if (sub) {
+            [sub retain];
+            d.subparser = nil;
+            PKReleaseSubparserTree(sub);
+            [sub release];
+        }
+		PKParser *m = d.minus;
+        if (m) {
+            [m retain];
+            d.minus = nil;
+            PKReleaseSubparserTree(m);
+            [m release];
         }
     }
 }
