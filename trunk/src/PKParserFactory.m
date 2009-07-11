@@ -8,6 +8,7 @@
 
 #import "PKParserFactory.h"
 #import <ParseKit/ParseKit.h>
+#import "PKGrammarParser.h"
 #import "NSString+ParseKitAdditions.h"
 #import "NSArray+ParseKitAdditions.h"
 
@@ -108,7 +109,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 - (PKAlternation *)zeroOrOne:(PKParser *)p;
 - (PKSequence *)oneOrMore:(PKParser *)p;
-    
+
 - (void)workOnStatement:(PKAssembly *)a;
 - (void)workOnCallback:(PKAssembly *)a;
 - (void)workOnExpression:(PKAssembly *)a;
@@ -131,6 +132,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnOr:(PKAssembly *)a;
 - (void)workOnNegation:(PKAssembly *)a;
 
+@property (nonatomic, retain) PKGrammarParser *grammarParser;
 @property (nonatomic, assign) id assembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
@@ -138,39 +140,6 @@ void PKReleaseSubparserTree(PKParser *p) {
 @property (nonatomic, retain) PKToken *equals;
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *paren;
-@property (nonatomic, retain) PKCollectionParser *statementParser;
-@property (nonatomic, retain) PKCollectionParser *declarationParser;
-@property (nonatomic, retain) PKCollectionParser *callbackParser;
-@property (nonatomic, retain) PKCollectionParser *selectorParser;
-@property (nonatomic, retain) PKCollectionParser *exprParser;
-@property (nonatomic, retain) PKCollectionParser *termParser;
-@property (nonatomic, retain) PKCollectionParser *orTermParser;
-@property (nonatomic, retain) PKCollectionParser *factorParser;
-@property (nonatomic, retain) PKCollectionParser *nextFactorParser;
-@property (nonatomic, retain) PKCollectionParser *phraseParser;
-@property (nonatomic, retain) PKCollectionParser *phraseStarParser;
-@property (nonatomic, retain) PKCollectionParser *phrasePlusParser;
-@property (nonatomic, retain) PKCollectionParser *phraseQuestionParser;
-@property (nonatomic, retain) PKCollectionParser *phraseCardinalityParser;
-@property (nonatomic, retain) PKCollectionParser *cardinalityParser;
-@property (nonatomic, retain) PKCollectionParser *primaryExprParser;
-@property (nonatomic, retain) PKCollectionParser *negatedPrimaryExprParser;
-@property (nonatomic, retain) PKCollectionParser *barePrimaryExprParser;
-@property (nonatomic, retain) PKCollectionParser *predicateParser;
-@property (nonatomic, retain) PKCollectionParser *intersectionParser;
-@property (nonatomic, retain) PKCollectionParser *differenceParser;
-@property (nonatomic, retain) PKCollectionParser *atomicValueParser;
-@property (nonatomic, retain) PKCollectionParser *discardedParserParser;
-@property (nonatomic, retain) PKCollectionParser *parserParser;
-@property (nonatomic, retain) PKCollectionParser *discardParser;
-@property (nonatomic, retain) PKCollectionParser *patternParser;
-@property (nonatomic, retain) PKCollectionParser *delimitedStringParser;
-@property (nonatomic, retain) PKParser *literalParser;
-@property (nonatomic, retain) PKParser *variableParser;
-@property (nonatomic, retain) PKParser *constantParser;
-
-@property (nonatomic, retain, readonly) PKParser *whitespaceParser;
-@property (nonatomic, retain, readonly) PKCollectionParser *optionalWhitespaceParser;
 @end
 
 @implementation PKParserFactory
@@ -182,6 +151,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 - (id)init {
     if (self = [super init]) {
+        self.grammarParser = [[[PKGrammarParser alloc] initWithAssembler:self] autorelease];
         self.equals  = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"=" floatValue:0.0];
         self.curly   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.0];
         self.paren   = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.0];
@@ -192,48 +162,22 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 
 - (void)dealloc {
+    self.grammarParser = nil;
+
     assembler = nil; // appease clang static analyzer
-    
-    PKReleaseSubparserTree(statementParser);
-    PKReleaseSubparserTree(exprParser);
-    
+
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
     self.selectorTable = nil;
     self.equals = nil;
     self.curly = nil;
     self.paren = nil;
-    self.statementParser = nil;
-    self.declarationParser = nil;
-    self.callbackParser = nil;
-    self.selectorParser = nil;
-    self.exprParser = nil;
-    self.termParser = nil;
-    self.orTermParser = nil;
-    self.factorParser = nil;
-    self.nextFactorParser = nil;
-    self.phraseParser = nil;
-    self.phraseStarParser = nil;
-    self.phrasePlusParser = nil;
-    self.phraseQuestionParser = nil;
-    self.phraseCardinalityParser = nil;
-    self.cardinalityParser = nil;
-    self.primaryExprParser = nil;
-    self.negatedPrimaryExprParser = nil;
-    self.barePrimaryExprParser = nil;
-    self.predicateParser = nil;
-    self.intersectionParser = nil;
-    self.differenceParser = nil;
-    self.atomicValueParser = nil;
-    self.discardedParserParser = nil;
-    self.parserParser = nil;
-    self.discardParser = nil;
-    self.patternParser = nil;
-    self.delimitedStringParser = nil;
-    self.literalParser = nil;
-    self.variableParser = nil;
-    self.constantParser = nil;
     [super dealloc];
+}
+
+
+- (PKParser *)exprParser {
+    return grammarParser.exprParser;
 }
 
 
@@ -314,7 +258,7 @@ void PKReleaseSubparserTree(PKParser *p) {
             PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
             //a.preservesWhitespaceTokens = YES;
             a.target = target;
-            PKAssembly *res = [self.statementParser completeMatchFor:a];
+            PKAssembly *res = [grammarParser.statementParser completeMatchFor:a];
             target = res.target;
         }
     }
@@ -340,7 +284,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (NSString *)parserClassNameFromTokenArray:(NSArray *)toks {
     PKAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    a = [self.exprParser completeMatchFor:a];
+    a = [grammarParser.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
     a.target = nil;
     return NSStringFromClass([res class]);
@@ -586,7 +530,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (id)expandParser:(PKParser *)p fromTokenArray:(NSArray *)toks {	
     PKAssembly *a = [PKTokenAssembly assemblyWithTokenArray:toks];
     a.target = parserTokensTable;
-    a = [self.exprParser completeMatchFor:a];
+    a = [grammarParser.exprParser completeMatchFor:a];
     PKParser *res = [a pop];
     if ([p isKindOfClass:[PKCollectionParser class]]) {
         PKCollectionParser *cp = (PKCollectionParser *)p;
@@ -604,7 +548,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     t.string = s;
     PKAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
     a.target = [NSMutableDictionary dictionary]; // setup the variable lookup table
-    a = [self.exprParser completeMatchFor:a];
+    a = [grammarParser.exprParser completeMatchFor:a];
     return [a pop];
 }
 
@@ -622,535 +566,6 @@ void PKReleaseSubparserTree(PKParser *p) {
     [s add:p];
     [s add:[PKRepetition repetitionWithSubparser:p]];
     return s;
-}
-
-
-// @start               = statement*;
-// satement             = S* declaration S* '=' expr;
-// callback             = S* '(' S* selector S* ')';
-// selector             = Word ':';
-// expr                 = S* term orTerm* S*;
-// term                 = factor nextFactor*;
-// orTerm               = S* '|' S* term;
-// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
-// nextFactor           = S factor;
-
-// phrase               = primaryExpr predicate*;
-// phraseStar           = phrase S* '*';
-// phrasePlus           = phrase S* '+';
-// phraseQuestion       = phrase S* '?';
-// phraseCardinality    = phrase S* cardinality;
-// cardinality          = '{' S* Number (S* ',' S* Number)? S* '}';
-
-// predicate            = S* (intersection | difference);
-// intersection         = '&' S* primaryExpr;
-// difference           = '-' S* primaryExpr;
-
-// primaryExpr          = negatedPrimaryExpr | barePrimaryExpr;
-// negatedPrimaryExpr   = '!' barePrimaryExpr;
-// barePrimaryExpr      = atomicValue | '(' expr ')';
-// atomicValue          = discardedParser | parser;
-// discardedParser      = discard? parser;
-// parser               = pattern | literal | variable | constant | delimitedString;
-// discard              = '>' S*;
-// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
-// delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
-// literal              = QuotedString;
-// variable             = LowercaseWord;
-// constant             = UppercaseWord;
-
-
-// satement             = S* declaration S* '=' expr;
-- (PKCollectionParser *)statementParser {
-    if (!statementParser) {
-        self.statementParser = [PKSequence sequence];
-        statementParser.name = @"statement";
-        [statementParser add:self.optionalWhitespaceParser];
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:self.declarationParser];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:[PKSymbol symbolWithString:@"="]];
-
-        // accept any tokens in the parser expr the first time around. just gather tokens for later
-        [tr add:[self oneOrMore:[PKAny any]]];
-        
-        [statementParser add:tr];
-        [statementParser setAssembler:self selector:@selector(workOnStatement:)];
-    }
-    return statementParser;
-}
-
-
-// declaration          = Word callback?;
-- (PKCollectionParser *)declarationParser {
-    if (!declarationParser) {
-        self.declarationParser = [PKSequence sequence];
-        declarationParser.name = @"declaration";
-        [declarationParser add:[PKWord word]];
-        [declarationParser add:[self zeroOrOne:self.callbackParser]];
-    }
-    return declarationParser;
-}
-
-
-// callback             = S* '(' S* selector S* ')';
-- (PKCollectionParser *)callbackParser {
-    if (!callbackParser) {
-        self.callbackParser = [PKSequence sequence];
-        callbackParser.name = @"callback";
-        [callbackParser add:self.optionalWhitespaceParser];
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:[[PKSymbol symbolWithString:@"("] discard]];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:self.selectorParser];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:[[PKSymbol symbolWithString:@")"] discard]];
-        
-        [callbackParser add:tr];
-        [callbackParser setAssembler:self selector:@selector(workOnCallback:)];
-    }
-    return callbackParser;
-}
-
-
-// selector             = Word ':';
-- (PKCollectionParser *)selectorParser {
-    if (!selectorParser) {
-        self.selectorParser = [PKTrack track];
-        selectorParser.name = @"selector";
-        [selectorParser add:[PKLowercaseWord word]];
-        [selectorParser add:[[PKSymbol symbolWithString:@":"] discard]];
-    }
-    return selectorParser;
-}
-
-
-// expr        = S* term orTerm* S*;
-- (PKCollectionParser *)exprParser {
-    if (!exprParser) {
-        self.exprParser = [PKSequence sequence];
-        exprParser.name = @"expr";
-        [exprParser add:self.optionalWhitespaceParser];
-        [exprParser add:self.termParser];
-        [exprParser add:[PKRepetition repetitionWithSubparser:self.orTermParser]];
-        [exprParser add:self.optionalWhitespaceParser];
-        [exprParser setAssembler:self selector:@selector(workOnExpression:)];
-    }
-    return exprParser;
-}
-
-
-// term                = factor nextFactor*;
-- (PKCollectionParser *)termParser {
-    if (!termParser) {
-        self.termParser = [PKSequence sequence];
-        termParser.name = @"term";
-        [termParser add:self.factorParser];
-        [termParser add:[PKRepetition repetitionWithSubparser:self.nextFactorParser]];
-        [termParser setAssembler:self selector:@selector(workOnAnd:)];
-    }
-    return termParser;
-}
-
-
-// orTerm               = S* '|' S* term;
-- (PKCollectionParser *)orTermParser {
-    if (!orTermParser) {
-        self.orTermParser = [PKSequence sequence];
-        orTermParser.name = @"orTerm";
-        [orTermParser add:self.optionalWhitespaceParser];
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:[PKSymbol symbolWithString:@"|"]]; // preserve as fence
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:self.termParser];
-        
-        [orTermParser add:tr];
-        [orTermParser setAssembler:self selector:@selector(workOnOr:)];
-    }
-    return orTermParser;
-}
-
-
-// factor               = phrase | phraseStar | phrasePlus | phraseQuestion | phraseCardinality;
-- (PKCollectionParser *)factorParser {
-    if (!factorParser) {
-        self.factorParser = [PKAlternation alternation];
-        factorParser.name = @"factor";
-        [factorParser add:self.phraseParser];
-        [factorParser add:self.phraseStarParser];
-        [factorParser add:self.phrasePlusParser];
-        [factorParser add:self.phraseQuestionParser];
-        [factorParser add:self.phraseCardinalityParser];
-    }
-    return factorParser;
-}
-
-
-// nextFactor           = S factor;
-- (PKCollectionParser *)nextFactorParser {
-    if (!nextFactorParser) {
-        self.nextFactorParser = [PKSequence sequence];
-        nextFactorParser.name = @"nextFactor";
-        [nextFactorParser add:self.whitespaceParser];
-
-        PKAlternation *a = [PKAlternation alternation];
-        [a add:self.phraseParser];
-        [a add:self.phraseStarParser];
-        [a add:self.phrasePlusParser];
-        [a add:self.phraseQuestionParser];
-        [a add:self.phraseCardinalityParser];
-
-        [nextFactorParser add:a];
-    }
-    return nextFactorParser;
-}
-
-
-// phrase               = primaryExpr predicate*;
-- (PKCollectionParser *)phraseParser {
-    if (!phraseParser) {
-        self.phraseParser = [PKSequence sequence];
-        phraseParser.name = @"phrase";
-        [phraseParser add:self.primaryExprParser];
-        [phraseParser add:[PKRepetition repetitionWithSubparser:self.predicateParser]];
-    }
-    return phraseParser;
-}
-
-
-// primaryExpr          = negatedPrimaryExpr | barePrimaryExpr;
-- (PKCollectionParser *)primaryExprParser {
-    if (!primaryExprParser) {
-        self.primaryExprParser = [PKAlternation alternation];
-        primaryExprParser.name = @"primaryExpr";
-        [primaryExprParser add:self.negatedPrimaryExprParser];
-        [primaryExprParser add:self.barePrimaryExprParser];
-    }
-    return primaryExprParser;
-}
-
-
-// negatedPrimaryExpr   = '!' barePrimaryExpr;
-- (PKCollectionParser *)negatedPrimaryExprParser {
-    if (!negatedPrimaryExprParser) {
-        self.negatedPrimaryExprParser = [PKSequence sequence];
-        negatedPrimaryExprParser.name = @"negatedPrimaryExpr";
-        [negatedPrimaryExprParser add:[[PKLiteral literalWithString:@"!"] discard]];
-        [negatedPrimaryExprParser add:self.barePrimaryExprParser];
-        [negatedPrimaryExprParser setAssembler:self selector:@selector(workOnNegation:)];
-    }
-    return negatedPrimaryExprParser;
-}
-
-
-// barePrimaryExpr          = atomicValue | '(' expr ')';
-- (PKCollectionParser *)barePrimaryExprParser {
-    if (!barePrimaryExprParser) {
-        self.barePrimaryExprParser = [PKAlternation alternation];
-        barePrimaryExprParser.name = @"barePrimaryExpr";
-        [barePrimaryExprParser add:self.atomicValueParser];
-
-        PKSequence *s = [PKSequence sequence];
-        [s add:[PKSymbol symbolWithString:@"("]];
-        [s add:self.exprParser];
-        [s add:[[PKSymbol symbolWithString:@")"] discard]];
-        
-        [barePrimaryExprParser add:s];
-    }
-    return barePrimaryExprParser;
-}
-
-
-// predicate            = S* (intersection | difference);
-- (PKCollectionParser *)predicateParser {
-    if (!predicateParser) {
-        self.predicateParser = [PKSequence sequence];
-        predicateParser.name = @"predicate";
-        [predicateParser add:self.optionalWhitespaceParser];
-
-        PKAlternation *a = [PKAlternation alternation];
-        [a add:self.intersectionParser];
-        [a add:self.differenceParser];
-
-        [predicateParser add:a];
-    }
-    return predicateParser;
-}
-
-
-// intersection         = '&' S* primaryExpr;
-- (PKCollectionParser *)intersectionParser {
-    if (!intersectionParser) {
-        self.intersectionParser = [PKTrack track];
-        intersectionParser.name = @"intersection";
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:[[PKSymbol symbolWithString:@"&"] discard]];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:self.primaryExprParser];
-        
-        [intersectionParser add:tr];
-        [intersectionParser setAssembler:self selector:@selector(workOnIntersection:)];
-    }
-    return intersectionParser;
-}
-
-
-// difference            = '-' S* primaryExpr;
-- (PKCollectionParser *)differenceParser {
-    if (!differenceParser) {
-        self.differenceParser = [PKTrack track];
-        differenceParser.name = @"difference";
-
-        PKTrack *tr = [PKTrack track];
-        [tr add:[[PKSymbol symbolWithString:@"-"] discard]];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:self.primaryExprParser];
-        
-        [differenceParser add:tr];
-        [differenceParser setAssembler:self selector:@selector(workOnDifference:)];
-    }
-    return differenceParser;
-}
-
-
-// phraseStar           = phrase S* '*';
-- (PKCollectionParser *)phraseStarParser {
-    if (!phraseStarParser) {
-        self.phraseStarParser = [PKSequence sequence];
-        phraseStarParser.name = @"phraseStar";
-        [phraseStarParser add:self.phraseParser];
-        [phraseStarParser add:self.optionalWhitespaceParser];
-        [phraseStarParser add:[[PKSymbol symbolWithString:@"*"] discard]];
-        [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
-    }
-    return phraseStarParser;
-}
-
-
-// phrasePlus           = phrase S* '+';
-- (PKCollectionParser *)phrasePlusParser {
-    if (!phrasePlusParser) {
-        self.phrasePlusParser = [PKSequence sequence];
-        phrasePlusParser.name = @"phrasePlus";
-        [phrasePlusParser add:self.phraseParser];
-        [phrasePlusParser add:self.optionalWhitespaceParser];
-        [phrasePlusParser add:[[PKSymbol symbolWithString:@"+"] discard]];
-        [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
-    }
-    return phrasePlusParser;
-}
-
-
-// phraseQuestion       = phrase S* '?';
-- (PKCollectionParser *)phraseQuestionParser {
-    if (!phraseQuestionParser) {
-        self.phraseQuestionParser = [PKSequence sequence];
-        phraseQuestionParser.name = @"phraseQuestion";
-        [phraseQuestionParser add:self.phraseParser];
-        [phraseQuestionParser add:self.optionalWhitespaceParser];
-        [phraseQuestionParser add:[[PKSymbol symbolWithString:@"?"] discard]];
-        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
-    }
-    return phraseQuestionParser;
-}
-
-
-// phraseCardinality    = phrase S* cardinality;
-- (PKCollectionParser *)phraseCardinalityParser {
-    if (!phraseCardinalityParser) {
-        self.phraseCardinalityParser = [PKSequence sequence];
-        phraseCardinalityParser.name = @"phraseCardinality";
-        [phraseCardinalityParser add:self.phraseParser];
-        [phraseCardinalityParser add:self.optionalWhitespaceParser];
-        [phraseCardinalityParser add:self.cardinalityParser];
-        [phraseCardinalityParser setAssembler:self selector:@selector(workOnPhraseCardinality:)];
-    }
-    return phraseCardinalityParser;
-}
-
-
-// cardinality          = '{' S* Number (S* ',' S* Number)? S* '}';
-- (PKCollectionParser *)cardinalityParser {
-    if (!cardinalityParser) {
-        self.cardinalityParser = [PKSequence sequence];
-        cardinalityParser.name = @"cardinality";
-        
-        PKTrack *commaNum = [PKSequence sequence];
-        [commaNum add:self.optionalWhitespaceParser];
-        [commaNum add:[[PKSymbol symbolWithString:@","] discard]];
-        [commaNum add:self.optionalWhitespaceParser];
-        [commaNum add:[PKNumber number]];
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:[PKSymbol symbolWithString:@"{"]]; // serves as fence. dont discard
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:[PKNumber number]];
-        [tr add:[self zeroOrOne:commaNum]];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:[[PKSymbol symbolWithString:@"}"] discard]];
-        
-        [cardinalityParser add:tr];
-        [cardinalityParser setAssembler:self selector:@selector(workOnCardinality:)];
-    }
-    return cardinalityParser;
-}
-
-
-// atomicValue          =  discardedParser | parser;
-- (PKCollectionParser *)atomicValueParser {
-    if (!atomicValueParser) {
-        self.atomicValueParser = [PKAlternation alternation];
-        atomicValueParser.name = @"atomicValue";
-        [atomicValueParser add:self.discardedParserParser];
-        [atomicValueParser add:self.parserParser];
-    }
-    return atomicValueParser;
-}
-
-
-// discardedParser              = discard? parser;
-- (PKCollectionParser *)discardedParserParser {
-    if (!discardedParserParser) {
-        self.discardedParserParser = [PKSequence sequence];
-        discardedParserParser.name = @"atomicValue";
-        [discardedParserParser add:self.discardParser];        
-        [discardedParserParser add:self.parserParser];
-        [discardedParserParser setAssembler:self selector:@selector(workOnDiscardedParser:)];
-    }
-    return discardedParserParser;
-}
-
-
-// parser              = pattern | literal | variable | constant | delimitedString;
-- (PKCollectionParser *)parserParser {
-    if (!parserParser) {
-        self.parserParser = [PKAlternation alternation];
-        parserParser.name = @"parser";
-        [parserParser add:self.patternParser];
-        [parserParser add:self.literalParser];
-        [parserParser add:self.variableParser];
-        [parserParser add:self.constantParser];
-        [parserParser add:self.delimitedStringParser];
-    }
-    return parserParser;
-}
-
-
-// discard              = '>' S*;
-- (PKCollectionParser *)discardParser {
-    if (!discardParser) {
-        self.discardParser = [PKSequence sequence];
-        discardParser.name = @"discardParser";
-        [discardParser add:[[PKSymbol symbolWithString:@">"] discard]]; // preserve
-        [discardParser add:self.optionalWhitespaceParser];
-    }
-    return discardParser;
-}
-
-
-// pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
-- (PKCollectionParser *)patternParser {
-    if (!patternParser) {
-        patternParser.name = @"pattern";
-        self.patternParser = [PKSequence sequence];
-        [patternParser add:[PKDelimitedString delimitedStringWithStartMarker:@"/" endMarker:@"/"]];
-        
-        PKParser *opts = [PKPattern patternWithString:@"[imxsw]+" options:PKPatternOptionsNone];
-        PKIntersection *inter = [PKIntersection intersection];
-        [inter add:[PKWord word]];
-        [inter add:opts];
-        [inter setAssembler:self selector:@selector(workOnPatternOptions:)];
-        
-        [patternParser add:[self zeroOrOne:inter]];
-        [patternParser setAssembler:self selector:@selector(workOnPattern:)];
-    }
-    return patternParser;
-}
-
-
-// delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
-- (PKCollectionParser *)delimitedStringParser {
-    if (!delimitedStringParser) {
-        self.delimitedStringParser = [PKTrack track];
-        delimitedStringParser.name = @"delimitedString";
-        
-        PKSequence *secondArg = [PKSequence sequence];
-        [secondArg add:self.optionalWhitespaceParser];
-        
-        PKTrack *tr = [PKTrack track];
-        [tr add:[[PKSymbol symbolWithString:@","] discard]];
-        [tr add:self.optionalWhitespaceParser];
-        [tr add:[PKQuotedString quotedString]]; // endMarker
-        [secondArg add:tr];
-        
-        [delimitedStringParser add:[[PKLiteral literalWithString:@"DelimitedString"] discard]];
-        [delimitedStringParser add:self.optionalWhitespaceParser];
-        [delimitedStringParser add:[PKSymbol symbolWithString:@"("]]; // preserve as fence
-        [delimitedStringParser add:self.optionalWhitespaceParser];
-        [delimitedStringParser add:[PKQuotedString quotedString]]; // startMarker
-        [delimitedStringParser add:[self zeroOrOne:secondArg]];
-        [delimitedStringParser add:self.optionalWhitespaceParser];
-        [delimitedStringParser add:[[PKSymbol symbolWithString:@")"] discard]];
-        
-        [delimitedStringParser setAssembler:self selector:@selector(workOnDelimitedString:)];
-    }
-    return delimitedStringParser;
-}
-
-
-// literal              = QuotedString;
-- (PKParser *)literalParser {
-    if (!literalParser) {
-        self.literalParser = [PKQuotedString quotedString];
-        [literalParser setAssembler:self selector:@selector(workOnLiteral:)];
-    }
-    return literalParser;
-}
-
-
-// variable             = LowercaseWord;
-- (PKParser *)variableParser {
-    if (!variableParser) {
-        self.variableParser = [PKLowercaseWord word];
-        variableParser.name = @"variable";
-        [variableParser setAssembler:self selector:@selector(workOnVariable:)];
-    }
-    return variableParser;
-}
-
-
-// constant             = UppercaseWord;
-- (PKParser *)constantParser {
-    if (!constantParser) {
-        self.constantParser = [PKUppercaseWord word];
-        constantParser.name = @"constant";
-        [constantParser setAssembler:self selector:@selector(workOnConstant:)];
-    }
-    return constantParser;
-}
-
-
-- (PKParser *)whitespaceParser {
-    return [[PKWhitespace whitespace] discard];
-}
-
-
-- (PKCollectionParser *)optionalWhitespaceParser {
-    return [PKRepetition repetitionWithSubparser:self.whitespaceParser];
-}
-
-
-- (void)workOnDiscardedParser:(PKAssembly *)a {
-    id obj = [a pop];
-    if ([obj isKindOfClass:[PKTerminal class]]) {
-        PKTerminal *t = (PKTerminal *)obj;
-        [t discard];
-    }
-    [a push:obj];
 }
 
 
@@ -1317,6 +732,16 @@ void PKReleaseSubparserTree(PKParser *p) {
     PKTerminal *t = [PKPattern patternWithString:re options:opts];
     
     [a push:t];
+}
+
+
+- (void)workOnDiscardedParser:(PKAssembly *)a {
+    id obj = [a pop];
+    if ([obj isKindOfClass:[PKTerminal class]]) {
+        PKTerminal *t = (PKTerminal *)obj;
+        [t discard];
+    }
+    [a push:obj];
 }
 
 
@@ -1513,6 +938,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     [a push:[PKNegation negationWithSubparser:p]];
 }
 
+@synthesize grammarParser;
 @synthesize assembler;
 @synthesize parserTokensTable;
 @synthesize parserClassTable;
@@ -1520,35 +946,5 @@ void PKReleaseSubparserTree(PKParser *p) {
 @synthesize equals;
 @synthesize curly;
 @synthesize paren;
-@synthesize statementParser;
-@synthesize declarationParser;
-@synthesize callbackParser;
-@synthesize selectorParser;
-@synthesize exprParser;
-@synthesize termParser;
-@synthesize orTermParser;
-@synthesize factorParser;
-@synthesize nextFactorParser;
-@synthesize phraseParser;
-@synthesize phraseStarParser;
-@synthesize phrasePlusParser;
-@synthesize phraseQuestionParser;
-@synthesize phraseCardinalityParser;
-@synthesize cardinalityParser;
-@synthesize primaryExprParser;
-@synthesize negatedPrimaryExprParser;
-@synthesize barePrimaryExprParser;
-@synthesize predicateParser;
-@synthesize intersectionParser;
-@synthesize differenceParser;
-@synthesize atomicValueParser;
-@synthesize discardedParserParser;
-@synthesize parserParser;
-@synthesize discardParser;
-@synthesize patternParser;
-@synthesize delimitedStringParser;
-@synthesize literalParser;
-@synthesize variableParser;
-@synthesize constantParser;
 @synthesize assemblerSettingBehavior;
 @end
