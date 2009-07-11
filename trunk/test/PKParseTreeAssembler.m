@@ -7,68 +7,48 @@
 //
 
 #import "PKParseTreeAssembler.h"
+#import "PKParseTree.h"
+#import "PKRuleNode.h"
+#import "PKTokenNode.h"
 #import <ParseKit/ParseKit.h>
 
-static const char *sPrefix = "workOn";
-static const NSInteger sPrefixLen = 6;
-
 @interface PKParseTreeAssembler ()
-- (BOOL)isAssemblerSelector:(SEL)sel;
-- (NSString *)productionNameFromSelector:(SEL)sel;
-- (void)workOnProductionNamed:(NSString *)name assembly:(PKAssembly *)a;
+@property (nonatomic, retain, readwrite) PKParseTree *rootNode;
+@property (nonatomic, assign, readwrite) PKParseTree *currentNode;
 @end
 
 @implementation PKParseTreeAssembler
 
-- (BOOL)isAssemblerSelector:(SEL)sel {
-    char *s = (char *)sel;
-    return strlen(s) > 7 && !strncmp(s, sPrefix, sPrefixLen);
-}
-
-
-- (NSString *)productionNameFromSelector:(SEL)sel {
-    NSString *name = NSStringFromSelector(sel);
-    name = [name substringWithRange:NSMakeRange(sPrefixLen, [name length] - (sPrefixLen + 1))];
-    name = [NSString stringWithFormat:@"%C%@", tolower([name characterAtIndex:0]), [name substringFromIndex:1]];
-    return name;
-}
-
-
-- (BOOL)respondsToSelector:(SEL)sel {
-    if ([super respondsToSelector:sel]) {
-        return YES;
-    } else if ([self isAssemblerSelector:sel]) {
-        return YES;
+- (id)init {
+    if (self = [super init]) {
+        self.rootNode = [[[PKParseTree alloc] init] autorelease];
+        self.currentNode = rootNode;
     }
-
-    return NO;
+    return self;
 }
 
 
-//- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-//    if ([self isAssemblerSelector:sel]) {
-//        return [NSObject instanceMethodSignatureForSelector:sel];
-//    } else {
-//        return [super methodSignatureForSelector:sel];
-//    }
-//}
-
-
-- (void)forwardInvocation:(NSInvocation *)invoc {
-    SEL sel = [invoc selector];
-    
-    if ([self isAssemblerSelector:sel]) {
-        PKAssembly *a = nil;
-        [invoc getArgument:a atIndex:0];
-        [self workOnProductionNamed:[self productionNameFromSelector:sel] assembly:a];
-    } else {
-        [self doesNotRecognizeSelector:sel];
-    }
+- (void)dealloc {
+    self.rootNode = nil;
+    currentNode = nil;
+    [super dealloc];
 }
 
 
-- (void)workOnProductionNamed:(NSString *)name assembly:(PKAssembly *)a {
-    
+- (void)workOnRule:(PKAssembly *)a {
+    id name = [a pop];
+    NSAssert([name isKindOfClass:[NSString class]], @"");
+    PKRuleNode *n = [currentNode addChildRule:name];
+    self.currentNode = n;
 }
 
+
+- (void)workOnToken:(PKAssembly *)a {
+    id tok = [a pop];
+    NSAssert([tok isKindOfClass:[PKToken class]], @"");
+    [currentNode addChildToken:tok];
+}
+
+@synthesize rootNode;
+@synthesize currentNode;
 @end

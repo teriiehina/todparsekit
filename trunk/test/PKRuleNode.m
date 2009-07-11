@@ -15,7 +15,7 @@
 @implementation PKRuleNode
 
 + (id)ruleNodeWithName:(NSString *)s {
-    return [self initWithName:s];
+    return [[[self alloc] initWithName:s] autorelease];
 }
 
 

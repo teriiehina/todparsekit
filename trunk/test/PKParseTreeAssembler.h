@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PKParseTreeAssembler : NSObject {
+@class PKParseTree;
+@class PKAssembly;
 
+@interface PKParseTreeAssembler : NSObject {
+    PKParseTree *rootNode;
+    PKParseTree *currentNode;
 }
 
+- (void)workOnRule:(PKAssembly *)a;
+- (void)workOnToken:(PKAssembly *)a;
+
+@property (nonatomic, retain, readonly) PKParseTree *rootNode;
+@property (nonatomic, assign, readonly) PKParseTree *currentNode; //weak ref
 @end
