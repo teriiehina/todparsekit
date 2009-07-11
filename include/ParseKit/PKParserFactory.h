@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class PKGrammarParser;
 @class PKToken;
 @class PKTokenizer;
 @class PKParser;
@@ -24,6 +25,7 @@ typedef enum {
 
 @interface PKParserFactory : NSObject {
     PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
+    PKGrammarParser *grammarParser;
     id assembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
@@ -32,40 +34,12 @@ typedef enum {
     PKToken *curly;
     PKToken *paren;
     BOOL isGatheringClasses;
-    PKCollectionParser *statementParser;
-    PKCollectionParser *declarationParser;
-    PKCollectionParser *callbackParser;
-    PKCollectionParser *selectorParser;
-    PKCollectionParser *exprParser;
-    PKCollectionParser *termParser;
-    PKCollectionParser *orTermParser;
-    PKCollectionParser *factorParser;
-    PKCollectionParser *nextFactorParser;
-    PKCollectionParser *phraseParser;
-    PKCollectionParser *phraseStarParser;
-    PKCollectionParser *phrasePlusParser;
-    PKCollectionParser *phraseQuestionParser;
-    PKCollectionParser *phraseCardinalityParser;
-    PKCollectionParser *cardinalityParser;
-    PKCollectionParser *primaryExprParser;
-    PKCollectionParser *negatedPrimaryExprParser;
-    PKCollectionParser *barePrimaryExprParser;
-    PKCollectionParser *predicateParser;
-    PKCollectionParser *intersectionParser;
-    PKCollectionParser *differenceParser;
-    PKCollectionParser *atomicValueParser;
-    PKCollectionParser *discardedParserParser;
-    PKCollectionParser *parserParser;
-    PKCollectionParser *discardParser;
-    PKCollectionParser *patternParser;
-    PKCollectionParser *delimitedStringParser;
-    PKParser *literalParser;
-    PKParser *variableParser;
-    PKParser *constantParser;
 }
 + (id)factory;
 
 - (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
+
+- (PKCollectionParser *)exprParser;
 
 @property (nonatomic) PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
 @end
