@@ -85,6 +85,14 @@
 		D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D33494720E29670B00406085 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
+		D3376D1410091C8B00E4602E /* PKParseTreeAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D1310091C8B00E4602E /* PKParseTreeAssembler.m */; };
+		D3376D1510091C8B00E4602E /* PKParseTreeAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D1310091C8B00E4602E /* PKParseTreeAssembler.m */; };
+		D3376D331009299900E4602E /* PKRuleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D321009299900E4602E /* PKRuleNode.m */; };
+		D3376D341009299900E4602E /* PKRuleNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D321009299900E4602E /* PKRuleNode.m */; };
+		D3376D3B10092A5100E4602E /* PKTokenNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D3A10092A5100E4602E /* PKTokenNode.m */; };
+		D3376D3C10092A5100E4602E /* PKTokenNode.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D3A10092A5100E4602E /* PKTokenNode.m */; };
+		D3376D4510092B9F00E4602E /* PKParseTree.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D4410092B9F00E4602E /* PKParseTree.m */; };
+		D3376D4610092B9F00E4602E /* PKParseTree.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D4410092B9F00E4602E /* PKParseTree.m */; };
 		D3385FD90FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */; };
 		D3385FDE0FCFB227003BF729 /* TDPredicateEvaluatorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3385FDC0FCFB227003BF729 /* TDPredicateEvaluatorTest.m */; };
@@ -726,6 +734,14 @@
 		D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilder.h; path = test/TDNSPredicateBuilder.h; sourceTree = "<group>"; };
 		D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilder.m; path = test/TDNSPredicateBuilder.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3376D1210091C8B00E4602E /* PKParseTreeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTreeAssembler.h; path = test/PKParseTreeAssembler.h; sourceTree = "<group>"; };
+		D3376D1310091C8B00E4602E /* PKParseTreeAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKParseTreeAssembler.m; path = test/PKParseTreeAssembler.m; sourceTree = "<group>"; };
+		D3376D311009299900E4602E /* PKRuleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKRuleNode.h; path = test/PKRuleNode.h; sourceTree = "<group>"; };
+		D3376D321009299900E4602E /* PKRuleNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKRuleNode.m; path = test/PKRuleNode.m; sourceTree = "<group>"; };
+		D3376D3910092A5100E4602E /* PKTokenNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTokenNode.h; path = test/PKTokenNode.h; sourceTree = "<group>"; };
+		D3376D3A10092A5100E4602E /* PKTokenNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenNode.m; path = test/PKTokenNode.m; sourceTree = "<group>"; };
+		D3376D4310092B9F00E4602E /* PKParseTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTree.h; path = test/PKParseTree.h; sourceTree = "<group>"; };
+		D3376D4410092B9F00E4602E /* PKParseTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKParseTree.m; path = test/PKParseTree.m; sourceTree = "<group>"; };
 		D3385FD70FCFB1FF003BF729 /* TDPredicateEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluator.h; path = test/TDPredicateEvaluator.h; sourceTree = "<group>"; };
 		D3385FD80FCFB1FF003BF729 /* TDPredicateEvaluator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPredicateEvaluator.m; path = test/TDPredicateEvaluator.m; sourceTree = "<group>"; };
 		D3385FDB0FCFB227003BF729 /* TDPredicateEvaluatorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDPredicateEvaluatorTest.h; path = test/TDPredicateEvaluatorTest.h; sourceTree = "<group>"; };
@@ -1079,7 +1095,7 @@
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
 		D3F741BD0EF9F28D00559B9F /* css2_1.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = css2_1.grammar; path = res/css2_1.grammar; sourceTree = "<group>"; };
 		D3FD791F0F4CC86800BAD816 /* rubyhash.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = rubyhash.grammar; path = res/rubyhash.grammar; sourceTree = "<group>"; };
-		D3FDC5830FFC4BFC00F1F797 /* parsekit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = parsekit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3FDC5830FFC4BFC00F1F797 /* libparsekit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libparsekit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FDC7360FFC4D6100F1F797 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3FDC7380FFC4D6100F1F797 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		D3FDC74B0FFC4DAC00F1F797 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1172,7 +1188,7 @@
 				D33494100E2963FD00406085 /* DemoApp.app */,
 				D34185040E520D3F0081B0DC /* DebugApp.app */,
 				D389F2030F196A7500558235 /* JSDemoApp.app */,
-				D3FDC5830FFC4BFC00F1F797 /* parsekit.a */,
+				D3FDC5830FFC4BFC00F1F797 /* libparsekit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1320,6 +1336,21 @@
 				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
 			);
 			name = DemoApp;
+			sourceTree = "<group>";
+		};
+		D3376D1110091C6C00E4602E /* ParseTree */ = {
+			isa = PBXGroup;
+			children = (
+				D3376D1210091C8B00E4602E /* PKParseTreeAssembler.h */,
+				D3376D1310091C8B00E4602E /* PKParseTreeAssembler.m */,
+				D3376D4310092B9F00E4602E /* PKParseTree.h */,
+				D3376D4410092B9F00E4602E /* PKParseTree.m */,
+				D3376D311009299900E4602E /* PKRuleNode.h */,
+				D3376D321009299900E4602E /* PKRuleNode.m */,
+				D3376D3910092A5100E4602E /* PKTokenNode.h */,
+				D3376D3A10092A5100E4602E /* PKTokenNode.m */,
+			);
+			name = ParseTree;
 			sourceTree = "<group>";
 		};
 		D341846A0E5209A60081B0DC /* tokenizer */ = {
@@ -1820,6 +1851,7 @@
 		D3C7D8220A411F31005DD154 /* ParseKit Tests */ = {
 			isa = PBXGroup;
 			children = (
+				D3376D1110091C6C00E4602E /* ParseTree */,
 				D3F0E36C0FFEA33700C9DF74 /* Tests-Info.plist */,
 				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
@@ -2427,7 +2459,7 @@
 			);
 			name = ParseKitMobile;
 			productName = ParseKitMobile;
-			productReference = D3FDC5830FFC4BFC00F1F797 /* parsekit.a */;
+			productReference = D3FDC5830FFC4BFC00F1F797 /* libparsekit.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -2679,6 +2711,10 @@
 				D3385FDA0FCFB1FF003BF729 /* TDPredicateEvaluator.m in Sources */,
 				D355C62E0FE9EFD6006A91A4 /* TDNSPredicateEvaluator.m in Sources */,
 				D3BBBC9D0FEC9756007DF30D /* TDXMLParser.m in Sources */,
+				D3376D1510091C8B00E4602E /* PKParseTreeAssembler.m in Sources */,
+				D3376D341009299900E4602E /* PKRuleNode.m in Sources */,
+				D3376D3C10092A5100E4602E /* PKTokenNode.m in Sources */,
+				D3376D4610092B9F00E4602E /* PKParseTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2841,6 +2877,10 @@
 				D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */,
 				D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */,
 				D3126D0B0FFD9E4B00CBF4C4 /* TDNegationTest.m in Sources */,
+				D3376D1410091C8B00E4602E /* PKParseTreeAssembler.m in Sources */,
+				D3376D331009299900E4602E /* PKRuleNode.m in Sources */,
+				D3376D3B10092A5100E4602E /* PKTokenNode.m in Sources */,
+				D3376D4510092B9F00E4602E /* PKParseTree.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
