@@ -22,6 +22,7 @@
     NSMutableString *stringbuf;
     NSUInteger offset;
     PKTokenizerState *fallbackState;
+    NSMutableArray *fallbackStates;
 }
 
 /*!
@@ -32,6 +33,14 @@
     @result     a token that represents a logical piece of the reader
 */
 - (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t;
+
+/*!
+    @brief      Change the state this state will defer to upon reading any character between "start" and "end".
+    @param      state the fallback state for this character range
+    @param      start the "start" character. e.g. <tt>'a'</tt> or <tt>65</tt>.
+    @param      end the "end" character. <tt>'z'</tt> or <tt>90</tt>.
+*/
+- (void)setFallbackState:(PKTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end;
 
 /*!
     @property   fallbackState
