@@ -20,4 +20,6 @@
 - (id)initWithToken:(PKToken *)tok;
 
 - (void)addChild:(PKAST *)c;
+- (BOOL)isNil;
+
 @end

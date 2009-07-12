@@ -40,11 +40,49 @@
 }
 
 
+- (NSString *)description {
+    return [token stringValue];
+}
+
+
+- (NSString *)treeDescription {
+    if (![children count]) {
+        return [self description];
+    }
+    
+    NSMutableString *ms = [NSMutableString string];
+    
+    if (![self isNil]) {
+        [ms appendFormat:@"(%@ ", [self description]];
+    }
+
+    NSInteger i = 0;
+    for (PKAST *child in children) {
+        if (i++) {
+            [ms appendFormat:@" %@", child];
+        } else {
+            [ms appendFormat:@"%@", child];
+        }
+    }
+    
+    if (![self isNil]) {
+        [ms appendString:@")"];
+    }
+    
+    return [[ms copy] autorelease];
+}
+
+
 - (void)addChild:(PKAST *)c {
     if (!children) {
         self.children = [NSMutableArray array];
     }
     [children addObject:c];
+}
+
+
+- (BOOL)isNil {
+    return !token;
 }
 
 @synthesize token;
