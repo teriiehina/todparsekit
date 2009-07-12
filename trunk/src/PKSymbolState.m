@@ -18,9 +18,13 @@
 
 @interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 @end
 
 @interface PKSymbolState ()
+- (PKToken *)symbolTokenWith:(PKUniChar)cin;
+- (PKToken *)symbolTokenWithSymbol:(NSString *)s;
+
 @property (nonatomic, retain) PKSymbolRootNode *rootNode;
 @property (nonatomic, retain) NSMutableArray *addedSymbols;
 @end
@@ -51,14 +55,19 @@
     NSUInteger len = symbol.length;
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:symbol floatValue:0.0];
-        tok.offset = offset;
-        return tok;
+        return [self symbolTokenWithSymbol:symbol];
     } else {
         [r unread:len - 1];
-        PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:[NSString stringWithFormat:@"%C", cin] floatValue:0.0];
-        tok.offset = offset;
-        return tok;
+        if (1 == len) {
+            return [self symbolTokenWith:cin];
+        } else {
+            PKTokenizerState *state = [self nextTokenizerStateFor:cin tokenizer:t];
+            if (!state || state == self) {
+                return [self symbolTokenWith:cin];
+            } else {
+                return [state nextTokenFromReader:r startingWith:cin tokenizer:t];
+            }
+        }
     }
 }
 
@@ -74,6 +83,18 @@
     NSParameterAssert(s);
     [rootNode remove:s];
     [addedSymbols removeObject:s];
+}
+
+
+- (PKToken *)symbolTokenWith:(PKUniChar)cin {
+    return [self symbolTokenWithSymbol:[NSString stringWithFormat:@"%C", cin]];
+}
+
+
+- (PKToken *)symbolTokenWithSymbol:(NSString *)s {
+    PKToken *tok = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:s floatValue:0.0];
+    tok.offset = offset;
+    return tok;
 }
 
 @synthesize rootNode;

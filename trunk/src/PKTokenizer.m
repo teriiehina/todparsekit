@@ -9,6 +9,8 @@
 #import <ParseKit/PKTokenizer.h>
 #import <ParseKit/ParseKit.h>
 
+#define STATE_COUNT 256
+
 @interface PKToken ()
 @property (nonatomic, readwrite) NSUInteger offset;
 @end
@@ -50,10 +52,10 @@
         self.wordState       = [[[PKWordState alloc] init] autorelease];
         self.delimitState    = [[[PKDelimitState alloc] init] autorelease];
         
-        self.tokenizerStates = [NSMutableArray arrayWithCapacity:256];
+        self.tokenizerStates = [NSMutableArray arrayWithCapacity:STATE_COUNT];
         
         NSInteger i = 0;
-        for ( ; i < 256; i++) {
+        for ( ; i < STATE_COUNT; i++) {
             [tokenizerStates addObject:[self defaultTokenizerStateFor:i]];
         }
 

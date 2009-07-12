@@ -105,6 +105,7 @@
 		D34BAC230FF87F8600D7773A /* TDParserFactoryTest3.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */; };
 		D34BAC4B0FF892C200D7773A /* XPathParserGrammarTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */; };
 		D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
+		D34BAD18100A9B7900996341 /* TDTokenizerStateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAD17100A9B7900996341 /* TDTokenizerStateTest.m */; };
 		D34BAD640FF9C6AE00D7773A /* ParseKit_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = D34BAD630FF9C6AE00D7773A /* ParseKit_Prefix.pch */; };
 		D34BAD9D0FF9C95800D7773A /* PKReader.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAD9B0FF9C95800D7773A /* PKReader.m */; };
 		D34BADA20FF9C9B000D7773A /* PKAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BADA00FF9C9B000D7773A /* PKAssembly.m */; };
@@ -761,6 +762,8 @@
 		D34BAC220FF87F8600D7773A /* TDParserFactoryTest3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest3.m; path = test/TDParserFactoryTest3.m; sourceTree = "<group>"; };
 		D34BAC490FF892C200D7773A /* XPathParserGrammarTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathParserGrammarTest.h; path = test/XPathParserGrammarTest.h; sourceTree = "<group>"; };
 		D34BAC4A0FF892C200D7773A /* XPathParserGrammarTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathParserGrammarTest.m; path = test/XPathParserGrammarTest.m; sourceTree = "<group>"; };
+		D34BAD16100A9B7900996341 /* TDTokenizerStateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerStateTest.h; path = test/TDTokenizerStateTest.h; sourceTree = "<group>"; };
+		D34BAD17100A9B7900996341 /* TDTokenizerStateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerStateTest.m; path = test/TDTokenizerStateTest.m; sourceTree = "<group>"; };
 		D34BAD630FF9C6AE00D7773A /* ParseKit_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParseKit_Prefix.pch; sourceTree = "<group>"; };
 		D34BAD9B0FF9C95800D7773A /* PKReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKReader.m; path = src/PKReader.m; sourceTree = "<group>"; };
 		D34BADA00FF9C9B000D7773A /* PKAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAssembly.m; path = src/PKAssembly.m; sourceTree = "<group>"; };
@@ -1468,6 +1471,8 @@
 		D35420EC0DFB275400429B4F /* tokenizer states */ = {
 			isa = PBXGroup;
 			children = (
+				D34BAD16100A9B7900996341 /* TDTokenizerStateTest.h */,
+				D34BAD17100A9B7900996341 /* TDTokenizerStateTest.m */,
 				D31FE5770E60E58C00A0803E /* TDNumberStateTest.h */,
 				D31FE5780E60E58C00A0803E /* TDNumberStateTest.m */,
 				D31FE5790E60E58C00A0803E /* TDQuoteStateTest.h */,
@@ -2913,6 +2918,7 @@
 				D3376D3B10092A5100E4602E /* PKTokenNode.m in Sources */,
 				D3376D4510092B9F00E4602E /* PKParseTree.m in Sources */,
 				D3376D8E10096C0700E4602E /* PKAST.m in Sources */,
+				D34BAD18100A9B7900996341 /* TDTokenizerStateTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

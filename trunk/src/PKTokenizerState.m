@@ -11,6 +11,8 @@
 #import <ParseKit/PKReader.h>
 #import <ParseKit/PKTypes.h>
 
+#define STATE_COUNT 256
+
 @interface PKTokenizer ()
 - (PKTokenizerState *)defaultTokenizerStateFor:(PKUniChar)c;
 @end
@@ -24,6 +26,7 @@
 
 @property (nonatomic, retain) NSMutableString *stringbuf;
 @property (nonatomic) NSUInteger offset;
+@property (nonatomic, retain) NSMutableArray *fallbackStates;
 @end
 
 @implementation PKTokenizerState
@@ -31,6 +34,7 @@
 - (void)dealloc {
     self.stringbuf = nil;
     self.fallbackState = nil;
+    self.fallbackStates = nil;
     [super dealloc];
 }
 
@@ -38,6 +42,27 @@
 - (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSAssert1(0, @"PKTokenizerState is an abstract classs. %s must be overriden", _cmd);
     return nil;
+}
+
+
+- (void)setFallbackState:(PKTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end {
+    NSParameterAssert(start >= 0 && start < STATE_COUNT);
+    NSParameterAssert(end >= 0 && end < STATE_COUNT);
+    
+    if (!fallbackStates) {
+        self.fallbackStates = [NSMutableArray arrayWithCapacity:STATE_COUNT];
+
+        NSInteger i = 0;
+        for ( ; i < STATE_COUNT; i++) {
+            [fallbackStates addObject:[NSNull null]];
+        }
+        
+    }
+
+    NSInteger i = start;
+    for ( ; i <= end; i++) {
+        [fallbackStates replaceObjectAtIndex:i withObject:state];
+    }
 }
 
 
@@ -65,6 +90,15 @@
 
 
 - (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t {
+    NSParameterAssert(c < STATE_COUNT);
+    
+    if (fallbackStates) {
+        id obj = [fallbackStates objectAtIndex:c];
+        if ([NSNull null] != obj) {
+            return obj;
+        }
+    }
+    
     if (fallbackState) {
         return fallbackState;
     } else {
@@ -75,4 +109,5 @@
 @synthesize stringbuf;
 @synthesize offset;
 @synthesize fallbackState;
+@synthesize fallbackStates;
 @end
