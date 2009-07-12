@@ -19,6 +19,8 @@
 
 - (id)initWithToken:(PKToken *)tok;
 
+- (NSInteger)type;
+
 - (void)addChild:(PKAST *)c;
 - (BOOL)isNil;
 
