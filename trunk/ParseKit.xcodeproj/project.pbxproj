@@ -779,6 +779,10 @@
 		D34BAE190FF9CE0E00D7773A /* PKTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTrack.m; path = src/PKTrack.m; sourceTree = "<group>"; };
 		D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTrackException.m; path = src/PKTrackException.m; sourceTree = "<group>"; };
 		D34BAE2F0FF9CE6000D7773A /* PKAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAny.m; path = src/PKAny.m; sourceTree = "<group>"; };
+		D34BAE3C100ADF5800996341 /* PKNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKNumberState.h; path = test/PKNumberState.h; sourceTree = "<group>"; };
+		D34BAE3D100ADF5800996341 /* PKNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKNumberState.m; path = test/PKNumberState.m; sourceTree = "<group>"; };
+		D34BAE3E100ADF5800996341 /* PKScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKScientificNumberState.h; path = test/PKScientificNumberState.h; sourceTree = "<group>"; };
+		D34BAE3F100ADF5800996341 /* PKScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKScientificNumberState.m; path = test/PKScientificNumberState.m; sourceTree = "<group>"; };
 		D34BAE8B0FF9D15100D7773A /* PKTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenAssembly.m; path = src/PKTokenAssembly.m; sourceTree = "<group>"; };
 		D34BAE950FF9D20900D7773A /* PKToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKToken.m; path = src/PKToken.m; sourceTree = "<group>"; };
 		D34BAE970FF9D20900D7773A /* PKTokenArraySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenArraySource.m; path = src/PKTokenArraySource.m; sourceTree = "<group>"; };
@@ -1279,6 +1283,10 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
+				D34BAE3C100ADF5800996341 /* PKNumberState.h */,
+				D34BAE3D100ADF5800996341 /* PKNumberState.m */,
+				D34BAE3E100ADF5800996341 /* PKScientificNumberState.h */,
+				D34BAE3F100ADF5800996341 /* PKScientificNumberState.m */,
 				D3C2216D0FFE8A86004514FE /* PKExclusion.h */,
 				D31270F80FFE898300CBF4C4 /* PKExclusion.m */,
 				D3AF4CCB0FDC74540032F4DC /* Whitespace */,
