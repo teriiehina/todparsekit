@@ -147,7 +147,6 @@
 		D34BAF560FF9E19700D7773A /* PKQuotedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF460FF9E19700D7773A /* PKQuotedString.m */; };
 		D34BAF580FF9E19700D7773A /* PKSymbol.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF480FF9E19700D7773A /* PKSymbol.m */; };
 		D34BAF5A0FF9E19700D7773A /* PKWhitespace.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF4A0FF9E19700D7773A /* PKWhitespace.m */; };
-		D34BAF970FF9E6C000D7773A /* PKScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */; };
 		D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */; };
 		D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */; };
 		D34BAFB20FF9E7F300D7773A /* PKCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */; };
@@ -413,8 +412,6 @@
 		D3C2220D0FFE8CD8004514FE /* PKDelimitedString.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C2220B0FFE8CD8004514FE /* PKDelimitedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C2220F0FFE8CDF004514FE /* PKAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C2220E0FFE8CDF004514FE /* PKAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C222100FFE8CDF004514FE /* PKAny.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C2220E0FFE8CDF004514FE /* PKAny.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C222120FFE8CF3004514FE /* PKScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C222110FFE8CF3004514FE /* PKScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3C222130FFE8CF3004514FE /* PKScientificNumberState.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C222110FFE8CF3004514FE /* PKScientificNumberState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C222150FFE8D01004514FE /* PKLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C222140FFE8D01004514FE /* PKLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C222160FFE8D01004514FE /* PKLowercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C222140FFE8D01004514FE /* PKLowercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3C222180FFE8D11004514FE /* PKUppercaseWord.h in Headers */ = {isa = PBXBuildFile; fileRef = D3C222170FFE8D11004514FE /* PKUppercaseWord.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -520,7 +517,6 @@
 		D3FDC7140FFC4C9E00F1F797 /* PKComment.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF3E0FF9E19700D7773A /* PKComment.m */; };
 		D3FDC7150FFC4C9E00F1F797 /* PKDelimitedString.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF400FF9E19700D7773A /* PKDelimitedString.m */; };
 		D3FDC7160FFC4C9E00F1F797 /* PKAny.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAE2F0FF9CE6000D7773A /* PKAny.m */; };
-		D3FDC7170FFC4C9E00F1F797 /* PKScientificNumberState.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */; };
 		D3FDC7180FFC4C9E00F1F797 /* PKLowercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */; };
 		D3FDC7190FFC4C9E00F1F797 /* PKUppercaseWord.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */; };
 		D3FDC71A0FFC4C9E00F1F797 /* PKCharacterAssembly.m in Sources */ = {isa = PBXBuildFile; fileRef = D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */; };
@@ -779,10 +775,6 @@
 		D34BAE190FF9CE0E00D7773A /* PKTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTrack.m; path = src/PKTrack.m; sourceTree = "<group>"; };
 		D34BAE1B0FF9CE0E00D7773A /* PKTrackException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTrackException.m; path = src/PKTrackException.m; sourceTree = "<group>"; };
 		D34BAE2F0FF9CE6000D7773A /* PKAny.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKAny.m; path = src/PKAny.m; sourceTree = "<group>"; };
-		D34BAE3C100ADF5800996341 /* PKNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKNumberState.h; path = test/PKNumberState.h; sourceTree = "<group>"; };
-		D34BAE3D100ADF5800996341 /* PKNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKNumberState.m; path = test/PKNumberState.m; sourceTree = "<group>"; };
-		D34BAE3E100ADF5800996341 /* PKScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKScientificNumberState.h; path = test/PKScientificNumberState.h; sourceTree = "<group>"; };
-		D34BAE3F100ADF5800996341 /* PKScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKScientificNumberState.m; path = test/PKScientificNumberState.m; sourceTree = "<group>"; };
 		D34BAE8B0FF9D15100D7773A /* PKTokenAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenAssembly.m; path = src/PKTokenAssembly.m; sourceTree = "<group>"; };
 		D34BAE950FF9D20900D7773A /* PKToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKToken.m; path = src/PKToken.m; sourceTree = "<group>"; };
 		D34BAE970FF9D20900D7773A /* PKTokenArraySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTokenArraySource.m; path = src/PKTokenArraySource.m; sourceTree = "<group>"; };
@@ -809,7 +801,6 @@
 		D34BAF460FF9E19700D7773A /* PKQuotedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKQuotedString.m; path = src/PKQuotedString.m; sourceTree = "<group>"; };
 		D34BAF480FF9E19700D7773A /* PKSymbol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKSymbol.m; path = src/PKSymbol.m; sourceTree = "<group>"; };
 		D34BAF4A0FF9E19700D7773A /* PKWhitespace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKWhitespace.m; path = src/PKWhitespace.m; sourceTree = "<group>"; };
-		D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKScientificNumberState.m; path = src/PKScientificNumberState.m; sourceTree = "<group>"; };
 		D34BAF990FF9E6D100D7773A /* PKLowercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKLowercaseWord.m; path = src/PKLowercaseWord.m; sourceTree = "<group>"; };
 		D34BAF9B0FF9E6D100D7773A /* PKUppercaseWord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKUppercaseWord.m; path = src/PKUppercaseWord.m; sourceTree = "<group>"; };
 		D34BAFB00FF9E7F300D7773A /* PKCharacterAssembly.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKCharacterAssembly.m; path = src/PKCharacterAssembly.m; sourceTree = "<group>"; };
@@ -1056,7 +1047,6 @@
 		D3C222080FFE8CD1004514FE /* PKComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKComment.h; path = include/ParseKit/PKComment.h; sourceTree = "<group>"; };
 		D3C2220B0FFE8CD8004514FE /* PKDelimitedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKDelimitedString.h; path = include/ParseKit/PKDelimitedString.h; sourceTree = "<group>"; };
 		D3C2220E0FFE8CDF004514FE /* PKAny.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKAny.h; path = include/ParseKit/PKAny.h; sourceTree = "<group>"; };
-		D3C222110FFE8CF3004514FE /* PKScientificNumberState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKScientificNumberState.h; path = include/ParseKit/PKScientificNumberState.h; sourceTree = "<group>"; };
 		D3C222140FFE8D01004514FE /* PKLowercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKLowercaseWord.h; path = include/ParseKit/PKLowercaseWord.h; sourceTree = "<group>"; };
 		D3C222170FFE8D11004514FE /* PKUppercaseWord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKUppercaseWord.h; path = include/ParseKit/PKUppercaseWord.h; sourceTree = "<group>"; };
 		D3C2221A0FFE8D32004514FE /* PKCharacterAssembly.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKCharacterAssembly.h; path = include/ParseKit/PKCharacterAssembly.h; sourceTree = "<group>"; };
@@ -1283,10 +1273,6 @@
 		32C88DFF0371C24200C91783 /* Other Sources (not used) */ = {
 			isa = PBXGroup;
 			children = (
-				D34BAE3C100ADF5800996341 /* PKNumberState.h */,
-				D34BAE3D100ADF5800996341 /* PKNumberState.m */,
-				D34BAE3E100ADF5800996341 /* PKScientificNumberState.h */,
-				D34BAE3F100ADF5800996341 /* PKScientificNumberState.m */,
 				D3C2216D0FFE8A86004514FE /* PKExclusion.h */,
 				D31270F80FFE898300CBF4C4 /* PKExclusion.m */,
 				D3AF4CCB0FDC74540032F4DC /* Whitespace */,
@@ -1442,8 +1428,6 @@
 			children = (
 				D3C221CF0FFE8C24004514FE /* PKNumberState.h */,
 				D34BAECA0FF9D56400D7773A /* PKNumberState.m */,
-				D3C222110FFE8CF3004514FE /* PKScientificNumberState.h */,
-				D34BAF950FF9E6C000D7773A /* PKScientificNumberState.m */,
 				D3F0E2470FFE8EB900C9DF74 /* PKQuoteState.h */,
 				D34BAECC0FF9D56400D7773A /* PKQuoteState.m */,
 				D3C221D50FFE8C35004514FE /* PKSymbolState.h */,
@@ -2247,7 +2231,6 @@
 				D3C222090FFE8CD1004514FE /* PKComment.h in Headers */,
 				D3C2220C0FFE8CD8004514FE /* PKDelimitedString.h in Headers */,
 				D3C2220F0FFE8CDF004514FE /* PKAny.h in Headers */,
-				D3C222120FFE8CF3004514FE /* PKScientificNumberState.h in Headers */,
 				D3C222150FFE8D01004514FE /* PKLowercaseWord.h in Headers */,
 				D3C222180FFE8D11004514FE /* PKUppercaseWord.h in Headers */,
 				D3C2221B0FFE8D32004514FE /* PKCharacterAssembly.h in Headers */,
@@ -2355,7 +2338,6 @@
 				D3C2220A0FFE8CD1004514FE /* PKComment.h in Headers */,
 				D3C2220D0FFE8CD8004514FE /* PKDelimitedString.h in Headers */,
 				D3C222100FFE8CDF004514FE /* PKAny.h in Headers */,
-				D3C222130FFE8CF3004514FE /* PKScientificNumberState.h in Headers */,
 				D3C222160FFE8D01004514FE /* PKLowercaseWord.h in Headers */,
 				D3C222190FFE8D11004514FE /* PKUppercaseWord.h in Headers */,
 				D3C2221C0FFE8D32004514FE /* PKCharacterAssembly.h in Headers */,
@@ -2705,7 +2687,6 @@
 				D34BAF560FF9E19700D7773A /* PKQuotedString.m in Sources */,
 				D34BAF580FF9E19700D7773A /* PKSymbol.m in Sources */,
 				D34BAF5A0FF9E19700D7773A /* PKWhitespace.m in Sources */,
-				D34BAF970FF9E6C000D7773A /* PKScientificNumberState.m in Sources */,
 				D34BAF9D0FF9E6D100D7773A /* PKLowercaseWord.m in Sources */,
 				D34BAF9F0FF9E6D100D7773A /* PKUppercaseWord.m in Sources */,
 				D34BAFB20FF9E7F300D7773A /* PKCharacterAssembly.m in Sources */,
@@ -2974,7 +2955,6 @@
 				D3FDC7140FFC4C9E00F1F797 /* PKComment.m in Sources */,
 				D3FDC7150FFC4C9E00F1F797 /* PKDelimitedString.m in Sources */,
 				D3FDC7160FFC4C9E00F1F797 /* PKAny.m in Sources */,
-				D3FDC7170FFC4C9E00F1F797 /* PKScientificNumberState.m in Sources */,
 				D3FDC7180FFC4C9E00F1F797 /* PKLowercaseWord.m in Sources */,
 				D3FDC7190FFC4C9E00F1F797 /* PKUppercaseWord.m in Sources */,
 				D3FDC71A0FFC4C9E00F1F797 /* PKCharacterAssembly.m in Sources */,

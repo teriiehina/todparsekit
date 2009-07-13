@@ -28,10 +28,19 @@
 - (CGFloat)value;
 - (void)parseLeftSideFromReader:(PKReader *)r;
 - (void)parseRightSideFromReader:(PKReader *)r;
+- (void)parseExponentFromReader:(PKReader *)r;
 - (void)reset:(PKUniChar)cin;
 @end
 
 @implementation PKNumberState
+
+- (id)init {
+    if (self = [super init]) {
+        self.allowsScientificNotation = YES;
+    }
+    return self;
+}
+
 
 - (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
@@ -81,7 +90,18 @@
 
 
 - (CGFloat)value {
-    return floatValue;
+    CGFloat result = (CGFloat)floatValue;
+    
+    NSUInteger i = 0;
+    for ( ; i < exp; i++) {
+        if (negativeExp) {
+            result /= (CGFloat)10.0;
+        } else {
+            result *= (CGFloat)10.0;
+        }
+    }
+    
+    return (CGFloat)result;
 }
 
 
@@ -132,6 +152,41 @@
             }
         }
     }
+    
+    if (allowsScientificNotation) {
+        [self parseExponentFromReader:r];
+    }
+}
+
+
+- (void)parseExponentFromReader:(PKReader *)r {
+    NSParameterAssert(r);    
+    if ('e' == c || 'E' == c) {
+        PKUniChar e = c;
+        c = [r read];
+        
+        BOOL hasExp = isdigit(c);
+        negativeExp = ('-' == c);
+        BOOL positiveExp = ('+' == c);
+        
+        if (!hasExp && (negativeExp || positiveExp)) {
+            c = [r read];
+            hasExp = isdigit(c);
+        }
+        if (PKEOF != c) {
+            [r unread];
+        }
+        if (hasExp) {
+            [self append:e];
+            if (negativeExp) {
+                [self append:'-'];
+            } else if (positiveExp) {
+                [self append:'+'];
+            }
+            c = [r read];
+            exp = [self absorbDigitsFromReader:r isFraction:NO];
+        }
+    }
 }
 
 
@@ -139,7 +194,10 @@
     gotADigit = NO;
     floatValue = 0.0;
     c = cin;
+    exp = (CGFloat)0.0;
+    negativeExp = NO;
 }
 
 @synthesize allowsTrailingDot;
+@synthesize allowsScientificNotation;
 @end
