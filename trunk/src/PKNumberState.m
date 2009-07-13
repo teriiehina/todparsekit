@@ -215,6 +215,7 @@
 - (void)checkForHex:(PKReader *)r {
     if ('x' == c && '0' == firstNum && !isFraction && 1 == len) {
         [self append:c];
+        len++;
         c = [r read];
         isDecimal = NO;
         base = 16.0;
