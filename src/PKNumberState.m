@@ -24,34 +24,28 @@
 @end
 
 @interface PKNumberState ()
-- (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)fraction;
+- (CGFloat)absorbDigitsFromReader:(PKReader *)r;
 - (CGFloat)value;
 - (void)parseLeftSideFromReader:(PKReader *)r;
 - (void)parseRightSideFromReader:(PKReader *)r;
 - (void)parseExponentFromReader:(PKReader *)r;
 - (void)reset:(PKUniChar)cin;
+- (void)checkForHex:(PKReader *)r;
+- (void)checkForOctal;
 @end
 
 @implementation PKNumberState
-
-- (id)init {
-    if (self = [super init]) {
-        self.allowsScientificNotation = YES;
-    }
-    return self;
-}
-
 
 - (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);
 
     [self resetWithReader:r];
-    negative = NO;
-    PKUniChar originalCin = cin;
+    isNegative = NO;
+    originalCin = cin;
     
     if ('-' == cin) {
-        negative = YES;
+        isNegative = YES;
         cin = [r read];
         [self append:'-'];
     } else if ('+' == cin) {
@@ -64,12 +58,14 @@
         [self parseRightSideFromReader:r];
     } else {
         [self parseLeftSideFromReader:r];
-        [self parseRightSideFromReader:r];
+        if (isDecimal) {
+            [self parseRightSideFromReader:r];
+        }
     }
     
     // erroneous ., +, or -
     if (!gotADigit) {
-        if (negative && PKEOF != c) { // ??
+        if (isNegative && PKEOF != c) { // ??
             [r unread];
         }
         return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
@@ -79,7 +75,7 @@
         [r unread];
     }
 
-    if (negative) {
+    if (isNegative) {
         floatValue = -floatValue;
     }
     
@@ -105,18 +101,27 @@
 }
 
 
-- (CGFloat)absorbDigitsFromReader:(PKReader *)r isFraction:(BOOL)isFraction {
+- (CGFloat)absorbDigitsFromReader:(PKReader *)r {
     CGFloat divideBy = 1.0;
     CGFloat v = 0.0;
     
     while (1) {
+        if (allowsHexidecimalNotation) {
+            [self checkForHex:r];
+        }
         if (isdigit(c)) {
             [self append:c];
+            len++;
             gotADigit = YES;
-            v = v * 10.0 + (c - '0');
+
+            if (allowsOctalNotation) {
+                [self checkForOctal];
+            }
+            
+            v = v * base + (c - '0');
             c = [r read];
             if (isFraction) {
-                divideBy *= 10.0;
+                divideBy *= base;
             }
         } else {
             break;
@@ -132,7 +137,8 @@
 
 
 - (void)parseLeftSideFromReader:(PKReader *)r {
-    floatValue = [self absorbDigitsFromReader:r isFraction:NO];
+    isFraction = NO;
+    floatValue = [self absorbDigitsFromReader:r];
 }
 
 
@@ -148,7 +154,8 @@
             [self append:'.'];
             if (nextIsDigit) {
                 c = [r read];
-                floatValue += [self absorbDigitsFromReader:r isFraction:YES];
+                isFraction = YES;
+                floatValue += [self absorbDigitsFromReader:r];
             }
         }
     }
@@ -184,20 +191,46 @@
                 [self append:'+'];
             }
             c = [r read];
-            exp = [self absorbDigitsFromReader:r isFraction:NO];
+            isFraction = NO;
+            exp = [self absorbDigitsFromReader:r];
         }
     }
 }
 
 
 - (void)reset:(PKUniChar)cin {
-    gotADigit = NO;
-    floatValue = 0.0;
     c = cin;
+    firstNum = cin;
+    gotADigit = NO;
+    isFraction = NO;
+    isDecimal = YES;   
+    len = 0;
+    base = (CGFloat)10.0;
+    floatValue = (CGFloat)0.0;
     exp = (CGFloat)0.0;
     negativeExp = NO;
 }
 
+
+- (void)checkForHex:(PKReader *)r {
+    if ('x' == c && '0' == firstNum && !isFraction && 1 == len) {
+        [self append:c];
+        c = [r read];
+        isDecimal = NO;
+        base = 16.0;
+    }
+}
+
+
+- (void)checkForOctal {
+    if ('0' == firstNum && !isFraction && isDecimal && 2 == len) {
+        isDecimal = NO;
+        base = 8.0;
+    }
+}
+
 @synthesize allowsTrailingDot;
 @synthesize allowsScientificNotation;
+@synthesize allowsOctalNotation;
+@synthesize allowsHexidecimalNotation;
 @end

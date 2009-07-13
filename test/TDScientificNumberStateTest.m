@@ -15,9 +15,11 @@
     t = [[PKTokenizer alloc] init];
     r = [[PKReader alloc] init];
     numberState = t.numberState;
+    numberState.allowsScientificNotation = YES;
     [t setTokenizerState:numberState from:'0' to:'9'];
     [t setTokenizerState:numberState from:'.' to:'.'];
     [t setTokenizerState:numberState from:'-' to:'-'];
+//    NSLog(@"\n\n\n\n\n %f \n\n\n\n\n", 020);
 }
 
 
@@ -872,5 +874,221 @@
     TDTrue(tok.isWord);
     TDEqualObjects(@"e2", tok.stringValue);
 }
+
+
+- (void)testOctal {
+    s = @"020";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testOctal2 {
+    s = @"020";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testMinusOctal {
+    s = @"-020";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)-16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testMinusOctal2 {
+    s = @"-020";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)-16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testOctalDecimal {
+    s = @"020.0";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testOctalDecimal2 {
+    s = @"020.0";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)16.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"020", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testOctalDecimalNO {
+    s = @"020.0";
+    t.string = s;
+    numberState.allowsOctalNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)20.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"020.0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHex {
+    s = @"0x20";
+    t.string = s;
+    numberState.allowsHexidecimalNotation = NO;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)32.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0x20", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHex2 {
+    s = @"0x20";
+    t.string = s;
+    numberState.allowsHexidecimalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)32.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0x20", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testMinusHex {
+    s = @"-0x20";
+    t.string = s;
+    numberState.allowsHexidecimalNotation = NO;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)-32.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-0x20", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testMinusHex2 {
+    s = @"-0x20";
+    t.string = s;
+    numberState.allowsHexidecimalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)-32.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"-0x20", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHexDecimal {
+    s = @"0x30.0";
+    t.string = s;
+    numberState.allowsOctalNotation = NO;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)48.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0x30", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHexDecimal2 {
+    s = @"0x40.0";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)64.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0x40", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
 
 @end
