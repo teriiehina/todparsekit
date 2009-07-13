@@ -218,7 +218,7 @@
         len++;
         c = [r read];
         isDecimal = NO;
-        base = 16.0;
+        base = (CGFloat)16.0;
     }
 }
 
@@ -226,7 +226,7 @@
 - (void)checkForOctal {
     if ('0' == firstNum && !isFraction && isDecimal && 2 == len) {
         isDecimal = NO;
-        base = 8.0;
+        base = (CGFloat)8.0;
     }
 }
 
