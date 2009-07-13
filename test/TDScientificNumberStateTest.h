@@ -8,9 +8,8 @@
 
 #import "TDTestScaffold.h"
 
-
 @interface TDScientificNumberStateTest : SenTestCase {
-    PKScientificNumberState *numberState;
+    PKNumberState *numberState;
     PKTokenizer *t;
     PKReader *r;
     NSString *s;

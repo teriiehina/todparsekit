@@ -13,6 +13,7 @@
     @class      PKNumberState 
     @brief      A number state returns a number from a reader.
     @details    This state's idea of a number allows an optional, initial minus sign, followed by one or more digits. A decimal point and another string of digits may follow these digits.
+                If <tt>allowsScientificNotation</tt> is true (the default) this state allows 'e' or 'E' followed by an (optionally explicityly positive or negative) integer to represent 10 to the indicated power. For example, this state will recognize <tt>1e2</tt> as equaling <tt>100</tt>.</p>
 */
 @interface PKNumberState : PKTokenizerState {
     BOOL allowsTrailingDot;

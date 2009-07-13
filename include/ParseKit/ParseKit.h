@@ -54,7 +54,6 @@
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKTokenizerState.h>
 #import <ParseKit/PKNumberState.h>
-#import <ParseKit/PKScientificNumberState.h>
 #import <ParseKit/PKQuoteState.h>
 #import <ParseKit/PKDelimitState.h>
 #import <ParseKit/PKCommentState.h>
