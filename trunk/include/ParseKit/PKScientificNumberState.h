@@ -15,8 +15,10 @@
                 <p>This class exists primarily to show how to introduce a new tokenizing state.</p>
 */
 @interface PKScientificNumberState : PKNumberState {
+    BOOL allowsScientificNotation;
     CGFloat exp;
     BOOL negativeExp;
 }
 
+@property (nonatomic) BOOL allowsScientificNotation;
 @end
