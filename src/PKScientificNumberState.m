@@ -23,9 +23,21 @@
 
 @implementation PKScientificNumberState
 
+- (id)init {
+    if (self = [super init]) {
+        self.allowsScientificNotation = YES;
+    }
+    return self;
+}
+
+
 - (void)parseRightSideFromReader:(PKReader *)r {
     NSParameterAssert(r);
     [super parseRightSideFromReader:r];
+    if (!allowsScientificNotation) {
+        return;
+    }
+    
     if ('e' == c || 'E' == c) {
         PKUniChar e = c;
         c = [r read];
@@ -77,4 +89,5 @@
     return (CGFloat)result;
 }
 
+@synthesize allowsScientificNotation;
 @end

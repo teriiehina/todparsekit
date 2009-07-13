@@ -33,11 +33,6 @@
 
 @implementation PKNumberState
 
-- (void)dealloc {
-    [super dealloc];
-}
-
-
 - (PKToken *)nextTokenFromReader:(PKReader *)r startingWith:(PKUniChar)cin tokenizer:(PKTokenizer *)t {
     NSParameterAssert(r);
     NSParameterAssert(t);

@@ -8,8 +8,8 @@
 
 #import "TDTestScaffold.h"
 
-#define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDTokenizerStateTest"
+#define RUN_ALL_TEST_CASES 0
+#define SOLO_TEST_CASE @"TDScientificNumberStateTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;

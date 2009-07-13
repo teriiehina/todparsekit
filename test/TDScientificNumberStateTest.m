@@ -826,4 +826,52 @@
     TDTrue([PKToken EOFToken] == tok);
 }
 
+
+- (void)testNotAllowsScientificNotation2dot0e2 {
+    s = @"2.0e2";
+    t.string = s;
+    r.string = s;
+    numberState.allowsScientificNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)2.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"2.0", tok.stringValue);
+
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"e2", tok.stringValue);
+}
+
+
+- (void)testNotAllowsScientificNotation2dot0E2 {
+    s = @"2.0E2";
+    t.string = s;
+    r.string = s;
+    numberState.allowsScientificNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)2.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"2.0", tok.stringValue);
+
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"E2", tok.stringValue);
+}
+
+
+- (void)testNotAllowsScientificNotation2e2 {
+    s = @"2e2";
+    t.string = s;
+    r.string = s;
+    numberState.allowsScientificNotation = NO;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)2.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"2", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"e2", tok.stringValue);
+}
+
 @end
