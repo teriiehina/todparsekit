@@ -75,7 +75,7 @@
 }
 
 
-- (void)testMissingParen {\
+- (void)testMissingParen {
     PKParser *open = [PKSymbol symbolWithString:@"("];
     PKParser *close = [PKSymbol symbolWithString:@")"];
     PKTrack *track = [PKTrack trackWithSubparsers:open, close, nil];
