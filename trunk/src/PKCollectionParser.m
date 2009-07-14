@@ -9,14 +9,51 @@
 #import <ParseKit/PKCollectionParser.h>
 
 @interface PKCollectionParser ()
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest;
+
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
 @implementation PKCollectionParser
 
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest {
+    PKCollectionParser *cp = [[[self alloc] init] autorelease];
+    
+    if (p1) {
+        [cp add:p1];
+        
+        PKParser *p = nil;
+        while (p = va_arg(rest, PKParser *)) {
+            [cp add:p];
+        }
+    }
+    
+    return cp;
+}
+
+
 - (id)init {
+    return [self initWithSubparsers:nil];
+}
+
+
+- (id)initWithSubparsers:(PKParser *)p1, ... {
     if (self = [super init]) {
         self.subparsers = [NSMutableArray array];
+
+        if (p1) {
+            [subparsers addObject:p1];
+
+            va_list vargs;
+            va_start(vargs, p1);
+
+            PKParser *p = nil;
+            while (p = va_arg(vargs, PKParser *)) {
+                [subparsers addObject:p];
+            }
+
+            va_end(vargs);
+        }
     }
     return self;
 }
@@ -29,7 +66,9 @@
 
 
 - (void)add:(PKParser *)p {
-    NSParameterAssert(p);
+    if (![p isKindOfClass:[PKParser class]]) {
+        NSLog(@"p: %@", p);
+    }
     NSParameterAssert([p isKindOfClass:[PKParser class]]);
     [subparsers addObject:p];
 }

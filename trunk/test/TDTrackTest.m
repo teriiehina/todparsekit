@@ -75,10 +75,10 @@
 }
 
 
-- (void)testMissingParen {
-    PKTrack *track = [PKTrack track];
-    [track add:[PKSymbol symbolWithString:@"("]];
-    [track add:[PKSymbol symbolWithString:@")"]];
+- (void)testMissingParen {\
+    PKParser *open = [PKSymbol symbolWithString:@"("];
+    PKParser *close = [PKSymbol symbolWithString:@")"];
+    PKTrack *track = [PKTrack trackWithSubparsers:open, close, nil];
     
     PKAssembly *a = [PKTokenAssembly assemblyWithString:@"("];
     STAssertThrowsSpecificNamed([track completeMatchFor:a], PKTrackException, PKTrackExceptionName, @"");

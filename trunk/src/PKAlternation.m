@@ -14,10 +14,23 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
+@interface PKCollectionParser ()
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest;
+@end
+
 @implementation PKAlternation
 
 + (id)alternation {
-    return [[[self alloc] init] autorelease];
+    return [self alternationWithSubparsers:nil];
+}
+
+
++ (id)alternationWithSubparsers:(PKParser *)p1, ... {
+    va_list vargs;
+    va_start(vargs, p1);
+    PKAlternation *alt = [self collectionParserWithFirst:p1 rest:vargs];
+    va_end(vargs);
+    return alt;
 }
 
 

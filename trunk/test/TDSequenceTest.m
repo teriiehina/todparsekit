@@ -131,11 +131,11 @@
 - (void)testTrueLiteralBestMatchForFooSpaceBarSpaceBaz1 {
     s = @"foo bar baz";
     a = [PKTokenAssembly assemblyWithString:s];
-    
-    p = [PKSequence sequence];
-    [p add:[PKLiteral literalWithString:@"foo"]];
-    [p add:[PKLiteral literalWithString:@"baz"]];
-    [p add:[PKLiteral literalWithString:@"bar"]];
+
+    PKParser *foo = [PKLiteral literalWithString:@"foo"];
+    PKParser *bar = [PKLiteral literalWithString:@"bar"];
+    PKParser *baz = [PKLiteral literalWithString:@"baz"];
+    p = [PKSequence sequenceWithSubparsers:foo, baz, bar, nil];
     
     PKAssembly *result = [p bestMatchFor:a];
     

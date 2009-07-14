@@ -18,6 +18,13 @@
 }
 
 /*!
+    @brief      Designated Initializer. Initialize an instance of a <tt>PKCollectionParser</tt> subclass.
+    @param      p1, ... A comma-separated list of parser objects ending with <tt>nil</tt>
+    @result     an initialized instance of a <tt>PKCollectionParser</tt> subclass.
+*/
+- (id)initWithSubparsers:(PKParser *)p1, ...;
+
+/*!
     @brief      Adds a parser to the collection.
     @param      p parser to add
 */

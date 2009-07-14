@@ -22,4 +22,6 @@
     @result     an initialized autoreleased <tt>PKAlternation</tt> parser.
 */
 + (id)alternation;
+
++ (id)alternationWithSubparsers:(PKParser *)p1, ...;
 @end

@@ -37,10 +37,23 @@
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies;
 @end
 
+@interface PKCollectionParser ()
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest;
+@end
+
 @implementation PKIntersection
 
 + (id)intersection {
-    return [[[self alloc] init] autorelease];
+    return [self intersectionWithSubparsers:nil];
+}
+
+
++ (id)intersectionWithSubparsers:(PKParser *)p1, ... {
+    va_list vargs;
+    va_start(vargs, p1);
+    PKIntersection *inter = [self collectionParserWithFirst:p1 rest:vargs];
+    va_end(vargs);
+    return inter;
 }
 
 

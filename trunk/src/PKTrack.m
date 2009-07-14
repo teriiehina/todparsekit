@@ -19,10 +19,23 @@
 - (void)throwTrackExceptionWithPreviousState:(NSSet *)inAssemblies parser:(PKParser *)p;
 @end
 
+@interface PKCollectionParser ()
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest;
+@end
+
 @implementation PKTrack
 
 + (id)track {
-    return [[[self alloc] init] autorelease];
+    return [self trackWithSubparsers:nil];
+}
+
+
++ (id)trackWithSubparsers:(PKParser *)p1, ... {
+    va_list vargs;
+    va_start(vargs, p1);
+    PKTrack *tr = [self collectionParserWithFirst:p1 rest:vargs];
+    va_end(vargs);
+    return tr;
 }
 
 
