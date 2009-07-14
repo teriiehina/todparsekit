@@ -13,10 +13,23 @@
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 @end
 
+@interface PKCollectionParser ()
++ (id)collectionParserWithFirst:(PKParser *)p1 rest:(va_list)rest;
+@end
+
 @implementation PKSequence
 
 + (id)sequence {
-    return [[[self alloc] init] autorelease];
+    return [self sequenceWithSubparsers:nil];
+}
+
+
++ (id)sequenceWithSubparsers:(PKParser *)p1, ... {
+    va_list vargs;
+    va_start(vargs, p1);
+    PKSequence *seq = [self collectionParserWithFirst:p1 rest:vargs];
+    va_end(vargs);
+    return seq;
 }
 
 

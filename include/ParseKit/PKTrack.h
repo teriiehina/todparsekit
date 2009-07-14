@@ -23,4 +23,6 @@
     @result     an initialized autoreleased <tt>PKTrack</tt> parser.
 */
 + (id)track;
+
++ (id)trackWithSubparsers:(PKParser *)p1, ...;
 @end

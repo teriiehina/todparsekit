@@ -51,10 +51,10 @@
     s = @"123 baz bar";
     a = [[PKTokenAssembly alloc] initWithString:s];
     
-    p = [PKAlternation alternation];
-    [p add:[PKWord word]];
-    [p add:[PKLiteral literalWithString:@"baz"]];
-    [p add:[PKNumber number]];
+    PKParser *w = [PKWord word];
+    PKParser *baz = [PKLiteral literalWithString:@"baz"];
+    PKParser *n = [PKNumber number];
+    p = [PKAlternation alternationWithSubparsers:w, baz, n, nil];
     
     PKAssembly *result = [p bestMatchFor:a];
     

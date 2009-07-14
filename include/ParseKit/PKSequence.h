@@ -22,4 +22,6 @@
     @result     an initialized autoreleased <tt>PKSequence</tt> parser.
 */
 + (id)sequence;
+
++ (id)sequenceWithSubparsers:(PKParser *)p1, ...;
 @end

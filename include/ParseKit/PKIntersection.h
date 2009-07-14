@@ -14,4 +14,6 @@
 }
 
 + (id)intersection;
+
++ (id)intersectionWithSubparsers:(PKParser *)p1, ...;
 @end
