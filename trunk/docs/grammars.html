@@ -160,6 +160,22 @@
       
      <p>The <tt>PKAssembly</tt> argument will have the most-recently matched tokens on the top of its stack.</p>
     
+    <p>To prevent leaks when releasing a <tt>PKParser</tt> created via <tt>PKParserFactory</tt>, one final step is required:</p>
+    
+      <div class="code">
+      <pre>
+          PKParser *<b>parser</b> = nil;
+          parser = [[PKParserFactory factory] parserFromGrammar:g assembler:self];
+
+          ... // do parsing
+          
+          // when you are done with the parser, this function must be called before releasing
+          <b>PKReleaseSubparserTree(parser);</b>
+          [p release]</pre>
+      </div>
+      
+      <p>Most non-trivial language grammars define circular relationships in their production rules. The call to <tt>PKReleaseSubparserTree()</tt> is required to prevent Objective-C retain cycle leaks where the <tt>PKParser</tt> objects representing different rules in your grammar have strong references to one another.</p>
+    
 </div>
 <script type="text/javascript">
 var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
