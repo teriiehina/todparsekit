@@ -1090,5 +1090,51 @@
 }
 
 
+- (void)testHexDecimal3 {
+    s = @"00x30.0";
+    t.string = s;
+    numberState.allowsOctalNotation = NO;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"00", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"x30", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHexDecimal4 {
+    s = @"00x30.0";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexidecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"00", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"x30", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@".0", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
 
 @end
