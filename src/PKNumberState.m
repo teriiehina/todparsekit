@@ -106,7 +106,7 @@
     CGFloat v = 0.0;
     
     while (1) {
-        if (allowsHexidecimalNotation) {
+        if (allowsHexadecimalNotation) {
             [self checkForHex:r];
         }
         if (isdigit(c)) {
@@ -233,5 +233,5 @@
 @synthesize allowsTrailingDot;
 @synthesize allowsScientificNotation;
 @synthesize allowsOctalNotation;
-@synthesize allowsHexidecimalNotation;
+@synthesize allowsHexadecimalNotation;
 @end
