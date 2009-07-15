@@ -11,7 +11,7 @@
 
 @interface DemoAppDelegate ()
 - (void)doParse;
-- (void)done:(NSArray *)toks;
+- (void)done;
 @end
 
 @implementation DemoAppDelegate
@@ -44,6 +44,7 @@
     self.inString = nil;
     self.outString = nil;
     self.tokString = nil;
+    self.toks = nil;
     [super dealloc];
 }
 
@@ -71,29 +72,24 @@
 - (void)doParse {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
-    //self.tokenizer = [[[PKTokenizer alloc] init] autorelease];
+    //self.tokenizer = [PKTokenizer tokenizer];
     self.tokenizer.string = self.inString;
     
     
-    NSMutableArray *toks = [[NSMutableArray alloc] init];
+    self.toks = [NSMutableArray array];
     PKToken *tok = nil;
-    PKToken *eofTok = [PKToken EOFToken];
-    while (tok = [tokenizer nextToken]) {
-        if (eofTok == tok) {
-            break;
-        }
-        
+    PKToken *eof = [PKToken EOFToken];
+    while (eof != (tok = [tokenizer nextToken])) {
         [toks addObject:tok];
     }
     
-    //[self done:toks];
-    [self performSelectorOnMainThread:@selector(done:) withObject:toks waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(done) withObject:nil waitUntilDone:NO];
     
     [pool drain];
 }
 
 
-- (void)done:(NSArray *)toks {
+- (void)done {
     NSMutableString *s = [NSMutableString string];
     for (PKToken *tok in toks) {
         [s appendFormat:@"%@ %C", tok.stringValue, 0xab];
@@ -106,15 +102,12 @@
     }
     self.outString = [[s copy] autorelease];
     self.busy = NO;
-    
-    [toks release];
 }
-
-
 
 @synthesize tokenizer;
 @synthesize inString;
 @synthesize outString;
 @synthesize tokString;
+@synthesize toks;
 @synthesize busy;
 @end

@@ -17,6 +17,7 @@
     NSString *inString;
     NSString *outString;
     NSString *tokString;
+    NSMutableArray *toks;
     BOOL busy;
 }
 - (IBAction)parse:(id)sender;
@@ -25,5 +26,6 @@
 @property (retain) NSString *inString;
 @property (retain) NSString *outString;
 @property (retain) NSString *tokString;
+@property (retain) NSMutableArray *toks;
 @property BOOL busy;
 @end
