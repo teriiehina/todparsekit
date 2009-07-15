@@ -19,7 +19,7 @@
     BOOL allowsTrailingDot;
     BOOL allowsScientificNotation;
     BOOL allowsOctalNotation;
-    BOOL allowsHexidecimalNotation;
+    BOOL allowsHexadecimalNotation;
     BOOL isDecimal;
     BOOL isFraction;
     BOOL isNegative;
@@ -60,5 +60,5 @@
     @brief      If YES, supports hex numbers like <tt>0x20<tt> (32), or <tt>0x42<tt> (66)
     @details    default is NO
 */
-@property (nonatomic) BOOL allowsHexidecimalNotation;
+@property (nonatomic) BOOL allowsHexadecimalNotation;
 @end
