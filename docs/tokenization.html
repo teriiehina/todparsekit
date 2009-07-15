@@ -231,6 +231,26 @@ t.numberState.allowsTrailingDot = YES;
 ...</pre>
 </div>
 
+<p>Recognition of scientific notation (exponential numbers) can be enabled to recognize numbers like <tt>&laquo;10e+100&raquo;</tt>, <tt>&laquo;6.626068E-34&raquo;</tt> and <tt>&laquo;6.0221415e23&raquo;</tt>. The resulting <tt>PKToken</tt> objects will have <tt>floatValue</tt>s which represent the full value of the exponential number.</p>
+
+<div class="code">
+<pre>
+...
+t.numberState.allowsScentificNotation = YES;
+...</pre>
+</div>
+
+<p>Similarly, recognition of common octal and hexadecimal number notation can be enabled to recognize numbers like <tt>&laquo;020&raquo;</tt> (octal 16) and <tt>&laquo;0x20&raquo;</tt> (hex 32).</p>
+
+<div class="code">
+<pre>
+...
+t.numberState.allowsOctalNotation = YES;
+t.numberState.allowsHexadecimalNotation = YES;
+...</pre>
+</div>
+
+<p>The resulting <tt>PKToken</tt> objects will have a <tt>tokenType</tt> of <tt>PKTokenTypeNumber</tt> and a <tt>stringValue</tt> matching the original source notation (<tt>&laquo;020&raquo;</tt> or <tt>&laquo;0x20&raquo;</tt>). Their <tt>floatValue</tt>s will represent the normal decimal value of the number (in this case 16 and 32).</p>
 
 <p>You can also configure which characters are recognized as whitespace within a whitespace token. To treat digits as whitespace characters within whitespace tokens:</p>
 
