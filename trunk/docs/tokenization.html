@@ -206,7 +206,7 @@ while ((tok = [t nextToken]) != eof) {
 <div class="code">
 <pre>
 ...
-PKTokenizer *t = [PKTokenizerWithString:s];
+PKTokenizer *t = [PKTokenizer tokenizerWithString:s];
 [t.symbolState add:@"==="];
 ...</pre>
 </div>
@@ -231,7 +231,7 @@ t.numberState.allowsTrailingDot = YES;
 ...</pre>
 </div>
 
-<p>Recognition of scientific notation (exponential numbers) can be enabled to recognize numbers like <tt>&laquo;10e+100&raquo;</tt>, <tt>&laquo;6.626068E-34&raquo;</tt> and <tt>&laquo;6.0221415e23&raquo;</tt>. The resulting <tt>PKToken</tt> objects will have <tt>floatValue</tt>s which represent the full value of the exponential number.</p>
+<p>Recognition of scientific notation (exponential numbers) can be enabled to recognize numbers like <tt>&laquo;10e+100&raquo;</tt>, <tt>&laquo;6.626068E-34&raquo;</tt> and <tt>&laquo;6.0221415e23&raquo;</tt>. The resulting <tt>PKToken</tt> objects will have <tt>floatValue</tt>s which represent the full value of the exponential number, yet retain the original exponential representation as their <tt>stringValue</tt>s.</p>
 
 <div class="code">
 <pre>
