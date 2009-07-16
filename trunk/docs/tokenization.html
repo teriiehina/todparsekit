@@ -130,7 +130,7 @@ while ((tok = [t nextToken]) != eof) {
 <a name="default-behavior"></a>
 <h3>Default Behavior of <tt>PKTokenizer</tt></h3>
 
-<p>The default behavior of <tt>PKTokenizer</tt> for each token type is correct for many common situations. <tt>PKTokenizer</tt> will fit many tokenization needs without additional configuration.</p>
+<p>The default behavior of <tt>PKTokenizer</tt> is correct for most common situations and will fit many tokenization needs without additional configuration.</p>
 
 <h4>Number</h4>
 
@@ -150,7 +150,7 @@ while ((tok = [t nextToken]) != eof) {
 <p>By default, whitespace characters are silently consumed by <tt>PKTokenizer</tt>, and <tt>Whitespace</tt> tokens are never emitted. However, you can configure which characters are considered <tt>Whitespace</tt> characters or even ask <tt>PKTokenizer</tt> to return <tt>Whitespace</tt> tokens containing the literal whitespace <tt>stringValue</tt>s by setting: <tt>t.whitespaceState.reportsWhitespaceTokens = YES</tt>.</p>
 
 <h4>Comment</h4>
-<p>By default, <tt>PKTokenizer</tt> recognizes C-style (<tt>&laquo;//&raquo;</tt>) and C++-style (<tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>) comments and silently removes the associated comments from the output rather than producing <tt>Comment</tt> tokens. See below for steps to either report <tt>Comment</tt> tokens or to turn off comments recognition altogether.</p>
+<p>By default, <tt>PKTokenizer</tt> recognizes C-style (<tt>&laquo;//&raquo;</tt>) and C++-style (<tt>&laquo;/*&raquo; &laquo;*/&raquo;</tt>) comments and silently removes the associated comments from the output rather than producing <tt>Comment</tt> tokens. See below for steps to either change comment delimiting markers, report <tt>Comment</tt> tokens, or to turn off comments recognition altogether.</p>
 
 <h4>Delimited String</h4>
 <p>The <tt>Delimited String</tt> token type is a powerful feature of <tt>ParseKit</tt> which can be used much like a regular expression. Use the <tt>Delimited String</tt> token type to ask <tt>PKTokenizer</tt> to recognize tokens with arbitrary start and end symbol strings much like a <tt>Quoted String</tt> but with more power:</p>
