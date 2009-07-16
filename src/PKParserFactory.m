@@ -304,7 +304,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 	t.numberState.allowsTrailingDot = [self boolForTokenForKey:@"@allowsTrailingDot"];
     t.numberState.allowsScientificNotation  = [self boolForTokenForKey:@"@allowsScientificNotation"];
     t.numberState.allowsOctalNotation  = [self boolForTokenForKey:@"@allowsOctalNotation"];
-    t.numberState.allowsHexadecimalNotation  = [self boolForTokenForKey:@"@allowsHexidecimalNotation"];
+    t.numberState.allowsHexadecimalNotation  = [self boolForTokenForKey:@"@allowsHexadecimalNotation"];
     
     [self setTokenizerState:t.wordState onTokenizer:t forTokensForKey:@"@wordState"];
     [self setTokenizerState:t.numberState onTokenizer:t forTokensForKey:@"@numberState"];
