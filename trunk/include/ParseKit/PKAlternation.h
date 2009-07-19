@@ -11,7 +11,7 @@
 
 /*!
     @class      PKAlternation
-    @brief      A <tt>PKAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly.
+    @brief      A <tt>PKAlternation</tt> object is a collection of parsers, any one of which can successfully match against an assembly. It is basically a representation of "Logical Or" or "|".
 */
 @interface PKAlternation : PKCollectionParser {
 
