@@ -1,22 +1,8 @@
-<html>
-<head>
+<?php include('common-header.inc'); ?>
     <title>ParseKit Language Parsing via Grammars</title>
-    <style>
-        h1 {position:fixed; left:0; top:0; right:0; margin:0; border-bottom:1px solid silver; padding:3px 10px; background:#eeeeec; font:bold 16px "Lucida Grande";}
-        #content {width:575px; margin:60px auto 30px; text-align:justify;}
-        body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
-        tt, pre {font:12px Monaco;}
-        table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
-        th, td {border:1px solid silver;}
-        .code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
-        h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
-        a[name] {display:block; margin-bottom:60px;}
-        #home-link {position:fixed; top:0; right:0; margin:0; padding:3px 10px; font:bold 13px "Lucida Grande";}
-    </style>
-</head>
-<body>
+<?php include('common-nav.inc'); ?>
+
     <h1>ParseKit Documentation</h1>
-    <div id="home-link"><a href="/">Home</a></div>
 <div id="content">
         
     <h2>Language Parsing via Grammars</h2>
@@ -177,14 +163,5 @@
       <p>Most non-trivial language grammars define circular relationships in their production rules. The call to <tt>PKReleaseSubparserTree()</tt> is required to prevent Objective-C retain cycle leaks where the <tt>PKParser</tt> objects representing different rules in your grammar have strong references to one another.</p>
     
 </div>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-600478-9");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-</body>
-</html>
+
+<?php include('common-footer.inc'); ?>

@@ -1,23 +1,10 @@
-<html>
-<head>
-	<meta name="keywords" content="parse parser tokenizer token tokenization parsing objective-c objc cocoa framework opensource"/>
+<?php include('common-header.inc'); ?>
 	<title>ParseKit - Cocoa Objective-C Framework for parsing, tokenizing and language processing</title>
-	<style>
-		#content {width:675px; margin:60px auto 30px; text-align:justify;}
-		body, html {margin:0; padding:0; font:14px/1.5 "Lucida Grande", Helvetica, Verdana;}
-		tt, pre {font:12px Monaco;}
-		table {border:1px solid silver; background:#eeeeff; margin:25px 5px;}
-		th, td {border:1px solid silver;}
-		.code {border:2px solid silver; background:#eee; padding:5px 10px; margin:25px 5px;}
-		h3 {border-bottom:1px solid silver; padding:3px; background:#eeeeff;}
-		a[name] {display:block; margin-bottom:60px;}
-		a:hover {text-decoration:none;}
-	</style>
-</head>
-<body>
+<?php include('common-nav.inc'); ?>
+    	
+<h1>ParseKit Documentation</h1>
 <div id="content">
-	
-<h1>ParseKit</h1>
+<h2 id="home-title">ParseKit</h2>
 
 <p>ParseKit is a Mac OS X Framework written by Todd Ditchendorf in Objective-C 2.0 and released under the MIT Open Source License. ParseKit is suitable for use on Mac OS X Leopard or <a href="iphone.html">iPhone OS</a>. The framework is an Objective-C implementation of the tools described in <a href="http://www.amazon.com/Building-Parsers-Java-Steven-Metsker/dp/0201719622" title="Amazon.com: Building Parsers With Java(TM): Steven John Metsker: Books">"Building Parsers with Java"</a> by Steven John Metsker. ParseKit includes additional features beyond the designs from the book and also some changes to match common Cocoa/Objective-C conventions. However, these changes are relatively superficial, and Metsker's book is the best documentation available for this framework.</p>
 
@@ -29,7 +16,7 @@
 <li><b><a href="grammars.html">Parser Generation via Grammars</a></b> - Generate an Objective-C parser for your custom language using a high-level grammar syntax (similar to yacc or ANTLR). While parsing, the parser will provide callbacks to your Objective-C code..</li>
 </ol>
 
-<p>The ParseKit source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>. The latest tagged (stable) version is recommended.</p> <p style="margin-bottom:40px;"><tt>svn co http://todparsekit.googlecode.com/svn/tags/release-1.3.1-tag</tt></p>
+<p>The ParseKit source code is available from the <a href="http://code.google.com/p/todparsekit/source/checkout">Subversion repository</a> at the <a href="http://code.google.com/p/todparsekit/">Google Code project page</a>. The latest tagged (stable) version is recommended.</p> <p style="margin-bottom:40px;"><tt>svn co http://todparsekit.googlecode.com/svn/tags/release-1.4-tag</tt></p>
 
 <p>More documentation:</p>
 <ul>
@@ -267,14 +254,5 @@ NSLog(@" (%@)", [tok debugDescription]);
 </div>
 
 </div>
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-600478-9");
-pageTracker._trackPageview();
-} catch(err) {}</script>
-</body>
-</html>
+
+<?php include('common-footer.inc'); ?>
