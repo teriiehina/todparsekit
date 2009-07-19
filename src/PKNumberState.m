@@ -104,12 +104,18 @@
 - (CGFloat)absorbDigitsFromReader:(PKReader *)r {
     CGFloat divideBy = 1.0;
     CGFloat v = 0.0;
+    BOOL isHexAlpha = NO;
     
     while (1) {
+        isHexAlpha = NO;
         if (allowsHexadecimalNotation) {
             [self checkForHex:r];
+            if (c >= 'a' && c <= 'f' || c >= 'A' && c <= 'F') {
+                isHexAlpha = YES;
+            }
         }
-        if (isdigit(c)) {
+        
+        if (isdigit(c) || isHexAlpha) {
             [self append:c];
             len++;
             gotADigit = YES;
@@ -118,6 +124,12 @@
                 [self checkForOctal];
             }
             
+            if (isHexAlpha) {
+                if (c >= 'a' && c <= 'f') {
+                    c = toupper(c);
+                }
+                c -= 7;
+            }
             v = v * base + (c - '0');
             c = [r read];
             if (isFraction) {
