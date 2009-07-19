@@ -993,7 +993,7 @@
 - (void)testHex {
     s = @"0x20";
     t.string = s;
-    numberState.allowsHexadecimalNotation = NO;
+    numberState.allowsOctalNotation = NO;
     numberState.allowsHexadecimalNotation = YES;
     PKToken *tok = [t nextToken];
     TDEquals((CGFloat)32.0, tok.floatValue);
@@ -1008,12 +1008,63 @@
 - (void)testHex2 {
     s = @"0x20";
     t.string = s;
-    numberState.allowsHexadecimalNotation = YES;
+    numberState.allowsOctalNotation = YES;
     numberState.allowsHexadecimalNotation = YES;
     PKToken *tok = [t nextToken];
     TDEquals((CGFloat)32.0, tok.floatValue);
     TDTrue(tok.isNumber);
     TDEqualObjects(@"0x20", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
+- (void)testHexAlpha {
+    s = @"0xA";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexadecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)10.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0xA", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+
+    s = @"0xa";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexadecimalNotation = YES;
+    tok = [t nextToken];
+    TDEquals((CGFloat)10.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0xa", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+
+    s = @"0xB7";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexadecimalNotation = YES;
+    tok = [t nextToken];
+    TDEquals((CGFloat)183.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0xB7", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+
+    s = @"0x8EE";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexadecimalNotation = YES;
+    tok = [t nextToken];
+    TDEquals((CGFloat)2286.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0x8EE", tok.stringValue);
     
     tok = [t nextToken];
     TDTrue([PKToken EOFToken] == tok);
