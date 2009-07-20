@@ -19,6 +19,7 @@
 
 @interface PKTokenizerState ()
 - (void)resetWithReader:(PKReader *)r;
+- (PKTokenizerState *)nextTokenizerStateFor:(PKUniChar)c tokenizer:(PKTokenizer *)t;
 - (void)append:(PKUniChar)c;
 - (NSString *)bufferedString;
 @end
@@ -63,12 +64,17 @@
         }
     }
     
-    // erroneous ., +, or -
+    // erroneous ., +, -, or 0x
     if (!gotADigit) {
-        if (isNegative && PKEOF != c) { // ??
+        if (isHex) {
             [r unread];
+            return [PKToken tokenWithTokenType:PKTokenTypeNumber stringValue:@"0" floatValue:0.0];
+        } else {
+            if (isNegative && PKEOF != c) { // ??
+                [r unread];
+            }
+            return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
         }
-        return [t.symbolState nextTokenFromReader:r startingWith:originalCin tokenizer:t];
     }
     
     if (PKEOF != c) {
@@ -215,7 +221,8 @@
     firstNum = cin;
     gotADigit = NO;
     isFraction = NO;
-    isDecimal = YES;   
+    isDecimal = YES;
+    isHex = NO;
     len = 0;
     base = (CGFloat)10.0;
     floatValue = (CGFloat)0.0;
@@ -231,6 +238,8 @@
         c = [r read];
         isDecimal = NO;
         base = (CGFloat)16.0;
+        isHex = YES;
+        gotADigit = NO;
     }
 }
 

@@ -1020,6 +1020,26 @@
 }
 
 
+- (void)testNotHex {
+    s = @"0x";
+    t.string = s;
+    numberState.allowsOctalNotation = YES;
+    numberState.allowsHexadecimalNotation = YES;
+    PKToken *tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isNumber);
+    TDEqualObjects(@"0", tok.stringValue);
+
+    tok = [t nextToken];
+    TDEquals((CGFloat)0.0, tok.floatValue);
+    TDTrue(tok.isWord);
+    TDEqualObjects(@"x", tok.stringValue);
+    
+    tok = [t nextToken];
+    TDTrue([PKToken EOFToken] == tok);
+}
+
+
 - (void)testHexAlpha {
     s = @"0xA";
     t.string = s;

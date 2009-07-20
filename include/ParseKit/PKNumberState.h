@@ -23,6 +23,7 @@
     BOOL isDecimal;
     BOOL isFraction;
     BOOL isNegative;
+    BOOL isHex;
     BOOL gotADigit;
     NSUInteger len;
     CGFloat base;
