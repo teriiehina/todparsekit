@@ -8,3 +8,6 @@ svn copy -rHEAD https://todparsekit.googlecode.com/svn/tags/release-1.4-tag \
 
 svn delete https://todparsekit.googlecode.com/svn/tags/release-1.4-tag \
   -m "deleting first 1.4 release tag"
+  
+svn delete https://todparsekit.googlecode.com/svn/branches/release-1.4-branch \
+    -m "deleting first 1.4 release tag"
