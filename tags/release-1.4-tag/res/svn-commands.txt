@@ -1,6 +1,0 @@
-svn copy -r1243 https://todparsekit.googlecode.com/svn/trunk/ \
-        https://todparsekit.googlecode.com/svn/tags/release-1.4-tag \
-   -m "Creating 1.4 release tag from -r1243"
-   
-svn delete https://todparsekit.googlecode.com/svn/tags/release-1.4-tag \
-  -m "deleting first 1.4 release tag"
