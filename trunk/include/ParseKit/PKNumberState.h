@@ -32,7 +32,7 @@
     PKUniChar c;
     CGFloat floatValue;
     CGFloat exp;
-    BOOL negativeExp;    
+    BOOL isNegativeExp;    
 }
 
 /*!
