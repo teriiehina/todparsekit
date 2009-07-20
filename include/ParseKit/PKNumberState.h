@@ -58,7 +58,7 @@
 
 /*!
     @property   allowsHexidecimalNotation
-    @brief      If YES, supports hex numbers like <tt>0x20<tt> (32), or <tt>0x42<tt> (66)
+    @brief      If YES, supports hex numbers like <tt>0x20<tt> (32), or <tt>0xB7<tt> (183)
     @details    default is NO
 */
 @property (nonatomic) BOOL allowsHexadecimalNotation;
