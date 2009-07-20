@@ -96,7 +96,7 @@
     
     NSUInteger i = 0;
     for ( ; i < exp; i++) {
-        if (negativeExp) {
+        if (isNegativeExp) {
             result /= (CGFloat)10.0;
         } else {
             result *= (CGFloat)10.0;
@@ -191,10 +191,10 @@
         c = [r read];
         
         BOOL hasExp = isdigit(c);
-        negativeExp = ('-' == c);
+        isNegativeExp = ('-' == c);
         BOOL positiveExp = ('+' == c);
         
-        if (!hasExp && (negativeExp || positiveExp)) {
+        if (!hasExp && (isNegativeExp || positiveExp)) {
             c = [r read];
             hasExp = isdigit(c);
         }
@@ -203,7 +203,7 @@
         }
         if (hasExp) {
             [self append:e];
-            if (negativeExp) {
+            if (isNegativeExp) {
                 [self append:'-'];
             } else if (positiveExp) {
                 [self append:'+'];
@@ -227,7 +227,7 @@
     base = (CGFloat)10.0;
     floatValue = (CGFloat)0.0;
     exp = (CGFloat)0.0;
-    negativeExp = NO;
+    isNegativeExp = NO;
 }
 
 
