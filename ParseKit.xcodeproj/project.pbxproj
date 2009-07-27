@@ -247,6 +247,9 @@
 		D36568A70EEF9FE900226554 /* TDPlistParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A60EEF9FE900226554 /* TDPlistParser.m */; };
 		D36568AA0EEFA05300226554 /* TDPlistParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D36568A90EEFA05300226554 /* TDPlistParserTest.m */; };
 		D3656DFE0EF2620E00226554 /* TDTokenArraySourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */; };
+		D3668292101D2BFA0008632C /* erb.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3668291101D2BFA0008632C /* erb.grammar */; };
+		D3668293101D2C000008632C /* erb.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3668291101D2BFA0008632C /* erb.grammar */; };
+		D3668296101D2C200008632C /* ERBTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3668295101D2C200008632C /* ERBTest.m */; };
 		D36C53790FD27F1300141CB7 /* TDParserFactoryTest2.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */; };
 		D36C55FF0FD3617B00141CB7 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = D36C55FD0FD3617B00141CB7 /* RegexKitLite.m */; };
 		D36C560C0FD363D500141CB7 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D36C560B0FD363D500141CB7 /* libicucore.dylib */; };
@@ -910,6 +913,9 @@
 		D36568A90EEFA05300226554 /* TDPlistParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDPlistParserTest.m; path = test/TDPlistParserTest.m; sourceTree = "<group>"; };
 		D3656DFC0EF2620E00226554 /* TDTokenArraySourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenArraySourceTest.h; path = test/TDTokenArraySourceTest.h; sourceTree = "<group>"; };
 		D3656DFD0EF2620E00226554 /* TDTokenArraySourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenArraySourceTest.m; path = test/TDTokenArraySourceTest.m; sourceTree = "<group>"; };
+		D3668291101D2BFA0008632C /* erb.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = erb.grammar; path = res/erb.grammar; sourceTree = "<group>"; };
+		D3668294101D2C200008632C /* ERBTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ERBTest.h; path = test/ERBTest.h; sourceTree = "<group>"; };
+		D3668295101D2C200008632C /* ERBTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ERBTest.m; path = test/ERBTest.m; sourceTree = "<group>"; };
 		D36C53770FD27F1300141CB7 /* TDParserFactoryTest2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryTest2.h; path = test/TDParserFactoryTest2.h; sourceTree = "<group>"; };
 		D36C53780FD27F1300141CB7 /* TDParserFactoryTest2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryTest2.m; path = test/TDParserFactoryTest2.m; sourceTree = "<group>"; };
 		D36C55FC0FD3617B00141CB7 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = src/RegexKitLite.h; sourceTree = "<group>"; };
@@ -1498,6 +1504,16 @@
 			name = plist;
 			sourceTree = "<group>";
 		};
+		D3668290101D2BAC0008632C /* erb */ = {
+			isa = PBXGroup;
+			children = (
+				D3668291101D2BFA0008632C /* erb.grammar */,
+				D3668294101D2C200008632C /* ERBTest.h */,
+				D3668295101D2C200008632C /* ERBTest.m */,
+			);
+			name = erb;
+			sourceTree = "<group>";
+		};
 		D36C55FB0FD3616200141CB7 /* regex */ = {
 			isa = PBXGroup;
 			children = (
@@ -1878,10 +1894,10 @@
 		D3C7D8220A411F31005DD154 /* ParseKit Tests */ = {
 			isa = PBXGroup;
 			children = (
-				D3376D7710096BDE00E4602E /* IR */,
 				D3F0E36C0FFEA33700C9DF74 /* Tests-Info.plist */,
 				D31FE54A0E60E46100A0803E /* TDTestScaffold.h */,
 				D31FE54B0E60E46100A0803E /* TDTestScaffold.m */,
+				D3376D7710096BDE00E4602E /* IR */,
 				D3F823560F57859900B7DC48 /* factory */,
 				D3C0309C0EF34DD200C5ABEB /* grammar */,
 				D3252F670FCE171D005EF059 /* predicate */,
@@ -1899,6 +1915,7 @@
 				D3E788900E567DDA008C7D61 /* srgs */,
 				D389A0AE0F1FCC7A003B43BD /* relaxng */,
 				D3C863240E67C249000445FD /* syntax highlight */,
+				D3668290101D2BAC0008632C /* erb */,
 			);
 			name = "ParseKit Tests";
 			sourceTree = "<group>";
@@ -2567,6 +2584,7 @@
 				D3BBBCC10FECD477007DF30D /* xml.grammar in Resources */,
 				D315DF730FEF59B600D876C8 /* date.grammar in Resources */,
 				D34BAC9A0FF8A9AD00D7773A /* xpath1_0.grammar in Resources */,
+				D3668293101D2C000008632C /* erb.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2624,6 +2642,7 @@
 				D355C8810FEB36A1006A91A4 /* xml.grammar in Resources */,
 				D355C8840FEB4B94006A91A4 /* proto.grammar in Resources */,
 				D315DF720FEF59B600D876C8 /* date.grammar in Resources */,
+				D3668292101D2BFA0008632C /* erb.grammar in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2925,6 +2944,7 @@
 				D3376D4510092B9F00E4602E /* PKParseTree.m in Sources */,
 				D3376D8E10096C0700E4602E /* PKAST.m in Sources */,
 				D34BAD18100A9B7900996341 /* TDTokenizerStateTest.m in Sources */,
+				D3668296101D2C200008632C /* ERBTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
