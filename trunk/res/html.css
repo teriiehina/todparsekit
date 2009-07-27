@@ -1,6 +1,6 @@
 lt, gt, fwdSlash, endTagStart, eq {
     color:rgb(178.5, 35.7, 135.15);
-    background-color:rgb(30, 30, 36);
+    background-color:rgb(20, 20, 26);
     font-family:'Monaco';
     font-size:11px;
 }
@@ -34,7 +34,8 @@ attrName {
 }
 
 text {
-    color:rgb(61.2, 178.5, 68.85);
+//    color:rgb(61.2, 178.5, 68.85);
+    color:rgb(255, 255, 255);
     background-color:rgb(30, 30, 36);
     font-family:'Monaco';
     font-size:11px;
