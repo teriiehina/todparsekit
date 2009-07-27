@@ -5,17 +5,22 @@
     the point here is to highlight, not validate, HTML.
 */
 
-@symbols = '<!DOCTYPE' '<?' '?>';
+@delimitedString = '<?' '?>' nil;
+@delimitedString = '<!DOCTYPE' '>' nil;
+
 @multiLineComments = '<!--' '-->';
+@commentState = '<';
+@commentState.fallbackState = delimitState;
+@delimitState.fallbackState = symbolState;
 
 @start          = any*;
-any             = element | text | doctype | pi;
+any             = element | text | doctype | pi | comment;
 
-pi              = '<?' tagName attr* '?>';
+pi              = DelimitedString('<?', '?>');
 
-doctype         = '<!DOCTYPE' /[^>]+/* gt;
+doctype         = DelimitedString('<!DOCTYPE', '>');
 element         = emptyTag | startTag elementContent* endTag;
-elementContent  = element | text;
+elementContent  = element | text | comment | pi;
 text            = /[^<]+/;
 
 emptyTag        = lt tagName attr* fwdSlash gt;
@@ -26,9 +31,7 @@ tagName         = Word;
 
 attr            = attrName (eq attrValue)?;
 attrName        = Word;
-attrValue       = Word | QuotedString;
-
-junk            = Symbol & !'>' & !'/';
+attrValue       = QuotedString;
 
 eq              = '=';
 lt              = '<';
