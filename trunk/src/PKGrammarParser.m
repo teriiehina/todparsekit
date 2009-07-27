@@ -495,7 +495,7 @@
 - (PKCollectionParser *)discardedParserParser {
     if (!discardedParserParser) {
         self.discardedParserParser = [PKSequence sequence];
-        discardedParserParser.name = @"atomicValue";
+        discardedParserParser.name = @"discarded";
         [discardedParserParser add:self.discardParser];        
         [discardedParserParser add:self.parserParser];
         [discardedParserParser setAssembler:assembler selector:@selector(workOnDiscardedParser:)];
@@ -523,8 +523,8 @@
 - (PKCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [PKSequence sequence];
-        discardParser.name = @"discardParser";
-        [discardParser add:[[PKSymbol symbolWithString:@">"] discard]]; // preserve
+        discardParser.name = @"discard";
+        [discardParser add:[[PKSymbol symbolWithString:@">"] discard]];
         [discardParser add:self.optionalWhitespaceParser];
     }
     return discardParser;

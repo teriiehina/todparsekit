@@ -460,10 +460,10 @@
 
 
 - (void)doXMLParser {
-	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
-	NSString *g = [NSString stringWithContentsOfFile:path];
-    PKParser *p = [[PKParserFactory factory] parserFromGrammar:g assembler:self];
-    PKTokenizer *t = p.tokenizer;	
+//	NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
+//	NSString *g = [NSString stringWithContentsOfFile:path];
+//    PKParser *p = [[PKParserFactory factory] parserFromGrammar:g assembler:self];
+//    PKTokenizer *t = p.tokenizer;	
 }
 
 
@@ -479,19 +479,19 @@
 
 //    [self doJSParser];
     
-    [self doProf];
+//    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
     //    [self doTokenize];
-//    [self doGrammarParser];
+    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
 //    [self doParenStuff];
     
 //    [self doJSONHighlighting];
 //    [self doCSSHighlighting];
-//    [self doHTMLHighlighting];
+    //[self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
 //    [self doDelimitedString];
