@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class PKAssembly;
+
 @interface TDGenericAssembler : NSObject {
     NSMutableDictionary *attributes;
     NSMutableDictionary *defaultProperties;
     NSMutableDictionary *productionNames;
-    NSMutableAttributedString *displayString;
+    PKAssembly *currentAssembly;
     NSString *prefix;
     NSString *suffix;
 }
 @property (nonatomic, retain) NSMutableDictionary *attributes;
 @property (nonatomic, retain) NSMutableDictionary *defaultProperties;
 @property (nonatomic, retain) NSMutableDictionary *productionNames;
-@property (nonatomic, retain) NSMutableAttributedString *displayString;
+@property (nonatomic, retain) PKAssembly *currentAssembly;
 @end

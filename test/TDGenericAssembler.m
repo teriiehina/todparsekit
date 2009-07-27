@@ -27,7 +27,6 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] autorelease];
         self.productionNames = [NSMutableDictionary dictionary];
         self.defaultProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                   [NSColor blackColor], NSForegroundColorAttributeName,
@@ -35,7 +34,7 @@
                                   [NSFont fontWithName:@"Monaco" size:11.0], NSFontAttributeName,
                                   nil];
         self.prefix = @"workOn";
-        self.suffix = @"Assembly:";
+        self.suffix = @":";
     }
     return self;
 }
@@ -45,7 +44,7 @@
     self.attributes = nil;
     self.defaultProperties = nil;
     self.productionNames = nil;
-    self.displayString = nil;
+    self.currentAssembly = nil;
     self.prefix = nil;
     self.suffix = nil;
     [super dealloc];
@@ -78,6 +77,7 @@
 
 - (void)workOnTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a {
     //NSLog(@"%@ : %@", name, a);
+    self.currentAssembly = a;
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];
 
     id props = [attributes objectForKey:name];
@@ -109,6 +109,13 @@
 
 
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs {
+    NSMutableAttributedString *displayString = currentAssembly.target;
+    if (!displayString) {
+        displayString = [[[NSMutableAttributedString alloc] initWithString:@"" attributes:nil] autorelease];
+        currentAssembly.target = displayString;
+    }
+
+    
     NSAttributedString *as = [[NSAttributedString alloc] initWithString:[obj stringValue] attributes:attrs];
     [displayString appendAttributedString:as];
     [as release];
@@ -156,7 +163,7 @@
 @synthesize attributes;
 @synthesize defaultProperties;
 @synthesize productionNames;
-@synthesize displayString;
+@synthesize currentAssembly;
 @synthesize prefix;
 @synthesize suffix;
 @end

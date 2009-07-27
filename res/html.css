@@ -12,7 +12,7 @@ eq {
     font-size:11px;
 }
 
-elementName {
+tagName {
     color:rgb(178.5, 35.7, 135.15);
     background-color:rgb(20, 20, 26);
     font-family:'Monaco';
@@ -20,8 +20,8 @@ elementName {
 }
 
 attrValue {
-    color:rgb(196.35, 45.9, 51.0);
-    background-color:rgb(20, 20, 26);
+    color:rgb(84.15, 114.75, 122.4);
+    background-color:rgb(30, 30, 36);
     font-family:'Monaco';
     font-size:11px;
 }
@@ -33,23 +33,16 @@ attrName {
     font-size:11px;
 }
 
-//text {
-//    color:rgb(61.2, 178.5, 68.85);
-//    background-color:rgb(30, 30, 36);
-//    font-family:'Monaco';
-//    font-size:11px;
-//}
-
 text {
-    color:rgb(255, 255, 255);
-    background-color:rgb(255, 0, 0);
+    color:rgb(61.2, 178.5, 68.85);
+    background-color:rgb(30, 30, 36);
     font-family:'Monaco';
     font-size:11px;
 }
 
-//comment {
-//    color:rgb(22.95, 158.1, 188.7);
-//    background-color:rgb(30, 30, 36);
-//    font-family:'Monaco';
-//    font-size:11px;
-//}
+comment {
+    color:rgb(22.95, 158.1, 188.7);
+    background-color:rgb(30, 30, 36);
+    font-family:'Monaco';
+    font-size:11px;
+}
