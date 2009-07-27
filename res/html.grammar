@@ -5,22 +5,30 @@
     the point here is to highlight, not validate, HTML.
 */
 
+@symbols = '<!DOCTYPE' '<?' '?>';
 @multiLineComments = '<!--' '-->';
 
-@start          = element;
+@start          = any*;
+any             = element | text | doctype | pi;
+
+pi              = '<?' tagName attr* '?>';
+
+doctype         = '<!DOCTYPE' /[^>]+/* gt;
 element         = emptyTag | startTag elementContent* endTag;
 elementContent  = element | text;
 text            = /[^<]+/;
 
 emptyTag        = lt tagName attr* fwdSlash gt;
-startTag        = lt tagName attr* gt;
+startTag        = lt junk? tagName attr* gt;
 endTag          = lt fwdSlash tagName gt;
 
 tagName         = Word;
 
 attr            = attrName (eq attrValue)?;
 attrName        = Word;
-attrValue       = QuotedString;
+attrValue       = Word | QuotedString;
+
+junk            = Symbol & !'>' & !'/';
 
 eq              = '=';
 lt              = '<';
