@@ -321,9 +321,9 @@
     t.whitespaceState.reportsWhitespaceTokens = YES;
     PKTokenAssembly *a1 = [PKTokenAssembly assemblyWithTokenizer:t];
     a1.preservesWhitespaceTokens = YES;
-    [jsonParser completeMatchFor:a1];
-    
-    self.displayString = genericAssembler.displayString;
+//    [jsonParser completeMatchFor:a1];
+//    self.displayString = genericAssembler.displayString;
+    self.displayString = [[jsonParser completeMatchFor:a1] target];
 }
 
 
@@ -484,14 +484,14 @@
     //[self doJavaScriptGrammarParser];
     
     //    [self doTokenize];
-    [self doGrammarParser];
+//    [self doGrammarParser];
 //    [self doSimpleCSS];
 //    [self doSimpleCSS2];
 //    [self doParenStuff];
     
 //    [self doJSONHighlighting];
 //    [self doCSSHighlighting];
-    //[self doHTMLHighlighting];
+    [self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
 //    [self doDelimitedString];

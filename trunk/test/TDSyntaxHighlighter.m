@@ -148,14 +148,13 @@
     PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:parser.tokenizer];
     a.preservesWhitespaceTokens = YES;
     
-    [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
+    PKAssembly *resultAssembly = [parser completeMatchFor:a]; // finally, parse the input. stores attributed string in genericAssembler.displayString
     
     if (!cacheParsers) {
         PKReleaseSubparserTree(parser);
     }
     
-    id result = [[genericAssembler.displayString copy] autorelease];
-    genericAssembler.displayString = nil;
+    id result = [[resultAssembly.target copy] autorelease];
     return result;
 }
 
