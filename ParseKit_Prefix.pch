@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'TDParseKit' target in the 'TDParseKit' project.
+// Prefix header for all source files of the 'ParseKit' target in the 'ParseKit' project.
 //
 
 #ifdef __OBJC__

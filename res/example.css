@@ -16,39 +16,39 @@ rgb {
     font-weight: bold;
 }
 
-			body {
-				font:14px/1.4 "Lucida Grande", LucidaGrande, Verdana, Helvetica, Arial;
-			}
-		
-			#content {
-				position:relative;
-				width:650px;
-				margin:20px auto;
-			}
+body {
+    font:14px/1.4 "Lucida Grande", LucidaGrande, Verdana, Helvetica, Arial;
+}
 
-			#icon {
-				float:left;
-				margin-right:15px;
-			}
-			
-			h1 {
-				padding-top:15px;
-				font-size:48px;
-			}
+#content {
+    position:relative;
+    width:650px;
+    margin:20px auto;
+}
 
-			#desc {
-				position:absolute;
-				left:170px; top:75px;
-			}
-			
-			#screenshot {
-				display:block;
-				width:500px;
-				margin:80px auto 35px;
-				border:1px solid silver;
-			}
-			
-			#copyright, #credits, #hostedby {
-				font-size:small;
-				text-align:center;
-			}
+#icon {
+    float:left;
+    margin-right:15px;
+}
+
+h1 {
+    padding-top:15px;
+    font-size:48px;
+}
+
+#desc {
+    position:absolute;
+    left:170px; top:75px;
+}
+
+#screenshot {
+    display:block;
+    width:500px;
+    margin:80px auto 35px;
+    border:1px solid silver;
+}
+
+#copyright, #credits, #hostedby {
+    font-size:small;
+    text-align:center;
+}

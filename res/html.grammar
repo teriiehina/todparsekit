@@ -5,12 +5,12 @@
     the point here is to highlight, not validate, HTML.
 */
 
-@delimitedString = '<?' '?>' nil;
-@delimitedString = '<!DOCTYPE' '>' nil;
-
 @multiLineComments = '<!--' '-->';
 @commentState = '<';
 @commentState.fallbackState = delimitState;
+
+@delimitedString = '<?' '?>' nil;
+@delimitedString = '<!DOCTYPE' '>' nil;
 @delimitState.fallbackState = symbolState;
 
 @start          = any*;
