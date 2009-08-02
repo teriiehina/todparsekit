@@ -18,7 +18,7 @@
 - (void)workOnDifference:(PKAssembly *)a;
 - (void)workOnPatternOptions:(PKAssembly *)a;
 - (void)workOnPattern:(PKAssembly *)a;
-- (void)workOnDiscardedParser:(PKAssembly *)a;
+- (void)workOnDiscard:(PKAssembly *)a;
 - (void)workOnLiteral:(PKAssembly *)a;
 - (void)workOnVariable:(PKAssembly *)a;
 - (void)workOnConstant:(PKAssembly *)a;
@@ -76,7 +76,6 @@
     self.intersectionParser = nil;
     self.differenceParser = nil;
     self.atomicValueParser = nil;
-    self.discardedParserParser = nil;
     self.parserParser = nil;
     self.discardParser = nil;
     self.patternParser = nil;
@@ -126,12 +125,11 @@
 // difference           = '-' S* primaryExpr;
 
 // primaryExpr          = negatedPrimaryExpr | barePrimaryExpr;
-// negatedPrimaryExpr   = '!' barePrimaryExpr;
+// negatedPrimaryExpr   = '~' barePrimaryExpr;
 // barePrimaryExpr      = atomicValue | '(' expr ')';
-// atomicValue          = discardedParser | parser;
-// discardedParser      = discard? parser;
+// atomicValue          = parser discard?;
 // parser               = pattern | literal | variable | constant | delimitedString;
-// discard              = '>' S*;
+// discard              = S* '!';
 // pattern              = DelimitedString('/', '/') (Word & /[imxsw]+/)?;
 // delimitedString      = 'DelimitedString' S* '(' S* QuotedString (S* ',' QuotedString)? S* ')';
 // literal              = QuotedString;
@@ -479,28 +477,15 @@
 }
 
 
-// atomicValue          =  discardedParser | parser;
+// atomicValue          = parser discard?;
 - (PKCollectionParser *)atomicValueParser {
     if (!atomicValueParser) {
-        self.atomicValueParser = [PKAlternation alternation];
+        self.atomicValueParser = [PKSequence sequence];
         atomicValueParser.name = @"atomicValue";
-        [atomicValueParser add:self.discardedParserParser];
         [atomicValueParser add:self.parserParser];
+        [atomicValueParser add:[self zeroOrOne:self.discardParser]];
     }
     return atomicValueParser;
-}
-
-
-// discardedParser              = discard? parser;
-- (PKCollectionParser *)discardedParserParser {
-    if (!discardedParserParser) {
-        self.discardedParserParser = [PKSequence sequence];
-        discardedParserParser.name = @"discarded";
-        [discardedParserParser add:self.discardParser];        
-        [discardedParserParser add:self.parserParser];
-        [discardedParserParser setAssembler:assembler selector:@selector(workOnDiscardedParser:)];
-    }
-    return discardedParserParser;
 }
 
 
@@ -519,13 +504,14 @@
 }
 
 
-// discard              = '>' S*;
+// discard              = S* '!';
 - (PKCollectionParser *)discardParser {
     if (!discardParser) {
         self.discardParser = [PKSequence sequence];
         discardParser.name = @"discard";
-        [discardParser add:[[PKSymbol symbolWithString:@">"] discard]];
         [discardParser add:self.optionalWhitespaceParser];
+        [discardParser add:[[PKSymbol symbolWithString:@"!"] discard]];
+        [discardParser setAssembler:assembler selector:@selector(workOnDiscard:)];
     }
     return discardParser;
 }
@@ -644,7 +630,6 @@
 @synthesize intersectionParser;
 @synthesize differenceParser;
 @synthesize atomicValueParser;
-@synthesize discardedParserParser;
 @synthesize parserParser;
 @synthesize discardParser;
 @synthesize patternParser;

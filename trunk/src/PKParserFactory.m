@@ -119,7 +119,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)workOnDifference:(PKAssembly *)a;
 - (void)workOnPatternOptions:(PKAssembly *)a;
 - (void)workOnPattern:(PKAssembly *)a;
-- (void)workOnDiscardedParser:(PKAssembly *)a;
+- (void)workOnDiscard:(PKAssembly *)a;
 - (void)workOnLiteral:(PKAssembly *)a;
 - (void)workOnVariable:(PKAssembly *)a;
 - (void)workOnConstant:(PKAssembly *)a;
@@ -762,7 +762,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (void)workOnDiscardedParser:(PKAssembly *)a {
+- (void)workOnDiscard:(PKAssembly *)a {
     id obj = [a pop];
     if ([obj isKindOfClass:[PKTerminal class]]) {
         PKTerminal *t = (PKTerminal *)obj;
