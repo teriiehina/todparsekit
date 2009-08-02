@@ -7,7 +7,6 @@
 //
 
 #import "TDTestScaffold.h"
-#import "PKParserFactory.h"
 
 @interface TDParserFactoryTest3 : SenTestCase {
     NSString *g;

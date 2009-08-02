@@ -519,10 +519,12 @@ void PKReleaseSubparserTree(PKParser *p) {
     if (!selName) {
         selName = [self defaultAssemblerSelectorNameForParserName:parserName];
     }
-                
-    SEL sel = NSSelectorFromString(selName);
-    if (assembler && [assembler respondsToSelector:sel]) {
-        [p setAssembler:assembler selector:sel];
+    
+    if (selName) {
+        SEL sel = NSSelectorFromString(selName);
+        if (assembler && [assembler respondsToSelector:sel]) {
+            [p setAssembler:assembler selector:sel];
+        }
     }
 }
 
@@ -622,8 +624,9 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName {
     NSString *prefix = nil;
     if ([parserName hasPrefix:@"@"]) {
-        parserName = [parserName substringFromIndex:1];
-        prefix = @"workOn_";
+//        parserName = [parserName substringFromIndex:1];
+//        prefix = @"workOn_";
+        return nil;
     } else {
         prefix = @"workOn";
     }
