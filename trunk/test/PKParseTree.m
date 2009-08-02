@@ -16,9 +16,21 @@
 
 @implementation PKParseTree
 
++ (id)parseTree {
+    return [[[self alloc] init] autorelease];
+}
+
+
 - (void)dealloc {
     self.children = nil;
     [super dealloc];
+}
+
+
+- (id)copyWithZone:(NSZone *)zone {
+    PKParseTree *t = [[PKParseTree allocWithZone:zone] init];
+    t->children = [children mutableCopyWithZone:zone];
+    return t;
 }
 
 
@@ -44,6 +56,11 @@
         self.children = [NSMutableArray array];
     }
     [children addObject:tr];
+}
+
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<PKParseTree '%@'>", children];
 }
 
 @synthesize children;

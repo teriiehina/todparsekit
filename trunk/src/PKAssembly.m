@@ -57,7 +57,11 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
         a->defaultDelimiter = [defaultDelimiter retain];
     }
     if (target) {
-        a->target = [target mutableCopyWithZone:zone];
+        if ([target conformsToProtocol:@protocol(NSMutableCopying)]) {
+            a->target = [target mutableCopyWithZone:zone];
+        } else {
+            a->target = [target copyWithZone:zone];
+        }
     }
     a->index = index;
     return a;

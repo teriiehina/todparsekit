@@ -32,5 +32,17 @@
     [super dealloc];
 }
 
+
+- (id)copyWithZone:(NSZone *)zone {
+    PKRuleNode *n = [[PKRuleNode allocWithZone:zone] init];
+    n->name = [name copyWithZone:zone];
+    return n;
+}
+
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<PKRuleNode '%@' %@>", name, children];
+}
+
 @synthesize name;
 @end
