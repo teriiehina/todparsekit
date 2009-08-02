@@ -11,6 +11,7 @@
 #import "PKTokenNode.h"
 
 @interface PKParseTree ()
+@property (nonatomic, assign, readwrite) PKParseTree *parent;
 @property (nonatomic, retain, readwrite) NSMutableArray *children;
 @end
 
@@ -22,14 +23,33 @@
 
 
 - (void)dealloc {
+    parent = nil;
     self.children = nil;
     [super dealloc];
 }
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    PKParseTree *t = [[PKParseTree allocWithZone:zone] init];
-    t->children = [children mutableCopyWithZone:zone];
+    PKParseTree *t = [[[self class] allocWithZone:zone] init];
+
+    // assign parent
+    t->parent = parent;
+    
+    // put new copy in new parent's children array
+    NSInteger i = [[parent children] indexOfObject:self];
+    [[t->parent children] replaceObjectAtIndex:i withObject:t];
+    
+    // copy children
+    if (children) {
+        t->children = [[NSMutableArray allocWithZone:zone] initWithCapacity:[children count]];
+        
+        // make new children point to t as parent
+        for (PKParseTree *child in children) {
+            PKParseTree *newChild = [[child copyWithZone:zone] autorelease];
+            newChild->parent = t;
+            [t->children addObject:newChild];
+        }
+    }
     return t;
 }
 
@@ -55,6 +75,7 @@
     if (!children) {
         self.children = [NSMutableArray array];
     }
+    tr.parent = self;
     [children addObject:tr];
 }
 
@@ -63,5 +84,6 @@
     return [NSString stringWithFormat:@"<PKParseTree '%@'>", children];
 }
 
+@synthesize parent;
 @synthesize children;
 @end

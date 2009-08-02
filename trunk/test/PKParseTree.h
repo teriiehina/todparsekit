@@ -13,6 +13,7 @@
 @class PKToken;
 
 @interface PKParseTree : NSObject <NSCopying> {
+    PKParseTree *parent;
     NSMutableArray *children;
 }
 + (id)parseTree;
@@ -21,5 +22,6 @@
 - (PKTokenNode *)addChildToken:(PKToken *)tok;
 - (void)addChild:(PKParseTree *)tr;
 
+@property (nonatomic, assign, readonly) PKParseTree *parent; // weak ref
 @property (nonatomic, retain, readonly) NSMutableArray *children;
 @end

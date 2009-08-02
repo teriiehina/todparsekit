@@ -27,6 +27,7 @@ typedef enum {
     PKParserFactoryAssemblerSettingBehavior assemblerSettingBehavior;
     PKGrammarParser *grammarParser;
     id assembler;
+    id preassembler;
     NSMutableDictionary *parserTokensTable;
     NSMutableDictionary *parserClassTable;
     NSMutableDictionary *selectorTable;
@@ -38,6 +39,7 @@ typedef enum {
 + (id)factory;
 
 - (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a;
+- (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a preassembler:(id)pa;
 
 - (PKCollectionParser *)exprParser;
 

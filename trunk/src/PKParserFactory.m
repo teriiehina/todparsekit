@@ -103,6 +103,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (void)setAssemblerForParser:(PKParser *)p;
 - (NSArray *)tokens:(NSArray *)toks byRemovingTokensOfType:(PKTokenType)tt;
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName;
+- (NSString *)defaultPreassemblerSelectorNameForParserName:(NSString *)parserName;
 
 // this is only for unit tests? can it go away?
 - (PKSequence *)parserFromExpression:(NSString *)s;
@@ -134,6 +135,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 @property (nonatomic, retain) PKGrammarParser *grammarParser;
 @property (nonatomic, assign) id assembler;
+@property (nonatomic, assign) id preassembler;
 @property (nonatomic, retain) NSMutableDictionary *parserTokensTable;
 @property (nonatomic, retain) NSMutableDictionary *parserClassTable;
 @property (nonatomic, retain) NSMutableDictionary *selectorTable;
@@ -182,7 +184,13 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 
 - (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a {
+    return [self parserFromGrammar:s assembler:a preassembler:nil];
+}
+
+
+- (PKParser *)parserFromGrammar:(NSString *)s assembler:(id)a preassembler:(id)pa {
     self.assembler = a;
+    self.preassembler = pa;
     self.selectorTable = [NSMutableDictionary dictionary];
     self.parserClassTable = [NSMutableDictionary dictionary];
     self.parserTokensTable = [self parserTokensTableFromParsingStatementsInString:s];
@@ -525,6 +533,10 @@ void PKReleaseSubparserTree(PKParser *p) {
         if (assembler && [assembler respondsToSelector:sel]) {
             [p setAssembler:assembler selector:sel];
         }
+        if (preassembler && [preassembler respondsToSelector:sel]) {
+            NSString *selName = [self defaultPreassemblerSelectorNameForParserName:parserName];
+            [p setPreassembler:preassembler selector:NSSelectorFromString(selName)];
+        }
     }
 }
 
@@ -624,11 +636,23 @@ void PKReleaseSubparserTree(PKParser *p) {
 - (NSString *)defaultAssemblerSelectorNameForParserName:(NSString *)parserName {
     NSString *prefix = nil;
     if ([parserName hasPrefix:@"@"]) {
-//        parserName = [parserName substringFromIndex:1];
-//        prefix = @"workOn_";
+        //        parserName = [parserName substringFromIndex:1];
+        //        prefix = @"workOn_";
         return nil;
     } else {
         prefix = @"workOn";
+    }
+    NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
+    return [NSString stringWithFormat:@"%@%@:", prefix, s];
+}
+
+
+- (NSString *)defaultPreassemblerSelectorNameForParserName:(NSString *)parserName {
+    NSString *prefix = nil;
+    if ([parserName hasPrefix:@"@"]) {
+        return nil;
+    } else {
+        prefix = @"beforeWorkOn";
     }
     NSString *s = [NSString stringWithFormat:@"%@%@", [[parserName substringToIndex:1] uppercaseString], [parserName substringFromIndex:1]]; 
     return [NSString stringWithFormat:@"%@%@:", prefix, s];
@@ -943,6 +967,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 @synthesize grammarParser;
 @synthesize assembler;
+@synthesize preassembler;
 @synthesize parserTokensTable;
 @synthesize parserClassTable;
 @synthesize selectorTable;

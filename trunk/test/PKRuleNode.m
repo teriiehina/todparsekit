@@ -34,7 +34,7 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    PKRuleNode *n = [[PKRuleNode allocWithZone:zone] init];
+    PKRuleNode *n = [super copyWithZone:zone];
     n->name = [name copyWithZone:zone];
     return n;
 }

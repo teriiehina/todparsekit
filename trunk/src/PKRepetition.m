@@ -40,15 +40,7 @@
 
 - (void)dealloc {
     self.subparser = nil;
-    self.preassembler = nil;
-    self.preassemblerSelector = nil;
     [super dealloc];
-}
-
-
-- (void)setPreassembler:(id)a selector:(SEL)sel {
-    self.preassembler = a;
-    self.preassemblerSelector = sel;
 }
 
 
@@ -63,13 +55,6 @@
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
-    if (preassembler) {
-        NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
-        for (PKAssembly *a in inAssemblies) {
-            [preassembler performSelector:preassemblerSelector withObject:a];
-        }
-    }
-    
     //NSMutableSet *outAssemblies = [[[NSMutableSet alloc] initWithSet:inAssemblies copyItems:YES] autorelease];
     NSMutableSet *outAssemblies = [[inAssemblies mutableCopy] autorelease];
     
@@ -83,6 +68,4 @@
 }
 
 @synthesize subparser;
-@synthesize preassembler;
-@synthesize preassemblerSelector;
 @end
