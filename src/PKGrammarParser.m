@@ -312,12 +312,12 @@
 }
 
 
-// negatedPrimaryExpr   = '!' barePrimaryExpr;
+// negatedPrimaryExpr   = '~' barePrimaryExpr;
 - (PKCollectionParser *)negatedPrimaryExprParser {
     if (!negatedPrimaryExprParser) {
         self.negatedPrimaryExprParser = [PKSequence sequence];
         negatedPrimaryExprParser.name = @"negatedPrimaryExpr";
-        [negatedPrimaryExprParser add:[[PKLiteral literalWithString:@"!"] discard]];
+        [negatedPrimaryExprParser add:[[PKLiteral literalWithString:@"~"] discard]];
         [negatedPrimaryExprParser add:self.barePrimaryExprParser];
         [negatedPrimaryExprParser setAssembler:assembler selector:@selector(workOnNegation:)];
     }

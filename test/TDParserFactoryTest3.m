@@ -28,7 +28,7 @@
 
 
 - (void)testNegation {
-    g = @"@start = !'foo';";
+    g = @"@start = ~'foo';";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -47,7 +47,7 @@
 
 
 - (void)testNegateSymbol {
-    g = @"@start = !Symbol;";
+    g = @"@start = ~Symbol;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -71,7 +71,7 @@
 
 
 - (void)testNegateMore {
-    g = @"@start = !Symbol & !Number;";
+    g = @"@start = ~Symbol & ~Number;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
@@ -86,7 +86,7 @@
 
 
 - (void)testNegateMore2 {
-    g = @"@start = !(Symbol|Number);";
+    g = @"@start = ~(Symbol|Number);";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);
     
