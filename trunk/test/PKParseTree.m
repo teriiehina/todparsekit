@@ -11,7 +11,7 @@
 #import "PKTokenNode.h"
 
 @interface PKParseTree ()
-@property (nonatomic, retain, readwrite) PKParseTree *parent;
+@property (nonatomic, assign, readwrite) PKParseTree *parent;
 @property (nonatomic, retain, readwrite) NSMutableArray *children;
 @end
 
@@ -33,7 +33,7 @@
     PKParseTree *t = [[[self class] allocWithZone:zone] init];
 
     // assign parent
-    t->parent = [parent retain]; // TODO this leaks!
+    t->parent = parent;
     
     // put new copy in new parent's children array
     NSInteger i = [[parent children] indexOfObject:self];
@@ -41,14 +41,7 @@
     
     // copy children
     if (children) {
-        t->children = [[NSMutableArray allocWithZone:zone] initWithCapacity:[children count]];
-        
-        // make new children point to t as parent
-        for (PKParseTree *child in children) {
-            PKParseTree *newChild = [[child copyWithZone:zone] autorelease];
-            newChild->parent = t;
-            [t->children addObject:newChild];
-        }
+        t->children = [children mutableCopyWithZone:zone];
     }
     return t;
 }

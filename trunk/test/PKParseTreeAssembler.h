@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@class PKParseTree;
-@class PKAssembly;
-
 @interface PKParseTreeAssembler : NSObject {
     NSMutableDictionary *ruleNames;
     NSString *assemblerPrefix;
