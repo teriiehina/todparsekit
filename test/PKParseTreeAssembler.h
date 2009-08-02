@@ -12,19 +12,10 @@
 @class PKAssembly;
 
 @interface PKParseTreeAssembler : NSObject {
-    PKParseTree *rootNode;
-    PKParseTree *currentNode;
-
     NSMutableDictionary *ruleNames;
-    NSString *prefix;
+    NSString *assemblerPrefix;
+    NSString *preassemblerPrefix;
     NSString *suffix;
-    
-//    NSMutableArray *currentNodes;
 }
 
-//- (void)workOnRule:(PKAssembly *)a;
-//- (void)workOnToken:(PKAssembly *)a;
-
-@property (nonatomic, retain, readonly) PKParseTree *rootNode;
-@property (nonatomic, assign, readonly) PKParseTree *currentNode; //weak ref
 @end

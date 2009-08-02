@@ -16,13 +16,12 @@
 - (NSString *)ruleNameForSelName:(NSString *)selName withPrefix:(NSString *)pre;
 - (void)workOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a;
 - (void)beforeWorkOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a;
+- (void)workOnToken:(PKAssembly *)a;
 - (PKParseTree *)currentFrom:(PKAssembly *)a;
 
-@property (nonatomic, retain, readwrite) PKParseTree *rootNode;
-@property (nonatomic, assign, readwrite) PKParseTree *currentNode;
-
 @property (nonatomic, retain) NSMutableDictionary *ruleNames;
-@property (nonatomic, copy) NSString *prefix;
+@property (nonatomic, copy) NSString *assemblerPrefix;
+@property (nonatomic, copy) NSString *preassemblerPrefix;
 @property (nonatomic, copy) NSString *suffix;
 @end
 
@@ -30,11 +29,9 @@
 
 - (id)init {
     if (self = [super init]) {
-        self.rootNode = [PKParseTree parseTree];
-        self.currentNode = rootNode;
-
         self.ruleNames = [NSMutableDictionary dictionary];
-        self.prefix = @"workOn";
+        self.assemblerPrefix = @"workOn";
+        self.preassemblerPrefix = @"beforeWorkOn";
         self.suffix = @":";
     }
     return self;
@@ -42,27 +39,11 @@
 
 
 - (void)dealloc {
-    self.rootNode = nil;
-    currentNode = nil;
-    self.prefix = nil;
+    self.assemblerPrefix = nil;
+    self.preassemblerPrefix = nil;
     self.suffix = nil;
     [super dealloc];
 }
-
-
-//- (void)workOnRule:(PKAssembly *)a {
-//    id name = [a pop];
-//    NSAssert([name isKindOfClass:[NSString class]], @"");
-//    PKRuleNode *n = [currentNode addChildRule:name];
-//    self.currentNode = n;
-//}
-//
-//
-//- (void)workOnToken:(PKAssembly *)a {
-//    id tok = [a pop];
-//    NSAssert([tok isKindOfClass:[PKToken class]], @"");
-//    [currentNode addChildToken:tok];
-//}
 
 
 - (BOOL)respondsToSelector:(SEL)sel {
@@ -71,7 +52,7 @@
         return YES;
     } else {
         NSString *selName = NSStringFromSelector(sel);
-        if ([selName hasPrefix:prefix] && [selName hasSuffix:suffix]) {
+        if ([selName hasPrefix:assemblerPrefix] && [selName hasSuffix:suffix]) {
             return YES;
         }
     }
@@ -82,10 +63,10 @@
 - (id)performSelector:(SEL)sel withObject:(id)obj {
     NSString *selName = NSStringFromSelector(sel);
     
-    if ([selName hasPrefix:prefix] && [selName hasSuffix:suffix]) {
-        [self workOnRuleNamed:[self ruleNameForSelName:selName withPrefix:prefix] withAssembly:obj];
-    } else if ([selName hasPrefix:@"beforeWorkOn"] && [selName hasSuffix:suffix]) {
-        [self beforeWorkOnRuleNamed:[self ruleNameForSelName:selName withPrefix:@"beforeWorkOn"] withAssembly:obj];
+    if ([selName hasPrefix:assemblerPrefix] && [selName hasSuffix:suffix]) {
+        [self workOnRuleNamed:[self ruleNameForSelName:selName withPrefix:assemblerPrefix] withAssembly:obj];
+    } else if ([selName hasPrefix:preassemblerPrefix] && [selName hasSuffix:suffix]) {
+        [self beforeWorkOnRuleNamed:[self ruleNameForSelName:selName withPrefix:preassemblerPrefix] withAssembly:obj];
     } else if ([super respondsToSelector:sel]) {
         return [super performSelector:sel withObject:obj];
     } else {
@@ -110,60 +91,41 @@
 
 
 - (void)beforeWorkOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a {
-    NSLog(@"%@", a);
     PKParseTree *current = [self currentFrom:a];
-    
-    if (![a isStackEmpty]) {
-        id obj = [a pop];
-        NSLog(@"%@", obj);
-        if ([obj isKindOfClass:[PKToken class]]) {
-            [current addChildToken:obj];
-        }
-    }
-    
+    [self workOnToken:a];
     current = [current addChildRule:name];
     a.target = current;
-    //currentNode = current;
-    
-    NSLog(@"%@", current);
 }
 
 
 - (void)workOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a {
-    NSLog(@"%@", a);
+    [self workOnToken:a];
     PKParseTree *current = [self currentFrom:a];
-    NSLog(@"%@", current);
-
-    if (![a isStackEmpty]) {
-        id obj = [a pop];
-        NSLog(@"%@", obj);
-        if ([obj isKindOfClass:[PKToken class]]) {
-            [current addChildToken:obj];
-        }
-    }
-    
     a.target = current.parent;
     current = current.parent;
-    //currentNode = current;
-
-    NSLog(@"%@", current);
 }
 
 
 - (PKParseTree *)currentFrom:(PKAssembly *)a {
     PKParseTree *current = a.target;
     if (!current) {
-        current = rootNode;
+        current = [PKParseTree parseTree];
         a.target = current;
     }
     return current;
-    
-//    return currentNode;
 }
 
-@synthesize rootNode;
-@synthesize currentNode;
+
+- (void)workOnToken:(PKAssembly *)a {
+    if (![a isStackEmpty]) {
+        id tok = [a pop];
+        NSAssert([tok isKindOfClass:[PKToken class]], @"");
+        [[self currentFrom:a] addChildToken:tok];
+    }
+}
+
 @synthesize ruleNames;
-@synthesize prefix;
+@synthesize assemblerPrefix;
+@synthesize preassemblerPrefix;
 @synthesize suffix;
 @end
