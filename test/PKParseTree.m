@@ -11,7 +11,7 @@
 #import "PKTokenNode.h"
 
 @interface PKParseTree ()
-@property (nonatomic, assign, readwrite) PKParseTree *parent;
+@property (nonatomic, retain, readwrite) PKParseTree *parent;
 @property (nonatomic, retain, readwrite) NSMutableArray *children;
 @end
 
@@ -23,7 +23,7 @@
 
 
 - (void)dealloc {
-    parent = nil;
+    self.parent = nil;
     self.children = nil;
     [super dealloc];
 }
@@ -33,7 +33,7 @@
     PKParseTree *t = [[[self class] allocWithZone:zone] init];
 
     // assign parent
-    t->parent = parent;
+    t->parent = [parent retain]; // TODO this leaks!
     
     // put new copy in new parent's children array
     NSInteger i = [[parent children] indexOfObject:self];
