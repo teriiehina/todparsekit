@@ -205,7 +205,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
     s = @"bar";
@@ -224,7 +224,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
@@ -247,7 +247,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
@@ -270,7 +270,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
@@ -292,7 +292,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
@@ -316,7 +316,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
     [[mock expect] workOnFoo:OCMOCK_ANY];
@@ -337,7 +337,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
 //    TDTrue(lp.assembler == mock);
-//    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOn_Start:");
+//    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOn_Start:");
     
 //    [[mock expect] workOn_Start:OCMOCK_ANY];
     [[mock expect] workOnFoo:OCMOCK_ANY];
@@ -358,7 +358,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDNil(lp.assembler);
-    TDNil(NSStringFromSelector(lp.selector));
+    TDNil(NSStringFromSelector(lp.assemblerSelector));
     
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
@@ -378,7 +378,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDNil(lp.assembler);
-    TDNil(NSStringFromSelector(lp.selector));
+    TDNil(NSStringFromSelector(lp.assemblerSelector));
     
     [[mock expect] workOnFoo:OCMOCK_ANY];
     s = @"bar";
@@ -398,7 +398,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDNil(lp.assembler);
-    TDNil(NSStringFromSelector(lp.selector));
+    TDNil(NSStringFromSelector(lp.assemblerSelector));
     
     s = @"bar";
     a = [PKTokenAssembly assemblyWithString:s];
@@ -417,7 +417,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDNil(lp.assembler);
-    TDNil(NSStringFromSelector(lp.selector));
+    TDNil(NSStringFromSelector(lp.assemblerSelector));
     
     [[mock expect] workOnFoo:OCMOCK_ANY];
     [[mock expect] workOnBaz:OCMOCK_ANY];
@@ -437,7 +437,7 @@
     TDTrue([lp isKindOfClass:[PKParser class]]);
     TDEqualObjects(lp.name, @"@start");
     TDTrue(lp.assembler == mock);
-    TDEqualObjects(NSStringFromSelector(lp.selector), @"workOnStart:");
+    TDEqualObjects(NSStringFromSelector(lp.assemblerSelector), @"workOnStart:");
 
     [[mock expect] workOnStart:OCMOCK_ANY];
     s = @"bar";
