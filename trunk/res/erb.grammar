@@ -1,7 +1,7 @@
 @symbols = '<@' '<@=' '@>';
 
 @start = (ignored | importantStuff)*;
-ignored = !startMarker;
+ignored = ~startMarker;
 
 importantStuff = print | eval;
 print = printStartMarker keyPath endMarker;
