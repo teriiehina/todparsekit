@@ -12,9 +12,10 @@
 @class PKTokenNode;
 @class PKToken;
 
-@interface PKParseTree : NSObject {
+@interface PKParseTree : NSObject <NSCopying> {
     NSMutableArray *children;
 }
++ (id)parseTree;
 
 - (PKRuleNode *)addChildRule:(NSString *)name;
 - (PKTokenNode *)addChildToken:(PKToken *)tok;

@@ -10,7 +10,7 @@
 
 @class PKToken;
 
-@interface PKTokenNode : PKParseTree {
+@interface PKTokenNode : PKParseTree <NSCopying> {
     PKToken *token;
 }
 

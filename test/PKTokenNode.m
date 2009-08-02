@@ -33,5 +33,17 @@
     [super dealloc];
 }
 
+
+- (id)copyWithZone:(NSZone *)zone {
+    PKTokenNode *n = [[PKTokenNode allocWithZone:zone] init];
+    n->token = [token copyWithZone:zone];
+    return n;
+}
+
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<PKTokenNode '%@'>", token];
+}
+
 @synthesize token;
 @end

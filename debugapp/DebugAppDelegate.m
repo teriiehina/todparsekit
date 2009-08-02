@@ -479,7 +479,7 @@
 
 //    [self doJSParser];
     
-//    [self doProf];
+    [self doProf];
 
     //[self doJavaScriptGrammarParser];
     
@@ -491,7 +491,7 @@
     
 //    [self doJSONHighlighting];
 //    [self doCSSHighlighting];
-    [self doHTMLHighlighting];
+//    [self doHTMLHighlighting];
     
 //    [self doMultiLineComment];
 //    [self doDelimitedString];

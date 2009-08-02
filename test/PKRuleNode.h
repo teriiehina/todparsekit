@@ -8,7 +8,7 @@
 
 #import "PKParseTree.h"
 
-@interface PKRuleNode : PKParseTree {
+@interface PKRuleNode : PKParseTree <NSCopying> {
     NSString *name;
 }
 
