@@ -32,7 +32,6 @@
     PKCollectionParser *intersectionParser;
     PKCollectionParser *differenceParser;
     PKCollectionParser *atomicValueParser;
-    PKCollectionParser *discardedParserParser;
     PKCollectionParser *parserParser;
     PKCollectionParser *discardParser;
     PKCollectionParser *patternParser;
@@ -66,7 +65,6 @@
 @property (nonatomic, retain) PKCollectionParser *intersectionParser;
 @property (nonatomic, retain) PKCollectionParser *differenceParser;
 @property (nonatomic, retain) PKCollectionParser *atomicValueParser;
-@property (nonatomic, retain) PKCollectionParser *discardedParserParser;
 @property (nonatomic, retain) PKCollectionParser *parserParser;
 @property (nonatomic, retain) PKCollectionParser *discardParser;
 @property (nonatomic, retain) PKCollectionParser *patternParser;

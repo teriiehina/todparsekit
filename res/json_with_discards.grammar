@@ -22,18 +22,18 @@
 
 @start        = Empty | array | object;
 
-object        = '{' objectContent >'}';
+object        = '{' objectContent '}'!;
 objectContent = Empty | actualObject;
 actualObject  = property commaProperty*;
-commaProperty = >',' property;
-property      = QuotedString >':' value;         // NOTE: property names are quoted in JSON
+commaProperty = ','! property;
+property      = QuotedString ':'! value;         // NOTE: property names are quoted in JSON
 
-array         = '[' arrayContent >']';
+array         = '[' arrayContent ']'!;
 arrayContent  = Empty | actualArray;
 actualArray   = value commaValue*;
-commaValue    = >',' value;
+commaValue    = ','! value;
 
 value         = null | true | false | array | object | Number | QuotedString;
-null          = >'null';
-true          = >'true';
-false         = >'false';
+null          = 'null'!;
+true          = 'true'!;
+false         = 'false'!;
