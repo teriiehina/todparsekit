@@ -35,7 +35,7 @@
 
 
 - (id)copyWithZone:(NSZone *)zone {
-    PKTokenNode *n = [[PKTokenNode allocWithZone:zone] init];
+    PKTokenNode *n = [super copyWithZone:zone];
     n->token = [token copyWithZone:zone];
     return n;
 }

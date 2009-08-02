@@ -13,7 +13,7 @@
 
 @interface PKParseTreeAssembler : NSObject {
     PKParseTree *rootNode;
-//    PKParseTree *currentNode;
+    PKParseTree *currentNode;
 
     NSMutableDictionary *ruleNames;
     NSString *prefix;
@@ -26,5 +26,5 @@
 //- (void)workOnToken:(PKAssembly *)a;
 
 @property (nonatomic, retain, readonly) PKParseTree *rootNode;
-//@property (nonatomic, assign, readonly) PKParseTree *currentNode; //weak ref
+@property (nonatomic, assign, readonly) PKParseTree *currentNode; //weak ref
 @end

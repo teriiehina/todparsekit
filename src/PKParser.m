@@ -29,7 +29,10 @@
 
 - (void)dealloc {
     assembler = nil;
-    self.selector = nil;
+    assemblerSelector = nil;
+    preassembler = nil;
+    preassemblerSelector = nil;
+
     self.name = nil;
     self.tokenizer = nil;
     [super dealloc];
@@ -38,7 +41,13 @@
 
 - (void)setAssembler:(id)a selector:(SEL)sel {
     self.assembler = a;
-    self.selector = sel;
+    self.assemblerSelector = sel;
+}
+
+
+- (void)setPreassembler:(id)a selector:(SEL)sel {
+    self.preassembler = a;
+    self.preassemblerSelector = sel;
 }
 
 
@@ -76,11 +85,20 @@
 
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
+
+    if (preassembler) {
+        NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
+        for (PKAssembly *a in inAssemblies) {
+            [preassembler performSelector:preassemblerSelector withObject:a];
+        }
+    }
+    
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
+
     if (assembler) {
-        NSAssert2([assembler respondsToSelector:selector], @"provided assembler %@ should respond to %s", assembler, selector);
+        NSAssert2([assembler respondsToSelector:assemblerSelector], @"provided assembler %@ should respond to %s", assembler, assemblerSelector);
         for (PKAssembly *a in outAssemblies) {
-            [assembler performSelector:selector withObject:a];
+            [assembler performSelector:assemblerSelector withObject:a];
         }
     }
     return outAssemblies;
@@ -115,7 +133,9 @@
 }
 
 @synthesize assembler;
-@synthesize selector;
+@synthesize assemblerSelector;
+@synthesize preassembler;
+@synthesize preassemblerSelector;
 @synthesize name;
 @end
 

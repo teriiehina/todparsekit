@@ -21,7 +21,7 @@
         @"expr = addExpr;"
         @"addExpr = atom (('+'|'-') atom)*;"
         @"atom = Number;";
-    lp = [factory parserFromGrammar:g assembler:as];
+    lp = [factory parserFromGrammar:g assembler:as preassembler:as];
     
     lp.tokenizer.string = @"1 + 2";
     a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];

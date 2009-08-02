@@ -15,8 +15,6 @@
 */
 @interface PKRepetition : PKParser {
     PKParser *subparser;
-    id preassembler;
-    SEL preassemblerSelector;
 }
 
 /*!
@@ -35,30 +33,8 @@
 - (id)initWithSubparser:(PKParser *)p;
 
 /*!
-    @brief      Sets the object that will work on every assembly before matching against it.
-    @details    Setting a preassembler is entirely optional, but sometimes useful for repetition parsers to do work on an assembly before matching against it.
-    @param      a the assembler this parser will use to work on an assembly before matching against it.
-    @param      sel a selector that assembler <tt>a</tt> responds to which will work on an assembly
-*/
-- (void)setPreassembler:(id)a selector:(SEL)sel;
-
-/*!
     @property   subparser
     @brief      this parser's subparser against which it repeatedly matches
 */
 @property (nonatomic, readonly, retain) PKParser *subparser;
-
-/*!
-    @property   preassembler
-    @brief      The assembler this parser will use to work on an assembly before matching against it.
-    @discussion <tt>preassembler</tt> should respond to the selector held by this parser's <tt>preassemblerSelector</tt> property.
-*/
-@property (nonatomic, retain) id preassembler;
-
-/*!
-    @property   preAssemlerSelector
-    @brief      The method of <tt>preassembler</tt> this parser will call to work on an assembly.
-    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
-*/
-@property (nonatomic, assign) SEL preassemblerSelector;
 @end
