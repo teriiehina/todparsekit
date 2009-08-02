@@ -140,11 +140,12 @@
         if ([obj isKindOfClass:[PKToken class]]) {
             [current addChildToken:obj];
         }
-        
-        a.target = current.parent;
-        current = current.parent;
-        //currentNode = current;
     }
+    
+    a.target = current.parent;
+    current = current.parent;
+    //currentNode = current;
+
     NSLog(@"%@", current);
 }
 
@@ -152,7 +153,7 @@
 - (PKParseTree *)currentFrom:(PKAssembly *)a {
     PKParseTree *current = a.target;
     if (!current) {
-        current = [PKParseTree parseTree];
+        current = rootNode;
         a.target = current;
     }
     return current;

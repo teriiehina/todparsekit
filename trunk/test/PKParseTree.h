@@ -22,6 +22,6 @@
 - (PKTokenNode *)addChildToken:(PKToken *)tok;
 - (void)addChild:(PKParseTree *)tr;
 
-@property (nonatomic, assign, readonly) PKParseTree *parent; // weak ref
+@property (nonatomic, retain, readonly) PKParseTree *parent;  // TODO this causes retain cycle leaks!
 @property (nonatomic, retain, readonly) NSMutableArray *children;
 @end
