@@ -7,10 +7,10 @@
     
     The when the returned parser is used, the provided assembler will receive method callbacks like:
 
-    -workOnStart:
-    -workOnObject:
-    -workOnProperty:
-    -workOnArray:
+    -didMatchStart:
+    -didMatchObject:
+    -didMatchProperty:
+    -didMatchArray:
     etc.
     
     whenever a grammar production of the corresponding name has been matched.

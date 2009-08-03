@@ -51,7 +51,7 @@
 
 /*!
     @brief      Sets the object and method that will work on an assembly whenever this parser successfully matches against the assembly.
-    @details    The method represented by <tt>sel</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
+    @details    The method represented by <tt>sel</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>sel</tt> should be similar to: <tt>- (void)didMatchAssembly:(PKAssembly *)a</tt>.
     @param      a the assembler this parser will use to work on an assembly
     @param      sel a selector that assembler <tt>a</tt> responds to which will work on an assembly
 */
@@ -106,7 +106,7 @@
 /*!
     @property   assemblerSelector
     @brief      The method of <tt>assembler</tt> this parser will call to work on a matched assembly.
-    @details    The method represented by <tt>assemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>assemblerSelector</tt> should be similar to: <tt>- (void)workOnFoo:(PKAssembly *)a</tt>.
+    @details    The method represented by <tt>assemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>assemblerSelector</tt> should be similar to: <tt>- (void)didMatchFoo:(PKAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL assemblerSelector;
 
@@ -120,7 +120,7 @@
 /*!
     @property   preAssemlerSelector
     @brief      The method of <tt>preassembler</tt> this parser will call to work on an assembly.
-    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)workOnAssembly:(PKAssembly *)a</tt>.
+    @details    The method represented by <tt>preassemblerSelector</tt> must accept a single <tt>PKAssembly</tt> argument. The signature of <tt>preassemblerSelector</tt> should be similar to: <tt>- (void)didMatchAssembly:(PKAssembly *)a</tt>.
 */
 @property (nonatomic, assign) SEL preassemblerSelector;
 

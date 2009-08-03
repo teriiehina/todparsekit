@@ -91,7 +91,7 @@
         self.plusTermParser = [PKSequence sequence];
         [plusTermParser add:[[PKSymbol symbolWithString:@"+"] discard]];
         [plusTermParser add:self.termParser];
-        [plusTermParser setAssembler:self selector:@selector(workOnPlus:)];
+        [plusTermParser setAssembler:self selector:@selector(didMatchPlus:)];
     }
     return plusTermParser;
 }
@@ -103,7 +103,7 @@
         self.minusTermParser = [PKSequence sequence];
         [minusTermParser add:[[PKSymbol symbolWithString:@"-"] discard]];
         [minusTermParser add:self.termParser];
-        [minusTermParser setAssembler:self selector:@selector(workOnMinus:)];
+        [minusTermParser setAssembler:self selector:@selector(didMatchMinus:)];
     }
     return minusTermParser;
 }
@@ -131,7 +131,7 @@
         self.timesFactorParser = [PKSequence sequence];
         [timesFactorParser add:[[PKSymbol symbolWithString:@"*"] discard]];
         [timesFactorParser add:self.factorParser];
-        [timesFactorParser setAssembler:self selector:@selector(workOnTimes:)];
+        [timesFactorParser setAssembler:self selector:@selector(didMatchTimes:)];
     }
     return timesFactorParser;
 }
@@ -143,7 +143,7 @@
         self.divFactorParser = [PKSequence sequence];
         [divFactorParser add:[[PKSymbol symbolWithString:@"/"] discard]];
         [divFactorParser add:self.factorParser];
-        [divFactorParser setAssembler:self selector:@selector(workOnDivide:)];
+        [divFactorParser setAssembler:self selector:@selector(didMatchDivide:)];
     }
     return divFactorParser;
 }
@@ -155,7 +155,7 @@
         self.exponentFactorParser = [PKSequence sequence];
         [exponentFactorParser add:[[PKSymbol symbolWithString:@"^"] discard]];
         [exponentFactorParser add:self.factorParser];
-        [exponentFactorParser setAssembler:self selector:@selector(workOnExp:)];
+        [exponentFactorParser setAssembler:self selector:@selector(didMatchExp:)];
     }
     return exponentFactorParser;
 }
@@ -183,35 +183,35 @@
 #pragma mark -
 #pragma mark Assembler
 
-- (void)workOnPlus:(PKAssembly *)a {
+- (void)didMatchPlus:(PKAssembly *)a {
     PKToken *tok2 = [a pop];
     PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue + tok2.floatValue]];
 }
 
 
-- (void)workOnMinus:(PKAssembly *)a {
+- (void)didMatchMinus:(PKAssembly *)a {
     PKToken *tok2 = [a pop];
     PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue - tok2.floatValue]];
 }
 
 
-- (void)workOnTimes:(PKAssembly *)a {
+- (void)didMatchTimes:(PKAssembly *)a {
     PKToken *tok2 = [a pop];
     PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue * tok2.floatValue]];
 }
 
 
-- (void)workOnDivide:(PKAssembly *)a {
+- (void)didMatchDivide:(PKAssembly *)a {
     PKToken *tok2 = [a pop];
     PKToken *tok1 = [a pop];
     [a push:[NSNumber numberWithDouble:tok1.floatValue / tok2.floatValue]];
 }
 
 
-- (void)workOnExp:(PKAssembly *)a {
+- (void)didMatchExp:(PKAssembly *)a {
     PKToken *tok2 = [a pop];
     PKToken *tok1 = [a pop];
     

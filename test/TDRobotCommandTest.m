@@ -69,7 +69,7 @@
     [s add:[[PKCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[PKCaseInsensitiveLiteral literalWithString:@"from"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnPickCommand:)];
+    [s setAssembler:self selector:@selector(didMatchPickCommand:)];
     return s;
 }
 
@@ -80,7 +80,7 @@
     [s add:[[PKCaseInsensitiveLiteral literalWithString:@"carrier"] discard]];
     [s add:[[PKCaseInsensitiveLiteral literalWithString:@"at"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnPlaceCommand:)];
+    [s setAssembler:self selector:@selector(didMatchPlaceCommand:)];
     return s;
 }
 
@@ -89,7 +89,7 @@
     PKSequence *s = [PKSequence sequence];
     [s add:[[PKCaseInsensitiveLiteral literalWithString:@"scan"] discard]];
     [s add:[self location]];
-    [s setAssembler:self selector:@selector(workOnScanCommand:)];
+    [s setAssembler:self selector:@selector(didMatchScanCommand:)];
     return s;
 }
 
@@ -151,7 +151,7 @@
 }
 
 
-- (void)workOnPickCommand:(PKAssembly *)a {
+- (void)didMatchPickCommand:(PKAssembly *)a {
     RobotPickCommand *c = [[[RobotPickCommand alloc] init] autorelease];
     PKToken *location = [a pop];
     c.location = location.stringValue;
@@ -159,7 +159,7 @@
 }
 
 
-- (void)workOnPlaceCommand:(PKAssembly *)a {
+- (void)didMatchPlaceCommand:(PKAssembly *)a {
     RobotPlaceCommand *c = [[[RobotPlaceCommand alloc] init] autorelease];
     PKToken *location = [a pop];
     c.location = location.stringValue;
@@ -167,7 +167,7 @@
 }
 
 
-- (void)workOnScanCommand:(PKAssembly *)a {
+- (void)didMatchScanCommand:(PKAssembly *)a {
     RobotScanCommand *c = [[[RobotScanCommand alloc] init] autorelease];
     PKToken *location = [a pop];
     c.location = location.stringValue;

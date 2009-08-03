@@ -28,7 +28,7 @@
 }
 
 
-- (void)workOn:(PKAssembly *)a {
+- (void)didMatch:(PKAssembly *)a {
     JSValueRef arg = NULL;
     if ([a isMemberOfClass:[PKTokenAssembly class]]) {
         arg = (JSValueRef)PKTokenAssembly_new(ctx, a);

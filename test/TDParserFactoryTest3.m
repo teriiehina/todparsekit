@@ -16,7 +16,7 @@
 
 
 - (void)testOrVsAndPrecendence {
-    g = @" @start ( workOnFoo: ) = foo;\n"
+    g = @" @start ( didMatchFoo: ) = foo;\n"
     @"  foo = Word & /foo/ | Number! { 1 } ( DelimitedString ( '/' , '/' ) Symbol- '%' ) * /bar/ ;";
     lp = [factory parserFromGrammar:g assembler:nil];
     TDNotNil(lp);

@@ -10,15 +10,15 @@
 #import "NSString+ParseKitAdditions.h"
 
 @interface SRGSParser ()
-- (void)workOnWord:(PKAssembly *)a;
-- (void)workOnNum:(PKAssembly *)a;
-- (void)workOnQuotedString:(PKAssembly *)a;
-- (void)workOnStar:(PKAssembly *)a;
-- (void)workOnQuestion:(PKAssembly *)a;
-- (void)workOnAnd:(PKAssembly *)a;
-- (void)workOnOr:(PKAssembly *)a;
-- (void)workOnAssignment:(PKAssembly *)a;
-- (void)workOnVariable:(PKAssembly *)a;
+- (void)didMatchWord:(PKAssembly *)a;
+- (void)didMatchNum:(PKAssembly *)a;
+- (void)didMatchQuotedString:(PKAssembly *)a;
+- (void)didMatchStar:(PKAssembly *)a;
+- (void)didMatchQuestion:(PKAssembly *)a;
+- (void)didMatchAnd:(PKAssembly *)a;
+- (void)didMatchOr:(PKAssembly *)a;
+- (void)didMatchAssignment:(PKAssembly *)a;
+- (void)didMatchVariable:(PKAssembly *)a;
 @end
 
 @implementation SRGSParser
@@ -642,7 +642,7 @@
 #pragma mark -
 #pragma mark Assembler Methods
 
-- (void)workOnWord:(PKAssembly *)a {
+- (void)didMatchWord:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKToken *tok = [a pop];
@@ -650,7 +650,7 @@
 }
 
 
-- (void)workOnNum:(PKAssembly *)a {
+- (void)didMatchNum:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKToken *tok = [a pop];
@@ -658,7 +658,7 @@
 }
 
 
-- (void)workOnQuotedString:(PKAssembly *)a {
+- (void)didMatchQuotedString:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKToken *tok = [a pop];
@@ -675,7 +675,7 @@
 }
 
 
-- (void)workOnStar:(PKAssembly *)a {
+- (void)didMatchStar:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKRepetition *p = [PKRepetition repetitionWithSubparser:[a pop]];
@@ -683,7 +683,7 @@
 }
 
 
-- (void)workOnQuestion:(PKAssembly *)a {
+- (void)didMatchQuestion:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKAlternation *p = [PKAlternation alternation];
@@ -693,7 +693,7 @@
 }
 
 
-- (void)workOnAnd:(PKAssembly *)a {
+- (void)didMatchAnd:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -704,7 +704,7 @@
 }
 
 
-- (void)workOnOr:(PKAssembly *)a {
+- (void)didMatchOr:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -717,7 +717,7 @@
 }
 
 
-- (void)workOnAssignment:(PKAssembly *)a {
+- (void)didMatchAssignment:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id val = [a pop];
@@ -729,7 +729,7 @@
 }
 
 
-- (void)workOnVariable:(PKAssembly *)a {
+- (void)didMatchVariable:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     PKToken *keyTok = [a pop];

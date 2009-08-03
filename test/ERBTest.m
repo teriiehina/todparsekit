@@ -21,7 +21,7 @@
 }
 
 
-- (void)workOnEndMarker:(PKAssembly *)a {
+- (void)didMatchEndMarker:(PKAssembly *)a {
     [a pop]; // '@>'
     NSString *k = [a pop];
     [a pop]; // discard '<@='
@@ -29,7 +29,7 @@
 }
 
 
-- (void)workOnDotWord:(PKAssembly *)a {
+- (void)didMatchDotWord:(PKAssembly *)a {
     PKToken *lastPart = [a pop];
     [a pop]; // '.'
     PKToken *firstPart = [a pop];

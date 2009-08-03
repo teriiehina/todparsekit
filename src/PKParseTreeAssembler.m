@@ -14,9 +14,9 @@
 
 @interface PKParseTreeAssembler ()
 - (NSString *)ruleNameForSelName:(NSString *)selName withPrefix:(NSString *)pre;
-- (void)workOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a;
-- (void)beforeWorkOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a;
-- (void)workOnToken:(PKAssembly *)a;
+- (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a;
+- (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a;
+- (void)didMatchToken:(PKAssembly *)a;
 - (PKParseTree *)currentFrom:(PKAssembly *)a;
 
 @property (nonatomic, retain) NSMutableDictionary *ruleNames;
@@ -30,8 +30,8 @@
 - (id)init {
     if (self = [super init]) {
         self.ruleNames = [NSMutableDictionary dictionary];
-        self.assemblerPrefix = @"workOn";
-        self.preassemblerPrefix = @"beforeWorkOn";
+        self.preassemblerPrefix = @"willMatch";
+        self.assemblerPrefix = @"didMatch";
         self.suffix = @":";
     }
     return self;
@@ -39,8 +39,8 @@
 
 
 - (void)dealloc {
-    self.assemblerPrefix = nil;
     self.preassemblerPrefix = nil;
+    self.assemblerPrefix = nil;
     self.suffix = nil;
     [super dealloc];
 }
@@ -64,9 +64,9 @@
     NSString *selName = NSStringFromSelector(sel);
     
     if ([selName hasPrefix:assemblerPrefix] && [selName hasSuffix:suffix]) {
-        [self workOnRuleNamed:[self ruleNameForSelName:selName withPrefix:assemblerPrefix] withAssembly:obj];
+        [self didMatchRuleNamed:[self ruleNameForSelName:selName withPrefix:assemblerPrefix] assembly:obj];
     } else if ([selName hasPrefix:preassemblerPrefix] && [selName hasSuffix:suffix]) {
-        [self beforeWorkOnRuleNamed:[self ruleNameForSelName:selName withPrefix:preassemblerPrefix] withAssembly:obj];
+        [self willMatchRuleNamed:[self ruleNameForSelName:selName withPrefix:preassemblerPrefix] assembly:obj];
     } else if ([super respondsToSelector:sel]) {
         return [super performSelector:sel withObject:obj];
     } else {
@@ -90,16 +90,16 @@
 }
 
 
-- (void)beforeWorkOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a {
+- (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
     PKParseTree *current = [self currentFrom:a];
-    [self workOnToken:a];
+    [self didMatchToken:a];
     current = [current addChildRule:name];
     a.target = current;
 }
 
 
-- (void)workOnRuleNamed:(NSString *)name withAssembly:(PKAssembly *)a {
-    [self workOnToken:a];
+- (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
+    [self didMatchToken:a];
     PKParseTree *current = [self currentFrom:a];
     a.target = current.parent;
     current = current.parent;
@@ -116,7 +116,7 @@
 }
 
 
-- (void)workOnToken:(PKAssembly *)a {
+- (void)didMatchToken:(PKAssembly *)a {
     if (![a isStackEmpty]) {
         id tok = [a pop];
         NSAssert([tok isKindOfClass:[PKToken class]], @"");
@@ -125,7 +125,7 @@
 }
 
 @synthesize ruleNames;
-@synthesize assemblerPrefix;
 @synthesize preassemblerPrefix;
+@synthesize assemblerPrefix;
 @synthesize suffix;
 @end
