@@ -8,24 +8,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class PKTokenizer;
+@class DemoTokensViewController;
+@class DemoTreesViewController;
 
 @interface DemoAppDelegate : NSObject {
-    IBOutlet NSTokenField *tokenField;
+    IBOutlet NSTabView *tabView;
     
-    PKTokenizer *tokenizer;
-    NSString *inString;
-    NSString *outString;
-    NSString *tokString;
-    NSMutableArray *toks;
-    BOOL busy;
+    DemoTokensViewController *tokensViewController;
+    DemoTreesViewController *treesViewController;
 }
-- (IBAction)parse:(id)sender;
 
-@property (retain) PKTokenizer *tokenizer;
-@property (retain) NSString *inString;
-@property (retain) NSString *outString;
-@property (retain) NSString *tokString;
-@property (retain) NSMutableArray *toks;
-@property BOOL busy;
+@property (nonatomic, retain) DemoTokensViewController *tokensViewController;
+@property (nonatomic, retain) DemoTreesViewController *treesViewController;
 @end

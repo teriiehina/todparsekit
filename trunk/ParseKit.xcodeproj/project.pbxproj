@@ -482,6 +482,11 @@
 		D3F561B31026378300DD6DB1 /* PKParseTreeAssembler.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F561AB1026378300DD6DB1 /* PKParseTreeAssembler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F561B41026378300DD6DB1 /* PKRuleNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F561AC1026378300DD6DB1 /* PKRuleNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D3F561B51026378300DD6DB1 /* PKTokenNode.h in Headers */ = {isa = PBXBuildFile; fileRef = D3F561AD1026378300DD6DB1 /* PKTokenNode.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D3F5629A10266CFC00DD6DB1 /* PKParseTreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */; };
+		D3F562A010266DFB00DD6DB1 /* DemoTokensViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */; };
+		D3F562A210266E5300DD6DB1 /* TokensView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F562A110266E5300DD6DB1 /* TokensView.xib */; };
+		D3F562A410266E6300DD6DB1 /* TreesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3F562A310266E6300DD6DB1 /* TreesView.xib */; };
+		D3F562A710266E8D00DD6DB1 /* DemoTreesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */; };
 		D3F740B70EF8C38A00559B9F /* JSONAssembler.m in Sources */ = {isa = PBXBuildFile; fileRef = D3F740B60EF8C38A00559B9F /* JSONAssembler.m */; };
 		D3F741440EF8E96A00559B9F /* xpath1_0.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741430EF8E96A00559B9F /* xpath1_0.grammar */; };
 		D3F741BE0EF9F28D00559B9F /* css2_1.grammar in Resources */ = {isa = PBXBuildFile; fileRef = D3F741BD0EF9F28D00559B9F /* css2_1.grammar */; };
@@ -1114,6 +1119,14 @@
 		D3F561AB1026378300DD6DB1 /* PKParseTreeAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTreeAssembler.h; path = include/ParseKit/PKParseTreeAssembler.h; sourceTree = "<group>"; };
 		D3F561AC1026378300DD6DB1 /* PKRuleNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKRuleNode.h; path = include/ParseKit/PKRuleNode.h; sourceTree = "<group>"; };
 		D3F561AD1026378300DD6DB1 /* PKTokenNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTokenNode.h; path = include/ParseKit/PKTokenNode.h; sourceTree = "<group>"; };
+		D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKParseTreeView.h; path = demoapp/PKParseTreeView.h; sourceTree = "<group>"; };
+		D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKParseTreeView.m; path = demoapp/PKParseTreeView.m; sourceTree = "<group>"; };
+		D3F5629E10266DFB00DD6DB1 /* DemoTokensViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoTokensViewController.h; path = demoapp/DemoTokensViewController.h; sourceTree = "<group>"; };
+		D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoTokensViewController.m; path = demoapp/DemoTokensViewController.m; sourceTree = "<group>"; };
+		D3F562A110266E5300DD6DB1 /* TokensView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TokensView.xib; path = demoapp/TokensView.xib; sourceTree = "<group>"; };
+		D3F562A310266E6300DD6DB1 /* TreesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TreesView.xib; path = demoapp/TreesView.xib; sourceTree = "<group>"; };
+		D3F562A510266E8D00DD6DB1 /* DemoTreesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DemoTreesViewController.h; path = demoapp/DemoTreesViewController.h; sourceTree = "<group>"; };
+		D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DemoTreesViewController.m; path = demoapp/DemoTreesViewController.m; sourceTree = "<group>"; };
 		D3F740B50EF8C38A00559B9F /* JSONAssembler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONAssembler.h; sourceTree = "<group>"; };
 		D3F740B60EF8C38A00559B9F /* JSONAssembler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONAssembler.m; sourceTree = "<group>"; };
 		D3F741430EF8E96A00559B9F /* xpath1_0.grammar */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = xpath1_0.grammar; path = res/xpath1_0.grammar; sourceTree = "<group>"; };
@@ -1355,10 +1368,18 @@
 			isa = PBXGroup;
 			children = (
 				D3F0E3600FFEA2B500C9DF74 /* DemoApp-Info.plist */,
+				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
+				D3F562A110266E5300DD6DB1 /* TokensView.xib */,
+				D3F562A310266E6300DD6DB1 /* TreesView.xib */,
 				D36E98E50E58C14000496BD3 /* main.m */,
 				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
 				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
-				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
+				D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */,
+				D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */,
+				D3F5629E10266DFB00DD6DB1 /* DemoTokensViewController.h */,
+				D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */,
+				D3F562A510266E8D00DD6DB1 /* DemoTreesViewController.h */,
+				D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */,
 			);
 			name = DemoApp;
 			sourceTree = "<group>";
@@ -2593,6 +2614,8 @@
 				D3DCB4C40EF6015C00DE5110 /* json.grammar in Resources */,
 				D3F741BF0EF9F29400559B9F /* css2_1.grammar in Resources */,
 				D3D01CAB0EFDB8A000C24DDE /* json_with_discards.grammar in Resources */,
+				D3F562A210266E5300DD6DB1 /* TokensView.xib in Resources */,
+				D3F562A410266E6300DD6DB1 /* TreesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2793,6 +2816,9 @@
 			files = (
 				D36E98E70E58C14000496BD3 /* DemoAppDelegate.m in Sources */,
 				D36E98E80E58C14000496BD3 /* main.m in Sources */,
+				D3F5629A10266CFC00DD6DB1 /* PKParseTreeView.m in Sources */,
+				D3F562A010266DFB00DD6DB1 /* DemoTokensViewController.m in Sources */,
+				D3F562A710266E8D00DD6DB1 /* DemoTreesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

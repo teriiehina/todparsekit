@@ -165,9 +165,8 @@ void PKReleaseSubparserTree(PKParser *p) {
 
 - (void)dealloc {
     self.grammarParser = nil;
-
-    assembler = nil; // appease clang static analyzer
-
+    self.assembler = nil;
+    self.preassembler = nil;
     self.parserTokensTable = nil;
     self.parserClassTable = nil;
     self.selectorTable = nil;
