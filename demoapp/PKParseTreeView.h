@@ -8,8 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PKParseTreeView : NSView {
+@class PKParseTree;
 
+@interface PKParseTreeView : NSView {
+    PKParseTree *parseTree;
+    NSDictionary *labelAttrs;
 }
 
+@property (nonatomic, retain) PKParseTree *parseTree;
+@property (nonatomic, retain) NSDictionary *labelAttrs;
 @end
