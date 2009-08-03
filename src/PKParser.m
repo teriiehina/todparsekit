@@ -28,11 +28,10 @@
 
 
 - (void)dealloc {
-    assembler = nil;
-    assemblerSelector = nil;
-    preassembler = nil;
-    preassemblerSelector = nil;
-
+    self.assembler = nil;
+    self.assemblerSelector = nil;
+    self.preassembler = nil;
+    self.preassemblerSelector = nil;
     self.name = nil;
     self.tokenizer = nil;
     [super dealloc];
