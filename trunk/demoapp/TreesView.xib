@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="1" id="9"/>
+			<integer value="9"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -325,7 +325,7 @@
 														<int key="NSColorSpace">1</int>
 														<bytes key="NSRGB">MCAwIDEAA</bytes>
 													</object>
-													<reference ref="9"/>
+													<integer value="1" id="9"/>
 												</object>
 											</object>
 											<nil key="NSDefaultParagraphStyle"/>
@@ -596,7 +596,7 @@
 									<object class="NSCustomView" id="298394291">
 										<reference key="NSNextResponder" ref="522996148"/>
 										<int key="NSvFlags">274</int>
-										<string key="NSFrame">{{0, -17}, {474, 245}}</string>
+										<string key="NSFrameSize">{457, 228}</string>
 										<reference key="NSSuperview" ref="522996148"/>
 										<string key="NSClassName">PKParseTreeView</string>
 									</object>
@@ -613,27 +613,26 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{458, 1}, {15, 228}}</string>
 								<reference key="NSSuperview" ref="80991767"/>
-								<bool key="NSEnabled">YES</bool>
 								<reference key="NSTarget" ref="80991767"/>
 								<string key="NSAction">_doScroller:</string>
-								<double key="NSPercent">9.306123e-01</double>
+								<double key="NSCurValue">1.000000e+00</double>
+								<double key="NSPercent">9.956332e-01</double>
 							</object>
 							<object class="NSScroller" id="862830124">
 								<reference key="NSNextResponder" ref="80991767"/>
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{1, 229}, {457, 15}}</string>
 								<reference key="NSSuperview" ref="80991767"/>
-								<bool key="NSEnabled">YES</bool>
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="80991767"/>
 								<string key="NSAction">_doScroller:</string>
-								<double key="NSPercent">9.641351e-01</double>
+								<double key="NSPercent">9.978166e-01</double>
 							</object>
 						</object>
 						<string key="NSFrame">{{20, 19}, {474, 245}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSNextKeyView" ref="522996148"/>
-						<int key="NSsFlags">242</int>
+						<int key="NSsFlags">50</int>
 						<reference key="NSVScroller" ref="329378974"/>
 						<reference key="NSHScroller" ref="862830124"/>
 						<reference key="NSContentView" ref="522996148"/>
