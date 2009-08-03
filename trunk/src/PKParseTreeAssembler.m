@@ -102,7 +102,6 @@
     [self didMatchToken:a];
     PKParseTree *current = [self currentFrom:a];
     a.target = current.parent;
-    current = current.parent;
 }
 
 
