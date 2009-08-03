@@ -116,3 +116,4 @@
 @synthesize tokString;
 @synthesize toks;
 @synthesize busy;
+@end

@@ -14,7 +14,15 @@
     IBOutlet NSTextView *grammarTextView;
     IBOutlet NSTextView *inputTextView;
     IBOutlet PKParseTreeView *parseTreeView;    
+
+    NSString *grammarString;
+    NSString *inString;
+    BOOL busy;
 }
 
 - (IBAction)parse:(id)sender;
+
+@property (retain) NSString *grammarString;
+@property (retain) NSString *inString;
+@property BOOL busy;
 @end

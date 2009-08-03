@@ -17,6 +17,11 @@
     return self;
 }
 
+- (void)dealloc {
+    [super dealloc];
+}
+
+
 
 - (void)drawRect:(NSRect)r {
     [[NSColor whiteColor] set];
