@@ -80,6 +80,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
         [self drawNode:n];
         p.y += ROW_HEIGHT;
         [self processChidrenOf:n centeredAt:p];
+        p.y -= ROW_HEIGHT;
     }
 }
 
