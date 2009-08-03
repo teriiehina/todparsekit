@@ -25,6 +25,7 @@
 - (void)dealloc {
     self.parent = nil;
     self.children = nil;
+    self.userInfo = nil;
     [super dealloc];
 }
 
@@ -79,4 +80,5 @@
 
 @synthesize parent;
 @synthesize children;
+@synthesize userInfo;
 @end

@@ -15,6 +15,7 @@
 @interface PKParseTree : NSObject <NSCopying> {
     PKParseTree *parent;
     NSMutableArray *children;
+    id userInfo;
 }
 + (id)parseTree;
 
@@ -24,4 +25,5 @@
 
 @property (nonatomic, assign, readonly) PKParseTree *parent;  // weak ref
 @property (nonatomic, retain, readonly) NSMutableArray *children;
+@property (nonatomic, retain) id userInfo;
 @end
