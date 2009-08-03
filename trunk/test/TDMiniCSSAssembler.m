@@ -50,37 +50,37 @@
 //    string      = QuotedString;
 //    constants   = 'bold' | 'normal' | 'italic';
 
-- (void)workOnProperty:(PKAssembly *)a {
+- (void)didMatchProperty:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnString:(PKAssembly *)a {
+- (void)didMatchString:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnConstant:(PKAssembly *)a {
+- (void)didMatchConstant:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:tok.stringValue];
 }
 
 
-- (void)workOnNum:(PKAssembly *)a {
+- (void)didMatchNum:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnPixelValue:(PKAssembly *)a {
+- (void)didMatchPixelValue:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnRgb:(PKAssembly *)a {
+- (void)didMatchRgb:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
     CGFloat blue  = [[objs objectAtIndex:0] floatValue]/255.0;
@@ -90,7 +90,7 @@
 }
 
 
-- (void)workOnActualDecls:(PKAssembly *)a {
+- (void)didMatchActualDecls:(PKAssembly *)a {
     id d = [NSMutableDictionary dictionary];
     NSArray *objs = [a objectsAbove:curly];
     [a pop]; // discard curly
@@ -107,7 +107,7 @@
 }
 
 
-- (void)workOnRuleset:(PKAssembly *)a {
+- (void)didMatchRuleset:(PKAssembly *)a {
     id props = [a pop];
     [self gatherPropertiesIn:props];
 
@@ -162,7 +162,7 @@
 //    return i;
 //}
 //
-//- (void)workOnHexcolor:(PKAssembly *)a {
+//- (void)didMatchHexcolor:(PKAssembly *)a {
 //    PKToken *tok = [a pop];
 //    NSString *s = tok.stringValue;
 //    NSColor *color = nil;

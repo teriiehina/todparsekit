@@ -9,13 +9,13 @@
 #import "TDRegularParser.h"
 
 @interface TDRegularParser ()
-- (void)workOnChar:(PKAssembly *)a;
-- (void)workOnStar:(PKAssembly *)a;
-- (void)workOnPlus:(PKAssembly *)a;
-- (void)workOnQuestion:(PKAssembly *)a;
-//- (void)workOnAnd:(PKAssembly *)a;
-- (void)workOnOr:(PKAssembly *)a;
-- (void)workOnExpression:(PKAssembly *)a;
+- (void)didMatchChar:(PKAssembly *)a;
+- (void)didMatchStar:(PKAssembly *)a;
+- (void)didMatchPlus:(PKAssembly *)a;
+- (void)didMatchQuestion:(PKAssembly *)a;
+//- (void)didMatchAnd:(PKAssembly *)a;
+- (void)didMatchOr:(PKAssembly *)a;
+- (void)didMatchExpression:(PKAssembly *)a;
 @end
 
 @implementation TDRegularParser
@@ -70,7 +70,7 @@
         expressionParser.name = @"expression";
         [expressionParser add:self.termParser];
         [expressionParser add:[PKRepetition repetitionWithSubparser:self.orTermParser]];
-        [expressionParser setAssembler:self selector:@selector(workOnExpression:)];
+        [expressionParser setAssembler:self selector:@selector(didMatchExpression:)];
     }
     return expressionParser;
 }
@@ -95,7 +95,7 @@
         orTermParser.name = @"orTerm";
         [orTermParser add:[[PKSpecificChar specificCharWithChar:'|'] discard]];
         [orTermParser add:self.termParser];
-        [orTermParser setAssembler:self selector:@selector(workOnOr:)];
+        [orTermParser setAssembler:self selector:@selector(didMatchOr:)];
     }
     return orTermParser;
 }
@@ -124,7 +124,7 @@
         [nextFactorParser add:self.phraseStarParser];
         [nextFactorParser add:self.phrasePlusParser];
         [nextFactorParser add:self.phraseQuestionParser];
-//        [nextFactorParser setAssembler:self selector:@selector(workOnAnd:)];
+//        [nextFactorParser setAssembler:self selector:@selector(didMatchAnd:)];
     }
     return nextFactorParser;
 }
@@ -154,7 +154,7 @@
         phraseStarParser.name = @"phraseStar";
         [phraseStarParser add:self.phraseParser];
         [phraseStarParser add:[[PKSpecificChar specificCharWithChar:'*'] discard]];
-        [phraseStarParser setAssembler:self selector:@selector(workOnStar:)];
+        [phraseStarParser setAssembler:self selector:@selector(didMatchStar:)];
     }
     return phraseStarParser;
 }
@@ -167,7 +167,7 @@
         phrasePlusParser.name = @"phrasePlus";
         [phrasePlusParser add:self.phraseParser];
         [phrasePlusParser add:[[PKSpecificChar specificCharWithChar:'+'] discard]];
-        [phrasePlusParser setAssembler:self selector:@selector(workOnPlus:)];
+        [phrasePlusParser setAssembler:self selector:@selector(didMatchPlus:)];
     }
     return phrasePlusParser;
 }
@@ -180,7 +180,7 @@
         phraseQuestionParser.name = @"phraseQuestion";
         [phraseQuestionParser add:self.phraseParser];
         [phraseQuestionParser add:[[PKSpecificChar specificCharWithChar:'?'] discard]];
-        [phraseQuestionParser setAssembler:self selector:@selector(workOnQuestion:)];
+        [phraseQuestionParser setAssembler:self selector:@selector(didMatchQuestion:)];
     }
     return phraseQuestionParser;
 }
@@ -193,13 +193,13 @@
         letterOrDigitParser.name = @"letterOrDigit";
         [letterOrDigitParser add:[PKLetter letter]];
         [letterOrDigitParser add:[PKDigit digit]];
-        [letterOrDigitParser setAssembler:self selector:@selector(workOnChar:)];
+        [letterOrDigitParser setAssembler:self selector:@selector(didMatchChar:)];
     }
     return letterOrDigitParser;
 }
 
 
-- (void)workOnChar:(PKAssembly *)a {
+- (void)didMatchChar:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id obj = [a pop];
@@ -209,7 +209,7 @@
 }
 
 
-- (void)workOnStar:(PKAssembly *)a {
+- (void)didMatchStar:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -219,7 +219,7 @@
 }
 
 
-- (void)workOnPlus:(PKAssembly *)a {
+- (void)didMatchPlus:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -231,7 +231,7 @@
 }
 
 
-- (void)workOnQuestion:(PKAssembly *)a {
+- (void)didMatchQuestion:(PKAssembly *)a {
     //    NSLog(@"%s", _cmd);
     //    NSLog(@"a: %@", a);
     id top = [a pop];
@@ -243,7 +243,7 @@
 }
 
 
-//- (void)workOnAnd:(PKAssembly *)a {
+//- (void)didMatchAnd:(PKAssembly *)a {
 ////    NSLog(@"%s", _cmd);
 ////    NSLog(@"a: %@", a);
 //    id second = [a pop];
@@ -257,7 +257,7 @@
 //}
 
 
-- (void)workOnExpression:(PKAssembly *)a {
+- (void)didMatchExpression:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     
@@ -285,7 +285,7 @@
 }
 
 
-- (void)workOnOr:(PKAssembly *)a {
+- (void)didMatchOr:(PKAssembly *)a {
 //    NSLog(@"%s", _cmd);
 //    NSLog(@"a: %@", a);
     id second = [a pop];

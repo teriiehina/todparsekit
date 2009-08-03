@@ -11,13 +11,13 @@
 #import <ParseKit/ParseKit.h>
 
 @interface TDHtmlSyntaxHighlighter ()
-- (void)workOnTag;
-- (void)workOnText;
-- (void)workOnComment;
-- (void)workOnCDATA;
-- (void)workOnPI;
-- (void)workOnDoctype;
-- (void)workOnScript;
+- (void)didMatchTag;
+- (void)didMatchText;
+- (void)didMatchComment;
+- (void)didMatchCDATA;
+- (void)didMatchPI;
+- (void)didMatchDoctype;
+- (void)didMatchScript;
 - (id)peek;
 - (id)pop;
 - (NSArray *)objectsAbove:(id)fence;
@@ -204,34 +204,34 @@
                 [stack addObject:tok];
                 inDoctype = YES;
             } else if ([ltToken isEqual:tok]) {
-                [self workOnText];
+                [self didMatchText];
                 [stack addObject:tok];
             } else if ([gtToken isEqual:tok]) {
                 [stack addObject:tok];
-                [self workOnTag];
+                [self didMatchTag];
             } else {
                 [stack addObject:tok];
             }
         } else if (inComment && [endCommentToken isEqual:tok]) {
             inComment = NO;
             [stack addObject:tok];
-            [self workOnComment];
+            [self didMatchComment];
         } else if (inCDATA && [endCDATAToken isEqual:tok]) {
             inCDATA = NO;
             [stack addObject:tok];
-            [self workOnCDATA];
+            [self didMatchCDATA];
         } else if (inPI && [endPIToken isEqual:tok]) {
             inPI = NO;
             [stack addObject:tok];
-            [self workOnPI];
+            [self didMatchPI];
         } else if (inDoctype && [gtToken isEqual:tok]) {
             inDoctype = NO;
             [stack addObject:tok];
-            [self workOnDoctype];
+            [self didMatchDoctype];
         } else if (inScript && [endScriptToken isEqual:tok]) {
             inScript = NO;
             [stack addObject:tok];
-            [self workOnScript];
+            [self didMatchScript];
         } else {
             [stack addObject:tok];
         }
@@ -276,7 +276,7 @@
 }
 
 
-- (void)workOnComment {
+- (void)didMatchComment {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:startCommentToken] reversedMutableArray];
     
@@ -302,7 +302,7 @@
 }
 
 
-- (void)workOnCDATA {
+- (void)didMatchCDATA {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:startCDATAToken] reversedMutableArray];
     
@@ -328,7 +328,7 @@
 }
 
 
-- (void)workOnPI {
+- (void)didMatchPI {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:startPIToken] reversedMutableArray];
     
@@ -354,7 +354,7 @@
 }
 
 
-- (void)workOnDoctype {
+- (void)didMatchDoctype {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:startDoctypeToken] reversedMutableArray];
     
@@ -380,7 +380,7 @@
 }
 
 
-- (void)workOnScript {
+- (void)didMatchScript {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:startDoctypeToken] reversedMutableArray];
     
@@ -408,7 +408,7 @@
 }
 
 
-- (void)workOnStartTag:(NSEnumerator *)e {
+- (void)didMatchStartTag:(NSEnumerator *)e {
     while (1) {
         // attr name or ns prefix decl "xmlns:foo" or "/" for empty element
         PKToken *tok = [self nextNonWhitespaceTokenFrom:e];
@@ -461,7 +461,7 @@
 }
 
 
-- (void)workOnEndTag:(NSEnumerator *)e {
+- (void)didMatchEndTag:(NSEnumerator *)e {
     // consume tagName to ">"
     PKToken *tok = nil; 
     while (tok = [e nextObject]) {
@@ -471,7 +471,7 @@
 }
 
 
-- (void)workOnTag {
+- (void)didMatchTag {
     // reverse toks to be in document order
     NSMutableArray *toks = [[self objectsAbove:nil] reversedMutableArray];
     NSAttributedString *as =  nil;
@@ -498,15 +498,15 @@
         [highlightedString appendAttributedString:as];
         
         if ([tok isEqual:fwdSlashToken]) {
-            [self workOnEndTag:e];
+            [self didMatchEndTag:e];
         } else {
-            [self workOnStartTag:e];
+            [self didMatchStartTag:e];
         }
     }
 }
 
 
-- (void)workOnText {
+- (void)didMatchText {
     NSArray *a = [self objectsAbove:gtToken];
     for (PKToken *tok in [a reverseObjectEnumerator]) {
         NSString *s = tok.stringValue;

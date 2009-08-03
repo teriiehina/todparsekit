@@ -86,7 +86,7 @@
     if (!stringParser) {
         self.stringParser = [PKQuotedString quotedString];
         if (shouldAssemble) {
-            [stringParser setAssembler:self selector:@selector(workOnString:)];
+            [stringParser setAssembler:self selector:@selector(didMatchString:)];
         }
     }
     return stringParser;
@@ -97,7 +97,7 @@
     if (!numberParser) {
         self.numberParser = [PKNumber number];
         if (shouldAssemble) {
-            [numberParser setAssembler:self selector:@selector(workOnNumber:)];
+            [numberParser setAssembler:self selector:@selector(didMatchNumber:)];
         }
     }
     return numberParser;
@@ -108,7 +108,7 @@
     if (!nullParser) {
         self.nullParser = [[PKLiteral literalWithString:@"null"] discard];
         if (shouldAssemble) {
-            [nullParser setAssembler:self selector:@selector(workOnNull:)];
+            [nullParser setAssembler:self selector:@selector(didMatchNull:)];
         }
     }
     return nullParser;
@@ -121,7 +121,7 @@
         [booleanParser add:[PKLiteral literalWithString:@"true"]];
         [booleanParser add:[PKLiteral literalWithString:@"false"]];
         if (shouldAssemble) {
-            [booleanParser setAssembler:self selector:@selector(workOnBoolean:)];
+            [booleanParser setAssembler:self selector:@selector(didMatchBoolean:)];
         }
     }
     return booleanParser;
@@ -149,7 +149,7 @@
         [arrayParser add:[[PKSymbol symbolWithString:@"]"] discard]];
         
         if (shouldAssemble) {
-            [arrayParser setAssembler:self selector:@selector(workOnArray:)];
+            [arrayParser setAssembler:self selector:@selector(didMatchArray:)];
         }
     }
     return arrayParser;
@@ -179,7 +179,7 @@
         [objectParser add:[[PKSymbol symbolWithString:@"}"] discard]];
 
         if (shouldAssemble) {
-            [objectParser setAssembler:self selector:@selector(workOnObject:)];
+            [objectParser setAssembler:self selector:@selector(didMatchObject:)];
         }
     }
     return objectParser;
@@ -217,7 +217,7 @@
         [propertyParser add:[[PKSymbol symbolWithString:@":"] discard]];
         [propertyParser add:self.valueParser];
         if (shouldAssemble) {
-            [propertyParser setAssembler:self selector:@selector(workOnProperty:)];
+            [propertyParser setAssembler:self selector:@selector(didMatchProperty:)];
         }
     }
     return propertyParser;
@@ -234,30 +234,30 @@
 }
 
 
-- (void)workOnNull:(PKAssembly *)a {
+- (void)didMatchNull:(PKAssembly *)a {
     [a push:[NSNull null]];
 }
 
 
-- (void)workOnNumber:(PKAssembly *)a {
+- (void)didMatchNumber:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[NSNumber numberWithFloat:tok.floatValue]];
 }
 
 
-- (void)workOnString:(PKAssembly *)a {
+- (void)didMatchString:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[tok.stringValue stringByTrimmingQuotes]];
 }
 
 
-- (void)workOnBoolean:(PKAssembly *)a {
+- (void)didMatchBoolean:(PKAssembly *)a {
     PKToken *tok = [a pop];
     [a push:[NSNumber numberWithBool:[tok.stringValue isEqualToString:@"true"] ? YES : NO]];
 }
 
 
-- (void)workOnArray:(PKAssembly *)a {
+- (void)didMatchArray:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.bracket];
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
     
@@ -271,7 +271,7 @@
 }
 
 
-- (void)workOnObject:(PKAssembly *)a {
+- (void)didMatchObject:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.curly];
     NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:elements.count / 2.];
     
@@ -289,7 +289,7 @@
 }
 
 
-- (void)workOnProperty:(PKAssembly *)a {
+- (void)didMatchProperty:(PKAssembly *)a {
     id value = [a pop];
     PKToken *tok = [a pop];
     NSString *key = [tok.stringValue stringByTrimmingQuotes];

@@ -10,8 +10,8 @@
 
 @interface PKParseTreeAssembler : NSObject {
     NSMutableDictionary *ruleNames;
-    NSString *assemblerPrefix;
     NSString *preassemblerPrefix;
+    NSString *assemblerPrefix;
     NSString *suffix;
 }
 

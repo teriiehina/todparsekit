@@ -53,11 +53,11 @@ colon         = ':';
         
     The when the returned parser is used, the provided assembler will receive method callbacks for each production matched, like:
 
-    -workOnObjectAssembly:
-    -workOnObjectContentAssembly:
-    -workOnPropertyAssembly:
-    -workOnArrayAssembly:
-    -workOnOpenCurlyAssembly:
+    -didMatchObjectAssembly:
+    -didMatchObjectContentAssembly:
+    -didMatchPropertyAssembly:
+    -didMatchArrayAssembly:
+    -didMatchOpenCurlyAssembly:
     etc.
     
     Each callback method must accept a single PKAssembly argument. This assembly argument

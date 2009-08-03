@@ -11,7 +11,7 @@
 #import <ParseKit/ParseKit.h>
 
 @interface TDGenericAssembler ()
-- (void)workOnTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a;
+- (void)didMatchTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a;
 - (void)appendAttributedStringForObjects:(NSArray *)objs withAttrs:(id)attrs;
 - (void)appendAttributedStringForObject:(id)obj withAttrs:(id)attrs;
 - (NSMutableArray *)popWhitespaceTokensFrom:(PKAssembly *)a;
@@ -33,7 +33,7 @@
                                   [NSColor whiteColor], NSBackgroundColorAttributeName,
                                   [NSFont fontWithName:@"Monaco" size:11.0], NSFontAttributeName,
                                   nil];
-        self.prefix = @"workOn";
+        self.prefix = @"didMatch";
         self.suffix = @":";
     }
     return self;
@@ -69,13 +69,13 @@
         [productionNames setObject:productionName forKey:selName];
     }
     
-    [self workOnTerminalNamed:productionName withAssembly:obj];
+    [self didMatchTerminalNamed:productionName withAssembly:obj];
     
     return nil;
 }
 
 
-- (void)workOnTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a {
+- (void)didMatchTerminalNamed:(NSString *)name withAssembly:(PKAssembly *)a {
     //NSLog(@"%@ : %@", name, a);
     self.currentAssembly = a;
     NSMutableArray *whitespaceToks = [self popWhitespaceTokensFrom:a];

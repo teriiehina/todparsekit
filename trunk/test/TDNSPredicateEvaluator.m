@@ -12,7 +12,7 @@
 #import "NSArray+ParseKitAdditions.h"
 
 @interface TDNSPredicateEvaluator ()
-- (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered;
+- (void)didMatchCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered;
 
 @property (nonatomic, assign) id <TDKeyPathResolver>resolver;
 @property (nonatomic, retain) PKToken *openCurly;
@@ -48,13 +48,13 @@
 }
 
 
-- (void)workOnNegatedPredicate:(PKAssembly *)a {
+- (void)didMatchNegatedPredicate:(PKAssembly *)a {
     BOOL b = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:!b]];
 }
 
 
-- (void)workOnNumComparisonPredicate:(PKAssembly *)a {
+- (void)didMatchNumComparisonPredicate:(PKAssembly *)a {
     CGFloat n2 = [[a pop] floatValue];
     NSString *op = [[a pop] stringValue];
     CGFloat n1 = [[a pop] floatValue];
@@ -78,22 +78,22 @@
 }
 
 
-- (void)workOnCollectionLtPredicate:(PKAssembly *)a {
-    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedAscending];
+- (void)didMatchCollectionLtPredicate:(PKAssembly *)a {
+    [self didMatchCollectionPredicateAssembly:a ordered:NSOrderedAscending];
 }
 
 
-- (void)workOnCollectionGtPredicate:(PKAssembly *)a {
-    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedDescending];
+- (void)didMatchCollectionGtPredicate:(PKAssembly *)a {
+    [self didMatchCollectionPredicateAssembly:a ordered:NSOrderedDescending];
 }
 
 
-- (void)workOnCollectionEqPredicate:(PKAssembly *)a {
-    [self workOnCollectionPredicateAssembly:a ordered:NSOrderedSame];
+- (void)didMatchCollectionEqPredicate:(PKAssembly *)a {
+    [self didMatchCollectionPredicateAssembly:a ordered:NSOrderedSame];
 }
 
 
-- (void)workOnCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered {
+- (void)didMatchCollectionPredicateAssembly:(PKAssembly *)a ordered:(NSComparisonResult)ordered {
     id value = [a pop];
     [a pop]; // discard op
     NSArray *array = [a pop];
@@ -131,13 +131,13 @@
 }
 
 
-- (void)workOnString:(PKAssembly *)a {
+- (void)didMatchString:(PKAssembly *)a {
     NSString *s = [[[a pop] stringValue] stringByTrimmingQuotes];
     [a push:s];
 }
 
 
-- (void)workOnStringTestPredicate:(PKAssembly *)a {
+- (void)didMatchStringTestPredicate:(PKAssembly *)a {
     NSString *s2 = [a pop];
     NSString *op = [[a pop] stringValue];
     NSString *s1 = [a pop];
@@ -159,28 +159,28 @@
 }
 
 
-- (void)workOnAndAndTerm:(PKAssembly *)a {
+- (void)didMatchAndAndTerm:(PKAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 && b2]];
 }
 
 
-- (void)workOnOrOrTerm:(PKAssembly *)a {
+- (void)didMatchOrOrTerm:(PKAssembly *)a {
     BOOL b2 = [[a pop] boolValue];
     BOOL b1 = [[a pop] boolValue];
     [a push:[NSNumber numberWithBool:b1 || b2]];
 }
 
 
-- (void)workOnArray:(PKAssembly *)a {
+- (void)didMatchArray:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:openCurly];
     [a pop]; // discard '{'
     [a push:[objs reversedArray]];
 }
 
 
-- (void)workOnCollectionTestPredicate:(PKAssembly *)a {
+- (void)didMatchCollectionTestPredicate:(PKAssembly *)a {
     NSArray *array = [a pop];
     NSAssert([array isKindOfClass:[NSArray class]], @"");
     id value = [a pop];
@@ -188,33 +188,33 @@
 }
 
 
-- (void)workOnKeyPath:(PKAssembly *)a {
+- (void)didMatchKeyPath:(PKAssembly *)a {
     NSString *keyPath = [[a pop] stringValue];
     [a push:[resolver resolvedValueForKeyPath:keyPath]];
 }
 
 
-- (void)workOnNum:(PKAssembly *)a {
+- (void)didMatchNum:(PKAssembly *)a {
     [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
 }
 
 
-- (void)workOnTrue:(PKAssembly *)a {
+- (void)didMatchTrue:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalse:(PKAssembly *)a {
+- (void)didMatchFalse:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 
 
-- (void)workOnTruePredicate:(PKAssembly *)a {
+- (void)didMatchTruePredicate:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:YES]];
 }
 
 
-- (void)workOnFalsePredicate:(PKAssembly *)a {
+- (void)didMatchFalsePredicate:(PKAssembly *)a {
     [a push:[NSNumber numberWithBool:NO]];
 }
 

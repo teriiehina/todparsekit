@@ -11,8 +11,8 @@
 #import "NSString+ParseKitAdditions.h"
 
 @interface TDFastJsonParser ()
-- (void)workOnDictionary;
-- (void)workOnArray;
+- (void)didMatchDictionary;
+- (void)didMatchArray;
 - (NSArray *)objectsAbove:(id)fence;
 
 @property (retain) PKTokenizer *tokenizer;
@@ -61,11 +61,11 @@
             if ([@"{" isEqualToString:sval]) {
                 [stack addObject:tok];
             } else if ([@"}" isEqualToString:sval]) {
-                [self workOnDictionary];
+                [self didMatchDictionary];
             } else if ([@"[" isEqualToString:sval]) {
                 [stack addObject:tok];
             } else if ([@"]" isEqualToString:sval]) {
-                [self workOnArray];
+                [self didMatchArray];
             }
         } else {
             id value = nil;
@@ -90,7 +90,7 @@
 }
 
 
-- (void)workOnDictionary {
+- (void)didMatchDictionary {
     NSArray *a = [self objectsAbove:curly];
     NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:a.count/2.];
     
@@ -105,7 +105,7 @@
 }
 
 
-- (void)workOnArray {
+- (void)didMatchArray {
     NSArray *a = [self objectsAbove:bracket];
     NSMutableArray *result = [NSMutableArray arrayWithCapacity:a.count];
     for (id obj in [a reverseObjectEnumerator]) {

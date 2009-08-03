@@ -27,11 +27,11 @@
 #import <OCMock/OCMock.h>
 
 @protocol TDMockAssember
-- (void)workOnFoo:(PKAssembly *)a;
-- (void)workOnBaz:(PKAssembly *)a;
-- (void)workOnStart:(PKAssembly *)a;
-- (void)workOnStart:(PKAssembly *)a;
-- (void)workOn_Start:(PKAssembly *)a;
+- (void)didMatchFoo:(PKAssembly *)a;
+- (void)didMatchBaz:(PKAssembly *)a;
+- (void)didMatchStart:(PKAssembly *)a;
+- (void)didMatchStart:(PKAssembly *)a;
+- (void)didMatch_Start:(PKAssembly *)a;
 @end
 
 @interface PKParserFactory ()
@@ -380,11 +380,11 @@
 //    id mock = [OCMockObject mockForProtocol:@protocol(TDMockAssember)];
 //    PKParserFactory *factory = [PKParserFactory factory];
 //    NSString *s = nil;
-//    s = @"@start = foo|baz; foo (workOnFooAssembly:) = 'bar'; baz (workOnBazAssembly:) = 'bat'";
+//    s = @"@start = foo|baz; foo (didMatchFooAssembly:) = 'bar'; baz (didMatchBazAssembly:) = 'bat'";
 //    factory.assemblerSettingBehavior = PKParserFactoryAssemblerSettingBehaviorOnExplicit;
 //    PKParser *lp = [factory parserFromGrammar:s assembler:mock];
 //    
-////    [[mock expect] workOnBazAssembly:OCMOCK_ANY];
+////    [[mock expect] didMatchBazAssembly:OCMOCK_ANY];
 ////    NSString *s = @"bar bat";
 ////    a = [PKTokenAssembly assemblyWithString:s];
 ////    res = [lp completeMatchFor:a];
