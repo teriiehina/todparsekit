@@ -17,7 +17,8 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 @interface PKParseTreeView ()
-- (void)drawNode:(PKParseTree *)n atPoint:(NSPoint)p;
+- (void)drawNode:(PKParseTree *)n ;
+- (void)preprocessNode:(PKParseTree *)n centeredAt:(NSPoint)p;
 - (NSString *)labelFromNode:(PKParseTree *)n;
 @end
 
@@ -50,20 +51,39 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     [[NSColor whiteColor] set];
     NSRectFill(r);
     
+    
     if (parseTree) {
-        [self drawNode:parseTree atPoint:NSMakePoint(NSMidX(r), NSMinY(r) + PADDING)];
+        [self preprocessNode:parseTree centeredAt:NSMakePoint(NSMidX(r), NSMinY(r) + PADDING)];
+        [self drawNode:parseTree];
     }
 }
 
                                                      
-- (void)drawNode:(PKParseTree *)n atPoint:(NSPoint)p {
-    NSString *label = [self labelFromNode:n];
-    NSSize boxSize = [label sizeWithAttributes:labelAttrs];
-    NSRect textBox = NSMakeRect(p.x - PKHalfWidth(boxSize), p.y, boxSize.width, boxSize.height);
-    NSRect box = NSUnionRect(NSOffsetRect(textBox, -HALF_PADDING, -HALF_PADDING), NSOffsetRect(textBox, HALF_PADDING, HALF_PADDING));
+- (void)drawNode:(PKParseTree *)n {
+    NSRect boxRect = [[[n userInfo] objectForKey:@"boxRect"] rectValue];
     [[NSColor blackColor] set];
-    NSFrameRect(box);
-    [label drawInRect:textBox withAttributes:labelAttrs];
+    NSFrameRect(boxRect);
+
+    NSString *label = [[n userInfo] objectForKey:@"label"];
+    NSRect labelRect = [[[n userInfo] objectForKey:@"labelRect"] rectValue];
+    [label drawInRect:labelRect withAttributes:labelAttrs];
+}
+
+
+- (void)preprocessNode:(PKParseTree *)n centeredAt:(NSPoint)p {
+    NSString *label = [self labelFromNode:n];
+    NSSize labelSize = [label sizeWithAttributes:labelAttrs];
+    if (labelSize.width > 100) {
+        labelSize.width = 100;
+    }
+    NSRect labelRect = NSMakeRect(p.x - PKHalfWidth(labelSize), p.y, labelSize.width, labelSize.height);
+    NSRect boxRect = NSUnionRect(NSOffsetRect(labelRect, -HALF_PADDING, -HALF_PADDING), NSOffsetRect(labelRect, HALF_PADDING, HALF_PADDING));
+
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    [n setUserInfo:d];
+    [d setObject:label forKey:@"label"];
+    [d setObject:[NSValue valueWithRect:labelRect] forKey:@"labelRect"];
+    [d setObject:[NSValue valueWithRect:boxRect] forKey:@"boxRect"];
 }
 
 
