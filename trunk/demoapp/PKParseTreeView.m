@@ -9,6 +9,9 @@
 #import "PKParseTreeView.h"
 #import <ParseKit/ParseKit.h>
 
+#define PADDING 6.0
+#define HALF_PADDING PADDING / 2.0
+
 static inline CGFloat PKHalfWidth(NSSize s) {
     return s.width / 2.0;
 }
@@ -48,7 +51,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     NSRectFill(r);
     
     if (parseTree) {
-        [self drawNode:parseTree atPoint:NSMakePoint(NSMidX(r), NSMinY(r))];
+        [self drawNode:parseTree atPoint:NSMakePoint(NSMidX(r), NSMinY(r) + PADDING)];
     }
 }
 
@@ -56,15 +59,17 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 - (void)drawNode:(PKParseTree *)n atPoint:(NSPoint)p {
     NSString *label = [self labelFromNode:n];
     NSSize boxSize = [label sizeWithAttributes:labelAttrs];
-    NSRect box = NSMakeRect(p.x - PKHalfWidth(boxSize), p.y, boxSize.width, boxSize.height);
+    NSRect textBox = NSMakeRect(p.x - PKHalfWidth(boxSize), p.y, boxSize.width, boxSize.height);
+    NSRect box = NSUnionRect(NSOffsetRect(textBox, -HALF_PADDING, -HALF_PADDING), NSOffsetRect(textBox, HALF_PADDING, HALF_PADDING));
+    [[NSColor blackColor] set];
     NSFrameRect(box);
-    [label drawInRect:box withAttributes:labelAttrs];
+    [label drawInRect:textBox withAttributes:labelAttrs];
 }
 
 
 - (NSString *)labelFromNode:(PKParseTree *)n {
     if ([n isKindOfClass:[PKParseTree class]]) {
-        return @"nil";
+        return @"root";
     } else if ([n isKindOfClass:[PKRuleNode class]]) {
         return [(PKRuleNode *)n name];
     } else {
