@@ -24,14 +24,18 @@
 
 
 - (void)dealloc {
-    
+    self.grammarString = nil;
+    self.inString = nil;
     [super dealloc];
 }
 
 
 - (IBAction)parse:(id)sender {
-    
+    self.busy = YES;
 }
 
+@synthesize grammarString;
+@synthesize inString;
+@synthesize busy;
 @end
 
