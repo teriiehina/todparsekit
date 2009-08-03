@@ -18,9 +18,12 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 @interface PKParseTreeView ()
+- (void)drawChildrenOf:(PKParseTree *)parent;
 - (void)drawNode:(PKParseTree *)n ;
-- (void)processChidrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p;
+
+- (CGFloat)processChidrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p;
 - (void)processNode:(PKParseTree *)n centeredAt:(NSPoint)p;
+
 - (NSString *)labelFromNode:(PKParseTree *)n;
 @end
 
@@ -58,11 +61,19 @@ static inline CGFloat PKHalfWidth(NSSize s) {
         [tr addChild:parseTree];
 
         [self processChidrenOf:tr centeredAt:NSMakePoint(NSMidX(r), NSMinY(r) + PADDING)];
-        //[self drawNode:parseTree];
+        [self drawChildrenOf:tr];
     }
 }
 
-                                                     
+
+- (void)drawChildrenOf:(PKParseTree *)parent {
+    for (PKParseTree *n in [parent children]) {
+        [self drawNode:n];
+        [self drawChildrenOf:n];
+    }
+}
+
+
 - (void)drawNode:(PKParseTree *)n {
     NSRect boxRect = [[[n userInfo] objectForKey:@"boxRect"] rectValue];
     [[NSColor blackColor] set];
@@ -74,14 +85,14 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 
-- (void)processChidrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p {
+- (CGFloat)processChidrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p {
     for (PKParseTree *n in [parent children]) {
-        [self processNode:n centeredAt:p];
-        [self drawNode:n];
         p.y += ROW_HEIGHT;
         [self processChidrenOf:n centeredAt:p];
         p.y -= ROW_HEIGHT;
+        [self processNode:n centeredAt:p];
     }
+    return 0;
 }
 
 

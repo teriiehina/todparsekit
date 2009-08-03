@@ -13,7 +13,6 @@
 @interface PKParseTreeView : NSView {
     PKParseTree *parseTree;
     NSDictionary *labelAttrs;
-    NSInteger row;
 }
 
 @property (nonatomic, retain) PKParseTree *parseTree;
