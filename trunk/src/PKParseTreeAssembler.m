@@ -109,8 +109,8 @@
 - (PKParseTree *)currentFrom:(PKAssembly *)a {
     PKParseTree *current = a.target;
     if (!current) {
-        a.target = [PKParseTree parseTree];
-        current = a.target;
+        current = [PKParseTree parseTree];
+        a.target = current;
     }
     return current;
 }
