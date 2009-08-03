@@ -31,8 +31,30 @@
 
 
 - (IBAction)parse:(id)sender {
+    if (![inString length] || ![grammarString length]) {
+        NSBeep();
+        return;
+    }
+    
     self.busy = YES;
+    
+    [NSThread detachNewThreadSelector:@selector(doParse) toTarget:self withObject:nil];
 }
+
+
+- (void)doParse {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    
+    [self performSelectorOnMainThread:@selector(done) withObject:nil waitUntilDone:NO];
+    
+    [pool drain];
+}
+
+
+- (void)done {
+    self.busy = NO;
+}    
 
 @synthesize grammarString;
 @synthesize inString;
