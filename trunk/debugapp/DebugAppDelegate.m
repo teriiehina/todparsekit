@@ -404,7 +404,7 @@
     PKParser *p = [[PKParserFactory factory] parserFromGrammar:g assembler:nil];
     PKTokenizer *t = p.tokenizer;
     t.string = @"foo";
-    PKAssembly *res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
+    //PKAssembly *res = [p completeMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     
 }
 
@@ -455,7 +455,7 @@
 
 
 - (void)doNSPredicateEvaluator {
-    TDNSPredicateEvaluator *eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:nil] autorelease];
+    //TDNSPredicateEvaluator *eval = [[[TDNSPredicateEvaluator alloc] initWithKeyPathResolver:nil] autorelease];
 }
 
 
