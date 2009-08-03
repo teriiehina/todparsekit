@@ -86,6 +86,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 
 - (CGFloat)processChildrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p {
+    NSInteger hi = 0;
     CGFloat w = 0.0;
     for (PKParseTree *n in [parent children]) {
         w += [self processNode:n centeredAt:p];
