@@ -102,12 +102,12 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 
 - (NSString *)labelFromNode:(PKParseTree *)n {
-    if ([n isKindOfClass:[PKParseTree class]]) {
-        return @"root";
+    if ([n isKindOfClass:[PKTokenNode class]]) {
+        return [[(PKTokenNode *)n token] stringValue];
     } else if ([n isKindOfClass:[PKRuleNode class]]) {
         return [(PKRuleNode *)n name];
     } else {
-        return [[(PKTokenNode *)n token] stringValue];
+        return @"root";
     }
 }
 
