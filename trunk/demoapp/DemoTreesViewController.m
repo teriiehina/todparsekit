@@ -7,6 +7,8 @@
 //
 
 #import "DemoTreesViewController.h"
+#import "PKParseTreeView.h"
+#import <ParseKit/ParseKit.h>
 
 @implementation DemoTreesViewController
 
@@ -30,6 +32,17 @@
 }
 
 
+- (void)awakeFromNib {
+    self.grammarString = 
+        @"@start = expr;"
+        @"expr = addExpr;"
+        @"addExpr = atom (('+'|'-') atom)*;"
+        @"atom = Number;";
+    
+    self.inString = @"1 + 2";
+}
+
+
 - (IBAction)parse:(id)sender {
     if (![inString length] || ![grammarString length]) {
         NSBeep();
@@ -45,6 +58,11 @@
 - (void)doParse {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
+    PKParseTreeAssembler *as = [[[PKParseTreeAssembler alloc] init] autorelease];
+    PKParser *p = [[PKParserFactory factory] parserFromGrammar:grammarString assembler:as preassembler:as];
+    PKParseTree *tr = [p parse:inString];
+    parseTreeView.parseTree = tr;
+    [parseTreeView setNeedsDisplay:YES];
     
     [self performSelectorOnMainThread:@selector(done) withObject:nil waitUntilDone:NO];
     
