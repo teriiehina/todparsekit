@@ -63,7 +63,7 @@
 
 
 - (IBAction)parse:(id)sender {
-    if (!self.inString.length) {
+    if (![inString length]) {
         NSBeep();
         return;
     }
