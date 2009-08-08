@@ -56,7 +56,11 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     
     CGFloat w = [t width] * 100;
     CGFloat h = [t depth] * ROW_HEIGHT + 120;
-    [self setFrameSize:NSMakeSize(w, h)];
+    NSRect r = NSMakeRect(0, 0, w, h);
+    if (NSContainsRect([[self superview] bounds], r)) {
+        r = [[self superview] bounds];
+    }
+    [self setFrameSize:r.size];
     
     [self setNeedsDisplay:YES];
 }
