@@ -137,8 +137,8 @@ static inline CGFloat PKHalfWidth(NSSize s) {
         CGContextBeginPath(ctx);
         CGContextMoveToPoint(ctx, p.x, p.y + 15);
         CGContextAddLineToPoint(ctx, points[i].x, points[i].y - 4);
-        CGContextStrokePath(ctx);
         CGContextClosePath(ctx);
+        CGContextStrokePath(ctx);
     }
 }
 
