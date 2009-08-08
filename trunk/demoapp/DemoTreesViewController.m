@@ -33,13 +33,15 @@
 
 
 - (void)awakeFromNib {
-    self.grammarString = @"@start=expr;expr='foo' 'bar' 'baz';";
-//        @"@start = expr;"
-//        @"expr = addExpr;"
-//        @"addExpr = atom (('+'|'-') atom)*;"
-//        @"atom = Number;";
+    self.grammarString = 
+//@"@start=expr;expr='foo' 'bar' 'baz';";
+        @"@start = expr;"
+        @"expr = addExpr;"
+        @"addExpr = atom (('+'|'-') atom)*;"
+        @"atom = Number;";
     
-    self.inString = @"foo bar baz";
+//    self.inString = @"foo bar baz";
+    self.inString = @"1 + 2";
 }
 
 
@@ -61,8 +63,7 @@
     PKParseTreeAssembler *as = [[[PKParseTreeAssembler alloc] init] autorelease];
     PKParser *p = [[PKParserFactory factory] parserFromGrammar:grammarString assembler:as preassembler:as];
     PKParseTree *tr = [p parse:inString];
-    parseTreeView.parseTree = tr;
-    [parseTreeView setNeedsDisplay:YES];
+    [parseTreeView drawParseTree:tr];
     
     [self performSelectorOnMainThread:@selector(done) withObject:nil waitUntilDone:NO];
     

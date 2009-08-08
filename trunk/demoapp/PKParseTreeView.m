@@ -19,13 +19,11 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 @interface PKParseTreeView ()
-- (void)drawChildrenOf:(PKParseTree *)parent;
-- (void)drawNode:(PKParseTree *)n ;
-
-- (CGFloat)processChildrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p;
-- (CGFloat)processNode:(PKParseTree *)n centeredAt:(NSPoint)p;
-
+- (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p;
+- (void)drawParentNode:(PKParseTree *)n atPoint:(NSPoint)p;
+- (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p;
 - (NSString *)labelFromNode:(PKParseTree *)n;
+- (void)drawLabel:(NSString *)label atPoint:(NSPoint)p;
 @end
 
 @implementation PKParseTreeView
@@ -40,6 +38,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     return self;
 }
 
+
 - (void)dealloc {
     self.parseTree = nil;
     self.labelAttrs = nil;
@@ -52,67 +51,75 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 
+- (void)drawParseTree:(PKParseTree *)t {
+    self.parseTree = t;
+    
+    CGFloat w = [t width] * 100;
+    CGFloat h = [t depth] * 100 + 120;
+    [self setFrameSize:NSMakeSize(w, h)];
+    
+    [self setNeedsDisplay:YES];
+}
+
+
 - (void)drawRect:(NSRect)r {
     [[NSColor whiteColor] set];
     NSRectFill(r);
     
-    if (parseTree) {
-        PKParseTree *tr = [PKParseTree parseTree];
-        [tr addChild:parseTree];
+    [self drawTree:parseTree atPoint:NSMakePoint(r.size.width / 2, 20)];
+}
 
-        [self processChildrenOf:tr centeredAt:NSMakePoint(NSMidX(r), NSMinY(r) + PADDING)];
-        [self drawChildrenOf:tr];
+
+- (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p {
+    if ([n isKindOfClass:[PKTokenNode class]]) {
+        [self drawLeafNode:(id)n atPoint:p];
+    } else {
+        [self drawParentNode:n atPoint:p];
     }
 }
 
 
-- (void)drawChildrenOf:(PKParseTree *)parent {
-    for (PKParseTree *n in [parent children]) {
-        [self drawNode:n];
-        [self drawChildrenOf:n];
+- (void)drawParentNode:(PKParseTree *)n atPoint:(NSPoint)p {
+    NSUInteger i = 0;
+    NSUInteger c = [[n children] count];
+
+    CGFloat widths[c];
+    CGFloat totalWidth = 0;
+    for (PKParseTree *child in [n children]) {
+        widths[i] = [child width] * 100;
+        totalWidth += widths[i++];
     }
-}
-
-
-- (void)drawNode:(PKParseTree *)n {
-    NSRect boxRect = [[[n userInfo] objectForKey:@"boxRect"] rectValue];
-    [[NSColor blackColor] set];
-    NSFrameRect(boxRect);
-
-    NSString *label = [[n userInfo] objectForKey:@"label"];
-    NSRect labelRect = [[[n userInfo] objectForKey:@"labelRect"] rectValue];
-    [label drawInRect:labelRect withAttributes:labelAttrs];
-}
-
-
-- (CGFloat)processChildrenOf:(PKParseTree *)parent centeredAt:(NSPoint)p {
-    //NSInteger hi = 0;
-    CGFloat w = 0.0;
-    for (PKParseTree *n in [parent children]) {
-        w += [self processNode:n centeredAt:p];
-        p.y += ROW_HEIGHT;
-        [self processChildrenOf:n centeredAt:p];
-        p.y -= ROW_HEIGHT;
-    }
-    return w;
-}
-
-
-- (CGFloat)processNode:(PKParseTree *)n centeredAt:(NSPoint)p {
-    NSString *label = [self labelFromNode:n];
-    NSSize labelSize = [label sizeWithAttributes:labelAttrs];
-    if (labelSize.width > 100) {
-        labelSize.width = 100;
-    }
-    NSRect labelRect = NSMakeRect(p.x - PKHalfWidth(labelSize), p.y, labelSize.width, labelSize.height);
-    NSRect boxRect = NSUnionRect(NSOffsetRect(labelRect, -HALF_PADDING, -HALF_PADDING), NSOffsetRect(labelRect, HALF_PADDING, HALF_PADDING));
     
-    NSMutableDictionary *d = [NSMutableDictionary dictionary];
-    [n setUserInfo:d];
-    [d setObject:label forKey:@"label"];
-    [d setObject:[NSValue valueWithRect:labelRect] forKey:@"labelRect"];
-    [d setObject:[NSValue valueWithRect:boxRect] forKey:@"boxRect"];
-    return boxRect.size.width + PADDING * 2;
+    CGFloat exes[c];
+    for (i = 0; i < c; i++) {
+        if (i < c / 2) {
+            exes[i] = p.x - totalWidth / c;
+        } else {
+            exes[i] = p.x + totalWidth / c;
+        }
+    }
+    
+    [self drawLabel:[self labelFromNode:n] atPoint:NSMakePoint(p.x - 20, p.y - 10)];
+    
+    // draw lines
+    //CGContextRef c = [[NSGraphicsContext currentContext] graphicsPort];
+    
+    // draw children
+    
+    i = 0;
+    for (PKParseTree *child in [n children]) {
+        if (i < c / 2) {
+            [self drawTree:child atPoint:NSMakePoint(exes[i] + widths[i]/2, p.y + 100)];
+        } else {
+            [self drawTree:child atPoint:NSMakePoint(exes[i] - widths[i]/2, p.y + 100)];
+        }
+        i++;
+    }
+}
+
+
+- (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p {
+    [self drawLabel:[self labelFromNode:n] atPoint:NSMakePoint(p.x - 20, p.y)];
 }
 
 
@@ -126,6 +133,24 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     }
 }
 
+
+- (void)drawLabel:(NSString *)label atPoint:(NSPoint)p {
+    [label drawAtPoint:p withAttributes:labelAttrs];
+}
+
 @synthesize parseTree;
 @synthesize labelAttrs;
 @end
+
+
+
+//- (void)drawNode:(PKParseTree *)n {
+//    NSRect boxRect = [[[n userInfo] objectForKey:@"boxRect"] rectValue];
+//    [[NSColor blackColor] set];
+//    NSFrameRect(boxRect);
+//    
+//    NSString *label = [[n userInfo] objectForKey:@"label"];
+//    NSRect labelRect = [[[n userInfo] objectForKey:@"labelRect"] rectValue];
+//    [label drawInRect:labelRect withAttributes:labelAttrs];
+//}
+

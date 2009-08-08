@@ -14,6 +14,7 @@
     PKParseTree *parseTree;
     NSDictionary *labelAttrs;
 }
+- (void)drawParseTree:(PKParseTree *)t;
 
 @property (nonatomic, retain) PKParseTree *parseTree;
 @property (nonatomic, retain) NSDictionary *labelAttrs;
