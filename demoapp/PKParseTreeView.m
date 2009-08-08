@@ -11,7 +11,7 @@
 
 #define PADDING 6.0
 #define HALF_PADDING PADDING / 2.0
-#define ROW_HEIGHT 40.0
+#define ROW_HEIGHT 50.0
 #define CELL_WIDTH 100.0
 
 static inline CGFloat PKHalfWidth(NSSize s) {
@@ -107,7 +107,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
         }
     }
     
-    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x - 20, p.y - 10)];
+    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x, p.y)];
     
     
     // draw children
@@ -131,13 +131,20 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 
     // draw lines
-    //CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
     
+    for (i = 0; i < c; i++) {
+        CGContextBeginPath(ctx);
+        CGContextMoveToPoint(ctx, p.x, p.y + 15);
+        CGContextAddLineToPoint(ctx, points[i].x, points[i].y - 4);
+        CGContextStrokePath(ctx);
+        CGContextClosePath(ctx);
+    }
 }
 
 
 - (void)drawLeafNode:(PKTokenNode *)n atPoint:(CGPoint)p {
-    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x - 20, p.y)];
+    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x, p.y)];
 }
 
 
