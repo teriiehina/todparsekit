@@ -19,11 +19,11 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 @interface PKParseTreeView ()
-- (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p;
-- (void)drawParentNode:(PKParseTree *)n atPoint:(NSPoint)p;
-- (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p;
+- (void)drawTree:(PKParseTree *)n atPoint:(CGPoint)p;
+- (void)drawParentNode:(PKParseTree *)n atPoint:(CGPoint)p;
+- (void)drawLeafNode:(PKTokenNode *)n atPoint:(CGPoint)p;
 - (NSString *)labelFromNode:(PKParseTree *)n;
-- (void)drawLabel:(NSString *)label atPoint:(NSPoint)p;
+- (void)drawLabel:(NSString *)label atPoint:(CGPoint)p;
 @end
 
 @implementation PKParseTreeView
@@ -70,11 +70,11 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     [[NSColor whiteColor] set];
     NSRectFill(r);
     
-    [self drawTree:parseTree atPoint:NSMakePoint(r.size.width / 2, 20)];
+    [self drawTree:parseTree atPoint:CGPointMake(r.size.width / 2, 20)];
 }
 
 
-- (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p {
+- (void)drawTree:(PKParseTree *)n atPoint:(CGPoint)p {
     if ([n isKindOfClass:[PKTokenNode class]]) {
         [self drawLeafNode:(id)n atPoint:p];
     } else {
@@ -83,7 +83,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 
-- (void)drawParentNode:(PKParseTree *)n atPoint:(NSPoint)p {
+- (void)drawParentNode:(PKParseTree *)n atPoint:(CGPoint)p {
     NSUInteger i = 0;
     NSUInteger c = [[n children] count];
 
@@ -107,33 +107,37 @@ static inline CGFloat PKHalfWidth(NSSize s) {
         }
     }
     
-    [self drawLabel:[self labelFromNode:n] atPoint:NSMakePoint(p.x - 20, p.y - 10)];
+    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x - 20, p.y - 10)];
     
-    // draw lines
-    //CGContextRef c = [[NSGraphicsContext currentContext] graphicsPort];
     
     // draw children
-    
+    CGPoint points[c];
     i = 0;
     if (1 == c) {
-        [self drawTree:[[n children] objectAtIndex:0] atPoint:NSMakePoint(exes[0], p.y + ROW_HEIGHT)];
+        points[i] = CGPointMake(exes[0], p.y + ROW_HEIGHT);
+        [self drawTree:[[n children] objectAtIndex:0] atPoint:points[i]];
     } else {
         for (PKParseTree *child in [n children]) {
             if (i == c / 2) {
-                [self drawTree:child atPoint:NSMakePoint(p.x, p.y + ROW_HEIGHT)];
+                points[i] = CGPointMake(p.x, p.y + ROW_HEIGHT);
             } else if (i < c / 2) {
-                [self drawTree:child atPoint:NSMakePoint(exes[i] + widths[i]/2, p.y + ROW_HEIGHT)];
+                points[i] = CGPointMake(exes[i] + widths[i]/2, p.y + ROW_HEIGHT);
             } else {
-                [self drawTree:child atPoint:NSMakePoint(exes[i] - widths[i]/2, p.y + ROW_HEIGHT)];
+                points[i] = CGPointMake(exes[i] - widths[i]/2, p.y + ROW_HEIGHT);
             }
-            i++;
+            [self drawTree:child atPoint:points[i++]];
         }
     }
+
+
+    // draw lines
+    //CGContextRef ctx = [[NSGraphicsContext currentContext] graphicsPort];
+    
 }
 
 
-- (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p {
-    [self drawLabel:[self labelFromNode:n] atPoint:NSMakePoint(p.x - 20, p.y)];
+- (void)drawLeafNode:(PKTokenNode *)n atPoint:(CGPoint)p {
+    [self drawLabel:[self labelFromNode:n] atPoint:CGPointMake(p.x - 20, p.y)];
 }
 
 
@@ -148,10 +152,10 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 }
 
 
-- (void)drawLabel:(NSString *)label atPoint:(NSPoint)p {
+- (void)drawLabel:(NSString *)label atPoint:(CGPoint)p {
     NSSize s = [label sizeWithAttributes:labelAttrs];
     p.x -= s.width / 2;
-    [label drawAtPoint:p withAttributes:labelAttrs];
+    [label drawAtPoint:NSPointFromCGPoint(p) withAttributes:labelAttrs];
 }
 
 @synthesize parseTree;
