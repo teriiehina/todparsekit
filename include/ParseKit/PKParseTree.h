@@ -27,3 +27,8 @@
 @property (nonatomic, retain, readonly) NSMutableArray *children;
 @property (nonatomic, retain) id userInfo;
 @end
+
+@interface PKParseTree (Drawing)
+- (CGFloat)width;
+- (CGFloat)depth;
+@end
