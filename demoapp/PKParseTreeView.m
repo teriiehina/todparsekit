@@ -55,7 +55,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     self.parseTree = t;
     
     CGFloat w = [t width] * 100;
-    CGFloat h = [t depth] * 100 + 120;
+    CGFloat h = [t depth] * ROW_HEIGHT + 120;
     [self setFrameSize:NSMakeSize(w, h)];
     
     [self setNeedsDisplay:YES];
@@ -91,11 +91,15 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     }
     
     CGFloat exes[c];
-    for (i = 0; i < c; i++) {
-        if (i < c / 2) {
-            exes[i] = p.x - totalWidth / c;
-        } else {
-            exes[i] = p.x + totalWidth / c;
+    if (1 == c) {
+        exes[0] = p.x;
+    } else {
+        for (i = 0; i < c; i++) {
+            if (i < c / 2) {
+                exes[i] = p.x - totalWidth / c;
+            } else {
+                exes[i] = p.x + totalWidth / c;
+            }
         }
     }
     
@@ -107,13 +111,19 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     // draw children
     
     i = 0;
-    for (PKParseTree *child in [n children]) {
-        if (i < c / 2) {
-            [self drawTree:child atPoint:NSMakePoint(exes[i] + widths[i]/2, p.y + 100)];
-        } else {
-            [self drawTree:child atPoint:NSMakePoint(exes[i] - widths[i]/2, p.y + 100)];
+    if (1 == c) {
+        [self drawTree:[[n children] objectAtIndex:0] atPoint:NSMakePoint(exes[0], p.y + ROW_HEIGHT)];
+    } else {
+        for (PKParseTree *child in [n children]) {
+            if (i == c / 2) {
+                [self drawTree:child atPoint:NSMakePoint(p.x, p.y + ROW_HEIGHT)];
+            } else if (i < c / 2) {
+                [self drawTree:child atPoint:NSMakePoint(exes[i] + widths[i]/2, p.y + ROW_HEIGHT)];
+            } else {
+                [self drawTree:child atPoint:NSMakePoint(exes[i] - widths[i]/2, p.y + ROW_HEIGHT)];
+            }
+            i++;
         }
-        i++;
     }
 }
 
@@ -135,6 +145,8 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 
 - (void)drawLabel:(NSString *)label atPoint:(NSPoint)p {
+    NSSize s = [label sizeWithAttributes:labelAttrs];
+    p.x -= s.width / 2;
     [label drawAtPoint:p withAttributes:labelAttrs];
 }
 

@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="417"/>
+			<integer value="367"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -764,7 +764,7 @@
 			<object class="NSWindowTemplate" id="513744381">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{540, 187}, {514, 622}}</string>
+				<string key="NSWindowRect">{{43, 10}, {1146, 856}}</string>
 				<int key="NSWTFlags">611844096</int>
 				<string key="NSWindowTitle">Window</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -779,7 +779,7 @@
 						<object class="NSTabView" id="43709904">
 							<reference key="NSNextResponder" ref="414427165"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrame">{{-7, -10}, {528, 626}}</string>
+							<string key="NSFrame">{{-7, -10}, {1160, 860}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -807,7 +807,7 @@
 									<object class="NSView" key="NSView" id="414869551">
 										<reference key="NSNextResponder" ref="43709904"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrame">{{10, 33}, {508, 580}}</string>
+										<string key="NSFrame">{{10, 33}, {1140, 814}}</string>
 										<reference key="NSSuperview" ref="43709904"/>
 									</object>
 									<string key="NSLabel">Trees</string>
@@ -830,10 +830,10 @@
 							</object>
 						</object>
 					</object>
-					<string key="NSFrameSize">{514, 622}</string>
+					<string key="NSFrameSize">{1146, 856}</string>
 					<reference key="NSSuperview"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{514, 644}</string>
 				<string key="NSMaxSize">{3.40282e+38, 3.40282e+38}</string>
 			</object>
@@ -2156,8 +2156,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{256, 199}, {514, 622}}</string>
-					<string>{{256, 199}, {514, 622}}</string>
+					<string>{{8, 0}, {1146, 856}}</string>
+					<string>{{8, 0}, {1146, 856}}</string>
 					<reference ref="9"/>
 					<string>{{11, 316}, {480, 370}}</string>
 					<reference ref="9"/>
