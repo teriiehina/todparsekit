@@ -18,6 +18,7 @@
 - (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a;
 - (void)didMatchToken:(PKAssembly *)a;
 - (PKParseTree *)currentFrom:(PKAssembly *)a;
+- (void)removeUnmatchedChildrenFrom:(PKParseTree *)n;
 
 @property (nonatomic, retain) NSMutableDictionary *ruleNames;
 @property (nonatomic, copy) NSString *assemblerPrefix;
@@ -92,7 +93,6 @@
 
 
 - (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
-//    NSLog(@"willMatch %@ %@", name, a);
     PKParseTree *current = [self currentFrom:a];
     [self didMatchToken:a];
     current = [current addChildRule:name];
@@ -101,47 +101,42 @@
 
 
 - (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
-//    NSLog(@"didMatch %@ %@", name, a);
-    id current = [self currentFrom:a];
-    
-    
-    //id original = [[current retain] autorelease];
+    PKParseTree *current = [self currentFrom:a];
+
     NSArray *origChildren = [[[current children] mutableCopy] autorelease];
-    id oldCurrent = nil;
+
+    PKParseTree *oldCurrent = nil;
     while ([current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name]) {
-        NSLog(@"NOT MATCHED %@ %d", [current name], [[current children] count]);
         oldCurrent = [[current retain] autorelease];
-        if (![oldCurrent isMatched]) {
-           // [(id)[[oldCurrent parent] children] removeObject:oldCurrent];
-        }
         a.target = [current parent];
         current = [self currentFrom:a];
         [self didMatchToken:a];        
     }
 
     if (oldCurrent && ![oldCurrent isMatched]) {
-       // [(id)[[oldCurrent parent] children] removeLastObject];
         [(id)[current children] addObjectsFromArray:origChildren];
     }
 
-    
     [self didMatchToken:a];        
     current = [self currentFrom:a];
     
+    [self removeUnmatchedChildrenFrom:current];
+    [current setMatched:YES];
+    a.target = [current parent];
+}
+
+
+- (void)removeUnmatchedChildrenFrom:(PKParseTree *)n {
     NSMutableArray *remove = [NSMutableArray array];
-    for (id child in [current children]) {
+    for (id child in [n children]) {
         if (![child isMatched]) {
             [remove addObject:child];
         }
     }
     
     for (id child in remove) {
-        NSLog(@"removing : %@", child);
-        [(id)[current children] removeObject:child];
-    }
-    
-    [current setMatched:YES];
-    a.target = [current parent];
+        [(id)[n children] removeObject:child];
+    }    
 }
 
 
@@ -156,7 +151,6 @@
 
 
 - (void)didMatchToken:(PKAssembly *)a {
-//    NSLog(@"didMatchToken %@", a);
     NSMutableArray *toks = [NSMutableArray arrayWithCapacity:[a.stack count]];
     while (![a isStackEmpty]) {
         id tok = [a pop];
@@ -164,11 +158,10 @@
         [toks addObject:tok];
     }
 
-    id current = [self currentFrom:a];
+    PKParseTree *current = [self currentFrom:a];
     for (id tok in [toks reverseObjectEnumerator]) {
         PKTokenNode *n = [current addChildToken:tok];
         [n setMatched:YES];
-        [current setMatched:YES];
     }
 }
 
