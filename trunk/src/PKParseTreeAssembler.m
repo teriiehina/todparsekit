@@ -117,9 +117,14 @@
 
 
 - (void)didMatchToken:(PKAssembly *)a {
-    if (![a isStackEmpty]) {
+    NSMutableArray *toks = [NSMutableArray arrayWithCapacity:[a.stack count]];
+    while (![a isStackEmpty]) {
         id tok = [a pop];
         NSAssert([tok isKindOfClass:[PKToken class]], @"");
+        [toks addObject:tok];
+    }
+
+    for (id tok in [toks reverseObjectEnumerator]) {
         [[self currentFrom:a] addChildToken:tok];
     }
 }
