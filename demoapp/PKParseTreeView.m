@@ -9,14 +9,8 @@
 #import "PKParseTreeView.h"
 #import <ParseKit/ParseKit.h>
 
-#define PADDING 6.0
-#define HALF_PADDING PADDING / 2.0
 #define ROW_HEIGHT 50.0
-#define CELL_WIDTH 100.0
-
-static inline CGFloat PKHalfWidth(NSSize s) {
-    return s.width / 2.0;
-}
+#define CELL_WIDTH 80.0
 
 @interface PKParseTreeView ()
 - (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p;
@@ -57,7 +51,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 - (void)drawParseTree:(PKParseTree *)t {
     self.parseTree = t;
     
-    CGFloat w = [self widthForNode:t] * 100;
+    CGFloat w = [self widthForNode:t] * CELL_WIDTH;
     CGFloat h = [self depthForNode:t] * ROW_HEIGHT + 120;
     NSRect r = NSMakeRect(0, 0, w, h);
     if (NSContainsRect([[self superview] bounds], r)) {
@@ -168,24 +162,19 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 
 - (void)drawLabel:(NSString *)label atPoint:(NSPoint)p {
-    NSSize s = [label sizeWithAttributes:labelAttrs];
-    p.x -= s.width / 2;
-    [label drawAtPoint:p withAttributes:labelAttrs];
+    NSSize labelSize = [label sizeWithAttributes:labelAttrs];
+    NSRect maxRect = NSMakeRect(p.x - CELL_WIDTH / 2, p.y, CELL_WIDTH, labelSize.height);
+    
+    if (!NSContainsRect(maxRect, NSMakeRect(maxRect.origin.x, maxRect.origin.y, labelSize.width, labelSize.height))) {
+        labelSize = maxRect.size;
+    }
+    
+    p.x -= labelSize.width / 2;
+    NSRect r = NSMakeRect(p.x, p.y, labelSize.width, labelSize.height);
+    NSUInteger opts = NSStringDrawingTruncatesLastVisibleLine|NSStringDrawingUsesLineFragmentOrigin;
+    [label drawWithRect:r options:opts attributes:labelAttrs];
 }
 
 @synthesize parseTree;
 @synthesize labelAttrs;
 @end
-
-
-
-//- (void)drawNode:(PKParseTree *)n {
-//    NSRect boxRect = [[[n userInfo] objectForKey:@"boxRect"] rectValue];
-//    [[NSColor blackColor] set];
-//    NSFrameRect(boxRect);
-//    
-//    NSString *label = [[n userInfo] objectForKey:@"label"];
-//    NSRect labelRect = [[[n userInfo] objectForKey:@"labelRect"] rectValue];
-//    [label drawInRect:labelRect withAttributes:labelAttrs];
-//}
-
