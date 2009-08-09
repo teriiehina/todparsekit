@@ -103,17 +103,25 @@
 - (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
 //    NSLog(@"didMatch %@ %@", name, a);
     id current = [self currentFrom:a];
-    [current setMatched:YES];
     
     
-//    id original = [[current retain] autorelease];
-//    id oldCurrent = nil;
+    //id original = [[current retain] autorelease];
+    NSArray *origChildren = [[[current children] mutableCopy] autorelease];
+    id oldCurrent = nil;
     while ([current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name]) {
         NSLog(@"NOT MATCHED %@ %d", [current name], [[current children] count]);
-//        oldCurrent = [[current retain] autorelease];
-//        [(id)[[oldCurrent parent] children] removeObject:oldCurrent];
+        oldCurrent = [[current retain] autorelease];
+        if (![oldCurrent isMatched]) {
+           // [(id)[[oldCurrent parent] children] removeObject:oldCurrent];
+        }
         a.target = [current parent];
         current = [self currentFrom:a];
+    }
+    if (oldCurrent) {
+    }
+    if (oldCurrent && ![oldCurrent isMatched]) {
+        [(id)[[oldCurrent parent] children] removeLastObject];
+        [(id)[current children] addObjectsFromArray:origChildren];
     }
 //    if (oldCurrent) {
 //        [current addChild:oldCurrent];
@@ -126,6 +134,7 @@
 
     [self didMatchToken:a];        
     current = [self currentFrom:a];
+    [current setMatched:YES];
     a.target = [current parent];
 }
 
