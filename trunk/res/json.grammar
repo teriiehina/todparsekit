@@ -15,13 +15,12 @@ array         = openBracket (Empty | arrayContent) closeBracket;
 arrayContent  = value commaValue*;
 commaValue    = comma value;
 
-value         = null | true | false | array | object | number | string;
+value         = null | boolean | array | object | number | string;
 
 string        = QuotedString;
 number        = Number;
 null          = 'null';
-true          = 'true';
-false         = 'false';
+boolean       = 'true' | 'false';
 
 openCurly     = '{';
 closeCurly    = '}';
