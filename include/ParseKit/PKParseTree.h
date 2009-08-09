@@ -16,6 +16,7 @@
     PKParseTree *parent;
     NSMutableArray *children;
     id userInfo;
+    BOOL matched;
 }
 + (id)parseTree;
 
@@ -26,4 +27,5 @@
 @property (nonatomic, assign, readonly) PKParseTree *parent;  // weak ref
 @property (nonatomic, retain, readonly) NSMutableArray *children;
 @property (nonatomic, retain) id userInfo;
+@property (nonatomic, getter=isMatched) BOOL matched;
 @end

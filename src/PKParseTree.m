@@ -81,5 +81,6 @@
 @synthesize parent;
 @synthesize children;
 @synthesize userInfo;
+@synthesize matched;
 @end
 
