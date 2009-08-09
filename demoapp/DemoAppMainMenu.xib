@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">353.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="367"/>
+			<integer value="368"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -779,7 +779,7 @@
 						<object class="NSTabView" id="43709904">
 							<reference key="NSNextResponder" ref="414427165"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrame">{{-12, -10}, {1170, 860}}</string>
+							<string key="NSFrame">{{-12, -13}, {1170, 863}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -807,7 +807,7 @@
 									<object class="NSView" key="NSView" id="414869551">
 										<reference key="NSNextResponder" ref="43709904"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrame">{{10, 33}, {1150, 814}}</string>
+										<string key="NSFrame">{{10, 33}, {1150, 817}}</string>
 										<reference key="NSSuperview" ref="43709904"/>
 									</object>
 									<string key="NSLabel">Trees</string>
