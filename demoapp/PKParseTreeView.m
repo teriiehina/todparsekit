@@ -53,10 +53,11 @@
     
     CGFloat w = [self widthForNode:parseTree] * CELL_WIDTH;
     CGFloat h = [self depthForNode:parseTree] * ROW_HEIGHT + 120;
+    
+    NSSize minSize = [[self superview] bounds].size;
+    w = w < minSize.width ? minSize.width : w;
+    h = h < minSize.width ? minSize.height : h;
     NSRect r = NSMakeRect(0, 0, w, h);
-    if (NSContainsRect([[self superview] bounds], r)) {
-        r = [[self superview] bounds];
-    }
     [self setFrame:r];
     
     [self setNeedsDisplay:YES];
