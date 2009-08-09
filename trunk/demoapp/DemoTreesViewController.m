@@ -33,15 +33,10 @@
 
 
 - (void)awakeFromNib {
-    self.grammarString = 
-//@"@start=expr;expr='foo' 'bar' 'baz';";
-        @"@start = expr;"
-        @"expr = addExpr;"
-        @"addExpr = atom (('+'|'-') atom)*;"
-        @"atom = Number;";
+    self.grammarString = @"@allowsScientificNotation=YES;\n@allowsTrailingDot=YES;\n@start = expr;\nexpr = addExpr;\naddExpr = multExpr (('+'|'-') multExpr)*;\nmultExpr = atom (('*'|'/') atom)*;\natom = Number;";
     
 //    self.inString = @"foo bar baz";
-    self.inString = @"1 + 2";
+    self.inString = @"4.0*.4 + 2e-12/-47";
 }
 
 
