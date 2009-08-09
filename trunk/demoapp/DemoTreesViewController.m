@@ -41,10 +41,14 @@
 - (void)awakeFromNib {
 //    self.grammarString = @"@allowsScientificNotation=YES;\n@start = expr;\nexpr = addExpr;\naddExpr = multExpr (('+'|'-') multExpr)*;\nmultExpr = atom (('*'|'/') atom)*;\natom = Number;";
 //    self.grammarString = @"@start = array;array = '[' Number (commaNumber)* ']';commaNumber = ',' Number;";
-    self.grammarString = @"@start = array;array = foo | Word; foo = 'foo';";
+//    self.grammarString = @"@start = array;array = foo | Word; foo = 'foo';";
+    self.grammarString = @"@allowsScientificNotation = YES;     @start        = Empty | array | object;          object        = '{' (Empty | property (',' property)*) '}';     property      = name ':' value;     name  = QuotedString;          array         = '[' (Empty | value (',' value)*) ']';          value         = 'null' | boolean | array | object | number | string;          string        = QuotedString;     number        = Number;     boolean       = 'true' | 'false';";
+    
+
 //    self.inString = @"4.0*.4 + 2e-12/-47 +3";
 //    self.inString = @"[1,2]";
-    self.inString = @"foo";
+//    self.inString = @"foo";
+    self.inString = @"[42e-12, null,{'foo':false}]";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:[[self view] window]];
 }
