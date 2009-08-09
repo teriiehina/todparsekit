@@ -92,6 +92,7 @@
 
 
 - (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
+    NSLog(@"willMatch %@ %@", name, a);
     PKParseTree *current = [self currentFrom:a];
     [self didMatchToken:a];
     current = [current addChildRule:name];
@@ -100,9 +101,25 @@
 
 
 - (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
-    [self didMatchToken:a];
-    PKParseTree *current = [self currentFrom:a];
-    a.target = current.parent;
+    NSLog(@"didMatch %@ %@", name, a);
+    id current = [self currentFrom:a];
+//    BOOL empty = [a isStackEmpty]; //[@"array" isEqualToString:name];
+//    BOOL hasMore = [a hasMore];
+//    BOOL yn = empty || hasMore;
+    
+    BOOL missedMatch = [current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name];
+//    BOOL yn = [@"array" isEqualToString:name];
+    if (missedMatch) {
+        while ([current isKindOfClass:[PKRuleNode class]] && ![[current name] isEqualToString:name]) {
+            a.target = [current parent];
+            current = [self currentFrom:a];
+        }
+        [self didMatchToken:a];
+    } else {
+        [self didMatchToken:a];        
+        current = [self currentFrom:a];
+        a.target = [current parent];
+    }
 }
 
 
@@ -117,6 +134,7 @@
 
 
 - (void)didMatchToken:(PKAssembly *)a {
+    NSLog(@"didMatchToken %@", a);
     NSMutableArray *toks = [NSMutableArray arrayWithCapacity:[a.stack count]];
     while (![a isStackEmpty]) {
         id tok = [a pop];

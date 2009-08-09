@@ -122,4 +122,49 @@
     TDEqualObjects([bar token], [PKToken tokenWithTokenType:PKTokenTypeWord stringValue:@"bar" floatValue:0.0]);
 }
 
+
+- (void)testArray {
+    g = @"@start        = array;"
+    @"array = '[' Number (commaNumber)* ']';"
+    @"commaNumber = ',' Number;";
+    
+    lp = [factory parserFromGrammar:g assembler:as preassembler:as];
+    
+    lp.tokenizer.string = @"[1,2]";
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    res = [lp completeMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects([res description], @"[][/1/,/2/]^");
+
+    PKRuleNode *array = res.target;
+    
+    TDEqualObjects([array name], @"array");
+    TDEqualObjects([array class], [PKRuleNode class]);
+    TDEquals([[array children] count], (NSUInteger)5);
+    
+    PKTokenNode *open = [[array children] objectAtIndex:0];
+    TDEqualObjects([open class], [PKTokenNode class]);
+    TDEqualObjects([open token], [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0.0]);
+    
+    PKTokenNode *one = [[array children] objectAtIndex:1];
+    TDEqualObjects([one class], [PKTokenNode class]);
+    TDEqualObjects([one token], [PKToken tokenWithTokenType:PKTokenTypeNumber stringValue:@"1" floatValue:1.0]);
+ 
+    PKRuleNode *commaNumber = [[array children] objectAtIndex:2];
+    TDEqualObjects([commaNumber name], @"commaNumber");
+    TDEqualObjects([commaNumber class], [PKRuleNode class]);
+    TDEquals([[commaNumber children] count], (NSUInteger)2);
+    
+    commaNumber = [[array children] objectAtIndex:3];
+    TDEqualObjects([commaNumber name], @"commaNumber");
+    TDEqualObjects([commaNumber class], [PKRuleNode class]);
+    TDEquals([[commaNumber children] count], (NSUInteger)0);
+    
+    PKTokenNode *close = [[array children] objectAtIndex:4];
+    TDEqualObjects([close class], [PKTokenNode class]);
+    TDEqualObjects([close token], [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"]" floatValue:1.0]);
+    
+    
+}
+
 @end

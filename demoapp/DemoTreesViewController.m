@@ -33,10 +33,11 @@
 
 
 - (void)awakeFromNib {
-    self.grammarString = @"@allowsScientificNotation=YES;\n@start = expr;\nexpr = addExpr;\naddExpr = multExpr (('+'|'-') multExpr)*;\nmultExpr = atom (('*'|'/') atom)*;\natom = Number;";
-    
-//    self.inString = @"foo bar baz";
-    self.inString = @"4.0*.4 + 2e-12/-47 +3";
+//    self.grammarString = @"@allowsScientificNotation=YES;\n@start = expr;\nexpr = addExpr;\naddExpr = multExpr (('+'|'-') multExpr)*;\nmultExpr = atom (('*'|'/') atom)*;\natom = Number;";
+    self.grammarString = @"@start = array;array = '[' Number (commaNumber)* ']';commaNumber = ',' Number;";
+
+//    self.inString = @"4.0*.4 + 2e-12/-47 +3";
+    self.inString = @"[1,2]";
 }
 
 
