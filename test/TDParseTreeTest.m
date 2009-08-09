@@ -124,7 +124,7 @@
 
 
 - (void)testArray {
-    g = @"@start        = array;"
+    g = @"@start = array;"
     @"array = '[' Number (commaNumber)* ']';"
     @"commaNumber = ',' Number;";
     
@@ -136,11 +136,12 @@
     TDNotNil(res);
     TDEqualObjects([res description], @"[][/1/,/2/]^");
 
-    PKRuleNode *array = res.target;
+    PKRuleNode *root = res.target;
+    PKRuleNode *array = [[root children] objectAtIndex:0];
     
     TDEqualObjects([array name], @"array");
     TDEqualObjects([array class], [PKRuleNode class]);
-    TDEquals([[array children] count], (NSUInteger)5);
+    TDEquals([[array children] count], (NSUInteger)4);
     
     PKTokenNode *open = [[array children] objectAtIndex:0];
     TDEqualObjects([open class], [PKTokenNode class]);
@@ -155,16 +156,9 @@
     TDEqualObjects([commaNumber class], [PKRuleNode class]);
     TDEquals([[commaNumber children] count], (NSUInteger)2);
     
-    commaNumber = [[array children] objectAtIndex:3];
-    TDEqualObjects([commaNumber name], @"commaNumber");
-    TDEqualObjects([commaNumber class], [PKRuleNode class]);
-    TDEquals([[commaNumber children] count], (NSUInteger)0);
-    
-    PKTokenNode *close = [[array children] objectAtIndex:4];
+    PKTokenNode *close = [[array children] objectAtIndex:3];
     TDEqualObjects([close class], [PKTokenNode class]);
     TDEqualObjects([close token], [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"]" floatValue:1.0]);
-    
-    
 }
 
 @end
