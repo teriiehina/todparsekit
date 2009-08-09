@@ -1374,12 +1374,12 @@
 				D36E98E50E58C14000496BD3 /* main.m */,
 				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
 				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
-				D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */,
-				D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */,
 				D3F5629E10266DFB00DD6DB1 /* DemoTokensViewController.h */,
 				D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */,
 				D3F562A510266E8D00DD6DB1 /* DemoTreesViewController.h */,
 				D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */,
+				D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */,
+				D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */,
 			);
 			name = DemoApp;
 			sourceTree = "<group>";
