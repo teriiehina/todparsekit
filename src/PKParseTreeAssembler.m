@@ -151,6 +151,9 @@
 
 
 - (void)didMatchToken:(PKAssembly *)a {
+    PKParseTree *current = [self currentFrom:a];
+    if ([current isMatched]) return;
+    
     NSMutableArray *toks = [NSMutableArray arrayWithCapacity:[a.stack count]];
     while (![a isStackEmpty]) {
         id tok = [a pop];
@@ -158,7 +161,6 @@
         [toks addObject:tok];
     }
 
-    PKParseTree *current = [self currentFrom:a];
     for (id tok in [toks reverseObjectEnumerator]) {
         PKTokenNode *n = [current addChildToken:tok];
         [n setMatched:YES];
