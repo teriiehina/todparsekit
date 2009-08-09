@@ -22,6 +22,9 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 - (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p;
 - (void)drawParentNode:(PKParseTree *)n atPoint:(NSPoint)p;
 - (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p;
+
+- (CGFloat)widthForNode:(PKParseTree *)n;
+- (CGFloat)depthForNode:(PKParseTree *)n;
 - (NSString *)labelFromNode:(PKParseTree *)n;
 - (void)drawLabel:(NSString *)label atPoint:(NSPoint)p;
 @end
@@ -54,8 +57,8 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 - (void)drawParseTree:(PKParseTree *)t {
     self.parseTree = t;
     
-    CGFloat w = [t width] * 100;
-    CGFloat h = [t depth] * ROW_HEIGHT + 120;
+    CGFloat w = [self widthForNode:t] * 100;
+    CGFloat h = [self depthForNode:t] * ROW_HEIGHT + 120;
     NSRect r = NSMakeRect(0, 0, w, h);
     if (NSContainsRect([[self superview] bounds], r)) {
         r = [[self superview] bounds];
@@ -94,7 +97,7 @@ static inline CGFloat PKHalfWidth(NSSize s) {
     CGFloat widths[c];
     CGFloat totalWidth = 0;
     for (PKParseTree *child in [n children]) {
-        widths[i] = [child width] * 100;
+        widths[i] = [self widthForNode:child] * 100;
         totalWidth += widths[i++];
     }
     
@@ -131,6 +134,25 @@ static inline CGFloat PKHalfWidth(NSSize s) {
 
 - (void)drawLeafNode:(PKTokenNode *)n atPoint:(NSPoint)p {
     [self drawLabel:[self labelFromNode:n] atPoint:NSMakePoint(p.x, p.y)];
+}
+
+
+- (CGFloat)widthForNode:(PKParseTree *)n {
+    CGFloat res = 0;
+    for (PKParseTree *child in [n children]) {
+        res += [self widthForNode:child];
+    }
+    return res ? res : 1;
+}
+    
+    
+- (CGFloat)depthForNode:(PKParseTree *)n {
+    CGFloat res = 0;
+    for (PKParseTree *child in [n children]) {
+        CGFloat n = [self depthForNode:child];
+        res = n > res ? n : res;
+    }
+    return res + 1;
 }
 
 

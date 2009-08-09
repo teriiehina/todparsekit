@@ -83,25 +83,3 @@
 @synthesize userInfo;
 @end
 
-@implementation PKParseTree (Drawing)
-
-- (CGFloat)width {
-    CGFloat res = 0;
-    for (PKParseTree *child in children) {
-        res += [child width];
-    }
-    return res ? res : 1;
-}
-
-
-- (CGFloat)depth {
-    CGFloat res = 0;
-    for (PKParseTree *child in children) {
-        CGFloat n = [child depth];
-        res = n > res ? n : res;
-    }
-    return res + 1;
-}
-
-@end
-
