@@ -72,6 +72,56 @@
     self.busy = NO;
 }    
 
+
+#pragma mark -
+#pragma mark NSSplitViewDelegate
+
+- (BOOL)splitView:(NSSplitView *)sv canCollapseSubview:(NSView *)v {
+    return v == [[sv subviews] objectAtIndex:0];
+}
+
+
+- (BOOL)splitView:(NSSplitView *)sv shouldCollapseSubview:(NSView *)v forDoubleClickOnDividerAtIndex:(NSInteger)i {
+    return [self splitView:sv canCollapseSubview:v];
+}
+
+
+
+// maintain constant splitview width when resizing window
+- (void)splitView:(NSSplitView *)sv resizeSubviewsWithOldSize:(NSSize)oldSize {    
+    NSRect newFrame = [sv frame]; // get the new size of the whole splitView
+    NSView *top = [[sv subviews] objectAtIndex:0];
+    NSRect topFrame = [top frame];
+    NSView *bottom = [[sv subviews] objectAtIndex:1];
+    NSRect bottomFrame = [bottom frame];
+    
+    CGFloat dividerThickness = [sv dividerThickness];
+    bottomFrame.size.width = newFrame.size.width;
+    
+    topFrame.size.height = newFrame.size.height - bottomFrame.size.height - dividerThickness;
+    topFrame.size.width = newFrame.size.width;
+    bottomFrame.origin.y = topFrame.size.height + dividerThickness;
+    
+    [top setFrame:topFrame];
+    [bottom setFrame:bottomFrame];
+}
+
+
+- (void)splitViewDidResizeSubviews:(NSNotification *)n {
+}
+
+
+
+- (CGFloat)splitView:(NSSplitView *)sender constrainMinCoordinate:(CGFloat)proposedMin ofSubviewAt:(NSInteger)offset {
+    return proposedMin;
+}
+
+
+- (CGFloat)splitView:(NSSplitView *)sender constrainMaxCoordinate:(CGFloat)proposedMax ofSubviewAt:(NSInteger)offset {
+        return proposedMax;
+}
+
+
 @synthesize grammarString;
 @synthesize inString;
 @synthesize busy;
