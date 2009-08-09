@@ -8,7 +8,12 @@
 
 #import "DemoTreesViewController.h"
 #import "PKParseTreeView.h"
+#import "TDSourceCodeTextView.h"
 #import <ParseKit/ParseKit.h>
+
+@interface DemoTreesViewController ()
+- (void)renderGutters;
+@end
 
 @implementation DemoTreesViewController
 
@@ -26,6 +31,7 @@
 
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     self.grammarString = nil;
     self.inString = nil;
     [super dealloc];
@@ -39,6 +45,19 @@
 //    self.inString = @"4.0*.4 + 2e-12/-47 +3";
 //    self.inString = @"[1,2]";
     self.inString = @"foo";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeMain:) name:NSWindowDidBecomeMainNotification object:[[self view] window]];
+}
+
+
+- (void)windowDidBecomeMain:(NSNotification *)n {
+    [self renderGutters];
+}
+
+
+- (void)renderGutters {
+    [grammarTextView renderGutter];
+    [inputTextView renderGutter];
 }
 
 

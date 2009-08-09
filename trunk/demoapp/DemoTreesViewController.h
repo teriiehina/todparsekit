@@ -9,10 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 @class PKParseTreeView;
+@class TDSourceCodeTextView;
 
 @interface DemoTreesViewController : NSViewController {
-    IBOutlet NSTextView *grammarTextView;
-    IBOutlet NSTextView *inputTextView;
+    IBOutlet TDSourceCodeTextView *grammarTextView;
+    IBOutlet TDSourceCodeTextView *inputTextView;
     IBOutlet PKParseTreeView *parseTreeView;    
 
     NSString *grammarString;
