@@ -16,7 +16,7 @@
 }
 
 
-- (void)testFoo {
+- (void)testAddExpr {
     g = @"@start = expr;"
         @"expr = addExpr;"
         @"addExpr = atom (('+'|'-') atom)*;"
@@ -34,10 +34,12 @@
     TDEquals([[tr children] count], (NSUInteger)1);
     
     PKRuleNode *expr = [[tr children] objectAtIndex:0];
+    TDEqualObjects([expr name], @"expr");
     TDEqualObjects([expr class], [PKRuleNode class]);
     TDEquals([[expr children] count], (NSUInteger)1);
     
     PKRuleNode *addExpr = [[expr children] objectAtIndex:0];
+    TDEqualObjects([addExpr name], @"addExpr");
     TDEqualObjects([addExpr class], [PKRuleNode class]);
     TDEquals([[addExpr children] count], (NSUInteger)3);
 
@@ -62,6 +64,62 @@
     PKTokenNode *two = [[atom2 children] objectAtIndex:0];
     TDEqualObjects([two class], [PKTokenNode class]);
     TDEqualObjects([two token], [PKToken tokenWithTokenType:PKTokenTypeNumber stringValue:@"2" floatValue:2.0]);
+}
+
+
+- (void)testFoo {
+    g = @"@start = expr;"
+    @"expr = Word+;";
+    lp = [factory parserFromGrammar:g assembler:as preassembler:as];
+    
+    lp.tokenizer.string = @"foo";
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    res = [lp completeMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects([res description], @"[]foo^");
+    
+    PKParseTree *tr = res.target;
+    TDEqualObjects([tr class], [PKParseTree class]);
+    TDEquals([[tr children] count], (NSUInteger)1);
+    
+    PKRuleNode *expr = [[tr children] objectAtIndex:0];
+    TDEqualObjects([expr name], @"expr");
+    TDEqualObjects([expr class], [PKRuleNode class]);
+    TDEquals([[expr children] count], (NSUInteger)1);
+    
+    PKTokenNode *foo = [[expr children] objectAtIndex:0];
+    TDEqualObjects([foo class], [PKTokenNode class]);
+    TDEqualObjects([foo token], [PKToken tokenWithTokenType:PKTokenTypeWord stringValue:@"foo" floatValue:0.0]);
+}
+
+
+- (void)testFooBar {
+    g = @"@start = expr;"
+    @"expr = Word+;";
+    lp = [factory parserFromGrammar:g assembler:as preassembler:as];
+    
+    lp.tokenizer.string = @"foo bar";
+    a = [PKTokenAssembly assemblyWithTokenizer:lp.tokenizer];
+    res = [lp completeMatchFor:a];
+    TDNotNil(res);
+    TDEqualObjects([res description], @"[]foo/bar^");
+    
+    PKParseTree *tr = res.target;
+    TDEqualObjects([tr class], [PKParseTree class]);
+    TDEquals([[tr children] count], (NSUInteger)1);
+    
+    PKRuleNode *expr = [[tr children] objectAtIndex:0];
+    TDEqualObjects([expr name], @"expr");
+    TDEqualObjects([expr class], [PKRuleNode class]);
+    TDEquals([[expr children] count], (NSUInteger)2);
+    
+    PKTokenNode *foo = [[expr children] objectAtIndex:0];
+    TDEqualObjects([foo class], [PKTokenNode class]);
+    TDEqualObjects([foo token], [PKToken tokenWithTokenType:PKTokenTypeWord stringValue:@"foo" floatValue:0.0]);
+
+    PKTokenNode *bar = [[expr children] objectAtIndex:1];
+    TDEqualObjects([bar class], [PKTokenNode class]);
+    TDEqualObjects([bar token], [PKToken tokenWithTokenType:PKTokenTypeWord stringValue:@"bar" floatValue:0.0]);
 }
 
 @end
