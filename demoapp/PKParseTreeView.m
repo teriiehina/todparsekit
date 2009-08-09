@@ -57,7 +57,7 @@
     if (NSContainsRect([[self superview] bounds], r)) {
         r = [[self superview] bounds];
     }
-    [self setFrameSize:r.size];
+    [self setFrame:r];
     
     [self setNeedsDisplay:YES];
 }
