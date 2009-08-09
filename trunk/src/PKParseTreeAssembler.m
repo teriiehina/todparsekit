@@ -92,7 +92,7 @@
 
 
 - (void)willMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
-    NSLog(@"willMatch %@ %@", name, a);
+//    NSLog(@"willMatch %@ %@", name, a);
     PKParseTree *current = [self currentFrom:a];
     [self didMatchToken:a];
     current = [current addChildRule:name];
@@ -101,22 +101,32 @@
 
 
 - (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
-    NSLog(@"didMatch %@ %@", name, a);
+//    NSLog(@"didMatch %@ %@", name, a);
     id current = [self currentFrom:a];
+    [current setMatched:YES];
     
-    BOOL missedMatch = [current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name];
-//    BOOL yn = [@"array" isEqualToString:name];
-    if (missedMatch) {
-        do {
-            a.target = [current parent];
-            current = [self currentFrom:a];
-        } while ([current isKindOfClass:[PKRuleNode class]] && ![[current name] isEqualToString:name]);
-        [self didMatchToken:a];
-    } else {
-        [self didMatchToken:a];        
-        current = [self currentFrom:a];
+    
+//    id original = [[current retain] autorelease];
+//    id oldCurrent = nil;
+    while ([current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name]) {
+        NSLog(@"NOT MATCHED %@ %d", [current name], [[current children] count]);
+//        oldCurrent = [[current retain] autorelease];
+//        [(id)[[oldCurrent parent] children] removeObject:oldCurrent];
         a.target = [current parent];
+        current = [self currentFrom:a];
     }
+//    if (oldCurrent) {
+//        [current addChild:oldCurrent];
+//        current = oldCurrent;
+//        a.target = current;
+//    }
+//    if (original != current) {
+//        [current addChild:original];
+//    }
+
+    [self didMatchToken:a];        
+    current = [self currentFrom:a];
+    a.target = [current parent];
 }
 
 
@@ -131,7 +141,7 @@
 
 
 - (void)didMatchToken:(PKAssembly *)a {
-    NSLog(@"didMatchToken %@", a);
+//    NSLog(@"didMatchToken %@", a);
     NSMutableArray *toks = [NSMutableArray arrayWithCapacity:[a.stack count]];
     while (![a isStackEmpty]) {
         id tok = [a pop];
