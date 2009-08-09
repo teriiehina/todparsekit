@@ -34,12 +34,16 @@
     PKParseTree *t = [[[self class] allocWithZone:zone] init];
 
     // assign parent
-    t->parent = parent;
+    if (parent) {
+        t->parent = parent;
     
-    // put new copy in new parent's children array
-    NSInteger i = [[parent children] indexOfObject:self];
-    [[t->parent children] replaceObjectAtIndex:i withObject:t];
-    
+        // put new copy in new parent's children array
+        NSInteger i = [[parent children] indexOfObject:self];
+        if (NSNotFound != i) {
+            [[t->parent children] replaceObjectAtIndex:i withObject:t];    
+        }
+    }
+
     // copy children
     if (children) {
         t->children = [children mutableCopyWithZone:zone];
