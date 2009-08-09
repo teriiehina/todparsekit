@@ -56,9 +56,8 @@
     
     NSSize minSize = [[self superview] bounds].size;
     w = w < minSize.width ? minSize.width : w;
-    h = h < minSize.width ? minSize.height : h;
-    NSRect r = NSMakeRect(0, 0, w, h);
-    [self setFrame:r];
+    h = h < minSize.height ? minSize.height : h;
+    [self setFrame:NSMakeRect(0, 0, w, h)];
     
     [self setNeedsDisplay:YES];
 }

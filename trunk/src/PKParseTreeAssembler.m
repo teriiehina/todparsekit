@@ -103,17 +103,14 @@
 - (void)didMatchRuleNamed:(NSString *)name assembly:(PKAssembly *)a {
     NSLog(@"didMatch %@ %@", name, a);
     id current = [self currentFrom:a];
-//    BOOL empty = [a isStackEmpty]; //[@"array" isEqualToString:name];
-//    BOOL hasMore = [a hasMore];
-//    BOOL yn = empty || hasMore;
     
     BOOL missedMatch = [current isKindOfClass:[PKRuleNode class]] && ![[(id)current name] isEqualToString:name];
 //    BOOL yn = [@"array" isEqualToString:name];
     if (missedMatch) {
-        while ([current isKindOfClass:[PKRuleNode class]] && ![[current name] isEqualToString:name]) {
+        do {
             a.target = [current parent];
             current = [self currentFrom:a];
-        }
+        } while ([current isKindOfClass:[PKRuleNode class]] && ![[current name] isEqualToString:name]);
         [self didMatchToken:a];
     } else {
         [self didMatchToken:a];        
