@@ -116,24 +116,30 @@
         }
         a.target = [current parent];
         current = [self currentFrom:a];
+        [self didMatchToken:a];        
     }
-    if (oldCurrent) {
-    }
+
     if (oldCurrent && ![oldCurrent isMatched]) {
-        [(id)[[oldCurrent parent] children] removeLastObject];
+       // [(id)[[oldCurrent parent] children] removeLastObject];
         [(id)[current children] addObjectsFromArray:origChildren];
     }
-//    if (oldCurrent) {
-//        [current addChild:oldCurrent];
-//        current = oldCurrent;
-//        a.target = current;
-//    }
-//    if (original != current) {
-//        [current addChild:original];
-//    }
 
+    
     [self didMatchToken:a];        
     current = [self currentFrom:a];
+    
+    NSMutableArray *remove = [NSMutableArray array];
+    for (id child in [current children]) {
+        if (![child isMatched]) {
+            [remove addObject:child];
+        }
+    }
+    
+    for (id child in remove) {
+        NSLog(@"removing : %@", child);
+        [(id)[current children] removeObject:child];
+    }
+    
     [current setMatched:YES];
     a.target = [current parent];
 }
@@ -158,8 +164,11 @@
         [toks addObject:tok];
     }
 
+    id current = [self currentFrom:a];
     for (id tok in [toks reverseObjectEnumerator]) {
-        [[self currentFrom:a] addChildToken:tok];
+        PKTokenNode *n = [current addChildToken:tok];
+        [n setMatched:YES];
+        [current setMatched:YES];
     }
 }
 
