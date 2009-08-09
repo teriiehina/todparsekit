@@ -84,6 +84,8 @@
 		D3252F7B0FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */; };
 		D3252F7E0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
 		D3252F7F0FCE1A87005EF059 /* TDNSPredicateBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */; };
+		D3305C4F102F5BAE00DC4F75 /* TDGutterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3305C4C102F5BAD00DC4F75 /* TDGutterView.m */; };
+		D3305C50102F5BAE00DC4F75 /* TDSourceCodeTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3305C4E102F5BAE00DC4F75 /* TDSourceCodeTextView.m */; };
 		D33494720E29670B00406085 /* ParseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ParseKit.framework */; };
 		D3376D5910093A1600E4602E /* PKGrammarParser.h in Headers */ = {isa = PBXBuildFile; fileRef = D3376D5710093A1600E4602E /* PKGrammarParser.h */; };
 		D3376D5A10093A1600E4602E /* PKGrammarParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D3376D5810093A1600E4602E /* PKGrammarParser.m */; };
@@ -753,6 +755,10 @@
 		D3252F790FCE1A7F005EF059 /* TDNSPredicateBuilderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilderTest.m; path = test/TDNSPredicateBuilderTest.m; sourceTree = "<group>"; };
 		D3252F7C0FCE1A87005EF059 /* TDNSPredicateBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDNSPredicateBuilder.h; path = test/TDNSPredicateBuilder.h; sourceTree = "<group>"; };
 		D3252F7D0FCE1A87005EF059 /* TDNSPredicateBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDNSPredicateBuilder.m; path = test/TDNSPredicateBuilder.m; sourceTree = "<group>"; };
+		D3305C4B102F5BAD00DC4F75 /* TDGutterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDGutterView.h; path = demoapp/TDGutterView.h; sourceTree = "<group>"; };
+		D3305C4C102F5BAD00DC4F75 /* TDGutterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDGutterView.m; path = demoapp/TDGutterView.m; sourceTree = "<group>"; };
+		D3305C4D102F5BAE00DC4F75 /* TDSourceCodeTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDSourceCodeTextView.h; path = demoapp/TDSourceCodeTextView.h; sourceTree = "<group>"; };
+		D3305C4E102F5BAE00DC4F75 /* TDSourceCodeTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDSourceCodeTextView.m; path = demoapp/TDSourceCodeTextView.m; sourceTree = "<group>"; };
 		D33494100E2963FD00406085 /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3376D5710093A1600E4602E /* PKGrammarParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKGrammarParser.h; path = src/PKGrammarParser.h; sourceTree = "<group>"; };
 		D3376D5810093A1600E4602E /* PKGrammarParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKGrammarParser.m; path = src/PKGrammarParser.m; sourceTree = "<group>"; };
@@ -1364,22 +1370,50 @@
 			name = predicate;
 			sourceTree = "<group>";
 		};
+		D3305C52102F5BB300DC4F75 /* Trees */ = {
+			isa = PBXGroup;
+			children = (
+				D3F562A310266E6300DD6DB1 /* TreesView.xib */,
+				D3F562A510266E8D00DD6DB1 /* DemoTreesViewController.h */,
+				D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */,
+				D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */,
+				D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */,
+				D3305C53102F5BC500DC4F75 /* SourceCodeView */,
+			);
+			name = Trees;
+			sourceTree = "<group>";
+		};
+		D3305C53102F5BC500DC4F75 /* SourceCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				D3305C4B102F5BAD00DC4F75 /* TDGutterView.h */,
+				D3305C4C102F5BAD00DC4F75 /* TDGutterView.m */,
+				D3305C4D102F5BAE00DC4F75 /* TDSourceCodeTextView.h */,
+				D3305C4E102F5BAE00DC4F75 /* TDSourceCodeTextView.m */,
+			);
+			name = SourceCodeView;
+			sourceTree = "<group>";
+		};
+		D3305C54102F5BE500DC4F75 /* Tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D3F562A110266E5300DD6DB1 /* TokensView.xib */,
+				D3F5629E10266DFB00DD6DB1 /* DemoTokensViewController.h */,
+				D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */,
+			);
+			name = Tokens;
+			sourceTree = "<group>";
+		};
 		D334941B0E29641300406085 /* DemoApp */ = {
 			isa = PBXGroup;
 			children = (
 				D3F0E3600FFEA2B500C9DF74 /* DemoApp-Info.plist */,
 				D36E98F70E58C1A000496BD3 /* DemoAppMainMenu.xib */,
-				D3F562A110266E5300DD6DB1 /* TokensView.xib */,
-				D3F562A310266E6300DD6DB1 /* TreesView.xib */,
 				D36E98E50E58C14000496BD3 /* main.m */,
 				D36E98E30E58C14000496BD3 /* DemoAppDelegate.h */,
 				D36E98E40E58C14000496BD3 /* DemoAppDelegate.m */,
-				D3F5629E10266DFB00DD6DB1 /* DemoTokensViewController.h */,
-				D3F5629F10266DFB00DD6DB1 /* DemoTokensViewController.m */,
-				D3F562A510266E8D00DD6DB1 /* DemoTreesViewController.h */,
-				D3F562A610266E8D00DD6DB1 /* DemoTreesViewController.m */,
-				D3F5629810266CFC00DD6DB1 /* PKParseTreeView.h */,
-				D3F5629910266CFC00DD6DB1 /* PKParseTreeView.m */,
+				D3305C54102F5BE500DC4F75 /* Tokens */,
+				D3305C52102F5BB300DC4F75 /* Trees */,
 			);
 			name = DemoApp;
 			sourceTree = "<group>";
@@ -2819,6 +2853,8 @@
 				D3F5629A10266CFC00DD6DB1 /* PKParseTreeView.m in Sources */,
 				D3F562A010266DFB00DD6DB1 /* DemoTokensViewController.m in Sources */,
 				D3F562A710266E8D00DD6DB1 /* DemoTreesViewController.m in Sources */,
+				D3305C4F102F5BAE00DC4F75 /* TDGutterView.m in Sources */,
+				D3305C50102F5BAE00DC4F75 /* TDSourceCodeTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
