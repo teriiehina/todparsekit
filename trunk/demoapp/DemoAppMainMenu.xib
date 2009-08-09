@@ -766,7 +766,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{43, 10}, {1146, 856}}</string>
 				<int key="NSWTFlags">611844096</int>
-				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowTitle">ParseKit Demo</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{3.40282e+38, 3.40282e+38}</string>
@@ -779,7 +779,7 @@
 						<object class="NSTabView" id="43709904">
 							<reference key="NSNextResponder" ref="414427165"/>
 							<int key="NSvFlags">18</int>
-							<string key="NSFrame">{{-7, -10}, {1160, 860}}</string>
+							<string key="NSFrame">{{-12, -10}, {1170, 860}}</string>
 							<reference key="NSSuperview" ref="414427165"/>
 							<object class="NSMutableArray" key="NSTabViewItems">
 								<bool key="EncodedWithXMLCoder">YES</bool>
@@ -807,7 +807,7 @@
 									<object class="NSView" key="NSView" id="414869551">
 										<reference key="NSNextResponder" ref="43709904"/>
 										<int key="NSvFlags">256</int>
-										<string key="NSFrame">{{10, 33}, {1140, 814}}</string>
+										<string key="NSFrame">{{10, 33}, {1150, 814}}</string>
 										<reference key="NSSuperview" ref="43709904"/>
 									</object>
 									<string key="NSLabel">Trees</string>
