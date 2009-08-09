@@ -10,7 +10,7 @@
 #import <ParseKit/ParseKit.h>
 
 #define ROW_HEIGHT 50.0
-#define CELL_WIDTH 80.0
+#define CELL_WIDTH 55.0
 
 @interface PKParseTreeView ()
 - (void)drawTree:(PKParseTree *)n atPoint:(NSPoint)p;
@@ -91,7 +91,7 @@
     CGFloat widths[c];
     CGFloat totalWidth = 0;
     for (PKParseTree *child in [n children]) {
-        widths[i] = [self widthForNode:child] * 100;
+        widths[i] = [self widthForNode:child] * CELL_WIDTH;
         totalWidth += widths[i++];
     }
     
