@@ -51,8 +51,8 @@
 - (void)drawParseTree:(PKParseTree *)t {
     self.parseTree = t;
     
-    CGFloat w = [self widthForNode:t] * CELL_WIDTH;
-    CGFloat h = [self depthForNode:t] * ROW_HEIGHT + 120;
+    CGFloat w = [self widthForNode:parseTree] * CELL_WIDTH;
+    CGFloat h = [self depthForNode:parseTree] * ROW_HEIGHT + 120;
     NSRect r = NSMakeRect(0, 0, w, h);
     if (NSContainsRect([[self superview] bounds], r)) {
         r = [[self superview] bounds];
