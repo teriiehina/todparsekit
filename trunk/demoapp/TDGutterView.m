@@ -45,8 +45,8 @@
     NSDrawWindowBackground(rect);
     
     CGFloat rectWidth = rect.size.width;
-    NSPoint p1 = NSMakePoint(rectWidth + 1., 0.);
-    NSPoint p2 = NSMakePoint(rectWidth + 1., rect.size.height);
+    NSPoint p1 = NSMakePoint(rectWidth + 2., 0.);
+    NSPoint p2 = NSMakePoint(rectWidth + 2., rect.size.height);
     [NSBezierPath strokeLineFromPoint:p1 toPoint:p2];
     
     if (!lineNumberRects.count) {
