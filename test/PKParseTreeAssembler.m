@@ -7,10 +7,10 @@
 //
 
 #import "PKParseTreeAssembler.h"
+#import <ParseKit/ParseKit.h>
 #import "PKParseTree.h"
 #import "PKRuleNode.h"
 #import "PKTokenNode.h"
-#import <ParseKit/ParseKit.h>
 
 @interface PKParseTreeAssembler ()
 - (NSString *)ruleNameForSelName:(NSString *)selName withPrefix:(NSString *)pre;

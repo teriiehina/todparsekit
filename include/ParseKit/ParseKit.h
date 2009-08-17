@@ -80,10 +80,3 @@
 
 // grammar
 #import <ParseKit/PKParserFactory.h>
-
-// syntax tree
-#import <ParseKit/PKParseTree.h>
-#import <ParseKit/PKRuleNode.h>
-#import <ParseKit/PKTokenNode.h>
-#import <ParseKit/PKParseTreeAssembler.h>
-
