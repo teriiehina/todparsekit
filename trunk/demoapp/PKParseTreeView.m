@@ -8,6 +8,10 @@
 
 #import "PKParseTreeView.h"
 #import <ParseKit/ParseKit.h>
+#import "PKParseTree.h"
+#import "PKRuleNode.h"
+#import "PKTokenNode.h"
+#import "PKParseTreeAssembler.h"
 
 #define ROW_HEIGHT 50.0
 #define CELL_WIDTH 55.0

@@ -9,6 +9,10 @@
 #import "DemoTreesViewController.h"
 #import "PKParseTreeView.h"
 #import "TDSourceCodeTextView.h"
+#import "PKParseTree.h"
+#import "PKRuleNode.h"
+#import "PKTokenNode.h"
+#import "PKParseTreeAssembler.h"
 #import <ParseKit/ParseKit.h>
 
 @interface DemoTreesViewController ()

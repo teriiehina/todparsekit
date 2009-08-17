@@ -7,6 +7,11 @@
 //
 
 #import "TDTestScaffold.h"
+#import "PKParseTree.h"
+#import "PKRuleNode.h"
+#import "PKTokenNode.h"
+#import "PKParseTreeAssembler.h"
+
 
 @interface TDParseTreeTest : SenTestCase {
     PKParserFactory *factory;
