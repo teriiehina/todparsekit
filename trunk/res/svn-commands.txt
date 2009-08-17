@@ -1,16 +1,16 @@
 svn copy -rHEAD https://todparsekit.googlecode.com/svn/trunk/ \
         https://todparsekit.googlecode.com/svn/tags/release-1.4.1-tag \
-   -m "Creating 1.4.1 release tag from -r1332"
+   -m "Creating 1.4.1 release tag from -r1340"
    
 svn copy -rHEAD https://todparsekit.googlecode.com/svn/tags/release-1.4.1-tag \
        https://todparsekit.googlecode.com/svn/branches/release-1.4.1-branch \
-  -m "Creating 1.4.1 release branch from -r1332"
+  -m "Creating 1.4.1 release branch from -r1340"
 
 
 
 
 svn delete https://todparsekit.googlecode.com/svn/tags/release-1.4.1-tag \
-  -m "deleting first 1.4 release tag"
+  -m "deleting first 1.4.1 release tag"
   
 svn delete https://todparsekit.googlecode.com/svn/branches/release-1.4.1-branch \
-    -m "deleting first 1.4 release tag"
+    -m "deleting first 1.4.1 release tag"
