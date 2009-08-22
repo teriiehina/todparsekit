@@ -7,7 +7,7 @@
 body, html {
     margin:0; 
     padding:0; 
-    font:14px/1.5 "Lucida Grande", Helvetica, Verdana;
+    font:14px/1.5 "Lucida Grande", Lucida Grande, LucidaGrande, Helvetica, sans-serif;
 }
 
 body {
@@ -43,7 +43,7 @@ h1 {
     border-bottom:1px solid silver; 
     padding:3px 10px; 
     background:#eeeeec; 
-    font:bold 16px "Lucida Grande";
+    font:bold 16px "Lucida Grande", Lucida Grande, LucidaGrande, Helvetica, sans-serif;
 }
 
 #home-title {
@@ -67,7 +67,7 @@ a:hover {
 
 #nav {
     position:fixed; 
-    left:10px; 
+    left:10px; top:60px;
     border:2px solid silver; 
     background:#eee; 
     padding:5px 10px;
