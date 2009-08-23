@@ -40,6 +40,7 @@
 
 
 - (void)dealloc {
+    self.ruleNames = nil;
     self.preassemblerPrefix = nil;
     self.assemblerPrefix = nil;
     self.suffix = nil;
