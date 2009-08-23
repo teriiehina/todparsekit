@@ -134,6 +134,7 @@
                            @"XPathParserGrammarTest",
                            @"ERBTest",
                            @"TDParseTreeTest",
+                           @"SAXTest",
                            nil];
     
     [suite addSuitesForClassNames:classNames];
