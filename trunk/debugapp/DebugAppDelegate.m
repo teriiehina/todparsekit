@@ -222,6 +222,8 @@
     a = [lp completeMatchFor:a];
     CGFloat ms4json = -([start timeIntervalSinceNow]);
 
+    PKReleaseSubparserTree(lp);
+    
     p = [[TDJsonParser alloc] initWithIntentToAssemble:NO];
     start = [NSDate date];
     id res = [p parse:s];
