@@ -89,6 +89,9 @@
     PKParseTree *tr = [p parse:inString];
     [parseTreeView drawParseTree:tr];
     
+    // release
+    PKReleaseSubparserTree(p);
+
     [self performSelectorOnMainThread:@selector(done) withObject:nil waitUntilDone:NO];
     
     [pool drain];
