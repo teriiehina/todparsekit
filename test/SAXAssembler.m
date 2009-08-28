@@ -7,6 +7,7 @@
 //
 
 #import "SAXAssembler.h"
+#import <ParseKit/ParseKit.h>
 
 @implementation SAXAssembler
 
