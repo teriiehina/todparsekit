@@ -47,7 +47,7 @@
 
 - (void)setUp {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"erb" ofType:@"grammar"];
-    g = [NSString stringWithContentsOfFile:path];
+    g = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     
     lp = [[PKParserFactory factory] parserFromGrammar:g assembler:[[[ERBAssembler alloc] init] autorelease]];
     t = lp.tokenizer;
