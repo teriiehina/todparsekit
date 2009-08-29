@@ -12,7 +12,7 @@
 
 - (void)setUp {
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xml" ofType:@"grammar"];
-    g = [NSString stringWithContentsOfFile:path];
+    g = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     factory = [PKParserFactory factory];
     p = [factory parserFromGrammar:g assembler:self];
     t = p.tokenizer;
@@ -302,7 +302,7 @@
 
     // xmlDecl = '<?xml' versionInfo encodingDecl? sdDecl? S? '?>';
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"apple-boss" ofType:@"xml"];
-    t.string = [NSString stringWithContentsOfFile:path];
+    t.string = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSDate *d = [NSDate date];
     res = [p bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     NSLog(@"time: %d", [d timeIntervalSinceNow]);

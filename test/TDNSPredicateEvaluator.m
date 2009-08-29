@@ -27,7 +27,7 @@
         self.openCurly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0];
 
         NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"nspredicate" ofType:@"grammar"];
-        NSString *s = [NSString stringWithContentsOfFile:path];
+        NSString *s = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
         self.parser = [[PKParserFactory factory] parserFromGrammar:s assembler:self];
     }
     return self;
