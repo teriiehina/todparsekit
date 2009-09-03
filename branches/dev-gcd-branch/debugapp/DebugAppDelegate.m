@@ -402,7 +402,7 @@
 //    PKAssembly *res = [lp bestMatchFor:[PKTokenAssembly assemblyWithTokenizer:t]];
     
     NSString *path = [[NSBundle bundleForClass:[self class]] pathForResource:@"xpath1_0" ofType:@"grammar"];
-    NSString *g = [NSString stringWithContentsOfFile:path];
+    NSString *g = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     PKParser *p = [[PKParserFactory factory] parserFromGrammar:g assembler:nil];
     PKTokenizer *t = p.tokenizer;
     t.string = @"foo";

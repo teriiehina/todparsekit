@@ -38,9 +38,9 @@
     NSParameterAssert(inAssemblies);
     NSMutableSet *outAssemblies = [NSMutableSet set];
     
-    for (PKParser *p in subparsers) {
+    [subparsers enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id p, NSUInteger i, BOOL *stop) {
         [outAssemblies unionSet:[p matchAndAssemble:inAssemblies]];
-    }
+    }];
     
     return outAssemblies;
 }

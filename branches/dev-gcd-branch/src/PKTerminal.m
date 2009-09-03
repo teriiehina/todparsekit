@@ -42,12 +42,12 @@
     NSParameterAssert(inAssemblies);
     NSMutableSet *outAssemblies = [NSMutableSet set];
     
-    for (PKAssembly *a in inAssemblies) {
+    [inAssemblies enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(id a, BOOL *stop) {
         PKAssembly *b = [self matchOneAssembly:a];
         if (b) {
             [outAssemblies addObject:b];
         }
-    }
+    }];
     
     return outAssemblies;
 }
