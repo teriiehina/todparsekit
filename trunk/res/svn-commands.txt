@@ -14,3 +14,10 @@ svn delete https://todparsekit.googlecode.com/svn/tags/release-1.4.2-tag \
   
 svn delete https://todparsekit.googlecode.com/svn/branches/release-1.4.2-branch \
     -m "deleting first 1.4.2 release branch"
+    
+    
+    
+svn copy -r1361 https://todparsekit.googlecode.com/svn/trunk/ \
+        https://todparsekit.googlecode.com/svn/branches/dev-gcd-branch \
+   -m "Creating a dev branch for testing GCD stuff. from -r1361"
+    
