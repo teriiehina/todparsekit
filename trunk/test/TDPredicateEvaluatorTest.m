@@ -16,7 +16,7 @@
 
 
 - (CGFloat)floatForAttributeKey:(NSString *)key {
-    return [[d objectForKey:key] floatValue];
+    return [(NSNumber *)[d objectForKey:key] floatValue];
 }
 
 
