@@ -83,9 +83,9 @@
 - (void)didMatchRgb:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:paren];
     [a pop]; // discard '('
-    CGFloat blue  = [[objs objectAtIndex:0] floatValue]/255.0;
-    CGFloat green = [[objs objectAtIndex:1] floatValue]/255.0;
-    CGFloat red   = [[objs objectAtIndex:2] floatValue]/255.0;
+    CGFloat blue  = [(PKToken *)[objs objectAtIndex:0] floatValue]/255.0;
+    CGFloat green = [(PKToken *)[objs objectAtIndex:1] floatValue]/255.0;
+    CGFloat red   = [(PKToken *)[objs objectAtIndex:2] floatValue]/255.0;
     [a push:[NSColor colorWithDeviceRed:red green:green blue:blue alpha:1.0]];
 }
 
