@@ -69,9 +69,13 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     PKTokenAssembly *a = (PKTokenAssembly *)[super copyWithZone:zone];
+    a->tokenizer = nil; // optimization
     if (tokens) {
         a->tokens = [tokens copyWithZone:zone];
+    } else {
+        a->tokens = nil;
     }
+
     a->preservesWhitespaceTokens = preservesWhitespaceTokens;
     return a;
 }
