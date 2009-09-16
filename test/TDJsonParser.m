@@ -10,12 +10,15 @@
 #import "ParseKit.h"
 #import "NSString+ParseKitAdditions.h"
 
+@interface PKParser (PKParserFactoryAdditionsFriend)
+- (void)setTokenizer:(PKTokenizer *)t;
+@end
+
 @interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
 @interface TDJsonParser ()
-@property (nonatomic, retain, readwrite) PKTokenizer *tokenizer;
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *bracket;
 @end
@@ -34,8 +37,8 @@
         self.bracket = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"[" floatValue:0.0];
         
         self.tokenizer = [PKTokenizer tokenizer];
-        [tokenizer setTokenizerState:tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
-        [tokenizer setTokenizerState:tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
+        [self.tokenizer setTokenizerState:self.tokenizer.symbolState from: '/' to: '/']; // JSON doesn't have slash slash or slash star comments
+        [self.tokenizer setTokenizerState:self.tokenizer.symbolState from: '\'' to: '\'']; // JSON does not have single quoted strings
         
         [self add:self.objectParser];    
         [self add:self.arrayParser];
@@ -74,8 +77,8 @@
 
 
 - (id)parse:(NSString *)s {
-    tokenizer.string = s;
-    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:tokenizer];
+    self.tokenizer.string = s;
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:self.tokenizer];
     
     PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
@@ -298,7 +301,6 @@
     [a push:value];
 }
 
-@synthesize tokenizer;
 @synthesize stringParser;
 @synthesize numberParser;
 @synthesize nullParser;

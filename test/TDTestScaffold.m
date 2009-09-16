@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDParseTreeTest"
+#define SOLO_TEST_CASE @"TDJsonParserTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
@@ -29,7 +29,10 @@
 @implementation TDTestScaffold
 
 + (void)load {
+#if RUN_ALL_TEST_CASES
+#else
     [self poseAsClass:[SenTestSuite class]];
+#endif
 }
 
 

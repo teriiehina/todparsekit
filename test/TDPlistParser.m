@@ -49,12 +49,15 @@
 
 static NSString *kTDPlistNullString = @"<null>";
 
+@interface PKParser (PKParserFactoryAdditionsFriend)
+- (void)setTokenizer:(PKTokenizer *)t;
+@end
+
 @interface PKCollectionParser ()
 @property (nonatomic, readwrite, retain) NSMutableArray *subparsers;
 @end
 
 @interface TDPlistParser ()
-@property (nonatomic, readwrite, retain) PKTokenizer *tokenizer;
 @property (nonatomic, retain) PKToken *curly;
 @property (nonatomic, retain) PKToken *paren;
 @end
@@ -67,7 +70,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
         self.tokenizer = [PKTokenizer tokenizer];
         // add '<null>' as a multichar symbol
-        [tokenizer.symbolState add:kTDPlistNullString];
+        [self.tokenizer.symbolState add:kTDPlistNullString];
         
         self.curly = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"{" floatValue:0.];
         self.paren = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:@"(" floatValue:0.];
@@ -106,7 +109,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 
 - (id)parse:(NSString *)s {
-    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:tokenizer];
+    PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:self.tokenizer];
     
     // parse
     PKAssembly *res = [self completeMatchFor:a];
@@ -299,7 +302,6 @@ static NSString *kTDPlistNullString = @"<null>";
     [a push:[NSNull null]];
 }
 
-@synthesize tokenizer;
 @synthesize dictParser;
 @synthesize keyValuePairParser;
 @synthesize arrayParser;
