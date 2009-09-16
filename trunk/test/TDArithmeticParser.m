@@ -44,12 +44,13 @@
 }
 
 
-- (CGFloat)parse:(NSString *)s {
+- (double)parse:(NSString *)s {
     PKAssembly *a = [PKTokenAssembly assemblyWithString:s];
     a = [self completeMatchFor:a];
 //    NSLog(@"\n\na: %@\n\n", a);
     NSNumber *n = [a pop];
-    return (CGFloat)[n floatValue];
+    double f = [n doubleValue];
+    return f;
 }
 
 
@@ -174,6 +175,7 @@
         [phraseParser add:s];
         
         PKNumber *n = [PKNumber number];
+        [n setAssembler:self selector:@selector(didMatchNumber:)];
         [phraseParser add:n];
     }
     return phraseParser;
@@ -183,45 +185,51 @@
 #pragma mark -
 #pragma mark Assembler
 
+- (void)didMatchNumber:(PKAssembly *)a {
+    PKToken *tok = [a pop];
+    [a push:[NSNumber numberWithDouble:tok.floatValue]];
+}
+
+
 - (void)didMatchPlus:(PKAssembly *)a {
-    PKToken *tok2 = [a pop];
-    PKToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithDouble:tok1.floatValue + tok2.floatValue]];
+    NSNumber *n2 = [a pop];
+    NSNumber *n1 = [a pop];
+    [a push:[NSNumber numberWithDouble:[n1 doubleValue] + [n2 doubleValue]]];
 }
 
 
 - (void)didMatchMinus:(PKAssembly *)a {
-    PKToken *tok2 = [a pop];
-    PKToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithDouble:tok1.floatValue - tok2.floatValue]];
+    NSNumber *n2 = [a pop];
+    NSNumber *n1 = [a pop];
+    [a push:[NSNumber numberWithDouble:[n1 doubleValue] - [n2 doubleValue]]];
 }
 
 
 - (void)didMatchTimes:(PKAssembly *)a {
-    PKToken *tok2 = [a pop];
-    PKToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithDouble:tok1.floatValue * tok2.floatValue]];
+    NSNumber *n2 = [a pop];
+    NSNumber *n1 = [a pop];
+    [a push:[NSNumber numberWithDouble:[n1 doubleValue] * [n2 doubleValue]]];
 }
 
 
 - (void)didMatchDivide:(PKAssembly *)a {
-    PKToken *tok2 = [a pop];
-    PKToken *tok1 = [a pop];
-    [a push:[NSNumber numberWithDouble:tok1.floatValue / tok2.floatValue]];
+    NSNumber *n2 = [a pop];
+    NSNumber *n1 = [a pop];
+    [a push:[NSNumber numberWithDouble:[n1 doubleValue] / [n2 doubleValue]]];
 }
 
 
 - (void)didMatchExp:(PKAssembly *)a {
-    PKToken *tok2 = [a pop];
-    PKToken *tok1 = [a pop];
+    NSNumber *n2 = [a pop];
+    NSNumber *n1 = [a pop];
     
-    CGFloat n1 = tok1.floatValue;
-    CGFloat n2 = tok2.floatValue;
+    double d1 = [n1 doubleValue];
+    double d2 = [n2 doubleValue];
     
-    CGFloat res = n1;
+    double res = d1;
     NSUInteger i = 1;
-    for ( ; i < n2; i++) {
-        res *= n1;
+    for ( ; i < d2; i++) {
+        res *= d1;
     }
     
     [a push:[NSNumber numberWithDouble:res]];
