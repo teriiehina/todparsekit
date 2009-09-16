@@ -55,9 +55,9 @@
 
 
 - (void)didMatchNumComparisonPredicate:(PKAssembly *)a {
-    CGFloat n2 = [[a pop] floatValue];
+    CGFloat n2 = [(PKToken *)[a pop] floatValue];
     NSString *op = [[a pop] stringValue];
-    CGFloat n1 = [[a pop] floatValue];
+    CGFloat n1 = [(PKToken *)[a pop] floatValue];
     
     BOOL result = NO;
     if ([op isEqualToString:@"<"]) {
@@ -195,7 +195,7 @@
 
 
 - (void)didMatchNum:(PKAssembly *)a {
-    [a push:[NSNumber numberWithFloat:[[a pop] floatValue]]];
+    [a push:[NSNumber numberWithFloat:[(PKToken *)[a pop] floatValue]]];
 }
 
 
