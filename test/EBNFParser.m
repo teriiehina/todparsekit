@@ -31,8 +31,11 @@ static NSString * const kEBNFEqualsString = @"=";
 static NSString * const kEBNFVariablePrefix = @"$";
 static NSString * const kEBNFVariableSuffix = @"";
 
+@interface PKParser (PKParserFactoryAdditionsFriend)
+- (void)setTokenizer:(PKTokenizer *)t;
+@end
+
 @interface EBNFParser ()
-@property (nonatomic, readwrite, retain) PKTokenizer *tokenizer;
 - (void)addSymbolString:(NSString *)s toTokenizer:(PKTokenizer *)t;
 
 - (void)didMatchWord:(PKAssembly *)a;
@@ -50,8 +53,11 @@ static NSString * const kEBNFVariableSuffix = @"";
 @implementation EBNFParser
 
 - (id)init {
-    self = [super initWithSubparser:self.statementParser];
-    if (self) {
+    if ([super initWithSubparser:self.statementParser]) {
+        self.tokenizer = [PKTokenizer tokenizer];
+        [self addSymbolString:kEBNFEqualsString toTokenizer:self.tokenizer];
+        [self addSymbolString:kEBNFVariablePrefix toTokenizer:self.tokenizer];
+        [self addSymbolString:kEBNFVariableSuffix toTokenizer:self.tokenizer];
     }
     return self;
 }
@@ -83,17 +89,6 @@ static NSString * const kEBNFVariableSuffix = @"";
     PKTokenAssembly *a = [PKTokenAssembly assemblyWithTokenizer:self.tokenizer];
     PKAssembly *result = [self completeMatchFor:a];
     return [result pop];
-}
-
-
-- (PKTokenizer *)tokenizer {
-    if (!tokenizer) {
-        self.tokenizer = [[[PKTokenizer alloc] init] autorelease];
-        [self addSymbolString:kEBNFEqualsString toTokenizer:tokenizer];
-        [self addSymbolString:kEBNFVariablePrefix toTokenizer:tokenizer];
-        [self addSymbolString:kEBNFVariableSuffix toTokenizer:tokenizer];
-    }
-    return tokenizer;
 }
 
 
@@ -414,7 +409,6 @@ static NSString * const kEBNFVariableSuffix = @"";
     }
 }
 
-@synthesize tokenizer;
 @synthesize statementParser;
 @synthesize exprOrAssignmentParser;
 @synthesize assignmentParser;
