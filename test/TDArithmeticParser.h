@@ -19,7 +19,7 @@
     PKCollectionParser *exponentFactorParser;
     PKCollectionParser *phraseParser;
 }
-- (CGFloat)parse:(NSString *)s;
+- (double)parse:(NSString *)s;
 
 @property (retain) PKCollectionParser *exprParser;
 @property (retain) PKCollectionParser *termParser;

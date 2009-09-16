@@ -12,7 +12,7 @@
 @interface TDArithmeticParserTest : SenTestCase {
     NSString *s;
     TDArithmeticParser *p;
-    CGFloat result;
+    double result;
 }
 
 @end

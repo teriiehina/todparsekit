@@ -29,14 +29,14 @@
 }
 
 
-- (void)testScientificNumberStringArithmetic {
-    t.string = @"1e2 + 1e1 + 1e0 + 1e-1 + 1e-2 + 1e-3";
-    TDArithmeticParser *p = [[[TDArithmeticParser alloc] init] autorelease];
-    PKAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
-    PKAssembly *res = [p bestMatchFor:a];
-    PKToken *tok = [res pop];
-    TDEquals((CGFloat)111.111, tok.floatValue);
-}
+//- (void)testScientificNumberStringArithmetic {
+//    t.string = @"1e2 + 1e1 + 1e0 + 1e-1 + 1e-2 + 1e-3";
+//    TDArithmeticParser *p = [[[TDArithmeticParser alloc] init] autorelease];
+//    PKAssembly *a = [PKTokenAssembly assemblyWithTokenizer:t];
+//    PKAssembly *res = [p bestMatchFor:a];
+//    PKToken *tok = [res pop];
+//    TDEquals((CGFloat)111.111, tok.floatValue);
+//}
 
 
 - (void)testSingleDigit {
