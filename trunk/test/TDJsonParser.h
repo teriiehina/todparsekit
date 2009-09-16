@@ -29,7 +29,6 @@
 
 - (id)parse:(NSString *)s;
 
-@property (nonatomic, retain, readonly) PKTokenizer *tokenizer;
 @property (nonatomic, retain) PKParser *stringParser;
 @property (nonatomic, retain) PKParser *numberParser;
 @property (nonatomic, retain) PKParser *nullParser;
