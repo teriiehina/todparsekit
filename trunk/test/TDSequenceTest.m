@@ -244,8 +244,8 @@
     NSSet *result = [p allMatchesFor:[NSSet setWithObject:a]];
     
     TDNotNil(result);
-    NSInteger c = result.count;
-    TDEquals(0, c);
+    NSUInteger c = result.count;
+    TDEquals((NSUInteger)0, c);
 }
 
 @end
