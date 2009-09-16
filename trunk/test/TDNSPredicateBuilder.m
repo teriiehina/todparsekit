@@ -550,7 +550,7 @@
 
 
 - (void)didMatchNumber:(PKAssembly *)a {
-    NSNumber *n = [NSNumber numberWithFloat:[[a pop] floatValue]];
+    NSNumber *n = [NSNumber numberWithFloat:[(PKToken *)[a pop] floatValue]];
     [a push:n];
 }
 
