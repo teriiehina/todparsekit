@@ -107,6 +107,21 @@
 }
 
 
+#ifdef MAC_OS_X_VERSION_10_6
+- (void)enumerateTokensUsingBlock:(void (^)(PKToken *tok, BOOL *stop))block {
+    PKToken *eof = [PKToken EOFToken];
+
+    PKToken *tok = nil;
+    BOOL stop = NO;
+    
+    while ((tok = [self nextToken]) != eof) {
+        block(tok, &stop);
+        if (stop) break;
+    }
+}
+#endif
+
+
 - (void)setTokenizerState:(PKTokenizerState *)state from:(PKUniChar)start to:(PKUniChar)end {
     NSParameterAssert(state);
 
