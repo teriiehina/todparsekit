@@ -177,7 +177,7 @@ void PKReleaseSubparserTree(PKParser *p) {
 }
 
 
-- (PKParser *)exprParser {
+- (PKCollectionParser *)exprParser {
     return grammarParser.exprParser;
 }
 
