@@ -101,7 +101,22 @@
 - (PKParser *)parserNamed:(NSString *)name;
 
 #ifdef MAC_OS_X_VERSION_10_6
+/*!
+    @brief      Set a block which should be executed after this parser is matched
+    @details    <p>This is an alternative to calling <tt>-setAssembler:selector:</tt>.</p>
+                <p>Passing a block to this method will cause this parser to execute the given block after it is matched (rather than sending <tt>assembler</tt> the <tt>assemblerSelector</tt> message.</p>
+                <p>Using a block as the assembler will sometimes be more convient than setting an assembler object.</p>
+    @param      block of code to be executed after a parser is matched.
+*/
 - (void)setAssemblerBlock:(void (^)(PKAssembly *a))block;
+
+/*!
+    @brief      Set a block which should be executed before this parser is matched
+    @details    <p>This is an alternative to calling <tt>-setAssembler:selector:</tt>.</p>
+                <p>Passing a block to this method will cause this parser to execute the given block before it is matched (rather than sending <tt>preassembler</tt> the <tt>preassemblerSelector</tt> message.</p>
+                <p>Using a block as the preassembler will sometimes be more convient than setting an preassembler object.</p>
+    @param      block of code to be executed before a parser is matched.
+ */
 - (void)setPreassemblerBlock:(void (^)(PKAssembly *a))block;
 #endif
 
