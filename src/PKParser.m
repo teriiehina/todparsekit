@@ -29,8 +29,8 @@
 
 - (void)dealloc {
 #ifdef MAC_OS_X_VERSION_10_6
-    [self setAssemblerBlock:nil];
-    [self setPreassemblerBlock:nil];
+    self.assemblerBlock = nil;
+    self.preassemblerBlock = nil;
 #endif
     self.assembler = nil;
     self.assemblerSelector = nil;
@@ -60,24 +60,6 @@
     }
     return nil;
 }
-
-
-#ifdef MAC_OS_X_VERSION_10_6
-- (void)setAssemblerBlock:(void (^)(PKAssembly *a))block {
-    if (block != assemblerBlock) {
-        [assemblerBlock autorelease];
-        assemblerBlock = [block retain];
-    }
-}
-
-
-- (void)setPreassemblerBlock:(void (^)(PKAssembly *a))block {
-    if (block != preassemblerBlock) {
-        [preassemblerBlock autorelease];
-        preassemblerBlock = [block retain];
-    }
-}
-#endif
 
 
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
@@ -167,6 +149,10 @@
     }
 }
 
+#ifdef MAC_OS_X_VERSION_10_6
+@synthesize assemblerBlock;
+@synthesize preassemblerBlock;
+#endif
 @synthesize assembler;
 @synthesize assemblerSelector;
 @synthesize preassembler;
