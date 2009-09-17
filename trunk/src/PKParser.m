@@ -28,6 +28,10 @@
 
 
 - (void)dealloc {
+#ifdef MAC_OS_X_VERSION_10_6
+    [self setAssemblerBlock:nil];
+    [self setPreassemblerBlock:nil];
+#endif
     self.assembler = nil;
     self.assemblerSelector = nil;
     self.preassembler = nil;
@@ -58,6 +62,24 @@
 }
 
 
+#ifdef MAC_OS_X_VERSION_10_6
+- (void)setAssemblerBlock:(void (^)(PKAssembly *a))block {
+    if (block != assemblerBlock) {
+        [assemblerBlock autorelease];
+        assemblerBlock = [block retain];
+    }
+}
+
+
+- (void)setPreassemblerBlock:(void (^)(PKAssembly *a))block {
+    if (block != preassemblerBlock) {
+        [preassemblerBlock autorelease];
+        preassemblerBlock = [block retain];
+    }
+}
+#endif
+
+
 - (NSSet *)allMatchesFor:(NSSet *)inAssemblies {
     NSAssert1(0, @"-[PKParser %s] must be overriden", _cmd);
     return nil;
@@ -85,6 +107,13 @@
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
 
+#ifdef MAC_OS_X_VERSION_10_6
+    if (preassemblerBlock) {
+        for (PKAssembly *a in inAssemblies) {
+            preassemblerBlock(a);
+        }
+    } else 
+#endif        
     if (preassembler) {
         NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
         for (PKAssembly *a in inAssemblies) {
@@ -94,6 +123,13 @@
     
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
 
+#ifdef MAC_OS_X_VERSION_10_6
+    if (assemblerBlock) {
+        for (PKAssembly *a in inAssemblies) {
+            assemblerBlock(a);
+        }
+    } else 
+#endif        
     if (assembler) {
         NSAssert2([assembler respondsToSelector:assemblerSelector], @"provided assembler %@ should respond to %s", assembler, assemblerSelector);
         for (PKAssembly *a in outAssemblies) {
