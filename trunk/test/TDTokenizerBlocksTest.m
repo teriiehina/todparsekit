@@ -19,6 +19,7 @@
 
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 - (void)testBlastOff {
     s = @"\"It's 123 blast-off!\", she said, // watch out!\n"
     @"and <= 3 'ticks' later /* wince */, it's blast-off!";
@@ -33,6 +34,7 @@
     
     NSLog(@"\n\n done!!! \n\n");
 }
+#endif
 #endif
 
 @end

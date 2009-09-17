@@ -85,12 +85,14 @@
 - (PKToken *)nextToken;
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 /*!
     @brief      Enumerate tokens in this tokenizer using block
     @details    repeatedly executes block by passing the token returned from calling <tt>-nextToken</tt> on this tokenizer
     @param      block the code to execute with every token returned by calling <tt>-nextToken</tt> on this tokenizer
 */
 - (void)enumerateTokensUsingBlock:(void (^)(PKToken *tok, BOOL *stop))block;
+#endif
 #endif
 
 /*!
