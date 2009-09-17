@@ -16,9 +16,3 @@
 #define TDNotNil(e) STAssertNotNil((e), @"")
 #define TDEquals(e1, e2) STAssertEquals((e1), (e2), @"")
 #define TDEqualObjects(e1, e2) STAssertEqualObjects((e1), (e2), @"")
-
-@interface TDTestScaffold : SenTestSuite {
-
-}
-
-@end
