@@ -131,12 +131,14 @@
 }
 
 
+#ifndef TARGET_CPU_X86_64
 - (void)testDictTrackFooEqBarMisingCurly {
     s = @"{foo = bar;";
     p.tokenizer.string = s;
     a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.dictParser completeMatchFor:a], PKTrackException, @"");
 }
+#endif
 
 
 - (void)testDictQuoteFooFooQuoteEqBarOneEq2 {
@@ -175,12 +177,14 @@
 }
 
 
+#ifndef TARGET_CPU_X86_64
 - (void)testKeyValuePairTrackFooEqBarNoSemi {
     s = @"foo = bar";
     p.tokenizer.string = s;
     a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.keyValuePairParser completeMatchFor:a], PKTrackException, @"");
 }
+#endif
 
 
 - (void)testCommaValueComma1 {
@@ -256,6 +260,7 @@
 }
 
 
+#ifndef TARGET_CPU_X86_64
 - (void)testArrayTrackNumArrayMissingParen {
     s = @"(1, 2, 3";
     p.tokenizer.string = s;
@@ -270,6 +275,7 @@
     a = [PKTokenAssembly assemblyWithTokenizer:p.tokenizer];
     STAssertThrowsSpecific([p.arrayParser completeMatchFor:a], PKTrackException, @"");
 }
+#endif
 
 
 - (void)testNullLtNullGt {

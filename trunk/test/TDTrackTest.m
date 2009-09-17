@@ -39,6 +39,7 @@
 }
 
 
+#ifndef TARGET_CPU_X86_64
 - (void)testTrack {
     
     PKParser *list = [self listParser];
@@ -106,5 +107,6 @@
         TDEqualObjects(found, @"-nothing-");
     }
 }
+#endif
 
 @end
