@@ -3257,6 +3257,7 @@
 		D33494130E2963FE00406085 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -3267,6 +3268,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "demoapp/DemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_ACTUAL)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3275,7 +3277,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = DemoApp;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
@@ -3284,6 +3286,8 @@
 		D33494140E2963FE00406085 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -3300,7 +3304,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = DemoApp;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -3310,6 +3314,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3328,6 +3333,7 @@
 				INFOPLIST_FILE = "debugapp/DebugApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBXML_PATH = "\"/usr/include/libxml2/\"";
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_ACTUAL)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3336,7 +3342,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = DebugApp;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -3344,6 +3350,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3367,7 +3375,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = DebugApp;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = "";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3436,6 +3444,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ONLY_ACTIVE_ARCH_PRE_XCODE_3_1)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -3446,6 +3455,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INFOPLIST_FILE = "jsdemoapp/JSDemoApp-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH_PRE_XCODE_3_1 = "$(NATIVE_ARCH_ACTUAL)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3454,6 +3464,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = JSDemoApp;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -3461,6 +3472,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -3478,6 +3491,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = JSDemoApp;
+				SDKROOT = "";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3564,7 +3578,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				SDKROOT = "";
 				WARNING_CFLAGS = "";
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -3581,6 +3595,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ParseKitMobile_Prefix.pch;
 				HEADER_SEARCH_PATHS = "";
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = parsekit;
 				SDKROOT = iphoneos3.0;
