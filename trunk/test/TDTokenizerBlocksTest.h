@@ -1,8 +1,8 @@
 //
-//  PKTokenizerTest.h
+//  TDTokenizerBlocksTest.h
 //  ParseKit
 //
-//  Created by Todd Ditchendorf on 7/11/08.
+//  Created by Todd Ditchendorf on 9/16/09.
 //  Copyright 2009 Todd Ditchendorf. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 @class PKTokenizer;
 
-@interface TDTokenizerTest : SenTestCase {
+@interface TDTokenizerBlocksTest : SenTestCase {
     PKTokenizer *t;
     NSString *s;
 }
