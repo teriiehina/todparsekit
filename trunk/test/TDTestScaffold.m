@@ -7,7 +7,6 @@
 //
 
 #import "TDTestScaffold.h"
-#import <objc/runtime.h>
 
 #define RUN_ALL_TEST_CASES 1
 #define SOLO_TEST_CASE @"TDParserBlocksTest"
