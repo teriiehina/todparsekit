@@ -1,5 +1,5 @@
 //
-//  PKJSTokenAssemblyAssembly.h
+//  PKJSTokenAssembly.h
 //  ParseKit
 //
 //  Created by Todd Ditchendorf on 1/3/09.

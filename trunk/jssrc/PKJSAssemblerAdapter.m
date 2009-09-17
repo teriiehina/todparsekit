@@ -7,6 +7,8 @@
 //
 
 #import "PKJSAssemblerAdapter.h"
+#import "PKJSTokenAssembly.h"
+#import "PKJSCharacterAssembly.h"
 #import "PKJSUtils.h"
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTokenAssembly.h>
@@ -44,7 +46,7 @@
     JSObjectCallAsFunction(ctx, assemblerFunction, globalObj, 1, argv, &ex);
     if (ex) {
         NSString *s = PKJSValueGetNSString(ctx, ex, NULL);
-        [NSException raise:@"PKJSException" format:s];
+        [NSException raise:@"PKJSException" format:s arguments:NULL];
     }
 }
 
