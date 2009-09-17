@@ -117,7 +117,7 @@
 /*!
     @property   preassemblerBlock
     @brief      Set a block which should be executed before this parser is matched
-    @details    <p>This is an alternative to calling <tt>-setAssembler:selector:</tt>.</p>
+    @details    <p>This is an alternative to calling <tt>-setPreassembler:selector:</tt>.</p>
                 <p>Passing a block to this method will cause this parser to execute the given block before it is matched (rather than sending <tt>preassembler</tt> the <tt>preassemblerSelector</tt> message.</p>
                 <p>Using a block as the preassembler will sometimes be more convient than setting an preassembler object.</p>
     @param      block of code to be executed before a parser is matched.
