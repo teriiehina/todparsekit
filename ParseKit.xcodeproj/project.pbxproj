@@ -326,6 +326,7 @@
 		D389FBCD0F1B25E200558235 /* ParserTest.html in Resources */ = {isa = PBXBuildFile; fileRef = D389FBCC0F1B25E200558235 /* ParserTest.html */; };
 		D38DD9E80EC29F260070BC4D /* nyt.html in Resources */ = {isa = PBXBuildFile; fileRef = D38DD9E70EC29F260070BC4D /* nyt.html */; };
 		D38E97CC1061CF6500739C39 /* TDTokenizerBlocksTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E97CB1061CF6500739C39 /* TDTokenizerBlocksTest.m */; };
+		D38E98D81062C5BA00739C39 /* TDParserBlocksTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D38E98D71062C5BA00739C39 /* TDParserBlocksTest.m */; };
 		D398E20E0E60F86D00A1C877 /* yahoo.json in Resources */ = {isa = PBXBuildFile; fileRef = D3B473840E48C9CF008AFBDD /* yahoo.json */; };
 		D39E01340FEF02DA00150FC3 /* TDXMLParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3BBBC970FEC9722007DF30D /* TDXMLParserTest.m */; };
 		D3AF49780FDB122E0032F4DC /* TDParserFactoryPatternTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */; };
@@ -1001,6 +1002,8 @@
 		D38DD9E70EC29F260070BC4D /* nyt.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = nyt.html; path = res/nyt.html; sourceTree = "<group>"; };
 		D38E97CA1061CF6500739C39 /* TDTokenizerBlocksTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDTokenizerBlocksTest.h; path = test/TDTokenizerBlocksTest.h; sourceTree = "<group>"; };
 		D38E97CB1061CF6500739C39 /* TDTokenizerBlocksTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDTokenizerBlocksTest.m; path = test/TDTokenizerBlocksTest.m; sourceTree = "<group>"; };
+		D38E98D61062C5BA00739C39 /* TDParserBlocksTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserBlocksTest.h; path = test/TDParserBlocksTest.h; sourceTree = "<group>"; };
+		D38E98D71062C5BA00739C39 /* TDParserBlocksTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserBlocksTest.m; path = test/TDParserBlocksTest.m; sourceTree = "<group>"; };
 		D3AF49760FDB122E0032F4DC /* TDParserFactoryPatternTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDParserFactoryPatternTest.h; path = test/TDParserFactoryPatternTest.h; sourceTree = "<group>"; };
 		D3AF49770FDB122E0032F4DC /* TDParserFactoryPatternTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TDParserFactoryPatternTest.m; path = test/TDParserFactoryPatternTest.m; sourceTree = "<group>"; };
 		D3AF4BE80FDC3DD50032F4DC /* TDBlob.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TDBlob.h; path = test/TDBlob.h; sourceTree = "<group>"; };
@@ -2102,6 +2105,8 @@
 				D31FE5500E60E50800A0803E /* TDLiteralTest.m */,
 				D31FE5510E60E50800A0803E /* TDParserTest.h */,
 				D31FE5520E60E50800A0803E /* TDParserTest.m */,
+				D38E98D61062C5BA00739C39 /* TDParserBlocksTest.h */,
+				D38E98D71062C5BA00739C39 /* TDParserBlocksTest.m */,
 				D31FE5530E60E50800A0803E /* TDRepetitionTest.h */,
 				D31FE5540E60E50800A0803E /* TDRepetitionTest.m */,
 				D31FE5550E60E50800A0803E /* TDReservedWordTest.h */,
@@ -3055,6 +3060,7 @@
 				D3D1BF2810394420003656E5 /* SAXAssembler.m in Sources */,
 				D3D1BF2B1039445C003656E5 /* SAXTest.m in Sources */,
 				D38E97CC1061CF6500739C39 /* TDTokenizerBlocksTest.m in Sources */,
+				D38E98D81062C5BA00739C39 /* TDParserBlocksTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
