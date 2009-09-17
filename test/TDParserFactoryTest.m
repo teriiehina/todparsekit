@@ -497,6 +497,7 @@
 }
 
 
+#ifndef TARGET_CPU_X86_64
 - (void)testStmtTrackException {
     s = @"@start =";
     STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
@@ -567,6 +568,7 @@
     s = @"@start='foo'{m};";
     STAssertThrowsSpecificNamed([factory parserFromGrammar:s assembler:nil], PKTrackException, PKTrackExceptionName, @"");
 }
+#endif
 
 
 - (void)testExprHelloPlus {
