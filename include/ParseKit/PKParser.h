@@ -36,8 +36,10 @@
 */
 @interface PKParser : NSObject {
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     void (^assemblerBlock)(PKAssembly *);
     void (^preassemblerBlock)(PKAssembly *);
+#endif
 #endif
     id assembler;
     SEL assemblerSelector;
@@ -101,6 +103,7 @@
 - (PKParser *)parserNamed:(NSString *)name;
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 /*!
     @property   assemblerBlock
     @brief      Set a block which should be executed after this parser is matched
@@ -120,6 +123,7 @@
     @param      block of code to be executed before a parser is matched.
  */
 @property (nonatomic, retain) void (^preassemblerBlock)(PKAssembly *);
+#endif
 #endif
 
 /*!

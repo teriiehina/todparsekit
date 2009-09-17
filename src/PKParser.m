@@ -29,8 +29,10 @@
 
 - (void)dealloc {
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     self.assemblerBlock = nil;
     self.preassemblerBlock = nil;
+#endif
 #endif
     self.assembler = nil;
     self.assemblerSelector = nil;
@@ -90,11 +92,13 @@
     NSParameterAssert(inAssemblies);
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     if (preassemblerBlock) {
         for (PKAssembly *a in inAssemblies) {
             preassemblerBlock(a);
         }
     } else 
+#endif
 #endif        
     if (preassembler) {
         NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
@@ -106,12 +110,14 @@
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     if (assemblerBlock) {
         for (PKAssembly *a in outAssemblies) {
             assemblerBlock(a);
         }
     } else 
 #endif        
+#endif
     if (assembler) {
         NSAssert2([assembler respondsToSelector:assemblerSelector], @"provided assembler %@ should respond to %s", assembler, assemblerSelector);
         for (PKAssembly *a in outAssemblies) {
@@ -150,8 +156,10 @@
 }
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 @synthesize assemblerBlock;
 @synthesize preassemblerBlock;
+#endif
 #endif
 @synthesize assembler;
 @synthesize assemblerSelector;

@@ -41,7 +41,9 @@ SenTestSuite *TDTokensTestSuite() {
                            @"TDDelimitStateTest",
                            @"TDTokenizerStateTest",
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
                            @"TDTokenizerBlocksTest",
+#endif
 #endif
                            nil];
     

@@ -19,6 +19,7 @@
 
 
 #ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 - (void)testMath {
     s = @"2 4 6 8";
     start= [PKTokenAssembly assemblyWithString:s];
@@ -52,6 +53,7 @@
     TDEqualObjects(@"[20]2/4/6/8^", [result description]);
     TDEquals((double)20.0, [[result pop] doubleValue]);
 }
+#endif
 #endif
 
 @end
