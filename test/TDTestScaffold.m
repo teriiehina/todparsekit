@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 #import <objc/runtime.h>
 
-#define RUN_ALL_TEST_CASES 0
+#define RUN_ALL_TEST_CASES 1
 #define SOLO_TEST_CASE @"TDTokenizerBlocksTest"
 
 @interface SenTestSuite (TDAdditions)
