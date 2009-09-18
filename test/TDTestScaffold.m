@@ -9,7 +9,7 @@
 #import "TDTestScaffold.h"
 
 #define RUN_ALL_TEST_CASES 1
-#define SOLO_TEST_CASE @"TDParserFactoryTest"
+#define SOLO_TEST_CASE @"TDParserBlocksTest"
 
 @interface SenTestSuite (TDAdditions)
 - (void)addSuitesForClassNames:(NSArray *)classNames;
@@ -43,6 +43,7 @@ SenTestSuite *TDTokensTestSuite() {
 #ifdef MAC_OS_X_VERSION_10_6
 #if !TARGET_OS_IPHONE
                            @"TDTokenizerBlocksTest",
+                           @"TDParserBlocksTest",
 #endif
 #endif
                            nil];
