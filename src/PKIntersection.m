@@ -19,7 +19,7 @@
     for (id a1 in self) {
         BOOL found = NO;
         for (id a2 in s) {
-            if ([a1 isEqual:a2 ]) {
+            if ([a1 isEqual:a2]) {
                 found = YES;
                 break;
             }
