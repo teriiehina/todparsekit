@@ -28,11 +28,9 @@
 
 
 - (void)dealloc {
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
     self.assemblerBlock = nil;
     self.preassemblerBlock = nil;
-#endif
 #endif
     self.assembler = nil;
     self.assemblerSelector = nil;
@@ -91,15 +89,13 @@
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
 
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
     if (preassemblerBlock) {
         for (PKAssembly *a in inAssemblies) {
             preassemblerBlock(a);
         }
     } else 
 #endif
-#endif        
     if (preassembler) {
         NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
         for (PKAssembly *a in inAssemblies) {
@@ -109,14 +105,12 @@
     
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
 
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
     if (assemblerBlock) {
         for (PKAssembly *a in outAssemblies) {
             assemblerBlock(a);
         }
     } else 
-#endif        
 #endif
     if (assembler) {
         NSAssert2([assembler respondsToSelector:assemblerSelector], @"provided assembler %@ should respond to %s", assembler, assemblerSelector);
@@ -155,11 +149,9 @@
     }
 }
 
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
 @synthesize assemblerBlock;
 @synthesize preassemblerBlock;
-#endif
 #endif
 @synthesize assembler;
 @synthesize assemblerSelector;
