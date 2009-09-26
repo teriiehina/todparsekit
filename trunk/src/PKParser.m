@@ -11,6 +11,11 @@
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKTokenizer.h>
 
+@interface PKAssembly ()
+- (BOOL)hasMore;
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
+@end
+
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;

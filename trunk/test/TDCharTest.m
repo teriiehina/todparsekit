@@ -8,6 +8,9 @@
 
 #import "TDCharTest.h"
 
+@interface PKAssembly ()
+- (BOOL)hasMore;
+@end
 
 @implementation TDCharTest
 

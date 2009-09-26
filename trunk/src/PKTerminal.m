@@ -10,6 +10,13 @@
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKToken.h>
 
+@interface PKAssembly ()
+- (id)peek;
+- (id)next;
+- (BOOL)hasMore;
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
+@end
+
 @interface PKTerminal ()
 - (PKAssembly *)matchOneAssembly:(PKAssembly *)inAssembly;
 - (BOOL)qualifies:(id)obj;

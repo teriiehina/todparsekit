@@ -11,10 +11,19 @@
 static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 @interface PKAssembly ()
+- (id)peek;
+- (id)next;
+- (BOOL)hasMore;
+- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter;
+- (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter;
+
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, retain) NSString *string;
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
+@property (nonatomic, readonly) NSUInteger length;
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
+@property (nonatomic, readonly) NSUInteger objectsRemaining;
 @end
 
 @implementation PKAssembly

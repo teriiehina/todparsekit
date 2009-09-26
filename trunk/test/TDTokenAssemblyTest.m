@@ -8,6 +8,13 @@
 
 #import "TDTokenAssemblyTest.h"
 
+@interface PKAssembly ()
+- (id)next;
+- (BOOL)hasMore;
+@property (nonatomic, readonly) NSUInteger length;
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
+@property (nonatomic, readonly) NSUInteger objectsRemaining;
+@end
 
 @implementation TDTokenAssemblyTest
 
