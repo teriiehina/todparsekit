@@ -10,6 +10,11 @@
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTrackException.h>
 
+@interface PKAssembly ()
+- (id)peek;
+- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter;
+@end
+
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
