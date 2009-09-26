@@ -40,11 +40,9 @@ SenTestSuite *TDTokensTestSuite() {
                            @"TDCommentStateTest",
                            @"TDDelimitStateTest",
                            @"TDTokenizerStateTest",
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
                            @"TDTokenizerBlocksTest",
                            @"TDParserBlocksTest",
-#endif
 #endif
                            nil];
     

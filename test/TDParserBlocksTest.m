@@ -18,8 +18,7 @@
 }
 
 
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
 - (void)testMath {
     s = @"2 4 6 8";
     start = [PKTokenAssembly assemblyWithString:s];
@@ -80,7 +79,6 @@
     TDEqualObjects(@"[5]2.5/-5.5/8^", [result description]);
     TDEquals(5.0, [(NSNumber *)[result pop] doubleValue]);
 }
-#endif
 #endif
 
 @end

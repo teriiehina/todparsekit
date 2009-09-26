@@ -35,11 +35,9 @@
                 <p>The parser does not match directly against a string, it matches against a <tt>PKAssembly</tt>. The resulting assembly shows its stack, with four words on it, along with its sequence of tokens, and the index at the end of these. In practice, parsers will do some work on an assembly, based on the text they recognize.</p>
 */
 @interface PKParser : NSObject {
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
     void (^assemblerBlock)(PKAssembly *);
     void (^preassemblerBlock)(PKAssembly *);
-#endif
 #endif
     id assembler;
     SEL assemblerSelector;
@@ -102,8 +100,7 @@
  */
 - (PKParser *)parserNamed:(NSString *)name;
 
-#ifdef MAC_OS_X_VERSION_10_6
-#if !TARGET_OS_IPHONE
+#ifdef TARGET_OS_SNOW_LEOPARD
 /*!
     @property   assemblerBlock
     @brief      Set a block which should be executed after this parser is matched
@@ -123,7 +120,6 @@
     @param      block of code to be executed before a parser is matched.
  */
 @property (nonatomic, retain) void (^preassemblerBlock)(PKAssembly *);
-#endif
 #endif
 
 /*!
