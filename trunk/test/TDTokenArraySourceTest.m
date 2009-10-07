@@ -23,21 +23,21 @@
     TDTrue([tas hasMore]);
     NSArray *a = [tas nextTokenArray];
     TDNotNil(a);
-    TDEquals((NSUInteger)2, a.count);
+    TDEquals((NSUInteger)2, [a count]);
     TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
     TDEqualObjects(@"came", [[a objectAtIndex:1] stringValue]);
 
     TDTrue([tas hasMore]);
     a = [tas nextTokenArray];
     TDNotNil(a);
-    TDEquals((NSUInteger)2, a.count);
+    TDEquals((NSUInteger)2, [a count]);
     TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
     TDEqualObjects(@"saw", [[a objectAtIndex:1] stringValue]);
 
     TDTrue([tas hasMore]);
     a = [tas nextTokenArray];
     TDNotNil(a);
-    TDEquals((NSUInteger)5, a.count);
+    TDEquals((NSUInteger)5, [a count]);
     TDEqualObjects(@"I", [[a objectAtIndex:0] stringValue]);
     TDEqualObjects(@"left", [[a objectAtIndex:1] stringValue]);
     TDEqualObjects(@"in", [[a objectAtIndex:2] stringValue]);

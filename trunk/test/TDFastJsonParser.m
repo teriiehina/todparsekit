@@ -92,9 +92,9 @@
 
 - (void)didMatchDictionary {
     NSArray *a = [self objectsAbove:curly];
-    NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:a.count/2.];
+    NSMutableDictionary *result = [NSMutableDictionary dictionaryWithCapacity:[a count]/2.];
     
-    NSInteger i = a.count - 1;
+    NSInteger i = [a count] - 1;
     for ( ; i >= 0; i--) {
         NSString *key = [a objectAtIndex:i--];
         id value = [a objectAtIndex:i];
@@ -107,7 +107,7 @@
 
 - (void)didMatchArray {
     NSArray *a = [self objectsAbove:bracket];
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity:a.count];
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:[a count]];
     for (id obj in [a reverseObjectEnumerator]) {
         [result addObject:obj];
     }

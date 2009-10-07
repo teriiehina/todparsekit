@@ -521,7 +521,7 @@
 - (NSArray *)objectsAbove:(id)fence {
     NSMutableArray *res = [NSMutableArray array];
     while (1) {
-        if (!stack.count) {
+        if (![stack count]) {
             break;
         }
         id obj = [self pop];
@@ -536,7 +536,7 @@
 
 - (id)peek {
     id obj = nil;
-    if (stack.count) {
+    if ([stack count]) {
         obj = [stack lastObject];
     }
     return obj;

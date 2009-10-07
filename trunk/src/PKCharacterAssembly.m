@@ -96,7 +96,7 @@
     [s appendString:@"["];
     
     NSUInteger i = 0;
-    NSUInteger len = stack.count;
+    NSUInteger len = [stack count];
     
     for (id obj in self.stack) {
         if ([obj isKindOfClass:[NSNumber class]]) { // ***this is needed for Char Assemblies

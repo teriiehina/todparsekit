@@ -52,7 +52,7 @@
     
     for (PKParser *p in subparsers) {
         outAssemblies = [p matchAndAssemble:outAssemblies];
-        if (!outAssemblies.count) {
+        if (![outAssemblies count]) {
             if (inTrack) {
                 [self throwTrackExceptionWithPreviousState:lastAssemblies parser:p];
             }

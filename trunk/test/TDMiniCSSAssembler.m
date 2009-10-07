@@ -96,7 +96,7 @@
     [a pop]; // discard curly
 
     NSInteger i = 0;
-    NSInteger count = objs.count;
+    NSInteger count = [objs count];
     for ( ; i < count - 1; i++) {
         id propVal = [objs objectAtIndex:i];
         id propName = [objs objectAtIndex:++i];

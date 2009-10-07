@@ -138,7 +138,7 @@
     
     res = [[eval.parser parserNamed:@"array"] completeMatchFor:a];
     NSArray *array = [res pop];
-    TDEquals((NSUInteger)2, array.count);
+    TDEquals((NSUInteger)2, [array count]);
     TDEqualObjects([array objectAtIndex:0], [NSNumber numberWithInteger:1]);
     TDEqualObjects([array objectAtIndex:1], [NSNumber numberWithInteger:3]);
 }

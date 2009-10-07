@@ -248,13 +248,13 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (void)didMatchDict:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:self.curly];
-    NSInteger count = objs.count;
+    NSInteger count = [objs count];
     NSAssert1(0 == count % 2, @"in -%s, the assembly's stack's count should be a multiple of 2", _cmd);
 
     NSMutableDictionary *res = [NSMutableDictionary dictionaryWithCapacity:count / 2.];
     if (count) {
         NSInteger i = 0;
-        for ( ; i < objs.count - 1; i++) {
+        for ( ; i < [objs count] - 1; i++) {
             id value = [objs objectAtIndex:i++];
             id key = [objs objectAtIndex:i];
             [res setObject:value forKey:key];
@@ -268,7 +268,7 @@ static NSString *kTDPlistNullString = @"<null>";
 
 - (void)didMatchArray:(PKAssembly *)a {
     NSArray *objs = [a objectsAbove:self.paren];
-    NSMutableArray *res = [NSMutableArray arrayWithCapacity:objs.count];
+    NSMutableArray *res = [NSMutableArray arrayWithCapacity:[objs count]];
     
     for (id obj in [objs reverseObjectEnumerator]) {
         [res addObject:obj];
