@@ -18,7 +18,7 @@
     }
     
     NSString *s = tok.stringValue;
-    return s.length && islower([s characterAtIndex:0]);
+    return [s length] && islower([s characterAtIndex:0]);
 }
 
 @end

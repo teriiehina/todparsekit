@@ -281,7 +281,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     // discover the actual parser class types
     for (NSString *parserName in parserTokensTable) {
         NSString *className = [self parserClassNameFromTokenArray:[parserTokensTable objectForKey:parserName]];
-        NSAssert1(className.length, @"Could not build ClassName from token array for parserName: %@", parserName);
+        NSAssert1([className length], @"Could not build ClassName from token array for parserName: %@", parserName);
         [parserClassTable setObject:className forKey:parserName];
     }
     isGatheringClasses = NO;
@@ -345,7 +345,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
-			if (s.length) {
+			if ([s length]) {
 				NSInteger c = [s characterAtIndex:0];
 				[t.wordState setWordChars:YES from:c to:c];
 			}
@@ -360,7 +360,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
 			NSString *s = [tok.stringValue stringByTrimmingQuotes];
-			if (s.length) {
+			if ([s length]) {
                 NSInteger c = 0;
                 if ([s hasPrefix:@"#x"]) {
                     c = [s integerValue];
@@ -450,7 +450,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     for (PKToken *tok in toks) {
         if (tok.isQuotedString) {
             NSString *s = [tok.stringValue stringByTrimmingQuotes];
-            if (1 == s.length) {
+            if (1 == [s length]) {
                 NSInteger c = [s characterAtIndex:0];
                 [t setTokenizerState:state from:c to:c];
             }
@@ -597,7 +597,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     }
     
     if (selName) {
-        NSAssert(selName.length, @"");
+        NSAssert([selName length], @"");
         [selectorTable setObject:selName forKey:parserName];
     }
 	NSMutableDictionary *d = a.target;
@@ -711,7 +711,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSAssert(tok.isWord, @"");
 
     NSString *s = tok.stringValue;
-    NSAssert(s.length > 0, @"");
+    NSAssert([s length] > 0, @"");
 
     PKPatternOptions opts = PKPatternOptionsNone;
     if (NSNotFound != [s rangeOfString:@"i"].location) {
@@ -748,7 +748,7 @@ void PKReleaseSubparserTree(PKParser *p) {
     NSAssert(tok.isDelimitedString, @"");
 
     NSString *s = tok.stringValue;
-    NSAssert(s.length > 2, @"");
+    NSAssert([s length] > 2, @"");
     
     NSAssert([s hasPrefix:@"/"], @"");
     NSAssert([s hasSuffix:@"/"], @"");

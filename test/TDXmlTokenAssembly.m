@@ -134,7 +134,7 @@
     NSMutableString *s = [NSMutableString string];
     
     NSInteger i = self.consumedObjectCount;
-    NSInteger len = self.length;
+    NSInteger len = [self length];
     
     for ( ; i < len; i++) {
         TDXmlToken *tok = [self.tokens objectAtIndex:i];

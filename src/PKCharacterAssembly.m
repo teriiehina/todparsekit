@@ -41,7 +41,7 @@
 
 
 - (id)peek {
-    if (index >= string.length) {
+    if (index >= [string length]) {
         return nil;
     }
     PKUniChar c = [string characterAtIndex:index];
@@ -59,12 +59,12 @@
 
 
 - (BOOL)hasMore {
-    return (index < string.length);
+    return (index < [string length]);
 }
 
 
 - (NSUInteger)length {
-    return string.length;
+    return [string length];
 } 
 
 
@@ -74,7 +74,7 @@
 
 
 - (NSUInteger)objectsRemaining {
-    return (string.length - index);
+    return ([string length] - index);
 }
 
 

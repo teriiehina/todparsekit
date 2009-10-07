@@ -52,7 +52,7 @@
     [self resetWithReader:r];
     
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
-    NSUInteger len = symbol.length;
+    NSUInteger len = [symbol length];
 
     if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
         return [self symbolTokenWithSymbol:symbol];

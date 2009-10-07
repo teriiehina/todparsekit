@@ -70,7 +70,7 @@
     PKAssembly *best = [self best:inAssemblies];
 
     NSString *after = [best consumedObjectsJoinedByString:@" "];
-    if (!after.length) {
+    if (![after length]) {
         after = @"-nothing-";
     }
     

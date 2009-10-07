@@ -93,7 +93,7 @@ static NSString * const kEBNFVariableSuffix = @"";
 
 
 - (void)addSymbolString:(NSString *)s toTokenizer:(PKTokenizer *)t {
-    if (s.length) {
+    if ([s length]) {
         NSInteger c = [s characterAtIndex:0];
         [t setTokenizerState:t.symbolState from:c to:c];
         [t.symbolState add:s];
@@ -142,7 +142,7 @@ static NSString * const kEBNFVariableSuffix = @"";
         self.declarationParser = [PKTrack track];
         [declarationParser add:[[PKSymbol symbolWithString:kEBNFVariablePrefix] discard]];
         [declarationParser add:[PKWord word]];
-        if (kEBNFVariableSuffix.length) {
+        if ([kEBNFVariableSuffix length]) {
             [declarationParser add:[[PKSymbol symbolWithString:kEBNFVariableSuffix] discard]];
         }
     }
@@ -156,7 +156,7 @@ static NSString * const kEBNFVariableSuffix = @"";
         self.variableParser = [PKTrack track];
         [variableParser add:[[PKSymbol symbolWithString:kEBNFVariablePrefix] discard]];
         [variableParser add:[PKWord word]];
-        if (kEBNFVariableSuffix.length) {
+        if ([kEBNFVariableSuffix length]) {
             [variableParser add:[[PKSymbol symbolWithString:kEBNFVariableSuffix] discard]];
         }
     }
