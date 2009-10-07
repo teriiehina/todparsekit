@@ -97,7 +97,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
         return NO;
     }
     
-    if (a.stack.count != stack.count) {
+    if ([a.stack count] != [stack count]) {
         return NO;
     }
     
@@ -155,7 +155,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 - (id)pop {
     id result = nil;
-    if (stack.count) {
+    if (![self isStackEmpty]) {
         result = [[[stack lastObject] retain] autorelease];
         [stack removeLastObject];
     }
@@ -171,14 +171,14 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 
 - (BOOL)isStackEmpty {
-    return 0 == stack.count;
+    return 0 == [stack count];
 }
 
 
 - (NSArray *)objectsAbove:(id)fence {
     NSMutableArray *result = [NSMutableArray array];
     
-    while (stack.count) {        
+    while (![self isStackEmpty]) {        
         id obj = [self pop];
         
         if ([obj isEqual:fence]) {
@@ -198,7 +198,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
     [s appendString:@"["];
     
     NSUInteger i = 0;
-    NSUInteger len = stack.count;
+    NSUInteger len = [stack count];
     
     for (id obj in stack) {
         [s appendString:[obj description]];

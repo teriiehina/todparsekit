@@ -74,7 +74,7 @@
 
 
 - (id)peek {
-    if (index >= self.tokens.count) {
+    if (index >= [self.tokens count]) {
         return nil;
     }
     id tok = [self.tokens objectAtIndex:index];
@@ -93,12 +93,12 @@
 
 
 - (BOOL)hasMore {
-    return (index < self.tokens.count);
+    return (index < [self.tokens count]);
 }
 
 
 - (NSUInteger)length {
-    return self.tokens.count;
+    return [self.tokens count];
 } 
 
 
@@ -108,7 +108,7 @@
 
 
 - (NSUInteger)remainingObjectCount {
-    return (self.tokens.count - index);
+    return ([self.tokens count] - index);
 }
 
 

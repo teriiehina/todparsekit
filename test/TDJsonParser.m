@@ -262,7 +262,7 @@
 
 - (void)didMatchArray:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.bracket];
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:elements.count];
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[elements count]];
     
     for (id element in [elements reverseObjectEnumerator]) {
         if (element) {
@@ -276,10 +276,10 @@
 
 - (void)didMatchObject:(PKAssembly *)a {
     NSArray *elements = [a objectsAbove:self.curly];
-    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:elements.count / 2.];
+    NSMutableDictionary *d = [NSMutableDictionary dictionaryWithCapacity:[elements count] / 2.];
     
     NSInteger i = 0;
-    for ( ; i < elements.count - 1; i++) {
+    for ( ; i < [elements count] - 1; i++) {
         id value = [elements objectAtIndex:i++];
         NSString *key = [elements objectAtIndex:i];
         if (key && value) {

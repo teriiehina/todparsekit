@@ -94,7 +94,7 @@
     NSArray *toks = self.tokens;
     
     while (1) {
-        if (index >= toks.count) {
+        if (index >= [toks count]) {
             tok = nil;
             break;
         }
@@ -125,12 +125,12 @@
 
 
 - (BOOL)hasMore {
-    return (index < self.tokens.count);
+    return (index < [self.tokens count]);
 }
 
 
 - (NSUInteger)length {
-    return self.tokens.count;
+    return [self.tokens count];
 } 
 
 
@@ -140,7 +140,7 @@
 
 
 - (NSUInteger)objectsRemaining {
-    return (self.tokens.count - index);
+    return ([self.tokens count] - index);
 }
 
 
