@@ -38,7 +38,7 @@
 - (BOOL)qualifies:(id)obj {
     TDXmlToken *other = (TDXmlToken *)obj;
     
-    if (string.length) {
+    if ([string length]) {
         return [tok isEqual:other];
     } else {
         return other.isWhitespace;

@@ -238,7 +238,7 @@
     }
     
     // handle case where no elements were encountered (plain text basically)
-    if (!highlightedString.length) {
+    if (![highlightedString length]) {
         PKToken *tok = nil;
         while (tok = [self pop]) {
             NSAttributedString *as = [[[NSAttributedString alloc] initWithString:tok.stringValue attributes:textAttributes] autorelease];

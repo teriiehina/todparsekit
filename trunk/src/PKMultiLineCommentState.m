@@ -57,15 +57,15 @@
 
 
 - (void)addStartMarker:(NSString *)start endMarker:(NSString *)end {
-    NSParameterAssert(start.length);
-    NSParameterAssert(end.length);
+    NSParameterAssert([start length]);
+    NSParameterAssert([end length]);
     [startMarkers addObject:start];
     [endMarkers addObject:end];
 }
 
 
 - (void)removeStartMarker:(NSString *)start {
-    NSParameterAssert(start.length);
+    NSParameterAssert([start length]);
     NSUInteger i = [startMarkers indexOfObject:start];
     if (NSNotFound != i) {
         [startMarkers removeObject:start];
@@ -111,7 +111,7 @@
                 c = [r read];
                 break;
             } else {
-                [r unread:peek.length - 1];
+                [r unread:[peek length] - 1];
                 if (e != [peek characterAtIndex:0]) {
                     if (reportTokens) {
                         [self append:c];

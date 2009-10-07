@@ -23,7 +23,7 @@
     }
     
     NSString *s = tok.stringValue;
-    return s.length && ![[TDReservedWord reservedWords] containsObject:s];
+    return [s length] && ![[TDReservedWord reservedWords] containsObject:s];
 }
 
 @end

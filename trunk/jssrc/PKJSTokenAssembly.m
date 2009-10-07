@@ -60,7 +60,7 @@ static JSValueRef PKTokenAssembly_objectsAbove(JSContextRef ctx, JSObjectRef fun
 
 static JSValueRef PKTokenAssembly_getLength(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     PKTokenAssembly *data = JSObjectGetPrivate(this);
-    return JSValueMakeNumber(ctx, data.length);
+    return JSValueMakeNumber(ctx, [data length]);
 }
 
 #pragma mark -

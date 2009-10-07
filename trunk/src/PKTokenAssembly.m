@@ -152,7 +152,7 @@
 
 - (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter {
     NSParameterAssert(delimiter);
-    return [self objectsFrom:self.objectsConsumed to:self.length separatedBy:delimiter];
+    return [self objectsFrom:self.objectsConsumed to:[self length] separatedBy:delimiter];
 }
 
 

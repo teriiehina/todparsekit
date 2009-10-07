@@ -18,7 +18,7 @@
     }
     
     NSString *s = tok.stringValue;
-    return s.length && isupper([s characterAtIndex:0]);
+    return [s length] && isupper([s characterAtIndex:0]);
 }
 
 @end

@@ -89,7 +89,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
     }
     
     PKAssembly *a = (PKAssembly *)obj;
-    if (a.length != self.length) {
+    if ([a length] != [self length]) {
         return NO;
     }
 
