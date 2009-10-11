@@ -10,11 +10,6 @@
 #import <ParseKit/PKAssembly.h>
 #import <ParseKit/PKTrackException.h>
 
-@interface PKAssembly ()
-- (id)peek;
-- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter;
-@end
-
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
@@ -52,7 +47,7 @@
     
     for (PKParser *p in subparsers) {
         outAssemblies = [p matchAndAssemble:outAssemblies];
-        if (![outAssemblies count]) {
+        if (!outAssemblies.count) {
             if (inTrack) {
                 [self throwTrackExceptionWithPreviousState:lastAssemblies parser:p];
             }
@@ -70,7 +65,7 @@
     PKAssembly *best = [self best:inAssemblies];
 
     NSString *after = [best consumedObjectsJoinedByString:@" "];
-    if (![after length]) {
+    if (!after.length) {
         after = @"-nothing-";
     }
     

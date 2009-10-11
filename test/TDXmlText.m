@@ -41,7 +41,7 @@
     TDXmlToken *other = (TDXmlToken *)obj;
     NSLog(@"%s obj: %@ isText: %d", _cmd, obj, other.isText);
     
-    if ([string length]) {
+    if (string.length) {
         return [tok isEqual:other];
     } else {
         return other.isText;

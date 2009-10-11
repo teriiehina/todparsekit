@@ -107,7 +107,8 @@
 }
 
 
-#ifdef TARGET_OS_SNOW_LEOPARD
+#ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 - (void)enumerateTokensUsingBlock:(void (^)(PKToken *tok, BOOL *stop))block {
     PKToken *eof = [PKToken EOFToken];
 
@@ -119,6 +120,7 @@
         if (stop) break;
     }
 }
+#endif
 #endif
 
 

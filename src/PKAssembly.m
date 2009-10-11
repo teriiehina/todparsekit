@@ -11,19 +11,10 @@
 static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 @interface PKAssembly ()
-- (id)peek;
-- (id)next;
-- (BOOL)hasMore;
-- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter;
-- (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter;
-
 @property (nonatomic, readwrite, retain) NSMutableArray *stack;
 @property (nonatomic) NSUInteger index;
 @property (nonatomic, retain) NSString *string;
 @property (nonatomic, readwrite, retain) NSString *defaultDelimiter;
-@property (nonatomic, readonly) NSUInteger length;
-@property (nonatomic, readonly) NSUInteger objectsConsumed;
-@property (nonatomic, readonly) NSUInteger objectsRemaining;
 @end
 
 @implementation PKAssembly
@@ -89,7 +80,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
     }
     
     PKAssembly *a = (PKAssembly *)obj;
-    if ([a length] != [self length]) {
+    if (a.length != self.length) {
         return NO;
     }
 
@@ -97,7 +88,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
         return NO;
     }
     
-    if ([a.stack count] != [stack count]) {
+    if (a.stack.count != stack.count) {
         return NO;
     }
     
@@ -155,7 +146,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 - (id)pop {
     id result = nil;
-    if (![self isStackEmpty]) {
+    if (stack.count) {
         result = [[[stack lastObject] retain] autorelease];
         [stack removeLastObject];
     }
@@ -171,14 +162,14 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
 
 
 - (BOOL)isStackEmpty {
-    return 0 == [stack count];
+    return 0 == stack.count;
 }
 
 
 - (NSArray *)objectsAbove:(id)fence {
     NSMutableArray *result = [NSMutableArray array];
     
-    while (![self isStackEmpty]) {        
+    while (stack.count) {        
         id obj = [self pop];
         
         if ([obj isEqual:fence]) {
@@ -198,7 +189,7 @@ static NSString * const PKAssemblyDefaultDelimiter = @"/";
     [s appendString:@"["];
     
     NSUInteger i = 0;
-    NSUInteger len = [stack count];
+    NSUInteger len = stack.count;
     
     for (id obj in stack) {
         [s appendString:[obj description]];

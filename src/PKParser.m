@@ -11,11 +11,6 @@
 #import <ParseKit/PKTokenAssembly.h>
 #import <ParseKit/PKTokenizer.h>
 
-@interface PKAssembly ()
-- (BOOL)hasMore;
-@property (nonatomic, readonly) NSUInteger objectsConsumed;
-@end
-
 @interface PKParser ()
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies;
 - (PKAssembly *)best:(NSSet *)inAssemblies;
@@ -33,9 +28,11 @@
 
 
 - (void)dealloc {
-#ifdef TARGET_OS_SNOW_LEOPARD
+#ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     self.assemblerBlock = nil;
     self.preassemblerBlock = nil;
+#endif
 #endif
     self.assembler = nil;
     self.assemblerSelector = nil;
@@ -94,13 +91,15 @@
 - (NSSet *)matchAndAssemble:(NSSet *)inAssemblies {
     NSParameterAssert(inAssemblies);
 
-#ifdef TARGET_OS_SNOW_LEOPARD
+#ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     if (preassemblerBlock) {
         for (PKAssembly *a in inAssemblies) {
             preassemblerBlock(a);
         }
     } else 
 #endif
+#endif        
     if (preassembler) {
         NSAssert2([preassembler respondsToSelector:preassemblerSelector], @"provided preassembler %@ should respond to %s", preassembler, preassemblerSelector);
         for (PKAssembly *a in inAssemblies) {
@@ -110,12 +109,14 @@
     
     NSSet *outAssemblies = [self allMatchesFor:inAssemblies];
 
-#ifdef TARGET_OS_SNOW_LEOPARD
+#ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
     if (assemblerBlock) {
         for (PKAssembly *a in outAssemblies) {
             assemblerBlock(a);
         }
     } else 
+#endif        
 #endif
     if (assembler) {
         NSAssert2([assembler respondsToSelector:assemblerSelector], @"provided assembler %@ should respond to %s", assembler, assemblerSelector);
@@ -147,16 +148,18 @@
 
 - (NSString *)description {
     NSString *className = [NSStringFromClass([self class]) substringFromIndex:2];
-    if ([name length]) {
+    if (name.length) {
         return [NSString stringWithFormat:@"%@ (%@)", className, name];
     } else {
         return [NSString stringWithFormat:@"%@", className];
     }
 }
 
-#ifdef TARGET_OS_SNOW_LEOPARD
+#ifdef MAC_OS_X_VERSION_10_6
+#if !TARGET_OS_IPHONE
 @synthesize assemblerBlock;
 @synthesize preassemblerBlock;
+#endif
 #endif
 @synthesize assembler;
 @synthesize assemblerSelector;

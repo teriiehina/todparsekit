@@ -38,7 +38,7 @@
     if (string != s) {
         [string autorelease];
         string = [s copy];
-        length = [string length];
+        length = string.length;
     }
     // reset cursor
     offset = 0;

@@ -271,14 +271,14 @@
         NSAssert([obj isKindOfClass:[PKParser class]], @"");
     }
     
-    if ([objs count] > 1) {
+    if (objs.count > 1) {
         PKSequence *seq = [PKSequence sequence];
         for (id obj in [objs reverseObjectEnumerator]) {
             [seq add:obj];
         }
         [a push:seq];
     } else {
-        NSAssert((NSUInteger)1 == [objs count], @"");
+        NSAssert((NSUInteger)1 == objs.count, @"");
         PKParser *p = [objs objectAtIndex:0];
         [a push:p];
     }

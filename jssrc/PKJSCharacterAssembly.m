@@ -61,7 +61,7 @@ static JSValueRef PKCharacterAssembly_objectsAbove(JSContextRef ctx, JSObjectRef
 
 static JSValueRef PKCharacterAssembly_getLength(JSContextRef ctx, JSObjectRef this, JSStringRef propName, JSValueRef *ex) {
     PKCharacterAssembly *data = JSObjectGetPrivate(this);
-    return JSValueMakeNumber(ctx, [data length]);
+    return JSValueMakeNumber(ctx, data.length);
 }
 
 #pragma mark -

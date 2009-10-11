@@ -49,13 +49,13 @@
 
 
 - (void)addStartMarker:(NSString *)start {
-    NSParameterAssert([start length]);
+    NSParameterAssert(start.length);
     [startMarkers addObject:start];
 }
 
 
 - (void)removeStartMarker:(NSString *)start {
-    NSParameterAssert([start length]);
+    NSParameterAssert(start.length);
     [startMarkers removeObject:start];
 }
 

@@ -44,9 +44,9 @@
 - (BOOL)qualifies:(id)obj {
     PKToken *tok = (PKToken *)obj;
     BOOL result = tok.isDelimitedString;
-    if (result && [startMarker length]) {
+    if (result && startMarker.length) {
         result = [tok.stringValue hasPrefix:startMarker];
-        if (result && [endMarker length]) {
+        if (result && endMarker.length) {
             result = [tok.stringValue hasSuffix:endMarker];
         }
     }

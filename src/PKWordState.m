@@ -60,7 +60,7 @@
 
 
 - (void)setWordChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
-    NSUInteger len = [wordChars count];
+    NSUInteger len = wordChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"PKWordStateNotSupportedException" format:@"PKWordState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
@@ -74,7 +74,7 @@
 
 
 - (BOOL)isWordChar:(PKUniChar)c {    
-    if (c > PKEOF && c < [wordChars count] - 1) {
+    if (c > PKEOF && c < wordChars.count - 1) {
         return (PKTRUE == [wordChars objectAtIndex:c]);
     }
 

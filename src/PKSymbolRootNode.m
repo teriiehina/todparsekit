@@ -32,7 +32,7 @@
 
 - (void)add:(NSString *)s {
     NSParameterAssert(s);
-    if ([s length] < 2) return;
+    if (s.length < 2) return;
     
     [self addWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
 }
@@ -40,7 +40,7 @@
 
 - (void)remove:(NSString *)s {
     NSParameterAssert(s);
-    if ([s length] < 2) return;
+    if (s.length < 2) return;
     
     [self removeWithFirst:[s characterAtIndex:0] rest:[s substringFromIndex:1] parent:self];
 }
@@ -58,9 +58,9 @@
 
     NSString *rest = nil;
     
-    if (0 == [s length]) {
+    if (0 == s.length) {
         return;
-    } else if ([s length] > 1) {
+    } else if (s.length > 1) {
         rest = [s substringFromIndex:1];
     }
     
@@ -75,9 +75,9 @@
     if (child) {
         NSString *rest = nil;
         
-        if (0 == [s length]) {
+        if (0 == s.length) {
             return;
-        } else if ([s length] > 1) {
+        } else if (s.length > 1) {
             rest = [s substringFromIndex:1];
             [self removeWithFirst:[s characterAtIndex:0] rest:rest parent:child];
         }

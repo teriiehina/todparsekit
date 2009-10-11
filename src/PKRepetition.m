@@ -59,7 +59,7 @@
     NSMutableSet *outAssemblies = [[inAssemblies mutableCopy] autorelease];
     
     NSSet *s = inAssemblies;
-    while ([s count]) {
+    while (s.count) {
         s = [subparser matchAndAssemble:s];
         [outAssemblies unionSet:s];
     }

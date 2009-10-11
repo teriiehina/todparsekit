@@ -531,11 +531,11 @@
             }
             break;
         }
-        NSAssert(1 == [objs count], @"");
+        NSAssert(1 == objs.count, @"");
         [wordStrings addObject:[objs objectAtIndex:0]];
     }
     
-    NSInteger last = [wordStrings count] - 1;
+    NSInteger last = wordStrings.count - 1;
     NSInteger i = 0;
     NSMutableString *ms = [NSMutableString string];
     for (NSString *wordString in [wordStrings reverseObjectEnumerator]) {

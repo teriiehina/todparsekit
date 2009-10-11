@@ -71,7 +71,7 @@
 - (IBAction)goToLocation:(id)sender {
     NSString *URLString = [comboBox stringValue];
     
-    if (![URLString length]) {
+    if (!URLString.length) {
         NSBeep();
         return;
     }

@@ -8,9 +8,6 @@
 
 #import "TDLetterTest.h"
 
-@interface PKAssembly ()
-- (BOOL)hasMore;
-@end
 
 @implementation TDLetterTest
 

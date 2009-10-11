@@ -28,7 +28,7 @@
 - (id)initWithString:(NSString *)s {
     self = [super initWithString:s];
     if (self) {
-        if ([s length]) {
+        if (s.length) {
             self.symbol = [PKToken tokenWithTokenType:PKTokenTypeSymbol stringValue:s floatValue:0.0];
         }
     }
@@ -54,7 +54,7 @@
 
 - (NSString *)description {
     NSString *className = [NSStringFromClass([self class]) substringFromIndex:2];
-    if ([name length]) {
+    if (name.length) {
         if (symbol) {
             return [NSString stringWithFormat:@"%@ (%@) %@", className, name, symbol.stringValue];
         } else {

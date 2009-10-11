@@ -44,7 +44,7 @@
 
 - (NSString *)description {
     NSString *className = [NSStringFromClass([self class]) substringFromIndex:2];
-    if ([name length]) {
+    if (name.length) {
         return [NSString stringWithFormat:@"%@ (%@) %@", className, name, literal.stringValue];
     } else {
         return [NSString stringWithFormat:@"%@ %@", className, literal.stringValue];

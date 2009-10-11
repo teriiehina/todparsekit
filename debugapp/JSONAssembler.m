@@ -96,7 +96,7 @@
         }
     }
     
-    if ([whitespaceToks count]) {
+    if (whitespaceToks.count) {
         whitespaceToks = [whitespaceToks reversedMutableArray];
         [self appendAttributedStringForObjects:whitespaceToks withAttrs:defaultAttrs];
     }

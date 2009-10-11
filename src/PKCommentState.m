@@ -65,22 +65,22 @@
 
 
 - (void)addSingleLineStartMarker:(NSString *)start {
-    NSParameterAssert([start length]);
+    NSParameterAssert(start.length);
     [rootNode add:start];
     [singleLineState addStartMarker:start];
 }
 
 
 - (void)removeSingleLineStartMarker:(NSString *)start {
-    NSParameterAssert([start length]);
+    NSParameterAssert(start.length);
     [rootNode remove:start];
     [singleLineState removeStartMarker:start];
 }
 
 
 - (void)addMultiLineStartMarker:(NSString *)start endMarker:(NSString *)end {
-    NSParameterAssert([start length]);
-    NSParameterAssert([end length]);
+    NSParameterAssert(start.length);
+    NSParameterAssert(end.length);
     [rootNode add:start];
     [rootNode add:end];
     [multiLineState addStartMarker:start endMarker:end];
@@ -88,7 +88,7 @@
 
 
 - (void)removeMultiLineStartMarker:(NSString *)start {
-    NSParameterAssert([start length]);
+    NSParameterAssert(start.length);
     [rootNode remove:start];
     [multiLineState removeStartMarker:start];
 }
@@ -117,7 +117,7 @@
         }
         return tok;
     } else {
-        [r unread:[symbol length] - 1];
+        [r unread:symbol.length - 1];
         return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
 }

@@ -8,13 +8,6 @@
 
 #import "TDTokenAssemblyTest.h"
 
-@interface PKAssembly ()
-- (id)next;
-- (BOOL)hasMore;
-@property (nonatomic, readonly) NSUInteger length;
-@property (nonatomic, readonly) NSUInteger objectsConsumed;
-@property (nonatomic, readonly) NSUInteger objectsRemaining;
-@end
 
 @implementation TDTokenAssemblyTest
 
@@ -33,7 +26,7 @@
     s = @"oh hai!";
     a = [PKTokenAssembly assemblyWithString:s];
 
-    TDEquals((NSUInteger)3, [a length]);
+    TDEquals((NSUInteger)3, a.length);
 
     TDEquals((NSUInteger)0, a.objectsConsumed);
     TDEquals((NSUInteger)3, a.objectsRemaining);
@@ -65,7 +58,7 @@
     TDFalse([a hasMore]);
     TDNil([[a next] stringValue]);
 
-    TDEquals((NSUInteger)3, [a length]);
+    TDEquals((NSUInteger)3, a.length);
 }
 
 
@@ -73,7 +66,7 @@
     s = @"foobar";
     a = [PKTokenAssembly assemblyWithString:s];
 
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[PKWord alloc] init];
@@ -91,7 +84,7 @@
     s = @"foobar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[PKWord alloc] init];
@@ -105,7 +98,7 @@
     s = @"foo bar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[PKWord alloc] init];
@@ -119,7 +112,7 @@
     s = @"foo bar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foo/bar", [a description]);
     
     p = [[PKWord alloc] init];
@@ -132,7 +125,7 @@
     s = @"foobar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -145,7 +138,7 @@
     s = @"foobar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^foobar", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -158,7 +151,7 @@
     s = @"123";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[PKWord alloc] init];
@@ -175,7 +168,7 @@
     p = [[PKWord alloc] init];
     PKAssembly *result = [p completeMatchFor:a];
     TDNil(result);
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
 }
 
@@ -184,7 +177,7 @@
     s = @"123";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -198,7 +191,7 @@
     s = @"123";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)1, [a length]);
+    TDEquals((NSUInteger)1, a.length);
     TDEqualObjects(@"[]^123", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -212,7 +205,7 @@
     s = @"123 456";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -226,7 +219,7 @@
     s = @"123 456";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^123/456", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -239,7 +232,7 @@
     s = @"foobar 123";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[PKWord alloc] init];
@@ -253,7 +246,7 @@
     s = @"foobar 123";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)2, [a length]);
+    TDEquals((NSUInteger)2, a.length);
     TDEqualObjects(@"[]^foobar/123", [a description]);
     
     p = [[PKWord alloc] init];
@@ -266,7 +259,7 @@
     s = @"123 456 foobar";
     a = [PKTokenAssembly assemblyWithString:s];
 
-    TDEquals((NSUInteger)3, [a length]);
+    TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[PKNumber alloc] init];
@@ -280,7 +273,7 @@
     s = @"123 456 foobar";
     a = [PKTokenAssembly assemblyWithString:s];
     
-    TDEquals((NSUInteger)3, [a length]);
+    TDEquals((NSUInteger)3, a.length);
     TDEqualObjects(@"[]^123/456/foobar", [a description]);
     
     p = [[PKNumber alloc] init];

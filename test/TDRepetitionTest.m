@@ -36,7 +36,7 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSUInteger c = [all count];
+    NSUInteger c = all.count;
     TDEquals((NSUInteger)4, c);
 }
 
@@ -76,7 +76,7 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSUInteger c = [all count];
+    NSUInteger c = all.count;
     TDEquals((NSUInteger)3, c);
 }    
 
@@ -91,7 +91,7 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSUInteger c = [all count];
+    NSUInteger c = all.count;
     TDEquals((NSUInteger)2, c);
 }    
 
@@ -106,7 +106,7 @@
     NSLog(@"all: %@", all);
     
     TDNotNil(all);
-    NSUInteger c = [all count];
+    NSUInteger c = all.count;
     TDEquals((NSUInteger)1, c);
 }    
 
@@ -165,7 +165,7 @@
     NSSet *all = [p allMatchesFor:[NSSet setWithObject:a]];
     
     TDNotNil(all);
-    NSInteger c = [all count];
+    NSInteger c = all.count;
     TDEquals((NSUInteger)3, (NSUInteger)c);
 }    
 

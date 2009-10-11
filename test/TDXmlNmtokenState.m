@@ -44,9 +44,9 @@
     }
     
     NSString *s = [self bufferedString];
-    if ([s length] == 1 && [[self class] isValidStartSymbolChar:cin]) {
+    if (s.length == 1 && [[self class] isValidStartSymbolChar:cin]) {
         return [t.symbolState nextTokenFromReader:r startingWith:cin tokenizer:t];
-    } else if ([s length] == 1 && isdigit(cin)) {
+    } else if (s.length == 1 && isdigit(cin)) {
         return [t.numberState nextTokenFromReader:r startingWith:cin tokenizer:t];
     } else {
         return nil;

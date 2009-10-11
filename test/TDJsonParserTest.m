@@ -298,41 +298,41 @@
     TDNotNil(sizes);
     TDTrue([sizes isKindOfClass:[NSArray class]]);
     
-    TDEquals(3, (int)[sizes count]);
+    TDEquals(3, (int)sizes.count);
     
     NSArray *first = [sizes objectAtIndex:0];
     TDNotNil(first);
     TDTrue([first isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[first count]);
+    TDEquals(2, (int)first.count);
     
     NSArray *firstKey = [first objectAtIndex:0];
     TDNotNil(firstKey);
     TDTrue([firstKey isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[firstKey count]);
+    TDEquals(2, (int)firstKey.count);
     TDEqualObjects([NSNumber numberWithInteger:150], [firstKey objectAtIndex:0]);
     TDEqualObjects([NSNumber numberWithInteger:37], [firstKey objectAtIndex:1]);
     
     NSArray *second = [sizes objectAtIndex:1];
     TDNotNil(second);
     TDTrue([second isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[second count]);
+    TDEquals(2, (int)second.count);
     
     NSArray *secondKey = [second objectAtIndex:0];
     TDNotNil(secondKey);
     TDTrue([secondKey isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[secondKey count]);
+    TDEquals(2, (int)secondKey.count);
     TDEqualObjects([NSNumber numberWithInteger:200], [secondKey objectAtIndex:0]);
     TDEqualObjects([NSNumber numberWithInteger:50], [secondKey objectAtIndex:1]);
     
     NSArray *third = [sizes objectAtIndex:2];
     TDNotNil(third);
     TDTrue([third isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[third count]);
+    TDEquals(2, (int)third.count);
     
     NSArray *thirdKey = [third objectAtIndex:0];
     TDNotNil(thirdKey);
     TDTrue([thirdKey isKindOfClass:[NSArray class]]);
-    TDEquals(2, (int)[thirdKey count]);
+    TDEquals(2, (int)thirdKey.count);
     TDEqualObjects([NSNumber numberWithInteger:200], [thirdKey objectAtIndex:0]);
     TDEqualObjects([NSNumber numberWithInteger:50], [thirdKey objectAtIndex:1]);
     

@@ -53,7 +53,7 @@
 
 
 - (void)setWhitespaceChars:(BOOL)yn from:(PKUniChar)start to:(PKUniChar)end {
-    NSUInteger len = [whitespaceChars count];
+    NSUInteger len = whitespaceChars.count;
     if (start > len || end > len || start < 0 || end < 0) {
         [NSException raise:@"PKWhitespaceStateNotSupportedException" format:@"PKWhitespaceState only supports setting word chars for chars in the latin1 set (under 256)"];
     }
@@ -67,7 +67,7 @@
 
 
 - (BOOL)isWhitespaceChar:(PKUniChar)cin {
-    if (cin < 0 || cin > [whitespaceChars count] - 1) {
+    if (cin < 0 || cin > whitespaceChars.count - 1) {
         return NO;
     }
     return PKTRUE == [whitespaceChars objectAtIndex:cin];

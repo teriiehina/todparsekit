@@ -120,7 +120,7 @@
             }
             c++;
         }
-        result = c == [array count];
+        result = c == array.count;
     }
     
     if (isNone) {

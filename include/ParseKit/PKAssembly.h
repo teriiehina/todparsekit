@@ -38,6 +38,40 @@
 - (id)initWithString:(NSString *)s;
 
 /*!
+    @brief      Shows the next object in the assembly, without removing it
+    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
+    @result     the next object in the assembly.
+*/
+- (id)peek;
+
+/*!
+    @brief      Returns the next object in the assembly.
+    @details    Note this is not the next object in this assembly's stack, but rather the next object from this assembly's stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
+    @result     the next object in the assembly.
+*/
+- (id)next;
+
+/*!
+    @brief      Returns true if this assembly has unconsumed elements.
+    @result     true, if this assembly has unconsumed elements
+*/
+- (BOOL)hasMore;
+
+/*!
+    @brief      Returns the elements of this assembly that have been consumed, separated by the specified delimiter.
+    @param      delimiter string with which to separate elements of this assembly
+    @result     string representing the elements of this assembly that have been consumed, separated by the specified delimiter
+*/
+- (NSString *)consumedObjectsJoinedByString:(NSString *)delimiter;
+
+/*!
+    @brief      Returns the elements of this assembly that remain to be consumed, separated by the specified delimiter.
+    @param      delimiter string with which to separate elements of this assembly
+    @result     string representing the elements of this assembly that remain to be consumed, separated by the specified delimiter
+*/
+- (NSString *)remainingObjectsJoinedByString:(NSString *)delimiter;
+
+/*!
     @brief      Removes the object at the top of this assembly's stack and returns it.
     @details    Note this returns an object from this assembly's stack, not from its stream of elements (tokens or chars depending on the type of concrete <tt>PKAssembly</tt> subclass of this object).
     @result     the object at the top of this assembly's stack
@@ -64,6 +98,30 @@
     @result     Array of the elements above the specified fence
 */
 - (NSArray *)objectsAbove:(id)fence;
+
+/*!
+    @property   length
+    @brief      The number of elements in this assembly.
+*/
+@property (nonatomic, readonly) NSUInteger length;
+
+/*!
+    @property   objectsConsumed
+    @brief      The number of elements that have been consumed.
+*/
+@property (nonatomic, readonly) NSUInteger objectsConsumed;
+
+/*!
+    @property   objectsRemaining
+    @brief      The number of elements that have not been consumed
+*/
+@property (nonatomic, readonly) NSUInteger objectsRemaining;
+
+/*!
+    @property   defaultDelimiter
+    @brief      The default string to show between elements
+*/
+@property (nonatomic, readonly, retain) NSString *defaultDelimiter;
 
 /*!
     @property   stack
