@@ -101,25 +101,36 @@
     [self resetWithReader:r];
 
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
-
-    if ([multiLineState.startMarkers containsObject:symbol]) {
-        multiLineState.currentStartMarker = symbol;
-        PKToken *tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
-        if (tok.isComment) {
-            tok.offset = offset;
+    PKToken *tok = nil;
+    
+    while ([symbol length]) {
+        if ([multiLineState.startMarkers containsObject:symbol]) {
+            multiLineState.currentStartMarker = symbol;
+            tok = [multiLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+            if (tok.isComment) {
+                tok.offset = offset;
+            }
+        } else if ([singleLineState.startMarkers containsObject:symbol]) {
+            singleLineState.currentStartMarker = symbol;
+            tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
+            if (tok.isComment) {
+                tok.offset = offset;
+            }
         }
-        return tok;
-    } else if ([singleLineState.startMarkers containsObject:symbol]) {
-        singleLineState.currentStartMarker = symbol;
-        PKToken *tok = [singleLineState nextTokenFromReader:r startingWith:cin tokenizer:t];
-        if (tok.isComment) {
-            tok.offset = offset;
+        
+        if (tok) {
+            return tok;
+        } else {
+            if ([symbol length] > 1) {
+                symbol = [symbol substringToIndex:[symbol length] -1];
+            } else {
+                break;
+            }
+            [r unread:1];
         }
-        return tok;
-    } else {
-        [r unread:[symbol length] - 1];
-        return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
     }
+
+    return [[self nextTokenizerStateFor:cin tokenizer:t] nextTokenFromReader:r startingWith:cin tokenizer:t];
 }
 
 @synthesize rootNode;

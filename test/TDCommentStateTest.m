@@ -106,7 +106,8 @@
     [commentState addSingleLineStartMarker:@"#"];
     [t setTokenizerState:commentState from:'#' to:'#'];
     tok = [t nextToken];
-    TDTrue(tok == [PKToken EOFToken]);
+    TDEquals(tok, [PKToken EOFToken]);
+    TDEqualObjects(tok.stringValue, [[PKToken EOFToken] stringValue]);
     TDEquals(tok.offset, (NSUInteger)-1);
 }
 
@@ -435,5 +436,82 @@
     tok = [t nextToken];
     TDEqualObjects(tok, [PKToken EOFToken]);
 }
+
+
+- (void)testLuaComments {
+    s = @"--[comment";
+    t.string = s;
+    
+    [t setTokenizerState:t.symbolState from:'/' to:'/'];
+    [t setTokenizerState:t.commentState from:'-' to:'-'];
+    
+    [t.commentState addSingleLineStartMarker:@"--"];
+    [t.commentState addMultiLineStartMarker:@"--[[" endMarker:@"]]"];
+    
+    t.commentState.reportsCommentTokens = YES;
+    
+    PKToken *eof = [PKToken EOFToken];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, s);
+    
+    tok = [t nextToken];
+    TDEquals(eof, tok);
+}
+
+
+- (void)testLuaComments2 {
+    s = @"--[[[comment]]";
+    t.string = s;
+    
+    [t setTokenizerState:t.symbolState from:'/' to:'/'];
+    [t setTokenizerState:t.commentState from:'-' to:'-'];
+    
+    [t.commentState addSingleLineStartMarker:@"--"];
+    [t.commentState addMultiLineStartMarker:@"--[[" endMarker:@"]]"];
+    
+    t.commentState.reportsCommentTokens = YES;
+    
+    PKToken *eof = [PKToken EOFToken];
+    
+    tok = [t nextToken];
+    TDTrue(tok.isComment);
+    TDEqualObjects(tok.stringValue, s);
+    
+    tok = [t nextToken];
+    TDEquals(eof, tok);
+}
+
+
+//- (void)testTrickyCase {
+//    s = @"+++\n+++-\n+++-+";
+//    
+//    t = [PKTokenizer tokenizerWithString:s];
+//    [t.symbolState add:@"+++"];
+//    [t.symbolState add:@"+++-+"];
+//    
+//    PKToken *eof = [PKToken EOFToken];
+//    PKToken *tok = nil;
+//    
+//    tok = [t nextToken];
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"+++");
+//    
+//    tok = [t nextToken];
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"+++");
+//    
+//    tok = [t nextToken];
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"-");
+//    
+//    tok = [t nextToken];
+//    TDTrue(tok.isSymbol);
+//    TDEqualObjects(tok.stringValue, @"+++-+");
+//    
+//    tok = [t nextToken];
+//    TDEquals(eof, tok);
+//}
 
 @end
