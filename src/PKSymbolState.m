@@ -54,19 +54,24 @@
     NSString *symbol = [rootNode nextSymbol:r startingWith:cin];
     NSUInteger len = [symbol length];
 
-    if (0 == len || (len > 1 && [addedSymbols containsObject:symbol])) {
-        return [self symbolTokenWithSymbol:symbol];
+    while (len > 1) {
+        if ([addedSymbols containsObject:symbol]) {
+            return [self symbolTokenWithSymbol:symbol];
+        }
+
+        symbol = [symbol substringToIndex:[symbol length] - 1];
+        len = [symbol length];
+        [r unread:1];
+    }
+    
+    if (1 == len) {
+        return [self symbolTokenWith:cin];
     } else {
-        [r unread:len - 1];
-        if (1 == len) {
+        PKTokenizerState *state = [self nextTokenizerStateFor:cin tokenizer:t];
+        if (!state || state == self) {
             return [self symbolTokenWith:cin];
         } else {
-            PKTokenizerState *state = [self nextTokenizerStateFor:cin tokenizer:t];
-            if (!state || state == self) {
-                return [self symbolTokenWith:cin];
-            } else {
-                return [state nextTokenFromReader:r startingWith:cin tokenizer:t];
-            }
+            return [state nextTokenFromReader:r startingWith:cin tokenizer:t];
         }
     }
 }

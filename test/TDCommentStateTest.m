@@ -483,35 +483,4 @@
     TDEquals(eof, tok);
 }
 
-
-//- (void)testTrickyCase {
-//    s = @"+++\n+++-\n+++-+";
-//    
-//    t = [PKTokenizer tokenizerWithString:s];
-//    [t.symbolState add:@"+++"];
-//    [t.symbolState add:@"+++-+"];
-//    
-//    PKToken *eof = [PKToken EOFToken];
-//    PKToken *tok = nil;
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"+++");
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"+++");
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"-");
-//    
-//    tok = [t nextToken];
-//    TDTrue(tok.isSymbol);
-//    TDEqualObjects(tok.stringValue, @"+++-+");
-//    
-//    tok = [t nextToken];
-//    TDEquals(eof, tok);
-//}
-
 @end

@@ -36,8 +36,12 @@
     TDEqualObjects(@"cast", tok.stringValue);
 
     tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"c", tok.stringValue);
+    
+    tok = [t nextToken];
     TDTrue(tok.isWord);
-    TDEqualObjects(@"cat", tok.stringValue);    
+    TDEqualObjects(@"at", tok.stringValue);    
 
     tok = [t nextToken];
     TDEqualObjects(nil, tok.stringValue);    
@@ -61,8 +65,12 @@
     TDEqualObjects(@"cast as", tok.stringValue);
     
     tok = [t nextToken];
+    TDTrue(tok.isSymbol);
+    TDEqualObjects(@"c", tok.stringValue);    
+    
+    tok = [t nextToken];
     TDTrue(tok.isWord);
-    TDEqualObjects(@"cat", tok.stringValue);    
+    TDEqualObjects(@"at", tok.stringValue);    
     
     tok = [t nextToken];
     TDEqualObjects(nil, tok.stringValue);    
