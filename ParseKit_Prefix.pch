@@ -10,3 +10,5 @@
     #define TARGET_OS_SNOW_LEOPARD
 #endif
 
+#define PLATFORM(PK_FEATURE) (defined PK_PLATFORM_##PK_FEATURE  && PK_PLATFORM_##PK_FEATURE)
+
